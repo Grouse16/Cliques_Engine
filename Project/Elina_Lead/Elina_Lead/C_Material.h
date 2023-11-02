@@ -15,7 +15,7 @@
 #include <vector>
 
 #include "C_Rendering_Setting_System.h"
-#include "C_Texture_Data_System.h"
+#include "C_Texture_Data_User.h"
 #include "C_Constant_Data_System.h"
 
 
@@ -24,6 +24,30 @@
 // マテリアルを呼び出すための名前
 namespace ASSET::MATERIAL
 {
+	// ☆ 構造体 ☆ //
+
+	// 定数バッファを使用する際の情報をまとめた構造体
+	struct S_Constant_Buffer_Data
+	{
+		RENDERING::CAPSULE::C_Constant_Buffer_Data_System data;	// 定数バッファを管理するシステム
+
+		std::string signature_name = "default";	// 定数バッファ識別用名
+
+		int index = 0;	// 定数バッファのインデックス番号
+	};
+
+
+	// テクスチャバッファを使用する際の情報をまとめた構造体
+	struct S_Texture_Buffer_Data
+	{
+		ASSET::TEXTURE::C_Texture_Data_User data;	// テクスチャを使用するためのシステム
+
+		std::string signature_name = "default";	// テクスチャスロット識別用名
+
+		int index = 0;	// テクスチャのインデックス番号
+	};
+
+
 	// ☆ クラス ☆ //
 	
 	// マテリアルのクラス、描画時の描画方法の設定を行う
@@ -32,26 +56,6 @@ namespace ASSET::MATERIAL
 		//==☆ プライベート ☆==//
 	private:
 
-		// ☆ 構造体 ☆ //
-
-		// 定数バッファを使用する際の情報をまとめた構造体
-		struct S_Constant_Buffer_Data
-		{
-			RENDERING::CAPSULE::C_Constant_Buffer_Data_System data;	// 定数バッファを管理するシステム
-
-			int index = 0;	// 定数バッファのインデックス番号
-		};
-
-
-		// テクスチャバッファを使用する際の情報をまとめた構造体
-		struct S_Texture_Buffer_Data
-		{
-			RENDERING::CAPSULE::C_Texture_Data_System * data = nullptr;	// テクスチャバッファを管理するシステム
-
-			int index = 0;	// 定数バッファのインデックス番号
-		};
-
-
 		// ☆ 変数宣言 ☆ //
 
 		// プライベート変数をまとめた構造体
@@ -59,13 +63,19 @@ namespace ASSET::MATERIAL
 		{
 			RENDERING::CAPSULE::C_Rendering_Setting_System rendering_setting;	// 描画用設定
 
-			SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
-
 			std::vector<S_Constant_Buffer_Data> constant_data_list;	// 使用する定数バッファのリスト
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
+
+		
+		// ☆ 関数 ☆ //
+
+		//-☆- セッタ -☆-//
+
+		// スロットの情報をセットする　引数：設定するスロット識別用の情報
+		void M_Creat_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
 
 
 		//==☆ パブリック ☆==//
@@ -95,6 +105,46 @@ namespace ASSET::MATERIAL
 
 		// レンダリング用の情報をGPUに設定する
 		void M_Attach_To_GPU(void);
+
+
+		//-☆- セッタ -☆-//
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された定数バッファにデータをセットする
+		// 引数   ：int 設定先の定数バッファの番号, int 定数バッファの配列番号, const C_Constant_Data_Class & 定数バッファにセットするデータ
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template<class C_Constant_Data_Class>
+		void M_Set_Constant_Data_To_Buffer_By_Index(int in_index, int in_buffer_index, const C_Constant_Data_Class & in_set_data)
+		{
+			// 配列外を指定されたら抜ける
+			if (mpr_variable.constant_data_list.size() <= in_index)
+			{
+				return;
+			}
+
+
+			// ☆ 変数宣言 ☆ //
+			int constant_data_size = sizeof(C_Constant_Data_Class);	// 定数データのバイト数
+
+
+			// データをセットする
+			mpr_variable.constant_data_list[in_index].data.M_Set_Constant_Data(constant_data_size, in_buffer_index, reinterpret_cast<void * >(&in_set_data));
+
+			return;
+		}
+
+		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名
+		void M_Load_Texture_For_Slot_By_Index(int, std::string);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 指定された定数バッファ管理用データを返す　引数：取得する定数バッファ管理用データの番号
+		const S_Constant_Buffer_Data & M_Get_Constant_Buffer_Data_By_Index(int);
+
+		// 指定されたテクスチャ管理用データを返す　引数：取得するテクスチャ管理用データの番号
+		const S_Texture_Buffer_Data & M_Get_Texture_Data_By_Index(int);
 	};
 }
 

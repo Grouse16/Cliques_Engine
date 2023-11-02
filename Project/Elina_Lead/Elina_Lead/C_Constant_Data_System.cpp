@@ -13,10 +13,6 @@
 using namespace RENDERING::CAPSULE;
 
 
-// ☆ 定数 ☆ //
-constexpr int con_CONSTANT_BUFFER_SIZE = 256;	// 定数バッファのバイト数
-
-
 // ☆ 関数 ☆ //
 
 //-☆- 初期化と終了時 -☆-//
@@ -176,6 +172,30 @@ ASSET::SHADER::E_SHADER_KIND C_Constant_Buffer_Data_System::M_Get_Attach_Shader_
 void C_Constant_Buffer_Data_System::M_Set_Constant_Data_To_Buffer(void)
 {
 	mpr_variable.constant_buffer_inform->M_Set_Data_To_Buffer(&mpr_variable.constant_data[0], mpr_variable.list_sum, 256);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数データを上書きする
+// 引数   ：int バイト数, int 設定先の配列番号, const void * 上書きするデータ
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Constant_Buffer_Data_System::M_Set_Constant_Data(int in_size, int in_index, const void * in_data)
+{
+	// サイズが大きすぎるか、配列の外を指定しているなら抜ける
+	if (in_size > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
+	{
+		return;
+	}
+
+
+	// 定数データを書き換える
+	for (int l_now_slot = 0; l_now_slot < in_size; l_now_slot++)
+	{
+		mpr_variable.constant_data[in_index].data[l_now_slot] = reinterpret_cast<const std::byte * >(in_data)[l_now_slot];
+	}
 
 	return;
 }

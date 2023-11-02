@@ -34,8 +34,9 @@ namespace DEBUGGER::LOG
 
 
 		//-☆- アプリケーション -☆-//
-		e_OBJECT,	// オブジェクトによるログ
-		e_UI		// UIによるログ
+		e_OBJECT,			// オブジェクトによるログ
+		e_GAME_RENDERING,	// ゲーム上の描画によるログ
+		e_UI				// UIによるログ
 	};
 
 	// ログの表示カラー設定用の番号
@@ -56,38 +57,45 @@ namespace DEBUGGER::LOG
 		// メインシステム用のログ文字列
 		namespace MAIN_SYSTEM
 		{
-			static const char con_CONSOLE_CREATED[] = "Console_Created";		// コンソールの生成成功時のログタイトル
-			static const char con_SET_UP_SUCCEEDED[] = "WIN_DX12_SET_UP_SUCCEEDED";	// ウィンドウズとDX12のシステムのセットアップ成功時のログタイトル
-			static const char con_ALL_SET_UP_SUCCEEDED[] = "ALL_SET_UP_CLEAR";	// 全てのセットアップに成功したときのログ
-			static const char con_END[] = "APK_END";	// アプリケーション終了時のログタイトル
+			constexpr char con_CONSOLE_CREATED[] = "Console_Created";		// コンソールの生成成功時のログタイトル
+			constexpr char con_SET_UP_SUCCEEDED[] = "WIN_DX12_SET_UP_SUCCEEDED";	// ウィンドウズとDX12のシステムのセットアップ成功時のログタイトル
+			constexpr char con_ALL_SET_UP_SUCCEEDED[] = "ALL_SET_UP_CLEAR";	// 全てのセットアップに成功したときのログ
+			constexpr char con_END[] = "APK_END";	// アプリケーション終了時のログタイトル
 		};
 
-		// エンジン用のログ文字列
+		// ゲーム用のログ文字列
 		namespace GAME_SYSTEM
 		{
-			static const char con_GAME_INIT[] = "APK_INIT";					// 立ち上げログ
-			static const char con_GAME_INIT_ERROR[] = "APK_INIT_ERROR";		// 立ち上げ失敗時のログ
-			static const char con_GAME_SHADER_ERROR[] = "SHADER_ERROR";		// シェーダーの生成失敗時
-			static const char con_GAME_CREAT_FUNCTION[] = "CREAT_FUNCTION";	// エンジン用の機能の生成
+			constexpr char con_GAME_INIT[] = "GAME_INIT";					// 立ち上げログ
+			constexpr char con_GAME_INIT_ERROR[] = "GAME_INIT_ERROR";		// 立ち上げ失敗時のログ
+			constexpr char con_GAME_SHADER_ERROR[] = "SHADER_ERROR";		// シェーダーの生成失敗時
+			constexpr char con_GAME_CREAT_FUNCTION[] = "CREAT_FUNCTION";	// 機能の生成
+		};
+
+		// ゲームの描画システム用のログ文字列
+		namespace GAME_RENDERING
+		{
+			constexpr char con_INIT[] = "GAME_RENDERING_INIT";		// 立ち上げログ
+			constexpr char con_ERROR[] = "GAME_RENDERING_ERROR";	// エラーログ
 		};
 
 		// アプリケーションのエラーログ
 		namespace APK_LOG
 		{
-			static const char con_MANAGERS_ERROR[] = "MANAGER-ERRORS";	// ウィンドウズのセットアップ成功時のログタイトル
+			constexpr char con_MANAGERS_ERROR[] = "MANAGER-ERRORS";	// ウィンドウズのセットアップ成功時のログタイトル
 		};
 
 		// ウィンドウズ用のログ文字列
 		namespace WINDOWS
 		{
-			static const char con_SET_UP_SUCCEEDED[] = "Windows_Set_Up_Succeeded";	// ウィンドウズのセットアップ成功時のログタイトル
+			constexpr char con_SET_UP_SUCCEEDED[] = "Windows_Set_Up_Succeeded";	// ウィンドウズのセットアップ成功時のログタイトル
 		};
 
 		// DX12用のログ文字列
 		namespace DX12
 		{
-			static const char con_SET_UP_SUCCEEDED[] = "DX12_Set_Up_Succeeded";	// ウィンドウズのセットアップ成功時のログタイトル
-			static const char con_SET_UP_FAILED[] = "DX12_Set_Up_Failed";		// ウィンドウズのセットアップ失敗時のログタイトル
+			constexpr char con_SET_UP_SUCCEEDED[] = "DX12_Set_Up_Succeeded";	// ウィンドウズのセットアップ成功時のログタイトル
+			constexpr char con_SET_UP_FAILED[] = "DX12_Set_Up_Failed";		// ウィンドウズのセットアップ失敗時のログタイトル
 		};
 	};
 
@@ -110,7 +118,7 @@ namespace DEBUGGER::LOG
 			int color_text = 0;	// コンソールのテキストの色
 			int color_back = 0;	// コンソールの背景色
 
-			bool inited = false;	// 初期化されたかどうかのフラグ
+			bool initialized = false;	// 初期化されたかどうかのフラグ
 
 		} static mpr_variable;	// プライベート変数を呼び出すための名前
 

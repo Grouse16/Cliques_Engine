@@ -132,6 +132,9 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Load_Texture_By
 	m_this.mpr_variable.texture_list[texture_slot_num].name = in_texture_name;
 	m_this.mpr_variable.texture_list[texture_slot_num].user_sum = 1;
 
+	// ここではテクスチャマップは使用しないので削除
+	m_this.mpr_variable.texture_list[texture_slot_num].texture->M_Delete_Map();
+
 	// 生成したテクスチャを返す
 	return m_this.mpr_variable.texture_list[texture_slot_num].texture.get();
 }

@@ -27,6 +27,9 @@ using namespace ASSET::TEXTURE;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_Texture_Data_User::C_Texture_Data_User(void)
 {
+	// 初期のテクスチャを取得する
+	mpr_variable.texture_data = ASSET::TEXTURE::MANAGER::C_Texture_Manager::M_Get_Reset_Texture();
+
 	return;
 }
 

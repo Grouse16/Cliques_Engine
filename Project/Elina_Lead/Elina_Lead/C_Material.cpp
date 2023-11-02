@@ -6,10 +6,15 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Log_System.h"
 #include "C_Material.h"
 #include "C_Rendering_Graphics_API_Base.h"
 #include "C_Text_And_File_Manager.h"
+
+
+// デバッグ時のみログシステムを使用
+#ifdef _DEBUG
+#include "C_Log_System.h"
+#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -17,6 +22,79 @@ using namespace ASSET::MATERIAL;
 
 
 // ☆ 関数 ☆ //
+
+//==☆ プライベート ☆==//
+
+//-☆- セッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：スロットの情報をセットする
+// 引数   ：const S_All_Shader_Resource_Signatures & 設定するスロット識別用の情報
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Creat_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures& in_resource_signature)
+{
+	// ☆ 変数宣言 ☆ //
+	int now_index_number = 0;			// 現在操作中のインデックススロット番号
+	int now_constant_index_number = 0;	// 現在操作中の定数バッファ
+	int now_texture_index_number = 0;	// 現在操作中のテクスチャスロット
+
+
+	//-☆- リソースの生成 -☆-//
+
+	//--☆ 全シェーダーに共通するスロットを設定 -☆-//
+
+	// 定義数分の定数バッファを作り、情報を設定する
+	mpr_variable.constant_data_list.resize(in_resource_signature.all_shader_signature.constant_data.size());
+	for (const ASSET::SHADER::S_Resource_Signature& now_constant_inform : in_resource_signature.all_shader_signature.constant_data)
+	{
+		mpr_variable.constant_data_list[now_constant_index_number].index = now_index_number;
+		mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
+
+		now_constant_index_number += 1;
+		now_index_number += 1;
+	}
+
+	// テクスチャ数分のスロットを作る
+	mpr_variable.texture_data_list.resize(in_resource_signature.all_shader_signature.texture_data.size());
+	for (const ASSET::SHADER::S_Resource_Signature& now_texture_inform : in_resource_signature.all_shader_signature.texture_data)
+	{
+		mpr_variable.texture_data_list[now_texture_index_number].index = now_index_number;
+		mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
+
+		now_texture_index_number += 1;
+		now_index_number += 1;
+	}
+
+	//--☆ 各シェーダーごとのスロットを設定 -☆-//
+	for (int l_now_shader_number = 0; l_now_shader_number < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; l_now_shader_number++)
+	{
+		// 定義数分の定数バッファを作り、情報を設定する
+		mpr_variable.constant_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].constant_data.size());
+		for (const ASSET::SHADER::S_Resource_Signature& now_constant_inform : in_resource_signature.signature_list[l_now_shader_number].constant_data)
+		{
+			mpr_variable.constant_data_list[now_constant_index_number].index = now_index_number;
+			mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
+
+			now_constant_index_number += 1;
+			now_index_number += 1;
+		}
+
+		// テクスチャ数分のスロットを作る
+		mpr_variable.texture_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].texture_data.size());
+		for (const ASSET::SHADER::S_Resource_Signature& now_texture_inform : in_resource_signature.signature_list[l_now_shader_number].texture_data)
+		{
+			mpr_variable.texture_data_list[now_texture_index_number].index = now_index_number;
+			mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
+
+			now_texture_index_number += 1;
+			now_index_number += 1;
+		}
+	}
+
+	return;
+}
+
 
 //==☆ パブリック ☆==//
 
@@ -67,7 +145,7 @@ void C_Material::M_Release(void)
 	// テクスチャ
 	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
 	{
-		now_texture_buffer.data->M_Delete();
+		now_texture_buffer.data.M_Release();
 	}
 	mpr_variable.texture_data_list.clear();
 	mpr_variable.texture_data_list.shrink_to_fit();
@@ -88,26 +166,55 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// ☆ 変数宣言 ☆ //
 	SYSTEM::TEXT::C_Text_And_File_Manager material_inform_file_data;	// マテリアル情報のファイルのデータ
 
-	mpr_variable.constant_data_list.size();	// 
-
 
 	// 指定されたファイルのロードを行う　エラーで終了する
 	if (material_inform_file_data.M_Load_Select_File(in_material_path) == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "指定されたマテリアルのファイルはありません");
+#ifdef _DEBUG
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません");
+#endif // _DEBUG
 
 		return false;
 	}
 
-	// マテリアルに使用するシェーダー設定名を取得する
-	material_inform_file_data.M_Goto_Right_By_Text_In_Front_Sentence("Shader：");
-	mpr_variable.shader_setting_data.M_Load_Shaders_Inform_By_Shader_Setting_Name(material_inform_file_data.M_Get_Data_Right_In_Row());
+	// マテリアルに使用するシェーダー設定名をがある位置へ移動　失敗でエラーを出して抜ける
+	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Sentence("Shader：") == false)
+	{
+#ifdef _DEBUG
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません");
+#endif // _DEBUG
+
+		return false;
+	}
 
 
-	// 定数バッファを設定する
+	// ☆ 変数宣言 ☆ //
+	ASSET::SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
+	
+
+	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
+	if (shader_setting_data.M_Load_Shaders_Inform_By_Shader_Setting_Name(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
+	{
+#ifdef _DEBUG
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります");
+#endif // _DEBUG
+
+		return false;
+	}
 
 
+	// シェーダー設定のリソースの情報をもとにリソースを生成する
+	M_Creat_Resource_By_Signature_Inform(shader_setting_data.M_Get_Resource_Signature());
+
+
+	// デバッグ時は生成に成功したことを記録する
+#ifdef _DEBUG
+	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "マテリアルの生成に成功しました");
+#endif // _DEBUG
 	return true;
 }
 
@@ -133,10 +240,55 @@ void C_Material::M_Attach_To_GPU(void)
 	// テクスチャバッファを一つづつ適用する
 	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
 	{
-		now_texture_buffer.data->M_Attach_To_Shader_By_Index(now_texture_buffer.index);
+		now_texture_buffer.data.M_Texture_Attach_To_Draw(now_texture_buffer.index);
 	}
 
 	return;
+}
+
+
+//-☆- セッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたスロットにテクスチャをロードする
+// 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
+{
+	// 配列外を指定されたら抜ける
+	if (mpr_variable.texture_data_list.size() <= in_index)
+	{
+		return;
+	}
+
+	mpr_variable.texture_data_list[in_index].data.M_Load_Texture(in_load_texture_name);
+
+	return;
+}
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された定数バッファ管理用データを返す
+// 引数   ：int 取得する定数バッファ管理用データの番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const S_Constant_Buffer_Data & C_Material::M_Get_Constant_Buffer_Data_By_Index(int in_index)
+{
+	return mpr_variable.constant_data_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたテクスチャ管理用データを返す
+// 引数   ：int 取得するテクスチャ管理用データの番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const S_Texture_Buffer_Data & C_Material::M_Get_Texture_Data_By_Index(int in_index)
+{
+	return mpr_variable.texture_data_list[in_index];
 }
 
 
