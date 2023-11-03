@@ -1528,7 +1528,7 @@ bool C_DX12_System::M_Creat_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphi
 
 
     // シェーダー毎にリソースを定義する（ディスクリプタとレンジ、サンプラーを生成する）
-    M_Creat_Descriptor_And_Sampler_By_Shaders_Inform(in_creat_inform.shader_setting.M_Get_Resource_Signature(), paramater_setting_list, range_setting_list, static_sampler_desc);
+    M_Creat_Descriptor_And_Sampler_By_Shaders_Inform(in_creat_inform.shader_setting->M_Get_Resource_Signature(), paramater_setting_list, range_setting_list, static_sampler_desc);
 
 
     // ☆ ルートシグネチャデスクの設定 ☆ //
@@ -1583,7 +1583,7 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
     // シェーダーの種類ごとに指定された番号をセット
     {
         // ☆ 変数宣言 ☆ //
-        const ASSET::SHADER::S_Shader_Byte_Code_List & shader_code_list = in_creat_inform.shader_setting.M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
+        const ASSET::SHADER::S_Shader_Byte_Code_List & shader_code_list = in_creat_inform.shader_setting->M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
 
 
         for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
@@ -1593,11 +1593,11 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
     }
 
     // シェーダーの情報を設定
-    in_dx12_pipeline_inform->m_shader_setting = in_creat_inform.shader_setting;
+    in_dx12_pipeline_inform->m_shader_setting = *in_creat_inform.shader_setting;
 
 
     // ☆ 入力レイアウトの設定 ☆ //
-    input_setting_system.M_Creat_Input_Layout_By_Creat_Inform(desc_pipeline_state.InputLayout, in_creat_inform.shader_setting.M_Get_Input_Layout());
+    input_setting_system.M_Creat_Input_Layout_By_Creat_Inform(desc_pipeline_state.InputLayout, in_creat_inform.shader_setting->M_Get_Input_Layout());
 
 
     // ☆ ストリーミング出力バッファ ☆ //

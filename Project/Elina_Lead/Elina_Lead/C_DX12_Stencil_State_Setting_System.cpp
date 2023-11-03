@@ -26,14 +26,14 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_Stencil_State_Setting_System::M_Disabled_Depth_Stencil(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pso_desc)
 {
-    // 深度ステンシルを有効にするかどうか
+    // 深度を有効にするかどうか
     in_pso_desc.DepthStencilState.DepthEnable = false;
 
-    // 深度ステンシルバッファへの書き込みを行うかどうか
-    in_pso_desc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ZERO;
+    // 深度バッファへの書き込みを行うかどうか
+    in_pso_desc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK::D3D12_DEPTH_WRITE_MASK_ZERO;
 
-    // ランタイムが新しいオブジェクトを既存のデータと比較する方法
-    in_pso_desc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_ALWAYS;
+    // 深度のランタイムが新しいオブジェクトを既存のデータと比較する方法
+    in_pso_desc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC::D3D12_COMPARISON_FUNC_ALWAYS;
 
     // ステンシルテストを有効にするかどうか
     in_pso_desc.DepthStencilState.StencilEnable = false;

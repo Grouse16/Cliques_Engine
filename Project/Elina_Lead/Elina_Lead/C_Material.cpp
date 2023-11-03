@@ -8,7 +8,6 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Material.h"
 #include "C_Rendering_Graphics_API_Base.h"
-#include "C_Text_And_File_Manager.h"
 
 
 // デバッグ時のみログシステムを使用
@@ -25,14 +24,14 @@ using namespace ASSET::MATERIAL;
 
 //==☆ プライベート ☆==//
 
-//-☆- セッタ -☆-//
+//-☆- 生成 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：スロットの情報をセットする
 // 引数   ：const S_All_Shader_Resource_Signatures & 設定するスロット識別用の情報
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Creat_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures& in_resource_signature)
+void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures& in_resource_signature)
 {
 	// ☆ 変数宣言 ☆ //
 	int now_index_number = 0;			// 現在操作中のインデックススロット番号
@@ -93,6 +92,27 @@ void C_Material::M_Creat_Resource_By_Signature_Inform(const ASSET::SHADER::S_All
 	}
 
 	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング情報を生成する
+// 引数   ：C_Text_And_File_Manager & 現在のファイル文字列, C_Shader_Setting & シェーダーの設定用の情報
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text, ASSET::SHADER::C_Shader_Setting & in_shader_setting)
+{
+	// ☆ 変数宣言 ☆ //
+	RENDERING::GRAPHICS::CREAT::C_Creat_Rendering_Graphics_Setting_Inform rendering_setting_creat_inform;	// レンダリング設定の生成用の情報
+
+
+	// シェーダーをセットする
+	rendering_setting_creat_inform.shader_setting = &in_shader_setting;
+
+
+
+
+	return true;
 }
 
 
@@ -207,7 +227,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 
 	// シェーダー設定のリソースの情報をもとにリソースを生成する
-	M_Creat_Resource_By_Signature_Inform(shader_setting_data.M_Get_Resource_Signature());
+	M_Create_Resource_By_Signature_Inform(shader_setting_data.M_Get_Resource_Signature());
+
+	// レンダリングの設定を行う
 
 
 	// デバッグ時は生成に成功したことを記録する

@@ -17,6 +17,8 @@
 #include "C_Rendering_Setting_System.h"
 #include "C_Texture_Data_User.h"
 #include "C_Constant_Data_System.h"
+#include "C_Text_And_File_Manager.h"
+#include "C_Shader_Setting.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -72,10 +74,13 @@ namespace ASSET::MATERIAL
 		
 		// ☆ 関数 ☆ //
 
-		//-☆- セッタ -☆-//
+		//-☆- 生成 -☆-//
 
 		// スロットの情報をセットする　引数：設定するスロット識別用の情報
-		void M_Creat_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
+		void M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
+
+		// レンダリング情報を生成する　引数：現在のファイル文字列, シェーダーの設定用の情報　戻り値：成功時のみtrue
+		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &, ASSET::SHADER::C_Shader_Setting & );
 
 
 		//==☆ パブリック ☆==//

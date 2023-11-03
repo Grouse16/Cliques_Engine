@@ -22,6 +22,15 @@
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
 namespace RENDERING::GRAPHICS::CREAT
 {
+	// ☆ 定数 ☆ //
+
+	// ブレンドモードを指定するための列挙
+	enum class E_BLEND_MODE
+	{
+		e_ALPHA_SRC,
+	};
+
+
 	// ☆ クラス ☆ //
 
 	// 描画パイプライン用情報を生成するための情報のクラス
@@ -31,7 +40,7 @@ namespace RENDERING::GRAPHICS::CREAT
 	public:
 
 		// ☆ 変数宣言 ☆ //
-		ASSET::SHADER::C_Shader_Setting shader_setting;	// シェーダー設定情報
+		ASSET::SHADER::C_Shader_Setting * shader_setting;	// シェーダー設定情報
 	};
 }
 

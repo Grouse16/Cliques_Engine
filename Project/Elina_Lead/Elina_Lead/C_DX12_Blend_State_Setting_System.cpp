@@ -27,11 +27,11 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 void C_DX12_Blend_State_Setting_System::M_Set_All_Color_Add_Blend_To_PSO(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pso_desc)
 {
     // ☆ 変数宣言 ☆ //
-    int sum_rendertarget = _countof(in_pso_desc.BlendState.RenderTarget);   // レンダーターゲット数
+    int sum_render_target = _countof(in_pso_desc.BlendState.RenderTarget);   // レンダーターゲット数
 
 
     // ブレンドステートを全て初期化
-    for (int loop_x = 0; loop_x < sum_rendertarget; loop_x++)
+    for (int loop_x = 0; loop_x < sum_render_target; loop_x++)
     {
         // ☆ 状態設定 ☆ //
 
@@ -45,7 +45,7 @@ void C_DX12_Blend_State_Setting_System::M_Set_All_Color_Add_Blend_To_PSO(D3D12_G
         // ☆ RGB値 ☆ //
 
         // ピクセルシェーダーが出力したRGB値の操作（上書きする色の操作の定義）
-        in_pso_desc.BlendState.RenderTarget[loop_x].SrcBlend = D3D12_BLEND_SRC_ALPHA;
+        in_pso_desc.BlendState.RenderTarget[loop_x].SrcBlend = D3D12_BLEND::D3D12_BLEND_SRC_ALPHA;
 
         // レンダーターゲットの今のRGB値の操作（上書きされる側の色の操作の定義）
         in_pso_desc.BlendState.RenderTarget[loop_x].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
