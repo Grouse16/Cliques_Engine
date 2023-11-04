@@ -430,6 +430,9 @@
     <Filter Include="ヘッダー ファイル\アセット\テクスチャ\制御">
       <UniqueIdentifier>{8b60e4b5-4b4f-4ba1-9101-54f511e48796}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義">
+      <UniqueIdentifier>{b5b09a0b-6373-4c67-a158-8e34f4b185db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_APK_Manager.h">
@@ -710,6 +713,18 @@
     </ClInclude>
     <ClInclude Include="C_Texture_Data_User.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="E_BLEND_MODE.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Depth_Stencil_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering_Another_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
