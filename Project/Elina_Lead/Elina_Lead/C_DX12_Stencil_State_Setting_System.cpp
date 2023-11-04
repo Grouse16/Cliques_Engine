@@ -45,7 +45,7 @@ void C_DX12_Stencil_State_Setting_System::M_Disabled_Depth_Stencil(D3D12_GRAPHIC
     in_pso_desc.DepthStencilState.StencilWriteMask = D3D12_DEFAULT_STENCIL_WRITE_MASK;
 
     // 深度ステンシルに送るリソースのデータ形式
-    in_pso_desc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
+    in_pso_desc.DSVFormat = DXGI_FORMAT::DXGI_FORMAT_D32_FLOAT;
 
 	return;
 }

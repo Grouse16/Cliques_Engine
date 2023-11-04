@@ -27,10 +27,10 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 void C_DX12_Rasterrizer_State_Setting_System::M_Law_Cost_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pso_desc)
 {
     // レンダリング結果を画面に反映するときのモード
-    in_pso_desc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;
+    in_pso_desc.RasterizerState.FillMode = D3D12_FILL_MODE::D3D12_FILL_MODE_SOLID;
 
     // 面(三角形)の方向によって表示するかしないかを指定する
-    in_pso_desc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
+    in_pso_desc.RasterizerState.CullMode = D3D12_CULL_MODE::D3D12_CULL_MODE_NONE;
 
     // 反時計回りを表、時計回りを裏と判定するかどうか
     in_pso_desc.RasterizerState.FrontCounterClockwise = false;
@@ -57,7 +57,7 @@ void C_DX12_Rasterrizer_State_Setting_System::M_Law_Cost_Setting(D3D12_GRAPHICS_
     in_pso_desc.RasterizerState.ForcedSampleCount = 0;
 
     // 保守的なラスタライズを行うかどうか(保守か効率か)
-    in_pso_desc.RasterizerState.ConservativeRaster = D3D12_CONSERVATIVE_RASTERIZATION_MODE_OFF;
+    in_pso_desc.RasterizerState.ConservativeRaster = D3D12_CONSERVATIVE_RASTERIZATION_MODE::D3D12_CONSERVATIVE_RASTERIZATION_MODE_OFF;
 
 	return;
 }
