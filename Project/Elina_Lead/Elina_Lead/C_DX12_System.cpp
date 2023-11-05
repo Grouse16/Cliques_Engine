@@ -1629,7 +1629,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
 
 
     // ☆ マルチサンプリング設定 ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Sampling_Setting_System::M_Sampling_Setting(desc_pipeline_state, 1, 0, 0);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Sampling_Setting_System::M_Sampling_Setting(desc_pipeline_state, in_create_inform.sampling_setting.sampling_count, in_create_inform.sampling_setting.sampling_quality, 0);
 
 
     // ☆ パイプラインステートの取得用の設定 ☆ //

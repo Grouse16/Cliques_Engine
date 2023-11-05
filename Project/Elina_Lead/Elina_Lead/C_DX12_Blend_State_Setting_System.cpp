@@ -295,6 +295,23 @@ void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHI
 		use_render_target_sum <= con_RENDER_TARGET_SUM * use_render_target_sum;
 
 
+	// レンダーターゲットが複数あるなら、複数のレンダーターゲットによるブレンドを有効にする
+	if (use_render_target_sum > 1)
+	{
+		in_pipeline_state_desc.BlendState.IndependentBlendEnable = TRUE;
+	}
+
+	// レンダーターゲットが一つ分の時は、一つのみを指定
+	else
+	{
+		in_pipeline_state_desc.BlendState.IndependentBlendEnable = FALSE;
+	}
+
+
+	// アルファカヴァレッジを有効にするかどうか
+	in_pipeline_state_desc.BlendState.AlphaToCoverageEnable = FALSE;
+
+
 	// レンダーターゲット数分のブレンド設定を行う
 	for (int l_now_render_target_setting = 0; l_now_render_target_setting < con_RENDER_TARGET_SUM; l_now_render_target_setting++)
 	{

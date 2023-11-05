@@ -36,7 +36,19 @@ namespace RENDERING::GRAPHICS::CREATE
 	public:
 
 		// ☆ 構造体 ☆ //
-		
+
+		// ブレンド設定を生成するためのデータの構造体
+		struct S_Blend_Setting_Create_Data
+		{
+			RENDERING::INFORM::BLEND::E_BLEND_MODE blend_mode = RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL;	// ブレンドモード
+
+			RENDERING::INFORM::BLEND::E_BLEND_OPTION blend_option = RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD;	// ブレンドの方法
+
+			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT draw_format = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;	// 描画時の書き込み形式
+
+			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR draw_color = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RGBA;	// 書き込むときの色数
+		};
+
 		// 深度ステンシル設定を生成するためのデータの構造体
 		struct S_Depth_Stencil_Create_Data
 		{
@@ -59,18 +71,6 @@ namespace RENDERING::GRAPHICS::CREATE
 			RENDERING::INFORM::RASTERIZER::E_ANTIALIASING antialiasing = RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_DONT;	// アンチエイリアシングのモード
 
 			RENDERING::INFORM::RASTERIZER::S_Depth_Setting_Value depth_value;	// 深度情報設定用の値
-		};
-
-		// ブレンド設定を生成するためのデータの構造体
-		struct S_Blend_Setting_Create_Data
-		{
-			RENDERING::INFORM::BLEND::E_BLEND_MODE blend_mode = RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL;	// ブレンドモード
-
-			RENDERING::INFORM::BLEND::E_BLEND_OPTION blend_option = RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD;	// ブレンドの方法
-
-			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT draw_format = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;	// 描画時の書き込み形式
-
-			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR draw_color = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RGBA;	// 書き込むときの色数
 		};
 
 
