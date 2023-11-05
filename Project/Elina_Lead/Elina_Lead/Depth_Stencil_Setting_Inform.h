@@ -21,18 +21,20 @@ namespace RENDERING::INFORM::DEPTH_STENCIL
 	enum class E_DEPTH_MODE : unsigned char
 	{
 		e_NO,	// 深度は無効
-		e_ZERO,	// 深度は有効だがデータを書き込まない
-		e_ONE,	// 深度を書き込む
+		e_ZERO,	// 深度は有効、元の深度値が０の部分にのみ書き込む
+		e_ONE,	// 深度は有効、全ての範囲に書き込む
 	};
 
 	// 深度の書き込みルールの列挙
 	enum class E_DEPTH_WRITE_RULE : unsigned char
 	{
-		e_DONT,		// 書き込まない
-		e_ALWAYS,	// 常に書き込む
-		e_EQUAL,	// 比較元と同じ値の時のみ書き込む
-		e_GREATER,	// 比較元の値を超える時のみ書き込む
-		e_LESS,		// 比較元の値未満の時のみ書き込む
+		e_DONT,			// 書き込まない
+		e_ALWAYS,		// 常に書き込む
+		e_EQUAL,		// 比較元と同じ値の時のみ書き込む
+		e_NOT_EQUAL,	// 比較元と違う値の時のみ書き込む
+		e_GREATER,		// 比較元の値を超える時のみ書き込む
+		e_LESS,			// 比較元の値未満の時のみ書き込む
+
 		e_LESS_EQUAL,		// 比較元の値以下の時のみ書き込む
 		e_GREATERE_EQUAL,	// 比較元の値以上の時のみ書き込む
 	};

@@ -13,6 +13,8 @@
 // ☆ ファイルひらき ☆ //
 #include <d3d12.h>
 
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+
 
 // ☆ ネームスペース ☆ //
 
@@ -24,6 +26,16 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	// 深度ステンシルステート設定用のクラス
 	class C_DX12_Stencil_State_Setting_System
 	{
+		//==☆ プライベート ☆==//
+	private:
+
+		// ☆ 関数 ☆ //
+
+		//-☆- 設定 -☆-//
+
+		// 指定された情報と一致した深度値の書き込み方法を返す　引数：深度値書き込みルール　戻り値：深度値の書き込み方法
+		static D3D12_COMPARISON_FUNC M_Get_Depth_Write_Option(RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE);
+
 		//==☆ パブリック ☆==//
 	public:
 
@@ -31,8 +43,8 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		//-☆- 設定 -☆-//
 
-		// 深度ステンシルを無効にする時の設定　引数：パイプライン設定用情報
-		static void M_Disabled_Depth_Stencil(D3D12_GRAPHICS_PIPELINE_STATE_DESC&);
+		// 深度ステンシルを生成用情報をもとに設定する　引数：パイプライン設定用情報, レンダリング生成用情報(const)
+		static void M_Depth_Stencil_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &);
 
 
 		//-☆- テスト設定 -☆-//

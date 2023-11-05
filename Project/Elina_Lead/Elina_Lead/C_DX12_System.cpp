@@ -1593,7 +1593,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
     }
 
     // シェーダーの情報を設定
-    in_dx12_pipeline_inform->m_shader_setting = *in_create_inform.shader_setting;
+    in_dx12_pipeline_inform->m_shader_setting = in_create_inform.shader_setting;
 
 
     // ☆ 入力レイアウトの設定 ☆ //
@@ -1617,7 +1617,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
 
 
     // ☆ 深度ステンシル設定 ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Disabled_Depth_Stencil(desc_pipeline_state);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Depth_Stencil_Setting(desc_pipeline_state, in_create_inform);
 
 
     // ☆ 表向きの面の深度ステンシルテスト設定 ☆ //    // 法線がカメラの方を向いているかどうかで判定する
@@ -1905,6 +1905,7 @@ void C_DX12_System::M_Set_Scissor_And_View_Port(void)
     return;
 }
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：描画コマンド情報をリセットする
 // 引数   ：void
@@ -1932,7 +1933,7 @@ void C_DX12_System::M_Reset_Command(void)
 void C_DX12_System::M_Set_Shader_Resource_Signature_By_Rendering_Setting(const DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_rendering_setting)
 {
     mpr_variable->shader_resource_list.release();
-    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting.M_Get_Resource_Signature());
+    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting->M_Get_Resource_Signature());
 
     return;
 }
@@ -2591,7 +2592,7 @@ bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Fon
     // ☆ 変数宣言 ☆ //
     HFONT handle_font = NULL;   // フォントのハンドル
 
-    LOGFONT log_font_data =  // フォント設定用のデータ
+    LOGFONTW log_font_data =  // フォント設定用のデータ
     {
         //-☆- サイズや形状の設定 -☆-// 
         in_create_inform.m_height,   // フォントのセルや文字の高さ

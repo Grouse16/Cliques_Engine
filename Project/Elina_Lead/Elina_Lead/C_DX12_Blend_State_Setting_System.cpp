@@ -278,14 +278,14 @@ DXGI_FORMAT RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_
 // 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & 設定先のパイプラインステート情報, const C_Creat_Rendering_Graphics_Setting_Inform & レンダリング設定生成用の情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_creat_inform)
+void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
 	// ☆ 定数 ☆ //
 	const char con_RENDER_TARGET_SUM = 8;	// 設定可能なレンダーターゲット数
 
 	
 	// ☆ 変数宣言 ☆ //
-	int use_render_target_sum = in_creat_inform.blend_setting.size();	// 使用するレンダーターゲット数
+	int use_render_target_sum = in_create_inform.blend_setting.size();	// 使用するレンダーターゲット数
 
 
 	// レンダーターゲットの最大数を超えないようにする
@@ -316,7 +316,7 @@ void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHI
 	for (int l_now_render_target_setting = 0; l_now_render_target_setting < con_RENDER_TARGET_SUM; l_now_render_target_setting++)
 	{
 		//-☆- 指定されたブレンドのモードで設定内容を分岐 -☆-//
-		switch (in_creat_inform.blend_setting[l_now_render_target_setting].blend_mode)
+		switch (in_create_inform.blend_setting[l_now_render_target_setting].blend_mode)
 		{
 			// 通常通りの描画
 		case RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL:
@@ -342,7 +342,7 @@ void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHI
 
 
 		//-☆- 指定された混ぜ方でブレンドオプションの設定を分岐 -☆-//
-		switch (in_creat_inform.blend_setting[l_now_render_target_setting].blend_option)
+		switch (in_create_inform.blend_setting[l_now_render_target_setting].blend_option)
 		{
 			// ピクセルシェーダーの色を加算
 		case RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD:
@@ -373,7 +373,7 @@ void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHI
 
 
 		// レンダーターゲット画像に書き込むときのフォーマットを設定
-		in_pipeline_state_desc.RTVFormats[l_now_render_target_setting] = M_Get_Write_Rendering_Graph_Format_By_Create_Inform(in_creat_inform.blend_setting[l_now_render_target_setting]);
+		in_pipeline_state_desc.RTVFormats[l_now_render_target_setting] = M_Get_Write_Rendering_Graph_Format_By_Create_Inform(in_create_inform.blend_setting[l_now_render_target_setting]);
 	}
 
 
