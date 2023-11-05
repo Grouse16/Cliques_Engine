@@ -70,19 +70,26 @@ namespace ASSET::MATERIAL
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
+			ASSET::SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 		
 		// ☆ 関数 ☆ //
+
+		//-☆- ロード -☆-//
+
+		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
+		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
 
 		//-☆- 生成 -☆-//
 
 		// スロットの情報をセットする　引数：設定するスロット識別用の情報
 		void M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
 
-		// レンダリング情報を生成する　引数：現在のファイル文字列, シェーダーの設定用の情報　戻り値：成功時のみtrue
-		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &, ASSET::SHADER::C_Shader_Setting & );
-
+		// レンダリング情報を生成する　引数：現在のファイル文字列　戻り値：成功時のみtrue
+		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		//==☆ パブリック ☆==//
 	public:

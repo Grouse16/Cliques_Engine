@@ -24,6 +24,20 @@ using namespace ASSET::MATERIAL;
 
 //==☆ プライベート ☆==//
 
+//-☆- ロード -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：スロットの情報をセットする
+// 引数   ：const S_All_Shader_Resource_Signatures & 設定するスロット識別用の情報
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data>&, SYSTEM::TEXT::C_Text_And_File_Manager&)
+{
+
+	return;
+}
+
+
 //-☆- 生成 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -97,22 +111,24 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：レンダリング情報を生成する
-// 引数   ：C_Text_And_File_Manager & 現在のファイル文字列, C_Shader_Setting & シェーダーの設定用の情報
+// 引数   ：C_Text_And_File_Manager & 現在のファイル文字列
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text, ASSET::SHADER::C_Shader_Setting & in_shader_setting)
+bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text)
 {
 	// ☆ 変数宣言 ☆ //
 	RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform rendering_setting_create_inform;	// レンダリング設定の生成用の情報
 
 
 	// シェーダーをセットする
-	rendering_setting_create_inform.shader_setting = &in_shader_setting;
+	rendering_setting_create_inform.shader_setting = &mpr_variable.shader_setting_data;
 
+	// ブレンドの設定を読み込む
 
+	
 
-
-	return true;
+	// レンダリング設定を生成する
+	return mpr_variable.rendering_setting.M_Create_Pipeline_Setting();
 }
 
 
@@ -157,7 +173,8 @@ void C_Material::M_Release(void)
 	// 定数バッファ
 	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
 	{
-		now_constant_buffer.data.M_Release();
+		now_constant_buffer.data->M_Release();
+		now_constant_buffer.data.reset();
 	}
 	mpr_variable.constant_data_list.clear();
 	mpr_variable.constant_data_list.shrink_to_fit();
@@ -208,14 +225,10 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 		return false;
 	}
-
-
-	// ☆ 変数宣言 ☆ //
-	ASSET::SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
 	
 
 	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
-	if (shader_setting_data.M_Load_Shaders_Inform_By_Shader_Setting_Name(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
+	if (mpr_variable.shader_setting_data.M_Load_Shaders_Inform_By_Shader_Setting_Name(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -227,9 +240,19 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 
 	// シェーダー設定のリソースの情報をもとにリソースを生成する
-	M_Create_Resource_By_Signature_Inform(shader_setting_data.M_Get_Resource_Signature());
+	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Resource_Signature());
 
-	// レンダリングの設定を行う
+
+	// レンダリング設定を生成する、失敗でエラーを出して抜ける
+	if (M_Create_Rendering_Setting(material_inform_file_data) == false)
+	{
+#ifdef _DEBUG
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました");
+#endif // _DEBUG
+
+		return false;
+	}
 
 
 	// デバッグ時は生成に成功したことを記録する
@@ -256,7 +279,7 @@ void C_Material::M_Attach_To_GPU(void)
 	// 定数バッファを一つづつ適用する
 	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
 	{
-		now_constant_buffer.data.M_Set_Constant_Buffer_To_GPU_By_Index(now_constant_buffer.index);
+		now_constant_buffer.data->M_Set_Constant_Buffer_To_GPU_By_Index(now_constant_buffer.index);
 	}
 
 	// テクスチャバッファを一つづつ適用する
