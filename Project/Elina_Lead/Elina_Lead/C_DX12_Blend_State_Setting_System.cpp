@@ -20,64 +20,33 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 //-☆- 設定 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ウィンドウのサイズの更新を行う
-// 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & パイプラインステートの生成用情報
+// 詳細   ：指定された情報をもとにブレンドの設定を行う
+// 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & 設定先のパイプラインステート, const C_Creat_Rendering_Graphics_Setting_Inform & レンダリング設定生成用の情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Blend_State_Setting_System::M_Set_All_Color_Add_Blend_To_PSO(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pso_desc)
+void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_creat_inform)
 {
-    // ☆ 変数宣言 ☆ //
-    int sum_render_target = _countof(in_pso_desc.BlendState.RenderTarget);   // レンダーターゲット数
+	// ☆ 定数 ☆ //
+	const char con_RENDER_TARGET_SUM = 8;	// 設定可能なレンダーターゲット数
+
+	
+	// ☆ 変数宣言 ☆ //
+	int use_render_target_sum = in_creat_inform.another_data.blend_mode.size() > con_RENDER_TARGET_SUM * con_RENDER_TARGET_SUM + in_creat_inform.another_data.blend_mode.size() <= con_RENDER_TARGET_SUM * in_creat_inform.another_data.blend_mode.size();	// 使用するレンダーターゲット数
 
 
-    // ブレンドステートを全て初期化
-    for (int loop_x = 0; loop_x < sum_render_target; loop_x++)
-    {
-        // ☆ 状態設定 ☆ //
+	// レンダーターゲット数分のブレンド設定を行う
+	for (int l_now_render_target_setting = 0; l_now_render_target_setting < use_render_target_sum; l_now_render_target_setting++)
+	{
+		switch (in_creat_inform.another_data.blend_mode[l_now_render_target_setting])
+		{
+			// 通常通りの描画
+		case RENDERING::INFORM::BLEND_MODE::E_BLEND_MODE::e_NORMAL:
 
-        // ブレンドの有効無効
-        in_pso_desc.BlendState.RenderTarget[loop_x].BlendEnable = TRUE;
+			in_pipeline_state_desc.BlendState.RenderTarget[l_now_render_target_setting];
 
-        // 論理演算の有効無効（ブレンドとロジック両方を同時にTRUEにしてはならない）
-        in_pso_desc.BlendState.RenderTarget[loop_x].LogicOpEnable = FALSE;
-
-
-        // ☆ RGB値 ☆ //
-
-        // ピクセルシェーダーが出力したRGB値の操作（上書きする色の操作の定義）
-        in_pso_desc.BlendState.RenderTarget[loop_x].SrcBlend = D3D12_BLEND::D3D12_BLEND_SRC_ALPHA;
-
-        // レンダーターゲットの今のRGB値の操作（上書きされる側の色の操作の定義）
-        in_pso_desc.BlendState.RenderTarget[loop_x].DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
-
-        // SRC(上書きする側)とDEST(上書きされる側)のRGB値を混ぜる方法
-        in_pso_desc.BlendState.RenderTarget[loop_x].BlendOp = D3D12_BLEND_OP_ADD;
-
-
-        // ☆ α値 ☆ //
-
-        // ピクセルシェーダーが出力したα値の操作（上書きする色の操作の定義）
-        in_pso_desc.BlendState.RenderTarget[loop_x].SrcBlendAlpha = D3D12_BLEND_ONE;
-
-        // レンダーターゲットの今のα値の操作（上書きされる側の色の操作の定義）
-        in_pso_desc.BlendState.RenderTarget[loop_x].DestBlendAlpha = D3D12_BLEND_ZERO;
-
-        // SRC(上書きする側)とDEST(上書きされる側)のα値を混ぜる方法
-        in_pso_desc.BlendState.RenderTarget[loop_x].BlendOpAlpha = D3D12_BLEND_OP_ADD;
-
-
-        // ☆ 論理操作 ☆ //
-
-        // レンダーターゲットに対する論理操作の指定
-        in_pso_desc.BlendState.RenderTarget[loop_x].LogicOp = D3D12_LOGIC_OP_NOOP;
-
-
-        // ☆ マスク ☆ //
-
-        // ブレンド中に書き込み可能な色を指定する
-        in_pso_desc.BlendState.RenderTarget[loop_x].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-    }
-
+			break;
+		}
+	}
 
 	return;
 }

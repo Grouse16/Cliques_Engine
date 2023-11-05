@@ -36,7 +36,7 @@ C_Constant_Buffer_Data_System::C_Constant_Buffer_Data_System(void)
 void C_Constant_Buffer_Data_System::M_Constant_Buffer_Init(int in_buffer_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
 
 
 	// ☆ 生成用情報を設定 ☆ //
@@ -44,7 +44,7 @@ void C_Constant_Buffer_Data_System::M_Constant_Buffer_Init(int in_buffer_sum)
 
 
 	// ☆ 定数バッファの生成 ☆ //
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
 
 
 	// ☆ 定数データの生成 ☆ //

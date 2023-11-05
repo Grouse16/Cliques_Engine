@@ -103,11 +103,11 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text, ASSET::SHADER::C_Shader_Setting & in_shader_setting)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Rendering_Graphics_Setting_Inform rendering_setting_creat_inform;	// レンダリング設定の生成用の情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform rendering_setting_create_inform;	// レンダリング設定の生成用の情報
 
 
 	// シェーダーをセットする
-	rendering_setting_creat_inform.shader_setting = &in_shader_setting;
+	rendering_setting_create_inform.shader_setting = &in_shader_setting;
 
 
 

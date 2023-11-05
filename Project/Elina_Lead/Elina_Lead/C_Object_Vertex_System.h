@@ -108,10 +108,10 @@ namespace RENDERING::CAPSULE
 		// 引数   ：int 生成する頂点数, int 生成するインデックス情報数
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		void M_Creat_Vertex_And_Index_Data(int in_creat_vertex_sum, int in_creat_index_sum)
+		void M_Create_Vertex_And_Index_Data(int in_creat_vertex_sum, int in_creat_index_sum)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREAT::C_Creat_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// メモリを解放する
@@ -131,7 +131,7 @@ namespace RENDERING::CAPSULE
 
 
 			// ☆ レンダリング用頂点情報の生成 ☆ //
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
+			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
 
 			return;
 		}
