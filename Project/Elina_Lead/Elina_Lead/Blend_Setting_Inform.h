@@ -20,7 +20,7 @@ namespace RENDERING::INFORM::BLEND
 	{
 		e_NORMAL,			// 通常描画
 		e_NORMAL_NOT_ALPHA,	// α値を使用せずに描画
-
+		
 		e_INVERT,			// 減算方式で描画
 		e_INVERT_NOT_ALPHA,	// α値を使用せずに減算方式で描画
 	};

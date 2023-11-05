@@ -77,6 +77,21 @@ namespace ASSET::MATERIAL
 		
 		// ☆ 関数 ☆ //
 
+		//-☆- ゲッタ -☆-//
+
+		// どのブレンドモードを設定するかを指定された文字列から特定して返す　引数：ブレンドモードを示す文字列　戻り値：特定したブレンドモード
+		RENDERING::INFORM::BLEND::E_BLEND_MODE M_Get_Blend_Mode_By_Text(std::string);
+
+		// どの色の操作を設定するかを指定された文字列から特定して返す　引数：色の操作を示す文字列　戻り値：特定した色の操作
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION M_Get_Blend_Option_By_Text(std::string);
+
+		// どの書き込む形式を設定するかを指定された文字列から特定して返す　引数：書き込むデータ形式をを示す文字列　戻り値：書き込むデータの形式
+		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT M_Get_Blend_Write_Format_By_Text(std::string);
+
+		// どの書き込む色の種類を設定するかを指定された文字列から特定して返す　引数：書き込む色の種類を示す文字列　戻り値：書き込む色の種類
+		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR M_Get_Blend_Write_Color_Text(std::string);
+
+
 		//-☆- ロード -☆-//
 
 		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
