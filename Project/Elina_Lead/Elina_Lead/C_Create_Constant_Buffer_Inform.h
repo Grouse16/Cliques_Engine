@@ -6,19 +6,19 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_CREAT_CONSTANT_BUFFER_INFORM
-#define D_INCLUDE_GUARD_C_CREAT_CONSTANT_BUFFER_INFORM
+#ifndef D_INCLUDE_GUARD_C_CREATE_CONSTANT_BUFFER_INFORM
+#define D_INCLUDE_GUARD_C_CREATE_CONSTANT_BUFFER_INFORM
 
 
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::CREAT
+namespace RENDERING::GRAPHICS::CREATE
 {
 	// ☆ クラス ☆ //
 
 	// 定数バッファを生成するための情報のクラス
-	class C_Creat_Constant_Buffer_Inform
+	class C_Create_Constant_Buffer_Inform
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -29,4 +29,4 @@ namespace RENDERING::GRAPHICS::CREAT
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_CREAT_CONSTANT_BUFFER_INFORM
+#endif // !D_INCLUDE_GUARD_C_CREATE_CONSTANT_BUFFER_INFORM

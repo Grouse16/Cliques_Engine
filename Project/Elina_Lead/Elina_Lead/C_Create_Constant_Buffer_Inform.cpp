@@ -6,8 +6,8 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Creat_Constant_Buffer_Inform.h"
+#include "C_Create_Constant_Buffer_Inform.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace RENDERING::GRAPHICS::CREAT;
+using namespace RENDERING::GRAPHICS::CREATE;

@@ -19,7 +19,7 @@
 #include "C_DX12_Input_Layout_Setting_System.h"
 #include "C_DX12_Streaming_Output_Buffer_Base.h"
 #include "C_DX12_Blend_State_Setting_System.h"
-#include "C_DX12_Rasterrizer_State_Setting_System.h"
+#include "C_DX12_Rasterizer_State_Setting_System.h"
 #include "C_DX12_Sampling_Setting_System.h"
 #include "C_DX12_Stencil_State_Setting_System.h"
 #include "C_DX12_Cached_PSO_Base.h"
@@ -84,63 +84,63 @@ bool C_DX12_System::M_DirectX12_Init(void)
 
 
     // ☆ ファクトリの生成 ☆ //  （全画面表示遷移用システム）  // 失敗で初期化を中断
-    if (M_Creat_Factory() == false)
+    if (M_Create_Factory() == false)
     {
         return false;
     }
 
 
     // ☆ デバイスの生成 ☆ //  （仮想アダプター）  // 失敗で初期化を中断
-    if (M_Creat_Device() == false)
+    if (M_Create_Device() == false)
     {
         return false;
     }
 
 
     // ☆ コマンドアロケーターの生成 ☆ //  （GPUコマンドのストレージ割り当てシステム）  // 失敗で初期化を中断
-    if (M_Creat_Command_Allocator() == false)
+    if (M_Create_Command_Allocator() == false)
     {
         return false;
     }
 
 
     // ☆ コマンドリストの生成 ☆ //  （描画命令のリストのカプセル）  // 失敗で初期化を中断
-    if (M_Creat_Command_List() == false)
+    if (M_Create_Command_List() == false)
     {
         return false;
     }
 
 
     // ☆ コマンドキューの生成 ☆ //  （描画実行システム）  // 失敗で初期化を中断
-    if (M_Creat_Command_Queue() == false)
+    if (M_Create_Command_Queue() == false)
     {
         return false;
     }
 
 
     // ☆ フェンスの生成 ☆ //  （描画同期用システム）  // 失敗で初期化を中断
-    if (M_Creat_Fence() == false)
+    if (M_Create_Fence() == false)
     {
         return false;
     }
 
 
     // ☆ スワップチェインの生成 ☆ //  （画面バッファ切り替え用システム）  // 失敗で初期化を中断
-    if (M_Creat_Swap_Chain() == false)
+    if (M_Create_Swap_Chain() == false)
     {
         return false;
     }
 
 
     // ☆ レンダーターゲットビューの生成 ☆ //  （レンダリング先の画面バッファ切り替え用システム）  // 失敗で初期化を中断
-    if (M_Creat_Render_Target_View_Descriptor_Heap() == false)
+    if (M_Create_Render_Target_View_Descriptor_Heap() == false)
     {
         return false;
     }
 
 
     // ☆ 深度ステンシルビューの生成 ☆ //  （深度ステンシル適用先の画面バッファの切り替え用システム）  // 失敗で初期化を中断
-    if (M_Creat_Depth_Stencil_View_Descriptor_Heap() == false)
+    if (M_Create_Depth_Stencil_View_Descriptor_Heap() == false)
     {
         return false;
     }
@@ -164,7 +164,7 @@ bool C_DX12_System::M_DirectX12_Init(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Factory(void)
+bool C_DX12_System::M_Create_Factory(void)
 {
     // ☆ 変数宣言 ☆  //
     UINT flg_DXGI = 0;  // 機能設定用情報
@@ -220,7 +220,7 @@ bool C_DX12_System::M_Creat_Factory(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Device(void)
+bool C_DX12_System::M_Create_Device(void)
 {
     // ☆ 定数宣言 ☆ //
     constexpr int con_DX12_FEATURE_LEVEL_SUM = 5;    // 現在のdx12の機能レベル数
@@ -309,7 +309,7 @@ bool C_DX12_System::M_Creat_Device(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Command_Allocator(void)
+bool C_DX12_System::M_Create_Command_Allocator(void)
 {
     // ☆ コマンドアロケータを生成 ☆ //  // 失敗ならエラー
     if (FAILED(mpr_variable->s_frame_work.device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(mpr_variable->s_command.allocator.GetAddressOf()))))
@@ -343,7 +343,7 @@ bool C_DX12_System::M_Creat_Command_Allocator(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Command_List(void)
+bool C_DX12_System::M_Create_Command_List(void)
 {
     // ☆ コマンドリストの生成 ☆ //    // 失敗ならエラー
     if (FAILED(mpr_variable->s_frame_work.device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mpr_variable->s_command.allocator.Get(), nullptr, IID_PPV_ARGS(mpr_variable->s_command.list.GetAddressOf()))))
@@ -376,7 +376,7 @@ bool C_DX12_System::M_Creat_Command_List(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Command_Queue(void)
+bool C_DX12_System::M_Create_Command_Queue(void)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_COMMAND_QUEUE_DESC desc_command_queue;    // コマンドキュー生成用情報
@@ -426,7 +426,7 @@ bool C_DX12_System::M_Creat_Command_Queue(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Fence(void)
+bool C_DX12_System::M_Create_Fence(void)
 {
     // コマンドキュー用のフェンスを準備
     mpr_variable->s_render.fence_event = CreateEvent(NULL, FALSE, FALSE, NULL);
@@ -460,7 +460,7 @@ bool C_DX12_System::M_Creat_Fence(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Swap_Chain(void)
+bool C_DX12_System::M_Create_Swap_Chain(void)
 {
     // ☆ 変数宣言 ☆  //
     DXGI_SWAP_CHAIN_DESC desc_swap_chain;   // スワップチェイン設定用情報
@@ -522,7 +522,7 @@ bool C_DX12_System::M_Creat_Swap_Chain(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Render_Target_View_Descriptor_Heap(void)
+bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(void)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_DESCRIPTOR_HEAP_DESC desc_descriptor_heap;   // デスクリプタヒープ設定用情報
@@ -610,7 +610,7 @@ bool C_DX12_System::M_Creat_Render_Target_View_Descriptor_Heap(void)
 // 引数   ：void
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Depth_Stencil_View_Descriptor_Heap(void)
+bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 {
     // ☆ 深度ステンシルヒープ ☆ //    //（管理用木構造）
     {
@@ -791,10 +791,10 @@ bool C_DX12_System::M_Creat_Depth_Stencil_View_Descriptor_Heap(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：頂点バッファを生成する
-// 引数   ：C_DX12_Vertex_Setting_Inform * & セット先の頂点データ, const C_Creat_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
+// 引数   ：C_DX12_Vertex_Setting_Inform * & セット先の頂点データ, const C_Create_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * & in_dx12_vertex_inform, const CREAT::C_Creat_Vertex_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * & in_dx12_vertex_inform, const CREATE::C_Create_Vertex_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_HEAP_PROPERTIES heap_properties;   // ヒープメモリの設定
@@ -835,7 +835,7 @@ void C_DX12_System::M_Creat_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     desc_resource.Alignment = 0;
 
     // リソースのバイト数
-    desc_resource.Width = in_creat_inform.size_of_vertex * in_creat_inform.vertex_sum;
+    desc_resource.Width = in_create_inform.size_of_vertex * in_create_inform.vertex_sum;
 
     // リソースの配列番号
     desc_resource.Height = 1;
@@ -888,10 +888,10 @@ void C_DX12_System::M_Creat_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     in_dx12_vertex_inform->m_vertex_buffer_view.BufferLocation = in_dx12_vertex_inform->m_vertex_buffer_data->GetGPUVirtualAddress();
 
     // 頂点バッファのバイト数
-    in_dx12_vertex_inform->m_vertex_buffer_view.SizeInBytes = in_creat_inform.size_of_vertex * in_creat_inform.vertex_sum;
+    in_dx12_vertex_inform->m_vertex_buffer_view.SizeInBytes = in_create_inform.size_of_vertex * in_create_inform.vertex_sum;
 
     // 要素のバイト数
-    in_dx12_vertex_inform->m_vertex_buffer_view.StrideInBytes = in_creat_inform.size_of_vertex;
+    in_dx12_vertex_inform->m_vertex_buffer_view.StrideInBytes = in_create_inform.size_of_vertex;
 
     return;
 }
@@ -899,17 +899,17 @@ void C_DX12_System::M_Creat_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：インデックスバッファを生成する
-// 引数   ：C_DX12_Vertex_Setting_Inform * & セット先の頂点データ, const C_Creat_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
+// 引数   ：C_DX12_Vertex_Setting_Inform * & セット先の頂点データ, const C_Create_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * & in_dx12_vertex_inform, const CREAT::C_Creat_Vertex_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * & in_dx12_vertex_inform, const CREATE::C_Create_Vertex_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_HEAP_PROPERTIES heap_propertie;   // ヒープメモリの設定
 
     D3D12_RESOURCE_DESC desc_resource;    // リソース設定
 
-    int byte_size = in_creat_inform.index_sum * sizeof(uint32_t);  // バイト数
+    int byte_size = in_create_inform.index_sum * sizeof(uint32_t);  // バイト数
 
 
     // ☆ ヒープメモリの設定 ☆ //
@@ -1007,10 +1007,10 @@ void C_DX12_System::M_Creat_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inf
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：定数データ用のヒープを生成する
-// 引数   ：C_DX12_Constant_Setting_Inform * & 設定先の定数用のデータ, const C_Creat_Constant_Buffer_Inform & 定数用データ生成用情報(const)
+// 引数   ：C_DX12_Constant_Setting_Inform * & 設定先の定数用のデータ, const C_Create_Constant_Buffer_Inform & 定数用データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREAT::C_Creat_Constant_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREATE::C_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_DESCRIPTOR_HEAP_DESC descriptor_heap_desc{};  // テクスチャ用のヒープの生成用情報
@@ -1020,7 +1020,7 @@ void C_DX12_System::M_Creat_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_
     descriptor_heap_desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 
     // データ数
-    descriptor_heap_desc.NumDescriptors = in_creat_inform.m_list_size;
+    descriptor_heap_desc.NumDescriptors = in_create_inform.m_list_size;
 
     // シェーダーから編集できるかどうか
     descriptor_heap_desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
@@ -1041,10 +1041,10 @@ void C_DX12_System::M_Creat_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：定数データ用の情報を生成する
-// 引数   ：C_DX12_Constant_Setting_Inform * & 設定先の定数用のデータ, const C_Creat_Constant_Buffer_Inform & 定数用データ生成用情報(const)
+// 引数   ：C_DX12_Constant_Setting_Inform * & 設定先の定数用のデータ, const C_Create_Constant_Buffer_Inform & 定数用データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREAT::C_Creat_Constant_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREATE::C_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 定数 ☆ //
     const int con_CONSTANT_BUFFER_ONE_BYTE = 256;	// 定数バッファ一つ分のバイト数
@@ -1088,7 +1088,7 @@ void C_DX12_System::M_Creat_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Sett
         constant_data_desc.Width = con_CONSTANT_BUFFER_ONE_BYTE; // 定数バッファサイズは256バイトでなければならない
 
         // リソースの配列番号
-        constant_data_desc.Height = in_creat_inform.m_list_size;
+        constant_data_desc.Height = in_create_inform.m_list_size;
 
         // リソースの深さ、または配列数
         constant_data_desc.DepthOrArraySize = 1;
@@ -1133,7 +1133,7 @@ void C_DX12_System::M_Creat_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Sett
         constant_buffer_view_desc.BufferLocation = in_dx12_constant_setting->m_constant_buffer_data->GetGPUVirtualAddress();
         
         // バイト数
-        constant_buffer_view_desc.SizeInBytes = con_CONSTANT_BUFFER_ONE_BYTE * in_creat_inform.m_list_size;
+        constant_buffer_view_desc.SizeInBytes = con_CONSTANT_BUFFER_ONE_BYTE * in_create_inform.m_list_size;
 
 
         // 定数バッファビューの生成
@@ -1146,10 +1146,10 @@ void C_DX12_System::M_Creat_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Sett
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：テクスチャ用のビューとヒープを生成する
-// 引数   ：C_DX12_Rendering_Texture_Setting_Inform * & 設定先のテクスチャ用のデータ, const C_Creat_Texture_Setting_Inform & テクスチャ用データ生成用情報(const)
+// 引数   ：C_DX12_Rendering_Texture_Setting_Inform * & 設定先のテクスチャ用のデータ, const C_Create_Texture_Setting_Inform & テクスチャ用データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * & in_dx12_texture_setting, const CREAT::C_Creat_Texture_Setting_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * & in_dx12_texture_setting, const CREATE::C_Create_Texture_Setting_Inform & in_create_inform)
 {
     // ☆ ディスクリプタヒープの生成 ☆ //
     {
@@ -1210,10 +1210,10 @@ void C_DX12_System::M_Creat_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：テクスチャ用のデータを生成する
-// 引数   ：C_DX12_Rendering_Texture_Setting_Inform * & 設定先のテクスチャ用のデータ, const C_Creat_Texture_Setting_Inform & テクスチャ用データ生成用情報(const)
+// 引数   ：C_DX12_Rendering_Texture_Setting_Inform * & 設定先のテクスチャ用のデータ, const C_Create_Texture_Setting_Inform & テクスチャ用データ生成用情報(const)
 // 戻り値 ：戻り値：成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * & in_dx12_texture_setting, const CREAT::C_Creat_Texture_Setting_Inform & in_creat_inform)
+bool C_DX12_System::M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * & in_dx12_texture_setting, const CREATE::C_Create_Texture_Setting_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_RESOURCE_DESC resource_desc_for_tex;  // テクスチャ生成用の設定
@@ -1253,12 +1253,12 @@ bool C_DX12_System::M_Creat_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Text
     resource_desc_for_tex.Alignment = 0;
 
     // リソースのバイト数
-    resource_desc_for_tex.Width = in_creat_inform.pixel_width;
-    in_dx12_texture_setting->mpr_variable.pix_size_x = in_creat_inform.pixel_width;
+    resource_desc_for_tex.Width = in_create_inform.pixel_width;
+    in_dx12_texture_setting->mpr_variable.pix_size_x = in_create_inform.pixel_width;
 
     // リソースの配列番号
-    resource_desc_for_tex.Height = in_creat_inform.pixel_height;
-    in_dx12_texture_setting->mpr_variable.pix_size_y = in_creat_inform.pixel_height;
+    resource_desc_for_tex.Height = in_create_inform.pixel_height;
+    in_dx12_texture_setting->mpr_variable.pix_size_y = in_create_inform.pixel_height;
 
     // リソースの深さ、または配列数
     resource_desc_for_tex.DepthOrArraySize = 1;
@@ -1512,10 +1512,10 @@ bool C_DX12_System::M_Serialize_And_Creat_RootSignature_By_Desc(const D3D12_ROOT
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ルートシグネチャを生成する
-// 引数   ：C_DX12_Rendering_Graphics_Setting_Inform * & セット先の描画パイプライン用データ, const C_Creat_Vertex_Buffer_Inform & 描画パイプライン用データ生成用情報(const)
+// 引数   ：C_DX12_Rendering_Graphics_Setting_Inform * & セット先の描画パイプライン用データ, const C_Create_Vertex_Buffer_Inform & 描画パイプライン用データ生成用情報(const)
 // 戻り値 ：bool 成功時はtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_dx12_pipeline_inform, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform & in_creat_inform)
+bool C_DX12_System::M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_dx12_pipeline_inform, const CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_ROOT_SIGNATURE_DESC root_signature_desc;	// ルート署名（シグネチャ）生成用情報
@@ -1528,7 +1528,7 @@ bool C_DX12_System::M_Creat_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphi
 
 
     // シェーダー毎にリソースを定義する（ディスクリプタとレンジ、サンプラーを生成する）
-    M_Creat_Descriptor_And_Sampler_By_Shaders_Inform(in_creat_inform.shader_setting.M_Get_Resource_Signature(), paramater_setting_list, range_setting_list, static_sampler_desc);
+    M_Create_Descriptor_And_Sampler_By_Shaders_Inform(in_create_inform.shader_setting->M_Get_Resource_Signature(), paramater_setting_list, range_setting_list, static_sampler_desc);
 
 
     // ☆ ルートシグネチャデスクの設定 ☆ //
@@ -1552,10 +1552,10 @@ bool C_DX12_System::M_Creat_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphi
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：パイプラインステートを生成する
-// 引数   ：C_DX12_Rendering_Graphics_Setting_Inform * & セット先の描画パイプライン用データ, const C_Creat_Vertex_Buffer_Inform & 描画パイプライン用データ生成用情報(const)
+// 引数   ：C_DX12_Rendering_Graphics_Setting_Inform * & セット先の描画パイプライン用データ, const C_Create_Vertex_Buffer_Inform & 描画パイプライン用データ生成用情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_dx12_pipeline_inform, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform & in_creat_inform)
+bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_dx12_pipeline_inform, const CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Input_Layout_Setting_System input_setting_system;    // 入力レイアウト設定用システム
@@ -1583,7 +1583,7 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
     // シェーダーの種類ごとに指定された番号をセット
     {
         // ☆ 変数宣言 ☆ //
-        const ASSET::SHADER::S_Shader_Byte_Code_List & shader_code_list = in_creat_inform.shader_setting.M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
+        const ASSET::SHADER::S_Shader_Byte_Code_List & shader_code_list = in_create_inform.shader_setting->M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
 
 
         for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
@@ -1593,11 +1593,11 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
     }
 
     // シェーダーの情報を設定
-    in_dx12_pipeline_inform->m_shader_setting = in_creat_inform.shader_setting;
+    in_dx12_pipeline_inform->m_shader_setting = in_create_inform.shader_setting;
 
 
     // ☆ 入力レイアウトの設定 ☆ //
-    input_setting_system.M_Creat_Input_Layout_By_Creat_Inform(desc_pipeline_state.InputLayout, in_creat_inform.shader_setting.M_Get_Input_Layout());
+    input_setting_system.M_Create_Input_Layout_By_Create_Inform(desc_pipeline_state.InputLayout, in_create_inform.shader_setting->M_Get_Input_Layout());
 
 
     // ☆ ストリーミング出力バッファ ☆ //
@@ -1605,7 +1605,7 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
 
 
     // ☆ ブレンド状態設定 ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_System::M_Set_All_Color_Add_Blend_To_PSO(desc_pipeline_state);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(desc_pipeline_state, in_create_inform);
 
 
     // ☆ レンダーターゲットで更新されるサンプル数 ☆ //
@@ -1613,11 +1613,11 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
 
 
     // ☆ ラスタライザー設定（画像変換時の設定） ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rasterrizer_State_Setting_System::M_Law_Cost_Setting(desc_pipeline_state);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(desc_pipeline_state, in_create_inform);
 
 
     // ☆ 深度ステンシル設定 ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Disabled_Depth_Stencil(desc_pipeline_state);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Depth_Stencil_Setting(desc_pipeline_state, in_create_inform);
 
 
     // ☆ 表向きの面の深度ステンシルテスト設定 ☆ //    // 法線がカメラの方を向いているかどうかで判定する
@@ -1628,25 +1628,8 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
     RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Test_Keep_Setting(desc_pipeline_state.DepthStencilState.BackFace);
 
 
-    //下記、 RTVFormatsのレンダー ターゲット形式の数
-    desc_pipeline_state.NumRenderTargets = 1;
-
-
-    // レンダーターゲットに送るリソースのデータ形式
-    for (unsigned int loop_x = 0; loop_x < desc_pipeline_state.NumRenderTargets; loop_x++)
-    {
-        desc_pipeline_state.RTVFormats[loop_x] = DXGI_FORMAT_R8G8B8A8_UNORM;
-    }
-
-    // レンダーターゲットに送らないリソースはすべて初期値にする(しなければエラー)
-    for (int loop_x = desc_pipeline_state.NumRenderTargets; loop_x < 8; loop_x++)
-    {
-        desc_pipeline_state.RTVFormats[loop_x] = DXGI_FORMAT_UNKNOWN;
-    }
-
-
     // ☆ マルチサンプリング設定 ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Sampling_Setting_System::M_Sampling_Setting(desc_pipeline_state, 1, 0, 0);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Sampling_Setting_System::M_Sampling_Setting(desc_pipeline_state, in_create_inform.sampling_setting.sampling_count, in_create_inform.sampling_setting.sampling_quality, 0);
 
 
     // ☆ パイプラインステートの取得用の設定 ☆ //
@@ -1685,7 +1668,7 @@ bool C_DX12_System::M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphi
 // 引数   ：const S_All_Shader_Resource_Signatures & シェーダーのリソース識別情報の参照, vector<D3D12_ROOT_PARAMETER> & ディスクリプタ設定用情報の参照, vector<D3D12_DESCRIPTOR_RANGE> & レンジの設定用情報の参照, vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & in_shader_inform, std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
+void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & in_shader_inform, std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
 {
     // ☆ 変数宣言 ☆ //
     int shader_paramater_register_start = 0;    // シェーダーのディスクリプタの開始レジスタ番号
@@ -1922,6 +1905,7 @@ void C_DX12_System::M_Set_Scissor_And_View_Port(void)
     return;
 }
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：描画コマンド情報をリセットする
 // 引数   ：void
@@ -1949,7 +1933,7 @@ void C_DX12_System::M_Reset_Command(void)
 void C_DX12_System::M_Set_Shader_Resource_Signature_By_Rendering_Setting(const DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_rendering_setting)
 {
     mpr_variable->shader_resource_list.release();
-    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting.M_Get_Resource_Signature());
+    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting->M_Get_Resource_Signature());
 
     return;
 }
@@ -2047,7 +2031,7 @@ bool C_DX12_System::M_Set_Up(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_DirectX12(void)
+void C_DX12_System::M_Create_DirectX12(void)
 {
     // ☆ 生成してセット ☆ //   // 既に生成していたデータは消される
     m_this.reset(new C_DX12_System);
@@ -2467,10 +2451,10 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された情報を元に頂点データを生成する
-// 引数   ：unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セット先の頂点データ, const C_Creat_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
+// 引数   ：unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セット先の頂点データ, const C_Create_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> & in_set_to, const CREAT::C_Creat_Vertex_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> & in_set_to, const CREATE::C_Create_Vertex_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Vertex_Setting_Inform * dx12_vertex_inform = new DX12INSTANCE::C_DX12_Vertex_Setting_Inform();   // DX12用の頂点用情報
@@ -2481,13 +2465,13 @@ void C_DX12_System::M_Creat_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buf
 
 
     // 頂点バッファを生成
-    M_Creat_Vertex_Buffer(dx12_vertex_inform, in_creat_inform);
+    M_Create_Vertex_Buffer(dx12_vertex_inform, in_create_inform);
 
     // インデックスバッファの生成
-    M_Creat_Index_Buffer(dx12_vertex_inform, in_creat_inform);
+    M_Create_Index_Buffer(dx12_vertex_inform, in_create_inform);
 
     // 描画回数をインデックスバッファ分セット
-    dx12_vertex_inform->m_draw_index_sum = in_creat_inform.index_sum;
+    dx12_vertex_inform->m_draw_index_sum = in_create_inform.index_sum;
 
     return;
 }
@@ -2495,20 +2479,20 @@ void C_DX12_System::M_Creat_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buf
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された情報を元に定数データを生成する
-// 引数   ：unique_ptr<C_Constant_Buffer_Setting_Inform_Base> & セット先の定数データ, const C_Creat_Constant_Buffer_Inform & 定数データ生成用情報(const)
+// 引数   ：unique_ptr<C_Constant_Buffer_Setting_Inform_Base> & セット先の定数データ, const C_Create_Constant_Buffer_Inform & 定数データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Creat_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> & in_constant_inform, const CREAT::C_Creat_Constant_Buffer_Inform & in_creat_inform)
+void C_DX12_System::M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> & in_constant_inform, const CREATE::C_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Constant_Setting_Inform * dx12_constant_inform = new DX12INSTANCE::C_DX12_Constant_Setting_Inform();   // DX12用の定数用情報
 
 
     // ☆ 定数データ用のヒープを生成 ☆ //
-    M_Creat_Constant_Heap(dx12_constant_inform, in_creat_inform);
+    M_Create_Constant_Heap(dx12_constant_inform, in_create_inform);
 
     // ☆ 定数データを生成 ☆ //
-    M_Creat_Constant_Resource(dx12_constant_inform, in_creat_inform);
+    M_Create_Constant_Resource(dx12_constant_inform, in_create_inform);
 
 
     // データをセット
@@ -2520,17 +2504,17 @@ void C_DX12_System::M_Creat_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：テクスチャ用の情報を生成する
-// 引数   ：unique_ptr<C_Rendering_Texture_Setting_Inform_Base> & 設定先のパイプライン情報, const C_Creat_Texture_Setting_Inform & 生成用の情報(const)
+// 引数   ：unique_ptr<C_Rendering_Texture_Setting_Inform_Base> & 設定先のパイプライン情報, const C_Create_Texture_Setting_Inform & 生成用の情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base> & in_texture_inform, const CREAT::C_Creat_Texture_Setting_Inform & in_creat_inform)
+bool C_DX12_System::M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base> & in_texture_inform, const CREATE::C_Create_Texture_Setting_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * dx12_texture_inform = new DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform(); // DX12用の描画用情報
 
 
     // ☆ テクスチャ用データの生成 ☆ //　// 失敗したらエラーで抜ける
-    if (M_Creat_Texture_Resource(dx12_texture_inform, in_creat_inform) == false)
+    if (M_Create_Texture_Resource(dx12_texture_inform, in_create_inform) == false)
     {
         // デバッグ時は失敗ログを出力
 #if _DEBUG
@@ -2543,7 +2527,7 @@ bool C_DX12_System::M_Creat_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering
 
 
     // ☆ ヒープを生成 ☆ //
-    M_Creat_Texture_Resource_View_And_Heap(dx12_texture_inform, in_creat_inform);
+    M_Create_Texture_Resource_View_And_Heap(dx12_texture_inform, in_create_inform);
 
 
     // データをセット
@@ -2562,24 +2546,24 @@ bool C_DX12_System::M_Creat_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：描画パイプライン用の情報を生成する
-// 引数   ：std::unique_ptr<C_Rendering_Graphics_Setting_Inform_Base> & 設定先のパイプライン情報, const C_Creat_Rendering_Graphics_Setting_Inform & 生成用の情報(const)
+// 引数   ：std::unique_ptr<C_Rendering_Graphics_Setting_Inform_Base> & 設定先のパイプライン情報, const C_Create_Rendering_Graphics_Setting_Inform & 生成用の情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base>& in_pipeline_inform, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform& in_creat_inform)
+bool C_DX12_System::M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base>& in_pipeline_inform, const CREATE::C_Create_Rendering_Graphics_Setting_Inform& in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * dx12_pipeline_inform = new DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform(); // DX12用の描画用情報
 
 
     // ☆ ルートシグネチャ設定 ☆ //　失敗したらエラーで抜ける
-    if (M_Creat_Root_Signature(dx12_pipeline_inform, in_creat_inform) == false)
+    if (M_Create_Root_Signature(dx12_pipeline_inform, in_create_inform) == false)
     {
         return false;
     }
 
 
     // ☆ パイプラインステート ☆ //　失敗したらエラーで抜ける
-    if (M_Creat_Pipeline_State(dx12_pipeline_inform, in_creat_inform) == false)
+    if (M_Create_Pipeline_State(dx12_pipeline_inform, in_create_inform) == false)
     {
         return false;
     }
@@ -2600,18 +2584,18 @@ bool C_DX12_System::M_Creat_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：フォントをフォント名を元にロードする
-// 引数   ：unique_ptr<C_Rendering_Font_Inform_Base> & 設定先のフォント情報パラメータ, const C_Creat_Font_Data_Inform & 生成用の情報(const)
+// 引数   ：unique_ptr<C_Rendering_Font_Inform_Base> & 設定先のフォント情報パラメータ, const C_Create_Font_Data_Inform & 生成用の情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Creat_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> & in_font_data, const CREAT::C_Creat_Font_Data_Inform & in_creat_inform)
+bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> & in_font_data, const CREATE::C_Create_Font_Data_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     HFONT handle_font = NULL;   // フォントのハンドル
 
-    LOGFONT log_font_data =  // フォント設定用のデータ
+    LOGFONTW log_font_data =  // フォント設定用のデータ
     {
         //-☆- サイズや形状の設定 -☆-// 
-        in_creat_inform.m_height,   // フォントのセルや文字の高さ
+        in_create_inform.m_height,   // フォントのセルや文字の高さ
         0,                          // フォントの文字の幅
         0,                          // 文字を傾ける方向
         0,                          // 基本線と比べたときのｘ軸での角度
@@ -2630,7 +2614,7 @@ bool C_DX12_System::M_Creat_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font
         DEFAULT_PITCH | FF_MODERN,  // フォントのピッチとファミリ(フォントのデザイン方法の定義)
 
         // フォント名
-        (WCHAR)in_creat_inform.m_font_name.data()
+        (WCHAR)in_create_inform.m_font_name.data()
     };
 
     // フォントのハンドルを読み込む

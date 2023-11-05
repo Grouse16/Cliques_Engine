@@ -146,61 +146,61 @@ namespace RENDERING::GRAPHICS::DX12
 		//-☆- 生成 -☆-//
 
 		// ファクトリを生成する(全画面表示遷移用システム)　戻り値：成功時のみtrue
-		bool M_Creat_Factory(void);
+		bool M_Create_Factory(void);
 
 		// デバイスを生成する(仮想アダプター)　戻り値：成功時のみtrue
-		bool M_Creat_Device(void);
+		bool M_Create_Device(void);
 
 		// コマンドアロケーターを生成する（GPUコマンドのストレージ割り当てシステム）　戻り値：成功時のみtrue
-		bool M_Creat_Command_Allocator(void);
+		bool M_Create_Command_Allocator(void);
 
 		// コマンドリストを生成する（描画命令のリストのカプセル）　戻り値：成功時のみtrue
-		bool M_Creat_Command_List(void);
+		bool M_Create_Command_List(void);
 
 		// コマンドキューを生成する（描画実行システム）　戻り値：成功時のみtrue
-		bool M_Creat_Command_Queue(void);
+		bool M_Create_Command_Queue(void);
 
 		// フェンスを生成する（描画同期用システム）　戻り値：成功時のみtrue
-		bool M_Creat_Fence(void);
+		bool M_Create_Fence(void);
 
 		// スワップチェインを生成する（画面バッファ切り替え用システム）　戻り値：成功時のみtrue
-		bool M_Creat_Swap_Chain(void);
+		bool M_Create_Swap_Chain(void);
 
 		// レンダーターゲットビューを生成する（レンダリング先の画面バッファ切り替え用システム）　戻り値：成功時のみtrue
-		bool M_Creat_Render_Target_View_Descriptor_Heap(void);
+		bool M_Create_Render_Target_View_Descriptor_Heap(void);
 
 		// 深度ステンシルビューを生成する（深度ステンシル適用先の画面バッファの切り替え用システム）　戻り値：成功時のみtrue
-		bool M_Creat_Depth_Stencil_View_Descriptor_Heap(void);
+		bool M_Create_Depth_Stencil_View_Descriptor_Heap(void);
 
 		// 頂点バッファを生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		void M_Creat_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREAT::C_Creat_Vertex_Buffer_Inform & );
+		void M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREATE::C_Create_Vertex_Buffer_Inform & );
 
 		// インデックスバッファを生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		void M_Creat_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREAT::C_Creat_Vertex_Buffer_Inform & );
+		void M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREATE::C_Create_Vertex_Buffer_Inform & );
 
 		// 定数データ用のヒープを生成する　引数：設定先の定数の情報, 生成用の情報(const)
-		void M_Creat_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_Inform * &, const CREAT::C_Creat_Constant_Buffer_Inform & );
+		void M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_Inform * &, const CREATE::C_Create_Constant_Buffer_Inform & );
 
 		// 定数データ用の情報を生成する　引数：設定先の定数の情報, 生成用の情報(const)
-		void M_Creat_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * &, const CREAT::C_Creat_Constant_Buffer_Inform&);
+		void M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * &, const CREATE::C_Create_Constant_Buffer_Inform&);
 
 		// テクスチャ用のビューとヒープを生成する　引数：設定先のテクスチャの情報,  生成用の情報(const)
-		void M_Creat_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * &, const CREAT::C_Creat_Texture_Setting_Inform & );
+		void M_Create_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * &, const CREATE::C_Create_Texture_Setting_Inform & );
 
 		// テクスチャ用のデータを生成する　引数：設定先のテクスチャの情報,  生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Creat_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * &, const CREAT::C_Creat_Texture_Setting_Inform & );
+		bool M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * &, const CREATE::C_Create_Texture_Setting_Inform & );
 
 		// ルートシグネチャデスクからルートシグネチャをシリアライズし生成する,　引数：ルートシグネチャを設定するための情報の参照(const), ルートシグネチャの設定先　戻り値：成功時のみtrue
 		bool M_Serialize_And_Creat_RootSignature_By_Desc(const D3D12_ROOT_SIGNATURE_DESC &, Microsoft::WRL::ComPtr<ID3D12RootSignature> &);
 
 		// ルートシグネチャを生成する　引数：設定先の描画パイプライン用情報, 生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Creat_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform & );
+		bool M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREATE::C_Create_Rendering_Graphics_Setting_Inform & );
 
 		// パイプラインステートを生成する　引数：設定先の描画パイプライン用情報, 生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Creat_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform&);
+		bool M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREATE::C_Create_Rendering_Graphics_Setting_Inform&);
 
 		// シェーダー毎にリソースを定義する（ディスクリプタとレンジ、サンプラーを生成する）　引数：シェーダーのリソース識別情報の参照, ディスクリプタ設定用情報の参照, レンジの設定用情報の参照, サンプラー設定用情報の参照
-		void M_Creat_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures &, std::vector<D3D12_ROOT_PARAMETER> &, std::vector<D3D12_DESCRIPTOR_RANGE> &, std::vector<D3D12_STATIC_SAMPLER_DESC> &);
+		void M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures &, std::vector<D3D12_ROOT_PARAMETER> &, std::vector<D3D12_DESCRIPTOR_RANGE> &, std::vector<D3D12_STATIC_SAMPLER_DESC> &);
 
 
 		//-☆- 描画 -☆-//
@@ -251,7 +251,7 @@ namespace RENDERING::GRAPHICS::DX12
 		bool M_Set_Up(void) override;
 
 		// DX12を生成する処理
-		static void M_Creat_DirectX12(void);
+		static void M_Create_DirectX12(void);
 
 		// メモリ解放
 		void M_Release(void) override;
@@ -293,19 +293,19 @@ namespace RENDERING::GRAPHICS::DX12
 		//-☆- 生成 -☆-//
 
 		// 指定された情報を元に頂点データを生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		void M_Creat_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> &, const CREAT::C_Creat_Vertex_Buffer_Inform &) override;
+		void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> &, const CREATE::C_Create_Vertex_Buffer_Inform &) override;
 
 		// 定数データ用の情報を生成する　引数：設定先の定数情報, 生成用の情報(const)
-		void M_Creat_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> &, const CREAT::C_Creat_Constant_Buffer_Inform &) override;
+		void M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> &, const CREATE::C_Create_Constant_Buffer_Inform &) override;
 
 		// テクスチャ用の情報を生成する　引数：設定先のテクスチャ情報, 生成用の情報(const)
-		bool M_Creat_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base> &, const CREAT::C_Creat_Texture_Setting_Inform &);
+		bool M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base> &, const CREATE::C_Create_Texture_Setting_Inform &) override;
 
 		// 描画パイプライン用の情報を生成する　引数：設定先のパイプライン情報, 生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Creat_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> &, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform &) override;
+		bool M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> &, const CREATE::C_Create_Rendering_Graphics_Setting_Inform &) override;
 
 		// フォントを指定されたフォント名を元にロードする　引数：設定先のフォント情報パラメータ, 生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Creat_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> &, const CREAT::C_Creat_Font_Data_Inform &) override;
+		bool M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> &, const CREATE::C_Create_Font_Data_Inform &) override;
 
 		// 渡された情報を元に文字列をマップにセットする　引数：フォントから画像を作るためのパッケージ情報　戻り値：成功時のみtrue
 		bool M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph_Package & ) override;

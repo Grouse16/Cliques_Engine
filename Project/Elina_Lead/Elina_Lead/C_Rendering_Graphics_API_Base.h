@@ -22,11 +22,11 @@
 #include "C_Rendering_Graphics_Setting_Inform_Base.h"
 #include "C_Rendering_Font_Inform_Base.h"
 
-#include "C_Creat_Vertex_Buffer_Inform.h"
-#include "C_Creat_Constant_Buffer_Inform.h"
-#include "C_Creat_Rendering_Graphics_Setting_Inform.h"
-#include "C_Creat_Texture_Setting_Inform.h"
-#include "C_Creat_Font_Data_Inform.h"
+#include "C_Create_Vertex_Buffer_Inform.h"
+#include "C_Create_Constant_Buffer_Inform.h"
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+#include "C_Create_Texture_Setting_Inform.h"
+#include "C_Create_Font_Data_Inform.h"
 
 #include "Color_Data.h"
 #include "S_Tex_Color.h"
@@ -104,19 +104,19 @@ namespace RENDERING::GRAPHICS
 		//-☆- 生成 -☆-//
 
 		// 頂点データ用の情報を生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		virtual void M_Creat_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> &, const CREAT::C_Creat_Vertex_Buffer_Inform & ) = 0;
+		virtual void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> &, const CREATE::C_Create_Vertex_Buffer_Inform & ) = 0;
 
 		// 定数データ用の情報を生成する　引数：設定先の定数情報, 生成用の情報(const)
-		virtual void M_Creat_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> &, const CREAT::C_Creat_Constant_Buffer_Inform &) = 0;
+		virtual void M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> &, const CREATE::C_Create_Constant_Buffer_Inform &) = 0;
 
 		// テクスチャ用の情報を生成する　引数：テクスチャ用情報, 生成用の情報(const)　戻り値：成功時のみtrue
-		virtual bool M_Creat_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base>&, const CREAT::C_Creat_Texture_Setting_Inform&) = 0;
+		virtual bool M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base>&, const CREATE::C_Create_Texture_Setting_Inform&) = 0;
 
 		// 描画パイプライン用の情報を生成する　引数：設定先のパイプライン情報, 生成用の情報(const)
-		virtual bool M_Creat_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> &, const CREAT::C_Creat_Rendering_Graphics_Setting_Inform &) = 0;
+		virtual bool M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> &, const CREATE::C_Create_Rendering_Graphics_Setting_Inform &) = 0;
 
 		// フォントを指定されたフォント名を元にロードする　引数：設定先のフォント情報パラメータ, 生成用の情報(const)　戻り値：成功時のみtrue
-		virtual bool M_Creat_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> &, const CREAT::C_Creat_Font_Data_Inform &) = 0;
+		virtual bool M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Font_Inform_Base> &, const CREATE::C_Create_Font_Data_Inform &) = 0;
 
 		// 渡された情報を元に文字列をマップにセットする　引数：フォントから画像を作るためのパッケージ情報　戻り値：成功時のみtrue
 		virtual bool M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph_Package & ) = 0;

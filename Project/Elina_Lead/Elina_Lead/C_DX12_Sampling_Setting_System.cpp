@@ -29,7 +29,7 @@ void C_DX12_Sampling_Setting_System::M_Sampling_Setting(D3D12_GRAPHICS_PIPELINE_
     // １ピクセルに対してレンダリングサンプルを用意する数
     in_pso_desc.SampleDesc.Count = in_sampling_count;
 
-    // 画質のレベル、高いと画質が良くなるがパフォーマンスが悪くなる
+    // 画質のレベル、高いと画質が良くなるが処理時間が長くなる
     in_pso_desc.SampleDesc.Quality = in_quality;
 
     // パイプラインに適応するノード(GPUや物理アダプター)の数

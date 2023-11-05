@@ -29,7 +29,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	public:
 
 		// ☆ 変数宣言 ☆ //
-		LOGFONT m_log_font;	// フォントの設定
+		LOGFONTW m_log_font;	// フォントの設定
 
 
 		// ☆ 関数 ☆ //

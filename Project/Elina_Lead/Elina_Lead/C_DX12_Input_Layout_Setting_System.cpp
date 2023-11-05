@@ -443,7 +443,7 @@ DXGI_FORMAT C_DX12_Input_Layout_Setting_System::M_Get_Format_By_Fit_Setting(cons
 // 引数   ：D3D12_INPUT_LAYOUT_DESC & 設定先の入力レイアウト情報, const vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & レイアウト設定用の情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Input_Layout_Setting_System::M_Creat_Input_Layout_By_Creat_Inform(D3D12_INPUT_LAYOUT_DESC & in_input_layout, const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & in_input_layout_list)
+void C_DX12_Input_Layout_Setting_System::M_Create_Input_Layout_By_Create_Inform(D3D12_INPUT_LAYOUT_DESC & in_input_layout, const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & in_input_layout_list)
 {
 	// 前回のメモリ解放
 	m_element_list.clear();

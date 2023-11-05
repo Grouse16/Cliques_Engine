@@ -33,7 +33,6 @@ namespace APPLICATION
 		struct SPr_Variable
 		{
 			bool flg_apk_active = false;	// アプリケーション（シーンの更新や描画）がアクティブかどうか trueでアクティブ
-
 		};
 
 		SPr_Variable mpr_variable;	// 変数を呼び出すための名前

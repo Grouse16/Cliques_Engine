@@ -59,7 +59,7 @@ namespace RENDERING::CAPSULE
 		//-☆- 生成 -☆-//
 
 		// 生成用の情報を元に生成する　引数：使用するシェーダーセットの番号
-		void M_Creat_Pipeline_Setting(int);
+		void M_Create_Pipeline_Setting(int);
 
 
 		//-☆- 描画 -☆-//

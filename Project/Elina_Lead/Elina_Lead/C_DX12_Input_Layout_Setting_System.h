@@ -51,7 +51,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- 生成 -☆-//
 		
 		// 指定されたデータを元に入力用のセマンティック情報を生成する　引数：設定先の入力レイアウト情報, レイアウト設定用の情報
-		void M_Creat_Input_Layout_By_Creat_Inform(D3D12_INPUT_LAYOUT_DESC &, const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> &);
+		void M_Create_Input_Layout_By_Create_Inform(D3D12_INPUT_LAYOUT_DESC &, const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> &);
 
 
 		//-☆- 削除 -☆-//

@@ -109,13 +109,13 @@ void C_Texture_Data_System::M_Creat_Texture_Data(int in_tex_width, int in_tex_he
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Texture_Setting_Inform creat_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
-	creat_inform.pixel_width = in_tex_width;
-	creat_inform.pixel_height = in_tex_height;
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Texture_Inform(mpr_variable.texture_setting_inform, creat_inform);
+	create_inform.pixel_width = in_tex_width;
+	create_inform.pixel_height = in_tex_height;
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
 
 
 	// マップを指定されたピクセル数分生成する
@@ -133,13 +133,13 @@ void C_Texture_Data_System::M_Creat_Texture_Data(int in_tex_width, int in_tex_he
 void C_Texture_Data_System::M_Creat_Texture_Resource_By_Texture_Map(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Texture_Setting_Inform creat_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
-	creat_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
-	creat_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Texture_Inform(mpr_variable.texture_setting_inform, creat_inform);
+	create_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
+	create_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
 	M_Texture_Map_To_Texture_Resource_Data();
 
 	return;
@@ -151,7 +151,7 @@ void C_Texture_Data_System::M_Creat_Texture_Resource_By_Texture_Map(void)
 // 引数   ：string テクスチャのパス
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Texture_Data_System::M_Creat_Texture_By_Load_Texture_File(std::string in_tex_file_path)
+bool C_Texture_Data_System::M_Create_Texture_By_Load_Texture_File(std::string in_tex_file_path)
 {
 	// テクスチャをロードしてテクスチャマップを作る　エラーで抜ける
 	if (RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Load_Texture(in_tex_file_path, mpr_variable.texture_map) == false)
@@ -161,13 +161,13 @@ bool C_Texture_Data_System::M_Creat_Texture_By_Load_Texture_File(std::string in_
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Texture_Setting_Inform creat_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
-	creat_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
-	creat_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Texture_Inform(mpr_variable.texture_setting_inform, creat_inform);
+	create_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
+	create_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
 
 
 	// 生成したテクスチャ用のバッファにテクスチャマップを適用する

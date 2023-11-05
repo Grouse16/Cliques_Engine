@@ -6,8 +6,8 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_CREAT_TEXTURE_SETTING_INFORM_H_FILE
-#define D_INCLUDE_GUARD_C_CREAT_TEXTURE_SETTING_INFORM_H_FILE
+#ifndef D_INCLUDE_GUARD_C_CREATE_TEXTURE_SETTING_INFORM_H_FILE
+#define D_INCLUDE_GUARD_C_CREATE_TEXTURE_SETTING_INFORM_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -17,7 +17,7 @@
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::CREAT
+namespace RENDERING::GRAPHICS::CREATE
 {
 	// ☆ 定数 ☆ //
 
@@ -33,7 +33,7 @@ namespace RENDERING::GRAPHICS::CREAT
 	// ☆ クラス ☆ //
 
 	// テクスチャ用情報を生成するための情報のクラス
-	class C_Creat_Texture_Setting_Inform
+	class C_Create_Texture_Setting_Inform
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -45,4 +45,4 @@ namespace RENDERING::GRAPHICS::CREAT
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_CREAT_TEXTURE_SETTING_INFORM_H_FILE
+#endif // !D_INCLUDE_GUARD_C_CREATE_TEXTURE_SETTING_INFORM_H_FILE

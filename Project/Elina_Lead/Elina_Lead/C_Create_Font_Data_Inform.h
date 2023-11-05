@@ -6,8 +6,8 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_CREAT_FONT_DATA_INFORM_H_FILE
-#define D_INCLUDE_GUARD_C_CREAT_FONT_DATA_INFORM_H_FILE
+#ifndef D_INCLUDE_GUARD_C_CREATE_FONT_DATA_INFORM_H_FILE
+#define D_INCLUDE_GUARD_C_CREATE_FONT_DATA_INFORM_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -17,12 +17,12 @@
 // ☆ ネームスペース ☆ //
 
 // レンダリングAPIに使用するシステムを生成するための情報
-namespace RENDERING::GRAPHICS::CREAT
+namespace RENDERING::GRAPHICS::CREATE
 {
 	// ☆ クラス ☆ //
 
 	// フォントデータを生成するための情報
-	class C_Creat_Font_Data_Inform
+	class C_Create_Font_Data_Inform
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -37,4 +37,4 @@ namespace RENDERING::GRAPHICS::CREAT
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_CREAT_FONT_DATA_INFORM_H_FILE
+#endif // !D_INCLUDE_GUARD_C_CREATE_FONT_DATA_INFORM_H_FILE

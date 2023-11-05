@@ -18,7 +18,7 @@
 
 #include "E_Shader_Kind.h"
 #include "C_Constant_Buffer_Setting_Inform_Base.h"
-#include "C_Creat_Constant_Buffer_Inform.h"
+#include "C_Create_Constant_Buffer_Inform.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
 
@@ -27,6 +27,12 @@
 // 描画に使用するシステムを呼び出すための名前
 namespace RENDERING::CAPSULE
 {
+	// ☆ 定数 ☆ //
+	constexpr int con_CONSTANT_DATA_SIZE = 256;	// 定数データのバイトサイズ
+
+
+	// ☆ クラス ☆ //
+
 	// 定数バッファの情報を円滑に設定し、レンダリングするためのシステム
 	class C_Constant_Buffer_Data_System
 	{
@@ -38,7 +44,7 @@ namespace RENDERING::CAPSULE
 		// 256バイトの定義用の型
 		struct S_256_Byte_Type
 		{
-			std::byte data[256]{};	// データ、256バイト分ある
+			std::byte data[con_CONSTANT_DATA_SIZE]{};	// データ、256バイト分ある
 		};
 
 
@@ -108,6 +114,9 @@ namespace RENDERING::CAPSULE
 
 		// 定数バッファを現在のデータで更新する
 		void M_Set_Constant_Data_To_Buffer(void);
+
+		// 定数データを上書きする　引数：バイト数, 設定先の配列番号, 上書きするデータ
+		void M_Set_Constant_Data(int, int, const void * );
 
 		// 定数バッファをGPUに渡す
 		void M_Set_Constant_Buffer_To_GPU(void);

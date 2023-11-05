@@ -6,8 +6,8 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Creat_Font_Data_Inform.h"
+#include "C_Create_Font_Data_Inform.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace RENDERING::GRAPHICS::CREAT;
+using namespace RENDERING::GRAPHICS::CREATE;

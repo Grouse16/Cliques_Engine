@@ -43,7 +43,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -139,11 +139,11 @@
     <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
     <ClInclude Include="C_Constant_Buffer_Setting_Inform_Base.h" />
     <ClInclude Include="C_Constant_Data_System.h" />
-    <ClInclude Include="C_Creat_Constant_Buffer_Inform.h" />
-    <ClInclude Include="C_Creat_Font_Data_Inform.h" />
-    <ClInclude Include="C_Creat_Rendering_Graphics_Setting_Inform.h" />
-    <ClInclude Include="C_Creat_Texture_Setting_Inform.h" />
-    <ClInclude Include="C_Creat_Vertex_Buffer_Inform.h" />
+    <ClInclude Include="C_Create_Constant_Buffer_Inform.h" />
+    <ClInclude Include="C_Create_Font_Data_Inform.h" />
+    <ClInclude Include="C_Create_Rendering_Graphics_Setting_Inform.h" />
+    <ClInclude Include="C_Create_Texture_Setting_Inform.h" />
+    <ClInclude Include="C_Create_Vertex_Buffer_Inform.h" />
     <ClInclude Include="C_DX12_Constant_Setting_Inform.h" />
     <ClInclude Include="C_DX12_Font_Data_Set.h" />
     <ClInclude Include="C_DX12_Input_Layout_Setting_System.h" />
@@ -176,12 +176,11 @@
     <ClInclude Include="C_Object_Vertex_System.h" />
     <ClInclude Include="C_OS_System_Base.h" />
     <ClInclude Include="C_Platform_Detection_System.h" />
-    <ClInclude Include="C_DX12_Rasterrizer_State_Setting_System.h" />
+    <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h" />
     <ClInclude Include="C_Rendering_Font_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Graphics_API_Base.h" />
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Setting_System.h" />
-    <ClInclude Include="C_Rendering_Setting_System_For_Engine.h" />
     <ClInclude Include="C_Shader_Manager.h" />
     <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h" />
     <ClInclude Include="C_DX12_Sampling_Setting_System.h" />
@@ -202,17 +201,21 @@
     <ClInclude Include="C_Windows_System.h" />
     <ClInclude Include="C_Wnd_Proc_For_Engine_APK.h" />
     <ClInclude Include="C_Wnd_Proc_Manager.h" />
+    <ClInclude Include="Depth_Stencil_Setting_Inform.h" />
     <ClInclude Include="Engine_Function_Include_List.h" />
     <ClInclude Include="Engine_Function_Name.h" />
     <ClInclude Include="Engine_Function_Priority_Setting.h" />
     <ClInclude Include="Engine_Input_Collision_Names.h" />
     <ClInclude Include="Engine_Input_Collision_Priority.h" />
+    <ClInclude Include="Blend_Setting_Inform.h" />
     <ClInclude Include="E_BOX_VERTEX_SETTING.h" />
     <ClInclude Include="E_Engine_Input_Collision_State.h" />
     <ClInclude Include="Figure_Base_Data.h" />
     <ClInclude Include="Input_Layout_Data.h" />
     <ClInclude Include="Platform_Detector_Macro.h" />
     <ClInclude Include="E_Shader_Kind.h" />
+    <ClInclude Include="Rasterizer_Setting_Inform.h" />
+    <ClInclude Include="Rendering_Another_Setting_Inform.h" />
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h" />
     <ClInclude Include="S_Rect.h" />
     <ClInclude Include="S_Shader_Resource_Signature_Inform.h" />
@@ -241,11 +244,11 @@
     <ClCompile Include="C_DX12_Cached_PSO_Base.cpp" />
     <ClCompile Include="C_Constant_Buffer_Setting_Inform_Base.cpp" />
     <ClCompile Include="C_Constant_Data_System.cpp" />
-    <ClCompile Include="C_Creat_Constant_Buffer_Inform.cpp" />
-    <ClCompile Include="C_Creat_Font_Data_Inform.cpp" />
-    <ClCompile Include="C_Creat_Rendering_Graphics_Setting_Inform.cpp" />
-    <ClCompile Include="C_Creat_Texture_Setting_Inform.cpp" />
-    <ClCompile Include="C_Creat_Vertex_Buffer_Inform.cpp" />
+    <ClCompile Include="C_Create_Constant_Buffer_Inform.cpp" />
+    <ClCompile Include="C_Create_Font_Data_Inform.cpp" />
+    <ClCompile Include="C_Create_Rendering_Graphics_Setting_Inform.cpp" />
+    <ClCompile Include="C_Create_Texture_Setting_Inform.cpp" />
+    <ClCompile Include="C_Create_Vertex_Buffer_Inform.cpp" />
     <ClCompile Include="C_DX12_Constant_Setting_Inform.cpp" />
     <ClCompile Include="C_DX12_Font_Data_Set.cpp" />
     <ClCompile Include="C_DX12_Input_Layout_Setting_System.cpp" />
@@ -274,7 +277,6 @@
     <ClCompile Include="C_Rendering_Graphics_API_Base.cpp" />
     <ClCompile Include="C_Rendering_Graphics_Setting_Inform_Base.cpp" />
     <ClCompile Include="C_Rendering_Setting_System.cpp" />
-    <ClCompile Include="C_Rendering_Setting_System_For_Engine.cpp" />
     <ClCompile Include="C_Shader_Manager.cpp" />
     <ClCompile Include="C_Rendering_Texture_Setting_Inform_Base.cpp" />
     <ClCompile Include="C_DX12_Sampling_Setting_System.cpp" />
@@ -298,7 +300,7 @@
   <ItemGroup>
     <FxCompile Include="PS_Engine_UI_DX12.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
@@ -306,7 +308,7 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

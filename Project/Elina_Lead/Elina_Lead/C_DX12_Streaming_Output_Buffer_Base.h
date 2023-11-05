@@ -32,7 +32,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- 初期化 -☆-//
 
 		// ストリーミング出力用バッファを使用しない時の初期化を行う　引数：パイプライン設定用情報
-		static void M_Do_Not_Use_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC&);
+		static void M_Do_Not_Use_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &);
 	};
 }
 

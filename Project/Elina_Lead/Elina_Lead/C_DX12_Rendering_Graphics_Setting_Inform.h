@@ -39,7 +39,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		D3D12_PRIMITIVE_TOPOLOGY m_topology_type = D3D12_PRIMITIVE_TOPOLOGY::D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;	// 描画する図形の種類
 
-		ASSET::SHADER::C_Shader_Setting m_shader_setting;	// シェーダーの情報
+		ASSET::SHADER::C_Shader_Setting * m_shader_setting = nullptr;	// シェーダーの情報
 
 
 		//-☆- 終了時 -☆-//

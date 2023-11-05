@@ -24,7 +24,7 @@ using namespace DATA::FONT;
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Font_Draw_System::M_Creat_Texture_On_Now_Text(void)
+void C_Font_Draw_System::M_Create_Texture_On_Now_Text(void)
 {
 	// ☆ 変数宣言 ☆ //
 	int text_size = (int)mpr_variable.now_draw_text.size();	// 文字数
@@ -150,7 +150,7 @@ void C_Font_Draw_System::M_Reset(void)
 bool C_Font_Draw_System::M_Load_Font_By_Font_Name(std::wstring in_load_font_name, int in_font_pixel_size)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Font_Data_Inform creat_setting;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Font_Data_Inform creat_setting;	// 生成用情報
 
 
 	// 今持っているデータは削除する
@@ -164,7 +164,7 @@ bool C_Font_Draw_System::M_Load_Font_By_Font_Name(std::wstring in_load_font_name
 
 
 	// フォントをロードする
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Font_Data(mpr_variable.font_data, creat_setting);
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Font_Data(mpr_variable.font_data, creat_setting);
 
 	return true;
 }
@@ -219,10 +219,10 @@ RENDERING::CAPSULE::C_Texture_Data_System & C_Font_Draw_System::M_Get_Texture_Da
 // 引数   ：const wstring 設定するテキスト
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Font_Draw_System::M_Creat_Graph_By_Text(const std::wstring in_set_string)
+void C_Font_Draw_System::M_Create_Graph_By_Text(const std::wstring in_set_string)
 {
 	mpr_variable.now_draw_text = in_set_string;
-	M_Creat_Texture_On_Now_Text();
+	M_Create_Texture_On_Now_Text();
 
 	return;
 }
@@ -235,7 +235,7 @@ void C_Font_Draw_System::M_Creat_Graph_By_Text(const std::wstring in_set_string)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Font_Draw_System::M_Recreate_Graph(void)
 {
-	M_Creat_Texture_On_Now_Text();
+	M_Create_Texture_On_Now_Text();
 
 	return;
 }

@@ -69,13 +69,13 @@ C_Log_System::C_Log_System(void)
 void C_Log_System::M_Init_Debug(void)
 {
 	// 初期化されていれば抜ける
-	if (mpr_variable.inited == true)
+	if (mpr_variable.initialized == true)
 	{
 		return;
 	}
 
 	// 初期化されたことを記録
-	mpr_variable.inited = true;
+	mpr_variable.initialized = true;
 
 	// コンソール画面を初期化する
 	FreeConsole();
@@ -164,16 +164,12 @@ void C_Log_System::M_Print_Log(E_LOG_TAGS in_tag, std::string in_file_name, std:
 
 		//  セットアップ  //
 	case E_LOG_TAGS::e_SET_UP:
-
 		log_title += "SYSTEM_00-SET_UP-";
-
 		break;
 
 		//  シャットダウン時  //
 	case E_LOG_TAGS::e_SHUT_DOWN:
-
 		log_title += "SYSTEM_01-SHUT_DOWN-";
-
 		break;
 
 
@@ -181,16 +177,17 @@ void C_Log_System::M_Print_Log(E_LOG_TAGS in_tag, std::string in_file_name, std:
 
 		//  オブジェクト  //
 	case E_LOG_TAGS::e_OBJECT:
-
 		log_title += "APPLICATION_00-OBJECT-";
-
 		break;
 
-		//  オブジェクト  //
+		//  ゲームの描画用システム  //
+	case E_LOG_TAGS::e_GAME_RENDERING:
+		log_title += "APPLICATION_01-GAME_RENDERING-";
+		break;
+
+		//  UI  //
 	case E_LOG_TAGS::e_UI:
-
-		log_title += "APPLICATION_01-UI-";
-
+		log_title += "APPLICATION_02-UI-";
 		break;
 
 

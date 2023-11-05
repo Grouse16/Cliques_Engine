@@ -9,7 +9,7 @@
 #include "C_Rendering_Setting_System.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
-#include "C_Creat_Rendering_Graphics_Setting_Inform.h"
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -64,14 +64,14 @@ void C_Rendering_Setting_System::M_Delete(void)
 // 引数   ：int 使用するシェーダーセットの番号
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Rendering_Setting_System::M_Creat_Pipeline_Setting(int in_shader_set)
+void C_Rendering_Setting_System::M_Create_Pipeline_Setting(int in_shader_set)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREAT::C_Creat_Rendering_Graphics_Setting_Inform creat_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して生成する
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Creat_Rendering_Graphics_Inform(mpr_variable.rendering_setting_inform, creat_inform);
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Rendering_Graphics_Inform(mpr_variable.rendering_setting_inform, create_inform);
 	
 	return;
 }
