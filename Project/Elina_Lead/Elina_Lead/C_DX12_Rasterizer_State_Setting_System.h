@@ -13,6 +13,8 @@
 // ☆ ファイルひらき ☆ //
 #include <d3d12.h>
 
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+
 
 // ☆ ネームスペース ☆ //
 
@@ -22,7 +24,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	// ☆ クラス ☆ //
 
 	// ラスタライザの設定を行うためのクラス
-	class C_DX12_Rasterrizer_State_Setting_System
+	class C_DX12_Rasterizer_State_Setting_System
 	{
 		//==☆ パブリック ☆==//
 	public:
@@ -31,8 +33,8 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		//-☆- 設定 -☆-//
 
-		// 低いコストでラスタライズする際の設定を行う　引数：パイプライン設定用情報
-		static void M_Law_Cost_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC&);
+		// 指定された情報を元にラスタライザの設定を行う　引数：パイプライン設定用情報, レンダリング生成用情報(const)
+		static void M_Rasterizer_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &);
 	};
 }
 

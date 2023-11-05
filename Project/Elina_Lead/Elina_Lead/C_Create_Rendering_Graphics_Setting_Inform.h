@@ -71,6 +71,8 @@ namespace RENDERING::GRAPHICS::CREATE
 			RENDERING::INFORM::RASTERIZER::E_ANTIALIASING antialiasing = RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_DONT;	// アンチエイリアシングのモード
 
 			RENDERING::INFORM::RASTERIZER::S_Depth_Setting_Value depth_value;	// 深度情報設定用の値
+
+			bool flg_conservative = false;	// 保守的なラスタライズ
 		};
 
 

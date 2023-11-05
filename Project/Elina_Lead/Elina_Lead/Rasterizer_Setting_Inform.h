@@ -18,14 +18,14 @@ namespace RENDERING::INFORM::RASTERIZER
 	// ☆ 列挙 ☆ //
 
 	// 表示モードの列挙
-	enum class E_DRAW_MODE
+	enum class E_DRAW_MODE : unsigned char
 	{
 		e_NORMAL,		// 通常表示
 		e_WIRE_FRAME,	// 辺のみ表示
 	};
 
-	// 面の描画基準の列挙
-	enum class E_MESH_CULLING
+	// 面のカリングの描画基準の列挙
+	enum class E_MESH_CULLING : unsigned char
 	{
 		e_ALWAYS,	// 常に描画
 		e_FRONT,	// 表面のみ描画
@@ -33,18 +33,19 @@ namespace RENDERING::INFORM::RASTERIZER
 	};
 
 	// 表面の基準の列挙
-	enum class E_MESH_FRONT
+	enum class E_MESH_FRONT : unsigned char
 	{
 		e_ANTI_CLOCK_WISE,	// 反時計回りの面が表面
 		e_CLOCK_WISE,		// 時計回りの面が表面
 	};
 
 	// アンチエイリアシングの方法の列挙
-	enum class E_ANTIALIASING
+	enum class E_ANTIALIASING : unsigned char
 	{
 		e_DONT,		// 無効
 		e_ALPHA,	// アルファ値で行う
 		e_PIXEL,	// 四辺形で色を分散して行う
+		e_LINE,		// 辺にアンチエイリアシングをかける
 	};
 
 

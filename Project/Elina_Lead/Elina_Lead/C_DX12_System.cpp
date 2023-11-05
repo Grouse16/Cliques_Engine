@@ -19,7 +19,7 @@
 #include "C_DX12_Input_Layout_Setting_System.h"
 #include "C_DX12_Streaming_Output_Buffer_Base.h"
 #include "C_DX12_Blend_State_Setting_System.h"
-#include "C_DX12_Rasterrizer_State_Setting_System.h"
+#include "C_DX12_Rasterizer_State_Setting_System.h"
 #include "C_DX12_Sampling_Setting_System.h"
 #include "C_DX12_Stencil_State_Setting_System.h"
 #include "C_DX12_Cached_PSO_Base.h"
@@ -1613,7 +1613,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
 
 
     // ☆ ラスタライザー設定（画像変換時の設定） ☆ //
-    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rasterrizer_State_Setting_System::M_Law_Cost_Setting(desc_pipeline_state);
+    RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(desc_pipeline_state, in_create_inform);
 
 
     // ☆ 深度ステンシル設定 ☆ //

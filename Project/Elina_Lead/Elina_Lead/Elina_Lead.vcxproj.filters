@@ -501,7 +501,7 @@
     <ClInclude Include="C_DX12_Cached_PSO_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
     </ClInclude>
-    <ClInclude Include="C_DX12_Rasterrizer_State_Setting_System.h">
+    <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
     </ClInclude>
     <ClInclude Include="C_DX12_Sampling_Setting_System.h">
