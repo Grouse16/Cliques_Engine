@@ -84,7 +84,7 @@ namespace RENDERING::CAPSULE
 		void M_Creat_Texture_Resource_By_Texture_Map(void);
 
 		// テクスチャをロードしたデータを元に生成する　引数：テクスチャのパス　戻り値：成功時のみtrue
-		bool M_Creat_Texture_By_Load_Texture_File(std::string);
+		bool M_Create_Texture_By_Load_Texture_File(std::string);
 
 
 		//-☆- セッタ -☆-//

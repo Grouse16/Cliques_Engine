@@ -155,7 +155,7 @@ bool C_API_Initialize_And_Release_Manager::M_Init_API(void)
 	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_DX12:
 
 		// DX12‚Ì‰Šú‰»
-		RENDERING::GRAPHICS::DX12::C_DX12_System::M_Creat_DirectX12();
+		RENDERING::GRAPHICS::DX12::C_DX12_System::M_Create_DirectX12();
 		return RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Up();
 
 		break;

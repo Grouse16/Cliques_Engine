@@ -6,8 +6,8 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_CREAT_RENDERING_GRAPHICS_SETTING_INFORM
-#define D_INCLUDE_GUARD_C_CREAT_RENDERING_GRAPHICS_SETTING_INFORM
+#ifndef D_INCLUDE_GUARD_C_CREATE_RENDERING_GRAPHICS_SETTING_INFORM
+#define D_INCLUDE_GUARD_C_CREATE_RENDERING_GRAPHICS_SETTING_INFORM
 
 
 // ☆ ファイルひらき ☆ //
@@ -25,12 +25,12 @@
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::CREAT
+namespace RENDERING::GRAPHICS::CREATE
 {
 	// ☆ クラス ☆ //
 
 	// 描画パイプライン用情報を生成するための情報のクラス
-	class C_Creat_Rendering_Graphics_Setting_Inform
+	class C_Create_Rendering_Graphics_Setting_Inform
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -38,7 +38,7 @@ namespace RENDERING::GRAPHICS::CREAT
 		// ☆ 構造体 ☆ //
 		
 		// 深度ステンシル設定を生成するためのデータの構造体
-		struct S_Depth_Stencil_Creat_Data
+		struct S_Depth_Stencil_Create_Data
 		{
 			RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE mode = RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_NO;	// 深度のモード
 
@@ -48,7 +48,7 @@ namespace RENDERING::GRAPHICS::CREAT
 		};
 
 		// ラスタライザ設定を生成するためのデータの構造体
-		struct S_RASTERIZER_CREAT_DATA
+		struct S_Rasterizer_Create_Data
 		{
 			RENDERING::INFORM::RASTERIZER::E_DRAW_MODE draw_mode = RENDERING::INFORM::RASTERIZER::E_DRAW_MODE::e_NORMAL;	// オブジェクト描画モード
 
@@ -62,9 +62,9 @@ namespace RENDERING::GRAPHICS::CREAT
 		};
 
 		// その他設定を生成するためのデータの構造体
-		struct S_Another_Setting_Creat_Data
+		struct S_Another_Setting_Create_Data
 		{
-			RENDERING::INFORM::BLEND_MODE::E_BLEND_MODE blend_mode = RENDERING::INFORM::BLEND_MODE::E_BLEND_MODE::e_NORMAL;	// ブレンドモード
+			std::vector<RENDERING::INFORM::BLEND_MODE::E_BLEND_MODE> blend_mode;	// ブレンドモード
 
 			RENDERING::INFORM::SETTING::E_RENDERING_DRAW_FORMAT draw_format = RENDERING::INFORM::SETTING::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;	// 描画時の書き込み形式
 
@@ -77,13 +77,13 @@ namespace RENDERING::GRAPHICS::CREAT
 		// ☆ 変数宣言 ☆ //
 		ASSET::SHADER::C_Shader_Setting * shader_setting;	// シェーダー設定情報
 
-		S_Depth_Stencil_Creat_Data depth_stencil_data;	// 深度ステンシルの生成用データ
+		S_Depth_Stencil_Create_Data depth_stencil_data;	// 深度ステンシルの生成用データ
 
-		S_RASTERIZER_CREAT_DATA rasterizer_data;	// ラスタライザ設定の生成用データ
+		S_Rasterizer_Create_Data rasterizer_data;	// ラスタライザ設定の生成用データ
 
-		S_Another_Setting_Creat_Data another_data;	// その他で設定するデータ
+		S_Another_Setting_Create_Data another_data;	// その他で設定するデータ
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_CREAT_RENDERING_GRAPHICS_SETTING_INFORM
+#endif // !D_INCLUDE_GUARD_C_CREATE_RENDERING_GRAPHICS_SETTING_INFORM

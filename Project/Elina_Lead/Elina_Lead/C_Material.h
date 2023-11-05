@@ -13,6 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "C_Rendering_Setting_System.h"
 #include "C_Texture_Data_User.h"
@@ -31,7 +32,7 @@ namespace ASSET::MATERIAL
 	// 定数バッファを使用する際の情報をまとめた構造体
 	struct S_Constant_Buffer_Data
 	{
-		RENDERING::CAPSULE::C_Constant_Buffer_Data_System data;	// 定数バッファを管理するシステム
+		std::unique_ptr<RENDERING::CAPSULE::C_Constant_Buffer_Data_System> data;	// 定数バッファを管理するシステム
 
 		std::string signature_name = "default";	// 定数バッファ識別用名
 

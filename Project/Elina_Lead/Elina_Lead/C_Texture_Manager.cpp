@@ -123,7 +123,7 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Load_Texture_By
 	m_this.mpr_variable.texture_list[texture_slot_num].texture.reset(new RENDERING::CAPSULE::C_Texture_Data_System());
 
 	// テクスチャ情報からテクスチャをロードする、できなければfalseを返す
-	if (m_this.mpr_variable.texture_list[texture_slot_num].texture->M_Creat_Texture_By_Load_Texture_File(texture_inform_path) == false)
+	if (m_this.mpr_variable.texture_list[texture_slot_num].texture->M_Create_Texture_By_Load_Texture_File(texture_inform_path) == false)
 	{
 		return nullptr;
 	}

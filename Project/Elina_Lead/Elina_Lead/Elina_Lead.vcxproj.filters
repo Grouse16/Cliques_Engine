@@ -459,19 +459,19 @@
     <ClInclude Include="C_Platform_Detection_System.h">
       <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
-    <ClInclude Include="C_Creat_Vertex_Buffer_Inform.h">
+    <ClInclude Include="C_Create_Vertex_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Creat_Constant_Buffer_Inform.h">
+    <ClInclude Include="C_Create_Constant_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Creat_Font_Data_Inform.h">
+    <ClInclude Include="C_Create_Font_Data_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Creat_Rendering_Graphics_Setting_Inform.h">
+    <ClInclude Include="C_Create_Rendering_Graphics_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Creat_Texture_Setting_Inform.h">
+    <ClInclude Include="C_Create_Texture_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
     <ClInclude Include="C_DX12_System.h">
@@ -550,9 +550,6 @@
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Setting_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Rendering_Setting_System_For_Engine.h">
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Code.h">
@@ -749,19 +746,19 @@
     <ClCompile Include="C_Wnd_Proc_For_Engine_APK.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClCompile>
-    <ClCompile Include="C_Creat_Vertex_Buffer_Inform.cpp">
+    <ClCompile Include="C_Create_Vertex_Buffer_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
-    <ClCompile Include="C_Creat_Constant_Buffer_Inform.cpp">
+    <ClCompile Include="C_Create_Constant_Buffer_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
-    <ClCompile Include="C_Creat_Font_Data_Inform.cpp">
+    <ClCompile Include="C_Create_Font_Data_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
-    <ClCompile Include="C_Creat_Rendering_Graphics_Setting_Inform.cpp">
+    <ClCompile Include="C_Create_Rendering_Graphics_Setting_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
-    <ClCompile Include="C_Creat_Texture_Setting_Inform.cpp">
+    <ClCompile Include="C_Create_Texture_Setting_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
     <ClCompile Include="C_Constant_Buffer_Setting_Inform_Base.cpp">
@@ -786,9 +783,6 @@
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
     <ClCompile Include="C_Constant_Data_System.cpp">
-      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Rendering_Setting_System_For_Engine.cpp">
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Setting_System.cpp">

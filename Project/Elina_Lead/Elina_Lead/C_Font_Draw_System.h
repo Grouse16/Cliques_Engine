@@ -57,7 +57,7 @@ namespace DATA::FONT
 		//-☆- 描画 -☆-//
 
 		// 現在のテキストに応じて画像を生成する
-		void M_Creat_Texture_On_Now_Text(void);
+		void M_Create_Texture_On_Now_Text(void);
 
 
 	//==☆ パブリック ☆==//
@@ -104,7 +104,7 @@ namespace DATA::FONT
 		//-☆- 描画 -☆-//
 
 		// テキストから画像を生成する　引数：設定するテキスト
-		void M_Creat_Graph_By_Text(const std::wstring);
+		void M_Create_Graph_By_Text(const std::wstring);
 
 		// 設定されたテキストによる画像をもう一度生成する
 		void M_Recreate_Graph(void);
