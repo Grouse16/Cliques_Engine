@@ -207,7 +207,7 @@
     <ClInclude Include="Engine_Function_Priority_Setting.h" />
     <ClInclude Include="Engine_Input_Collision_Names.h" />
     <ClInclude Include="Engine_Input_Collision_Priority.h" />
-    <ClInclude Include="E_BLEND_MODE.h" />
+    <ClInclude Include="Blend_Setting_Inform.h" />
     <ClInclude Include="E_BOX_VERTEX_SETTING.h" />
     <ClInclude Include="E_Engine_Input_Collision_State.h" />
     <ClInclude Include="Figure_Base_Data.h" />

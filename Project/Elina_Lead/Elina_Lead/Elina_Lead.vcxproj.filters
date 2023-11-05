@@ -711,7 +711,7 @@
     <ClInclude Include="C_Texture_Data_User.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
     </ClInclude>
-    <ClInclude Include="E_BLEND_MODE.h">
+    <ClInclude Include="Blend_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="Depth_Stencil_Setting_Inform.h">

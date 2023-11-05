@@ -15,30 +15,6 @@
 // レンダリング設定定義用の情報を呼び出すための名前
 namespace RENDERING::INFORM::SETTING
 {
-	// ☆ 列挙 ☆ //
-
-	// レンダリング画像に書き込むピクセルのデータ形式の列挙
-	enum class E_RENDERING_DRAW_FORMAT
-	{
-		e_BYTE_1_UINT,	// １バイトのUINT
-		e_BYTE_2_UINT,	// ２バイトのUINT
-		e_BYTE_3_UINT,	// ３バイトのUINT
-		e_BYTE_4_UINT,	// ４バイトのUINT
-
-		e_BYTE_2_FLOAT,	// ２バイトのFLOAT
-		e_BYTE_4_FLOAT,	// ４バイトのFLOAT
-	};
-
-	// レンダリング画像に書き込む色の種類数の列挙
-	enum class E_RENDERING_DRAW_COLOR
-	{
-		e_R,	// 赤のみ
-		e_RG,	// 赤と緑
-		e_RGB,	// 赤と緑と青
-		e_RGBA,	// 赤と緑と青とα値
-	};
-
-
 	// ☆ 構造体 ☆ //
 
 	// サンプリングの設定を行うための情報の構造体

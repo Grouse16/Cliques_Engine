@@ -15,7 +15,7 @@
 #include <string>
 
 #include "C_Shader_Setting.h"
-#include "E_BLEND_MODE.h"
+#include "Blend_Setting_Inform.h"
 #include "Depth_Stencil_Setting_Inform.h"
 #include "Rasterizer_Setting_Inform.h"
 #include "Depth_Stencil_Setting_Inform.h"
@@ -61,16 +61,16 @@ namespace RENDERING::GRAPHICS::CREATE
 			RENDERING::INFORM::RASTERIZER::S_Depth_Setting_Value depth_value;	// 深度情報設定用の値
 		};
 
-		// その他設定を生成するためのデータの構造体
-		struct S_Another_Setting_Create_Data
+		// ブレンド設定を生成するためのデータの構造体
+		struct S_Blend_Setting_Create_Data
 		{
-			std::vector<RENDERING::INFORM::BLEND_MODE::E_BLEND_MODE> blend_mode;	// ブレンドモード
+			RENDERING::INFORM::BLEND::E_BLEND_MODE blend_mode = RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL;	// ブレンドモード
 
-			RENDERING::INFORM::SETTING::E_RENDERING_DRAW_FORMAT draw_format = RENDERING::INFORM::SETTING::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;	// 描画時の書き込み形式
+			RENDERING::INFORM::BLEND::E_BLEND_OPTION blend_option = RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD;	// ブレンドの方法
 
-			RENDERING::INFORM::SETTING::E_RENDERING_DRAW_COLOR draw_color = RENDERING::INFORM::SETTING::E_RENDERING_DRAW_COLOR::e_RGBA;	// 書き込むときの色数
-			
-			RENDERING::INFORM::SETTING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
+			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT draw_format = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;	// 描画時の書き込み形式
+
+			RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR draw_color = RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RGBA;	// 書き込むときの色数
 		};
 
 
@@ -81,7 +81,9 @@ namespace RENDERING::GRAPHICS::CREATE
 
 		S_Rasterizer_Create_Data rasterizer_data;	// ラスタライザ設定の生成用データ
 
-		S_Another_Setting_Create_Data another_data;	// その他で設定するデータ
+		std::vector<S_Blend_Setting_Create_Data> blend_setting;	// ブレンド設定の生成用データ
+
+		RENDERING::INFORM::SETTING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
 	};
 }
 

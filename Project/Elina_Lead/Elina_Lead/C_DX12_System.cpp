@@ -1628,23 +1628,6 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
     RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Stencil_State_Setting_System::M_Test_Keep_Setting(desc_pipeline_state.DepthStencilState.BackFace);
 
 
-    //下記、 レンダーターゲットの数(RTVFormats数)
-    desc_pipeline_state.NumRenderTargets = 1;
-
-
-    // レンダーターゲットに送るリソースのデータ形式
-    for (unsigned int loop_x = 0; loop_x < desc_pipeline_state.NumRenderTargets; loop_x++)
-    {
-        desc_pipeline_state.RTVFormats[loop_x] = DXGI_FORMAT::DXGI_FORMAT_R8G8B8A8_UNORM;
-    }
-
-    // レンダーターゲットに送らないリソースはすべて初期値にする(しなければエラー)
-    for (int loop_x = desc_pipeline_state.NumRenderTargets; loop_x < 8; loop_x++)
-    {
-        desc_pipeline_state.RTVFormats[loop_x] = DXGI_FORMAT::DXGI_FORMAT_UNKNOWN;
-    }
-
-
     // ☆ マルチサンプリング設定 ☆ //
     RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Sampling_Setting_System::M_Sampling_Setting(desc_pipeline_state, 1, 0, 0);
 
