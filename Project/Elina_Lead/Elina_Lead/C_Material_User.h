@@ -66,6 +66,12 @@ namespace ASSET::MATERIAL
 
 		// このマテリアルを描画用にセットする
 		void M_Material_Attach_To_Draw(void);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 現在のマテリアルを返す　戻り値：現在のマテリアルへのアドレス
+		C_Material * M_Get_Material_Address(void);
 	};
 }
 

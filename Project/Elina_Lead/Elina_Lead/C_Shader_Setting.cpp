@@ -7,7 +7,10 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Shader_Setting.h"
-#include "C_Text_And_File_Manager.h"
+
+#ifdef _DEBUG
+#include "C_Log_System.h"
+#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -31,19 +34,16 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 	int vertex_layout_sum = 0;	// 頂点レイアウト数
 
 
-	// 頂点レイアウトの開始位置を探す、なければ一番最初に戻ってもう一度探索する、それでもなければエラー
+	// 頂点レイアウトの位置に移動する、なければエラー
+	in_shader_data_file.M_Goto_Sentence_Start();
 	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("VERTEXLAYOUT=") == false)
 	{
-		in_shader_data_file.M_Goto_Sentence_Start();
-		if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("VERTEXLAYOUT=") == false)
-		{
-			return false;
-		}
+		return false;
 	}
 
 
 	// 頂点レイアウト数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("LAYOUTSUM:");
+	in_shader_data_file.M_Move_Raw_By_Number(1);
 	vertex_layout_sum = in_shader_data_file.M_Get_Number();
 
 
@@ -56,32 +56,46 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		
 
 		// 現在の番号の頂点レイアウト情報の最初に移動
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("LOT" + std::to_string(layout_number) + ":");
+		in_shader_data_file.M_Move_Raw_By_Number(1);
 
 
 		// ビットサイズの文字列を取得
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("BITSIZE:");
 		get_text = in_shader_data_file.M_Get_Data_By_Text(",");
 
 		// 1バイト
-		if (get_text == "8")
+		if (get_text == "1")
 		{
 			mpr_variable.vertex_layout_setting[layout_number].size = DATA::INPUTLAYOUT::E_INPUT_DATA_BITSIZE::e_2BYTE_16BIT;
 		}
 		// 2バイト
-		else if (get_text == "16")
+		else if (get_text == "2")
 		{
 			mpr_variable.vertex_layout_setting[layout_number].size = DATA::INPUTLAYOUT::E_INPUT_DATA_BITSIZE::e_2BYTE_16BIT;
 		}
 		// 4バイト
-		else
+		else if(get_text == "4")
 		{
 			mpr_variable.vertex_layout_setting[layout_number].size = DATA::INPUTLAYOUT::E_INPUT_DATA_BITSIZE::e_4BYTE_32BIT;
+		}
+		// 指定する文字が誤っているならエラー
+		else
+		{
+#ifdef _DEBUG
+			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			(
+				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：バイト数" + get_text
+			);
+#endif // _DEBUG
+
+			return false;
 		}
 
 
 		// データ形式を取得
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("FORMAT:");
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(",");
 		get_text = in_shader_data_file.M_Get_Data_By_Text(",");
 
 		// float型
@@ -95,14 +109,28 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 			mpr_variable.vertex_layout_setting[layout_number].format = DATA::INPUTLAYOUT::E_INPUT_DATA_FORMAT::e_UINT;
 		}
 		// int型
-		else
+		else if(get_text == "INT")
 		{
 			mpr_variable.vertex_layout_setting[layout_number].format = DATA::INPUTLAYOUT::E_INPUT_DATA_FORMAT::e_INT;
 		}
+		// 型が正しく指定されていないならエラー
+		else
+		{
+#ifdef _DEBUG
+			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			(
+				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：フォーマット" + get_text
+			);
+#endif // _DEBUG
 
+			return false;
+		}
 
 		// データ形式を取得
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("SUM:");
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(",");
 		get_text = in_shader_data_file.M_Get_Data_By_Text(",");
 
 		// 変数は１つ　ｘ
@@ -121,9 +149,24 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 			mpr_variable.vertex_layout_setting[layout_number].sum = DATA::INPUTLAYOUT::E_INPUT_DATA_PARAMATOR_SUM::e_2;
 		}
 		// 変数は４つ　ｘ,y,z,w
-		else
+		else if (get_text == "4")
 		{
 			mpr_variable.vertex_layout_setting[layout_number].sum = DATA::INPUTLAYOUT::E_INPUT_DATA_PARAMATOR_SUM::e_4;
+		}
+		// 変数の数が無効ならエラー
+		else
+		{
+#ifdef _DEBUG
+			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			(
+				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：変数の数　x,y,z,w" + get_text
+			);
+#endif // _DEBUG
+
+			return false;
 		}
 	}
 
@@ -132,22 +175,18 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：全てのシェーダーに共通するリソースの定義を行う
-// 引数   ：C_Text_And_File_Manager & シェーダー情報ファイルのデータ
+// 詳細   ：シェーダーのリソースをロードした情報から設定する
+// 引数   ：string シェーダーの種類名, C_Text_And_File_Manager & シェーダー情報ファイルのデータ
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Shader_Setting::M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager& in_shader_data_file)
+bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_kind_name, SYSTEM::TEXT::C_Text_And_File_Manager& in_shader_data_file)
 {
-	// 全てのシェーダーの共通情報の位置を探す、なければ一番最初に戻ってもう一度探索する、それでもなければエラー
-	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("ASSTART=") == false)
+	// シェーダーの情報の開始位置を探す、なければエラー
+	in_shader_data_file.M_Goto_Sentence_Start();
+	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(in_shader_kind_name + "START:") == false)
 	{
-		in_shader_data_file.M_Goto_Sentence_Start();
-		if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("ASSTART=") == false)
-		{
-			return false;
-		}
+		return false;
 	}
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("ASSUM=");
 
 
 	// ☆ 変数宣言 ☆ //
@@ -156,15 +195,15 @@ bool C_Shader_Setting::M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text
 
 
 	// 定数バッファ数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("CON:");
+	in_shader_data_file.M_Move_Raw_By_Number(1);
 	constant_sum = in_shader_data_file.M_Get_Number();
 
 	// テキスト数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("TEX:");
+	in_shader_data_file.M_Move_Raw_By_Number(1);
 	texture_sum = in_shader_data_file.M_Get_Number();
 
 	// サンプラー数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("SAMP:");
+	in_shader_data_file.M_Move_Raw_By_Number(1);
 	mpr_variable.resource_signature.all_shader_signature.sampler_sum = in_shader_data_file.M_Get_Number();
 
 
@@ -173,12 +212,8 @@ bool C_Shader_Setting::M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text
 	mpr_variable.resource_signature.all_shader_signature.texture_data.resize(texture_sum);
 
 
-	// 識別名を書いている場所に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("ASRESOURCE=");
-
-
 	// 定数バッファの識別名の行に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("CON:");
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "CON:");
 
 	// 定数バッファの識別名を取得する
 	for (int now_constant = 0; now_constant < constant_sum; now_constant++)
@@ -189,7 +224,7 @@ bool C_Shader_Setting::M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text
 
 
 	// テクスチャの識別名の行に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("TEX:");
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "TEX:");
 
 	// テクスチャの識別名を取得する
 	for (int now_texture = 0; now_texture < texture_sum; now_texture++)
@@ -210,19 +245,8 @@ bool C_Shader_Setting::M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Shader_Setting::M_Load_Shaders_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & in_shader_data_file)
 {
-	// 全てのシェーダーの共通情報の位置を探す、なければ一番最初に戻ってもう一度探索する、それでもなければエラー
-	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("SHADERSTART=") == false)
-	{
-		in_shader_data_file.M_Goto_Sentence_Start();
-		if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("SHADERSTART=") == false)
-		{
-			return false;
-		}
-	}
-
-
 	// 全てのシェーダーに共通する設定をロード
-	M_Load_All_Shader_Resource_Signature(in_shader_data_file);
+	M_Load_Shader_Resource_Signature("AS", in_shader_data_file);
 
 	// 各種シェーダーの情報を読み取りコンパイル結果を取得
 	for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
@@ -248,42 +272,49 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 	// ☆ 変数宣言 ☆ //
 	std::string shader_type_text;	// シェーダータイプの文字列
 
+	E_SHADER_KIND shader_kind = E_SHADER_KIND::e_VERTEX;	// 使用するシェーダーの種類
+
 
 	// ☆ シェーダーの種類ごとに識別に使用する文字を変える ☆　//
 	switch (in_shader_kind)
 	{
 	//  頂点シェーダー  //
-	case (int)ASSET::SHADER::E_SHADER_KIND::e_VERTEX:
+	case (int)E_SHADER_KIND::e_VERTEX:
 		shader_type_text = "VS";
+		shader_kind = E_SHADER_KIND::e_VERTEX;
 		break;
 
 		//  ハルシェーダー  //
-	case (int)ASSET::SHADER::E_SHADER_KIND::e_HUL_TCS:
+	case (int)E_SHADER_KIND::e_HUL_TCS:
 		shader_type_text = "HS";
+		shader_kind = E_SHADER_KIND::e_HUL_TCS;
 		break;
 
 		//  ドメインシェーダー  //
-	case (int)ASSET::SHADER::E_SHADER_KIND::e_DOMAIN_TES:
+	case (int)E_SHADER_KIND::e_DOMAIN_TES:
 		shader_type_text = "DS";
+		shader_kind = E_SHADER_KIND::e_DOMAIN_TES;
 		break;
 
 		//  ジオメトリシェーダー  //
-	case (int)ASSET::SHADER::E_SHADER_KIND::e_GEOMETRY:
+	case (int)E_SHADER_KIND::e_GEOMETRY:
 		shader_type_text = "GS";
+		shader_kind = E_SHADER_KIND::e_GEOMETRY;
 		break;
 
 		//  ピクセルシェーダー  //
-	case (int)ASSET::SHADER::E_SHADER_KIND::e_PIXEL_FRAGMENT:
+	case (int)E_SHADER_KIND::e_PIXEL_FRAGMENT:
 		shader_type_text = "PS";
+		shader_kind = E_SHADER_KIND::e_PIXEL_FRAGMENT;
 		break;
 	}
 
 
 	// シェーダーの情報の位置を探す、なければ一番最初に戻ってもう一度探索する、それでもなければこのシェーダーは未使用
-	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "START=") == false)
+	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "START:") == false)
 	{
 		in_shader_data_file.M_Goto_Sentence_Start();
-		if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "START=") == false)
+		if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "START:") == false)
 		{
 			return true;
 		}
@@ -291,85 +322,21 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 
 
 	// ☆ 変数宣言 ☆ //
-	std::string shader_name;	// シェーダー名
+	int shader_slot_num = mpr_variable.shader_list.size();	// 操作するシェーダーの配列番号
 
-
-	// シェーダー名を取得する
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "NAME:");
-	shader_name = in_shader_data_file.M_Get_Data_By_Text(",");
-
+	
 	// シェーダーを取得する
-	mpr_variable.shader_code.list[in_shader_kind] = ASSET::SHADER::MANAGER::C_Shader_Manager::M_Get_Shader_Setting((ASSET::SHADER::E_SHADER_KIND)in_shader_kind, shader_name);
+	mpr_variable.shader_list.resize(shader_slot_num + 1);
+	mpr_variable.shader_list[shader_slot_num].M_Load_Shader_Code(shader_kind, in_shader_data_file.M_Get_Data_Right_In_Row());
 
-	// 取得できていなければまだ生成されていないのでロードする
-	if (mpr_variable.shader_code.list[in_shader_kind] == nullptr)
+	// 生成に失敗したらエラーを出して抜ける
+	if (mpr_variable.shader_list[shader_slot_num].M_Get_Shader_Code() == nullptr)
 	{
-		mpr_variable.shader_code.list[in_shader_kind] = ASSET::SHADER::MANAGER::C_Shader_Manager::M_Load_Shader_Setting_By_Name((ASSET::SHADER::E_SHADER_KIND)in_shader_kind, shader_name);
-
-
-		// ロードに失敗したらfalseで抜ける
-		if (mpr_variable.shader_code.list[in_shader_kind] == nullptr)
-		{
-			return false;
-		}
+		return false;
 	}
 
-
-	// ☆ 変数宣言 ☆ //
-	int constant_sum = 0;	// 定数の数
-	int texture_sum = 0;	// テキストの数
-
-
-	// リソース数の場所まで移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "SUM=");
-
-	// 定数バッファ数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("CON:");
-	constant_sum = in_shader_data_file.M_Get_Number();
-
-	// テキスト数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("TEX:");
-	texture_sum = in_shader_data_file.M_Get_Number();
-
-	// サンプラー数を取得
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("SAMP:");
-	mpr_variable.resource_signature.signature_list[in_shader_kind].sampler_sum = in_shader_data_file.M_Get_Number();
-
-
-	// 識別名を書いている場所に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_type_text + "RESOUCE=");
-
-
-	// 定数バッファがあるなら識別用の情報を設定する
-	if (constant_sum > 0)
-	{
-		// 取得した数分定数バッファの識別名を生成
-		mpr_variable.resource_signature.signature_list[in_shader_kind].constant_data.resize(constant_sum);
-
-		// 定数バッファの識別名を取得する
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("CON:");
-		for (int now_constant = 0; now_constant < constant_sum; now_constant++)
-		{
-			mpr_variable.resource_signature.signature_list[in_shader_kind].constant_data[now_constant].signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
-			in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
-		}
-	}
-
-
-	// テクスチャがあるなら識別用の情報を設定する
-	if (texture_sum > 0)
-	{
-		// 取得した数分定数バッファの識別名を生成
-		mpr_variable.resource_signature.signature_list[in_shader_kind].texture_data.resize(texture_sum);
-
-		// テクスチャの識別名を取得する
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column("TEX:");
-		for (int now_texture = 0; now_texture < texture_sum; now_texture++)
-		{
-			mpr_variable.resource_signature.signature_list[in_shader_kind].texture_data[now_texture].signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
-			in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
-		}
-	}
+	// シェーダーのリソースを取得
+	M_Load_Shader_Resource_Signature(shader_type_text, in_shader_data_file);
 
 	// 成功
 	return true;
@@ -412,13 +379,12 @@ C_Shader_Setting::~C_Shader_Setting(void)
 void C_Shader_Setting::M_Release(void)
 {
 	// シェーダーの種類分、使用している状態を解除
-	for (int now_kind = 0; now_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_kind++)
+	for (C_Shader_User & now_shader_user : mpr_variable.shader_list)
 	{
-		if (mpr_variable.shader_code.list[now_kind])
-		{
-			ASSET::SHADER::MANAGER::C_Shader_Manager::M_Released_Shader_Setting_Once((ASSET::SHADER::E_SHADER_KIND)now_kind, mpr_variable.shader_code.list[now_kind]);
-		}
+		now_shader_user.M_Release();
 	}
+	mpr_variable.shader_list.clear();
+	mpr_variable.shader_list.shrink_to_fit();
 
 
 	// 頂点レイアウトの削除
@@ -452,10 +418,10 @@ void C_Shader_Setting::M_Release(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シェーダー情報ファイルの内容を読み取って各種シェーダーをロードし、頂点レイアウトとリソースの定義を設定する
-// 引数   ：std::string 読み込むシェーダー情報の名前
+// 引数   ：std::string 読み込むシェーダー設定ファイルまでの相対パス
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_Name(std::string in_shader_setting_name)
+bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_File_Path(std::string in_shader_setting_file_path)
 {
 	// ☆ 変数宣言 ☆ //
 	SYSTEM::TEXT::C_Text_And_File_Manager text_file_system;	// テキストとファイル用システム
@@ -463,12 +429,19 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_Name(std::string 
 	std::string shader_name;	// シェーダーデータがあるフォルダパス
 
 
-	// シェーダー設定名をファイルパスに変換する
-	in_shader_setting_name = "project/asset/shader/inform/setting/" + in_shader_setting_name + ".elshadersetting";
-
-
 	// ファイル読み取り	// 失敗したら抜ける
-	if (text_file_system.M_Load_Select_File(in_shader_setting_name) == false)
+	if (text_file_system.M_Load_Select_File(in_shader_setting_file_path) == false)
+	{
+		return false;
+	}
+
+
+	// ロードできたファイルのパスを記録
+	text_file_system.M_Set_File_Path(in_shader_setting_file_path);
+
+
+	// シェーダーをロードしてリソースの定義をする	// 失敗したら抜ける
+	if (M_Load_Shaders_And_Setting_Resource_Signature(text_file_system) == false)
 	{
 		return false;
 	}
@@ -476,13 +449,6 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_Name(std::string 
 
 	// 頂点レイアウトを入手	// 失敗したら抜ける
 	if (M_Load_Vertex_Layout(text_file_system) == false)
-	{
-		return false;
-	}
-
-
-	// シェーダーをロードしてリソースの定義をする	// 失敗したら抜ける
-	if (M_Load_Shaders_And_Setting_Resource_Signature(text_file_system) == false)
 	{
 		return false;
 	}
@@ -499,9 +465,9 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_Name(std::string 
 // 引数   ：void
 // 戻り値 ：const S_Shader_Byte_Code_List & シェーダーのコードの種類別リストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_Shader_Byte_Code_List & C_Shader_Setting::M_Get_Shader_Code_List(void) const
+const std::vector<C_Shader_User> & C_Shader_Setting::M_Get_Shader_Code_List(void) const
 {
-	return mpr_variable.shader_code;
+	return mpr_variable.shader_list;
 }
 
 

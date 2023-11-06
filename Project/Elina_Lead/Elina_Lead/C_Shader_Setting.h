@@ -14,8 +14,7 @@
 #include <string>
 #include <vector>
 
-
-#include "C_Shader_Manager.h"
+#include "C_Shader_User.h"
 #include "S_Shader_Resource_Signature_Inform.h"
 #include "E_Shader_Kind.h"
 #include "Input_Layout_Data.h"
@@ -27,15 +26,6 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
-	// ☆ 構造体 ☆ //
-
-	// シェーダーコードの種類別リストの構造体
-	struct S_Shader_Byte_Code_List
-	{
-		C_Shader_Code * list[(int)E_SHADER_KIND::e_ALL];	// シェーダーコードのリスト　VS,HS,DS,GS,PSを持つ
-	};
-
-
 	// ☆ クラス ☆ //
 
 	// 一組のシェーダーの設定をまとめるためのクラス
@@ -51,7 +41,7 @@ namespace ASSET::SHADER
 		{
 			std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> vertex_layout_setting;	// 頂点レイアウト設定
 
-			S_Shader_Byte_Code_List shader_code;	// シェーダーのコードをまとめた構造体
+			std::vector<C_Shader_User> shader_list;	// シェーダーコードのリスト
 
 			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
 
@@ -65,8 +55,8 @@ namespace ASSET::SHADER
 		// 頂点レイアウトをロードする　引数：シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
 		bool M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manager &);
 
-		// 全てのシェーダーに共通するリソースの定義を行う　引数：シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
-		bool M_Load_All_Shader_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager &);
+		// 全てのシェーダーに共通するリソースの定義を行う　引数：シェーダーの種類名, シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
+		bool M_Load_Shader_Resource_Signature(std::string, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// 各種シェーダーのロードとリソースの定義を行う　引数：シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
 		bool M_Load_Shaders_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager &);
@@ -94,14 +84,14 @@ namespace ASSET::SHADER
 
 		//-☆- ロード -☆-//
 
-		// シェーダー情報ファイルの内容を読み取って各種シェーダーをロードし、頂点レイアウトとリソースの定義を設定する　引数：シェーダー情報ファイルのパス　戻り値：成功時のみtrue
-		bool M_Load_Shaders_Inform_By_Shader_Setting_Name(std::string);
+		// シェーダー情報ファイルの内容を読み取って各種シェーダーをロードし、頂点レイアウトとリソースの定義を設定する　引数：読み込むシェーダー設定ファイルまでの相対パス　戻り値：成功時のみtrue
+		bool M_Load_Shaders_Inform_By_Shader_Setting_File_Path(std::string);
 
 
 		//-☆- ゲッタ -☆-//
 
-		// シェーダーのコードのセットを返す　戻り値：シェーダーのコードの種類別リストの参照(const)
-		const S_Shader_Byte_Code_List & M_Get_Shader_Code_List(void) const;
+		// シェーダーの使用システムのセットを返す　戻り値：シェーダーの使用システムの種類別リストの参照(const)
+		const std::vector<C_Shader_User> & M_Get_Shader_Code_List(void) const;
 
 		// リソース識別用情報を返す　戻り値：リソース識別用情報の参照(const)
 		const S_All_Shader_Resource_Signatures & M_Get_Resource_Signature(void) const;

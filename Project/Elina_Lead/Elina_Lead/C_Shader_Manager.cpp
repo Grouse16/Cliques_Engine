@@ -7,6 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Shader_Manager.h"
+#include "C_Rendering_Graphics_API_Base.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -107,14 +108,14 @@ ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Get_Shader_Setting(E_SHADER_K
 //-☆- ロード -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：シェーダー名からマテリアルをロードする
+// 詳細   ：シェーダー名からシェーダーをロードする
 // 引数   ：E_SHADER_KIND シェーダーの種類, string シェーダー名の参照
 // 戻り値 ：C_Shader_Code * 生成したシェーダーデータへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_Setting_By_Name(E_SHADER_KIND in_shader_kind, std::string in_shader_name)
+ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_By_Name(E_SHADER_KIND in_shader_kind, std::string in_shader_name)
 {
-	// ☆ 定数 ☆ //
-	std::string shader_inform_path = "project/asset/shader/compile/hlsl/" + in_shader_name;	// シェーダー情報へのパス
+	// ☆ 変数宣言 ☆ //
+	std::string shader_inform_path = RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Folder_Path() + in_shader_name;	// シェーダー情報へのパス
 
 	int shader_slot_num = m_this.mpr_variable.shader_inform_list[(int)in_shader_kind].size();	// 操作するシェーダーの番号
 

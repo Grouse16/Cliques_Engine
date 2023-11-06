@@ -19,7 +19,7 @@
 #include "C_Texture_Data_User.h"
 #include "C_Constant_Data_System.h"
 #include "C_Text_And_File_Manager.h"
-#include "C_Shader_Setting.h"
+#include "C_Shader_Setting_User.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -70,7 +70,7 @@ namespace ASSET::MATERIAL
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
-			ASSET::SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
+			ASSET::SHADER::C_Shader_Setting_User shader_setting_data;	// シェーダー設定用情報
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 

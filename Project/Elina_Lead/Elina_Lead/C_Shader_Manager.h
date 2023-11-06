@@ -88,7 +88,7 @@ namespace ASSET::SHADER::MANAGER
 		//-☆- ロード -☆-//
 
 		// シェーダー名からマテリアルをロードする　引数：シェーダーの種類　戻り値：生成したシェーダーデータへのアドレス
-		static C_Shader_Code * M_Load_Shader_Setting_By_Name(E_SHADER_KIND, std::string);
+		static C_Shader_Code * M_Load_Shader_By_Name(E_SHADER_KIND, std::string);
 
 
 		//-☆- 削除 -☆-//

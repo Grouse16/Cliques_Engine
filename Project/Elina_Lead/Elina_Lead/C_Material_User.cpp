@@ -74,7 +74,7 @@ void C_Material_User::M_Release(void)
 void C_Material_User::M_Load_Material(std::string in_material_name)
 {
 	// ☆ 変数宣言 ☆ //
-	ASSET::MATERIAL::C_Material * new_material_address;	// 新しいマテリアルのアドレス
+	ASSET::MATERIAL::C_Material * new_material_address = nullptr;	// 新しいマテリアルのアドレス
 
 
 	// マテリアル名前から探索して取得
@@ -101,6 +101,8 @@ void C_Material_User::M_Load_Material(std::string in_material_name)
 }
 
 
+//-☆- 描画 -☆-//
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：このマテリアルを描画用にセットする
 // 引数   ：void
@@ -111,6 +113,19 @@ void C_Material_User::M_Material_Attach_To_Draw(void)
 	mpr_variable.material_address->M_Attach_To_GPU();
 
 	return;
+}
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：現在のマテリアルを返す
+// 引数   ：void
+// 戻り値 ：C_Material * 現在のマテリアルへのアドレス
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Material * ASSET::MATERIAL::C_Material_User::M_Get_Material_Address(void)
+{
+	return mpr_variable.material_address;
 }
 
 
