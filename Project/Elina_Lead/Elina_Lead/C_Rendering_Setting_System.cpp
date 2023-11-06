@@ -61,19 +61,13 @@ void C_Rendering_Setting_System::M_Delete(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：生成用の情報を元に生成する
-// 引数   ：int 使用するシェーダーセットの番号
+// 引数   ：const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform レンダリング設定生成用情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Rendering_Setting_System::M_Create_Pipeline_Setting(int in_shader_set)
+bool C_Rendering_Setting_System::M_Create_Pipeline_Setting(const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform& in_create_inform)
 {
-	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform create_inform;	// 生成用情報
-
-
 	// 生成用の情報を設定して生成する
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Rendering_Graphics_Inform(mpr_variable.rendering_setting_inform, create_inform);
-	
-	return;
+	return RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Rendering_Graphics_Inform(mpr_variable.rendering_setting_inform, in_create_inform);
 }
 
 

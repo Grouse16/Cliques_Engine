@@ -382,7 +382,7 @@ void C_Windows_System::M_Get_Now_Time(OS::S_Time_Inform & in_set_time_inform)
 // 引数   ：unsigned __int64 & 取得先の時間変数の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Get_Now_Mili_Second(unsigned __int64 & in_plz_set_this_timer)
+void C_Windows_System::M_Get_Now_Milli_Second(unsigned __int64 & in_plz_set_this_timer)
 {// * GetTickCount64が1.26ナノ秒で最速なので使用している
 	in_plz_set_this_timer = GetTickCount64();
 

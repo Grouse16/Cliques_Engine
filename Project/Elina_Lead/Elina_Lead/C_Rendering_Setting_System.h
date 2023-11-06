@@ -14,6 +14,7 @@
 #include <memory>
 
 #include "C_Rendering_Graphics_Setting_Inform_Base.h"
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -58,8 +59,8 @@ namespace RENDERING::CAPSULE
 
 		//-☆- 生成 -☆-//
 
-		// 生成用の情報を元に生成する　引数：使用するシェーダーセットの番号
-		void M_Create_Pipeline_Setting(int);
+		// 生成用の情報を元に生成する　引数：レンダリング設定生成用情報(const)
+		bool M_Create_Pipeline_Setting(const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &);
 
 
 		//-☆- 描画 -☆-//

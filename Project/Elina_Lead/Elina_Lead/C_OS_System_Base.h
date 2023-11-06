@@ -177,7 +177,7 @@ namespace OS
 		virtual void M_Get_Now_Time(S_Time_Inform & ) = 0;
 
 		// 経過時間をミリ秒単位で取得する　引数：取得先の時間変数の参照
-		virtual void M_Get_Now_Mili_Second(unsigned __int64 & ) = 0;
+		virtual void M_Get_Now_Milli_Second(unsigned __int64 & ) = 0;
 
 
 		//-☆- ウィンドウ機能 -☆-//

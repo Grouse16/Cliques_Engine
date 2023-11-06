@@ -70,19 +70,77 @@ namespace ASSET::MATERIAL
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
+			ASSET::SHADER::C_Shader_Setting shader_setting_data;	// シェーダー設定用情報
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 		
 		// ☆ 関数 ☆ //
+
+		//-☆- ブレンド設定 -☆-//
+
+		// どのブレンドモードを設定するかを指定された文字列から特定して返す　引数：ブレンドモードを示す文字列　戻り値：特定したブレンドモード
+		RENDERING::INFORM::BLEND::E_BLEND_MODE M_Get_Blend_Mode_By_Text(std::string);
+
+		// どの色の操作を設定するかを指定された文字列から特定して返す　引数：色の操作を示す文字列　戻り値：特定した色の操作
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION M_Get_Blend_Option_By_Text(std::string);
+
+		// どの書き込む形式を設定するかを指定された文字列から特定して返す　引数：書き込むデータ形式をを示す文字列　戻り値：書き込むデータの形式
+		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT M_Get_Blend_Write_Format_By_Text(std::string);
+
+		// どの書き込む色の種類を設定するかを指定された文字列から特定して返す　引数：書き込む色の種類を示す文字列　戻り値：書き込む色の種類
+		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR M_Get_Blend_Write_Color_By_Text(std::string);
+
+
+		//-☆- 深度ステンシル -☆-//
+
+		// どの深度モードを設定するかを指定された文字列から特定して返す　引数：深度モードの種類を示す文字列　戻り値：深度モードの種類
+		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE M_Get_Depth_Mode_By_Text(std::string);
+
+		// どの深度オプションを設定するかを指定された文字列から特定して返す　引数：深度オプションの種類を示す文字列　戻り値：深度オプションの種類
+		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Depth_Option_By_Text(std::string);
+
+		// どのステンシルを有効にするかを指定された文字列から特定して返す　引数：ステンシルの有効無効を示す文字列　戻り値：ステンシルの有効無効
+		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS M_Get_Stencil_Is_Active_By_Text(std::string);
+
+
+		//-☆- ラスタライザ -☆-//
+
+		// どの描画モードを設定するかを指定された文字列から特定して返す　引数：描画モードの種類を示す文字列　戻り値：描画モードの種類
+		RENDERING::INFORM::RASTERIZER::E_DRAW_MODE M_Get_Draw_Mode_By_Text(std::string);
+
+		// どの面を表示するかを指定された文字列から特定して返す　引数：面表示の種類を示す文字列　戻り値：面の表示モードを返す
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING M_Get_Mesh_Culling_By_Text(std::string);
+
+		// どの面の表面の設定を使用するかを指定された文字列から特定して返す　引数：表面設定の種類を示す文字列　戻り値：表面設定を返す
+		RENDERING::INFORM::RASTERIZER::E_MESH_FRONT M_Get_Mesh_Front_By_Text(std::string);
+
+		// どのアンチエイリアシングの種類を指定された文字列から特定して返す　引数：アンチエイリアシングの種類を示す文字列　戻り値：アンチエイリアシングの種類を返す
+		RENDERING::INFORM::RASTERIZER::E_ANTIALIASING M_Get_Antialiasing_By_Text(std::string);
+
+
+		//-☆- ロード -☆-//
+
+		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
+		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
+		// 深度ステンシルをマテリアル情報からロードする　引数：深度ステンシルの設定先, 読み込んだファイルの情報
+		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
+		// ラスタライザをマテリアル情報からロードする　引数：ラスタライザの設定先, 読み込んだファイルの情報
+		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
+		// その他設定をロードする　引数：設定先のレンダリング設定生成用情報, 読み込んだファイルの情報
+		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
 
 		//-☆- 生成 -☆-//
 
 		// スロットの情報をセットする　引数：設定するスロット識別用の情報
 		void M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
 
-		// レンダリング情報を生成する　引数：現在のファイル文字列, シェーダーの設定用の情報　戻り値：成功時のみtrue
-		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &, ASSET::SHADER::C_Shader_Setting & );
-
+		// レンダリング情報を生成する　引数：現在のファイル文字列　戻り値：成功時のみtrue
+		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		//==☆ パブリック ☆==//
 	public:
