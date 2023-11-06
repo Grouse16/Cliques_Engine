@@ -3,7 +3,6 @@ VERTEXLAYOUT:
 下記一行をレイアウトの数分記述
 バイト数(int)1か2か4バイトを指定,型FLOATかUINTかINTを指定,変数の数xyzwの指定(int)1か2か3か4を指定,
 
-SHADERSTART:
 ASSTART:
 (int)定数バッファ数
 (int)テクスチャ数

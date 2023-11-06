@@ -245,14 +245,6 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Shader_Setting::M_Load_Shaders_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & in_shader_data_file)
 {
-	// 全てのシェーダーの共通情報の位置に移動する、なければエラー
-	in_shader_data_file.M_Goto_Sentence_Start();
-	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row("SHADERSTART:") == false)
-	{
-		return false;
-	}
-
-
 	// 全てのシェーダーに共通する設定をロード
 	M_Load_Shader_Resource_Signature("AS", in_shader_data_file);
 
