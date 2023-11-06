@@ -272,12 +272,104 @@ RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS C_Material::M_Get_Stencil_Is_Acti
 }
 
 
+//-☆- ラスタライザ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの描画モードを設定するかを指定された文字列から特定して返す
+// 引数   ：string 描画モードの種類を示す文字列
+// 戻り値 ：E_DRAW_MODE 描画モードの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_DRAW_MODE C_Material::M_Get_Draw_Mode_By_Text(std::string in_draw_mode_signature)
+{
+	// ワイヤーフレーム表示
+	if (in_draw_mode_signature == "WIRE_FRAME")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_DRAW_MODE::e_WIRE_FRAME;
+	}
+
+	// 通常表示を行う、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_DRAW_MODE::e_NORMAL;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの面を表示するかを指定された文字列から特定して返す
+// 引数   ：string 面表示の種類を示す文字列
+// 戻り値 ：E_MESH_CULLING 面の表示モードを返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_MESH_CULLING C_Material::M_Get_Mesh_Culling_By_Text(std::string in_culling_signature)
+{
+	// 表面のみ描画
+	if (in_culling_signature == "FRONT")
+	{
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_FRONT;
+	}
+
+	// 裏面のみ描画
+	if (in_culling_signature == "BACK")
+	{
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_BACK;
+	}
+
+	// 特に指定がないなら全ての面を描画
+	return RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_ALWAYS;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの面の表面の設定を使用するかを指定された文字列から特定して返す
+// 引数   ：string 表面設定の種類を示す文字列
+// 戻り値 ：E_MESH_FRONT 表面設定を返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_MESH_FRONT ASSET::MATERIAL::C_Material::M_Get_Mesh_Front_By_Text(std::string in_mesh_front_signature)
+{
+	// 反時計回り
+	if (in_mesh_front_signature == "ANTI_CLOCK_WISE")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_MESH_FRONT::e_ANTI_CLOCK_WISE;
+	}
+
+	// 時計回り、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_MESH_FRONT::e_CLOCK_WISE;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どのアンチエイリアシングの種類を指定された文字列から特定して返す
+// 引数   ：string アンチエイリアシングの種類を示す文字列
+// 戻り値 ：E_ANTIALIASING アンチエイリアシングの種類を返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_ANTIALIASING C_Material::M_Get_Antialiasing_By_Text(std::string in_antialiasing_signature)
+{
+	// α値でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "ALPHA")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_ALPHA;
+	}
+
+	// ピクセル基準でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "PIXEL")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_PIXEL;
+	}
+
+	// 辺の補間でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "LINE")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_LINE;
+	}
+
+	// アンチエイリアシングをしない、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_DONT;
+}
+
+
 //-☆- ロード -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：スロットの情報をセットする
+// 詳細   ：ブレンドの設定をマテリアル情報からロードする
 // 引数   ：vector<C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & ブレンドの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
-// 戻り値 ：bool 成功時のみtrue
+// 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
@@ -325,16 +417,14 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：スロットの情報をセットする
-// 引数   ：vector<C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & ブレンドの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
-// 戻り値 ：bool 成功時のみtrue
+// 詳細   ：深度ステンシルをマテリアル情報からロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data & 深度ステンシルの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data & in_depth_stencil_inform, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
-	// 情報の開始位置へ移動
+	// 深度ステンシルの位置へ移動、なければ初期値のまま
 	in_file_data.M_Goto_Sentence_Start();
-
-	// 深度ステンシルの場所を探す
 	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("DEPTH") == false)
 	{
 		return;
@@ -352,6 +442,57 @@ void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Cre
 	// ステンシルの有効無効を設定
 	in_file_data.M_Move_Raw_By_Number(1);
 	in_depth_stencil_inform.stencil_activate = M_Get_Stencil_Is_Active_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ラスタライザをマテリアル情報からロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data & ラスタライザの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data & in_rasterizer_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// ラスタライザ情報の位置に行く、なければ初期値まま
+	in_file_data.M_Goto_Start_Row();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("RASTERIZER") == false)
+	{
+		return;
+	}
+
+
+	// 描画モードの設定
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.draw_mode = M_Get_Draw_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 残すメッシュの向きを決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.mesh_culling = M_Get_Mesh_Culling_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.mesh_front = M_Get_Mesh_Front_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 深度バイアスを決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.depth_value.depth_bias = in_file_data.M_Get_Number();
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.depth_value.depth_max = in_file_data.M_Get_Float_Double_Number();
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.depth_value.depth_slope = in_file_data.M_Get_Float_Double_Number();
+
+	// アンチエイリアシング設定を決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.antialiasing = M_Get_Antialiasing_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 保守的なラスタライズを決める
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_rasterizer_setting.flg_conservative = in_file_data.M_Get_Data_Now_Row() == "true";
 
 	return;
 }
@@ -447,6 +588,9 @@ bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manage
 
 	// ステンシルの設定を読み込む
 	M_Load_Depth_Stencil_Setting(create_rendering_setting_inform.depth_stencil_data, in_file_text);
+
+	// ラスタライザの設定を読み込む
+	M_Load_Rasterizer_Setting(create_rendering_setting_inform.rasterizer_data, in_file_text);
 
 
 	// レンダリング設定を生成する

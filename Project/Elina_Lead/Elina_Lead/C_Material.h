@@ -101,7 +101,22 @@ namespace ASSET::MATERIAL
 		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Depth_Option_By_Text(std::string);
 
 		// どのステンシルを有効にするかを指定された文字列から特定して返す　引数：ステンシルの有効無効を示す文字列　戻り値：ステンシルの有効無効
-		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Stencil_Is_Active_By_Text(std::string);
+		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS M_Get_Stencil_Is_Active_By_Text(std::string);
+
+
+		//-☆- ラスタライザ -☆-//
+
+		// どの描画モードを設定するかを指定された文字列から特定して返す　引数：描画モードの種類を示す文字列　戻り値：描画モードの種類
+		RENDERING::INFORM::RASTERIZER::E_DRAW_MODE M_Get_Draw_Mode_By_Text(std::string);
+
+		// どの面を表示するかを指定された文字列から特定して返す　引数：面表示の種類を示す文字列　戻り値：面の表示モードを返す
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING M_Get_Mesh_Culling_By_Text(std::string);
+
+		// どの面の表面の設定を使用するかを指定された文字列から特定して返す　引数：表面設定の種類を示す文字列　戻り値：表面設定を返す
+		RENDERING::INFORM::RASTERIZER::E_MESH_FRONT M_Get_Mesh_Front_By_Text(std::string);
+
+		// どのアンチエイリアシングの種類を指定された文字列から特定して返す　引数：アンチエイリアシングの種類を示す文字列　戻り値：アンチエイリアシングの種類を返す
+		RENDERING::INFORM::RASTERIZER::E_ANTIALIASING M_Get_Antialiasing_By_Text(std::string);
 
 
 		//-☆- ロード -☆-//
@@ -111,6 +126,9 @@ namespace ASSET::MATERIAL
 
 		// 深度ステンシルをマテリアル情報からロードする　引数：深度ステンシルの設定先, 読み込んだファイルの情報
 		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
+		// ラスタライザをマテリアル情報からロードする　引数：ラスタライザの設定先, 読み込んだファイルの情報
+		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 
 		//-☆- 生成 -☆-//

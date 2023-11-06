@@ -54,7 +54,7 @@ namespace RENDERING::INFORM::RASTERIZER
 	// 奥行きの値の設定を行うための構造体
 	struct S_Depth_Setting_Value
 	{
-		int depth_value = 0;		// 奥行き値
+		int depth_bias = 0;		// 奥行き値
 		float depth_max = 0.0f;		// 奥行きの最大値　0.0fで奥行き無効
 		float depth_slope = 0.0f;	// 奥行き調整値
 	};

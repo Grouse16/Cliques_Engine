@@ -80,7 +80,7 @@ void C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(D3D12_GRAPHICS
     //-☆- 深度に関する値を設定 -☆-//
 
     // ピクセルに対する深度バイアス(奥行き値を強制的に加算)
-    in_pipeline_state_setting_desc.RasterizerState.DepthBias = in_create_inform.rasterizer_data.depth_value.depth_value;
+    in_pipeline_state_setting_desc.RasterizerState.DepthBias = in_create_inform.rasterizer_data.depth_value.depth_bias;
 
     // ピクセルの深度バイアスの最大値
     in_pipeline_state_setting_desc.RasterizerState.DepthBiasClamp = in_create_inform.rasterizer_data.depth_value.depth_max;

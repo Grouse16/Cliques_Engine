@@ -1,4 +1,5 @@
-SHADERSETTINGNAME:シェーダー設定名を記入
+SHADERSETTINGNAME:
+シェーダー設定名を記入
 
 BLENDブレンド設定番号（1から連番で必要な分を設定できるが８が最大数）:
 １．ブレンドモード　　　　NORMAL　NORMAL_NOT_ALPHA　INVERT　INVERT_NOT_ALPHA
@@ -17,9 +18,9 @@ RASTERIZER:
 ３．メッシュの表面設定　　　　ANTI_CLOCK_WISE　CLOCK_WISE
 ４．奥行きバイアス　　　　　　(int)
 ５．奥行きバイアス最大値　　　(float)
-６．奥行き調整池　　　　　　　(float)
+６．奥行き調整値　　　　　　　(float)
 ７．アンチエイリアシング設定　DONT　ALPHA　PIXEL　LINE
-保守的なラスタライズ　　　　　(bool)　trueで有効、falseで無効
+８．保守的なラスタライズ　　　　　(bool)　trueで有効、falseで無効
 
 SAMPLING:
 １．サンプリング回数　　(int)
