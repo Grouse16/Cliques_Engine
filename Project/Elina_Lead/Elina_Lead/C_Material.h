@@ -77,7 +77,7 @@ namespace ASSET::MATERIAL
 		
 		// ☆ 関数 ☆ //
 
-		//-☆- ゲッタ -☆-//
+		//-☆- ブレンド設定 -☆-//
 
 		// どのブレンドモードを設定するかを指定された文字列から特定して返す　引数：ブレンドモードを示す文字列　戻り値：特定したブレンドモード
 		RENDERING::INFORM::BLEND::E_BLEND_MODE M_Get_Blend_Mode_By_Text(std::string);
@@ -89,13 +89,28 @@ namespace ASSET::MATERIAL
 		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT M_Get_Blend_Write_Format_By_Text(std::string);
 
 		// どの書き込む色の種類を設定するかを指定された文字列から特定して返す　引数：書き込む色の種類を示す文字列　戻り値：書き込む色の種類
-		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR M_Get_Blend_Write_Color_Text(std::string);
+		RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR M_Get_Blend_Write_Color_By_Text(std::string);
+
+
+		//-☆- 深度ステンシル -☆-//
+
+		// どの深度モードを設定するかを指定された文字列から特定して返す　引数：深度モードの種類を示す文字列　戻り値：深度モードの種類
+		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE M_Get_Depth_Mode_By_Text(std::string);
+
+		// どの深度オプションを設定するかを指定された文字列から特定して返す　引数：深度オプションの種類を示す文字列　戻り値：深度オプションの種類
+		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Depth_Option_By_Text(std::string);
+
+		// どのステンシルを有効にするかを指定された文字列から特定して返す　引数：ステンシルの有効無効を示す文字列　戻り値：ステンシルの有効無効
+		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Stencil_Is_Active_By_Text(std::string);
 
 
 		//-☆- ロード -☆-//
 
 		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
 		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
+		// 深度ステンシルをマテリアル情報からロードする　引数：深度ステンシルの設定先, 読み込んだファイルの情報
+		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 
 		//-☆- 生成 -☆-//

@@ -113,7 +113,7 @@ namespace OS::WINDOWS
 		void M_Get_Now_Time(OS::S_Time_Inform & ) override;
 
 		// 経過時間をミリ秒単位で取得する　引数：取得先の時間変数の参照
-		void M_Get_Now_Mili_Second(unsigned __int64 & ) override;
+		void M_Get_Now_Milli_Second(unsigned __int64 & ) override;
 
 
 		//-☆- ウィンドウ機能 -☆-//

@@ -14,6 +14,7 @@
 #include <memory>
 
 #include "C_Rendering_Graphics_Setting_Inform_Base.h"
+#include "C_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペース ☆ //

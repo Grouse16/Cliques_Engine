@@ -24,7 +24,7 @@ using namespace ASSET::MATERIAL;
 
 //==☆ プライベート ☆==//
 
-//-☆- ゲッタ -☆-//
+//-☆- ブレンド設定 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：どのブレンドモードを設定するかを指定された文字列から特定して返す
@@ -150,7 +150,7 @@ RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT C_Material::M_Get_Blend_Write_
 // 引数   ：string 書き込む色の種類を示す文字列
 // 戻り値 ：E_RENDERING_DRAW_COLOR 書き込む色の種類
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR C_Material::M_Get_Blend_Write_Color_Text(std::string in_color_signature)
+RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR C_Material::M_Get_Blend_Write_Color_By_Text(std::string in_color_signature)
 {
 	// ４色ともある
 	if (in_color_signature == "RGBA")
@@ -174,6 +174,104 @@ RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR C_Material::M_Get_Blend_Write_C
 }
 
 
+//-☆- 深度ステンシル -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの深度モードを設定するかを指定された文字列から特定して返す
+// 引数   ：string 深度モードの種類を示す文字列
+// 戻り値 ：E_DEPTH_MODE 深度モードの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE C_Material::M_Get_Depth_Mode_By_Text(std::string in_depth_mode_signature)
+{
+	// 深度データが０の部分にのみ書き込む
+	if (in_depth_mode_signature == "ZERO")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_ZERO;
+	}
+
+	// 常時深度データを書き込む
+	if (in_depth_mode_signature == "ONE")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_ONE;
+	}
+
+	// 深度なし、または情報がないときは無効
+	return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_NO;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの深度オプションを設定するかを指定された文字列から特定して返す
+// 引数   ：string 深度オプションの種類を示す文字列
+// 戻り値 ：E_DEPTH_WRITE_RULE 深度オプションの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE C_Material::M_Get_Depth_Option_By_Text(std::string in_depth_option_signature)
+{
+	// 常時書き込む
+	if (in_depth_option_signature == "ALWAYS")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_ALWAYS;
+	}
+
+	// 元の値を超える時のみ書き込む
+	if (in_depth_option_signature == "GREATER")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_GREATER;
+	}
+
+	// 元の値未満の時のみ書き込む
+	if (in_depth_option_signature == "LESS")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_LESS;
+	}
+
+	// 元の値以上の時のみ書き込む
+	if (in_depth_option_signature == "GREATER_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_GREATERE_EQUAL;
+	}
+
+	// 元の値以下の時のみ書き込む
+	if (in_depth_option_signature == "LESS_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_LESS_EQUAL;
+	}
+
+	// 同じ値の時のみ書き込む
+	if (in_depth_option_signature == "EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_EQUAL;
+	}
+
+	// 元の値と等しくない時のみ書き込む
+	if (in_depth_option_signature == "NOT_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_NOT_EQUAL;
+	}
+
+	// 情報がないか何もしないとき
+	return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_DONT;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どのステンシルを有効にするかを指定された文字列から特定して返す
+// 引数   ：string ステンシルの有効無効を示す文字列
+// 戻り値 ：E_STENCIL_IS ステンシルの有効無効
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS C_Material::M_Get_Stencil_Is_Active_By_Text(std::string in_stencil_signature)
+{
+	// ステンシル有効
+	if (in_stencil_signature == "ACTIVE")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_ACTIVE;
+	}
+
+	// ステンシル無効、または情報がないとき
+	return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_NO_ACTIVE;
+}
+
+
 //-☆- ロード -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -187,7 +285,7 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C
 	const int con_blend_setting_max = 8;	// ブレンド設定を生成できる上限値
 
 
-	// 文章の最初へ移動
+	// 情報の最初へ移動
 	in_file_data.M_Goto_Sentence_Start();
 
 
@@ -195,10 +293,14 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C
 	for (int l_slot_num = 0; l_slot_num < con_blend_setting_max; l_slot_num++)
 	{
 		// ブレンド設定の現在の番号まで移動、なければ終了
-		if (in_file_data.M_Goto_Left_By_Text_In_Front_Row("BLEND" + std::to_string(l_slot_num + 1) + ":"))
+		if (in_file_data.M_Goto_Left_By_Text_In_Front_Row("BLEND" + std::to_string(l_slot_num + 1) + ":") == false)
 		{
 			return;
 		}
+
+
+		// ブレンド設定登録用の配列を拡張
+		in_blend_setting_list.resize(l_slot_num + 1);
 
 
 		// ブレンドモードを取得
@@ -215,8 +317,41 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C
 
 		// レンダーターゲットへの書き込む色の種類数を取得
 		in_file_data.M_Move_Raw_By_Number(1);
-		in_blend_setting_list[l_slot_num].draw_color = M_Get_Blend_Write_Color_Text(in_file_data.M_Get_Data_Now_Row());
+		in_blend_setting_list[l_slot_num].draw_color = M_Get_Blend_Write_Color_By_Text(in_file_data.M_Get_Data_Now_Row());
 	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：スロットの情報をセットする
+// 引数   ：vector<C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & ブレンドの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data & in_depth_stencil_inform, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// 情報の開始位置へ移動
+	in_file_data.M_Goto_Sentence_Start();
+
+	// 深度ステンシルの場所を探す
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("DEPTH") == false)
+	{
+		return;
+	}
+
+
+	// 深度の書き込みモードを設定
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_depth_stencil_inform.mode = M_Get_Depth_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 深度オプションを設定
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_depth_stencil_inform.write_rule = M_Get_Depth_Option_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// ステンシルの有効無効を設定
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_depth_stencil_inform.stencil_activate = M_Get_Stencil_Is_Active_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	return;
 }
@@ -309,6 +444,9 @@ bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manage
 
 	// ブレンドの設定を読み込む
 	M_Load_Blend_Setting(create_rendering_setting_inform.blend_setting, in_file_text);
+
+	// ステンシルの設定を読み込む
+	M_Load_Depth_Stencil_Setting(create_rendering_setting_inform.depth_stencil_data, in_file_text);
 
 
 	// レンダリング設定を生成する
