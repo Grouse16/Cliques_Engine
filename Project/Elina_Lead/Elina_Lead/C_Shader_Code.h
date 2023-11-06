@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 // 詳細   ：シェーダーのバイトコード用のクラス
-// 説明   ：
+// 説明   ：シェーダーのロードなどを行う
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_SHDER_BYTE_CODE_H_FILE
-#define D_INCLUDE_GUARD_C_SHDER_BYTE_CODE_H_FILE
+#ifndef D_INCLUDE_GUARD_C_SHDER_CODE_H_FILE
+#define D_INCLUDE_GUARD_C_SHDER_CODE_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -33,7 +33,7 @@ namespace ASSET::SHADER
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<void* > binary_ptr = nullptr;	// コンパイル済みコード
+			std::unique_ptr<void * > binary_ptr = nullptr;	// コンパイル済みコード
 
 			unsigned int size = 0;	// バイトコードのサイズ
 
@@ -74,4 +74,4 @@ namespace ASSET::SHADER
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_SHDER_BYTE_CODE_H_FILE
+#endif // !D_INCLUDE_GUARD_C_SHDER_CODE_H_FILE

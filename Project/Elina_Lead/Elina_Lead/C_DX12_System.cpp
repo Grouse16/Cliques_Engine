@@ -1583,12 +1583,12 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
     // シェーダーの種類ごとに指定された番号をセット
     {
         // ☆ 変数宣言 ☆ //
-        const ASSET::SHADER::S_Shader_Byte_Code_List & shader_code_list = in_create_inform.shader_setting->M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
+        const std::vector<ASSET::SHADER::C_Shader_User> & shader_user_list = in_create_inform.shader_setting->M_Get_Shader_Code_List(); // 指定されたシェーダーセットのコードのリスト
 
 
-        for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
+        for (const ASSET::SHADER::C_Shader_User & now_shader_user : shader_user_list)
         {
-            Inline_Set_Shader_Data(*add_shader_list[now_shader_kind], shader_code_list.list[now_shader_kind]);
+            Inline_Set_Shader_Data(*add_shader_list[(int)now_shader_user.M_Get_Shader_Kind()], now_shader_user.M_Get_Shader_Code());
         }
     }
 
@@ -2050,11 +2050,11 @@ void C_DX12_System::M_Release(void)
     // 未解放ならば解放
     if (mpr_variable)
     {
+        mpr_variable->shader_resource_list.release();
+
         CloseHandle(mpr_variable->s_render.fence_event);
         mpr_variable.reset();
     }
-    
-    mpr_variable->shader_resource_list.release();
 
     return;
 }
@@ -2847,6 +2847,19 @@ bool C_DX12_System::M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph
     ReleaseDC(NULL, handle_device_context);
 
     return true;
+}
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：このレンダリングシステムのシェーダーのフォルダまでのパス
+// 引数   ：void
+// 戻り値 ：string シェーダーのフォルダまでのパス
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::string C_DX12_System::M_Get_Shader_Folder_Path(void)
+{
+    return "project/asset/shader/compile/hlsl/dx12/";
 }
 
 

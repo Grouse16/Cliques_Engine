@@ -161,15 +161,15 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Get_Reset_Textu
 void C_Texture_Manager::M_Release_Texture(RENDERING::CAPSULE::C_Texture_Data_System * & in_release_texture_address)
 {
 	// テクスチャ名から指定されたテクスチャを探して、見つかったら所有されている数のカウントを減らして参照できなくする
-	for (S_Texture_Manage_Inform & now_material_inform : m_this.mpr_variable.texture_list)
+	for (S_Texture_Manage_Inform & now_texture_inform : m_this.mpr_variable.texture_list)
 	{
-		if (now_material_inform.texture.get() == in_release_texture_address)
+		if (now_texture_inform.texture.get() == in_release_texture_address)
 		{
 			in_release_texture_address = &m_this.mpr_variable.reset_texture;
-			now_material_inform.user_sum -= 1;
+			now_texture_inform.user_sum -= 1;
 
 
-			// このマテリアルが使われなくなったら削除する
+			// このテクスチャが使われなくなったら削除する
 			m_this.mpr_variable.texture_list.erase
 			(
 				std::remove_if
@@ -178,11 +178,11 @@ void C_Texture_Manager::M_Release_Texture(RENDERING::CAPSULE::C_Texture_Data_Sys
 					m_this.mpr_variable.texture_list.end(),
 
 					// 残りの数が0になると削除するラムダ式
-					[](S_Texture_Manage_Inform & in_material)->bool
+					[](S_Texture_Manage_Inform & in_texture)->bool
 					{
-						if (in_material.user_sum < 1)
+						if (in_texture.user_sum < 1)
 						{
-							in_material.texture.reset();
+							in_texture.texture.reset();
 
 							return true;
 						}

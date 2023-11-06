@@ -311,6 +311,12 @@ namespace RENDERING::GRAPHICS::DX12
 		bool M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph_Package & ) override;
 
 
+		//-☆- ゲッタ -☆-//
+
+		// このレンダリングシステムのシェーダーのフォルダまでのパス　戻り値：シェーダーのフォルダまでのパス
+		std::string M_Get_Shader_Folder_Path(void) override;
+
+
 		//-☆- セッタ -☆-//
 
 		// 画面をクリアする色を設定する　引数：設定する色(const)

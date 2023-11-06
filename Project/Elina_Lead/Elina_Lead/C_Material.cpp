@@ -607,8 +607,8 @@ bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manage
 	RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform create_rendering_setting_inform;	// レンダリング設定の生成用の情報
 
 
-	// シェーダーをセットする
-	create_rendering_setting_inform.shader_setting = &mpr_variable.shader_setting_data;
+	// シェーダー設定をセット
+	create_rendering_setting_inform.shader_setting = mpr_variable.shader_setting_data.M_Get_Shader_Setting();
 
 	// ブレンドの設定を読み込む
 	M_Load_Blend_Setting(create_rendering_setting_inform.blend_setting, in_file_text);
@@ -683,6 +683,9 @@ void C_Material::M_Release(void)
 	mpr_variable.texture_data_list.clear();
 	mpr_variable.texture_data_list.shrink_to_fit();
 
+	// シェーダー設定
+	mpr_variable.shader_setting_data.M_Release();
+	
 	return;
 }
 
@@ -724,7 +727,8 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	
 
 	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
-	if (mpr_variable.shader_setting_data.M_Load_Shaders_Inform_By_Shader_Setting_Name(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
+	mpr_variable.shader_setting_data.M_Load_Shader_Setting(material_inform_file_data.M_Get_Data_Right_In_Row());
+	if (mpr_variable.shader_setting_data.M_Get_Shader_Setting() == false)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -736,7 +740,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 
 	// シェーダー設定のリソースの情報をもとにリソースを生成する
-	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Resource_Signature());
+	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Shader_Setting()->M_Get_Resource_Signature());
 
 
 	// レンダリング設定を生成する、失敗でエラーを出して抜ける

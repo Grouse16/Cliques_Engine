@@ -188,6 +188,9 @@
     <ClInclude Include="C_Shader_Setting.h" />
     <ClInclude Include="C_DX12_Stencil_State_Setting_System.h" />
     <ClInclude Include="C_DX12_Streaming_Output_Buffer_Base.h" />
+    <ClInclude Include="C_Shader_Setting_Manager.h" />
+    <ClInclude Include="C_Shader_Setting_User.h" />
+    <ClInclude Include="C_Shader_User.h" />
     <ClInclude Include="C_Sound_Base.h" />
     <ClInclude Include="C_Sound_List.h" />
     <ClInclude Include="C_Texture_Data_System.h" />
@@ -233,6 +236,9 @@
     <ClCompile Include="C_Material_Manager.cpp" />
     <ClCompile Include="C_Material_User.cpp" />
     <ClCompile Include="C_Post_Effect_Base.cpp" />
+    <ClCompile Include="C_Shader_Setting_Manager.cpp" />
+    <ClCompile Include="C_Shader_Setting_User.cpp" />
+    <ClCompile Include="C_Shader_User.cpp" />
     <ClCompile Include="C_Sound_Base.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
@@ -300,7 +306,7 @@
   <ItemGroup>
     <FxCompile Include="PS_Engine_UI_DX12.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
@@ -308,7 +314,7 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

@@ -340,23 +340,8 @@
     <Filter Include="ヘッダー ファイル\アセット\シェーダー">
       <UniqueIdentifier>{e6671ff8-faf5-463a-af7d-1c08356625aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\シェーダー\設定">
-      <UniqueIdentifier>{41e82ad5-3cf9-47f8-8c5e-94a5088a7608}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\シェーダー\制御用システム">
-      <UniqueIdentifier>{3c5799ee-728b-4bcc-8574-ef039896dfe3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\アセット\シェーダー">
       <UniqueIdentifier>{f3f24d63-834a-44fa-a79a-dc4c7e1afa56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\シェーダー\制御用システム">
-      <UniqueIdentifier>{b427d43b-6cf8-4e2d-b3c8-69b97247989c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\シェーダー\システム">
-      <UniqueIdentifier>{08210d58-2025-4d44-b5f5-4da88f3071d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\シェーダー\システム">
-      <UniqueIdentifier>{ff1525c2-8b09-425d-8a00-e7ad23ede1bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\アセット\マテリアル\制御">
       <UniqueIdentifier>{681bfc0b-a4cf-4b4a-b4f5-96fc22088683}</UniqueIdentifier>
@@ -432,6 +417,45 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\定義">
       <UniqueIdentifier>{b5b09a0b-6373-4c67-a158-8e34f4b185db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ">
+      <UniqueIdentifier>{a704193f-f92c-46bd-99b2-e48f686b9c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ\システム">
+      <UniqueIdentifier>{ff1525c2-8b09-425d-8a00-e7ad23ede1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ\制御用システム">
+      <UniqueIdentifier>{b427d43b-6cf8-4e2d-b3c8-69b97247989c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定">
+      <UniqueIdentifier>{a895a227-7606-4251-85d9-05c35ff4114f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定\システム">
+      <UniqueIdentifier>{36167022-140f-408d-9d8c-8a141304e90f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定\制御">
+      <UniqueIdentifier>{c92efc5d-6baa-4b0a-b398-f89ab9ba7d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ">
+      <UniqueIdentifier>{128e83d4-5208-4ac6-abd0-f29100926679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定">
+      <UniqueIdentifier>{41e82ad5-3cf9-47f8-8c5e-94a5088a7608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム">
+      <UniqueIdentifier>{08210d58-2025-4d44-b5f5-4da88f3071d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定">
+      <UniqueIdentifier>{2ebef1a0-8bf4-4d16-8f13-f2352677cf4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム">
+      <UniqueIdentifier>{56045148-ab15-46ad-9518-56678f5209f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定\制御">
+      <UniqueIdentifier>{845562f0-a0ef-4743-b272-20a5519afaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\制御">
+      <UniqueIdentifier>{3c5799ee-728b-4bcc-8574-ef039896dfe3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -553,19 +577,16 @@
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Code.h">
-      <Filter>ヘッダー ファイル\アセット\シェーダー\システム</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Shader_Setting.h">
-      <Filter>ヘッダー ファイル\アセット\シェーダー\システム</Filter>
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
     </ClInclude>
     <ClInclude Include="S_Shader_Resource_Signature_Inform.h">
-      <Filter>ヘッダー ファイル\アセット\シェーダー\設定</Filter>
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定</Filter>
     </ClInclude>
     <ClInclude Include="E_Shader_Kind.h">
-      <Filter>ヘッダー ファイル\アセット\シェーダー\設定</Filter>
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Manager.h">
-      <Filter>ヘッダー ファイル\アセット\シェーダー\制御用システム</Filter>
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\制御</Filter>
     </ClInclude>
     <ClInclude Include="All_Figure_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
@@ -708,9 +729,6 @@
     <ClInclude Include="C_Texture_Manager.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
     </ClInclude>
-    <ClInclude Include="C_Texture_Data_User.h">
-      <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
-    </ClInclude>
     <ClInclude Include="Blend_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
@@ -722,6 +740,21 @@
     </ClInclude>
     <ClInclude Include="Rendering_Another_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting_User.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_User.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Data_User.h">
+      <Filter>ヘッダー ファイル\アセット\テクスチャ\システム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -834,7 +867,7 @@
       <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
     </ClCompile>
     <ClCompile Include="C_Shader_Code.cpp">
-      <Filter>ソース ファイル\アセット\シェーダー\システム</Filter>
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
     </ClCompile>
     <ClCompile Include="subdata">
       <Filter>リソース ファイル</Filter>
@@ -912,10 +945,7 @@
       <Filter>ソース ファイル\ゲーム\インスタンス\UI\基底</Filter>
     </ClCompile>
     <ClCompile Include="C_Shader_Manager.cpp">
-      <Filter>ソース ファイル\アセット\シェーダー\制御用システム</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Shader_Setting.cpp">
-      <Filter>ソース ファイル\アセット\シェーダー\システム</Filter>
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\制御用システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Material.cpp">
       <Filter>ソース ファイル\アセット\マテリアル\システム</Filter>
@@ -934,6 +964,18 @@
     </ClCompile>
     <ClCompile Include="C_Texture_Data_User.cpp">
       <Filter>ソース ファイル\アセット\テクスチャ\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting_Manager.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_User.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting_User.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
