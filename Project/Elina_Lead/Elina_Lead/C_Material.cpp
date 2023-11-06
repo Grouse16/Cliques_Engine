@@ -454,7 +454,7 @@ void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Cre
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data & in_rasterizer_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
-	// ラスタライザ情報の位置に行く、なければ初期値まま
+	// ラスタライザ情報の位置に行く、なければ初期値のまま
 	in_file_data.M_Goto_Start_Row();
 	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("RASTERIZER") == false)
 	{
@@ -493,6 +493,33 @@ void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create
 	// 保守的なラスタライズを決める
 	in_file_data.M_Move_Raw_By_Number(1);
 	in_rasterizer_setting.flg_conservative = in_file_data.M_Get_Data_Now_Row() == "true";
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：その他設定をロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform & 設定先のレンダリング設定生成用情報, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_creat_rendering_graphics_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// サンプリング設定まで移動する、なければ初期値のまま
+	in_file_data.M_Goto_Start_Row();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("SAMPLING") == false)
+	{
+		return;
+	}
+
+
+	// サンプリング回数を取得
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_count = in_file_data.M_Get_Number();
+
+	// サンプリング品質を取得
+	in_file_data.M_Move_Raw_By_Number(1);
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_quality = in_file_data.M_Get_Number();
 
 	return;
 }
@@ -555,7 +582,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 
 		// テクスチャ数分のスロットを作る
 		mpr_variable.texture_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].texture_data.size());
-		for (const ASSET::SHADER::S_Resource_Signature& now_texture_inform : in_resource_signature.signature_list[l_now_shader_number].texture_data)
+		for (const ASSET::SHADER::S_Resource_Signature & now_texture_inform : in_resource_signature.signature_list[l_now_shader_number].texture_data)
 		{
 			mpr_variable.texture_data_list[now_texture_index_number].index = now_index_number;
 			mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
@@ -591,6 +618,9 @@ bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manage
 
 	// ラスタライザの設定を読み込む
 	M_Load_Rasterizer_Setting(create_rendering_setting_inform.rasterizer_data, in_file_text);
+
+	// その他の設定を読み込む
+	M_Load_Another_Setting(create_rendering_setting_inform, in_file_text);
 
 
 	// レンダリング設定を生成する

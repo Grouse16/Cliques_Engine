@@ -22,8 +22,6 @@ namespace RENDERING::INFORM::SETTING
 	{
 		int sampling_count = 1;		// サンプリングの回数
 		int sampling_quality = 1;	// サンプリングの品質
-
-		bool flg_conservative = true;	// 保守的なサンプリングのフラグ、trueで有効、falseで無効
 	};
 }
 

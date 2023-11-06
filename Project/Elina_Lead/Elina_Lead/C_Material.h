@@ -130,6 +130,9 @@ namespace ASSET::MATERIAL
 		// ラスタライザをマテリアル情報からロードする　引数：ラスタライザの設定先, 読み込んだファイルの情報
 		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
+		// その他設定をロードする　引数：設定先のレンダリング設定生成用情報, 読み込んだファイルの情報
+		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+
 
 		//-☆- 生成 -☆-//
 
