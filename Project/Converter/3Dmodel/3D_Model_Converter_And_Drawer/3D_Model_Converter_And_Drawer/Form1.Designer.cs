@@ -79,6 +79,7 @@
             this.B_Model_Converter.TabIndex = 0;
             this.B_Model_Converter.Text = "ここに3Dモデルのファイルをドラッグアンドドロップ\r\n（独自形式へ変換）";
             this.B_Model_Converter.UseVisualStyleBackColor = false;
+            this.B_Model_Converter.DragDrop += new System.Windows.Forms.DragEventHandler(this.B_Model_Converter_DragDrop);
             this.B_Model_Converter.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox1
@@ -105,10 +106,10 @@
             // TB_before_convert_path
             // 
             this.TB_before_convert_path.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TB_before_convert_path.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TB_before_convert_path.Font = new System.Drawing.Font("MS UI Gothic", 9F);
             this.TB_before_convert_path.Location = new System.Drawing.Point(412, 517);
             this.TB_before_convert_path.Name = "TB_before_convert_path";
-            this.TB_before_convert_path.Size = new System.Drawing.Size(670, 23);
+            this.TB_before_convert_path.Size = new System.Drawing.Size(670, 19);
             this.TB_before_convert_path.TabIndex = 2;
             // 
             // textBox4
@@ -197,7 +198,6 @@
             this.B_Animation_Importer_1.TabIndex = 0;
             this.B_Animation_Importer_1.Text = "ここに独自形式アニメーションのファイルをドラッグアンドドロップして読み込み";
             this.B_Animation_Importer_1.UseVisualStyleBackColor = false;
-            this.B_Animation_Importer_1.Click += new System.EventHandler(this.B_Animation_Importer_1_Click);
             this.B_Animation_Importer_1.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox6
@@ -387,7 +387,6 @@
             this.d3D11Panel1.Name = "d3D11Panel1";
             this.d3D11Panel1.Size = new System.Drawing.Size(526, 336);
             this.d3D11Panel1.TabIndex = 3;
-            this.d3D11Panel1.Load += new System.EventHandler(this.d3D11Panel1_Load);
             // 
             // Form1
             // 

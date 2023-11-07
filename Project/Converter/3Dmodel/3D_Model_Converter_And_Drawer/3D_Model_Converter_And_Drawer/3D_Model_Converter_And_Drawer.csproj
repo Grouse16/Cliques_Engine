@@ -83,6 +83,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Program.cs" />
+    <Compile Include="My_Math_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="D3D11Panel.resx">
       <DependentUpon>D3D11Panel.cs</DependentUpon>

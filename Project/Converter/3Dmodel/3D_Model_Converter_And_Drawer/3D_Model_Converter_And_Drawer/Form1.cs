@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Assimp;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -128,14 +129,43 @@ namespace _3D_Model_Converter_And_Drawer
             }
         }
 
-        private void d3D11Panel1_Load(object sender, EventArgs e)
+        // 3Dモデルのファイルのドラッグアンドドロップを受け取る
+        private void B_Model_Converter_DragDrop(object sender, DragEventArgs e)
         {
+            // ファイルドロップ時はファイルのプロパティを取得
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // ☆ 変数宣言 ☆ //
+                string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
 
-        }
+                string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
 
-        private void B_Animation_Importer_1_Click(object sender, EventArgs e)
-        {
+                var importer = new AssimpContext(); // インポートシステム
 
+                var scene =     // 取得結果のデータ
+                    importer.ImportFile
+                    (
+                        relative_file_path,
+                        PostProcessSteps.CalculateTangentSpace |
+                        PostProcessSteps.GenerateSmoothNormals |
+                        PostProcessSteps.JoinIdenticalVertices |
+                        PostProcessSteps.LimitBoneWeights |
+                        PostProcessSteps.RemoveRedundantMaterials |
+                        PostProcessSteps.SplitLargeMeshes |
+                        PostProcessSteps.GenerateUVCoords |
+                        PostProcessSteps.SortByPrimitiveType |
+                        PostProcessSteps.FindDegenerates |
+                        PostProcessSteps.FindInvalidData |
+                        PostProcessSteps.Triangulate |      // 全ての面を三角形に変換
+                        PostProcessSteps.FlipWindingOrder | // 時計回り
+                        PostProcessSteps.MakeLeftHanded     // 左手系
+                    );
+
+
+                // ロードしたファイルのパスを表示
+                TB_before_convert_path.ResetText();
+                TB_before_convert_path.AppendText(file_path[0]);
+            }
         }
     }
     class ShaderSource : INotifyPropertyChanged
