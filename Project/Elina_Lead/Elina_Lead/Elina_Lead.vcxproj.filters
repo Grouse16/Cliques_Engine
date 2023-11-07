@@ -756,6 +756,9 @@
     <ClInclude Include="C_Texture_Data_User.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\システム</Filter>
     </ClInclude>
+    <ClInclude Include="C_3D_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -976,6 +979,9 @@
     </ClCompile>
     <ClCompile Include="C_Shader_Setting_User.cpp">
       <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_3D_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\モデル\システム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

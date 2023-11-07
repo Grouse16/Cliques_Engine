@@ -1,11 +1,14 @@
-<mxfile host="Electron" modified="2023-11-05T13:41:56.601Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="wtNhz4KgeCNCr7nMBz_P" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2023-11-07T02:23:17.057Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="v1SHEpjMisOQWHsyiXHg" version="22.0.2" type="device">
   <diagram name="ページ1" id="F_xgiDYA5KZkH7zyrJZr">
-    <mxGraphModel dx="3119" dy="1989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2690" dy="1775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-2" target="crpp9kmV1oJBQK2u6HIe-39" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-2" value="マテリアル" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-131.5" y="510" width="753" height="760" as="geometry" />
+          <mxGeometry x="-55.75" y="510" width="753" height="760" as="geometry" />
         </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-6" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="cBP3mdUdwcwwjYfgzpu0-2" vertex="1">
           <mxGeometry x="61.5" y="120" width="630" height="90" as="geometry" />
@@ -37,8 +40,11 @@
         <mxCell id="PlpxIMU7e09dVc96idBv-2" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;マテリアルデータ .elmat&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;命名：マテリアルデータ名.elmat&lt;/font&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;記述内容：&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・使用するシェーダーセッティング名&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・レンダリングでの設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - ブレンドモード&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - 深度ステンシル設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - ラスタライザ設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; &amp;nbsp; - レンダリング設定&lt;/div&gt;&lt;/font&gt;&lt;/font&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;horizontal=1;verticalAlign=top;fontSize=16;" parent="cBP3mdUdwcwwjYfgzpu0-2" vertex="1">
           <mxGeometry x="171.5" y="409" width="468.5" height="250" as="geometry" />
         </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-15" target="cBP3mdUdwcwwjYfgzpu0-36" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-15" value="マテリアルユーザー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-20" y="-470" width="530" height="370" as="geometry" />
+          <mxGeometry x="55.75" y="-470" width="530" height="370" as="geometry" />
         </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-16" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="cBP3mdUdwcwwjYfgzpu0-15" vertex="1">
           <mxGeometry x="20" y="180" width="490" height="60" as="geometry" />
@@ -67,8 +73,11 @@
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-24" value="マテリアルに必要なシェーダーのロードから設定、レンダリング設定までの実行を行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="cBP3mdUdwcwwjYfgzpu0-22" vertex="1">
           <mxGeometry y="90" width="490" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-36" target="cBP3mdUdwcwwjYfgzpu0-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-36" value="マテリアルマネージャー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-216.5" y="10" width="923" height="440" as="geometry" />
+          <mxGeometry x="-140.75" y="10" width="923" height="440" as="geometry" />
         </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-37" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="cBP3mdUdwcwwjYfgzpu0-36" vertex="1">
           <mxGeometry x="280" y="190" width="630" height="60" as="geometry" />
@@ -109,23 +118,14 @@
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-55" value="マテリアルを持つインスタンス数を減らす、０になるとマテリアルデータを削除する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="cBP3mdUdwcwwjYfgzpu0-52" vertex="1">
           <mxGeometry y="90" width="630" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cBP3mdUdwcwwjYfgzpu0-44" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-15" target="cBP3mdUdwcwwjYfgzpu0-36" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="280" y="-70" as="sourcePoint" />
-            <mxPoint x="300" y="-190" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="CW2jHhSHeJLpoLNfHYgt-1" target="crpp9kmV1oJBQK2u6HIe-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cBP3mdUdwcwwjYfgzpu0-60" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-36" target="cBP3mdUdwcwwjYfgzpu0-2" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="210" y="520" as="sourcePoint" />
-            <mxPoint x="260" y="470" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-1" value="シェーダーセッティング" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-166.75" y="1360" width="823.5" height="430" as="geometry" />
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-1" value="シェーダー設定" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-59.129999999999995" y="2338" width="761.75" height="800" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-4" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-1" vertex="1">
-          <mxGeometry x="110" y="40" width="630" height="90" as="geometry" />
+          <mxGeometry x="69.12" y="40" width="630" height="90" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-5" value="シェーダーを使用する際のシステム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-4" vertex="1">
           <mxGeometry y="30" width="630" height="30" as="geometry" />
@@ -134,7 +134,7 @@
           <mxGeometry y="60" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-6" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-1" vertex="1">
-          <mxGeometry x="110" y="150" width="630" height="120" as="geometry" />
+          <mxGeometry x="69.12" y="150" width="630" height="120" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-7" value="シェーダーデータへのアドレス（VS, PS, HS, DS, GS）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-6" vertex="1">
           <mxGeometry y="30" width="630" height="30" as="geometry" />
@@ -146,22 +146,22 @@
           <mxGeometry y="90" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-14" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-1" vertex="1">
-          <mxGeometry x="110" y="310" width="630" height="90" as="geometry" />
+          <mxGeometry x="69.12" y="310" width="630" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-15" value="シェーダー設定の取得、取得できていなければロードしてから取得、頂点レイアウト、バッファの設定も行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-14" vertex="1">
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-15" value="シェーダーの取得、取得できていなければロードしてから取得、頂点レイアウト、バッファの設定も行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-14" vertex="1">
           <mxGeometry y="30" width="630" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-16" value="シェーダーの使用終了を告知" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-14" vertex="1">
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-16" value="シェーダーの使用終了を告知し、メモリを解放する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-14" vertex="1">
           <mxGeometry y="60" width="630" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="cBP3mdUdwcwwjYfgzpu0-2" target="CW2jHhSHeJLpoLNfHYgt-1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="170" y="1040" as="sourcePoint" />
-            <mxPoint x="220" y="990" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="4N5FO25rPHKvtAqJEw1--2" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;シェーダー設定データ .elsst&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;命名：シェーダー設定データ名.elsst&lt;/span&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;記述内容：&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp;- 頂点レイアウト情報&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp;- 全シェーダー共通のリソースの設定&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp;- 各シェーダーの名前&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp;- 各シェーダーのリソースの設定&lt;/div&gt;&lt;/font&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;verticalAlign=top;" parent="CW2jHhSHeJLpoLNfHYgt-1" vertex="1">
+          <mxGeometry x="63.12" y="450" width="642" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="CW2jHhSHeJLpoLNfHYgt-17" target="CW2jHhSHeJLpoLNfHYgt-37" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-17" value="シェーダーマネージャー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-225.75" y="1880" width="941.5" height="400" as="geometry" />
+          <mxGeometry x="-149" y="3750" width="941.5" height="400" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-18" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-17" vertex="1">
           <mxGeometry x="301.5" y="40" width="630" height="90" as="geometry" />
@@ -175,17 +175,20 @@
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-21" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-17" vertex="1">
           <mxGeometry x="301.5" y="170" width="630" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-22" value="シェーダーデータへのアドレス（VS, PS, HS, DS, GS）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-21" vertex="1">
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-22" value="シェーダーコード管理用データのリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-21" vertex="1">
           <mxGeometry y="30" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-23" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-17" vertex="1">
-          <mxGeometry x="301.5" y="260" width="630" height="90" as="geometry" />
+          <mxGeometry x="301.5" y="260" width="630" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-24" value="シェーダーの取得、取得できていなければロードしてから取得" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-23" vertex="1">
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-24" value="指定された名前のシェーダーデータを返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-23" vertex="1">
           <mxGeometry y="30" width="630" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-25" value="シェーダーの使用終了を告知" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-23" vertex="1">
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-22" value="指定された名前のシェーダーデータをロード" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-23" vertex="1">
           <mxGeometry y="60" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CW2jHhSHeJLpoLNfHYgt-25" value="シェーダーを持つインスタンス数を減らす、０になるとシェーダーを削除する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-23" vertex="1">
+          <mxGeometry y="90" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-54" value="シェーダーコード管理用情報の構造体" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-17" vertex="1">
           <mxGeometry x="21.5" y="40" width="253.5" height="120" as="geometry" />
@@ -199,20 +202,8 @@
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-57" value="このシェーダーを使用するインスタンス数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-54" vertex="1">
           <mxGeometry y="90" width="253.5" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-26" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="CW2jHhSHeJLpoLNfHYgt-1" target="CW2jHhSHeJLpoLNfHYgt-17" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="50" y="1650" as="sourcePoint" />
-            <mxPoint x="100" y="1600" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="CW2jHhSHeJLpoLNfHYgt-27" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="CW2jHhSHeJLpoLNfHYgt-17" target="CW2jHhSHeJLpoLNfHYgt-37" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="260" y="2240" as="sourcePoint" />
-            <mxPoint x="244" y="2210" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-37" value="シェーダーコード" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-131.5" y="2390" width="751.5" height="500" as="geometry" />
+          <mxGeometry x="-53" y="4260" width="751.5" height="500" as="geometry" />
         </mxCell>
         <mxCell id="CW2jHhSHeJLpoLNfHYgt-38" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="CW2jHhSHeJLpoLNfHYgt-37" vertex="1">
           <mxGeometry x="60" y="40" width="630" height="60" as="geometry" />
@@ -239,7 +230,7 @@
           <mxGeometry y="60" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="PlpxIMU7e09dVc96idBv-1" value="コンパイル済みシェーダーデータ&lt;br&gt;.cso" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="CW2jHhSHeJLpoLNfHYgt-37" vertex="1">
-          <mxGeometry x="401.5" y="390" width="330" height="80" as="geometry" />
+          <mxGeometry x="205.75" y="380" width="330" height="80" as="geometry" />
         </mxCell>
         <mxCell id="LWcWM2jxmmKPuL7SSTCb-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=150;entryPerimeter=0;" parent="1" source="LWcWM2jxmmKPuL7SSTCb-3" target="PlpxIMU7e09dVc96idBv-2" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -268,6 +259,114 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-400" y="1800" as="sourcePoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="crpp9kmV1oJBQK2u6HIe-1" target="CW2jHhSHeJLpoLNfHYgt-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-1" value="シェーダーユーザー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-67.5" y="3280" width="778.5" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-5" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-1" vertex="1">
+          <mxGeometry x="50" y="170" width="680" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-6" value="使用するシェーダーコードのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-5" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-7" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-1" vertex="1">
+          <mxGeometry x="50" y="260" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-8" value="シェーダーの取得、取得できていなければロードしてから取得" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-7" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-9" value="シェーダーの使用終了を告知" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-7" vertex="1">
+          <mxGeometry y="60" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-2" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-20.5" y="3320" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-3" value="シェーダーの使用をカプセル化するシステム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-2" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-4" value="シェーダーの取得と使用終了をシェーダーマネージャーに告知する部分を自動化することで終了の告知忘れなどを防ぐ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-2" vertex="1">
+          <mxGeometry y="60" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="crpp9kmV1oJBQK2u6HIe-24" target="CW2jHhSHeJLpoLNfHYgt-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-24" value="シェーダー設定マネージャー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-184" y="1840" width="1011.5" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-25" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-24" vertex="1">
+          <mxGeometry x="361.5" y="40" width="630" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-26" value="シェーダー設定を制御するシステム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-25" vertex="1">
+          <mxGeometry y="30" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-27" value="シェーダー設定のロードやアンロードの管理を行う、シェーダーが重複" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-25" vertex="1">
+          <mxGeometry y="60" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-28" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-24" vertex="1">
+          <mxGeometry x="361.5" y="170" width="630" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-29" value="シェーダー設定管理用データのリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-28" vertex="1">
+          <mxGeometry y="30" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-30" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-24" vertex="1">
+          <mxGeometry x="361.5" y="260" width="630" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-31" value="指定された名前のシェーダー設定を返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-30" vertex="1">
+          <mxGeometry y="30" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-32" value="指定された名前のシェーダー設定をロード" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-30" vertex="1">
+          <mxGeometry y="60" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-33" value="シェーダー設定を持つインスタンス数を減らす、０になるとシェーダーせってうを削除する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-30" vertex="1">
+          <mxGeometry y="90" width="630" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-34" value="シェーダー設定管理用情報の構造体" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-24" vertex="1">
+          <mxGeometry x="20" y="40" width="315" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-35" value="シェーダー設定" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-34" vertex="1">
+          <mxGeometry y="30" width="315" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-36" value="シェーダー設定名" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-34" vertex="1">
+          <mxGeometry y="60" width="315" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-37" value="このシェーダー設定を使用するインスタンス数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-34" vertex="1">
+          <mxGeometry y="90" width="315" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="crpp9kmV1oJBQK2u6HIe-39" target="crpp9kmV1oJBQK2u6HIe-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-39" value="シェーダー設定ユーザー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-68.5" y="1370" width="778.5" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-40" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-39" vertex="1">
+          <mxGeometry x="50" y="170" width="680" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-41" value="使用するシェーダー設定のアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-40" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-42" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-39" vertex="1">
+          <mxGeometry x="50" y="260" width="680" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-43" value="シェーダー設定の取得、取得できていなければロードしてから取得" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-42" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-44" value="シェーダー設定の使用終了を告知" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-42" vertex="1">
+          <mxGeometry y="60" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-49" value="現在持っているシェーダー設定のアドレスを返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-42" vertex="1">
+          <mxGeometry y="90" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-45" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="1410" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-46" value="シェーダー設定の使用をカプセル化するシステム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-45" vertex="1">
+          <mxGeometry y="30" width="680" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="crpp9kmV1oJBQK2u6HIe-47" value="シェーダー設定の取得と使用終了をシェーダーマネージャーに告知する部分を自動化することで終了の告知忘れなどを防ぐ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="crpp9kmV1oJBQK2u6HIe-45" vertex="1">
+          <mxGeometry y="60" width="680" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

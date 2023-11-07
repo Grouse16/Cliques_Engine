@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-11-05T08:25:34.964Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="zIOz5R6i8WLQpUnMoQBz" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2023-11-05T13:41:56.601Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="wtNhz4KgeCNCr7nMBz_P" version="22.0.2" type="device">
   <diagram name="ページ1" id="F_xgiDYA5KZkH7zyrJZr">
-    <mxGraphModel dx="3070" dy="1987" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3119" dy="1989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -35,7 +35,7 @@
           <mxGeometry y="90" width="630" height="30" as="geometry" />
         </mxCell>
         <mxCell id="PlpxIMU7e09dVc96idBv-2" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;マテリアルデータ .elmat&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;命名：マテリアルデータ名.elmat&lt;/font&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;記述内容：&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・使用するシェーダーセッティング名&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・レンダリングでの設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - ブレンドモード&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - 深度ステンシル設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - ラスタライザ設定&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; &amp;nbsp; - レンダリング設定&lt;/div&gt;&lt;/font&gt;&lt;/font&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;horizontal=1;verticalAlign=top;fontSize=16;" parent="cBP3mdUdwcwwjYfgzpu0-2" vertex="1">
-          <mxGeometry x="61.5" y="410" width="468.5" height="320" as="geometry" />
+          <mxGeometry x="171.5" y="409" width="468.5" height="250" as="geometry" />
         </mxCell>
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-15" value="マテリアルユーザー" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-20" y="-470" width="530" height="370" as="geometry" />
@@ -261,14 +261,11 @@
         <mxCell id="ViZLGe82nvR9oaqWgO3k-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=150;entryPerimeter=0;" parent="1" source="ViZLGe82nvR9oaqWgO3k-3" target="PlpxIMU7e09dVc96idBv-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="eVrz93EMOoMcIUT7Dr-b-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;レンダリング設定&lt;/span&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;div&gt;・サンプリング&lt;/div&gt;&lt;div&gt;　 - (int)サンプリングの回数&lt;/div&gt;&lt;div&gt;　 - (int)サンプリングの品質&lt;/div&gt;&lt;div&gt;　 - (int) サンプリング回数　深度ステンシル無効時のみ有効&lt;/div&gt;&lt;/div&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
-          <mxGeometry x="-860" y="1590" width="410" height="130" as="geometry" />
+        <mxCell id="eVrz93EMOoMcIUT7Dr-b-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;レンダリング設定&lt;/span&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;div&gt;・サンプリング&lt;/div&gt;&lt;div&gt;　 - (int)サンプリングの回数&lt;/div&gt;&lt;div&gt;　 - (int)サンプリングの品質&lt;/div&gt;&lt;/div&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="-700" y="1640" width="240" height="130" as="geometry" />
         </mxCell>
         <mxCell id="eVrz93EMOoMcIUT7Dr-b-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=150;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="eVrz93EMOoMcIUT7Dr-b-1" target="PlpxIMU7e09dVc96idBv-2" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="-265" y="1070" />
-            </Array>
             <mxPoint x="-400" y="1800" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
