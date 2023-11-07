@@ -65,5 +65,10 @@ namespace SharpDXSample
                 m_renderer = null;
             }
         }
+
+        private void D3D11Panel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

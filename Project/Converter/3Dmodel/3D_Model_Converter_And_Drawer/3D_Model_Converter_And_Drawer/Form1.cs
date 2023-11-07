@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SharpDX;
+using SharpDXSample;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,72 @@ namespace _3D_Model_Converter_And_Drawer
 {
     public partial class Form1 : Form
     {
+        string m_sourcePath;
+
+        ShaderSource m_source;
+
+        BindingList<Vertex> m_vertices = new BindingList<Vertex>();
+
         public Form1()
         {
             InitializeComponent();
+
+            // shader source
+            m_sourcePath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "shader.fx");
+            m_source = new ShaderSource();
+            m_source.PropertyChanged += M_source_PropertyChanged;               
+            m_source.Source = File.ReadAllText(m_sourcePath, Encoding.UTF8);
+
+            // watch
+            var watcher = new System.IO.FileSystemWatcher();
+            watcher.Path = Path.GetDirectoryName(m_sourcePath);
+            watcher.NotifyFilter = System.IO.NotifyFilters.LastWrite;
+            watcher.Filter = Path.GetFileName(m_sourcePath);
+            watcher.Changed += Watcher_Changed;
+            watcher.EnableRaisingEvents = true;
+
+            // vertex
+            m_vertices.ListChanged += (o, e) =>
+              {
+                  d3D11Panel1.Buffer.SetVertices(m_vertices.ToArray());
+                  d3D11Panel1.Invalidate();
+              };
+
+            m_vertices.Add(new Vertex(new Vector4(0.0f, 0.5f, 0.5f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+            m_vertices.Add(new Vertex(new Vector4(0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+            m_vertices.Add(new Vertex(new Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+        }
+
+        private async void Watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            await Task.Delay(100);
+
+            if (InvokeRequired)
+            {
+                Action callback = () =>
+                {
+                    Watcher_Changed(sender, e);
+                };
+                Invoke(callback);
+                return;
+            }
+            m_source.Source=File.ReadAllText(m_sourcePath, Encoding.UTF8);
+        }
+
+        private void M_source_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Action callback = () =>
+                {
+                    M_source_PropertyChanged(sender, e);
+                };
+                Invoke(callback);
+                return;
+            }
+
+            d3D11Panel1.Shader.Source = m_source.Source;
+            d3D11Panel1.Invalidate();
         }
 
 
@@ -62,6 +128,62 @@ namespace _3D_Model_Converter_And_Drawer
             }
         }
 
+        private void d3D11Panel1_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void B_Animation_Importer_1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+    class ShaderSource : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        void RaisePropertyChanged(string prop)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        string m_source;
+        public string Source
+        {
+            get { return m_source; }
+            set
+            {
+                if (m_source == value) return;
+                m_source = value;
+                RaisePropertyChanged(nameof(Source));
+            }
+        }
+    }
+
+    static class ColorExtensions
+    {
+        public static System.Drawing.Color ToColor(this Color4 src)
+        {
+            return System.Drawing.Color.FromArgb(
+                (byte)(src.Alpha * 255),
+                (byte)(src.Red * 255),
+                (byte)(src.Green * 255),
+                (byte)(src.Blue * 255)
+                );
+        }
+
+        const float ToF = 1.0f / 255;
+        public static Color4 ToSharpDX(this System.Drawing.Color value)
+        {
+            return new Color4(
+                value.R * ToF,
+                value.G * ToF,
+                value.B * ToF,
+                value.A * ToF
+                );
+        }
     }
 }

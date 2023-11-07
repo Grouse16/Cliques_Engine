@@ -41,7 +41,6 @@
             this.B_Animation_Importer_1 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.d3D11Panel1 = new SharpDXSample.D3D11Panel();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@
             this.trackBar5 = new System.Windows.Forms.TrackBar();
             this.B_Animation_Importer_2 = new System.Windows.Forms.Button();
             this.textBox17 = new System.Windows.Forms.TextBox();
+            this.d3D11Panel1 = new SharpDXSample.D3D11Panel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -197,6 +197,7 @@
             this.B_Animation_Importer_1.TabIndex = 0;
             this.B_Animation_Importer_1.Text = "ここに独自形式アニメーションのファイルをドラッグアンドドロップして読み込み";
             this.B_Animation_Importer_1.UseVisualStyleBackColor = false;
+            this.B_Animation_Importer_1.Click += new System.EventHandler(this.B_Animation_Importer_1_Click);
             this.B_Animation_Importer_1.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox6
@@ -218,13 +219,6 @@
             this.textBox7.Size = new System.Drawing.Size(527, 19);
             this.textBox7.TabIndex = 1;
             this.textBox7.Text = "モデルビュワー";
-            // 
-            // d3D11Panel1
-            // 
-            this.d3D11Panel1.Location = new System.Drawing.Point(282, 18);
-            this.d3D11Panel1.Name = "d3D11Panel1";
-            this.d3D11Panel1.Size = new System.Drawing.Size(526, 336);
-            this.d3D11Panel1.TabIndex = 3;
             // 
             // textBox8
             // 
@@ -386,6 +380,14 @@
             this.textBox17.Size = new System.Drawing.Size(274, 19);
             this.textBox17.TabIndex = 1;
             this.textBox17.Text = "アニメーションインポーター　２に設定";
+            // 
+            // d3D11Panel1
+            // 
+            this.d3D11Panel1.Location = new System.Drawing.Point(282, 18);
+            this.d3D11Panel1.Name = "d3D11Panel1";
+            this.d3D11Panel1.Size = new System.Drawing.Size(526, 336);
+            this.d3D11Panel1.TabIndex = 3;
+            this.d3D11Panel1.Load += new System.EventHandler(this.d3D11Panel1_Load);
             // 
             // Form1
             // 
