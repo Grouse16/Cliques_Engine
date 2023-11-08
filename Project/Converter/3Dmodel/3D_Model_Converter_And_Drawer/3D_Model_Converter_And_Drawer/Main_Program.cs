@@ -16,7 +16,7 @@ namespace _3D_Model_Converter_And_Drawer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Main_Form());
             Console.WriteLine(SharpDX.Diagnostics.ObjectTracker.ReportActiveObjects());
         }
     }

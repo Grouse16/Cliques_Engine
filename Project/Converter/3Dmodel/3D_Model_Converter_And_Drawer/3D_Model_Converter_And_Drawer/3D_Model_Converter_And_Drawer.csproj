@@ -66,30 +66,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D3D11Panel.cs">
+    <Compile Include="Name_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="D3D11Panel.designer.cs">
+    <Compile Include="Name_Setting.Designer.cs">
+      <DependentUpon>Name_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scroll_Name_Setting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scroll_Name_Setting.Designer.cs">
+      <DependentUpon>Scroll_Name_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3D_Model_Convert_System.cs" />
+    <Compile Include="d3d11\D3D11Panel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="d3d11\D3D11Panel.designer.cs">
       <DependentUpon>D3D11Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="D3D11Renderer.cs" />
-    <Compile Include="D3D11Shader.cs" />
-    <Compile Include="D3D11VertexBuffer.cs" />
-    <Compile Include="DXGISwapChain.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="d3d11\D3D11Renderer.cs" />
+    <Compile Include="d3d11\D3D11Shader.cs" />
+    <Compile Include="d3d11\D3D11VertexBuffer.cs" />
+    <Compile Include="d3d11\DXGISwapChain.cs" />
+    <Compile Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.Designer.cs">
+      <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_Form.Designer.cs">
+      <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Program.cs" />
     <Compile Include="My_Math_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="D3D11Panel.resx">
+    <EmbeddedResource Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.resx">
+      <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Name_Setting.resx">
+      <DependentUpon>Name_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scroll_Name_Setting.resx">
+      <DependentUpon>Scroll_Name_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="d3d11\D3D11Panel.resx">
       <DependentUpon>D3D11Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Main_Form.resx">
+      <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
