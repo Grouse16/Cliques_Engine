@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-11-07T08:56:44.110Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="Afu64maKGow2Aa3KtqiO" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2023-11-08T13:50:21.806Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="8fuvAfZfq__9ONW3vg_w" version="22.0.2" type="device">
   <diagram name="ページ1" id="F_xgiDYA5KZkH7zyrJZr">
-    <mxGraphModel dx="2261" dy="2005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2245" dy="1989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -61,56 +61,62 @@
         <mxCell id="Kirwe70Kxo4XInATM-IW-74" value="メッシュグループ名ごとに描画できるようにするために識別名を設定&lt;br&gt;ガラス面などを後からレンダリングするために使用" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="Kirwe70Kxo4XInATM-IW-5" vertex="1">
           <mxGeometry x="12" y="170" width="310" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-12" value="メッシュグループ" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-12" value="メッシュ" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-370" y="1120" width="940" height="600" as="geometry" />
         </mxCell>
         <mxCell id="Kirwe70Kxo4XInATM-IW-13" value="変数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
-          <mxGeometry x="310" y="190" width="600" height="90" as="geometry" />
+          <mxGeometry x="310" y="180" width="600" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-59" value="メッシュインデックス情報のリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-13" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-59" value="フェースの配列" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-13" vertex="1">
           <mxGeometry y="30" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oAZEMHh-joWTwAbU2PM1-1" value="頂点データを使用するためのシステム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Kirwe70Kxo4XInATM-IW-13">
+          <mxGeometry y="60" width="600" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Kirwe70Kxo4XInATM-IW-26" value="使用するマテリアルユーザーのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-13" vertex="1">
-          <mxGeometry y="60" width="600" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-18" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
-          <mxGeometry x="310" y="300" width="600" height="210" as="geometry" />
-        </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-25" value="メッシュインデックス情報を指定された数分生成" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
-          <mxGeometry y="30" width="600" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-28" value="メッシュインデックス情報を返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
-          <mxGeometry y="60" width="600" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-34" value="使用するマテリアルユーザーのアドレスをセット" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
           <mxGeometry y="90" width="600" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-54" value="使用しているマテリアルユーザーのアドレスを返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-18" value="関数" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
+          <mxGeometry x="310" y="320" width="600" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="oAZEMHh-joWTwAbU2PM1-2" value="頂点を指定された数分生成" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Kirwe70Kxo4XInATM-IW-18">
+          <mxGeometry y="30" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oAZEMHh-joWTwAbU2PM1-3" value="頂点データを使用するためのシステムへの参照を返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Kirwe70Kxo4XInATM-IW-18">
+          <mxGeometry y="60" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Kirwe70Kxo4XInATM-IW-25" value="フェースを指定された数分生成" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+          <mxGeometry y="90" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Kirwe70Kxo4XInATM-IW-28" value="フェースを返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
           <mxGeometry y="120" width="600" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-30" value="渡された頂点描画カプセル化システムにインデックス情報を指定してメッシュの描画を行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-34" value="使用するマテリアルユーザーのアドレスをセット" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
           <mxGeometry y="150" width="600" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-55" value="メッシュデータの解放" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-54" value="使用しているマテリアルユーザーのアドレスを返す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
           <mxGeometry y="180" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Kirwe70Kxo4XInATM-IW-30" value="渡された頂点描画カプセル化システムにインデックス情報を指定してメッシュの描画を行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+          <mxGeometry y="210" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Kirwe70Kxo4XInATM-IW-55" value="メモリの解放を行う" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-18" vertex="1">
+          <mxGeometry y="240" width="600" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Kirwe70Kxo4XInATM-IW-31" value="説明" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
           <mxGeometry x="310" y="60" width="600" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-57" value="頂点のインデックス情報を指定された通りに生成し、インデックス情報通りに描画" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-31" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-57" value="頂点とインデックス情報を指定された通りに生成し、インデックス情報通りに描画" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-31" vertex="1">
           <mxGeometry y="30" width="600" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Kirwe70Kxo4XInATM-IW-36" value="メッシュの描画を行う、マテリアルをレンダリングシステムへセットし、頂点の描画をする" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-31" vertex="1">
           <mxGeometry y="60" width="600" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-65" value="メッシュインデックス情報" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
-          <mxGeometry x="30" y="60" width="240" height="90" as="geometry" />
+        <mxCell id="Kirwe70Kxo4XInATM-IW-65" value="フェース" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-12" vertex="1">
+          <mxGeometry x="30" y="60" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-66" value="頂点インデックス描画の開始番地" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-65" vertex="1">
+        <mxCell id="Kirwe70Kxo4XInATM-IW-67" value="頂点インデックス番号の配列 (int × 3)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-65" vertex="1">
           <mxGeometry y="30" width="240" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Kirwe70Kxo4XInATM-IW-67" value="頂点インデックス描画の終了番地" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Kirwe70Kxo4XInATM-IW-65" vertex="1">
-          <mxGeometry y="60" width="240" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Kirwe70Kxo4XInATM-IW-22" value="マテリアルユーザー　C_Material_User&lt;br&gt;詳細はマテリアルとシェーダーのクラス図を参照" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
           <mxGeometry x="540" y="2130" width="430" height="160" as="geometry" />
