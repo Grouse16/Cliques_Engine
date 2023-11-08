@@ -185,55 +185,55 @@ namespace _3D_Model_Converter_And_Drawer
                 // アンビエント
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorAmbient.R.ToString() 
-                         + now_scene.Materials[now_mat_num].ColorAmbient.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorAmbient.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorAmbient.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorAmbient.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorAmbient.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorAmbient.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorAmbient.A.ToString() + ","
                     );
 
                 // ディフューズ
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorDiffuse.R.ToString()
-                         + now_scene.Materials[now_mat_num].ColorDiffuse.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorDiffuse.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorDiffuse.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorDiffuse.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorDiffuse.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorDiffuse.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorDiffuse.A.ToString() + ","
                     );
 
                 // エミッション
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorEmissive.R.ToString()
-                         + now_scene.Materials[now_mat_num].ColorEmissive.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorEmissive.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorEmissive.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorEmissive.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorEmissive.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorEmissive.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorEmissive.A.ToString() + ","
                     );
 
                 // リフレクション
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorReflective.R.ToString()
-                         + now_scene.Materials[now_mat_num].ColorReflective.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorReflective.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorReflective.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorReflective.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorReflective.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorReflective.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorReflective.A.ToString() + ","
                     );
 
                 // スペキュラー
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorSpecular.R.ToString()
-                         + now_scene.Materials[now_mat_num].ColorSpecular.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorSpecular.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorSpecular.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorSpecular.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorSpecular.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorSpecular.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorSpecular.A.ToString() + ","
                     );
 
                 // トランスペアレント
                 file_mat_write_data.Add
                     (
-                        now_scene.Materials[now_mat_num].ColorTransparent.R.ToString()
-                         + now_scene.Materials[now_mat_num].ColorTransparent.G.ToString()
-                         + now_scene.Materials[now_mat_num].ColorTransparent.B.ToString()
-                         + now_scene.Materials[now_mat_num].ColorTransparent.A.ToString()
+                        now_scene.Materials[now_mat_num].ColorTransparent.R.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorTransparent.G.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorTransparent.B.ToString() + ","
+                         + now_scene.Materials[now_mat_num].ColorTransparent.A.ToString() + ","
                     );
 
                 // １行あける
