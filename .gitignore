@@ -1,11 +1,14 @@
 # ☆ Project系列 ☆ 
 # visual studioで生成されるファイルをスルー
-*.vs/
+.vs
 
 # visual studioでのビルド時に生成される中間ファイル
-*Debug/
-*Release/
-*x64/
+Debug
+Release
+x64
+obj
+bin
+
 
 # ☆ クラス図 ☆
 # クラス図を制作する時に生成される中間ファイルをスルー
