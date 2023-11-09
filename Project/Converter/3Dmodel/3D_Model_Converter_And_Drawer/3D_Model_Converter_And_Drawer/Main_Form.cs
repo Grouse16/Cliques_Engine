@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Assimp;
+using System.Runtime.InteropServices;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -136,6 +137,23 @@ namespace _3D_Model_Converter_And_Drawer
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // ☆ 変数宣言 ☆ //
+                System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+                                                                                                // Processインスタンスを取得
+                System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
+
+                long before_working_memory = 0;   // ロード前の物理メモリ
+                long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+                // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+                before_working_memory = proc.WorkingSet64;
+                before_virtual_memory = proc.VirtualMemorySize64;
+                
+                // 生成時間を記録開始
+                stop_watch.Start();
+
+
+                // ☆ 変数宣言 ☆ //
                 string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
 
                 string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
@@ -161,6 +179,17 @@ namespace _3D_Model_Converter_And_Drawer
                         PostProcessSteps.MakeLeftHanded     // 左手系
                     );
 
+                // ロード終了、ロードにかかった時間を記録
+                stop_watch.Stop();
+                TB_assimp_load_time.Text = stop_watch.ElapsedMilliseconds.ToString() + "ミリ秒";
+
+                // 物理と仮想メモリの変化量をロードに必要なデータサイズとして記録
+                proc.Refresh();
+                TB_assimp_load_physics_data_size.Text = (proc.WorkingSet64 - before_working_memory).ToString() + ".byte";
+                TB_assimp_load_virtual_data_size.Text = (proc.VirtualMemorySize64 - before_virtual_memory).ToString() + ".byte";
+
+
+                // コンバートするデータをセットし、各種設定用のフォームを生成
                 _3D_Model_Convert_System.M_Convert_Data_Set(ref scene);
                 _3D_Model_Convert_System.M_Input_Form_Create();
 
@@ -168,6 +197,41 @@ namespace _3D_Model_Converter_And_Drawer
                 TB_before_convert_path.ResetText();
                 TB_before_convert_path.AppendText(file_path[0]);
             }
+        }
+
+        private void textBox24_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox25_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void B_Model_Converter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox19_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox22_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox23_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void B_Model_Importer_Click(object sender, EventArgs e)
+        {
+
         }
     }
     class ShaderSource : INotifyPropertyChanged

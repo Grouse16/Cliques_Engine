@@ -40,12 +40,6 @@ namespace _3D_Model_Converter_And_Drawer
             file_write_data.Clear();
             file_mat_write_data.Clear();
 
-            // マテリアルデータの変換
-            M_Material_Convert();
-
-            // 空白を作成
-            file_write_data.Add("");
-
             // メッシュデータの変換
             M_Mesh_Convert();
 
@@ -62,21 +56,6 @@ namespace _3D_Model_Converter_And_Drawer
         }
 
 
-
-        // マテリアル情報の変換
-        private static void M_Material_Convert()
-        {
-            // マテリアル情報の開始位置を設定
-            file_write_data.Add("MATERIAL:");
-
-            // マテリアル名を一覧入力
-            foreach (string now_mat_name in _3D_Model_Converter_And_Drawer.Form1.material_name_list)
-            {
-                file_write_data.Add(now_mat_name);
-            }
-        }
-
-
         // メッシュデータの変換
         private static void M_Mesh_Convert()
         {
@@ -88,6 +67,9 @@ namespace _3D_Model_Converter_And_Drawer
 
                 // メッシュ名を入力
                 file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.mesh_group_name_list[mesh_num]);
+
+                // このメッシュに使用するマテリアル名を記録
+                file_write_data.Add("MATERIAL" + (mesh_num + 1).ToString() + ":" + _3D_Model_Converter_And_Drawer.Form1.material_name_list[now_scene.Meshes[mesh_num].MaterialIndex]);
 
                 // 頂点数を入力
                 file_write_data.Add("VERT" + (mesh_num + 1).ToString() + ":" + now_scene.Meshes[mesh_num].VertexCount);
@@ -274,3 +256,50 @@ namespace _3D_Model_Converter_And_Drawer
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//☆======================================================================☆
+// Copyright 2023 髙坂龍誠
+// 
+// もしもこのコードを自分のプロジェクトに利用したいのであれば、
+// メールアドレス：takasaka.ryusei1116@gmail.com
+// または、髙坂龍誠までご連絡ください。
+// コードの不明部分の解説や、最新の状態の提供などに対応いたします。
+//☆======================================================================☆

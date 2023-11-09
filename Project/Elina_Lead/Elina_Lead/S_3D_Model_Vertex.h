@@ -25,7 +25,6 @@ namespace DATA::VERTEX
 	// 3Dモデル用の頂点情報のフォーマット
 	struct S_3D_Model_Vertex
 	{
-		// ☆ 変数宣言 ☆ //
 		MATH::FORMAT::C_Float_3 vertex;	// 頂点座標
 
 		MATH::FORMAT::C_Float_2 uv;	// UV座標
