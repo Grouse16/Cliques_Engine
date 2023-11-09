@@ -40,7 +40,7 @@ namespace RENDERING::CAPSULE
 
 			std::vector <_My_Vertex_Type> m_vertex_data;	// 頂点データ
 
-			std::vector <uint32_t> m_index_data;	// インデックスデータ
+			std::vector <unsigned __int32> m_index_data;	// インデックスデータ
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -108,30 +108,95 @@ namespace RENDERING::CAPSULE
 		// 引数   ：int 生成する頂点数, int 生成するインデックス情報数
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		void M_Create_Vertex_And_Index_Data(int in_creat_vertex_sum, int in_creat_index_sum)
+		void M_Create_Vertex_And_Index_Data_And_Buffer(int in_creat_vertex_sum, int in_creat_index_sum)
 		{
 			// ☆ 変数宣言 ☆ //
 			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
-			// メモリを解放する
+			// 初期化して、必要な分だけ配列を生成しなおす
 			M_Release();
-
-			// 頂点データを生成
 			mpr_variable.m_vertex_data.resize(in_creat_vertex_sum);
-
-			// インデックスデータを生成
 			mpr_variable.m_index_data.resize(in_creat_index_sum);
 
 
 			// ☆ 頂点生成用情報の設定 ☆ //
 			creat_vertex_inform.size_of_vertex = sizeof(_My_Vertex_Type);	// 頂点一つ分のバイト数
-			creat_vertex_inform.vertex_sum = (int)mpr_variable.m_vertex_data.size();			// 頂点数
-			creat_vertex_inform.index_sum = (int)mpr_variable.m_index_data.size();			// インデックス情報
+			creat_vertex_inform.vertex_sum = (int)mpr_variable.m_vertex_data.size();	// 頂点数
+			creat_vertex_inform.index_sum = (int)mpr_variable.m_index_data.size();		// インデックス情報
 
 
 			// ☆ レンダリング用頂点情報の生成 ☆ //
 			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：現在の頂点とインデックスの数に合わせてバッファを生成する
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Create_Vertex_And_Index_Buffer_By_Now_Parameter(void)
+		{
+			// ☆ 変数宣言 ☆ //
+			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+
+
+			// ☆ 頂点生成用情報の設定 ☆ //
+			creat_vertex_inform.size_of_vertex = sizeof(_My_Vertex_Type);	// 頂点一つ分のバイト数
+			creat_vertex_inform.vertex_sum = (int)mpr_variable.m_vertex_data.size();	// 頂点数
+			creat_vertex_inform.index_sum = (int)mpr_variable.m_index_data.size();		// インデックス情報
+
+
+			// ☆ レンダリング用頂点情報の生成 ☆ //
+			mpr_variable.m_setting_inform.reset();
+			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された数分頂点データを生成する
+		// 引数   ：int 頂点データの生成数
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Creat_Vertex_Data_By_Number(int in_vertex_sum)
+		{
+			mpr_variable.m_vertex_data.clear();
+			mpr_variable.m_vertex_data.shrink_to_fit();
+
+			mpr_variable.m_vertex_data.resize(in_vertex_sum);
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された数分頂点インデックスデータを生成する
+		// 引数   ：int 頂点インデックスデータの生成数
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Creat_Index_Data_By_Number(int in_index_sum)
+		{
+			mpr_variable.m_index_data.clear();
+			mpr_variable.m_index_data.shrink_to_fit();
+
+			mpr_variable.m_index_data.resize(in_vertex_sum);
+		}
+
+
+		//-☆- 削除 -☆-//
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：頂点インデックスデータを削除する　＊頂点インデックスバッファは削除されない
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_Index_Data(void)
+		{
+			mpr_variable.m_index_data.clear();
+			mpr_variable.m_index_data.shrink_to_fit();
 
 			return;
 		}
