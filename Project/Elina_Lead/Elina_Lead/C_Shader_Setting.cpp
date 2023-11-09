@@ -43,7 +43,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 
 
 	// 頂点レイアウト数を取得
-	in_shader_data_file.M_Move_Raw_By_Number(1);
+	in_shader_data_file.M_Move_Next_Raw();
 	vertex_layout_sum = in_shader_data_file.M_Get_Number();
 
 
@@ -56,7 +56,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		
 
 		// 現在の番号の頂点レイアウト情報の最初に移動
-		in_shader_data_file.M_Move_Raw_By_Number(1);
+		in_shader_data_file.M_Move_Next_Raw();
 
 
 		// ビットサイズの文字列を取得
@@ -195,15 +195,15 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 
 
 	// 定数バッファ数を取得
-	in_shader_data_file.M_Move_Raw_By_Number(1);
+	in_shader_data_file.M_Move_Next_Raw();
 	constant_sum = in_shader_data_file.M_Get_Number();
 
 	// テキスト数を取得
-	in_shader_data_file.M_Move_Raw_By_Number(1);
+	in_shader_data_file.M_Move_Next_Raw();
 	texture_sum = in_shader_data_file.M_Get_Number();
 
 	// サンプラー数を取得
-	in_shader_data_file.M_Move_Raw_By_Number(1);
+	in_shader_data_file.M_Move_Next_Raw();
 	mpr_variable.resource_signature.all_shader_signature.sampler_sum = in_shader_data_file.M_Get_Number();
 
 

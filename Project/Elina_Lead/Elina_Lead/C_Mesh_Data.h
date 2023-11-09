@@ -71,6 +71,9 @@ namespace ASSET::MESH
 		// 頂点インデックスデータを頂点インデックスバッファに設定する
 		void M_Attach_Index_Data_To_Buffer(void);
 
+		// 頂点データを頂点バッファに設定する
+		void M_Attach_Vertex_Data_To_Buffer(void);
+
 		// 頂点インデックスデータのみを削除する（頂点インデックスバッファに設定後、編集しないなら必要がない）
 		void M_Delete_Index_Data(void);
 

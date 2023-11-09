@@ -96,6 +96,19 @@ void C_Mesh_Data::M_Attach_Index_Data_To_Buffer(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：頂点データを頂点バッファに設定する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Mesh_Data::M_Attach_Vertex_Data_To_Buffer(void)
+{
+	mpr_variable.vertex_setting.M_Vertex_Data_To_Buffer();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：頂点インデックスデータのみを削除する（バッファに設定後、編集しないなら必要がない）
 // 引数   ：void
 // 戻り値 ：void
@@ -175,3 +188,5 @@ void C_Mesh_Data::M_Draw_Mesh(void)
 
 	return;
 }
+
+

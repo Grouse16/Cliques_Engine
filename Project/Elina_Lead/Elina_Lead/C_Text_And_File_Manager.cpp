@@ -1878,6 +1878,8 @@ long long C_Text_And_File_Manager::M_Get_Number(void)
 
 	int serch_sum = (int)serch_text.size();	// 探索数
 
+	bool flg_minus = false;			// trueの時はマイナス値
+
 
 	// 一文字づつ取り出していく
 	for (int check_x = 0; check_x < serch_sum; check_x++)
@@ -1945,16 +1947,44 @@ long long C_Text_And_File_Manager::M_Get_Number(void)
 			IM_Get_Number_Setting_System(result_number, 9);
 			break;
 
+			//  -  //
+		case '-':
+
+			// 一文字目にマイナス記号がきたらマイナス指定する
+			if (check_x == 0)
+			{
+				flg_minus = true;
+			}
+
+			// 一文字目でなければ終了する
+			else
+			{
+				return result_number * (1.0f - flg_minus * 2.0f);
+			}
+
+			break;
+
+			//  +  //
+		case '+':
+
+			// 一文字目以降にプラス記号が来たらそこで終了する
+			if (check_x > 0)
+			{
+				return result_number * (1.0f - flg_minus * 2.0f);
+			}
+
+			break;
+
 			//  数字じゃなかったらここで終わる  //
 		default:
 
-			return result_number;
+			return result_number * (1.0f - flg_minus * 2.0f);
 
 			break;
 		}
 	}
 
-	return result_number;
+	return result_number * (1.0f - flg_minus * 2.0f);
 }
 
 
@@ -1989,23 +2019,24 @@ inline void IM_Get_Float_Double_Number_Setting_System(int& in_number_data, doubl
 double C_Text_And_File_Manager::M_Get_Float_Double_Number(void)
 {
 	// ☆ 変数宣言 ☆ //
-	std::string serch_text = mpr_variable.stack_data[mpr_variable.row_number].substr(mpr_variable.column_number);	// 探索する文字
+	std::string search_text = mpr_variable.stack_data[mpr_variable.row_number].substr(mpr_variable.column_number);	// 探索する文字
 
 	double floating_data = 0.0f;	// 少数部
 
-	int number_data = 0;	// 数字部分
+	int number_data = 0;			// 数字部分
 	int floating_multiple_num = 10;	// 少数部の数値を適切な桁に格納するための数値
 
 	bool flg_floating_mode = false;	// trueで少数部操作モード
+	bool flg_minus = false;			// trueの時はマイナス値
 
-	int serch_sum = (int)serch_text.size();	// 探索数
+	int search_sum = (int)search_text.size();	// 探索数
 
 
 	// 一文字づつ取り出していく
-	for (int check_x = 0; check_x < serch_sum; check_x++)
+	for (int check_x = 0; check_x < search_sum; check_x++)
 	{
 		// ☆ 文字を識別して数値に変換 ☆ //
-		switch (serch_text[serch_sum])
+		switch (search_text[search_sum])
 		{
 			//  0  //
 		case '０':
@@ -2079,7 +2110,35 @@ double C_Text_And_File_Manager::M_Get_Float_Double_Number(void)
 			// 二度目のピリオドがきたら文字とみなしてここで終わる
 			else
 			{
-				return (double)number_data + floating_data;
+				return ((double)number_data + floating_data) * (1.0f - flg_minus * 2.0f);
+			}
+
+			break;
+
+			//  -  //
+		case '-':
+
+			// 一文字目にマイナス記号がきたらマイナス指定する
+			if (check_x == 0)
+			{
+				flg_minus = true;
+			}
+
+			// 一文字目でなければ終了する
+			else
+			{
+				return ((double)number_data + floating_data) * (1.0f - flg_minus * 2.0f);
+			}
+
+			break;
+
+			//  +  //
+		case '+':
+
+			// 一文字目以降にプラス記号が来たらそこで終了する
+			if (check_x > 0)
+			{
+				return ((double)number_data + floating_data) * (1.0f - flg_minus * 2.0f);
 			}
 
 			break;
@@ -2087,15 +2146,14 @@ double C_Text_And_File_Manager::M_Get_Float_Double_Number(void)
 			//  数字またはピリオドじゃなかったらここで終わる  //
 		default:
 
-			return (double)number_data + floating_data;
+			return ((double)number_data + floating_data) * (1.0f - flg_minus * 2.0f);
 
 			break;
 		}
 	}
 
-
-
-	return (double)number_data + floating_data;
+	// 行の最後までたどり着いたら結果を返す
+	return ((double)number_data + floating_data) * (1.0f - flg_minus * 2.0f);
 }
 
 
@@ -2468,11 +2526,25 @@ void C_Text_And_File_Manager::M_Move_Raw_By_Number(int in_move_row_num)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：次の行へ移動する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Text_And_File_Manager::M_Move_Next_Raw(void)
+{
+	M_Move_Raw_By_Number(1);
+	M_Goto_Column_By_Set_Number(0);
+
+	return;
+}
+
+
 //=☆ 探索移動系 ☆=//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された文字と同じ文字のうち今の場所以降で一番近いものを文章ごと(改行も含めて)探索して、その文字の右に移動する
-// 引数   ：std::string 探索する文字
+// 引数   ：string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string in_serch_text)

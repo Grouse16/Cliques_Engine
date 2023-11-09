@@ -295,6 +295,9 @@ namespace SYSTEM::TEXT
 		// 指定された数分、行を移動する　引数：移動分
 		void M_Move_Raw_By_Number(int);
 
+		// 次の行へ移動する
+		void M_Move_Next_Raw(void);
+
 
 		//=☆ 探索移動系 ☆=//
 

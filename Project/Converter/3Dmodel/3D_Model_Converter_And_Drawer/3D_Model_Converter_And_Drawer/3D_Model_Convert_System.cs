@@ -59,17 +59,22 @@ namespace _3D_Model_Converter_And_Drawer
         // メッシュデータの変換
         private static void M_Mesh_Convert()
         {
+            // 先頭に拡張子識別用の情報を設定、これがこのファイル形式の証明になる
+            file_write_data.Add("This-Is-ELMDL");
+
+            // メッシュ数を記録
+            file_write_data.Add("MESHSUM:" + now_scene.MeshCount.ToString());
+
             // メッシュ数分繰り返す
             for (int mesh_num = 0; mesh_num < now_scene.MeshCount; mesh_num++)
             {
-                // メッシュ情報の開始位置を設定
+                // メッシュ名を記述
                 file_write_data.Add("MESH" + (mesh_num + 1).ToString() + ":");
-
-                // メッシュ名を入力
                 file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.mesh_group_name_list[mesh_num]);
 
-                // このメッシュに使用するマテリアル名を記録
-                file_write_data.Add("MATERIAL" + (mesh_num + 1).ToString() + ":" + _3D_Model_Converter_And_Drawer.Form1.material_name_list[now_scene.Meshes[mesh_num].MaterialIndex]);
+                // マテリアル名を記述
+                file_write_data.Add("MATERIAL" + (mesh_num + 1).ToString() + ":");
+                file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.material_name_list[now_scene.Meshes[mesh_num].MaterialIndex]);
 
                 // 頂点数を入力
                 file_write_data.Add("VERT" + (mesh_num + 1).ToString() + ":" + now_scene.Meshes[mesh_num].VertexCount);
@@ -107,17 +112,14 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                 // メッシュのインデックス開始位置指定
-                file_write_data.Add("INDEX" + (mesh_num + 1).ToString() + ":" + now_scene.Meshes[mesh_num].FaceCount);
+                file_write_data.Add("INDEX" + (mesh_num + 1).ToString() + ":" + now_scene.Meshes[mesh_num].FaceCount * 3);
 
                 // インデックスデータを書き込む
                 for (int now_face_num = 0; now_face_num < now_scene.Meshes[mesh_num].FaceCount; now_face_num++)
                 {
-                    file_write_data.Add
-                        (
-                            now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[0].ToString() + "," + 
-                            now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[1].ToString() + "," + 
-                            now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[2].ToString() + ","
-                        );
+                    file_write_data.Add(now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[0].ToString());
+                    file_write_data.Add(now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[1].ToString());
+                    file_write_data.Add(now_scene.Meshes[mesh_num].Faces[now_face_num].Indices[2].ToString());
                 }
 
                 // 空白をあける

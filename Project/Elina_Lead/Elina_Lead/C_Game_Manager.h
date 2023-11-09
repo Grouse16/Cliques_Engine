@@ -50,9 +50,6 @@ namespace GAME
 		// コンストラクタ
 		C_Game_Manager(void);
 
-		// エンジン用の描画用設定を初期化する
-		static bool M_Draw_Setting_Init(void);
-
 		
 		//-☆- 更新 -☆-//
 
