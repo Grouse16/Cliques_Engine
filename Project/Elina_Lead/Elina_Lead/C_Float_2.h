@@ -24,8 +24,8 @@ namespace MATH::FORMAT
 	public:
 
 		// ™ •Ï”éŒ¾ ™ //
-		float x = 0.0f;
-		float y = 0.0f;
+		float u = 0.0f;
+		float v = 0.0f;
 
 
 		// ™ ŠÖ” ™ //

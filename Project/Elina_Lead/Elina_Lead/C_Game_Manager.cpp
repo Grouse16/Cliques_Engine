@@ -17,7 +17,6 @@
 #include "C_Rendering_Graphics_API_Base.h"
 #include "C_Engine_Function_Manager.h"
 #include "C_Game_State_Manager.h"
-#include "C_Engine_Rendering_Setting_Manager.h"
 
 #include "Engine_Function_Name.h"
 
@@ -54,36 +53,6 @@ C_Game_Manager::C_Game_Manager(void)
 {
 
 	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：エンジン用の描画用設定を初期化する
-// 引数   ：void
-// 戻り値 ：bool 成功時の場合は、true
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Game_Manager::M_Draw_Setting_Init(void)
-{
-	// エンジンの描画用設定の初期化
-	if (GAME::DRAW::C_Engine_Rendering_Setting_Manager::M_Init() == false)
-	{
-		// デバッグ時は失敗ログを出力
-#if _DEBUG
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "エンジン用の描画用設定の初期化に失敗");
-#endif // _DEBUG
-
-		return false;
-	}
-
-
-	// デバッグ時は成功ログを出力
-#if _DEBUG
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "エンジン用の描画用設定の初期化に成功");
-#endif // _DEBUG
-
-	return true;
 }
 
 
@@ -181,22 +150,6 @@ void C_Game_Manager::M_Init(void)
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- エンジンの初期化を開始 -☆-☆-☆-☆-☆-☆-☆-");
 #endif
 
-
-	// エンジンの描画用設定の初期化
-	if (M_Draw_Setting_Init() == false)
-	{
-		// ☆ デバッグ時なら初期化の成功および失敗を告知 ☆ //
-#if _DEBUG
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-☆-☆-☆-☆-☆-☆-☆- エンジンの初期化に失敗 -☆-☆-☆-☆-☆-☆-☆-");
-#endif // _DEBUG
-
-		M_Set_Engine_Exist_Flg(false);
-
-		return;
-	}
-
-
 	// エンジンの入力システムを生成する
 	GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Init();
 	GAME::INPUT::C_Engine_Input_Manager::M_Init();
@@ -281,9 +234,8 @@ void C_Game_Manager::M_Release(void)
 	// アプリケーションの解放
 	APPLICATION::C_APK_Manager::M_Release();
 
-	// エンジン用システムを削除
+	// ゲーム用システムを削除
 	GAME::FUNCTION::C_Engine_Function_Manager::M_Release_Memory();
-	GAME::DRAW::C_Engine_Rendering_Setting_Manager::M_Release();
 	GAME::INPUT::C_Engine_Input_Manager::M_Release();
 	GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Release();
 	GAME::TIME::C_Game_Time_Manager::M_Release();

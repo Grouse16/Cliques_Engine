@@ -132,6 +132,7 @@
     <ClInclude Include="All_Figure_Data.h" />
     <ClInclude Include="Challenge_Mode_Macro.h" />
     <ClInclude Include="Color_Data.h" />
+    <ClInclude Include="C_3D_Model_Manager.h" />
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_Actor_Base.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C_3D_Model_Manager.cpp" />
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
     <ClCompile Include="C_Float_2.cpp" />

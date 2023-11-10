@@ -396,19 +396,19 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C
 
 
 		// ブレンドモードを取得
-		in_file_data.M_Move_Raw_By_Number(1);
+		in_file_data.M_Move_Next_Raw();
 		in_blend_setting_list[l_slot_num].blend_mode = M_Get_Blend_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 		// ブレンドの操作を取得
-		in_file_data.M_Move_Raw_By_Number(1);
+		in_file_data.M_Move_Next_Raw();
 		in_blend_setting_list[l_slot_num].blend_option = M_Get_Blend_Option_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 		// レンダーターゲットへの書き込み形式を取得
-		in_file_data.M_Move_Raw_By_Number(1);
+		in_file_data.M_Move_Next_Raw();
 		in_blend_setting_list[l_slot_num].draw_format = M_Get_Blend_Write_Format_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 		// レンダーターゲットへの書き込む色の種類数を取得
-		in_file_data.M_Move_Raw_By_Number(1);
+		in_file_data.M_Move_Next_Raw();
 		in_blend_setting_list[l_slot_num].draw_color = M_Get_Blend_Write_Color_By_Text(in_file_data.M_Get_Data_Now_Row());
 	}
 
@@ -432,15 +432,15 @@ void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Cre
 
 
 	// 深度の書き込みモードを設定
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_depth_stencil_inform.mode = M_Get_Depth_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// 深度オプションを設定
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_depth_stencil_inform.write_rule = M_Get_Depth_Option_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// ステンシルの有効無効を設定
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_depth_stencil_inform.stencil_activate = M_Get_Stencil_Is_Active_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	return;
@@ -463,35 +463,35 @@ void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create
 
 
 	// 描画モードの設定
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.draw_mode = M_Get_Draw_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// 残すメッシュの向きを決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.mesh_culling = M_Get_Mesh_Culling_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// メッシュの表面設定を決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.mesh_front = M_Get_Mesh_Front_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// 深度バイアスを決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.depth_value.depth_bias = in_file_data.M_Get_Number();
 
 	// メッシュの表面設定を決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.depth_value.depth_max = in_file_data.M_Get_Float_Double_Number();
 
 	// メッシュの表面設定を決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.depth_value.depth_slope = in_file_data.M_Get_Float_Double_Number();
 
 	// アンチエイリアシング設定を決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.antialiasing = M_Get_Antialiasing_By_Text(in_file_data.M_Get_Data_Now_Row());
 
 	// 保守的なラスタライズを決める
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_rasterizer_setting.flg_conservative = in_file_data.M_Get_Data_Now_Row() == "true";
 
 	return;
@@ -514,11 +514,11 @@ void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Re
 
 
 	// サンプリング回数を取得
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_creat_rendering_graphics_setting.sampling_setting.sampling_count = in_file_data.M_Get_Number();
 
 	// サンプリング品質を取得
-	in_file_data.M_Move_Raw_By_Number(1);
+	in_file_data.M_Move_Next_Raw();
 	in_creat_rendering_graphics_setting.sampling_setting.sampling_quality = in_file_data.M_Get_Number();
 
 	return;

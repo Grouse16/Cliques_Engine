@@ -57,7 +57,6 @@
             this.trackBar5 = new System.Windows.Forms.TrackBar();
             this.B_Animation_Importer_2 = new System.Windows.Forms.Button();
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.d3D11Panel1 = new SharpDXSample.D3D11Panel();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
@@ -72,6 +71,8 @@
             this.TB_my_format_load_physics_data_size = new System.Windows.Forms.TextBox();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.TB_my_format_load_virtual_data_size = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.d3D11Panel1 = new SharpDXSample.D3D11Panel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -399,14 +400,6 @@
             this.textBox17.TabIndex = 1;
             this.textBox17.Text = "アニメーションインポーター　２に設定";
             // 
-            // d3D11Panel1
-            // 
-            this.d3D11Panel1.Location = new System.Drawing.Point(376, 22);
-            this.d3D11Panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.d3D11Panel1.Name = "d3D11Panel1";
-            this.d3D11Panel1.Size = new System.Drawing.Size(701, 420);
-            this.d3D11Panel1.TabIndex = 3;
-            // 
             // textBox18
             // 
             this.textBox18.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -416,7 +409,7 @@
             this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(719, 22);
             this.textBox18.TabIndex = 5;
-            this.textBox18.Text = "assimpによる\"非\"独自形式のロード";
+            this.textBox18.Text = "assimpによる\"非\"独自形式のロード情報";
             // 
             // textBox19
             // 
@@ -565,11 +558,20 @@
             this.TB_my_format_load_virtual_data_size.TabIndex = 6;
             this.TB_my_format_load_virtual_data_size.TextChanged += new System.EventHandler(this.textBox25_TextChanged);
             // 
+            // d3D11Panel1
+            // 
+            this.d3D11Panel1.Location = new System.Drawing.Point(375, 20);
+            this.d3D11Panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.d3D11Panel1.Name = "d3D11Panel1";
+            this.d3D11Panel1.Size = new System.Drawing.Size(701, 420);
+            this.d3D11Panel1.TabIndex = 7;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1443, 760);
+            this.Controls.Add(this.d3D11Panel1);
             this.Controls.Add(this.textBox22);
             this.Controls.Add(this.textBox20);
             this.Controls.Add(this.textBox21);
@@ -598,7 +600,6 @@
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.d3D11Panel1);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.TB_after_convert_path);
             this.Controls.Add(this.TB_before_convert_path);
@@ -644,7 +645,6 @@
         private System.Windows.Forms.Button B_Animation_Importer_1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
-        private SharpDXSample.D3D11Panel d3D11Panel1;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
@@ -675,6 +675,8 @@
         private System.Windows.Forms.TextBox TB_my_format_load_physics_data_size;
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.TextBox TB_my_format_load_virtual_data_size;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private SharpDXSample.D3D11Panel d3D11Panel1;
     }
 }
 
