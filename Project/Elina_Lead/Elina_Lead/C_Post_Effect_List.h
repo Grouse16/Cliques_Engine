@@ -22,11 +22,14 @@
 // ゲームのポストエフェクトのリストを呼び出すための名前
 namespace GAME::INSTANCE::POST_EFFECT::LIST
 {
-	// ☆ クラス ☆ //
+	// ☆ コンセプトクラス ☆ //
 
 	// ポストエフェクトの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
 	concept C_Checked_Instance_Class = std::is_base_of<GAME::INSTANCE::POST_EFFECT::BASE::C_Post_Effect_Base, C_Check_Instance>::value;
+
+
+	// ☆ クラス ☆ //
 
 	// ポストエフェクト系統のリスト、ポストエフェクトをクラスごとに管理している
 	template <C_Checked_Instance_Class C_Post_Effect>
@@ -85,7 +88,7 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 引数   ：string 生成したポストエフェクトの名前
 		// 戻り値 ：C_Post_Effect * 生成したポストエフェクトのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Post_Effect * C_Creat_Post_Effect(std::string in_post_effect_name)
+		static C_Post_Effect * M_Creat_Post_Effect(std::string in_post_effect_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_Post_Effect & post_effect_slot_address =		// 新しいポストエフェクト用のスロットの参照
@@ -95,7 +98,7 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 
 
 			// ポストエフェクトを生成し、そのポストエフェクトのクラス用のリストに格納する
-			post_effect_slot_address.reset(new Type_Post_Effect());
+			post_effect_slot_address.reset(new C_Post_Effect());
 
 			// 新しく生成されたポストエフェクトのアドレスを返す
 			return post_effect_slot_address.get();
@@ -109,7 +112,7 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void C_Delete_Post_Effect_Update(void)
+		static void M_Delete_Post_Effect_Update(void)
 		{
 			// ☆ ラムダ式 ☆ //
 
@@ -141,9 +144,9 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 引数   ：void
 		// 戻り値 ：vector<Type_Post_Effect> & 指定されたポストエフェクトのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<Type_Post_Effect> & C_Get_Post_Effect_List(void)
+		static std::vector<Type_Post_Effect> & M_Get_Post_Effect_List(void)
 		{
-			return m_this.m_instance_list;
+			return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Get_List();
 		}
 
 
@@ -152,10 +155,10 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 引数   ：void
 		// 戻り値 ：C_Post_Effect * 名前が一致したポストエフェクトのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Post_Effect * C_Get_Post_Effect_By_Name(std::string in_search_name)
+		static C_Post_Effect * M_Get_Post_Effect_By_Name(std::string in_search_name)
 		{
 			// 全てのポストエフェクトを探索し、見つかったらそのアドレスを返す
-			for (Type_Post_Effect & now_post_effect : m_this.m_instance_list)
+			for (Type_Post_Effect & now_post_effect : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Get_List())
 			{
 				if (now_post_effect.get()->M_Get_Instance_Name() == in_search_name)
 				{

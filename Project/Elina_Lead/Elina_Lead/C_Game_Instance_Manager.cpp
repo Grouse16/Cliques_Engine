@@ -44,3 +44,18 @@ void C_Game_Instance_Manager::M_All_Instance_Destroy_Update(void)
 
 	return;
 }
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：全てのインスタンスを削除する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Game_Instance_Manager::M_Delete_All_Instance(void)
+{
+
+	return;
+}
+
+
+

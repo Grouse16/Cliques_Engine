@@ -22,15 +22,18 @@
 // ゲームのアクターのリストを呼び出すための名前
 namespace GAME::INSTANCE::ACTOR::LIST
 {
-	// ☆ クラス ☆ //
+	// ☆ コンセプトクラス ☆ //
 
 	// アクターの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
-	concept C_Checked_Instance_Class = std::is_base_of<GAME::INSTANCE::ACTOR::BASE::C_Actor_Base, C_Check_Instance>::value;
+	concept C_Checked_Actor_Class = std::is_base_of<GAME::INSTANCE::ACTOR::BASE::C_Actor_Base, C_Check_Instance>::value;
+
+
+	// ☆ クラス ☆ //
 
 	// アクター系統のリスト、アクターをクラスごとに管理している
-	template <C_Checked_Instance_Class C_Actor>
-	class C_Actor_List : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, std::unique_ptr<C_Actor>>
+	template <C_Checked_Actor_Class C_Actor>
+	class C_Actor_List : protected SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, std::unique_ptr<C_Actor>>
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -40,7 +43,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 
 		// ☆ 変数宣言 ☆ //
-		static C_Actor_List<C_Actor> m_actor_list_this;	// シングルトン化用のインスタンス
+		static C_Actor_List<C_Actor> m_this;	// シングルトン化用のインスタンス
 
 
 		// ☆ 関数 ☆ //
@@ -54,6 +57,13 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		C_Actor_List(void)
 		{
+			// ☆ 変数宣言 ☆ //
+			std::vector<int> & priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
+
+			
+			// 優先度用の配列を生成
+			priority_list.resize(1);
+
 			return;
 		}
 
@@ -65,16 +75,16 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void C_Sort_Actor_By_Class(void)
+		static void M_Sort_Actor_By_Class(void)
 		{
 			// ソート用のラムダ式、降順にソートする
-			bool sort_lambda = [](C_Actor_List * & in_left_actor, C_Actor_List * & in_right_actor)
+			bool sort_lambda = [](SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * & in_left_actor, SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * & in_right_actor)
 				{
-					return in_left_actor->C_Get_Object_List()->M_Get_Priority() >= in_right_actor->C_Get_Object_List()->M_Get_Priority();
+					return in_left_actor->M_Get_Priority_List()[0] >= in_right_actor->M_Get_Priority_List()[0];
 				};
 
 
-			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<C_Actor_List>::M_Sort_Instance_By_Lambda<>(sort_lambda);
+			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<C_Actor_List>::M_Sort_Instance_By_Lambda(sort_lambda);
 
 			return;
 		}
@@ -107,7 +117,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 引数   ：string 生成したアクターの名前
 		// 戻り値 ：C_Actor * 生成したアクターのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Actor * C_Creat_Actor(std::string in_actor_name)
+		static C_Actor * M_Creat_Actor(std::string in_actor_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_Actor & actor_slot_address =		// 新しいアクター用のスロットの参照
@@ -115,9 +125,16 @@ namespace GAME::INSTANCE::ACTOR::LIST
 				// 新しいアクター用のスロットを生成する
 				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Creat_Instance(in_actor_name);
 
+			std::vector<int>& priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
+
 
 			// アクターを生成し、そのアクターのクラス用のリストに格納する
-			actor_slot_address.reset(new Type_Actor());
+			actor_slot_address.reset(new C_Actor());
+
+
+			// 優先度を登録する
+			priority_list[0] = actor_slot_address->M_Get_Priority();
+
 
 			// 新しく生成されたアクターのアドレスを返す
 			return actor_slot_address.get();
@@ -131,7 +148,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void C_Delete_Actor_Update(void)
+		static void M_Delete_Actor_Update(void)
 		{
 			// ☆ ラムダ式 ☆ //
 
@@ -163,9 +180,9 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 引数   ：void
 		// 戻り値 ：vector<Type_Actor> & 指定されたアクターのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<Type_Actor> & C_Get_Actor_List(void)
+		static std::vector<Type_Actor> & M_Get_Actor_List(void)
 		{
-			return m_this.m_instance_list;
+			return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List();
 		}
 
 
@@ -174,17 +191,16 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 引数   ：void
 		// 戻り値 ：C_Actor * 名前が一致したアクターのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Actor * C_Get_Actor_By_Name(std::string in_search_name)
+		static C_Actor * M_Get_Actor_By_Name(std::string in_search_name)
 		{
 			// 全てのアクターを探索し、見つかったらそのアドレスを返す
-			for (Type_Actor & now_actor : m_this.m_instance_list)
+			for (Type_Actor & now_actor : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List())
 			{
 				if (now_actor.get()->M_Get_Instance_Name() == in_search_name)
 				{
 					return now_actor.get();
 				}
 			}
-
 
 			// 見つからなかった場合は、nullを返す
 			return nullptr;

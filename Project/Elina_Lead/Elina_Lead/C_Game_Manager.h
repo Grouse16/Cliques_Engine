@@ -34,7 +34,7 @@ namespace GAME
 		// 変数をまとめた構造体
 		struct SPr_Variable
 		{
-			bool flg_engine_exsist = true;		// エンジンが存在しているかどうかのフラグ
+			bool flg_engine_exist = true;		// エンジンが存在しているかどうかのフラグ
 			bool flg_engine_activate = false;	// エンジンが稼働中かどうかのフラグ
 			bool flg_OS_active_now = false;		// OSシステムが稼働中かどうかのフラグ
 

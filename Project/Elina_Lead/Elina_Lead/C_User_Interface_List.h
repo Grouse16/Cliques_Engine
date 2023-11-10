@@ -22,14 +22,17 @@
 // ゲームのUIのリストを呼び出すための名前
 namespace GAME::INSTANCE::UI::LIST
 {
-	// ☆ クラス ☆ //
+	// ☆ コンセプトクラス ☆ //
 
 	// UIの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
-	concept C_Checked_Instance_Class = std::is_base_of<GAME::INSTANCE::UI::BASE::C_User_Interface_Base, C_Check_Instance>::value;
+	concept C_Checked_UI_Class = std::is_base_of<GAME::INSTANCE::UI::BASE::C_User_Interface_Base, C_Check_Instance>::value;
+
+
+	// ☆ クラス ☆ //
 
 	// UI系統のリスト、UIをクラスごとに管理している
-	template <C_Checked_Instance_Class C_User_Interface>
+	template <C_Checked_UI_Class C_User_Interface>
 	class C_User_Interface_List : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, std::unique_ptr<C_User_Interface>>
 	{
 		//==☆ プライベート ☆==//
@@ -53,19 +56,6 @@ namespace GAME::INSTANCE::UI::LIST
 		// 戻り値 ：なし
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		C_User_Interface_List(void)
-		{
-			return;
-		}
-
-
-		//-☆- ソート -☆-//
-
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：ホルダーにソートをかける
-		// 引数   ：void
-		// 戻り値 ：なし
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		void C_User_Interface_List(void)
 		{
 			return;
 		}
@@ -98,7 +88,7 @@ namespace GAME::INSTANCE::UI::LIST
 		// 引数   ：string 生成したUIの名前
 		// 戻り値 ：C_Instance_List_Base<C_User_Interface_List, Type_UI>::S_Instance_Inform & 生成したUIのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_User_Interface * C_Creat_UI(std::string in_ui_name)
+		static C_User_Interface * M_Creat_UI(std::string in_ui_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_UI & ui_slot_address =		// 新しいUI用のスロットの参照
@@ -108,7 +98,7 @@ namespace GAME::INSTANCE::UI::LIST
 
 
 			// UIを生成し、そのUIのクラス用のリストに格納する
-			ui_slot_address.reset(new Type_UI());
+			ui_slot_address.reset(new C_User_Interface());
 
 			// 新しく生成されたUIのアドレスを返す
 			return ui_slot_address.get();
@@ -122,7 +112,7 @@ namespace GAME::INSTANCE::UI::LIST
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void C_Delete_UI_Update(void)
+		static void M_Delete_UI_Update(void)
 		{
 			// ☆ ラムダ式 ☆ //
 
@@ -154,9 +144,9 @@ namespace GAME::INSTANCE::UI::LIST
 		// 引数   ：void
 		// 戻り値 ：vector<Type_UI> & 指定されたUIのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<Type_UI> & C_Get_UI_List(void)
+		static std::vector<Type_UI> & M_Get_UI_List(void)
 		{
-			return m_this.m_instance_list;
+			return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();
 		}
 
 
@@ -165,10 +155,10 @@ namespace GAME::INSTANCE::UI::LIST
 		// 引数   ：void
 		// 戻り値 ：C_Type_User_Interface * 名前が一致したUIのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_User_Interface * C_Get_UI_By_Name(std::string in_search_name)
+		static C_User_Interface * M_Get_UI_By_Name(std::string in_search_name)
 		{
 			// 全てのUIを探索し、見つかったらそのアドレスを返す
-			for (Type_UI & now_ui : m_this.m_instance_list)
+			for (Type_UI & now_ui : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List())
 			{
 				if (now_ui.get()->M_Get_Instance_Name() == in_search_name)
 				{
