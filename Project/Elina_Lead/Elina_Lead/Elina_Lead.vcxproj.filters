@@ -774,6 +774,9 @@
     <ClInclude Include="C_Float_2.h">
       <Filter>ヘッダー ファイル\システム\数式</Filter>
     </ClInclude>
+    <ClInclude Include="C_3D_Model_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\モデル\制御</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -1006,6 +1009,9 @@
     </ClCompile>
     <ClCompile Include="C_Float_2.cpp">
       <Filter>ソース ファイル\システム\数式</Filter>
+    </ClCompile>
+    <ClCompile Include="C_3D_Model_Manager.cpp">
+      <Filter>ソース ファイル\アセット\モデル\制御</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

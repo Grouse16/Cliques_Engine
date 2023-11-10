@@ -11,6 +11,7 @@
 
 
 // ☆ ファイルひらき ☆ //
+#include "Color_Data.h"
 #include "C_Float_3.h"
 #include "C_Float_2.h"
 
@@ -28,6 +29,8 @@ namespace DATA::VERTEX
 		MATH::FORMAT::C_Float_3 vertex;	// 頂点座標
 
 		MATH::FORMAT::C_Float_2 uv;	// UV座標
+
+		DATA::COLOR::C_Color color;	// カラー
 
 		MATH::FORMAT::C_Float_3 normal;	// 法線ベクトル
 

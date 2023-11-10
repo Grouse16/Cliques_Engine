@@ -82,16 +82,41 @@ namespace _3D_Model_Converter_And_Drawer
                 // 頂点データを書き込む
                 for (int now_vertex = 0; now_vertex < now_scene.Meshes[mesh_num].Vertices.Count; now_vertex++)
                 {
+                    // ☆ 変数宣言 ☆ //
+                    Color4D color = new Color4D(0,0,0,0); // 色情報
+
+                    Vector3D uv = new Vector3D(0, 0, 0);
+
+
+                    // 色情報があるなら登録（存在しない場合があるのでチェックする）
+                    if (now_scene.Meshes[mesh_num].VertexColorChannelCount > 0)
+                    {
+                        color = now_scene.Meshes[mesh_num].VertexColorChannels[0][now_vertex];
+                    }
+
+                    // UV情報があるなら登録（存在しない場合があるのでチェックする）
+                    if (now_scene.Meshes[mesh_num].TextureCoordinateChannelCount > 0)
+                    {
+                        uv = now_scene.Meshes[mesh_num].TextureCoordinateChannels[0][now_vertex];
+                    }
+
+
+                    //==☆ 頂点座標 ☆==//
                     file_write_data.Add
                         (
-                            //==☆ 頂点座標 ☆==//
-                            now_scene.Meshes[mesh_num].Vertices[now_vertex].X.ToString() + ","
+                              now_scene.Meshes[mesh_num].Vertices[now_vertex].X.ToString() + ","
                             + now_scene.Meshes[mesh_num].Vertices[now_vertex].Y.ToString() + ","
                             + now_scene.Meshes[mesh_num].Vertices[now_vertex].Z.ToString() + "," + ":"
 
                             //==☆ UV座標 ☆==//
-                            + now_scene.Meshes[mesh_num].TextureCoordinateChannels[0][now_vertex].X.ToString() + ","
-                            + now_scene.Meshes[mesh_num].TextureCoordinateChannels[0][now_vertex].Y.ToString() + "," + ":"
+                            + uv.X.ToString() + ","
+                            + uv.Y.ToString() + "," + ":"
+
+                            //==☆ 頂点カラー ☆==//
+                            + color.R.ToString() + ","
+                            + color.G.ToString() + ","
+                            + color.B.ToString() + ","
+                            + color.A.ToString() + "," + ":"
 
                             //==☆ 法線ベクトル ☆==//
                             + now_scene.Meshes[mesh_num].Normals[now_vertex].X.ToString() + ","

@@ -189,6 +189,20 @@ namespace RENDERING::CAPSULE
 		//-☆- 削除 -☆-//
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：頂点データを削除する　＊頂点バッファは削除されない
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_Vertex_Data(void)
+		{
+			mpr_variable.m_vertex_data.clear();
+			mpr_variable.m_vertex_data.shrink_to_fit();
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：頂点インデックスデータを削除する　＊頂点インデックスバッファは削除されない
 		// 引数   ：void
 		// 戻り値 ：void

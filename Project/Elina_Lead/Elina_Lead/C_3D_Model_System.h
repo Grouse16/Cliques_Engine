@@ -28,8 +28,8 @@ namespace ASSET::MODEL
 	// 3Dモデルのクラス
 	class C_3D_Model_System
 	{
-		//==☆ プライベート ☆==//
-	private:
+		//==☆ パブリック ☆==//
+	public:
 
 		// ☆ 構造体 ☆ //
 
@@ -38,9 +38,12 @@ namespace ASSET::MODEL
 		{
 			std::unique_ptr<ASSET::MESH::C_Mesh_Data> mesh_data = nullptr;	// メッシュデータ
 
-			std::string mesh_name = "default";	// メッシュ名
+			std::string name = "default";	// メッシュ名
 		};
 
+
+		//==☆ プライベート ☆==//
+	private:
 
 		// ☆ 変数宣言 ☆ //
 		
@@ -73,6 +76,15 @@ namespace ASSET::MODEL
 
 		// 指定されたパスの3Dモデルをロードする　引数：3Dモデルまでのパス　戻り値：成功時のみtrue
 		bool M_Load_3D_Model_By_Path(std::string);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 指定された名前のメッシュ情報のアドレスを返す　引数：探すメッシュの名前　戻り値：名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+		S_Mesh_Data_Inform * M_Get_Mesh_Data_By_Name(std::string);
+
+		// メッシュ情報のリストの参照を返す　戻り値：メッシュ情報のリストの参照
+		std::vector<S_Mesh_Data_Inform> & M_Get_Mesh_Inform_List(void);
 	};
 }
 

@@ -126,7 +126,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 
 		// メッシュ名を取得
 		file_data.M_Move_Next_Raw();
-		now_mesh_inform.mesh_name = file_data.M_Get_Data_Now_Row();
+		now_mesh_inform.name = file_data.M_Get_Data_Now_Row();
 
 		// メッシュデータを生成
 		now_mesh_inform.mesh_data.reset(new ASSET::MESH::C_Mesh_Data());
@@ -166,6 +166,16 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 			now_vertex_data.uv.u = file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
 			now_vertex_data.uv.v = file_data.M_Get_Float_Double_Number();
+
+			// 色のロード
+			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
+			now_vertex_data.color.r = file_data.M_Get_Float_Double_Number();
+			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+			now_vertex_data.color.g = file_data.M_Get_Float_Double_Number();
+			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+			now_vertex_data.color.b = file_data.M_Get_Float_Double_Number();
+			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+			now_vertex_data.color.a = file_data.M_Get_Float_Double_Number();
 
 			// 法線ベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
@@ -216,4 +226,38 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "モデルのロードに成功しました：" + in_3d_model_path);
 #endif // _DEBUG
 	return true;
+}
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のメッシュを返す
+// 引数   ：string 探すメッシュの名前
+// 戻り値 ：C_3D_Model_System::S_Mesh_Data_Inform * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_3D_Model_System::S_Mesh_Data_Inform * C_3D_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
+{
+	// 一致するメッシュ名を探し、あればそのアドレスを返す
+	for (S_Mesh_Data_Inform & now_mesh_data : mpr_variable.mesh_inform_list)
+	{
+		if (now_mesh_data.name == in_mesh_name)
+		{
+			return &now_mesh_data;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メッシュ情報のリストの参照を返す
+// 引数   ：void
+// 戻り値 ：vector<C_3D_Model_System::S_Mesh_Data_Inform> & メッシュ情報のリストの参照
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::vector<C_3D_Model_System::S_Mesh_Data_Inform> & C_3D_Model_System::M_Get_Mesh_Inform_List(void)
+{
+	return mpr_variable.mesh_inform_list;
 }
