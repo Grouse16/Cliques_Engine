@@ -87,7 +87,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "ファイルの取得に失敗しました：" + in_3d_model_path);
 #endif // _DEBUG
 
-		return;
+		return false;
 	}
 
 

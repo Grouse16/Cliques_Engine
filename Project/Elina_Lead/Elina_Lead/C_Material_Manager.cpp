@@ -15,6 +15,10 @@
 using namespace ASSET::MATERIAL::MANAGER;
 
 
+// ☆ スタティック変数 ☆ //
+C_Material_Manager C_Material_Manager::m_this;
+
+
 // ☆ 関数 ☆ //
 
 //==☆ プライベート ☆==//

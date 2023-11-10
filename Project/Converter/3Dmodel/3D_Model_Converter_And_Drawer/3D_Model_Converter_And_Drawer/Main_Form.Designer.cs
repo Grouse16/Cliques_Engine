@@ -71,7 +71,6 @@
             this.TB_my_format_load_physics_data_size = new System.Windows.Forms.TextBox();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.TB_my_format_load_virtual_data_size = new System.Windows.Forms.TextBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.d3D11Panel1 = new SharpDXSample.D3D11Panel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -675,7 +674,6 @@
         private System.Windows.Forms.TextBox TB_my_format_load_physics_data_size;
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.TextBox TB_my_format_load_virtual_data_size;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private SharpDXSample.D3D11Panel d3D11Panel1;
     }
 }

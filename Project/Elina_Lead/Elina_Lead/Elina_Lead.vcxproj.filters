@@ -142,14 +142,8 @@
     <Filter Include="ヘッダー ファイル\ゲーム">
       <UniqueIdentifier>{4a1adfe2-b87d-449a-be6e-b35e34b1b5dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\ゲーム\描画用設定">
-      <UniqueIdentifier>{f1c87a05-21f7-4384-89e2-b8c0b60c552f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\ゲーム">
       <UniqueIdentifier>{f48954a0-8b97-444f-b457-6f0d64475ba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ゲーム\描画用設定">
-      <UniqueIdentifier>{ba5e7c4d-7a73-4e3c-9e1e-df6745605aea}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\ゲーム\インスタンス">
       <UniqueIdentifier>{ffff9c64-94a8-404f-83ca-a77a6efdcd0e}</UniqueIdentifier>
@@ -675,9 +669,6 @@
     <ClInclude Include="C_Game_Time_Manager.h">
       <Filter>ヘッダー ファイル\システム\時間</Filter>
     </ClInclude>
-    <ClInclude Include="C_Engine_Rendering_Setting_Manager.h">
-      <Filter>ヘッダー ファイル\ゲーム\描画用設定</Filter>
-    </ClInclude>
     <ClInclude Include="C_List_Divided_By_Class_Overall_Base.h">
       <Filter>ヘッダー ファイル\システム\リスト</Filter>
     </ClInclude>
@@ -890,9 +881,6 @@
     <ClCompile Include="C_Shader_Code.cpp">
       <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
     </ClCompile>
-    <ClCompile Include="subdata">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="C_Scale_Constant_UI.cpp">
       <Filter>ソース ファイル\システム\図形</Filter>
     </ClCompile>
@@ -943,9 +931,6 @@
     </ClCompile>
     <ClCompile Include="C_Game_Time_Manager.cpp">
       <Filter>ソース ファイル\システム\時間</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Engine_Rendering_Setting_Manager.cpp">
-      <Filter>ソース ファイル\ゲーム\描画用設定</Filter>
     </ClCompile>
     <ClCompile Include="C_Game_Instance_Base.cpp">
       <Filter>ソース ファイル\ゲーム\インスタンス\インスタンス基底</Filter>

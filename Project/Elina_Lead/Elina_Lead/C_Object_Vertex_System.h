@@ -182,7 +182,7 @@ namespace RENDERING::CAPSULE
 			mpr_variable.m_index_data.clear();
 			mpr_variable.m_index_data.shrink_to_fit();
 
-			mpr_variable.m_index_data.resize(in_vertex_sum);
+			mpr_variable.m_index_data.resize(in_index_sum);
 		}
 
 

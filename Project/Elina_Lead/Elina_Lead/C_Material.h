@@ -193,7 +193,7 @@ namespace ASSET::MATERIAL
 
 
 			// データをセットする
-			mpr_variable.constant_data_list[in_index].data.M_Set_Constant_Data(constant_data_size, in_buffer_index, reinterpret_cast<void * >(&in_set_data));
+			mpr_variable.constant_data_list[in_index].data->M_Set_Constant_Data(constant_data_size, in_buffer_index, reinterpret_cast<void * >(&in_set_data));
 
 			return;
 		}
