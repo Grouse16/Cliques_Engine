@@ -254,7 +254,7 @@ void C_Game_Manager::M_Release(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Game_Manager::M_Set_Engine_Exist_Flg(bool in_set_exist)
 {
-	mpr_variable.flg_engine_exsist = in_set_exist;
+	mpr_variable.flg_engine_exist = in_set_exist;
 
 	return;
 }
@@ -282,7 +282,7 @@ void C_Game_Manager::M_Set_Engine_Activate_Flg(bool in_set_active)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 bool C_Game_Manager::M_Get_Engine_Exist_Flg(void)
 {
-	return mpr_variable.flg_engine_exsist;
+	return mpr_variable.flg_engine_exist;
 }
 
 

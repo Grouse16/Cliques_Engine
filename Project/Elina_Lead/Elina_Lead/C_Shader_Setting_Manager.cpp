@@ -13,6 +13,10 @@
 using namespace ASSET::SHADER::MANAGER;
 
 
+// ☆ スタティック変数 ☆ //
+C_Shader_Setting_Manager C_Shader_Setting_Manager::m_this;
+
+
 // ☆ 関数 ☆ //
 
 //==☆ プライベート ☆==//

@@ -21,19 +21,49 @@
 // リストの基底となるシステムを呼び出すための名前
 namespace SYSTEM::LIST::BASE
 {
+	// インスタンス分離リストの全ての元となる基底クラスを呼び出すための名前
+	namespace ALL_LIST_BASE
+	{
+		// ☆ クラス ☆ //
+
+		// インスタンス分離リストの全ての元となる基底クラス
+		class C_List_All_Base
+		{
+			//==☆ プロテクト ☆==//
+		protected:
+
+			// ☆ 変数宣言 ☆ //
+			std::vector<int> m_priority_list;	// 優先度のリスト
+
+
+			// ☆ 関数 ☆ //
+
+			//-☆- ゲッタ -☆-//
+
+			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+			// 詳細   ：優先度のリストを返す
+			// 引数   ：void
+			// 戻り値 ：vector<int> & 優先度のリスト
+			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+			std::vector<int> & M_Get_Priority_List(void)
+			{
+				return m_priority_list;
+			}
+		};
+	}
+
+
 	// ☆ クラス ☆ //
 
 	// クラスごとに分離したリストを管理するクラスの基底、派生先のリストをまとめたリストを生成できる（テンプレートには派生先のリストのクラスを設定）
 	template <template <typename> class C_List>
-	class C_List_Divided_By_Class_Overall_Base
+	class C_List_Divided_By_Class_Overall_Base : public ALL_LIST_BASE::C_List_All_Base
 	{
 		//==☆ プロテクト ☆==//
 	protected:
 
 		// ☆ 変数宣言 ☆ //
-		std::vector<C_List * > m_list_of_all_instance_list;	// 現在あるインスタンス管理リストをまとめた配列
-
-		static inline C_List_Divided_By_Class_Overall_Base<C_List> m_this;	// シングルトン化用インスタンス
+		static inline std::vector<C_List_All_Base * > m_list_of_all_instance_list;	// 現在あるインスタンス管理リストをまとめた配列
 
 
 		// ☆ 関数 ☆ //
@@ -55,13 +85,13 @@ namespace SYSTEM::LIST::BASE
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：指定されたリストをインスタンス管理リストのリストに加える
-		// 引数   ：C_List * インスタンス管理リストのアドレス
+		// 引数   ：C_List_All_Base * インスタンス管理リストのアドレス
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Add_To_List_Of_All_Instance_List(C_List * in_instance_list_address)
+		static void M_Add_To_List_Of_All_Instance_List(C_List_All_Base * in_instance_list_address)
 		{
-			m_this.m_list_of_all_instance_list.reserve(m_this.m_list_of_all_instance_list.size() + 1);
-			m_this.m_list_of_all_instance_list.emplace_back(in_instance_list_address);
+			m_list_of_all_instance_list.reserve(m_list_of_all_instance_list.size() + 1);
+			m_list_of_all_instance_list.emplace_back(in_instance_list_address);
 
 			return;
 		}
@@ -71,25 +101,25 @@ namespace SYSTEM::LIST::BASE
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：指定されたリストをインスタンス管理リストのリストから削除する
-		// 引数   ：C_List * インスタンス管理リストのアドレス
+		// 引数   ：C_List_All_Base * インスタンス管理リストのアドレス
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Delete_By_List_Of_All_Instance_List(C_List * in_instance_list_address)
+		static void M_Delete_By_List_Of_All_Instance_List(C_List_All_Base * in_instance_list_address)
 		{
-			m_this.m_list_of_all_instance_list.erase
+			m_list_of_all_instance_list.erase
 			(
 				std::remove_if
 				(
-					m_this.m_list_of_all_instance_list.begin(),
-					m_this.m_list_of_all_instance_list.end(),
-					[in_instance_list_address](C_List * & in_check_list)
+					m_list_of_all_instance_list.begin(),
+					m_list_of_all_instance_list.end(),
+					[in_instance_list_address](C_List_All_Base * & in_check_list)
 					{
 						return in_check_list == in_instance_list_address;
 					}
 				),
-				m_this.m_list_of_all_instance_list.end()
+				m_list_of_all_instance_list.end()
 			);
-			m_this.m_list_of_all_instance_list.shrink_to_fit();
+			m_list_of_all_instance_list.shrink_to_fit();
 
 			return;
 		}
@@ -99,19 +129,19 @@ namespace SYSTEM::LIST::BASE
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：指定されたラムダ式でインスタンス配列をソートする
-		// 引数   ：function<bool(C_Instance &)> ソート用のラムダ式、全ての要素の関係がtrueになるまでソートを続ける
+		// 引数   ：function<bool(C_List_All_Base &, C_List_All_Base &)> ソート用のラムダ式、全ての要素の関係が、trueになるまでソートを続ける
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Sort_Instance_By_Lambda(std::function<bool(C_List &, C_List&)> in_sort_lamda)
+		static void M_Sort_Instance_By_Lambda(std::function<bool(C_List_All_Base &, C_List_All_Base &)> in_sort_lambda)
 		{
 			// ソートする
 			std::sort
 			(
-				m_this.m_list_of_all_instance_list.begin(),	// ソートの開始位置
-				m_this.m_list_of_all_instance_list.end(),	// ソートの終了位置
+				m_list_of_all_instance_list.begin(),	// ソートの開始位置
+				m_list_of_all_instance_list.end(),	// ソートの終了位置
 
-				// ソート用ラムダ式、全ての要素の関係がtrueになるまでソートを続ける、クイックソートを行う
-				in_delete_lamda
+				// ソート用ラムダ式、全ての要素の関係が、trueになるまでソートを続ける、クイックソートを行う
+				in_sort_lambda
 			);
 
 			return;
@@ -141,11 +171,11 @@ namespace SYSTEM::LIST::BASE
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：テンプレート引数型のインスタンス管理リストをまとめた配列の参照を返す
 		// 引数   ：void
-		// 戻り値 ：vector<C_Instance_List_Overall_Base<C_List> * > &  引数型の全てのリスト
+		// 戻り値 ：vector<C_List_All_Base * > &  引数型の全てのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<C_List * > & M_Get_List_Of_All_Instance_List(void)
+		static std::vector<C_List_All_Base * > & M_Get_List_Of_All_Instance_List(void)
 		{
-			return m_this.m_list_of_all_instance_list;
+			return m_list_of_all_instance_list;
 		}
 	};
 }

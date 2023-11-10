@@ -50,9 +50,9 @@ namespace SYSTEM::LIST::BASE
 	protected:
 
 		// ☆ 変数宣言 ☆ //
-		std::vector <C_Instance> m_instance_list;	// インスタンスの管理用リスト
+		static inline std::vector <C_Instance> m_instance_list;	// インスタンスの管理用リスト
 
-		static inline C_List_Divided_By_Class_Base<C_List, C_Instance> m_this;	// インスタンスの実体のアドレス
+		static inline std::unique_ptr<C_List_Divided_By_Class_Base<C_List, C_Instance>> m_this = nullptr;	// 自身のインスタンス
 
 
 		// ☆ 関数 ☆ //
@@ -80,15 +80,16 @@ namespace SYSTEM::LIST::BASE
 		static C_Instance & M_Creat_Instance(void)
 		{
 			// このリストがまだインスタンスを持っていない状態であったら、管理用配列にリストを登録
-			if (m_this.m_instance_list.size() <= 0)
+			if (m_instance_list.size() <= 0)
 			{
 				// このリストがまだインスタンスを持っていない状態であったら、管理用配列にリストを登録
-				C_List_Divided_By_Class_Overall_Base<C_List>::M_Add_To_List_Of_All_Instance_List(this);
+				m_this.reset(new C_List_Divided_By_Class_Base<C_List, C_Instance>());
+				C_List_Divided_By_Class_Overall_Base<C_List>::M_Add_To_List_Of_All_Instance_List(m_this.get());
 			}
 
 			// インスタンスを生成する
-			m_this.m_instance_list.resize(m_this.m_instance_list.size() + 1);
-			return m_this.m_instance_list[m_this.m_instance_list.size() - 1];
+			m_instance_list.resize(m_instance_list.size() + 1);
+			return m_instance_list[m_instance_list.size() - 1];
 		}
 
 
@@ -102,11 +103,11 @@ namespace SYSTEM::LIST::BASE
 		static void M_Delete_All_Instance(void)
 		{
 			// 配列データを削除
-			m_this.m_instance_list.clear();
-			m_this.m_instance_list.shrink_to_fit();
+			m_instance_list.clear();
+			m_instance_list.shrink_to_fit();
 
 			// データを持っていないのでリストから登録解除
-			C_List_Divided_By_Class_Overall_Base<C_List>::M_Delete_By_List_Of_All_Instance_List(this);
+			C_List_Divided_By_Class_Overall_Base<C_List>::M_Delete_By_List_Of_All_Instance_List(m_this.get());
 
 			return;
 		}
@@ -120,49 +121,25 @@ namespace SYSTEM::LIST::BASE
 		static void M_Delete_Instance_By_Lambda(std::function<bool(C_Instance & )> in_delete_lambda)
 		{
 			// 指定された条件通りのインスタンスを削除する
-			m_this.m_instance_list.before_func_update_list.erase
+			m_instance_list.before_func_update_list.erase
 			(
 				std::remove_if
 				(
-					m_this.m_instance_list.begin(), 
-					m_this.m_instance_list.end(), 
+					m_instance_list.begin(), 
+					m_instance_list.end(), 
 					in_delete_lambda
 				), 
-				m_this.m_instance_list.end()
+				m_instance_list.end()
 			);
 
 
 			// リストのデータを全て削除したのなら、リストを登録解除する
-			if (m_this.m_instance_list.size() <= 0)
+			if (m_instance_list.size() <= 0)
 			{
 				C_List_Divided_By_Class_Overall_Base<C_List>::M_Delete_By_List_Of_All_Instance_List(this);
 			}
 
 			return;
-		}
-
-
-		//-☆- ゲッタ -☆-//
-
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：このリストの実体の参照を返す
-		// 引数   ：void
-		// 戻り値 ：C_Instance_List_Base<C_List, C_Instance> & リストの実体の参照
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_List_Divided_By_Class_Base<C_List, C_Instance> & M_Get_List_Instance(void)
-		{
-			return m_this;
-		}
-
-
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：インスタンスのリストの参照を返す
-		// 引数   ：void
-		// 戻り値 ：std::vector <C_Instance> & リストの参照
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<C_Instance> & M_Get_List(void)
-		{
-			return m_this.m_instance_list;
 		}
 		
 
@@ -181,6 +158,19 @@ namespace SYSTEM::LIST::BASE
 		virtual ~C_List_Divided_By_Class_Base(void) override
 		{
 			return;
+		}
+
+
+		//-☆- ゲッタ -☆-//
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：インスタンスのリストの参照を返す
+		// 引数   ：void
+		// 戻り値 ：std::vector <C_Instance> & リストの参照
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		static std::vector<C_Instance> & M_Get_List(void)
+		{
+			return m_instance_list;
 		}
 	};
 }

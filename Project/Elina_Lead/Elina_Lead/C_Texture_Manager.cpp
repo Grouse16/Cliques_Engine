@@ -13,6 +13,10 @@
 using namespace ASSET::TEXTURE::MANAGER;
 
 
+// ☆ スタティック変数 ☆ //
+C_Texture_Manager C_Texture_Manager::m_this;
+
+
 // ☆ 関数 ☆ //
 
 //==☆ プライベート ☆==//

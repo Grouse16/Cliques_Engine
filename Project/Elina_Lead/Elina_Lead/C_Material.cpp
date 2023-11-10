@@ -728,7 +728,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
 	mpr_variable.shader_setting_data.M_Load_Shader_Setting(material_inform_file_data.M_Get_Data_Right_In_Row());
-	if (mpr_variable.shader_setting_data.M_Get_Shader_Setting() == false)
+	if (mpr_variable.shader_setting_data.M_Get_Shader_Setting() == nullptr)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);

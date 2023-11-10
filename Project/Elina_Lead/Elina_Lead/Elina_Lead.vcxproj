@@ -171,7 +171,6 @@
     <ClInclude Include="C_Post_Effect_List.h" />
     <ClInclude Include="C_List_Divided_By_Class_Overall_Base.h" />
     <ClInclude Include="C_Game_Manager.h" />
-    <ClInclude Include="C_Engine_Rendering_Setting_Manager.h" />
     <ClInclude Include="C_Game_State_Manager.h" />
     <ClInclude Include="C_Game_Time_Manager.h" />
     <ClInclude Include="C_Float_4.h" />
@@ -280,7 +279,6 @@
     <ClCompile Include="C_Engine_Input_Collision_Manager.cpp" />
     <ClCompile Include="C_Engine_Input_Manager.cpp" />
     <ClCompile Include="C_Game_Manager.cpp" />
-    <ClCompile Include="C_Engine_Rendering_Setting_Manager.cpp" />
     <ClCompile Include="C_Game_State_Manager.cpp" />
     <ClCompile Include="C_Game_Time_Manager.cpp" />
     <ClCompile Include="C_Float_4.cpp" />
@@ -312,7 +310,6 @@
     <ClCompile Include="C_Windows_System.cpp" />
     <ClCompile Include="C_Wnd_Proc_For_Engine_APK.cpp" />
     <ClCompile Include="C_Wnd_Proc_Manager.cpp" />
-    <ClCompile Include="subdata" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PS_Engine_UI_DX12.hlsl">

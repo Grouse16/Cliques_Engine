@@ -22,14 +22,17 @@
 // ゲームのサウンドのリストを呼び出すための名前
 namespace GAME::INSTANCE::SOUND::LIST
 {
-	// ☆ クラス ☆ //
+	// ☆ コンセプトクラス ☆ //
 
 	// サウンドの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
-	concept C_Checked_Instance_Class = std::is_base_of<GAME::INSTANCE::SOUND::BASE::C_Sound_Base, C_Check_Instance>::value;
+	concept C_Checked_Sound_Class = std::is_base_of<GAME::INSTANCE::SOUND::BASE::C_Sound_Base, C_Check_Instance>::value;
+
+
+	// ☆ クラス ☆ //
 
 	// サウンド系統のリスト、サウンドをクラスごとに管理している
-	template <C_Checked_Instance_Class C_Sound>
+	template <C_Checked_Sound_Class C_Sound>
 	class C_Sound_List : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, std::unique_ptr<C_Sound>>
 	{
 		//==☆ プライベート ☆==//
@@ -86,7 +89,7 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 引数   ：string 生成するサウンドの名前
 		// 戻り値 ：C_Sound * 生成したサウンドのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Sound * C_Creat_Sound(std::string in_sound_name)
+		static C_Sound * M_Creat_Sound(std::string in_sound_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_Sound & sound_slot_address =		// 新しいサウンド用のスロットの参照
@@ -110,7 +113,7 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void C_Delete_Sound_Update(void)
+		static void M_Delete_Sound_Update(void)
 		{
 			// ☆ ラムダ式 ☆ //
 
@@ -142,9 +145,9 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 引数   ：void
 		// 戻り値 ：vector<Type_Sound> & 指定されたサウンドのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<Type_Sound> & C_Get_Sound_List(void)
+		static std::vector<Type_Sound> & M_Get_Sound_List(void)
 		{
-			return m_this.m_instance_list;
+			return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Get_List();
 		}
 
 
@@ -153,10 +156,10 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 引数   ：void
 		// 戻り値 ：C_Sound * 名前が一致したサウンドのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Sound * C_Get_Sound_By_Name(std::string in_search_name)
+		static C_Sound * M_Get_Sound_By_Name(std::string in_search_name)
 		{
 			// 全てのサウンドを探索し、見つかったらそのアドレスを返す
-			for (Type_Sound & now_sound : m_this.m_instance_list)
+			for (Type_Sound & now_sound : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Get_List())
 			{
 				if (now_sound.get()->M_Get_Instance_Name() == in_search_name)
 				{

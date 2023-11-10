@@ -15,6 +15,11 @@
 #include <string>
 #include <memory>
 
+#include "C_Actor_List.h"
+#include "C_User_Interface_List.h"
+#include "C_Sound_List.h"
+#include "C_Post_Effect_List.h"
+
 
 // ☆ ネームスペース ☆ //
 
@@ -28,7 +33,6 @@ namespace GAME::INSTANCE
 	{
 		//==☆ プライベート ☆==//
 	private:
-
 
 		// ☆ 関数 ☆ //
 
@@ -53,22 +57,53 @@ namespace GAME::INSTANCE
 
 
 		//-☆- ゲッタ -☆-//
-		
-		// 指定された種類のアクターのリストを取得する
-		template<class C_Actor>
-		void M_Get_Actor_List(void);
 
-		// 指定された種類のUIをリストの取得する
-		template<class C_UI>
-		void M_Get_User_Interface_List(void);
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された種類のアクターのリストを取得する
+		// 引数   ：void
+		// 戻り値 ：vector<unique_ptr<C_Actor>> & 指定されたアクターのリストの参照
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template<ACTOR::LIST::C_Checked_Actor_Class C_Actor>
+		static std::vector<std::unique_ptr<C_Actor>> & M_Get_Actor_List(void)
+		{
+			return ACTOR::LIST::C_Actor_List<C_Actor>::M_Get_Actor_List();
+		}
 
-		// 指定された種類のサウンドのリストを取得する
-		template<class C_Sound>
-		void M_Get_Sound_List(void);
 
-		// 指定された種類のポストエフェクトのリストを取得する
-		template<class C_Post_Effect>
-		void M_Get_Post_Effect_List(void);
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された種類のUIのリストを取得する
+		// 引数   ：void
+		// 戻り値 ：vector<unique_ptr<C_UI>> & 指定されたUIのリストの参照
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template<UI::LIST::C_Checked_UI_Class C_UI>
+		static std::vector<std::unique_ptr<C_UI>> & M_Get_UI_List(void)
+		{
+			return UI::LIST::C_User_Interface_List<C_UI>::M_Get_UI_List();
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された種類のサウンドのリストを取得する
+		// 引数   ：void
+		// 戻り値 ：vector<unique_ptr<C_Sound>> & 指定されたサウンドのリストの参照
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template<SOUND::LIST::C_Checked_Sound_Class C_Sound>
+		static std::vector<std::unique_ptr<C_Sound>> & M_Get_Sound_List(void)
+		{
+			return SOUND::LIST::C_Sound_List<C_Sound>::M_Get_Sound_List();
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：指定された種類のポストエフェクトのリストを取得する
+		// 引数   ：void
+		// 戻り値 ：vector<unique_ptr<UI>> & 指定されたポストエフェクトのリストの参照
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template<SOUND::LIST::C_Checked_Sound_Class C_Sound>
+		static std::vector<std::unique_ptr<C_Sound>> & M_Get_Post_Effect_List(void)
+		{
+			return POST_EFFECT::LIST::C_Post_Effect_List<C_Sound>::M_Get_Post_Effect_List();
+		}
 	};
 }
 
