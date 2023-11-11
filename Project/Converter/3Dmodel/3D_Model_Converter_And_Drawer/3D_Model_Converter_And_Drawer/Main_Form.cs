@@ -190,6 +190,76 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                 // コンバートするデータをセットし、各種設定用のフォームを生成
+                _3D_Model_Convert_System.m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;
+                _3D_Model_Convert_System.M_Convert_Data_Set(ref scene);
+                _3D_Model_Convert_System.M_Input_Form_Create();
+
+                // ロードしたファイルのパスを表示
+                TB_before_convert_path.ResetText();
+                TB_before_convert_path.AppendText(file_path[0]);
+            }
+        }
+
+        private void TB_Anim_Model_Convert_DragDrop(object sender, DragEventArgs e)
+        {
+            // ファイルドロップ時はファイルのプロパティを取得
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // ☆ 変数宣言 ☆ //
+                System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+                                                                                                // Processインスタンスを取得
+                System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
+
+                long before_working_memory = 0;   // ロード前の物理メモリ
+                long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+                // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+                before_working_memory = proc.WorkingSet64;
+                before_virtual_memory = proc.VirtualMemorySize64;
+
+                // 生成時間を記録開始
+                stop_watch.Start();
+
+
+                // ☆ 変数宣言 ☆ //
+                string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
+
+                string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
+
+                AssimpContext importer = new AssimpContext(); // インポートシステム
+
+                Scene scene =     // 取得結果のデータ
+                    importer.ImportFile
+                    (
+                        relative_file_path,
+                        PostProcessSteps.CalculateTangentSpace |
+                        PostProcessSteps.GenerateSmoothNormals |
+                        PostProcessSteps.JoinIdenticalVertices |
+                        PostProcessSteps.LimitBoneWeights |
+                        PostProcessSteps.RemoveRedundantMaterials |
+                        PostProcessSteps.SplitLargeMeshes |
+                        PostProcessSteps.GenerateUVCoords |
+                        PostProcessSteps.SortByPrimitiveType |
+                        PostProcessSteps.FindDegenerates |
+                        PostProcessSteps.FindInvalidData |
+                        PostProcessSteps.Triangulate |      // 全ての面を三角形に変換
+                        PostProcessSteps.FlipWindingOrder | // 時計回り
+                        PostProcessSteps.MakeLeftHanded     // 左手系
+                    );
+
+                // ロード終了、ロードにかかった時間を記録
+                stop_watch.Stop();
+                TB_assimp_load_time.Text = stop_watch.ElapsedMilliseconds.ToString() + "ミリ秒";
+
+                // 物理と仮想メモリの変化量をロードに必要なデータサイズとして記録
+                proc.Refresh();
+                TB_assimp_load_physics_data_size.Text = (proc.WorkingSet64 - before_working_memory).ToString() + ".byte";
+                TB_assimp_load_virtual_data_size.Text = (proc.VirtualMemorySize64 - before_virtual_memory).ToString() + ".byte";
+
+
+                // コンバートするデータをセットし、各種設定用のフォームを生成
+                _3D_Model_Convert_System.m_convert_mode = E_CONVERT_MODE.e_ANIMATION_MODEL;
                 _3D_Model_Convert_System.M_Convert_Data_Set(ref scene);
                 _3D_Model_Convert_System.M_Input_Form_Create();
 

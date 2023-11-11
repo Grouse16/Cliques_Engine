@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assimp;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
@@ -72,7 +73,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         {
             for (int now_mat = 0; now_mat < name_list.Count; now_mat++)
             {
-                name_list[now_mat].M_Set_Name(_3D_Model_Convert_System.now_scene.Materials[now_mat].Name);
+                name_list[now_mat].M_Set_Name(_3D_Model_Convert_System.m_now_scene.Materials[now_mat].Name);
             }
 
             return;
@@ -83,7 +84,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         {
             for (int now_mesh = 0; now_mesh < name_list.Count; now_mesh++)
             {
-                name_list[now_mesh].M_Set_Name(_3D_Model_Convert_System.now_scene.Meshes[now_mesh].Name);
+                name_list[now_mesh].M_Set_Name(_3D_Model_Convert_System.m_now_scene.Meshes[now_mesh].Name);
             }
 
             return;

@@ -213,11 +213,12 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 			now_index_data = file_data.M_Get_Number();
 		}
 
-		// 頂点と頂点インデックス情報分のバッファを生成し、頂点インデックスデータをバッファにセット、その後頂点インデックスのデータは使用しないので削除（バッファは残る）
+		// 頂点と頂点インデックス情報分のバッファを生成し、データをバッファにセット、その後データは使用しないので削除（バッファは残る）
 		now_mesh_inform.mesh_data->M_Creat_Vertex_Buffer_And_Index_Buffer();
-		now_mesh_inform.mesh_data->M_Attach_Index_Data_To_Buffer();
-		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 		now_mesh_inform.mesh_data->M_Attach_Vertex_Data_To_Buffer();
+		now_mesh_inform.mesh_data->M_Attach_Index_Data_To_Buffer();
+		now_mesh_inform.mesh_data->M_Delete_Vertex_Data();
+		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 	}
 
 	// ロードに成功、デバッグ時は成功ログを表示
@@ -260,4 +261,43 @@ C_3D_Model_System::S_Mesh_Data_Inform * C_3D_Model_System::M_Get_Mesh_Data_By_Na
 std::vector<C_3D_Model_System::S_Mesh_Data_Inform> & C_3D_Model_System::M_Get_Mesh_Inform_List(void)
 {
 	return mpr_variable.mesh_inform_list;
+}
+
+
+//-☆- 描画 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：3Dモデルを描画する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_System::M_Draw_3D_Model(void)
+{
+	// 全てのメッシュを描画
+	for (S_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		now_mesh_inform.mesh_data->M_Draw_Mesh();
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：3Dモデルから指定されたメッシュ名のみ描画する
+// 引数   ：string 描画するメッシュ名（複数判定する）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
+{
+	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
+	for (S_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		if (now_mesh_inform.name == in_draw_mesh_name)
+		{
+			now_mesh_inform.mesh_data->M_Draw_Mesh();
+		}
+	}
+
+	return;
 }

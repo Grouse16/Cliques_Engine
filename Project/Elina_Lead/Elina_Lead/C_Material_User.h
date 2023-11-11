@@ -58,7 +58,7 @@ namespace ASSET::MATERIAL
 		
 		//-☆- ロード -☆-//
 
-		// 指定された名前のマテリアルを読み込む　引数：マテリアル名
+		// 指定された名前のマテリアルを読み込む　引数：ロードするマテリアル名
 		void M_Load_Material(std::string);
 
 

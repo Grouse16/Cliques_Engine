@@ -364,18 +364,6 @@
     <Filter Include="ソース ファイル\アセット\サウンド\制御">
       <UniqueIdentifier>{db65fca8-fc94-494d-b7b1-d9d202bd5bf9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーション">
-      <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーション\制御">
-      <UniqueIdentifier>{06cf4634-8145-4e7d-86a8-5467fcc98e2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーション\システム">
-      <UniqueIdentifier>{9d71c7fd-f85d-476d-abf2-643c5309ad29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション">
-      <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\アセット\モデル\制御">
       <UniqueIdentifier>{a705cd21-5c1f-4566-8bf4-9fe8334f5fbe}</UniqueIdentifier>
     </Filter>
@@ -387,12 +375,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\アセット\サウンド\システム">
       <UniqueIdentifier>{cee08b02-e6c5-4620-8d70-23b89da993fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション\制御">
-      <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション\システム">
-      <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\アセット\テクスチャ\制御">
       <UniqueIdentifier>{8b85496a-5245-4b94-b5a8-8ab8cd3960b7}</UniqueIdentifier>
@@ -453,6 +435,57 @@
     </Filter>
     <Filter Include="ソース ファイル\システム\数式">
       <UniqueIdentifier>{fb7be7f6-b9f5-4f9d-8ee3-65b14acf54a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\リグ">
+      <UniqueIdentifier>{16cc90b4-1851-4555-8777-01bccb9444d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\リグ\システム">
+      <UniqueIdentifier>{ad9650f9-a97e-4d78-a092-0f7fd9f2737a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\リグ\制御">
+      <UniqueIdentifier>{3aeb56f6-5039-4fb8-a8a3-b0d9c74ffa98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル">
+      <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション">
+      <UniqueIdentifier>{7b4e3381-f083-484b-9442-7d34d7761e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション\制御">
+      <UniqueIdentifier>{06cf4634-8145-4e7d-86a8-5467fcc98e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション\システム">
+      <UniqueIdentifier>{9d71c7fd-f85d-476d-abf2-643c5309ad29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル">
+      <UniqueIdentifier>{181b730f-cc7b-4b68-9811-b0e2484c987a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル\システム">
+      <UniqueIdentifier>{ce707303-d51c-4aae-8516-1578ed733cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル\制御">
+      <UniqueIdentifier>{7ee97cab-8139-460f-9ebc-9894092c2e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル">
+      <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション">
+      <UniqueIdentifier>{9cbf043a-156d-42da-adde-86d941e91040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション\システム">
+      <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション\制御">
+      <UniqueIdentifier>{81e0a071-8835-4603-b7d1-6f59ca6d171b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル">
+      <UniqueIdentifier>{bf08b997-48c7-40ad-8511-758c1ce02465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル\制御">
+      <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル\システム">
+      <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -768,6 +801,12 @@
     <ClInclude Include="C_3D_Model_Manager.h">
       <Filter>ヘッダー ファイル\アセット\モデル\制御</Filter>
     </ClInclude>
+    <ClInclude Include="C_3D_Model_User.h">
+      <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animative_Mesh.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -997,6 +1036,12 @@
     </ClCompile>
     <ClCompile Include="C_3D_Model_Manager.cpp">
       <Filter>ソース ファイル\アセット\モデル\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_3D_Model_User.cpp">
+      <Filter>ソース ファイル\アセット\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animative_Mesh.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

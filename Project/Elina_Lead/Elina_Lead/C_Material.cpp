@@ -816,24 +816,100 @@ void C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_l
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された定数バッファ管理用データを返す
+// 詳細   ：指定された定数バッファ管理用データのアドレスを返す
 // 引数   ：int 取得する定数バッファ管理用データの番号
-// 戻り値 ：void
+// 戻り値 ：S_Constant_Buffer_Data * 指定された定数バッファ情報のアドレス、なければnullptr
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_Constant_Buffer_Data & C_Material::M_Get_Constant_Buffer_Data_By_Index(int in_index)
+S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Index(int in_index)
 {
-	return mpr_variable.constant_data_list[in_index];
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.constant_data_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.constant_data_list[in_index];
 }
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたテクスチャ管理用データを返す
+// 詳細   ：指定されたテクスチャ管理用データのアドレスを返す
 // 引数   ：int 取得するテクスチャ管理用データの番号
-// 戻り値 ：void
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_Texture_Buffer_Data & C_Material::M_Get_Texture_Data_By_Index(int in_index)
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Index(int in_index)
 {
-	return mpr_variable.texture_data_list[in_index];
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.texture_data_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.texture_data_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の定数バッファ管理用データのアドレスを返す
+// 引数   ：string 取得する定数バッファ管理用データの名前
+// 戻り値 ：S_Constant_Buffer_Data * 指定された定数バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Name(std::string in_constant_buffer_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Constant_Buffer_Data & constant_data_inform : mpr_variable.constant_data_list)
+	{
+		if (constant_data_inform.signature_name == in_constant_buffer_name)
+		{
+			return &constant_data_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の定数バッファ管理用データのアドレスを返す
+// 引数   ：string 取得する定数バッファ管理用データの名前
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Texture_Buffer_Data & texture_data_inform : mpr_variable.texture_data_list)
+	{
+		if (texture_data_inform.signature_name == in_texture_buffer_name)
+		{
+			return &texture_data_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファ管理用データのリストの参照を返す
+// 引数   ：void
+// 戻り値 ：vector<S_Constant_Buffer_Data> & 定数バッファ管理用データのリスト
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::vector<S_Constant_Buffer_Data> & C_Material::M_Get_Constant_Data_List(void)
+{
+	return mpr_variable.constant_data_list;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：テクスチャバッファ管理用データのリストの参照を返す
+// 引数   ：void
+// 戻り値 ：vector<S_Texture_Buffer_Data> & テクスチャバッファ管理用データのリスト
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::vector<S_Texture_Buffer_Data> & C_Material::M_Get_Texture_Data_List(void)
+{
+	return mpr_variable.texture_data_list;
 }
 
 
