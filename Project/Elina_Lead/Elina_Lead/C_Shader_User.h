@@ -59,7 +59,7 @@ namespace ASSET::SHADER
 
 		//-☆- ロード -☆-//
 
-		// 指定された名前のシェーダーを読み込む　引数：シェーダーの種類, シェーダー名
+		// 指定された名前のシェーダーを読み込む　引数：ロードするシェーダーの種類, ロードするシェーダー名
 		void M_Load_Shader_Code(ASSET::SHADER::E_SHADER_KIND, std::string);
 
 

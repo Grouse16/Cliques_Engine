@@ -134,7 +134,9 @@
     <ClInclude Include="Color_Data.h" />
     <ClInclude Include="C_3D_Model_Manager.h" />
     <ClInclude Include="C_3D_Model_System.h" />
+    <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
     <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
@@ -236,7 +238,9 @@
   <ItemGroup>
     <ClCompile Include="C_3D_Model_Manager.cpp" />
     <ClCompile Include="C_3D_Model_System.cpp" />
+    <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Float_2.cpp" />
     <ClCompile Include="C_Float_3.cpp" />
     <ClCompile Include="C_Game_Instance_Base.cpp" />

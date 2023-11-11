@@ -1,16 +1,16 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：メッシュのデータ管理用のシステムのクラス
-// 説明   ：頂点や頂点インデックス情報の管理を行う
+// 詳細   ：アニメーション用のメッシュのクラス
+// 説明   ：アニメーションブレンド用の定数バッファを持つシステムを追加したメッシュシステムクラス
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
-// ☆ ファイルひらき ☆ //
-#include "C_Mesh_Data.h"
+// ☆ ファイルひらき ☆　//
+#include "C_Animative_Mesh.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace ASSET::MESH;
+using namespace ASSET::ANIMATIVE::MESH;
 
 
 // ☆ 関数 ☆ //
@@ -24,7 +24,7 @@ using namespace ASSET::MESH;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Mesh_Data::C_Mesh_Data(void)
+C_Animative_Mesh::C_Animative_Mesh(void)
 {
 	return;
 }
@@ -35,7 +35,7 @@ C_Mesh_Data::C_Mesh_Data(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Mesh_Data::~C_Mesh_Data(void)
+C_Animative_Mesh::~C_Animative_Mesh(void)
 {
 	M_Release();
 
@@ -43,12 +43,13 @@ C_Mesh_Data::~C_Mesh_Data(void)
 }
 
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：メモリの解放を行う
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Release(void)
+void C_Animative_Mesh::M_Release(void)
 {
 	mpr_variable.vertex_setting.M_Release();
 	mpr_variable.material.M_Release();
@@ -64,7 +65,7 @@ void C_Mesh_Data::M_Release(void)
 // 引数   ：int 生成する頂点数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Vertex_List(int in_creat_vertex_sum)
+void C_Animative_Mesh::M_Creat_Vertex_List(int in_creat_vertex_sum)
 {
 	mpr_variable.vertex_setting.M_Creat_Vertex_Data_By_Number(in_creat_vertex_sum);
 
@@ -77,7 +78,7 @@ void C_Mesh_Data::M_Creat_Vertex_List(int in_creat_vertex_sum)
 // 引数   ：int 生成する頂点インデックス数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Index_List(int in_creat_index_sum)
+void C_Animative_Mesh::M_Creat_Index_List(int in_creat_index_sum)
 {
 	mpr_variable.vertex_setting.M_Creat_Index_Data_By_Number(in_creat_index_sum);
 
@@ -90,7 +91,7 @@ void C_Mesh_Data::M_Creat_Index_List(int in_creat_index_sum)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Vertex_Buffer_And_Index_Buffer(void)
+void C_Animative_Mesh::M_Creat_Vertex_Buffer_And_Index_Buffer(void)
 {
 	mpr_variable.vertex_setting.M_Create_Vertex_And_Index_Buffer_By_Now_Parameter();
 
@@ -103,7 +104,7 @@ void C_Mesh_Data::M_Creat_Vertex_Buffer_And_Index_Buffer(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Attach_Index_Data_To_Buffer(void)
+void C_Animative_Mesh::M_Attach_Index_Data_To_Buffer(void)
 {
 	mpr_variable.vertex_setting.M_Index_Data_To_Buffer();
 
@@ -116,7 +117,7 @@ void C_Mesh_Data::M_Attach_Index_Data_To_Buffer(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Attach_Vertex_Data_To_Buffer(void)
+void C_Animative_Mesh::M_Attach_Vertex_Data_To_Buffer(void)
 {
 	mpr_variable.vertex_setting.M_Vertex_Data_To_Buffer();
 
@@ -129,7 +130,7 @@ void C_Mesh_Data::M_Attach_Vertex_Data_To_Buffer(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Delete_Vertex_Data(void)
+void C_Animative_Mesh::M_Delete_Vertex_Data(void)
 {
 	mpr_variable.vertex_setting.M_Delete_Vertex_Data();
 
@@ -142,7 +143,7 @@ void C_Mesh_Data::M_Delete_Vertex_Data(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Delete_Index_Data(void)
+void C_Animative_Mesh::M_Delete_Index_Data(void)
 {
 	mpr_variable.vertex_setting.M_Delete_Index_Data();
 
@@ -155,7 +156,7 @@ void C_Mesh_Data::M_Delete_Index_Data(void)
 // 引数   ：マテリアル名
 // 戻り値 ：成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Mesh_Data::M_Load_Material_By_Name(std::string in_load_material_name)
+bool C_Animative_Mesh::M_Load_Material_By_Name(std::string in_load_material_name)
 {
 	mpr_variable.material.M_Release();
 	mpr_variable.material.M_Load_Material(in_load_material_name);
@@ -172,7 +173,7 @@ bool C_Mesh_Data::M_Load_Material_By_Name(std::string in_load_material_name)
 // 引数   ：void
 // 戻り値 ：vector<S_3D_Model_Vertex> & 頂点データのリストを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<DATA::VERTEX::S_3D_Model_Vertex> & C_Mesh_Data::M_Get_Vertex_Data_List(void)
+std::vector<DATA::VERTEX::S_3D_Model_Vertex> & C_Animative_Mesh::M_Get_Vertex_Data_List(void)
 {
 	return mpr_variable.vertex_setting.M_Get_Vertex_Data();
 }
@@ -183,7 +184,7 @@ std::vector<DATA::VERTEX::S_3D_Model_Vertex> & C_Mesh_Data::M_Get_Vertex_Data_Li
 // 引数   ：void
 // 戻り値 ：vector<unsigned __int32> & 頂点インデックスデータのリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<unsigned __int32> & C_Mesh_Data::M_Get_Index_Data_List(void)
+std::vector<unsigned __int32> & C_Animative_Mesh::M_Get_Index_Data_List(void)
 {
 	return mpr_variable.vertex_setting.M_Get_Index_Data();
 }
@@ -194,7 +195,7 @@ std::vector<unsigned __int32> & C_Mesh_Data::M_Get_Index_Data_List(void)
 // 引数   ：void
 // 戻り値 ：C_Material_User & マテリアルユーザーの参照を返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::MATERIAL::C_Material_User & C_Mesh_Data::M_Get_Material_User(void)
+ASSET::MATERIAL::C_Material_User & C_Animative_Mesh::M_Get_Material_User(void)
 {
 	return mpr_variable.material;
 }
@@ -207,7 +208,7 @@ ASSET::MATERIAL::C_Material_User & C_Mesh_Data::M_Get_Material_User(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Draw_Mesh(void)
+void C_Animative_Mesh::M_Draw_Mesh(void)
 {
 	// マテリアルをセットする（レンダリング設定を登録し、定数バッファ、テクスチャをGPUのデータスロットにセット）
 	mpr_variable.material.M_Material_Attach_To_Draw();

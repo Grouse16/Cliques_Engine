@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：メッシュのデータ管理用のシステムのクラス
-// 説明   ：頂点や頂点インデックス情報の管理を行う
+// 詳細   ：アニメーション用のメッシュのクラス
+// 説明   ：アニメーションブレンド用の定数バッファを持つシステムを追加したメッシュシステムクラス
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_MESH_DATA_H_FILE
-#define D_INCLUDE_GUARD_C_MESH_DATA_H_FILE
+#ifndef D_INCLUDE_GUARD_C_ANIMATIVE_MESH_H_FILE
+#define D_INCLUDE_GUARD_C_ANIMATIVE_MESH_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -20,13 +20,13 @@
 
 // ☆ ネームスペース ☆ //
 
-// メッシュのシステムを呼び出すための名前
-namespace ASSET::MESH
+// アニメーションするメッシュを呼び出すための名前
+namespace ASSET::ANIMATIVE::MESH
 {
 	// ☆ クラス ☆ //
-
-	// メッシュのデータ管理用のシステムのクラス
-	class C_Mesh_Data
+	
+	// アニメーション用のメッシュのクラス
+	class C_Animative_Mesh
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -37,7 +37,7 @@ namespace ASSET::MESH
 		struct SPr_Variable
 		{
 			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Model_Vertex> vertex_setting;	// 頂点用システム
-			
+
 			ASSET::MATERIAL::C_Material_User material;	// マテリアルデータ
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
@@ -51,12 +51,12 @@ namespace ASSET::MESH
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Mesh_Data(void);
+		C_Animative_Mesh(void);
 
 		// デストラクタ
-		~C_Mesh_Data(void);
+		~C_Animative_Mesh(void);
 
-		// メモリの解放を行う
+		// メモリを解放する
 		void M_Release(void);
 
 
@@ -107,5 +107,4 @@ namespace ASSET::MESH
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_MESH_DATA_H_FILE
-
+#endif // !D_INCLUDE_GUARD_C_ANIMATIVE_MESH_H_FILE

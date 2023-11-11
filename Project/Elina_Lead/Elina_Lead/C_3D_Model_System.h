@@ -85,6 +85,15 @@ namespace ASSET::MODEL
 
 		// メッシュ情報のリストの参照を返す　戻り値：メッシュ情報のリストの参照
 		std::vector<S_Mesh_Data_Inform> & M_Get_Mesh_Inform_List(void);
+
+
+		//-☆- 描画 -☆-//
+
+		// 3Dモデルを描画する
+		void M_Draw_3D_Model(void);
+
+		// 3Dモデルから指定されたメッシュ名のみ描画する　引数：描画するメッシュ名（複数判定する）
+		void M_Draw_Meshes_By_Name(std::string);
 	};
 }
 
