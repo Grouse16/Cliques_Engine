@@ -130,8 +130,15 @@ namespace _3D_Model_Converter_And_Drawer
         // メッシュデータの変換
         private static bool M_Mesh_Convert()
         {
-            // 先頭に拡張子識別用の情報を設定、これがこのファイル形式の証明になる
-            m_file_write_data.Add("This-Is-ELANMMDL");
+            // 静的モデルに変換するときは、.elsttmdlであることを証明する記述をする
+            if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
+            {
+                m_file_write_data.Add("This-Is-ELSTTMDL");
+            }
+            else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
+            {
+                m_file_write_data.Add("This-Is-ELANMMDL");
+            }
 
             // メッシュ数を記録
             m_file_write_data.Add("MESHSUM:" + m_now_scene.MeshCount.ToString());
@@ -172,7 +179,7 @@ namespace _3D_Model_Converter_And_Drawer
                 {
                     m_file_write_data.Add
                         (
-                              bone_index.name + ":"
+                              bone_index.name + "/"
                             + bone_index.offset_matrix.A1.ToString() + ","
                             + bone_index.offset_matrix.A2.ToString() + ","
                             + bone_index.offset_matrix.A3.ToString() + ","

@@ -100,7 +100,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 
 
 	// îFèÿñºÇíTçıÇ∑ÇÈ
-	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELMDL") == false)
+	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELSTTMDL") == false)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
