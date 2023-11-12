@@ -14,14 +14,14 @@
 #include <string>
 
 #include "C_Object_Vertex_System.h"
-#include "S_3D_Model_Vertex.h"
+#include "S_3D_Animation_Model_Vertex.h"
 #include "C_Material_User.h"
 
 
 // ☆ ネームスペース ☆ //
 
 // アニメーションするメッシュを呼び出すための名前
-namespace ASSET::ANIMATIVE::MESH
+namespace ASSET::ANIMATION::MESH
 {
 	// ☆ クラス ☆ //
 	
@@ -36,7 +36,7 @@ namespace ASSET::ANIMATIVE::MESH
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Model_Vertex> vertex_setting;	// 頂点用システム
+			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Animation_Model_Vertex> vertex_setting;	// 頂点用システム
 
 			ASSET::MATERIAL::C_Material_User material;	// マテリアルデータ
 
@@ -90,7 +90,7 @@ namespace ASSET::ANIMATIVE::MESH
 		//-☆- ゲッタ -☆-//
 
 		// 頂点データのリストの参照を返す　戻り値：頂点データのリストの参照
-		std::vector<DATA::VERTEX::S_3D_Model_Vertex> & M_Get_Vertex_Data_List(void);
+		std::vector<DATA::VERTEX::S_3D_Animation_Model_Vertex> & M_Get_Vertex_Data_List(void);
 
 		// 頂点インデックスデータのリストの参照を返す　戻り値：頂点インデックスデータのリストの参照
 		std::vector<unsigned __int32> & M_Get_Index_Data_List(void);

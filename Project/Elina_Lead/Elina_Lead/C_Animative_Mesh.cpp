@@ -10,7 +10,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace ASSET::ANIMATIVE::MESH;
+using namespace ASSET::ANIMATION::MESH;
 
 
 // ☆ 関数 ☆ //
@@ -171,9 +171,9 @@ bool C_Animative_Mesh::M_Load_Material_By_Name(std::string in_load_material_name
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：頂点データのリストの参照を返す
 // 引数   ：void
-// 戻り値 ：vector<S_3D_Model_Vertex> & 頂点データのリストを返す
+// 戻り値 ：vector<S_3D_Animation_Model_Vertex> & 頂点データのリストを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<DATA::VERTEX::S_3D_Model_Vertex> & C_Animative_Mesh::M_Get_Vertex_Data_List(void)
+std::vector<DATA::VERTEX::S_3D_Animation_Model_Vertex> & C_Animative_Mesh::M_Get_Vertex_Data_List(void)
 {
 	return mpr_variable.vertex_setting.M_Get_Vertex_Data();
 }

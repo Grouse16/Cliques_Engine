@@ -27,21 +27,14 @@ namespace _3D_Model_Converter_And_Drawer
         {
             InitializeComponent();
 
-            // shader source
+            // シェーダーロード
             m_sourcePath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "shader.fx");
             m_source = new ShaderSource();
             m_source.PropertyChanged += M_source_PropertyChanged;               
             m_source.Source = File.ReadAllText(m_sourcePath, Encoding.UTF8);
 
-            // watch
-            var watcher = new System.IO.FileSystemWatcher();
-            watcher.Path = Path.GetDirectoryName(m_sourcePath);
-            watcher.NotifyFilter = System.IO.NotifyFilters.LastWrite;
-            watcher.Filter = Path.GetFileName(m_sourcePath);
-            watcher.Changed += Watcher_Changed;
-            watcher.EnableRaisingEvents = true;
 
-            // vertex
+            // 頂点
             m_vertices.ListChanged += (o, e) =>
               {
                   d3D11Panel1.Buffer.SetVertices(m_vertices.ToArray());
