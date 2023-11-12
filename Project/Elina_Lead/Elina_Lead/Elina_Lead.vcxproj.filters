@@ -466,25 +466,25 @@
     <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル\制御">
       <UniqueIdentifier>{7ee97cab-8139-460f-9ebc-9894092c2e2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル">
       <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション">
       <UniqueIdentifier>{9cbf043a-156d-42da-adde-86d941e91040}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション\システム">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\システム">
       <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーション\制御">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\制御">
       <UniqueIdentifier>{81e0a071-8835-4603-b7d1-6f59ca6d171b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル">
       <UniqueIdentifier>{bf08b997-48c7-40ad-8511-758c1ce02465}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル\制御">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル\制御">
       <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーション&amp;モデル\アニメーションモデル\システム">
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム">
       <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -805,7 +805,13 @@
       <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animative_Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_3D_Animation_Model_Vertex.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_3D_Animation_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1041,7 +1047,10 @@
       <Filter>ソース ファイル\アセット\モデル\システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animative_Mesh.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_3D_Animation_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

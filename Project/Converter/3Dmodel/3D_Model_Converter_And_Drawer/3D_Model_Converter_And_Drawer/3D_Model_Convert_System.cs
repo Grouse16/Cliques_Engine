@@ -1,4 +1,5 @@
 ﻿using Assimp;
+using Assimp.Unmanaged;
 using SharpDX;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,27 @@ namespace _3D_Model_Converter_And_Drawer
             }
         }
 
+        // 頂点ウェイト情報の構造体
+        struct S_Vertex_Weight_Inform
+        {
+            public double value; // ウェイト値
+            public int index;   // ボーン番号
+            
+
+            // 値初期化用コンストラクタ
+            public S_Vertex_Weight_Inform(double in_value, int in_index)
+            {
+                value = in_value;
+                index = in_index;
+            }
+
+            // ウェイト値をセットする
+            public void M_Set_Value(double in_value)
+            {
+                value = in_value;
+            }
+        }
+
 
         // ☆ 変数宣言 ☆ //
         static List<S_Bone_Name_Index> m_bone_index_list = new List<S_Bone_Name_Index>();   // ボーンとインデックスのリスト
@@ -70,10 +92,14 @@ namespace _3D_Model_Converter_And_Drawer
         public static void M_Covert_Execute()
         {
             m_file_write_data.Clear();
+            m_bone_index_list.Clear();
             m_file_mat_write_data.Clear();
 
             // メッシュデータの変換
-            M_Mesh_Convert();
+            if (M_Mesh_Convert() == false)
+            {
+                return;
+            }
 
 
             // 静的モデルを指定されているなら静的モデル形式でセーブ
@@ -99,7 +125,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
         // メッシュデータの変換
-        private static void M_Mesh_Convert()
+        private static bool M_Mesh_Convert()
         {
             // 先頭に拡張子識別用の情報を設定、これがこのファイル形式の証明になる
             m_file_write_data.Add("This-Is-ELANMMDL");
@@ -150,6 +176,119 @@ namespace _3D_Model_Converter_And_Drawer
             int mesh_num = 0;
             foreach (var mesh in m_now_scene.Meshes)
             {
+                // ☆ 変数宣言 ☆ //
+                List<List<S_Vertex_Weight_Inform>> m_vertex_weight_list = new List<List<S_Vertex_Weight_Inform>>(); // 頂点ウェイト値のリスト
+
+
+                // 現在のメッシュ用の頂点ウェイト情報分のメモリを確保
+                foreach (var vertex in mesh.Vertices)
+                {
+                    m_vertex_weight_list.Add(new List<S_Vertex_Weight_Inform>());
+                }
+
+                // このメッシュのウェイト値を全て頂点ごとに修正
+                foreach (var bone in mesh.Bones)
+                {
+                    // ☆ 変数宣言 ☆ //
+                    int bone_index = 0; // ボーンのインデックス番号
+
+
+                    // ボーンのインデックスIDを取得
+                    foreach (var bone_index_data in m_bone_index_list)
+                    {
+                        if (bone_index_data.name == bone.Name)
+                        {
+                            bone_index = bone_index_data.index;
+                        }
+                    }
+
+                    // ウェイト値とボーンIDをリストに登録
+                    foreach (var weight_value in bone.VertexWeights)
+                    {
+                        // ☆ 定数 ☆ //
+                        const int con_WEIGHT_COUNT_MAX = 4;    // １頂点に対するウェイト情報量の上限
+
+
+                        // ウェイト情報数が4を超えるまではウェイト情報を登録する
+                        if (m_vertex_weight_list[weight_value.VertexID].Count < con_WEIGHT_COUNT_MAX)
+                        {
+                            m_vertex_weight_list[weight_value.VertexID].Add(new S_Vertex_Weight_Inform(weight_value.Weight, bone_index));
+                        }
+                        
+                        // この形式のウェイトは4つまでだが、5つ以上のボーンのウェイト情報を頂点が持っている時
+                        else
+                        {
+                            //メッセージボックスを表示する
+                            DialogResult result = MessageBox.Show("5つ以上のボーンから影響(Weight)を受ける頂点がありますが、.elanmmdlで指定できるWeight数は4つまでです。このままでは5つ目以降の情報を削除することになりますが、続行しますか？" + Environment.NewLine + "ボーン名:" + bone.Name,
+                                "続行確認",
+                                MessageBoxButtons.YesNoCancel,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button2);
+
+                            // はい選択時は続行
+                            if (result == DialogResult.Yes)
+                            {
+
+                            }
+
+                            // それ以外の時は終了
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                // それぞれの頂点のウェイト値を合計で1.0になるように調整する
+                foreach (var vertex_weight_list in m_vertex_weight_list)
+                {
+                    // ☆ 変数宣言 ☆ //
+                    double weight_sum = 0.0;    // ウェイトの合計値
+
+                    int weight_slot_sum = vertex_weight_list.Count;    // この頂点のウェイト数
+
+                    double weight_attach_level = 1.0; // ウェイトの修正時の修正力の強さ
+
+
+                    do
+                    {
+                        // ウェイトの合計値を初期化
+                        weight_sum = 0.0;
+                        
+                        // ウェイト値の合計を計算
+                        foreach (var weight_data in vertex_weight_list)
+                        {
+                            weight_sum += weight_data.value;
+                        }
+
+                        // 1.0を超えないなら全体的に修正をかける
+                        if (weight_sum < 1.0)
+                        {
+                            for (int l_weight_num = 0; l_weight_num < weight_slot_sum; l_weight_num++)
+                            {
+                                vertex_weight_list[l_weight_num] = new S_Vertex_Weight_Inform(vertex_weight_list[l_weight_num].value + (1.0 - weight_sum) / (double)weight_slot_sum, vertex_weight_list[l_weight_num].index);
+                            }
+
+                            // 修正後のウェイトの合計値を取得
+                            weight_sum = 0.0;
+                            foreach (var weight_data in vertex_weight_list)
+                            {
+                                weight_sum += weight_data.value;
+                            }
+
+                            weight_attach_level *= 2.0;
+                        }
+
+                        // 超えるなら修正力を初期化
+                        if (weight_sum >= 1.0)
+                        {
+                            weight_attach_level = 2.0;
+                        }
+
+                    } while (weight_sum < 1.0);
+                }
+
                 // メッシュ名を記述
                 m_file_write_data.Add("MESH" + (mesh_num + 1).ToString() + ":");
                 m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.mesh_group_name_list[mesh_num]);
@@ -165,6 +304,8 @@ namespace _3D_Model_Converter_And_Drawer
                 for (int now_vertex = 0; now_vertex < mesh.Vertices.Count; now_vertex++)
                 {
                     // ☆ 変数宣言 ☆ //
+                    string vertex_write_text;  // 頂点に書き込むデータ
+
                     Color4D color = new Color4D(0, 0, 0, 0); // 色情報
 
                     Vector3D uv = new Vector3D(0, 0, 0);
@@ -182,39 +323,54 @@ namespace _3D_Model_Converter_And_Drawer
                         uv = mesh.TextureCoordinateChannels[0][now_vertex];
                     }
 
+                    // 書き込む頂点情報を設定
+                    vertex_write_text =
 
-                    m_file_write_data.Add
-                        (
-                              //==☆ 頂点座標 ☆==//
-                              mesh.Vertices[now_vertex].X.ToString() + ","
-                            + mesh.Vertices[now_vertex].Y.ToString() + ","
-                            + mesh.Vertices[now_vertex].Z.ToString() + "," + ":"
+                        //==☆ 頂点座標 ☆==//
+                          mesh.Vertices[now_vertex].X.ToString() + ","
+                        + mesh.Vertices[now_vertex].Y.ToString() + ","
+                        + mesh.Vertices[now_vertex].Z.ToString() + "," + ":"
 
-                            //==☆ UV座標 ☆==//
-                            + uv.X.ToString() + ","
-                            + uv.Y.ToString() + "," + ":"
+                        //==☆ UV座標 ☆==//
+                        + uv.X.ToString() + ","
+                        + uv.Y.ToString() + "," + ":"
 
-                            //==☆ 頂点カラー ☆==//
-                            + color.R.ToString() + ","
-                            + color.G.ToString() + ","
-                            + color.B.ToString() + ","
-                            + color.A.ToString() + "," + ":"
+                        //==☆ 頂点カラー ☆==//
+                        + color.R.ToString() + ","
+                        + color.G.ToString() + ","
+                        + color.B.ToString() + ","
+                        + color.A.ToString() + "," + ":"
 
-                            //==☆ 法線ベクトル ☆==//
-                            + mesh.Normals[now_vertex].X.ToString() + ","
-                            + mesh.Normals[now_vertex].Y.ToString() + ","
-                            + mesh.Normals[now_vertex].Z.ToString() + "," + ":"
+                        //==☆ 法線ベクトル ☆==//
+                        + mesh.Normals[now_vertex].X.ToString() + ","
+                        + mesh.Normals[now_vertex].Y.ToString() + ","
+                        + mesh.Normals[now_vertex].Z.ToString() + "," + ":"
 
-                            //==☆ タンジェント ☆==//
-                            + mesh.Tangents[now_vertex].X.ToString() + ","
-                            + mesh.Tangents[now_vertex].Y.ToString() + ","
-                            + mesh.Tangents[now_vertex].Z.ToString() + "," + ":"
+                        //==☆ タンジェント ☆==//
+                        + mesh.Tangents[now_vertex].X.ToString() + ","
+                        + mesh.Tangents[now_vertex].Y.ToString() + ","
+                        + mesh.Tangents[now_vertex].Z.ToString() + "," + ":"
 
-                            //==☆ バイノーマルタンジェント（順法線） ☆==//
-                            + mesh.BiTangents[now_vertex].X.ToString() + ","
-                            + mesh.BiTangents[now_vertex].Y.ToString() + ","
-                            + mesh.BiTangents[now_vertex].Z.ToString() + ","
-                        );
+                        //==☆ バイノーマルタンジェント（順法線） ☆==//
+                        + mesh.BiTangents[now_vertex].X.ToString() + ","
+                        + mesh.BiTangents[now_vertex].Y.ToString() + ","
+                        + mesh.BiTangents[now_vertex].Z.ToString() + "," + ":";
+
+
+                    // アニメーション時はボーンウェイト情報を追記
+                    if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
+                    {
+                        foreach (var weight_inform in m_vertex_weight_list[now_vertex])
+                        {
+                            vertex_write_text += weight_inform.index.ToString() + "/" + weight_inform.value.ToString() + ",";
+                        }
+
+                        // ボーンウェイト情報終了を記録
+                        vertex_write_text += ":";
+                    }
+
+                    // 生成した頂点情報を書き込み
+                    m_file_write_data.Add(vertex_write_text);
                 }
 
 
@@ -229,67 +385,14 @@ namespace _3D_Model_Converter_And_Drawer
                     m_file_write_data.Add(face.Indices[2].ToString());
                 }
 
-                // アニメーションのあるモデルへ変換するときのみ
-                if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
-                {
-                    // ☆ 変数宣言 ☆ //
-                    int bone_num = 1;   // 現在のボーンの番号
-
-
-                    // 使用するボーンを記録開始
-                    m_file_write_data.Add("BONE " + (mesh_num + 1).ToString() + ":");
-
-                    foreach (var bone in mesh.Bones)
-                    {
-                        m_file_write_data.Add("BONEDATA" + (mesh_num + 1).ToString() + ":" + bone_num.ToString());
-
-                        // ボーン名からボーンインデックス番号を探索し、記述する
-                        foreach (var bone_index in m_bone_index_list)
-                        {
-                            if (bone_index.name == bone.Name)
-                            {
-                                m_file_write_data.Add(bone_index.index.ToString());
-                            }
-                        }
-
-                        // ボーンマトリクス変換を記述
-                        m_file_write_data.Add
-                            (
-                            bone.OffsetMatrix.A1.ToString() + "," +
-                            bone.OffsetMatrix.A2.ToString() + "," +
-                            bone.OffsetMatrix.A3.ToString() + "," +
-                            bone.OffsetMatrix.A4.ToString() + "," +
-                            bone.OffsetMatrix.B1.ToString() + "," +
-                            bone.OffsetMatrix.B2.ToString() + "," +
-                            bone.OffsetMatrix.B3.ToString() + "," +
-                            bone.OffsetMatrix.B4.ToString() + "," +
-                            bone.OffsetMatrix.C1.ToString() + "," +
-                            bone.OffsetMatrix.C2.ToString() + "," +
-                            bone.OffsetMatrix.C3.ToString() + "," +
-                            bone.OffsetMatrix.C4.ToString() + "," +
-                            bone.OffsetMatrix.D1.ToString() + "," +
-                            bone.OffsetMatrix.D2.ToString() + "," +
-                            bone.OffsetMatrix.D3.ToString() + "," +
-                            bone.OffsetMatrix.D4.ToString() + ","
-                            );
-
-                        // ウェイトを記述
-                        m_file_write_data.Add("WEIGHTDATA" + (mesh_num + 1).ToString() + ":" + bone_num.ToString());
-                        m_file_write_data.Add(bone.VertexWeightCount.ToString());
-                        foreach (var weight in bone.VertexWeights)
-                        {
-                            m_file_write_data.Add(weight.VertexID.ToString() + "," + weight.Weight + ",");
-                        }
-                        bone_num++;
-                    }
-                }
-
                 // 空白をあける
                 m_file_write_data.Add("");
 
                 // 次のメッシュ番号を指定
                 mesh_num++;
             }
+
+            return true;
         }
 
 

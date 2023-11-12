@@ -132,6 +132,7 @@
     <ClInclude Include="All_Figure_Data.h" />
     <ClInclude Include="Challenge_Mode_Macro.h" />
     <ClInclude Include="Color_Data.h" />
+    <ClInclude Include="C_3D_Animation_Model_System.h" />
     <ClInclude Include="C_3D_Model_Manager.h" />
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
@@ -225,6 +226,7 @@
     <ClInclude Include="E_Shader_Kind.h" />
     <ClInclude Include="Rasterizer_Setting_Inform.h" />
     <ClInclude Include="Rendering_Another_Setting_Inform.h" />
+    <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
     <ClInclude Include="S_3D_Model_Vertex.h" />
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h" />
     <ClInclude Include="S_Rect.h" />
@@ -236,6 +238,7 @@
     <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C_3D_Animation_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_Manager.cpp" />
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
