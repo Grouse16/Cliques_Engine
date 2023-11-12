@@ -228,6 +228,7 @@
     <ClInclude Include="Rendering_Another_Setting_Inform.h" />
     <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
     <ClInclude Include="S_3D_Model_Vertex.h" />
+    <ClInclude Include="S_Bone_Inform.h" />
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h" />
     <ClInclude Include="S_Rect.h" />
     <ClInclude Include="S_Shader_Resource_Signature_Inform.h" />
@@ -339,6 +340,7 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets')" />
     <Import Project="..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets" Condition="Exists('..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets')" />
+    <Import Project="..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets" Condition="Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -346,5 +348,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets'))" />
     <Error Condition="!Exists('..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets'))" />
   </Target>
 </Project>

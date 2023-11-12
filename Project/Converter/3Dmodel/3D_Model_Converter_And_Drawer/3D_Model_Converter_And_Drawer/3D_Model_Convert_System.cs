@@ -27,16 +27,19 @@ namespace _3D_Model_Converter_And_Drawer
         // ☆ 構造体 ☆ //
 
         // ボーンとインデックスを管理するための構造体
-        struct S_Bone_Name_Index
+        struct S_Bone_Data_Inform
         {
             public string name; // ボーン名
             public int index;   // ボーンのインデックス番号
+            public Matrix4x4 offset_matrix;    // オフセットマトリクス行列   
+
 
             // 初期化用コンストラクタ
-            public S_Bone_Name_Index(string in_name, int in_index)
+            public S_Bone_Data_Inform(string in_name, int in_index, Matrix4x4 in_offset_matrix)
             {
                 name = in_name;
                 index = in_index;
+                offset_matrix = in_offset_matrix;
             }
         }
 
@@ -63,7 +66,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
         // ☆ 変数宣言 ☆ //
-        static List<S_Bone_Name_Index> m_bone_index_list = new List<S_Bone_Name_Index>();   // ボーンとインデックスのリスト
+        static List<S_Bone_Data_Inform> m_bone_index_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
 
         static public Scene m_now_scene = new Scene();  // シーンのデータ
 
@@ -157,17 +160,36 @@ namespace _3D_Model_Converter_And_Drawer
                         // 見つからなかったら新しく登録
                         if (detected == false)
                         {
-                            m_bone_index_list.Add(new S_Bone_Name_Index(bone.Name, m_bone_index_list.Count));
+                            m_bone_index_list.Add(new S_Bone_Data_Inform(bone.Name, m_bone_index_list.Count, bone.OffsetMatrix));
                         }
                     }
                 }
 
 
-                // ボーン数とボーン名を記録
+                // ボーン数とボーン名、オフセットマトリクスを記録
                 m_file_write_data.Add("BONESUM:" + m_bone_index_list.Count.ToString());
                 foreach (var bone_index in m_bone_index_list)
                 {
-                    m_file_write_data.Add(bone_index.name);
+                    m_file_write_data.Add
+                        (
+                              bone_index.name + ":"
+                            + bone_index.offset_matrix.A1.ToString() + ","
+                            + bone_index.offset_matrix.A2.ToString() + ","
+                            + bone_index.offset_matrix.A3.ToString() + ","
+                            + bone_index.offset_matrix.A4.ToString() + ","
+                            + bone_index.offset_matrix.B1.ToString() + ","
+                            + bone_index.offset_matrix.B2.ToString() + ","
+                            + bone_index.offset_matrix.B3.ToString() + ","
+                            + bone_index.offset_matrix.B4.ToString() + ","
+                            + bone_index.offset_matrix.C1.ToString() + ","
+                            + bone_index.offset_matrix.C2.ToString() + ","
+                            + bone_index.offset_matrix.C3.ToString() + ","
+                            + bone_index.offset_matrix.C4.ToString() + ","
+                            + bone_index.offset_matrix.D1.ToString() + ","
+                            + bone_index.offset_matrix.D2.ToString() + ","
+                            + bone_index.offset_matrix.D3.ToString() + ","
+                            + bone_index.offset_matrix.D4.ToString() + ","
+                        );
                 }
             }
 

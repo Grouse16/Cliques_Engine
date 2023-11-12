@@ -48,6 +48,8 @@ namespace ASSET::ANIMATION::MODEL
 		{
 			std::vector<S_Animative_Mesh_Data_Inform> mesh_inform_list;	// メッシュの管理用情報リスト
 
+			std::vector<std::string> bone_list;	// ボーンのリスト
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 

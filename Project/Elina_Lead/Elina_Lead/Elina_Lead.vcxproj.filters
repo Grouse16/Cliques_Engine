@@ -813,6 +813,9 @@
     <ClInclude Include="C_3D_Animation_Model_System.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
+    <ClInclude Include="S_Bone_Inform.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
