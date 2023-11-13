@@ -281,7 +281,17 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
 			now_vertex_data.binormal_tangent.z = file_data.M_Get_Float_Double_Number();
 
-			// 
+			// ボーンウェイト（ボーン影響値）情報の位置へ移動
+			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
+
+			// ボーンウェイト情報の終了の記号がくるか、４回繰り返すまで、ボーンウェイト情報をロードし続ける
+			for (int loop_cnt = 0; loop_cnt < DATA::VERTEX::con_BONE_WEIGHT_INDEX_SUM || file_data.M_Get_Text_Of_Now_Position() != ';'; loop_cnt++)
+			{
+				now_vertex_data.bone_weight[loop_cnt].bone_index = file_data.M_Get_Number();
+				file_data.M_Goto_Right_By_Text_In_Front_Column("/");
+				now_vertex_data.bone_weight[loop_cnt].weight = file_data.M_Get_Float_Double_Number();
+				file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+			}
 		}
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
