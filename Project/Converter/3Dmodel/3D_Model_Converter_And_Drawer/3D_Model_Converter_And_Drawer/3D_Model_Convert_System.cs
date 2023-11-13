@@ -395,7 +395,7 @@ namespace _3D_Model_Converter_And_Drawer
                         }
 
                         // ボーンウェイト情報終了を記録
-                        vertex_write_text += ";";
+                        vertex_write_text += ":";
                     }
 
                     // 生成した頂点情報を書き込み
