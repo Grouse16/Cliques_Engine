@@ -18,7 +18,6 @@ C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Conve
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\bin\Debug\SharpDX.Mathematics.pdb
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\bin\Debug\SharpDX.Mathematics.xml
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.AssemblyReference.cache
-C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Form1.resources
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.Name_Setting.resources
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.Scroll_Name_Setting.resources
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\SharpDXSample.D3D11Panel.resources
@@ -29,3 +28,4 @@ C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Conve
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.CopyComplete
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.exe
 C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.pdb
+C:\Users\ryuse\Desktop\creat\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.resources

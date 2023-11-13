@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace _3D_Model_Converter_And_Drawer
 {
-    public partial class Form1 : Form
+    public partial class Form_3D_Model_Convert_Setting : Form
     {
         public static int material_num = 0;
         public static int mesh_num = 0;
@@ -20,7 +20,7 @@ namespace _3D_Model_Converter_And_Drawer
         public static List<string> material_name_list = new List<string>();
         public static List<string> mesh_group_name_list = new List<string>();
 
-        public Form1()
+        public Form_3D_Model_Convert_Setting()
         {
             InitializeComponent();
         }
@@ -63,7 +63,7 @@ namespace _3D_Model_Converter_And_Drawer
                 mesh_group_name_list.Add(scroll_mesh_groop_name.name_list[now_mat_num].M_Get_Name());
             }
 
-            _3D_Model_Convert_System.M_Covert_Execute();
+            CS_3D_Model_Convert_System.M_Model_Covert_Execute();
 
             this.Close();
         }

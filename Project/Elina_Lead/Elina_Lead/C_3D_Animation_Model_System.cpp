@@ -90,10 +90,6 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 	}
 
 
-	// ☆ 変数宣言 ☆ //
-	int now_mesh_num = 0;	// 今のメッシュの番号
-
-
 	// 現在持っているアニメーションモデルデータは削除する
 	M_Release();
 
@@ -116,7 +112,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 
 	// ボーン数を取得しその数分ボーンを生成
-	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:" + std::to_string(now_mesh_num) + ":");
+	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
 	mpr_variable.bone_list.resize(file_data.M_Get_Number());
 
 
@@ -198,11 +194,8 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 	// メッシュデータ分読み取る
 	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
 	{
-		// メッシュ番号を更新
-		now_mesh_num += 1;
-
 		// メッシュの位置へ移動
-		file_data.M_Goto_Right_By_Text_In_Front_Row("MESH" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("MESH:");
 
 		// メッシュ名を取得
 		file_data.M_Move_Next_Raw();
@@ -218,14 +211,14 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		{
 #ifdef _DEBUG
 			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "マテリアルのロードに失敗しました");
+			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "マテリアルのロードに失敗しました。アニメーション用モデル：" + in_3d_animation_model_path);
 #endif // _DEBUG
 
 			return false;
 		}
 
 		// 頂点数を取得し、頂点データを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
 		now_mesh_inform.mesh_data->M_Creat_Vertex_List(file_data.M_Get_Number());
 
 		// 頂点データをロード
@@ -295,7 +288,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		}
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
 		now_mesh_inform.mesh_data->M_Creat_Index_List(file_data.M_Get_Number());
 
 		// 頂点インデックスデータをロード
@@ -316,7 +309,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "モデルのロードに成功しました：" + in_3d_animation_model_path);
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "アニメーション用モデルのロードに成功しました：" + in_3d_animation_model_path);
 #endif // _DEBUG
 
 	return true;

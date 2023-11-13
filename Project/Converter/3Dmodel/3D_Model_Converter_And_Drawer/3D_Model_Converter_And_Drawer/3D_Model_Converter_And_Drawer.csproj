@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation_Convert\CS_Animation_Convert_System.cs" />
     <Compile Include="Name_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,7 +81,7 @@
     <Compile Include="Scroll_Name_Setting.Designer.cs">
       <DependentUpon>Scroll_Name_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="3D_Model_Convert_System.cs" />
+    <Compile Include="CS_3D_Model_Convert_System.cs" />
     <Compile Include="d3d11\D3D11Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,10 +92,10 @@
     <Compile Include="d3d11\D3D11Shader.cs" />
     <Compile Include="d3d11\D3D11VertexBuffer.cs" />
     <Compile Include="d3d11\DXGISwapChain.cs" />
-    <Compile Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.cs">
+    <Compile Include="3D_model_Convert\3D_Model_Convert_Setting_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.Designer.cs">
+    <Compile Include="3D_model_Convert\3D_Model_Convert_Setting_Form.Designer.cs">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -106,7 +107,7 @@
     <Compile Include="Main_Program.cs" />
     <Compile Include="My_Math_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="3Dmodel_Convert\3D_Model_Convert_Setting_Form.resx">
+    <EmbeddedResource Include="3D_model_Convert\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Name_Setting.resx">
