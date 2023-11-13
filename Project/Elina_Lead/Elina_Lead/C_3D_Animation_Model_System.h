@@ -76,6 +76,9 @@ namespace ASSET::ANIMATION::MODEL
 		// 指定されたパスの3Dアニメーションモデルをロードする　引数：3Dアニメーションモデルまでのパス　戻り値：成功時のみtrue
 		bool M_Load_3D_Animation_Model_By_Path(std::string);
 
+		// 指定されたパスのアニメーションデータをロードする　引数：アニメーションデータまでのパス　戻り値：成功時のみtrue
+		bool M_Load_Animation_Data_By_Path(std::string);
+
 
 		//-☆- ゲッタ -☆-//
 

@@ -316,6 +316,21 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のメッシュを返す
+// 引数   ：string 探すメッシュの名前
+// 戻り値 ：C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_animation_data)
+{
+
+
+
+
+	return true;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

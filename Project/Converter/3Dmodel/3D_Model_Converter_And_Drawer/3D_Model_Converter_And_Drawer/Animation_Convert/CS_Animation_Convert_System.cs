@@ -106,7 +106,8 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                                   (rotation_key.Time * one_frame_time).ToString() + ","
                                 + rotation_key.Value.X.ToString() + ","
                                 + rotation_key.Value.Y.ToString() + ","
-                                + rotation_key.Value.Z.ToString()
+                                + rotation_key.Value.Z.ToString() + ","
+                                + rotation_key.Value.W.ToString()
                             );
                     }
 

@@ -268,6 +268,7 @@ namespace _3D_Model_Converter_And_Drawer
             TB_before_convert_path.AppendText(file_path[0]);
         }
 
+
         // 変換するアニメーションをファイルのドロップを受け取る
         private void B_Animation_Converter_DragDrop(object sender, DragEventArgs e)
         {
