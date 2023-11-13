@@ -89,21 +89,20 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		return false;
 	}
 
-
-	// 現在持っているアニメーションモデルデータは削除する
-	M_Release();
-
-
 	// 認証名を探索する
 	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELANMMDL") == false)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elmdl形式ではありません：" + in_3d_animation_model_path);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmmdl形式ではありません：" + in_3d_animation_model_path);
 #endif // _DEBUG
 
 		return false;
 	}
+
+
+	// 現在持っているアニメーションモデルデータは削除する
+	M_Release();
 
 
 	// メッシュデータ数を取得

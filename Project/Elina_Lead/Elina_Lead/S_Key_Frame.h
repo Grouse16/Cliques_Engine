@@ -37,7 +37,7 @@ namespace ASSET::ANIMATION::DATA
 
 		float time_of_frame = 0.0f;	// フレームの時間
 
-	};	// 回転のみクオータニオンで四つ要素があるため
+	};	// 回転のみクオータニオンで四つ要素があるため分けている
 }
 
 

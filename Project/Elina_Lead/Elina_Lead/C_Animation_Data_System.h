@@ -14,7 +14,8 @@
 #include <vector>
 #include <string>
 
-#include "S_Key_Frame.h"
+#include "S_Bone_Inform.h"
+#include "S_Bone_Key_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -35,10 +36,7 @@ namespace ASSET::ANIMATION::DATA
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> position_key_list;	// 位置座標のキーのリスト
-			std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> scale_key_list;	// スケールのキーのリスト
-
-			std::vector<ASSET::ANIMATION::DATA::S_Rotation_Key_Frame> rotation_key_list;	// 回転のキーのリスト
+			std::vector<ASSET::ANIMATION::BONE::S_Bone_Key_Inform> bone_key_list;	// ボーンのキー情報のリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -60,10 +58,13 @@ namespace ASSET::ANIMATION::DATA
 		
 		//-☆- ロード -☆-//
 
-		// 指定されたパスのアニメーションデータをロードする
-		bool M_Get_Animation_Data_Load(std::string);
+		// 指定されたパスのアニメーションデータをロードする　引数：アニメーションデータまでのパス, アタッチ先モデルのボーンの情報　戻り値：成功時のみtrue
+		bool M_Load_Anmation_Data_By_Path(std::string, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> &);
 
 
+		//-☆- キーフレーム -☆-//
+
+		// 指定された時間とキーの影響量からそれぞれのボーンのキー情報を生成し、設定先へセットする　引数：時間, キー影響量, 設定先のボーンキー配列の参照
 	};
 }
 

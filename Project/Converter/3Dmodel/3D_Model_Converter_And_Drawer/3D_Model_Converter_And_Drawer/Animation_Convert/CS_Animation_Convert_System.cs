@@ -69,6 +69,9 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                 // アニメーションの１秒間でのフレームレートを書き込む
                 m_write_data_to_file.Add("FRAMERATE:" + now_animation.TicksPerSecond.ToString());
 
+                // アニメーションするボーン数を書き込む
+                m_write_data_to_file.Add("BONESUM:" + now_animation.NodeAnimationChannelCount.ToString());
+
 
                 // ボーンごとに動作を書き込む
                 foreach (var bone_frame in now_animation.NodeAnimationChannels)

@@ -15,6 +15,7 @@
 #include "C_Float_4.h"
 #include "C_Float_3.h"
 #include "C_Float_2.h"
+#include "S_Bone_Weight.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -24,17 +25,6 @@ namespace DATA::VERTEX
 {
 	// ☆ 定数 ☆ //
 	constexpr int con_BONE_WEIGHT_INDEX_SUM = 4;	// 登録できるボーンウェイト情報数（GPUのメモリの扱い的にボーンウェイトは４つで扱うのが最も効率がいい）
-
-
-	// ☆ 構造体 ☆ //
-
-	// ボーンのウェイト情報の構造体
-	struct S_Bone_Weight
-	{
-		int bone_index = 0;	// ボーンのインデックス番号
-
-		float weight = 0.0f;	// ボーンのウェイト値（影響量）
-	};
 
 
 	// アニメーション用頂点データの構造体
@@ -52,7 +42,7 @@ namespace DATA::VERTEX
 
 		MATH::FORMAT::C_Float_3 binormal_tangent;	// バイノーマルタンジェントベクトル（従法線）
 
-		S_Bone_Weight bone_weight[con_BONE_WEIGHT_INDEX_SUM];	// ボーンウェイト情報
+		ASSET::ANIMATION::BONE::S_Bone_Weight bone_weight[con_BONE_WEIGHT_INDEX_SUM];	// ボーンウェイト情報
 	};
 }
 
