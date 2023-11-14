@@ -714,6 +714,11 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 		return false;
 	}
 
+	
+	// 現在のデータを初期化する
+	M_Release();
+
+
 	// マテリアルに使用するシェーダー設定名をがある位置へ移動　失敗でエラーを出して抜ける
 	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Row("Shader：") == false)
 	{

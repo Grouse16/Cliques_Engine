@@ -1,6 +1,6 @@
 ﻿namespace _3D_Model_Converter_And_Drawer
 {
-    partial class Form1
+    partial class Form_3D_Model_Convert_Setting
     {
         /// <summary>
         /// Required designer variable.

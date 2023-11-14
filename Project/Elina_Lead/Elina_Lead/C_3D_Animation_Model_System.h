@@ -12,6 +12,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Animative_Mesh.h"
+#include "S_Bone_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -48,6 +49,8 @@ namespace ASSET::ANIMATION::MODEL
 		{
 			std::vector<S_Animative_Mesh_Data_Inform> mesh_inform_list;	// メッシュの管理用情報リスト
 
+			std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> bone_list;	// ボーンのリスト
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 
@@ -72,6 +75,9 @@ namespace ASSET::ANIMATION::MODEL
 
 		// 指定されたパスの3Dアニメーションモデルをロードする　引数：3Dアニメーションモデルまでのパス　戻り値：成功時のみtrue
 		bool M_Load_3D_Animation_Model_By_Path(std::string);
+
+		// 指定されたパスのアニメーションデータをロードする　引数：アニメーションデータまでのパス　戻り値：成功時のみtrue
+		bool M_Load_Animation_Data_By_Path(std::string);
 
 
 		//-☆- ゲッタ -☆-//

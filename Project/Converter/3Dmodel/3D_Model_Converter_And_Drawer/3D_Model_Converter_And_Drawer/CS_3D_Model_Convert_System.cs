@@ -22,21 +22,24 @@ namespace _3D_Model_Converter_And_Drawer
     // ☆ クラス ☆ //
 
     // 3Dモデルを独自形式に変換するクラス
-    internal class _3D_Model_Convert_System
+    internal class CS_3D_Model_Convert_System
     {
         // ☆ 構造体 ☆ //
 
         // ボーンとインデックスを管理するための構造体
-        struct S_Bone_Name_Index
+        struct S_Bone_Data_Inform
         {
             public string name; // ボーン名
             public int index;   // ボーンのインデックス番号
+            public Matrix4x4 offset_matrix;    // オフセットマトリクス行列   
+
 
             // 初期化用コンストラクタ
-            public S_Bone_Name_Index(string in_name, int in_index)
+            public S_Bone_Data_Inform(string in_name, int in_index, Matrix4x4 in_offset_matrix)
             {
                 name = in_name;
                 index = in_index;
+                offset_matrix = in_offset_matrix;
             }
         }
 
@@ -63,7 +66,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
         // ☆ 変数宣言 ☆ //
-        static List<S_Bone_Name_Index> m_bone_index_list = new List<S_Bone_Name_Index>();   // ボーンとインデックスのリスト
+        static List<S_Bone_Data_Inform> m_bone_index_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
 
         static public Scene m_now_scene = new Scene();  // シーンのデータ
 
@@ -79,17 +82,17 @@ namespace _3D_Model_Converter_And_Drawer
             m_now_scene = in_scene;
         }
 
-        public static void M_Input_Form_Create()
+        public static void M_Model_Or_Animation_Model_Comvert_Start()
         {
-            _3D_Model_Converter_And_Drawer.Form1.material_num = m_now_scene.MaterialCount;
-            _3D_Model_Converter_And_Drawer.Form1.mesh_num = m_now_scene.MeshCount;
+            _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_num = m_now_scene.MaterialCount;
+            _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mesh_num = m_now_scene.MeshCount;
 
-            Form1 new_form = new Form1();
+            Form_3D_Model_Convert_Setting new_form = new Form_3D_Model_Convert_Setting();
             new_form.Show();
         }
 
         // 変換の実行
-        public static void M_Covert_Execute()
+        public static void M_Model_Covert_Execute()
         {
             m_file_write_data.Clear();
             m_bone_index_list.Clear();
@@ -127,8 +130,15 @@ namespace _3D_Model_Converter_And_Drawer
         // メッシュデータの変換
         private static bool M_Mesh_Convert()
         {
-            // 先頭に拡張子識別用の情報を設定、これがこのファイル形式の証明になる
-            m_file_write_data.Add("This-Is-ELANMMDL");
+            // 静的モデルに変換するときは、.elsttmdlであることを証明する記述をする
+            if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
+            {
+                m_file_write_data.Add("This-Is-ELSTTMDL");
+            }
+            else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
+            {
+                m_file_write_data.Add("This-Is-ELANMMDL");
+            }
 
             // メッシュ数を記録
             m_file_write_data.Add("MESHSUM:" + m_now_scene.MeshCount.ToString());
@@ -157,17 +167,36 @@ namespace _3D_Model_Converter_And_Drawer
                         // 見つからなかったら新しく登録
                         if (detected == false)
                         {
-                            m_bone_index_list.Add(new S_Bone_Name_Index(bone.Name, m_bone_index_list.Count));
+                            m_bone_index_list.Add(new S_Bone_Data_Inform(bone.Name, m_bone_index_list.Count, bone.OffsetMatrix));
                         }
                     }
                 }
 
 
-                // ボーン数とボーン名を記録
+                // ボーン数とボーン名、オフセットマトリクスを記録
                 m_file_write_data.Add("BONESUM:" + m_bone_index_list.Count.ToString());
                 foreach (var bone_index in m_bone_index_list)
                 {
-                    m_file_write_data.Add(bone_index.name);
+                    m_file_write_data.Add
+                        (
+                              bone_index.name + "/"
+                            + bone_index.offset_matrix.A1.ToString() + ","
+                            + bone_index.offset_matrix.A2.ToString() + ","
+                            + bone_index.offset_matrix.A3.ToString() + ","
+                            + bone_index.offset_matrix.A4.ToString() + ","
+                            + bone_index.offset_matrix.B1.ToString() + ","
+                            + bone_index.offset_matrix.B2.ToString() + ","
+                            + bone_index.offset_matrix.B3.ToString() + ","
+                            + bone_index.offset_matrix.B4.ToString() + ","
+                            + bone_index.offset_matrix.C1.ToString() + ","
+                            + bone_index.offset_matrix.C2.ToString() + ","
+                            + bone_index.offset_matrix.C3.ToString() + ","
+                            + bone_index.offset_matrix.C4.ToString() + ","
+                            + bone_index.offset_matrix.D1.ToString() + ","
+                            + bone_index.offset_matrix.D2.ToString() + ","
+                            + bone_index.offset_matrix.D3.ToString() + ","
+                            + bone_index.offset_matrix.D4.ToString() + ","
+                        );
                 }
             }
 
@@ -290,15 +319,15 @@ namespace _3D_Model_Converter_And_Drawer
                 }
 
                 // メッシュ名を記述
-                m_file_write_data.Add("MESH" + (mesh_num + 1).ToString() + ":");
-                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.mesh_group_name_list[mesh_num]);
+                m_file_write_data.Add("MESH:");
+                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mesh_group_name_list[mesh_num]);
 
                 // マテリアル名を記述
-                m_file_write_data.Add("MATERIAL" + (mesh_num + 1).ToString() + ":");
-                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.material_name_list[mesh.MaterialIndex]);
+                m_file_write_data.Add("MATERIAL:");
+                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[mesh.MaterialIndex]);
 
                 // 頂点数を入力
-                m_file_write_data.Add("VERT" + (mesh_num + 1).ToString() + ":" + mesh.VertexCount);
+                m_file_write_data.Add("VERT:" + mesh.VertexCount.ToString());
 
                 // 頂点データを書き込む
                 for (int now_vertex = 0; now_vertex < mesh.Vertices.Count; now_vertex++)
@@ -375,7 +404,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                 // メッシュのインデックス開始位置指定
-                m_file_write_data.Add("INDEX" + (mesh_num + 1).ToString() + ":" + mesh.FaceCount * 3);
+                m_file_write_data.Add("INDEX:" + mesh.FaceCount * 3);
 
                 // インデックスデータを書き込む
                 foreach (var face in mesh.Faces)
@@ -468,7 +497,7 @@ namespace _3D_Model_Converter_And_Drawer
         {
             for (int now_mat_num = 0; now_mat_num < m_now_scene.MaterialCount; now_mat_num++)
             {
-                m_file_mat_write_data.Add(_3D_Model_Converter_And_Drawer.Form1.material_name_list[now_mat_num]);
+                m_file_mat_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[now_mat_num]);
 
                 // アンビエント
                 m_file_mat_write_data.Add

@@ -813,6 +813,24 @@
     <ClInclude Include="C_3D_Animation_Model_System.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
+    <ClInclude Include="S_Bone_Inform.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Data_System.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Key_Frame.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Weight.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Key_Frame_List.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Key.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -1051,6 +1069,9 @@
     </ClCompile>
     <ClCompile Include="C_3D_Animation_Model_System.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Data_System.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -88,22 +88,23 @@
             this.B_Model_Converter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.B_Model_Converter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Model_Converter.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.B_Model_Converter.Location = new System.Drawing.Point(0, 167);
+            this.B_Model_Converter.Location = new System.Drawing.Point(0, 209);
+            this.B_Model_Converter.Margin = new System.Windows.Forms.Padding(4);
             this.B_Model_Converter.Name = "B_Model_Converter";
-            this.B_Model_Converter.Size = new System.Drawing.Size(283, 117);
+            this.B_Model_Converter.Size = new System.Drawing.Size(377, 146);
             this.B_Model_Converter.TabIndex = 0;
             this.B_Model_Converter.Text = "ここに3Dモデルのファイルをドラッグアンドドロップ\r\n（独自形式へ変換）\r\n（静的モデルに変換）";
             this.B_Model_Converter.UseVisualStyleBackColor = false;
-            this.B_Model_Converter.Click += new System.EventHandler(this.B_Model_Converter_Click);
             this.B_Model_Converter.DragDrop += new System.Windows.Forms.DragEventHandler(this.B_Model_Converter_DragDrop);
             this.B_Model_Converter.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox1.Location = new System.Drawing.Point(0, 152);
+            this.textBox1.Location = new System.Drawing.Point(0, 190);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 19);
+            this.textBox1.Size = new System.Drawing.Size(380, 22);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "モデルコンバーター";
             // 
@@ -111,36 +112,40 @@
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.Menu;
             this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox2.Location = new System.Drawing.Point(282, 517);
+            this.textBox2.Location = new System.Drawing.Point(376, 646);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(134, 23);
+            this.textBox2.Size = new System.Drawing.Size(177, 27);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "変換前モデルのパス";
             // 
             // TB_before_convert_path
             // 
             this.TB_before_convert_path.Font = new System.Drawing.Font("MS UI Gothic", 9F);
-            this.TB_before_convert_path.Location = new System.Drawing.Point(412, 517);
+            this.TB_before_convert_path.Location = new System.Drawing.Point(549, 646);
+            this.TB_before_convert_path.Margin = new System.Windows.Forms.Padding(4);
             this.TB_before_convert_path.Name = "TB_before_convert_path";
-            this.TB_before_convert_path.Size = new System.Drawing.Size(670, 19);
+            this.TB_before_convert_path.Size = new System.Drawing.Size(892, 22);
             this.TB_before_convert_path.TabIndex = 2;
             // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Menu;
             this.textBox4.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox4.Location = new System.Drawing.Point(282, 537);
+            this.textBox4.Location = new System.Drawing.Point(376, 671);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(134, 23);
+            this.textBox4.Size = new System.Drawing.Size(177, 27);
             this.textBox4.TabIndex = 2;
             this.textBox4.Text = "変換後モデルのパス";
             // 
             // TB_after_convert_path
             // 
             this.TB_after_convert_path.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_after_convert_path.Location = new System.Drawing.Point(412, 537);
+            this.TB_after_convert_path.Location = new System.Drawing.Point(549, 671);
+            this.TB_after_convert_path.Margin = new System.Windows.Forms.Padding(4);
             this.TB_after_convert_path.Name = "TB_after_convert_path";
-            this.TB_after_convert_path.Size = new System.Drawing.Size(670, 23);
+            this.TB_after_convert_path.Size = new System.Drawing.Size(892, 27);
             this.TB_after_convert_path.TabIndex = 2;
             // 
             // B_Animation_Converter
@@ -150,20 +155,23 @@
             this.B_Animation_Converter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.B_Animation_Converter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Animation_Converter.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.B_Animation_Converter.Location = new System.Drawing.Point(0, 296);
+            this.B_Animation_Converter.Location = new System.Drawing.Point(0, 370);
+            this.B_Animation_Converter.Margin = new System.Windows.Forms.Padding(4);
             this.B_Animation_Converter.Name = "B_Animation_Converter";
-            this.B_Animation_Converter.Size = new System.Drawing.Size(283, 120);
+            this.B_Animation_Converter.Size = new System.Drawing.Size(377, 150);
             this.B_Animation_Converter.TabIndex = 0;
             this.B_Animation_Converter.Text = "ここにアニメーションのファイルをドラッグアンドドロップ\r\n（独自形式へ変換）";
             this.B_Animation_Converter.UseVisualStyleBackColor = false;
+            this.B_Animation_Converter.DragDrop += new System.Windows.Forms.DragEventHandler(this.B_Animation_Converter_DragDrop);
             this.B_Animation_Converter.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox3.Location = new System.Drawing.Point(0, 280);
+            this.textBox3.Location = new System.Drawing.Point(0, 350);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(286, 19);
+            this.textBox3.Size = new System.Drawing.Size(380, 22);
             this.textBox3.TabIndex = 1;
             this.textBox3.Text = "アニメーションコンバーター";
             // 
@@ -174,21 +182,22 @@
             this.B_Model_Importer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.B_Model_Importer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Model_Importer.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.B_Model_Importer.Location = new System.Drawing.Point(-1, 17);
+            this.B_Model_Importer.Location = new System.Drawing.Point(-1, 21);
+            this.B_Model_Importer.Margin = new System.Windows.Forms.Padding(4);
             this.B_Model_Importer.Name = "B_Model_Importer";
-            this.B_Model_Importer.Size = new System.Drawing.Size(283, 139);
+            this.B_Model_Importer.Size = new System.Drawing.Size(377, 174);
             this.B_Model_Importer.TabIndex = 0;
             this.B_Model_Importer.Text = "ここに独自形式モデルのファイルをドラッグアンドドロップして読み込み";
             this.B_Model_Importer.UseVisualStyleBackColor = false;
-            this.B_Model_Importer.Click += new System.EventHandler(this.B_Model_Importer_Click);
             this.B_Model_Importer.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.SystemColors.Menu;
             this.textBox5.Location = new System.Drawing.Point(0, 0);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(286, 19);
+            this.textBox5.Size = new System.Drawing.Size(380, 22);
             this.textBox5.TabIndex = 1;
             this.textBox5.Text = "モデルインポーター";
             // 
@@ -199,9 +208,10 @@
             this.B_Animation_Importer_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.B_Animation_Importer_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Animation_Importer_1.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.B_Animation_Importer_1.Location = new System.Drawing.Point(808, 16);
+            this.B_Animation_Importer_1.Location = new System.Drawing.Point(1077, 20);
+            this.B_Animation_Importer_1.Margin = new System.Windows.Forms.Padding(4);
             this.B_Animation_Importer_1.Name = "B_Animation_Importer_1";
-            this.B_Animation_Importer_1.Size = new System.Drawing.Size(274, 179);
+            this.B_Animation_Importer_1.Size = new System.Drawing.Size(365, 224);
             this.B_Animation_Importer_1.TabIndex = 0;
             this.B_Animation_Importer_1.Text = "ここに独自形式アニメーションのファイルをドラッグアンドドロップして読み込み";
             this.B_Animation_Importer_1.UseVisualStyleBackColor = false;
@@ -210,142 +220,158 @@
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox6.Location = new System.Drawing.Point(808, 0);
+            this.textBox6.Location = new System.Drawing.Point(1077, 0);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(274, 19);
+            this.textBox6.Size = new System.Drawing.Size(364, 22);
             this.textBox6.TabIndex = 1;
             this.textBox6.Text = "アニメーションインポーター　１に設定";
             // 
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox7.Location = new System.Drawing.Point(282, 0);
+            this.textBox7.Location = new System.Drawing.Point(376, 0);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(527, 19);
+            this.textBox7.Size = new System.Drawing.Size(701, 22);
             this.textBox7.TabIndex = 1;
             this.textBox7.Text = "モデルビュワー";
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox8.Location = new System.Drawing.Point(282, 352);
+            this.textBox8.Location = new System.Drawing.Point(376, 440);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(527, 19);
+            this.textBox8.Size = new System.Drawing.Size(701, 22);
             this.textBox8.TabIndex = 1;
             this.textBox8.Text = "カメラ設定";
             // 
             // textBox9
             // 
             this.textBox9.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox9.Location = new System.Drawing.Point(282, 371);
+            this.textBox9.Location = new System.Drawing.Point(376, 464);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(258, 19);
+            this.textBox9.Size = new System.Drawing.Size(343, 22);
             this.textBox9.TabIndex = 1;
             this.textBox9.Text = "カメラ距離";
             // 
             // textBox10
             // 
             this.textBox10.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox10.Location = new System.Drawing.Point(536, 371);
+            this.textBox10.Location = new System.Drawing.Point(715, 464);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(272, 19);
+            this.textBox10.Size = new System.Drawing.Size(361, 22);
             this.textBox10.TabIndex = 1;
             this.textBox10.Text = "カメラ位置（角度ｙ）";
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(282, 389);
+            this.trackBar1.Location = new System.Drawing.Point(376, 486);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 10;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(258, 45);
+            this.trackBar1.Size = new System.Drawing.Size(344, 56);
             this.trackBar1.TabIndex = 4;
             this.trackBar1.Value = 10;
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(536, 389);
+            this.trackBar2.Location = new System.Drawing.Point(715, 486);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Maximum = 360;
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(272, 45);
+            this.trackBar2.Size = new System.Drawing.Size(363, 56);
             this.trackBar2.TabIndex = 4;
             // 
             // textBox11
             // 
             this.textBox11.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox11.Location = new System.Drawing.Point(280, 432);
+            this.textBox11.Location = new System.Drawing.Point(373, 540);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(801, 19);
+            this.textBox11.Size = new System.Drawing.Size(1067, 22);
             this.textBox11.TabIndex = 1;
             this.textBox11.Text = "アニメーションブレンド";
             // 
             // textBox12
             // 
             this.textBox12.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox12.Location = new System.Drawing.Point(281, 451);
+            this.textBox12.Location = new System.Drawing.Point(375, 564);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(82, 19);
+            this.textBox12.Size = new System.Drawing.Size(108, 22);
             this.textBox12.TabIndex = 1;
             this.textBox12.Text = "アニメーション１";
             // 
             // textBox13
             // 
             this.textBox13.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox13.Location = new System.Drawing.Point(676, 451);
+            this.textBox13.Location = new System.Drawing.Point(901, 564);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(4);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(82, 19);
+            this.textBox13.Size = new System.Drawing.Size(108, 22);
             this.textBox13.TabIndex = 1;
             this.textBox13.Text = "アニメーション２";
             // 
             // textBox14
             // 
             this.textBox14.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox14.Location = new System.Drawing.Point(360, 451);
+            this.textBox14.Location = new System.Drawing.Point(480, 564);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(4);
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(320, 19);
+            this.textBox14.Size = new System.Drawing.Size(425, 22);
             this.textBox14.TabIndex = 1;
             this.textBox14.Text = "アニメーション名";
             // 
             // textBox15
             // 
             this.textBox15.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox15.Location = new System.Drawing.Point(755, 451);
+            this.textBox15.Location = new System.Drawing.Point(1007, 564);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(4);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(326, 19);
+            this.textBox15.Size = new System.Drawing.Size(433, 22);
             this.textBox15.TabIndex = 1;
             this.textBox15.Text = "アニメーション名";
             // 
             // trackBar3
             // 
-            this.trackBar3.Location = new System.Drawing.Point(281, 471);
+            this.trackBar3.Location = new System.Drawing.Point(375, 589);
+            this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Maximum = 120;
             this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(399, 45);
+            this.trackBar3.Size = new System.Drawing.Size(532, 56);
             this.trackBar3.TabIndex = 4;
             // 
             // trackBar4
             // 
-            this.trackBar4.Location = new System.Drawing.Point(676, 471);
+            this.trackBar4.Location = new System.Drawing.Point(901, 589);
+            this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Maximum = 120;
             this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(405, 45);
+            this.trackBar4.Size = new System.Drawing.Size(540, 56);
             this.trackBar4.TabIndex = 4;
             // 
             // textBox16
             // 
             this.textBox16.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox16.Location = new System.Drawing.Point(808, 371);
+            this.textBox16.Location = new System.Drawing.Point(1077, 464);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(4);
             this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(273, 19);
+            this.textBox16.Size = new System.Drawing.Size(363, 22);
             this.textBox16.TabIndex = 1;
             this.textBox16.Text = "アニメーションブレンド率";
             // 
             // trackBar5
             // 
-            this.trackBar5.Location = new System.Drawing.Point(808, 389);
+            this.trackBar5.Location = new System.Drawing.Point(1077, 486);
+            this.trackBar5.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar5.Maximum = 100;
             this.trackBar5.Name = "trackBar5";
-            this.trackBar5.Size = new System.Drawing.Size(273, 45);
+            this.trackBar5.Size = new System.Drawing.Size(364, 56);
             this.trackBar5.TabIndex = 4;
             // 
             // B_Animation_Importer_2
@@ -355,9 +381,10 @@
             this.B_Animation_Importer_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.B_Animation_Importer_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.B_Animation_Importer_2.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.B_Animation_Importer_2.Location = new System.Drawing.Point(807, 210);
+            this.B_Animation_Importer_2.Location = new System.Drawing.Point(1076, 262);
+            this.B_Animation_Importer_2.Margin = new System.Windows.Forms.Padding(4);
             this.B_Animation_Importer_2.Name = "B_Animation_Importer_2";
-            this.B_Animation_Importer_2.Size = new System.Drawing.Size(274, 161);
+            this.B_Animation_Importer_2.Size = new System.Drawing.Size(365, 201);
             this.B_Animation_Importer_2.TabIndex = 0;
             this.B_Animation_Importer_2.Text = "ここに独自形式アニメーションのファイルをドラッグアンドドロップして読み込み";
             this.B_Animation_Importer_2.UseVisualStyleBackColor = false;
@@ -366,9 +393,10 @@
             // textBox17
             // 
             this.textBox17.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox17.Location = new System.Drawing.Point(807, 194);
+            this.textBox17.Location = new System.Drawing.Point(1076, 242);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(4);
             this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(274, 19);
+            this.textBox17.Size = new System.Drawing.Size(364, 22);
             this.textBox17.TabIndex = 1;
             this.textBox17.Text = "アニメーションインポーター　２に設定";
             // 
@@ -376,11 +404,11 @@
             // 
             this.textBox18.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox18.Location = new System.Drawing.Point(0, 557);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox18.Location = new System.Drawing.Point(0, 696);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(540, 19);
+            this.textBox18.Size = new System.Drawing.Size(719, 22);
             this.textBox18.TabIndex = 5;
             this.textBox18.Text = "assimpによる\"非\"独自形式のロード情報";
             // 
@@ -389,24 +417,23 @@
             this.textBox19.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox19.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBox19.Location = new System.Drawing.Point(536, 557);
-            this.textBox19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox19.Location = new System.Drawing.Point(715, 696);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox19.Name = "textBox19";
             this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(544, 19);
+            this.textBox19.Size = new System.Drawing.Size(725, 22);
             this.textBox19.TabIndex = 5;
             this.textBox19.Text = "独自形式のモデルのロード情報";
-            this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged);
             // 
             // textBox20
             // 
             this.textBox20.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox20.Location = new System.Drawing.Point(1, 574);
-            this.textBox20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox20.Location = new System.Drawing.Point(1, 718);
+            this.textBox20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(59, 19);
+            this.textBox20.Size = new System.Drawing.Size(78, 22);
             this.textBox20.TabIndex = 6;
             this.textBox20.Text = "ロード時間";
             // 
@@ -414,11 +441,11 @@
             // 
             this.textBox21.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox21.Location = new System.Drawing.Point(0, 591);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox21.Location = new System.Drawing.Point(0, 739);
+            this.textBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox21.Name = "textBox21";
             this.textBox21.ReadOnly = true;
-            this.textBox21.Size = new System.Drawing.Size(80, 19);
+            this.textBox21.Size = new System.Drawing.Size(106, 22);
             this.textBox21.TabIndex = 6;
             this.textBox21.Text = "物理メモリサイズ";
             // 
@@ -427,60 +454,56 @@
             this.textBox22.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox22.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBox22.Location = new System.Drawing.Point(536, 574);
-            this.textBox22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox22.Location = new System.Drawing.Point(715, 718);
+            this.textBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox22.Name = "textBox22";
             this.textBox22.ReadOnly = true;
-            this.textBox22.Size = new System.Drawing.Size(56, 19);
+            this.textBox22.Size = new System.Drawing.Size(74, 22);
             this.textBox22.TabIndex = 6;
             this.textBox22.Text = "ロード時間";
-            this.textBox22.TextChanged += new System.EventHandler(this.textBox22_TextChanged);
             // 
             // TB_assimp_load_time
             // 
             this.TB_assimp_load_time.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_assimp_load_time.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_assimp_load_time.Location = new System.Drawing.Point(58, 574);
-            this.TB_assimp_load_time.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_assimp_load_time.Location = new System.Drawing.Point(77, 718);
+            this.TB_assimp_load_time.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_assimp_load_time.Name = "TB_assimp_load_time";
             this.TB_assimp_load_time.ReadOnly = true;
-            this.TB_assimp_load_time.Size = new System.Drawing.Size(482, 19);
+            this.TB_assimp_load_time.Size = new System.Drawing.Size(641, 22);
             this.TB_assimp_load_time.TabIndex = 6;
-            this.TB_assimp_load_time.TextChanged += new System.EventHandler(this.textBox24_TextChanged);
             // 
             // TB_assimp_load_physics_data_size
             // 
             this.TB_assimp_load_physics_data_size.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_assimp_load_physics_data_size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_assimp_load_physics_data_size.Location = new System.Drawing.Point(78, 591);
-            this.TB_assimp_load_physics_data_size.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_assimp_load_physics_data_size.Location = new System.Drawing.Point(104, 739);
+            this.TB_assimp_load_physics_data_size.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_assimp_load_physics_data_size.Name = "TB_assimp_load_physics_data_size";
             this.TB_assimp_load_physics_data_size.ReadOnly = true;
-            this.TB_assimp_load_physics_data_size.Size = new System.Drawing.Size(194, 19);
+            this.TB_assimp_load_physics_data_size.Size = new System.Drawing.Size(257, 22);
             this.TB_assimp_load_physics_data_size.TabIndex = 6;
-            this.TB_assimp_load_physics_data_size.TextChanged += new System.EventHandler(this.textBox25_TextChanged);
             // 
             // TB_my_format_load_time
             // 
             this.TB_my_format_load_time.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_my_format_load_time.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_my_format_load_time.Location = new System.Drawing.Point(590, 574);
-            this.TB_my_format_load_time.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_my_format_load_time.Location = new System.Drawing.Point(787, 718);
+            this.TB_my_format_load_time.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_my_format_load_time.Name = "TB_my_format_load_time";
             this.TB_my_format_load_time.ReadOnly = true;
-            this.TB_my_format_load_time.Size = new System.Drawing.Size(492, 19);
+            this.TB_my_format_load_time.Size = new System.Drawing.Size(655, 22);
             this.TB_my_format_load_time.TabIndex = 6;
-            this.TB_my_format_load_time.TextChanged += new System.EventHandler(this.textBox24_TextChanged);
             // 
             // textBox24
             // 
             this.textBox24.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox24.Location = new System.Drawing.Point(272, 591);
-            this.textBox24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox24.Location = new System.Drawing.Point(363, 739);
+            this.textBox24.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox24.Name = "textBox24";
             this.textBox24.ReadOnly = true;
-            this.textBox24.Size = new System.Drawing.Size(80, 19);
+            this.textBox24.Size = new System.Drawing.Size(106, 22);
             this.textBox24.TabIndex = 6;
             this.textBox24.Text = "仮想メモリサイズ";
             // 
@@ -488,23 +511,22 @@
             // 
             this.TB_assimp_load_virtual_data_size.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_assimp_load_virtual_data_size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_assimp_load_virtual_data_size.Location = new System.Drawing.Point(350, 591);
-            this.TB_assimp_load_virtual_data_size.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_assimp_load_virtual_data_size.Location = new System.Drawing.Point(467, 739);
+            this.TB_assimp_load_virtual_data_size.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_assimp_load_virtual_data_size.Name = "TB_assimp_load_virtual_data_size";
             this.TB_assimp_load_virtual_data_size.ReadOnly = true;
-            this.TB_assimp_load_virtual_data_size.Size = new System.Drawing.Size(191, 19);
+            this.TB_assimp_load_virtual_data_size.Size = new System.Drawing.Size(253, 22);
             this.TB_assimp_load_virtual_data_size.TabIndex = 6;
-            this.TB_assimp_load_virtual_data_size.TextChanged += new System.EventHandler(this.textBox25_TextChanged);
             // 
             // textBox23
             // 
             this.textBox23.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox23.Location = new System.Drawing.Point(536, 591);
-            this.textBox23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox23.Location = new System.Drawing.Point(715, 739);
+            this.textBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox23.Name = "textBox23";
             this.textBox23.ReadOnly = true;
-            this.textBox23.Size = new System.Drawing.Size(81, 19);
+            this.textBox23.Size = new System.Drawing.Size(107, 22);
             this.textBox23.TabIndex = 6;
             this.textBox23.Text = "物理メモリサイズ";
             // 
@@ -512,23 +534,22 @@
             // 
             this.TB_my_format_load_physics_data_size.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_my_format_load_physics_data_size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_my_format_load_physics_data_size.Location = new System.Drawing.Point(614, 591);
-            this.TB_my_format_load_physics_data_size.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_my_format_load_physics_data_size.Location = new System.Drawing.Point(819, 739);
+            this.TB_my_format_load_physics_data_size.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_my_format_load_physics_data_size.Name = "TB_my_format_load_physics_data_size";
             this.TB_my_format_load_physics_data_size.ReadOnly = true;
-            this.TB_my_format_load_physics_data_size.Size = new System.Drawing.Size(194, 19);
+            this.TB_my_format_load_physics_data_size.Size = new System.Drawing.Size(257, 22);
             this.TB_my_format_load_physics_data_size.TabIndex = 6;
-            this.TB_my_format_load_physics_data_size.TextChanged += new System.EventHandler(this.textBox25_TextChanged);
             // 
             // textBox27
             // 
             this.textBox27.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox27.Location = new System.Drawing.Point(808, 591);
-            this.textBox27.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox27.Location = new System.Drawing.Point(1077, 739);
+            this.textBox27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox27.Name = "textBox27";
             this.textBox27.ReadOnly = true;
-            this.textBox27.Size = new System.Drawing.Size(81, 19);
+            this.textBox27.Size = new System.Drawing.Size(107, 22);
             this.textBox27.TabIndex = 6;
             this.textBox27.Text = "仮想メモリサイズ";
             // 
@@ -536,19 +557,19 @@
             // 
             this.TB_my_format_load_virtual_data_size.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TB_my_format_load_virtual_data_size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TB_my_format_load_virtual_data_size.Location = new System.Drawing.Point(887, 591);
-            this.TB_my_format_load_virtual_data_size.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TB_my_format_load_virtual_data_size.Location = new System.Drawing.Point(1183, 739);
+            this.TB_my_format_load_virtual_data_size.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TB_my_format_load_virtual_data_size.Name = "TB_my_format_load_virtual_data_size";
             this.TB_my_format_load_virtual_data_size.ReadOnly = true;
-            this.TB_my_format_load_virtual_data_size.Size = new System.Drawing.Size(194, 19);
+            this.TB_my_format_load_virtual_data_size.Size = new System.Drawing.Size(257, 22);
             this.TB_my_format_load_virtual_data_size.TabIndex = 6;
-            this.TB_my_format_load_virtual_data_size.TextChanged += new System.EventHandler(this.textBox25_TextChanged);
             // 
             // d3D11Panel1
             // 
-            this.d3D11Panel1.Location = new System.Drawing.Point(281, 16);
+            this.d3D11Panel1.Location = new System.Drawing.Point(375, 20);
+            this.d3D11Panel1.Margin = new System.Windows.Forms.Padding(5);
             this.d3D11Panel1.Name = "d3D11Panel1";
-            this.d3D11Panel1.Size = new System.Drawing.Size(526, 336);
+            this.d3D11Panel1.Size = new System.Drawing.Size(701, 420);
             this.d3D11Panel1.TabIndex = 7;
             // 
             // TB_Anim_Model_Convert
@@ -558,9 +579,10 @@
             this.TB_Anim_Model_Convert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.TB_Anim_Model_Convert.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TB_Anim_Model_Convert.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TB_Anim_Model_Convert.Location = new System.Drawing.Point(0, 438);
+            this.TB_Anim_Model_Convert.Location = new System.Drawing.Point(0, 548);
+            this.TB_Anim_Model_Convert.Margin = new System.Windows.Forms.Padding(4);
             this.TB_Anim_Model_Convert.Name = "TB_Anim_Model_Convert";
-            this.TB_Anim_Model_Convert.Size = new System.Drawing.Size(283, 120);
+            this.TB_Anim_Model_Convert.Size = new System.Drawing.Size(377, 150);
             this.TB_Anim_Model_Convert.TabIndex = 0;
             this.TB_Anim_Model_Convert.Text = "ここにアニメーションモデルのファイルをドラッグアンドドロップ\r\n（独自形式へ変換）\r\n（アニメーション可能モデルに変換）";
             this.TB_Anim_Model_Convert.UseVisualStyleBackColor = false;
@@ -570,17 +592,18 @@
             // textBox25
             // 
             this.textBox25.BackColor = System.Drawing.SystemColors.Menu;
-            this.textBox25.Location = new System.Drawing.Point(0, 422);
+            this.textBox25.Location = new System.Drawing.Point(0, 528);
+            this.textBox25.Margin = new System.Windows.Forms.Padding(4);
             this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(286, 19);
+            this.textBox25.Size = new System.Drawing.Size(380, 22);
             this.textBox25.TabIndex = 1;
             this.textBox25.Text = "アニメーションモデルコンバーター";
             // 
             // Main_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 608);
+            this.ClientSize = new System.Drawing.Size(1443, 760);
             this.Controls.Add(this.d3D11Panel1);
             this.Controls.Add(this.textBox22);
             this.Controls.Add(this.textBox20);
@@ -627,6 +650,7 @@
             this.Controls.Add(this.B_Model_Converter);
             this.Controls.Add(this.textBox25);
             this.Controls.Add(this.TB_Anim_Model_Convert);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Main_Form";
             this.Text = "Model Convert And Importer";

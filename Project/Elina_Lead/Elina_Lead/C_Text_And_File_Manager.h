@@ -47,7 +47,7 @@ namespace SYSTEM::TEXT
 
 			E_EDIT_MODE mode_setting = E_EDIT_MODE::e_TEXT;	// 編集モード設定
 
-			std::vector<std::string> stack_data;	// 文章のデータ（第一配列＝行,　第二配列＝列および文字）
+			std::vector<std::string> sentence_data;	// 文章のデータ（第一配列＝行,　第二配列＝列および文字）
 
 			std::string file_path = con_default_name;	// ファイルまでのパス
 
@@ -119,20 +119,23 @@ namespace SYSTEM::TEXT
 		// 現在編集中のファイルのパスを返す　戻り値：ファイルパスの文字列
 		const std::string & M_Get_File_Path_Refer(void);
 
-		// 現在の行の番号を返す
+		// 現在の行の番号を返す　戻り値：現在の行番号
 		int M_Get_Now_Row(void);
 
-		// 文章の行数を返す
-		int M_Get_Text_Row_Sum(void);
-
-		// 現在の列の番号を返す
+		// 現在の列の番号を返す　戻り値：現在の列番号
 		int M_Get_Now_Column(void);
 
-		// 今選択中の行の文字数を返す
+		// 文章の行数を返す　戻り値：全体の行数
+		int M_Get_Text_Row_Sum(void);
+
+		// 今選択中の行の文字数を返す　戻り値：今の行の文字数
 		int M_Get_Column_Sum_In_Now_Row(void);
 
-		// 現在の文章全体の文字数を返す
+		// 現在の文章全体の文字数を返す　戻り値：文章の文字数
 		int M_Get_Sentence_Text_Size(void);
+
+		// 現在の場所の文字を返す　戻り値：現在の場所の文字
+		char M_Get_Text_Of_Now_Position(void);
 
 
 		//-☆- セーブ -☆-//

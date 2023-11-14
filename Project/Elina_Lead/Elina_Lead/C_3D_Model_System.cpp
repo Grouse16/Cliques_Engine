@@ -90,25 +90,20 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		return false;
 	}
 
-
-	// ☆ 変数宣言 ☆ //
-	int now_mesh_num = 0;	// 今のメッシュの番号
-
-	
-	// 現在持っているモデルデータは削除する
-	M_Release();
-
-
 	// 認証名を探索する
-	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELMDL") == false)
+	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELSTTMDL") == false)
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elmdl形式ではありません：" + in_3d_model_path);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elsttmdl形式ではありません：" + in_3d_model_path);
 #endif // _DEBUG
 
 		return false;
 	}
+
+
+	// 現在持っているモデルデータは削除する
+	M_Release();
 
 	
 	// メッシュデータ数を取得
@@ -118,11 +113,8 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 	// メッシュデータ分読み取る
 	for(S_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
 	{
-		// メッシュ番号を更新
-		now_mesh_num += 1;
-
 		// メッシュの位置へ移動
-		file_data.M_Goto_Right_By_Text_In_Front_Row("MESH" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("MESH:");
 
 		// メッシュ名を取得
 		file_data.M_Move_Next_Raw();
@@ -138,14 +130,14 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		{
 #ifdef _DEBUG
 			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "マテリアルのロードに失敗しました");
+			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "マテリアルのロードに失敗しました。モデル：" + in_3d_model_path + "-" + file_data.M_Get_Data_Now_Row());
 #endif // _DEBUG
 
 			return false;
 		}
 
 		// 頂点数を取得し、頂点データを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
 		now_mesh_inform.mesh_data->M_Creat_Vertex_List(file_data.M_Get_Number());
 
 		// 頂点データをロード
@@ -203,7 +195,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		}
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX" + std::to_string(now_mesh_num) + ":");
+		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
 		now_mesh_inform.mesh_data->M_Creat_Index_List(file_data.M_Get_Number());
 
 		// 頂点インデックスデータをロード
