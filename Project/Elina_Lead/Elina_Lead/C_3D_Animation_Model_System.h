@@ -60,7 +60,7 @@ namespace ASSET::ANIMATION_MODEL
 
 			std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> bone_list;	// ボーンのリスト
 
-			std::vector<S_Animation_Data_Inform> animation_data_user;	// アニメーションデータのリスト
+			std::vector<S_Animation_Data_Inform> animation_data_list;	// アニメーションデータのリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 

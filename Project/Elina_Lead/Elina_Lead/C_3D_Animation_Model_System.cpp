@@ -339,11 +339,15 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_a
 
 
 	// アニメーションデータをロードする　失敗でfalseを返して抜ける
+	mpr_variable.animation_data_list.resize(new_animation_data + 1);
 	mpr_variable.animation_data_list[new_animation_data].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
 	if (mpr_variable.animation_data_list[new_animation_data].animation_data->M_Load_Anmation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
 	{
 		return false;
 	}
+
+	// アニメーションデータ名を設定
+	mpr_variable.animation_data_list[new_animation_data].name = in_animation_data_name;
 
 	// ロードに成功
 	return true;
