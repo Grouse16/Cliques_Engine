@@ -26,10 +26,10 @@ namespace ASSET::ANIMATION::BONE
 	// ボーンのキーの情報の配列の構造体
 	struct S_Bone_Key_Frame_List
 	{
-		std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> position_key_list;	// 位置座標のキーのリスト
-		std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> scale_key_list;	// スケールのキーのリスト
+		std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> position_key_list;	// 位置座標のキーのリスト
+		std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> scale_key_list;	// スケールのキーのリスト
 
-		std::vector<ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame> quaternion_key_list;	// クォータニオン（回転情報）のキーのリスト
+		std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> quaternion_key_list;	// クォータニオン（回転情報）のキーのリスト
 	};
 }
 

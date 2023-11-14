@@ -22,7 +22,7 @@
 // ☆ ネームスペース ☆ //
 
 // アニメーションデータを呼び出すための名前
-namespace ASSET::ANIMATION::DATA
+namespace ASSET::ANIMATION_SYSTEM
 {
 	// ☆ クラス ☆ //
 
@@ -61,19 +61,19 @@ namespace ASSET::ANIMATION::DATA
 		inline float M_Key_To_Key_Value_Calculation_By_Time(float, float, float);
 
 		// 指定された情報からキーフレームの計算を行い情報をブレンドする　引数：今の時間, ブレンド率, 設定元のキーフレーム情報, 設定先のキー値
-		inline void M_Blend_Key_Frame(float , float , const std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> &, DirectX::XMFLOAT3 &);
+		inline void M_Blend_Key_Frame(float , float , const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> &, DirectX::XMFLOAT3 &);
 
 		// 指定された情報からクォータニオンのキーフレームの計算を行い情報をブレンドする　引数：今の時間, ブレンド率, 設定元のクォータニオンキーフレーム情報, 設定先のキー値
-		inline void M_Blend_Quaternion_Key_Frame(float, float, const std::vector<ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame> &, DirectX::XMVECTOR &);
+		inline void M_Blend_Quaternion_Key_Frame(float, float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> &, DirectX::XMVECTOR &);
 
 
 		//-☆- キーフレームセット -☆-//
 
 		// 指定された情報からキーフレームの計算を行い情報をセットする　引数：今の時間, 設定元のキーフレーム情報, 設定先のキー値
-		inline void M_Set_Key_Frame(float, const std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> & , DirectX::XMFLOAT3 & );
+		inline void M_Set_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & , DirectX::XMFLOAT3 & );
 
 		// 指定された情報からクォータニオンのキーフレームの計算を行い情報をセットする　引数：今の時間, 設定元のクォータニオンキーフレーム情報, 設定先のキー値
-		inline void M_Set_Quaternion_Key_Frame(float, const std::vector<ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame>&, DirectX::XMVECTOR&);
+		inline void M_Set_Quaternion_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame>&, DirectX::XMVECTOR&);
 
 
 		//==☆ パブリック ☆==//

@@ -139,7 +139,7 @@ ASSET::SHADER::C_Shader_Setting * C_Shader_Setting_Manager::M_Load_Shader_Settin
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Shader_Setting_Manager::M_Release_Shader(ASSET::SHADER::C_Shader_Setting * & in_release_shader_setting_address)
 {
-	// シェーダー設定名から指定されたシェーダー設定を探して、見つかったら所有されている数のカウントを減らして参照できなくする
+	// 指定されたシェーダー設定を探して、見つかったら所有されている数のカウントを減らして参照できなくする
 	for (S_Shader_Setting_Inform & now_shader_setting_inform : m_this.mpr_variable.shader_setting_list)
 	{
 		if (now_shader_setting_inform.shader_setting_data.get() == in_release_shader_setting_address)

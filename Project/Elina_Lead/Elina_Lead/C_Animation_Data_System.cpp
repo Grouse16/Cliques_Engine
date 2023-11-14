@@ -15,7 +15,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace ASSET::ANIMATION::DATA;
+using namespace ASSET::ANIMATION_SYSTEM;
 
 
 // ☆ 関数 ☆ //
@@ -40,7 +40,7 @@ inline float C_Animation_Data_System::M_Key_To_Key_Value_Calculation_By_Time(flo
 // 引数   ：float 今の時間, float ブレンド率, const vector<S_Key_Frame> & 設定元のキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> & in_blend_key, DirectX::XMFLOAT3 & out_set_key)
+inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_blend_key, DirectX::XMFLOAT3 & out_set_key)
 {
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMFLOAT3 result_key;	// 結果となるキー値
@@ -106,7 +106,7 @@ inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_b
 // 引数   ：float 今の時間, float ブレンド率, const vector<S_Quaternion_Key_Frame> & 設定元のクォータニオンキーフレーム情報, XMVECTOR & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
+inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
 {
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMVECTOR result_quaternion;	// 結果となるクォータニオン値
@@ -166,7 +166,7 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 // 引数   ：float 今の時間, const vector<S_Key_Frame> & 設定元のキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION::DATA::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key)
+inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key)
 {
 	// ☆ 変数宣言 ☆ //
 	int key_value_sum = in_set_key.size();	// キー情報の総数
@@ -224,7 +224,7 @@ inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::v
 // 引数   ：float 今の時間, const vector<S_Key_Frame> & 設定元のクォータニオンキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
+inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
 {
 	// ☆ 変数宣言 ☆ //
 	int key_quaternion_sum = in_quaternion_key.size();	// クォータニオンのキー情報の総数
@@ -410,7 +410,7 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 		now_bone_key.key.position_key_list.resize(file_data.M_Get_Number());
 
 		// 座標のキーフレームを全てロードする
-		for (ASSET::ANIMATION::DATA::S_Key_Frame & now_position_key : now_bone_key.key.position_key_list)
+		for (ASSET::ANIMATION_SYSTEM::S_Key_Frame & now_position_key : now_bone_key.key.position_key_list)
 		{
 			// 現在のキーフレーム情報の位置に移動
 			file_data.M_Move_Next_Raw();
@@ -433,7 +433,7 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 		now_bone_key.key.quaternion_key_list.resize(file_data.M_Get_Number());
 
 		// 回転のキーフレームを全てロードする
-		for (ASSET::ANIMATION::DATA::S_Quaternion_Key_Frame & now_rotation_key : now_bone_key.key.quaternion_key_list)
+		for (ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame & now_rotation_key : now_bone_key.key.quaternion_key_list)
 		{
 			// ☆ 変数宣言 ☆ //
 			DirectX::XMFLOAT4 set_rotation_value;	// 回転の設定値
@@ -465,7 +465,7 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 		now_bone_key.key.scale_key_list.resize(file_data.M_Get_Number());
 
 		// スケールのキーフレームを全てロードする
-		for (ASSET::ANIMATION::DATA::S_Key_Frame & now_scale_key : now_bone_key.key.scale_key_list)
+		for (ASSET::ANIMATION_SYSTEM::S_Key_Frame & now_scale_key : now_bone_key.key.scale_key_list)
 		{
 			// 現在のキーフレーム情報の位置に移動
 			file_data.M_Move_Next_Raw();

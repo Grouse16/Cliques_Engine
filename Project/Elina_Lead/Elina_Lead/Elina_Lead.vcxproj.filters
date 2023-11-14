@@ -436,15 +436,6 @@
     <Filter Include="ソース ファイル\システム\数式">
       <UniqueIdentifier>{fb7be7f6-b9f5-4f9d-8ee3-65b14acf54a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\リグ">
-      <UniqueIdentifier>{16cc90b4-1851-4555-8777-01bccb9444d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\リグ\システム">
-      <UniqueIdentifier>{ad9650f9-a97e-4d78-a092-0f7fd9f2737a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\リグ\制御">
-      <UniqueIdentifier>{3aeb56f6-5039-4fb8-a8a3-b0d9c74ffa98}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\アセット\アニメーションモデル">
       <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
     </Filter>
@@ -831,6 +822,12 @@
     <ClInclude Include="S_Bone_Key.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
+    <ClInclude Include="C_Animation_Data_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Data_User.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -1072,6 +1069,12 @@
     </ClCompile>
     <ClCompile Include="C_Animation_Data_System.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Data_Manager.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Data_User.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

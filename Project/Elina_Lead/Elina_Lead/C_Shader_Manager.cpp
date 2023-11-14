@@ -90,7 +90,7 @@ void C_Shader_Manager::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Get_Shader_Setting(E_SHADER_KIND in_shader_kind, std::string in_shader_name)
 {
-	// すでにロード済みのシェーダー設定内から見つかるまで探索し、見つかったらそのデータのアドレスを返す
+	// 指定された名前がシェーダーデータ内から見つかるまで探索し、見つかったらそのデータのアドレスを返す
 	for (S_Shader_Manage_Inform & now_shader_inform : m_this.mpr_variable.shader_inform_list[(int)in_shader_kind])
 	{
 		if (now_shader_inform.name == in_shader_name)
@@ -142,13 +142,13 @@ ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_By_Name(E_SHADER_
 //-☆- 削除 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたシェーダー設定の所有権を放棄することを通知する
-// 引数   ：E_SHADER_KIND シェーダーの種類, C_Shader_Setting * & 所有権を放棄するシェーダー設定のアドレスの参照（const）
+// 詳細   ：指定されたシェーダーデータの所有権を放棄することを通知する
+// 引数   ：E_SHADER_KIND シェーダーの種類, C_Shader_Setting * & 所有権を放棄するシェーダーデータのアドレスの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Shader_Manager::M_Released_Shader_Setting_Once(ASSET::SHADER::E_SHADER_KIND in_shader_kind, C_Shader_Code * & in_released_shader)
+void C_Shader_Manager::M_Released_Shader_Once(ASSET::SHADER::E_SHADER_KIND in_shader_kind, C_Shader_Code * & in_released_shader)
 {
-	// 指定されたシェーダー設定を探索し、見つかったら所持しているインスタンス数を減らし、そのシェーダーへの接続を切る
+	// 指定されたシェーダーデータを探索し、見つかったら所持しているインスタンス数を減らし、そのシェーダーへの接続を切る
 	for (S_Shader_Manage_Inform & now_shader_set : m_this.mpr_variable.shader_inform_list[(int)in_shader_kind])
 	{
 		if (now_shader_set.shader.get() == in_released_shader)

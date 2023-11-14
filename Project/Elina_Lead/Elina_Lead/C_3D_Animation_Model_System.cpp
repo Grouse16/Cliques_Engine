@@ -14,7 +14,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace ASSET::ANIMATION::MODEL;
+using namespace ASSET::ANIMATION_MODEL;
 
 
 // ☆ 関数 ☆ //
@@ -316,16 +316,36 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された名前のメッシュを返す
-// 引数   ：string 探すメッシュの名前
-// 戻り値 ：C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+// 詳細   ：指定された名前のアニメーションデータをロードする
+// 引数   ：string ロードするアニメーションデータ名
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_animation_data)
+bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_animation_data_name)
 {
+	// すでにロードされているなら何もしない
+	for (S_Animation_Data_Inform & now_animation_data : mpr_variable.animation_data_list)
+	{
+		if (now_animation_data.name == in_animation_data_name)
+		{
+			return;
+		}
+	}
 
 
+	// ☆ 変数宣言 ☆ //
+	std::string load_path = "project/asset/animation/" + in_animation_data_name + ".elanmdt";	// アニメーションデータまでのパス
+
+	int new_animation_data = mpr_variable.animation_data_list.size();	// 新しいアニメーションデータの配列番号
 
 
+	// アニメーションデータをロードする　失敗でfalseを返して抜ける
+	mpr_variable.animation_data_list[new_animation_data].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
+	if (mpr_variable.animation_data_list[new_animation_data].animation_data->M_Load_Anmation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
+	{
+		return false;
+	}
+
+	// ロードに成功
 	return true;
 }
 

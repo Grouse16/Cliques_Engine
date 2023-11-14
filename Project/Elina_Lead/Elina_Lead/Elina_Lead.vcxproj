@@ -137,7 +137,9 @@
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Animation_Data_Manager.h" />
     <ClInclude Include="C_Animation_Data_System.h" />
+    <ClInclude Include="C_Animation_Data_User.h" />
     <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
@@ -249,7 +251,9 @@
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Animation_Data_Manager.cpp" />
     <ClCompile Include="C_Animation_Data_System.cpp" />
+    <ClCompile Include="C_Animation_Data_User.cpp" />
     <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Float_2.cpp" />
     <ClCompile Include="C_Float_3.cpp" />

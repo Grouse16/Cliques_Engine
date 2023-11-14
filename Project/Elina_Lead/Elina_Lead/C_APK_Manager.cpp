@@ -26,7 +26,7 @@ std::unique_ptr<C_APK_Manager> C_APK_Manager::m_this;	// ©ƒNƒ‰ƒX‚Ö‚ÌƒAƒNƒZƒX—p‚
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 // Ú×   FƒRƒ“ƒXƒgƒ‰ƒNƒ^
 // ˆø”   Fvoid
-// –ß‚è’l Fvoid
+// –ß‚è’l F‚È‚µ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_APK_Manager::C_APK_Manager(void)
 {
@@ -40,7 +40,7 @@ C_APK_Manager::C_APK_Manager(void)
 //-™- ‰Šú‰»‚ÆI—¹ -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// Ú×   F ‰Šú‰»‚µ‚Äg—p‰Â”\‚É‚·‚é
 // ˆø”   Fvoid
 // –ß‚è’l Fbool ¬Œ÷‚Ì‚İtrue
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
@@ -55,7 +55,7 @@ bool C_APK_Manager::M_Init(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 // Ú×   FƒfƒXƒgƒ‰ƒNƒ^
 // ˆø”   Fvoid
-// –ß‚è’l Fvoid
+// –ß‚è’l F‚È‚µ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_APK_Manager::~C_APK_Manager(void)
 {

@@ -13,12 +13,13 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Animative_Mesh.h"
 #include "S_Bone_Inform.h"
+#include "C_Animation_Data_System.h"
 
 
 // ☆ ネームスペース ☆ //
 
 // アニメーションできる3Dモデルを呼び出すための名前
-namespace ASSET::ANIMATION::MODEL
+namespace ASSET::ANIMATION_MODEL
 {
 	// ☆ クラス ☆ //
 
@@ -38,6 +39,14 @@ namespace ASSET::ANIMATION::MODEL
 			std::string name = "default";	// メッシュ名
 		};
 
+		// アニメーションを管理するためのデータの構造体
+		struct S_Animation_Data_Inform
+		{
+			std::unique_ptr<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> animation_data = nullptr;	// アニメーションデータ
+
+			std::string name = "default";	// アニメーションデータ名
+		};
+
 
 		//==☆ プライベート ☆==//
 	private:
@@ -50,6 +59,8 @@ namespace ASSET::ANIMATION::MODEL
 			std::vector<S_Animative_Mesh_Data_Inform> mesh_inform_list;	// メッシュの管理用情報リスト
 
 			std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> bone_list;	// ボーンのリスト
+
+			std::vector<S_Animation_Data_Inform> animation_data_user;	// アニメーションデータのリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -76,13 +87,13 @@ namespace ASSET::ANIMATION::MODEL
 		// 指定されたパスの3Dアニメーションモデルをロードする　引数：3Dアニメーションモデルまでのパス　戻り値：成功時のみtrue
 		bool M_Load_3D_Animation_Model_By_Path(std::string);
 
-		// 指定されたパスのアニメーションデータをロードする　引数：アニメーションデータまでのパス　戻り値：成功時のみtrue
+		// 指定された名前のアニメーションデータをロードする　引数：ロードするアニメーションデータ名　戻り値：成功時のみtrue
 		bool M_Load_Animation_Data_By_Path(std::string);
 
 
 		//-☆- ゲッタ -☆-//
 
-		// 指定された名前のメッシュ情報のアドレスを返す　引数：探すメッシュの名前　戻り値：名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+		// 指定された名前のメッシュデータ情報のアドレスを返す　引数：探すメッシュの名前　戻り値：名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
 		S_Animative_Mesh_Data_Inform * M_Get_Mesh_Data_By_Name(std::string);
 
 		// メッシュ情報のリストの参照を返す　戻り値：メッシュ情報のリストの参照
@@ -94,7 +105,7 @@ namespace ASSET::ANIMATION::MODEL
 		// 3Dモデルを描画する
 		void M_Draw_3D_Model(void);
 
-		// 3Dモデルから指定されたメッシュ名のみ描画する　引数：描画するメッシュ名（複数判定する）
+		// 3Dモデルから指定されたアニメーション名のみ描画する　引数：描画するアニメーション名（複数判定する）
 		void M_Draw_Meshes_By_Name(std::string);
 	};
 }

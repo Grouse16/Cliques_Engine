@@ -17,7 +17,7 @@
 // ☆ ネームスペース ☆ //
 
 // アニメーションデータを呼び出すための名前
-namespace ASSET::ANIMATION::DATA
+namespace ASSET::ANIMATION_SYSTEM
 {
 	// ☆ 構造体 ☆ //
 

@@ -49,10 +49,13 @@ C_Shader_User::~C_Shader_User(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Shader_User::M_Release(void)
 {
-	if (mpr_variable.shader_code_address)
+	// ’†g‚ª‚È‚¢‚È‚ç‰½‚à‚µ‚È‚¢
+	if (mpr_variable.shader_code_address == nullptr)
 	{
-		ASSET::SHADER::MANAGER::C_Shader_Manager::M_Released_Shader_Setting_Once(mpr_variable.use_shader_kind, mpr_variable.shader_code_address);
+		return;
 	}
+
+	ASSET::SHADER::MANAGER::C_Shader_Manager::M_Released_Shader_Once(mpr_variable.use_shader_kind, mpr_variable.shader_code_address);
 
 	return;
 }
