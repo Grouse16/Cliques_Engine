@@ -31,9 +31,9 @@ namespace ASSET::ANIMATION::DATA
 
 
 	// 回転用のキーフレーム情報
-	struct S_Rotation_Key_Frame
+	struct S_Quaternion_Key_Frame
 	{
-		DirectX::XMFLOAT4 quaternion;	// クォータニオン値
+		DirectX::XMVECTOR quaternion = DirectX::XMQuaternionIdentity();	// クォータニオン値
 
 		float time_of_frame = 0.0f;	// フレームの時間
 

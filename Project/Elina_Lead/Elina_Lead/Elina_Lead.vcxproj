@@ -230,7 +230,8 @@
     <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
     <ClInclude Include="S_3D_Model_Vertex.h" />
     <ClInclude Include="S_Bone_Inform.h" />
-    <ClInclude Include="S_Bone_Key_Inform.h" />
+    <ClInclude Include="S_Bone_Key.h" />
+    <ClInclude Include="S_Bone_Key_Frame_List.h" />
     <ClInclude Include="S_Bone_Weight.h" />
     <ClInclude Include="S_Key_Frame.h" />
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h" />

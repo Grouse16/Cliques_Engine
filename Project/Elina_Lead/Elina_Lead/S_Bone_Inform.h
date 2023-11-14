@@ -26,6 +26,11 @@ namespace ASSET::ANIMATION::BONE
 		std::string bone_name = "default";	// ボーン名
 
 		DirectX::XMFLOAT4X4 offset_matrix = DirectX::XMFLOAT4X4();	// オフセットマトリクス行列
+
+		DirectX::XMFLOAT3 position;	// 位置座標
+		DirectX::XMFLOAT3 scale;	// スケール
+
+		DirectX::XMVECTOR quaternion = DirectX::XMQuaternionIdentity();	// クォータニオン（回転情報）
 	};
 }
 

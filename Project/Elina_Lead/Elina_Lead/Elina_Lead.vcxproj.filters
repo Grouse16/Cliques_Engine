@@ -825,8 +825,11 @@
     <ClInclude Include="S_Bone_Weight.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
-    <ClInclude Include="S_Bone_Key_Inform.h">
+    <ClInclude Include="S_Bone_Key_Frame_List.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Key.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
