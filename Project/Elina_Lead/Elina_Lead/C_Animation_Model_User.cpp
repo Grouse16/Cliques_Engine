@@ -98,7 +98,7 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 	// 取得できたアニメーションモデルと入れ替える
 	M_Release();
 	mpr_variable.animation_model = new_animation_model_address;
-	mpr_variable.animation_calculator.reset(new ANIMATION::CALCULATOR::C_Animation_Calculate_Algorithm_Base());
+	mpr_variable.animation_calculator.reset(new ANIMATION::CALCULATOR::C_Animation_Calculation_System(&new_animation_model_address->M_Get_Bone_Inform_List()));
 
 	return;
 }

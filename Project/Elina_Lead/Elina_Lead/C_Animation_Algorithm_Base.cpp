@@ -6,11 +6,11 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Animation_Calculator_Algorithm_Base.h"
+#include "C_Animation_Algorithm_Base.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace ASSET::ANIMATION::CALCULATOR::ALGORITHM;
+using namespace ASSET::ANIMATION::ALGORITHM;
 
 
 // ☆ 関数 ☆ //
@@ -24,7 +24,7 @@ using namespace ASSET::ANIMATION::CALCULATOR::ALGORITHM;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Calculate_Algorithm_Base::C_Animation_Calculate_Algorithm_Base(void)
+C_Animation_Algorithm_Base::C_Animation_Algorithm_Base(void)
 {
 	return;
 }
@@ -35,32 +35,7 @@ C_Animation_Calculate_Algorithm_Base::C_Animation_Calculate_Algorithm_Base(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Calculate_Algorithm_Base::~C_Animation_Calculate_Algorithm_Base(void)
+C_Animation_Algorithm_Base::~C_Animation_Algorithm_Base(void)
 {
 	return;
 }
-
-
-//-☆- 更新 -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：アニメーション時間の更新
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculate_Algorithm_Base::M_Animation_Time_Update(void)
-{
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：アニメーションの更新
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculate_Algorithm_Base::M_Animation_Update(void)
-{
-	return;
-}
-

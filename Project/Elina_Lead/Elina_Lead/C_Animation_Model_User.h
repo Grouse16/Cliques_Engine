@@ -14,7 +14,7 @@
 #include <memory>
 
 #include "C_3D_Animation_Model_System.h"
-#include "C_Animation_Calculator_Base.h"
+#include "C_Animation_Calculation_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -37,7 +37,7 @@ namespace ASSET::ANIMATION_MODEL
 		{
 			ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * animation_model = nullptr;	// 使用するアニメーションモデルまでのアドレス
 
-			std::unique_ptr<ASSET::ANIMATION::CALCULATOR::C_Animation_Calculator_Base> animation_calculator = nullptr;	// アニメーションの計算システム
+			std::unique_ptr<ASSET::ANIMATION::CALCULATOR::C_Animation_Calculation_System> animation_calculator = nullptr;	// アニメーションの計算システム
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 

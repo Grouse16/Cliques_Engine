@@ -133,11 +133,11 @@ namespace RENDERING::CAPSULE
 		void M_Set_Constant_Data(int in_list_num, int in_index, const C_Set_Class * in_data)
 		{
 			// ☆ 変数宣言 ☆ //
-			int set_data_size = sizeof(C_Set_Class);	// セットするデータのサイズ
+			constexpr int con_SET_DATA_SIZE = sizeof(C_Set_Class);	// セットするデータのサイズ
 
 
 			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
-			if (set_data_size > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
+			if (con_SET_DATA_SIZE > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
 			{
 				return;
 			}
@@ -146,7 +146,7 @@ namespace RENDERING::CAPSULE
 			// 定数データを書き換える
 			for (int l_now_slot = 0; l_now_slot < in_list_num && l_now_slot < mpr_variable.list_sum; l_now_slot++)
 			{
-				memcpy_s(mpr_variable.constant_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], set_data_size);
+				memcpy_s(mpr_variable.constant_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], con_SET_DATA_SIZE);
 			}
 
 
@@ -162,11 +162,11 @@ namespace RENDERING::CAPSULE
 		void M_Set_Constant_Buffer_Data(int in_list_num, int in_index, const C_Set_Class * in_data)
 		{
 			// ☆ 変数宣言 ☆ //
-			int set_data_size = sizeof(C_Set_Class);	// セットするデータのサイズ
+			constexpr int con_SET_DATA_SIZE = sizeof(C_Set_Class);	// セットするデータのサイズ
 
 
 			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
-			if (set_data_size > con_CONSTANT_DATA_SIZE  || in_index >= mpr_variable.list_sum)
+			if (con_SET_DATA_SIZE > con_CONSTANT_DATA_SIZE  || in_index >= mpr_variable.list_sum)
 			{
 				return;
 			}
@@ -188,7 +188,7 @@ namespace RENDERING::CAPSULE
 			// 定数データを書き換える
 			for (int l_now_slot = 0; l_now_slot < in_list_num && l_now_slot < mpr_variable.list_sum; l_now_slot++)
 			{
-				memcpy_s(buffer_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], set_data_size);
+				memcpy_s(buffer_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], con_SET_DATA_SIZE);
 			}
 
 			// 定数バッファのデータの使用を終了する
