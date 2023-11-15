@@ -64,3 +64,16 @@ void C_Animation_Algorithm_No_Animation::M_Animation_Update(std::vector<DirectX:
 
 	return;
 }
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：現在のアニメーションを返す
+// 引数   ：void
+// 戻り値 ：C_Animation_Data_System * 現在のアニメーションのアドレス
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_Animation_Algorithm_No_Animation::M_Get_Now_Animation(void)
+{
+	return nullptr;
+}

@@ -58,6 +58,12 @@ namespace ASSET::ANIMATION::ALGORITHM
 
 		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照
 		void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & ) override;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス
+		ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) override;
 	};
 }
 

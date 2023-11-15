@@ -103,7 +103,7 @@ namespace ASSET::ANIMATION_SYSTEM
 
 		//-☆- キーフレームブレンド -☆-//
 
-		// 指定された時間とキーのブレンド量からそれぞれのボーンのキー情報を生成し、設定先へブレンドする　引数：時間, キー影響量, 設定先のボーンキーのボーンごとの配列の参照
+		// 指定された時間とキーのブレンド率からそれぞれのボーンのキー情報を生成し、設定先へブレンドする　引数：時間, ブレンド率, 設定先のボーンキーのボーンごとの配列の参照
 		void M_Blend_Bone_Key(float, float, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &) const;
 
 
@@ -111,6 +111,12 @@ namespace ASSET::ANIMATION_SYSTEM
 
 		// 指定された時間からそれぞれのボーンのキー情報を生成し、設定先へセットする　引数：時間, 設定先のボーンキーのボーンごとの配列の参照
 		void M_Set_Bone_Key(float, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &) const;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// アニメーション開始から終了までの時間　戻り値：アニメーション開始から終了までの時間
+		int M_Get_Animation_Time(void);
 	};
 }
 

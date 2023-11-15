@@ -501,8 +501,8 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 //-☆- キーフレームブレンド -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された時間とキーのブレンド量からそれぞれのボーンのキー情報を生成し、設定先へブレンドする
-// 引数   ：float 時間, float ブレンド量, vector<C_Bone_Data> & 設定先のボーンキーのボーンごとの配列の参照
+// 詳細   ：指定された時間とキーのブレンド率からそれぞれのボーンのキー情報を生成し、設定先へブレンドする
+// 引数   ：float 時間, float ブレンド率, vector<C_Bone_Data> & 設定先のボーンキーのボーンごとの配列の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend_percent, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_key_list) const
@@ -547,6 +547,19 @@ void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::A
 	}
 
 	return;
+}
+
+
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーション開始から終了までの時間
+// 引数   ：void
+// 戻り値 ：int アニメーション開始から終了までの時間
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Animation_Data_System::M_Get_Animation_Time(void)
+{
+	return mpr_variable.animation_max_time;
 }
 
 

@@ -42,7 +42,23 @@ namespace ASSET::ANIMATION::CALCULATOR
 
 			ASSET::ANIMATION::S_Animation_Status animation_status;	// アニメーションのステータス
 
-			int bone_sum = 0;	// ボーン数
+
+			// ☆ 関数 ☆ //
+
+			//-☆- 初期化 -☆-//
+
+			// 通常のコンストラクタを無効化
+			SPr_Variable(void) = delete;
+
+			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+			// 詳細   ：ボーン数初期化用のコンストラクタ
+			// 引数   ：int ボーン数
+			// 戻り値 ：なし
+			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+			SPr_Variable(int bone_sum) : animation_status(bone_sum)
+			{
+				return;
+			}
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -63,14 +79,44 @@ namespace ASSET::ANIMATION::CALCULATOR
 		// デストラクタ
 		~C_Animation_Calculation_System(void);
 
-		// メモリの解放を行う
-		void M_Release(void);
+		// アニメーションのステータスの初期化
+		void M_Animation_Status_Reset(void);
+
+
+		//-☆- セッタ -☆-//
+
+		// 現在のアニメーション時間をセットする　引数：セットするアニメーション時間
+		void M_Set_Animation_Time(float);
+
+		// 現在のアニメーション時間をセットする　引数：セットするアニメーションのスピード
+		void M_Set_Animation_Speed(float);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// アニメーションが終了しているかどうかを返す　戻り値：アニメーション終了のフラグ
+		bool M_Get_Animation_Is_End(void);
+
+		// 現在のアニメーション時間を返す　戻り値：現在のアニメーション時間
+		float M_Get_Animation_Time(void);
+
+		// 現在のアニメーションのスピードを返す　戻り値：現在のアニメーションのスピード
+		float M_Get_Animation_Speed(void);
+
+		// 現在のアニメーションのブレンド率を返す　戻り値：現在のアニメーションのブレンド率
+		float M_Get_Animation_Blend_Percent(void);
 
 
 		//-☆- アニメーション -☆-//
 
-		// 渡されたアニメーションを再生する　引数：設定するアニメーションデータのアドレス
+		// 渡されたアニメーションを再生する　引数：再生するアニメーションデータのアドレス
 		void M_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+
+		// 渡されたアニメーションをループ再生する　引数：再生するアニメーションデータのアドレス
+		void M_Loop_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+
+		// 渡されたアニメーションをブレンドして再生する　引数：再生するアニメーションデータのアドレス（ブレンド先）
+		void M_Blend_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
 		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照
 		void M_Create_Animationed_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);

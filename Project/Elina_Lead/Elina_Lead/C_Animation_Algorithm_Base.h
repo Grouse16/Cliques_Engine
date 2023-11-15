@@ -14,6 +14,9 @@
 #include <vector>
 #include <DirectXMath.h>
 
+#include "C_Animation_Data_System.h"
+#include "S_Animation_Status.h"
+
 
 // ☆ ネームスペース ☆ //
 
@@ -25,6 +28,26 @@ namespace ASSET::ANIMATION::ALGORITHM
 	// アニメーションの計算を制御するクラスの基底クラス
 	class C_Animation_Algorithm_Base
 	{
+		//==☆ プロテクト ☆==//
+	protected:
+
+		// ☆ 関数 ☆ //
+
+		//-☆- 論理演算 -☆-//
+
+		// 値１が値２より大きいなら値１に値２をセットする、そうでないなら何もしない　引数：値１, 値２
+		inline void M_Guard_1_Over_2(float &, float);
+
+		// アニメーションの時間の再生と逆再生時を行い、アニメーションの終了も判定する　引数：アニメーションの情報の参照, アニメーション開始から終了までの時間
+		inline void M_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status &, float);
+
+		// ブレンド元の時間の再生と逆再生を行う　引数：アニメーションの情報(const), ブレンド元の時間の参照, アニメーション開始から終了までの時間
+		inline void M_Animation_Blend_Time_Update(const ASSET::ANIMATION::S_Animation_Status &, float & , float);
+
+		// ループするアニメーションの時間の再生と逆再生時を行う　引数：アニメーションの情報の参照, アニメーション開始から終了までの時間
+		inline void M_Loop_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status &, float);
+
+
 		//==☆ パブリック ☆==//
 	public:
 
@@ -46,6 +69,12 @@ namespace ASSET::ANIMATION::ALGORITHM
 
 		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照
 		virtual void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & ) = 0;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス
+		virtual ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) = 0;
 	};
 }
 

@@ -21,7 +21,32 @@ namespace ASSET::ANIMATION
 	struct S_Animation_Status
 	{
 		float animation_time = 0.0f;	// アニメーション時間
-		float animation_blend = 0.0f;	// アニメーションブレンド率
+		float animation_blend_percent = 0.0f;	// アニメーションブレンド率
+		float need_blend_time = 0.1f;	// アニメーションブレンド完了までの時間
+		float animation_speed = 1.0f;	// アニメーション速度
+
+		const int bone_sum = 0;	// ボーン数
+
+		bool flg_animation_end = false;		// アニメーションの終了
+		bool flg_animation_reverse = false;	// アニメーションを逆再生するかどうか
+
+
+		// ☆ 関数 ☆ //
+
+		//-☆- 初期化 -☆-//
+
+		// 通常のコンストラクタを無効化
+		S_Animation_Status(void) = delete;
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：ボーン数初期化用のコンストラクタ
+		// 引数   ：int ボーン数
+		// 戻り値 ：なし
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		S_Animation_Status(int in_bone_sum) : bone_sum(in_bone_sum)
+		{
+			return;
+		}
 	};
 }
 

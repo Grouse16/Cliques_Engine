@@ -138,6 +138,8 @@
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Animation_Algorithm_Blend_Play.h" />
+    <ClInclude Include="C_Animation_Algorithm_Loop_Play.h" />
     <ClInclude Include="C_Animation_Algorithm_No_Animation.h" />
     <ClInclude Include="C_Animation_Algorithm_Play.h" />
     <ClInclude Include="C_Animation_Calculation_System.h" />
@@ -257,6 +259,8 @@
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp" />
     <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Play.cpp" />
     <ClCompile Include="C_Animation_Calculation_System.cpp" />

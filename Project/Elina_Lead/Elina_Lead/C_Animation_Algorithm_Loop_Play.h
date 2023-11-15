@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：通常にアニメーションを再生するクラス
-// 説明   ：一つのアニメーションを持ってそれの再生のみ行う
+// 詳細   ：アニメーションをループ再生するクラス
+// 説明   ：一つのアニメーションをループ再生し続ける
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_PLAY_H_FILE
-#define D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_PLAY_H_FILE
+#ifndef D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_LOOP_PLAY_H_FILE
+#define D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_LOOP_PLAY_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -25,8 +25,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 {
 	// ☆ クラス ☆ //
 
-	// 通常にアニメーションを再生するクラス
-	class C_Animation_Algorithm_Play : public ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base
+	// アニメーションをループで再生するクラス
+	class C_Animation_Algorithm_Loop_Play : public ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -45,13 +45,13 @@ namespace ASSET::ANIMATION::ALGORITHM
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ　何も引数に設定しないコンストラクタを無効化
-		C_Animation_Algorithm_Play(void) = delete;
+		C_Animation_Algorithm_Loop_Play(void) = delete;
 
 		// コンストラクタ　引数：アニメーションステータスの参照, アニメーションするデータのセット
-		C_Animation_Algorithm_Play(ASSET::ANIMATION::S_Animation_Status & , ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		C_Animation_Algorithm_Loop_Play(ASSET::ANIMATION::S_Animation_Status &, ASSET::ANIMATION_SYSTEM::C_Animation_Data_System *);
 
 		// デストラクタ
-		~C_Animation_Algorithm_Play(void) override;
+		~C_Animation_Algorithm_Loop_Play(void) override;
 
 
 		//-☆- 更新 -☆-//
@@ -71,4 +71,4 @@ namespace ASSET::ANIMATION::ALGORITHM
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_PLAY_H_FILE
+#endif // !D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_LOOP_PLAY_H_FILE
