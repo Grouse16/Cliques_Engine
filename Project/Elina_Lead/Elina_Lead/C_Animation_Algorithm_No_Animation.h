@@ -16,7 +16,10 @@
 #include "C_Animation_Algorithm_Base.h"
 #include "S_Bone_Inform.h"
 
+
 // ☆ ネームスペース ☆ //
+
+// アニメーションの計算アルゴリズムを呼び出すための名前
 namespace ASSET::ANIMATION::ALGORITHM
 {
 	// ☆ クラス ☆ //
@@ -28,13 +31,7 @@ namespace ASSET::ANIMATION::ALGORITHM
 	private:
 
 		// ☆ 変数宣言 ☆ //
-
-		// プライベート変数をまとめた構造体
-		struct SPr_Variable
-		{
-			const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & bone_inform_list;	// ボーン情報のリストの参照
-
-		} mpr_variable;	// プライベート変数を呼び出すための名前
+		const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & m_bone_inform_list;	// ボーン情報のリストの参照
 
 
 		//==☆ パブリック ☆==//

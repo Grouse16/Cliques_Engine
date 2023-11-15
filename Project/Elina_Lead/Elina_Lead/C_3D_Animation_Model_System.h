@@ -106,7 +106,7 @@ namespace ASSET::ANIMATION_MODEL
 		bool M_Load_3D_Animation_Model_By_Path(std::string);
 
 		// 指定された名前のアニメーションデータをロードする　引数：ロードするアニメーションデータ名　戻り値：成功時のみtrue
-		bool M_Load_Animation_Data_By_Path(std::string);
+		bool M_Load_Animation_Data_By_Name(std::string);
 
 
 		//-☆- ゲッタ -☆-//

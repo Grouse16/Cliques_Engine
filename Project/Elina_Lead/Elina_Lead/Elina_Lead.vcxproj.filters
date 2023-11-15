@@ -466,9 +466,6 @@
     <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム">
       <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\計算システム">
-      <UniqueIdentifier>{a87a2337-746d-4807-a2ab-ba5eea817e53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム">
       <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
     </Filter>
@@ -477,6 +474,24 @@
     </Filter>
     <Filter Include="ソース ファイル\アセット\アニメーションモデル\計算システム">
       <UniqueIdentifier>{455381ed-47af-4f93-ad3d-85d31de87dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム">
+      <UniqueIdentifier>{46c4584b-20a5-4b04-97e1-260b258850b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム">
+      <UniqueIdentifier>{a87a2337-746d-4807-a2ab-ba5eea817e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム">
+      <UniqueIdentifier>{be01e5d8-3742-47bf-9afa-5b0096894a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\定義">
+      <UniqueIdentifier>{6ad84226-1d4f-4e04-a637-9b7dd9b8dad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム\基底">
+      <UniqueIdentifier>{9dbbd374-d2e4-4844-96a1-637327ea932a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム\基底">
+      <UniqueIdentifier>{ce56824e-c08d-4314-8075-41e22d7d970d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -810,9 +825,6 @@
     <ClInclude Include="S_Bone_Key_Frame_List.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
-    <ClInclude Include="C_Animation_Calculator_Base.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\計算システム</Filter>
-    </ClInclude>
     <ClInclude Include="S_Bone_Inform.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
@@ -826,7 +838,25 @@
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
     <ClInclude Include="C_3D_Animation_Model_Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_User.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Calculation_System.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Animation_Status.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Base.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_No_Animation.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Play.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1067,9 +1097,6 @@
     <ClCompile Include="C_3D_Animation_Model_System.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClCompile>
-    <ClCompile Include="C_Animation_Calculator_Base.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム</Filter>
-    </ClCompile>
     <ClCompile Include="C_Animation_Data_System.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション</Filter>
     </ClCompile>
@@ -1077,7 +1104,22 @@
       <Filter>ソース ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClCompile>
     <ClCompile Include="C_3D_Animation_Model_Manager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_User.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Calculation_System.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Base.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Play.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

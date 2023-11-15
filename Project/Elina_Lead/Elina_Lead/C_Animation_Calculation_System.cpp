@@ -68,11 +68,24 @@ void C_Animation_Calculation_System::M_Release(void)
 //-☆- アニメーション -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された配列にボーンマトリクス配列のデータをセットする
-// 引数   ：vector<XMFLOAT4X4> & 設定先のボーンマトリクス配列のデータ
+// 詳細   ：渡されたアニメーションを再生する
+// 引数   ：C_Animation_Data_System * 設定するアニメーションデータのアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Get_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list)
+void C_Animation_Calculation_System::M_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_play_animation)
+{
+	mpr_variable.animation_algorithm.reset();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする
+// 引数   ：vector<XMFLOAT4X4> & 設定先のボーンマトリクス配列のデータの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Calculation_System::M_Create_Animationed_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list)
 {
 	// ボーンデータ用の配列を確保する
 	out_bone_matrix_list.clear();

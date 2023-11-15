@@ -138,8 +138,12 @@
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
-    <ClInclude Include="C_Animation_Calculator_Base.h" />
+    <ClInclude Include="C_Animation_Algorithm_No_Animation.h" />
+    <ClInclude Include="C_Animation_Algorithm_Play.h" />
+    <ClInclude Include="C_Animation_Calculation_System.h" />
+    <ClInclude Include="C_Animation_Algorithm_Base.h" />
     <ClInclude Include="C_Animation_Data_System.h" />
+    <ClInclude Include="C_Animation_Model_User.h" />
     <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
@@ -232,6 +236,7 @@
     <ClInclude Include="Rendering_Another_Setting_Inform.h" />
     <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
     <ClInclude Include="S_3D_Model_Vertex.h" />
+    <ClInclude Include="S_Animation_Status.h" />
     <ClInclude Include="S_Bone_Inform.h" />
     <ClInclude Include="S_Bone_Key_Frame_List.h" />
     <ClInclude Include="S_Bone_Weight.h" />
@@ -252,8 +257,12 @@
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
-    <ClCompile Include="C_Animation_Calculator_Base.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Play.cpp" />
+    <ClCompile Include="C_Animation_Calculation_System.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Base.cpp" />
     <ClCompile Include="C_Animation_Data_System.cpp" />
+    <ClCompile Include="C_Animation_Model_User.cpp" />
     <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Bone_Data.cpp" />
     <ClCompile Include="C_Float_2.cpp" />

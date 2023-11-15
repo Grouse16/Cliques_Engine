@@ -1,7 +1,13 @@
+//☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
+// 詳細   ：通常にアニメーションを再生するクラス
+// 説明   ：一つのアニメーションを持ってそれの再生のみ行う
+// 作成者 ：髙坂龍誠
+//☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Animation_Algorithm_No_Animation.h"
+#include "C_Animation_Algorithm_Play.h"
+#include "C_Game_Time_Manager.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -16,11 +22,13 @@ using namespace ASSET::ANIMATION::ALGORITHM;
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：コンストラクタ
-// 引数   ：const vector<S_Bone_Inform> * ボーンの初期情報のアドレス(const)
+// 引数   ：アニメーションステータスの参照, アニメーションするデータのセット
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Algorithm_No_Animation::C_Animation_Algorithm_No_Animation(const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_set_bone_inform_list) : m_bone_inform_list(in_set_bone_inform_list)
+C_Animation_Algorithm_Play::C_Animation_Algorithm_Play(ASSET::ANIMATION::S_Animation_Status & in_set_animation_status, ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_set_animation_data) : m_animation_status(in_set_animation_status)
 {
+	m_now_animation = in_set_animation_data;
+
 	return;
 }
 
@@ -30,7 +38,7 @@ C_Animation_Algorithm_No_Animation::C_Animation_Algorithm_No_Animation(const std
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Algorithm_No_Animation::~C_Animation_Algorithm_No_Animation(void)
+C_Animation_Algorithm_Play::~C_Animation_Algorithm_Play(void)
 {
 	return;
 }
@@ -43,8 +51,10 @@ C_Animation_Algorithm_No_Animation::~C_Animation_Algorithm_No_Animation(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_No_Animation::M_Animation_Time_Update(void)
+void C_Animation_Algorithm_Play::M_Animation_Time_Update(void)
 {
+	
+
 	return;
 }
 
@@ -54,13 +64,7 @@ void C_Animation_Algorithm_No_Animation::M_Animation_Time_Update(void)
 // 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_No_Animation::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
+void ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Play::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & in_set_matrix)
 {
-	// 初期のオフセットマトリクスをセットする
-	for (int l_bone_num = 0; l_bone_num < in_bone_matrix_list.size(); l_bone_num++)
-	{
-		in_bone_matrix_list[l_bone_num] = m_bone_inform_list[l_bone_num].offset_matrix;
-	}
-
-	return;
 }
+

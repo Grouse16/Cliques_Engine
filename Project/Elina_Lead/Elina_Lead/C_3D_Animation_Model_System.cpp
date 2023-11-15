@@ -354,7 +354,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 // 引数   ：string ロードするアニメーションデータ名
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_animation_data_name)
+bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_animation_data_name)
 {
 	// すでにロードされているなら何もしない
 	for (S_Animation_Data_Inform & now_animation_data : mpr_variable.animation_data_list)

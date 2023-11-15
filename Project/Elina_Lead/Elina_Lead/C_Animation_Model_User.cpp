@@ -98,16 +98,22 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 	// 取得できたアニメーションモデルと入れ替える
 	M_Release();
 	mpr_variable.animation_model = new_animation_model_address;
-	mpr_variable.animation_calculator.reset(new ANIMATION::CALCULATOR::C_Animation_Calculation_System(&new_animation_model_address->M_Get_Bone_Inform_List()));
+	mpr_variable.animation_calculator.reset(new ANIMATION::CALCULATOR::C_Animation_Calculation_System(new_animation_model_address->M_Get_Bone_Inform_List()));
 
 	return;
 }
 
 
-//-☆- 更新 -☆-//
-
-void ASSET::ANIMATION_MODEL::C_Animation_Model_User::M_Animation_Update(void)
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のアニメーションデータをロードする
+// 引数   ：string ロードするアニメーションデータ名
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_animation_data_name)
 {
+	mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);
+
+	return;
 }
 
 
@@ -126,7 +132,17 @@ void C_Animation_Model_User::M_Animation_Model_Draw(void)
 		return;
 	}
 
-	mpr_variable.animation_model->M_Set_Bone_Matrix(mpr_variable.animation_calculator->M_Animation_Update);
+	
+	// ☆ 変数宣言 ☆ //
+	std::vector<DirectX::XMFLOAT4X4> bone_matrix_list;	// ボーンマトリクスの配列
+
+
+	// アニメーション結果をセットする
+	mpr_variable.animation_calculator->M_Create_Animationed_Bone_Matrix(bone_matrix_list);
+	mpr_variable.animation_model->M_Set_Bone_Matrix(bone_matrix_list);
+
+
+	// 描画を行う
 	mpr_variable.animation_model->M_Draw_3D_Model();
 
 	return;

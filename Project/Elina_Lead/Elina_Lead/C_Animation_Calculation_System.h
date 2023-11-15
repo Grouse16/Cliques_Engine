@@ -17,6 +17,7 @@
 #include "C_Animation_Algorithm_Base.h"
 #include "S_Bone_Inform.h"
 #include "S_Animation_Status.h"
+#include "C_Animation_Data_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -68,8 +69,11 @@ namespace ASSET::ANIMATION::CALCULATOR
 
 		//-☆- アニメーション -☆-//
 
-		// 指定された配列にボーンマトリクス配列のデータをセットする
-		void M_Get_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);
+		// 渡されたアニメーションを再生する　引数：設定するアニメーションデータのアドレス
+		void M_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+
+		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照
+		void M_Create_Animationed_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);
 	};
 }
 

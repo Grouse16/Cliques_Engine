@@ -64,11 +64,8 @@ namespace ASSET::ANIMATION_MODEL
 		// 指定された名前のアニメーションモデルを読み込む　引数：ロードするアニメーションモデル名
 		void M_Load_Animation_Model(std::string);
 
-
-		//-☆- 更新 -☆-//
-
-		// アニメーションの更新を行う
-		void M_Animation_Update(void);
+		// 指定された名前のアニメーションデータをロードする　引数：ロードするアニメーションデータ名　戻り値：成功時のみtrue
+		bool M_Load_Animation_Data_By_Name(std::string);
 
 
 		//-☆- 描画 -☆-//
