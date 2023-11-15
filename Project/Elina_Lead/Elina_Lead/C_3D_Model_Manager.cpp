@@ -84,7 +84,7 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Get_3D_Model_By_Name(std
 	{
 		if (model_inform.name == in_3D_model_name)
 		{
-			model_inform.user_num += 1;
+			model_inform.user_sum += 1;
 			return model_inform.model_data.get();
 		}
 	}
@@ -104,27 +104,27 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Get_3D_Model_By_Name(std
 ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(std::string in_3D_model_name)
 {
 	// ☆ 変数宣言 ☆ //
-	std::string model_3d_inform_path = "project/asset/model/" + in_3D_model_name + ".mld";	// 3Dモデル情報へのパス
+	std::string model_3d_inform_path = "project/asset/model/" + in_3D_model_name + ".elsttmdl";	// 3Dモデル情報へのパス
 
-	int shader_slot_num = m_this.mpr_variable.model_list.size();	// 操作する3Dモデルの番号
+	int model_slot_num = m_this.mpr_variable.model_list.size();	// 操作する3Dモデルの番号
 
 
 	// 新しい3Dモデル設定用のスロットを生成
-	m_this.mpr_variable.model_list.resize(shader_slot_num + 1);
-	m_this.mpr_variable.model_list[shader_slot_num].model_data.reset(new ASSET::MODEL::C_3D_Model_System());
+	m_this.mpr_variable.model_list.resize(model_slot_num + 1);
+	m_this.mpr_variable.model_list[model_slot_num].model_data.reset(new ASSET::MODEL::C_3D_Model_System());
 
 	// 3Dモデル情報から3Dモデルをロードする、できなければfalseを返す
-	if (m_this.mpr_variable.model_list[shader_slot_num].model_data->M_Load_3D_Model_By_Path(model_3d_inform_path) == false)
+	if (m_this.mpr_variable.model_list[model_slot_num].model_data->M_Load_3D_Model_By_Path(model_3d_inform_path) == false)
 	{
 		return nullptr;
 	}
 
 	// 新しい3Dモデルの名前を登録し、使用されている数を加算
-	m_this.mpr_variable.model_list[shader_slot_num].name = in_3D_model_name;
-	m_this.mpr_variable.model_list[shader_slot_num].user_num = 1;
+	m_this.mpr_variable.model_list[model_slot_num].name = in_3D_model_name;
+	m_this.mpr_variable.model_list[model_slot_num].user_sum = 1;
 
 	// 生成した3Dモデルを返す
-	return m_this.mpr_variable.model_list[shader_slot_num].model_data.get();
+	return m_this.mpr_variable.model_list[model_slot_num].model_data.get();
 }
 
 
@@ -135,15 +135,15 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(st
 // 引数   ：string 3Dモデル名
 // 戻り値 ：C_Material * 生成した3Dモデルデータへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void ASSET::MODEL::MANAGER::C_3D_Model_Manager::M_Release_3D_Model(ASSET::MODEL::C_3D_Model_System * & in_delete_model)
+void C_3D_Model_Manager::M_Release_3D_Model(ASSET::MODEL::C_3D_Model_System * & in_delete_model)
 {
 	// 3Dモデル設定名から指定された3Dモデル設定を探して、見つかったら所有されている数のカウントを減らして参照できなくする
-	for (S_3D_Model_Inform & now_shader_setting_inform : m_this.mpr_variable.model_list)
+	for (S_3D_Model_Inform & now_3d_model_inform : m_this.mpr_variable.model_list)
 	{
-		if (now_shader_setting_inform.model_data.get() == in_delete_model)
+		if (now_3d_model_inform.model_data.get() == in_delete_model)
 		{
 			in_delete_model = nullptr;
-			now_shader_setting_inform.user_num -= 1;
+			now_3d_model_inform.user_sum -= 1;
 
 
 			// この3Dモデル設定が使われなくなったら削除する
@@ -155,11 +155,11 @@ void ASSET::MODEL::MANAGER::C_3D_Model_Manager::M_Release_3D_Model(ASSET::MODEL:
 					m_this.mpr_variable.model_list.end(),
 
 					// 残りの数が0になると削除するラムダ式
-					[](S_3D_Model_Inform & in_shader_setting)->bool
+					[](S_3D_Model_Inform & in_3d_model_setting)->bool
 					{
-						if (in_shader_setting.user_num < 1)
+						if (in_3d_model_setting.user_sum < 1)
 						{
-							in_shader_setting.model_data.reset();
+							in_3d_model_setting.model_data.reset();
 
 							return true;
 						}

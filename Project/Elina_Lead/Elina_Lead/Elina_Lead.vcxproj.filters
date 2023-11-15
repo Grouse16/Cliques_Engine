@@ -825,6 +825,9 @@
     <ClInclude Include="C_Bone_Data.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
+    <ClInclude Include="C_3D_Animation_Model_Manager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -1072,6 +1075,9 @@
     </ClCompile>
     <ClCompile Include="C_Bone_Data.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_3D_Animation_Model_Manager.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
