@@ -305,6 +305,40 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 	}
 
+
+	// マテリアルの定数バッファを探索し、特殊な名前のスロットを取得する
+	for (S_Animative_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	{
+		// ☆ 変数宣言 ☆ //
+		ASSET::MATERIAL::C_Material * now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
+
+
+		// トランスフォーム　あれば定数バッファを確保する
+		now_mesh.unique_buffer_number.transform = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_TRANSFORM");
+
+		// アンビエントライト
+		now_mesh.unique_buffer_number.ambient_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AMBIENT_LIGHT");
+
+		// ディレクショナルライト
+		now_mesh.unique_buffer_number.directional_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_DIRECTIONAL_LIGHT");
+
+		// ポイントライト
+		now_mesh.unique_buffer_number.point_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+
+		// スポットライト
+		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+
+		// エリアライト
+		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+
+		// ボーン
+		now_mesh.unique_buffer_number.bone = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_BONE");
+
+		// メインとなるテクスチャ
+		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");
+	}
+
+
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -359,16 +393,16 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Path(std::string in_a
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のメッシュを返す
 // 引数   ：string 探すメッシュの名前
-// 戻り値 ：C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+// 戻り値 ：C_Animative_Mesh * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform * C_3D_Animation_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
+ASSET::ANIMATION::MESH::C_Animative_Mesh * C_3D_Animation_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
 {
 	// 一致するメッシュ名を探し、あればそのアドレスを返す
 	for (S_Animative_Mesh_Data_Inform & now_mesh_data : mpr_variable.mesh_inform_list)
 	{
 		if (now_mesh_data.name == in_mesh_name)
 		{
-			return &now_mesh_data;
+			return now_mesh_data.mesh_data.get();
 		}
 	}
 
@@ -385,6 +419,38 @@ C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform * C_3D_Animation_Model
 std::vector<C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform> &  C_3D_Animation_Model_System::M_Get_Mesh_Inform_List(void)
 {
 	return mpr_variable.mesh_inform_list;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のアニメーションデータを返す
+// 引数   ：string 探すアニメーションデータの名前
+// 戻り値 ：const C_Animation_Data_System * 名前が一致したアニメーションデータのアドレス、一致しなかったらnullptrを返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_3D_Animation_Model_System::M_Get_Animation_Data_By_Name(std::string in_animation_data)
+{
+	// 一致するアニメーションデータ名を探し、あればそのアドレスを返す
+	for (S_Animation_Data_Inform & now_animation_data : mpr_variable.animation_data_list)
+	{
+		if (now_animation_data.name == in_animation_data)
+		{
+			return now_animation_data.animation_data.get();
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションデータの情報のリストの参照を返す
+// 引数   ：void
+// 戻り値 ：const vector<C_3D_Animation_Model_System::S_Animation_Data_Inform> & アニメーションデータの情報のリストの参照
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const std::vector<C_3D_Animation_Model_System::S_Animation_Data_Inform> & C_3D_Animation_Model_System::M_Get_Animation_Inform_List(void)
+{
+	return mpr_variable.animation_data_list;
 }
 
 

@@ -24,19 +24,30 @@ namespace ASSET::SHADER
 {
 	// ☆ 構造体 ☆ //
 
-	// リソースの識別用の情報の構造体
-	struct S_Resource_Signature
+	// 定数バッファの識別用の情報の構造体
+	struct S_Constant_Resource_Signature
 	{
 		std::string signature_name = "";	// 識別用の名前
+
+		int array_sum = 0;	// 配列数
+
+		bool data_create_flg = false;	// データを生成するかどうかのフラグ
+	};
+
+	// テクスチャバッファの識別用の情報の構造体
+	struct S_Texture_Resource_Signature
+	{
+		std::string signature_name = "";	// 識別用の名前
+		std::string initialized_texture_name = "";	// 使用するテクスチャ名
 	};
 
 
 	// シェーダーのリソースの識別名を管理するための構造体
 	struct S_Shader_Resource_Signature_Inform
 	{
-		std::vector<S_Resource_Signature> constant_data;	// 定数バッファデータ識別用の情報
+		std::vector<S_Constant_Resource_Signature> constant_data;	// 定数バッファデータ識別用の情報
 
-		std::vector<S_Resource_Signature> texture_data;	// テクスチャデータの識別用の情報
+		std::vector<S_Texture_Resource_Signature> texture_data;	// テクスチャデータの識別用の情報
 
 		int sampler_sum = 0;	// サンプラー数
 	};

@@ -29,7 +29,7 @@ using namespace ASSET::ANIMATION_SYSTEM;
 // 引数   ：float 開始のキー値, float 終了のキー値, float 時間のパーセント
 // 戻り値 ：float 計算結果のキー値
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline float C_Animation_Data_System::M_Key_To_Key_Value_Calculation_By_Time(float in_start_key, float in_end_key, float in_time_percent)
+inline float C_Animation_Data_System::M_Key_To_Key_Value_Calculation_By_Time(float in_start_key, float in_end_key, float in_time_percent) const
 {
 	return (in_end_key - in_start_key) * in_time_percent + in_start_key;
 }
@@ -40,7 +40,7 @@ inline float C_Animation_Data_System::M_Key_To_Key_Value_Calculation_By_Time(flo
 // 引数   ：float 今の時間, float ブレンド率, const vector<S_Key_Frame> & 設定元のキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_blend_key, DirectX::XMFLOAT3 & out_set_key)
+inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_blend_key, DirectX::XMFLOAT3 & out_set_key) const
 {
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMFLOAT3 result_key;	// 結果となるキー値
@@ -106,7 +106,7 @@ inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_b
 // 引数   ：float 今の時間, float ブレンド率, const vector<S_Quaternion_Key_Frame> & 設定元のクォータニオンキーフレーム情報, XMVECTOR & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
+inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time, float in_blend_percent, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion) const
 {
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMVECTOR result_quaternion;	// 結果となるクォータニオン値
@@ -166,7 +166,7 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 // 引数   ：float 今の時間, const vector<S_Key_Frame> & 設定元のキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key)
+inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key) const
 {
 	// ☆ 変数宣言 ☆ //
 	int key_value_sum = in_set_key.size();	// キー情報の総数
@@ -224,7 +224,7 @@ inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::v
 // 引数   ：float 今の時間, const vector<S_Key_Frame> & 設定元のクォータニオンキーフレーム情報, XMFLOAT3 & 設定先のキー値
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion)
+inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion) const
 {
 	// ☆ 変数宣言 ☆ //
 	int key_quaternion_sum = in_quaternion_key.size();	// クォータニオンのキー情報の総数
@@ -329,7 +329,7 @@ void C_Animation_Data_System::M_Release(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたパスのアニメーションデータをロードする
-// 引数   ：string アニメーションデータまでのパス, vector<S_Bone_Inform> & アタッチ先モデルのボーンの情報
+// 引数   ：string アニメーションデータまでのパス, vector<C_Bone_Inform> & アタッチ先モデルのボーンの情報
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animation_data_path, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_inform_list)
@@ -498,22 +498,22 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された時間とキーのブレンド量からそれぞれのボーンのキー情報を生成し、設定先へブレンドする
-// 引数   ：float 時間, float ブレンド量, vector<S_Bone_Key_Inform> & 設定先のボーンキーのボーンごとの配列の参照
+// 引数   ：float 時間, float ブレンド量, vector<C_Bone_Data> & 設定先のボーンキーのボーンごとの配列の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend_percent, std::vector<ASSET::ANIMATION::BONE::S_Bone_Key> & out_set_bone_key_list)
+void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend_percent, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_key_list) const
 {
 	// アニメーションの影響を受けるボーンのみブレンドする
-	for (S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
+	for (const S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
 	{
 		// ☆ 位置のブレンド ☆ //
-		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.position_key_list, out_set_bone_key_list[now_bone_key.bone_index].position_key);
+		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.position_key_list, out_set_bone_key_list[now_bone_key.bone_index].position);
 
 		// ☆ スケールのブレンド ☆ //
-		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.scale_key_list, out_set_bone_key_list[now_bone_key.bone_index].scale_key);
+		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.scale_key_list, out_set_bone_key_list[now_bone_key.bone_index].scale);
 
 		// ☆ クォータニオンのブレンド ☆ //
-		M_Blend_Quaternion_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.quaternion_key_list, out_set_bone_key_list[now_bone_key.bone_index].quaternion_key);
+		M_Blend_Quaternion_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.quaternion_key_list, out_set_bone_key_list[now_bone_key.bone_index].quaternion);
 	}
 
 	return;
@@ -524,22 +524,22 @@ void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された時間からそれぞれのボーンのキー情報を生成し、設定先へセットする
-// 引数   ：float 時間, vector<S_Bone_Key> & 設定先のボーンキーのボーンごとの配列の参照
+// 引数   ：float 時間, vector<C_Bone_Data> & 設定先のボーンキーのボーンごとの配列の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::ANIMATION::BONE::S_Bone_Key> & out_set_bone_list)
+void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_list) const
 {
 	// アニメーションの影響を受けるボーンのみセットする
-	for (S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
+	for (const S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
 	{
 		// ☆ 位置のブレンド ☆ //
-		M_Set_Key_Frame(in_time, now_bone_key.key.position_key_list, out_set_bone_list[now_bone_key.bone_index].position_key);
+		M_Set_Key_Frame(in_time, now_bone_key.key.position_key_list, out_set_bone_list[now_bone_key.bone_index].position);
 
 		// ☆ スケールのブレンド ☆ //
-		M_Set_Key_Frame(in_time, now_bone_key.key.scale_key_list, out_set_bone_list[now_bone_key.bone_index].scale_key);
+		M_Set_Key_Frame(in_time, now_bone_key.key.scale_key_list, out_set_bone_list[now_bone_key.bone_index].scale);
 
 		// ☆ クォータニオンのブレンド ☆ //
-		M_Set_Quaternion_Key_Frame(in_time, now_bone_key.key.quaternion_key_list, out_set_bone_list[now_bone_key.bone_index].quaternion_key);
+		M_Set_Quaternion_Key_Frame(in_time, now_bone_key.key.quaternion_key_list, out_set_bone_list[now_bone_key.bone_index].quaternion);
 	}
 
 	return;

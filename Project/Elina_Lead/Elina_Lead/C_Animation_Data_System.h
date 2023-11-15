@@ -15,7 +15,7 @@
 #include <string>
 
 #include "S_Bone_Inform.h"
-#include "S_Bone_Key.h"
+#include "C_Bone_Data.h"
 #include "S_Bone_Key_Frame_List.h"
 
 
@@ -58,22 +58,22 @@ namespace ASSET::ANIMATION_SYSTEM
 		//-☆- キーフレームブレンド -☆-//
 
 		// 渡された情報を元にキー値を時間で割り出してを返す　引数：開始のキー値, 終了のキー値, 時間のパーセント　戻り値：計算結果のキー値
-		inline float M_Key_To_Key_Value_Calculation_By_Time(float, float, float);
+		inline float M_Key_To_Key_Value_Calculation_By_Time(float, float, float) const;
 
 		// 指定された情報からキーフレームの計算を行い情報をブレンドする　引数：今の時間, ブレンド率, 設定元のキーフレーム情報, 設定先のキー値
-		inline void M_Blend_Key_Frame(float , float , const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> &, DirectX::XMFLOAT3 &);
+		inline void M_Blend_Key_Frame(float , float , const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> &, DirectX::XMFLOAT3 &) const;
 
 		// 指定された情報からクォータニオンのキーフレームの計算を行い情報をブレンドする　引数：今の時間, ブレンド率, 設定元のクォータニオンキーフレーム情報, 設定先のキー値
-		inline void M_Blend_Quaternion_Key_Frame(float, float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> &, DirectX::XMVECTOR &);
+		inline void M_Blend_Quaternion_Key_Frame(float, float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> &, DirectX::XMVECTOR &) const;
 
 
 		//-☆- キーフレームセット -☆-//
 
 		// 指定された情報からキーフレームの計算を行い情報をセットする　引数：今の時間, 設定元のキーフレーム情報, 設定先のキー値
-		inline void M_Set_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & , DirectX::XMFLOAT3 & );
+		inline void M_Set_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & , DirectX::XMFLOAT3 & ) const;
 
 		// 指定された情報からクォータニオンのキーフレームの計算を行い情報をセットする　引数：今の時間, 設定元のクォータニオンキーフレーム情報, 設定先のキー値
-		inline void M_Set_Quaternion_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame>&, DirectX::XMVECTOR&);
+		inline void M_Set_Quaternion_Key_Frame(float, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> &, DirectX::XMVECTOR &) const;
 
 
 		//==☆ パブリック ☆==//
@@ -102,13 +102,13 @@ namespace ASSET::ANIMATION_SYSTEM
 		//-☆- キーフレームブレンド -☆-//
 
 		// 指定された時間とキーのブレンド量からそれぞれのボーンのキー情報を生成し、設定先へブレンドする　引数：時間, キー影響量, 設定先のボーンキーのボーンごとの配列の参照
-		void M_Blend_Bone_Key(float, float, std::vector<ASSET::ANIMATION::BONE::S_Bone_Key> &);
+		void M_Blend_Bone_Key(float, float, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &) const;
 
 
 		//-☆- キーフレームセット -☆-//
 
 		// 指定された時間からそれぞれのボーンのキー情報を生成し、設定先へセットする　引数：時間, 設定先のボーンキーのボーンごとの配列の参照
-		void M_Set_Bone_Key(float, std::vector<ASSET::ANIMATION::BONE::S_Bone_Key> &);
+		void M_Set_Bone_Key(float, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &) const;
 	};
 }
 

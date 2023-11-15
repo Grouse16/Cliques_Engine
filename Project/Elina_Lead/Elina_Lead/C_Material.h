@@ -216,11 +216,11 @@ namespace ASSET::MATERIAL
 		// 指定された名前のテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
 		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Name(std::string);
 
-		// 定数バッファ管理用データのリストの参照を返す　戻り値：定数バッファ管理用データのリスト
-		std::vector<S_Constant_Buffer_Data> & M_Get_Constant_Data_List(void);
+		// 指定された名前の定数バッファ管理用データのスロット番号を返す　引数：取得する定数バッファ管理用データの名前　戻り値：int 指定された定数バッファの番号、なければ-1
+		int M_Get_Constant_Buffer_Number_By_Name(std::string);
 
-		// テクスチャバッファ管理用データのリストの参照を返す　戻り値：テクスチャバッファ管理用データのリスト
-		std::vector<S_Texture_Buffer_Data> & M_Get_Texture_Data_List(void);
+		// 指定された名前のテクスチャ管理用データのスロット番号を返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャの番号、なければ-1
+		int M_Get_Texture_Number_By_Name(std::string);
 	};
 }
 

@@ -79,14 +79,20 @@ namespace RENDERING::CAPSULE
 		// コンストラクタ
 		C_Constant_Buffer_Data_System(void);
 
-		// 定数バッファを生成する　引数：バッファ数
-		void M_Constant_Buffer_Init(int);
-
 		// デストラクタ
 		~C_Constant_Buffer_Data_System(void);
 
 		// メモリを解放する
 		void M_Release(void);
+
+
+		//-☆- 生成 -☆-//
+
+		// 定数バッファとデータを生成する　引数：バッファ数
+		void M_Create_Constant_Buffer_And_Data(int);
+
+		// 定数バッファのみを生成する　引数：バッファ数
+		void M_Create_Only_Constant_Buffer(int);
 
 
 		//-☆- セッタ -☆-//
@@ -109,15 +115,69 @@ namespace RENDERING::CAPSULE
 		// テクスチャデータ設定先のシェーダーの種類を返す　戻り値：設定先のシェーダーの種類
 		ASSET::SHADER::E_SHADER_KIND M_Get_Attach_Shader_Kind(void);
 
+		// 定数バッファのデータのアドレスを取得して返す　＊必ずCloseで使用を終了すること　戻り値：定数バッファのデータのアドレス
+		unsigned char * M_Get_Constant_Buffer_Data(void);
+
 
 		//-☆- 描画 -☆-//
 
 		// 定数バッファを現在のデータで更新する
 		void M_Set_Constant_Data_To_Buffer(void);
 
-		// 定数データを上書きする　引数：バイト数, 設定先の配列番号, 上書きするデータ
-		void M_Set_Constant_Data(int, int, const void * );
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：定数データを上書きする、生成時に定数データを生成していること
+		// 引数   ：int 配列数, int 設定先の配列番号, const C_Set_Class * 上書きするデータ
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template <class C_Set_Class>
+		void M_Set_Constant_Data(int in_size, int in_index, const C_Set_Class * in_data)
+		{
+			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
+			if (sizeof(C_Set_Class) > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
+			{
+				return;
+			}
 
+
+			// 定数データを書き換える
+			for (int l_now_slot = 0; l_now_slot < in_size; l_now_slot++)
+			{
+				mpr_variable.constant_data[in_index].data[l_now_slot] = in_data[l_now_slot];
+			}
+
+			return;
+		}
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：定数バッファを上書きする
+		// 引数   ：int 配列数, int 設定先の配列番号, const C_Set_Class * 上書きするデータ
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		template <class C_Set_Class>
+		void M_Set_Constant_Buffer_Data(int in_size, int in_index, const C_Set_Class * in_data)
+		{
+			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
+			if (sizeof(C_Set_Class) > con_CONSTANT_DATA_SIZE  || in_index >= mpr_variable.list_sum)
+			{
+				return;
+			}
+
+
+			// 定数バッファのデータを取得する
+			C_Set_Class * buffer_data = mpr_variable.constant_buffer_inform->M_Get_Constant_Buffer_Data_Address();
+
+			// 定数データを書き換える
+			for (int l_now_slot = 0; l_now_slot < in_size && l_now_slot < mpr_variable.list_sum; l_now_slot++)
+			{
+				mpr_variable.constant_data[in_index].data[l_now_slot] = in_data[l_now_slot];
+			}
+
+			// 定数バッファのデータの使用を終了する
+			mpr_variable.constant_buffer_inform->M_Close_Constant_Buffer_Data_Address();
+
+			return;
+		}
+		
 		// 定数バッファをGPUに渡す
 		void M_Set_Constant_Buffer_To_GPU(void);
 

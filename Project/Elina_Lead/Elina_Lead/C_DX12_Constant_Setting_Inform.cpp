@@ -79,4 +79,36 @@ void C_DX12_Constant_Setting_Inform::M_Set_Data_To_Buffer(void * in_set_data, in
 }
 
 
+//-☆- ゲッタ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファのデータのアドレスを返す　＊使用が終わったら必ずCloseすること
+// 引数   ：void
+// 戻り値 ：定数バッファのデータのアドレス
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+unsigned char * C_DX12_Constant_Setting_Inform::M_Get_Constant_Buffer_Data_Address(void)
+{
+    // ☆ 変数宣言 ☆ //
+    void * get_map_address = nullptr; // 定数バッファ書き込み先のマップアドレス
+
+    // 定数バッファのデータを取得して返す
+    m_constant_buffer_data->Map(0, nullptr, &get_map_address);
+    return (unsigned char*)get_map_address;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファのデータを使用終了する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_Constant_Setting_Inform::M_Close_Constant_Buffer_Data_Address(void)
+{
+    // 定数バッファのデータの使用を終了する
+    m_constant_buffer_data->Unmap(0, nullptr);
+
+    return;
+}
+
+
 

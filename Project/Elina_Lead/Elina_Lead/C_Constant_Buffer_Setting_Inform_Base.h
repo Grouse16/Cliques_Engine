@@ -45,6 +45,15 @@ namespace RENDERING::GRAPHICS::INSTANCE
 
 		// 定数バッファに指定された情報をセットする　引数：セットするデータ, 配列数, セットするデータサイズ
 		virtual void M_Set_Data_To_Buffer(void*, int, int) = 0;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 定数バッファのデータのアドレスを返す　＊使用が終わったら必ずCloseすること　戻り値：定数バッファのデータのアドレス
+		virtual unsigned char * M_Get_Constant_Buffer_Data_Address(void) = 0;
+
+		// 定数バッファのデータを使用終了する
+		virtual void M_Close_Constant_Buffer_Data_Address(void) = 0;
 	};
 
 

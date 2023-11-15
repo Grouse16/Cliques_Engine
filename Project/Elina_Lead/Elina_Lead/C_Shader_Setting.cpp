@@ -215,21 +215,33 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 	// 定数バッファの識別名の行に移動
 	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "CON:");
 
-	// 定数バッファの識別名を取得する
+	// 定数バッファの識別名と数を取得する
 	for (int now_constant = 0; now_constant < constant_sum; now_constant++)
 	{
-		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
+		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].signature_name = in_shader_data_file.M_Get_Data_By_Text(":");
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
+		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum = in_shader_data_file.M_Get_Number();
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
+		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].data_create_flg = in_shader_data_file.M_Get_Data_By_Text(",") == "TRUE";
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+
+		// 配列数が０なら少なくとも一つは確保する
+		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum =
+			(mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum <= 0) * 1
+			+
+			(mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum > 0) * mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum;
 	}
 
 
-	// テクスチャの識別名の行に移動
+	// テクスチャの識別名と数の行に移動
 	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "TEX:");
 
 	// テクスチャの識別名を取得する
 	for (int now_texture = 0; now_texture < texture_sum; now_texture++)
 	{
-		mpr_variable.resource_signature.all_shader_signature.texture_data[now_texture].signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
+		mpr_variable.resource_signature.all_shader_signature.texture_data[now_texture].signature_name = in_shader_data_file.M_Get_Data_By_Text(":");
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
+		mpr_variable.resource_signature.all_shader_signature.texture_data[now_texture].initialized_texture_name = in_shader_data_file.M_Get_Data_By_Text(",");
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
 	}
 	
