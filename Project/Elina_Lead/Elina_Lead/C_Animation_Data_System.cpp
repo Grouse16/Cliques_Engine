@@ -377,6 +377,10 @@ bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animat
 	M_Release();
 
 
+	// アニメーション時間を取得
+	file_data.M_Goto_Right_By_Text_In_Front_Row("ENDTIME:");
+	mpr_variable.animation_max_time = file_data.M_Get_Float_Double_Number();
+
 	// アニメーションするボーン数を取得し、その数分配列を生成
 	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
 	mpr_variable.bone_key_list.resize(file_data.M_Get_Number());

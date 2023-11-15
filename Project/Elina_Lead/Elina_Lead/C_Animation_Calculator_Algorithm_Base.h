@@ -1,24 +1,29 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：アニメーションの計算を制御するクラスの基底クラス
+// 詳細   ：アニメーションのアルゴリズムの基底クラス
 // 説明   ：どんなアニメーションをするかを分岐ではなく、生成するクラスによって分岐できるようにするための抽象化レイヤー　アニメーションの計算がおこなわれないときはこれを実体化する
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ANIMATION_CALCULATOR_BASE
-#define D_INCLUDE_GUARD_C_ANIMATION_CALCULATOR_BASE
+#ifndef D_INCLUDE_GUARD_C_ANIMATION_CALCULATE_ALGORITHM_BASE_H_FILE
+#define D_INCLUDE_GUARD_C_ANIMATION_CALCULATE_ALGORITHM_BASE_H_FILE
+
+
+// ☆ ファイルひらき ☆ //
+#include <vector>
+#include <DirectXMath.h>
 
 
 // ☆ ネームスペース ☆ //
 
-// アニメーション用計算システムを呼び出すための名前
-namespace ASSET::ANIMATION::CALCULATOR
+// アニメーションの計算アルゴリズムを呼び出すための名前
+namespace ASSET::ANIMATION::CALCULATOR::ALGORITHM
 {
 	// ☆ クラス ☆ //
 
 	// アニメーションの計算を制御するクラスの基底クラス
-	class C_Animation_Calculator_Base
+	class C_Animation_Calculate_Algorithm_Base
 	{
 		//==☆ パブリック ☆==//
 	public:
@@ -28,10 +33,10 @@ namespace ASSET::ANIMATION::CALCULATOR
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Animation_Calculator_Base(void);
+		C_Animation_Calculate_Algorithm_Base(void);
 
 		// デストラクタ
-		virtual ~C_Animation_Calculator_Base(void);
+		virtual ~C_Animation_Calculate_Algorithm_Base(void);
 
 		
 		//-☆- 更新 -☆-//
@@ -45,4 +50,4 @@ namespace ASSET::ANIMATION::CALCULATOR
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ANIMATION_CALCULATOR_BASE
+#endif // !D_INCLUDE_GUARD_C_ANIMATION_CALCULATE_ALGORITHM_BASE_H_FILE

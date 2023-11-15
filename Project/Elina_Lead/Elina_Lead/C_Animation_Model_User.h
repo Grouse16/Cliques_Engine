@@ -45,7 +45,42 @@ namespace ASSET::ANIMATION_MODEL
 		//==☆ パブリック ☆==//
 	public:
 
+		// ☆ 関数 ☆ //
 
+		//-☆- 初期化と終了時 -☆-//
+
+		// コンストラクタ
+		C_Animation_Model_User(void);
+
+		// デストラクタ
+		~C_Animation_Model_User(void);
+
+		// メモリの解放を行う
+		void M_Release(void);
+
+
+		//-☆- ロード -☆-//
+
+		// 指定された名前のアニメーションモデルを読み込む　引数：ロードするアニメーションモデル名
+		void M_Load_Animation_Model(std::string);
+
+
+		//-☆- 更新 -☆-//
+
+		// アニメーションの更新を行う
+		void M_Animation_Update(void);
+
+
+		//-☆- 描画 -☆-//
+
+		// このアニメーションモデルを描画する
+		void M_Animation_Model_Draw(void);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 現在のアニメーションモデルを返す　戻り値：現在のアニメーションモデルへのアドレス
+		ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * M_Get_Animation_Model_Address(void);
 	};
 }
 
