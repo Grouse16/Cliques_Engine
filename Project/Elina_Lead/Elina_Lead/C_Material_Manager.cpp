@@ -131,13 +131,13 @@ ASSET::MATERIAL::C_Material * C_Material_Manager::M_Load_Material_By_Name(std::s
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたマテリアルを返す
-// 引数   ：std::string マテリアルの名前
-// 戻り値 ：C_Material * 指定されたマテリアルデータへのアドレス、なければnullptrを返す
+// 詳細   ：指定されたマテリアルの所有権を放棄することを通知する
+// 引数   ：C_Material * & 所有権を放棄するマテリアルのアドレスの参照
+// 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Material_Manager::M_Release_Material(ASSET::MATERIAL::C_Material * & in_release_material_address)
 {
-	// マテリアル名から指定されたマテリアルを探して、見つかったら所有されている数のカウントを減らして参照できなくする
+	// マテリアルから指定されたマテリアルを探して、見つかったら所有されている数のカウントを減らして参照できなくする
 	for (S_Material_Manage_Inform & now_material_inform : m_this.mpr_variable.material_inform_list)
 	{
 		if (now_material_inform.material.get() == in_release_material_address)

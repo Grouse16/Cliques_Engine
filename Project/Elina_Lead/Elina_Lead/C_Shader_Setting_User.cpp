@@ -51,10 +51,13 @@ C_Shader_Setting_User::~C_Shader_Setting_User(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Shader_Setting_User::M_Release(void)
 {
-	if (mpr_variable.shader_settting_address)
+	// ƒf[ƒ^‚ª‚È‚¢‚È‚ç‰½‚à‚µ‚È‚¢
+	if (mpr_variable.shader_settting_address == nullptr)
 	{
-		ASSET::SHADER::MANAGER::C_Shader_Setting_Manager::M_Release_Shader(mpr_variable.shader_settting_address);
+		return;
 	}
+
+	ASSET::SHADER::MANAGER::C_Shader_Setting_Manager::M_Release_Shader(mpr_variable.shader_settting_address);
 
 	return;
 }

@@ -159,17 +159,18 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Get_Reset_Textu
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたテクスチャ設定の所有権を放棄することを通知する
-// 引数   ：C_Texture_Data_System * & 所有権を放棄するシェーダー設定のアドレスの参照（const）
+// 引数   ：unique_ptr<C_Texture_Data_System> & 所有権を放棄するテクスチャのアドレスの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Texture_Manager::M_Release_Texture(RENDERING::CAPSULE::C_Texture_Data_System * & in_release_texture_address)
+void C_Texture_Manager::M_Release_Texture(std::unique_ptr<RENDERING::CAPSULE::C_Texture_Data_System> & in_release_texture_address)
 {
-	// テクスチャ名から指定されたテクスチャを探して、見つかったら所有されている数のカウントを減らして参照できなくする
+	// 指定されたテクスチャを探して、見つかったら所有されている数のカウントを減らして参照できなくする
 	for (S_Texture_Manage_Inform & now_texture_inform : m_this.mpr_variable.texture_list)
 	{
-		if (now_texture_inform.texture.get() == in_release_texture_address)
+		if (now_texture_inform.texture == in_release_texture_address)
 		{
-			in_release_texture_address = &m_this.mpr_variable.reset_texture;
+			in_release_texture_address.release();
+			in_release_texture_address.reset(&m_this.mpr_variable.reset_texture);
 			now_texture_inform.user_sum -= 1;
 
 

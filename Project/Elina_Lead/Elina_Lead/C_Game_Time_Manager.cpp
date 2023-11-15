@@ -193,11 +193,33 @@ int C_Game_Time_Manager::M_Get_FPS(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：現在の経過時間を返す
 // 引数   ：void
-// 戻り値 ：int 現在の経過時間
+// 戻り値 ：float 現在の経過時間
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 float C_Game_Time_Manager::M_Get_Delta_Second(void)
 {
 	return m_this->mpr_variable.delta_second;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ゲーム内での経過時間を返す
+// 引数   ：void
+// 戻り値 ：float ゲームでの経過時間
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+float C_Game_Time_Manager::M_Get_Game_Second(void)
+{
+	return m_this->mpr_variable.delta_second * m_this->mpr_variable.game_speed;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ゲーム内時間のスピードを返す
+// 引数   ：void
+// 戻り値 ：float ゲーム内時間のスピード
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+float C_Game_Time_Manager::M_Get_Game_Speed(void)
+{
+	return m_this->mpr_variable.game_speed;
 }
 
 
@@ -212,6 +234,19 @@ void C_Game_Time_Manager::M_Set_Frame_Rate(int in_set_frame_rate)
 {
 	m_this->mpr_variable.frame_rate = in_set_frame_rate;
 	m_this->mpr_variable.one_frame_time = (1.0f / (float)m_this->mpr_variable.frame_rate);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ゲーム内時間のスピードをセットする
+// 引数   ：float セットするゲーム内時間のスピード
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Game_Time_Manager::M_Set_Game_Speed(float in_set_game_speed)
+{
+	m_this->mpr_variable.game_speed = in_set_game_speed;
 
 	return;
 }

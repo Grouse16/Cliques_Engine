@@ -29,38 +29,6 @@ C_Constant_Buffer_Data_System::C_Constant_Buffer_Data_System(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：定数バッファを生成する
-// 引数   ：int バッファ数
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Constant_Buffer_Data_System::M_Constant_Buffer_Init(int in_buffer_sum)
-{
-	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
-
-
-	// ☆ 生成用情報を設定 ☆ //
-	creat_constant_inform.m_list_size = in_buffer_sum + ((in_buffer_sum <= 0) * 1);	// 配列数が０にならないようにしている
-
-
-	// ☆ 定数バッファの生成 ☆ //
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
-
-
-	// ☆ 定数データの生成 ☆ //
-
-	// ここで生成する
-	mpr_variable.constant_data.resize(in_buffer_sum);
-
-
-	// 配列数を指定
-	mpr_variable.list_sum = creat_constant_inform.m_list_size;
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：デストラクタ
 // 引数   ：void
 // 戻り値 ：なし
@@ -91,6 +59,65 @@ void C_Constant_Buffer_Data_System::M_Release(void)
 	mpr_variable.attach_shader_kind = ASSET::SHADER::E_SHADER_KIND::e_ALL;
 
 	mpr_variable.list_sum = 0;
+
+	return;
+}
+
+
+//-☆- 生成 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファとデータを生成する
+// 引数   ：int バッファ数
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buffer_sum)
+{
+	// ☆ 変数宣言 ☆ //
+	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+
+
+	// 現在持っているデータを解放する
+	M_Release();
+
+	// 生成用のデータを設定して生成を行う
+	creat_constant_inform.m_list_size = in_buffer_sum + ((in_buffer_sum <= 0) * 1);	// 定数バッファの配列数、０にならないようにしている
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
+
+
+	// ☆ 定数データの生成 ☆ //
+
+	// 定数データを確保し。定数バッファ配列数を設定する
+	mpr_variable.constant_data.resize(in_buffer_sum);
+	mpr_variable.list_sum = creat_constant_inform.m_list_size;
+	
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファのみを生成する
+// 引数   ：int バッファ数
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Constant_Buffer_Data_System::M_Create_Only_Constant_Buffer(int in_buffer_sum)
+{
+	// ☆ 変数宣言 ☆ //
+	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+
+
+	// 現在持っているデータを解放する
+	M_Release();
+
+	// 生成用のデータを設定して生成を行う
+	creat_constant_inform.m_list_size = in_buffer_sum + ((in_buffer_sum <= 0) * 1);	// 定数バッファの配列数、０にならないようにしている
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
+
+
+	// ☆ 定数データの生成 ☆ //
+
+	// 定数データを確保し。定数バッファ配列数を設定する
+	mpr_variable.list_sum = creat_constant_inform.m_list_size;
 
 	return;
 }
@@ -161,6 +188,17 @@ ASSET::SHADER::E_SHADER_KIND C_Constant_Buffer_Data_System::M_Get_Attach_Shader_
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：定数バッファのデータのアドレスを取得して返す
+// 引数   ：void
+// 戻り値 ：unsigned char * 定数バッファのデータのアドレス
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+unsigned char * RENDERING::CAPSULE::C_Constant_Buffer_Data_System::M_Get_Constant_Buffer_Data(void)
+{
+	return nullptr;
+}
+
+
 
 //-☆- 描画 -☆-//
 
@@ -172,30 +210,6 @@ ASSET::SHADER::E_SHADER_KIND C_Constant_Buffer_Data_System::M_Get_Attach_Shader_
 void C_Constant_Buffer_Data_System::M_Set_Constant_Data_To_Buffer(void)
 {
 	mpr_variable.constant_buffer_inform->M_Set_Data_To_Buffer(&mpr_variable.constant_data[0], mpr_variable.list_sum, 256);
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：定数データを上書きする
-// 引数   ：int バイト数, int 設定先の配列番号, const void * 上書きするデータ
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Constant_Buffer_Data_System::M_Set_Constant_Data(int in_size, int in_index, const void * in_data)
-{
-	// サイズが大きすぎるか、配列の外を指定しているなら抜ける
-	if (in_size > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
-	{
-		return;
-	}
-
-
-	// 定数データを書き換える
-	for (int l_now_slot = 0; l_now_slot < in_size; l_now_slot++)
-	{
-		mpr_variable.constant_data[in_index].data[l_now_slot] = reinterpret_cast<const std::byte * >(in_data)[l_now_slot];
-	}
 
 	return;
 }

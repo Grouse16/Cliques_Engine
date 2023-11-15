@@ -213,6 +213,35 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 	}
 
+	// マテリアルの定数バッファを探索し、特殊な名前のスロットを取得する
+	for (S_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	{
+		// ☆ 変数宣言 ☆ //
+		ASSET::MATERIAL::C_Material* now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
+
+
+		// トランスフォーム　あれば定数バッファを確保する
+		now_mesh.unique_buffer_number.transform = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_TRANSFORM");
+
+		// アンビエントライト
+		now_mesh.unique_buffer_number.ambient_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AMBIENT_LIGHT");
+
+		// ディレクショナルライト
+		now_mesh.unique_buffer_number.directional_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_DIRECTIONAL_LIGHT");
+
+		// ポイントライト
+		now_mesh.unique_buffer_number.point_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+
+		// スポットライト
+		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_SPOT_LIGHT");
+
+		// エリアライト
+		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
+
+		// メインとなるテクスチャ
+		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");
+	}
+
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);

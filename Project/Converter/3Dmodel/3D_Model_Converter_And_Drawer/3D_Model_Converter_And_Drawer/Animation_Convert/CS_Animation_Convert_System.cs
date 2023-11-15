@@ -20,6 +20,8 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
         static List<string> m_write_data_to_file = new List<string>();  // ファイルに書き込むデータ
 
+        static string m_animation_name; // アニメーション名
+
 
         // ☆ 関数 ☆ //
 
@@ -39,23 +41,12 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
         {
             // アニメーションを独自形式に変換する
             M_Convert();
-
-            // 現在のデータをファイルとして書き込む
-            M_Write_Animation_Data_File();
         }
 
 
         // アニメーションデータの変換をする
         static private void M_Convert()
         {
-            // 今までに書き込まれたデータを初期化
-            m_write_data_to_file.Clear();
-
-
-            // アニメーションのファイルであることを示す文字列を記録
-            m_write_data_to_file.Add("This-Is-ELANMDT");
-
-
             // アニメーション数分変換を行う
             foreach (var now_animation in m_animation_list)
             {
@@ -63,11 +54,24 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                 double one_frame_time = 1.0 / now_animation.TicksPerSecond;    // １フレームの時間
 
 
+                // 今までに書き込まれたデータを初期化
+                m_write_data_to_file.Clear();
+
+                // アニメーションのファイルであることを示す文字列を記録
+                m_write_data_to_file.Add("This-Is-ELANMDT");
+
+
+                // アニメーション名を取得する
+                m_animation_name = now_animation.Name;
+
                 // アニメーションの開始位置を書き込む
                 m_write_data_to_file.Add("ANIMATION:");
 
                 // アニメーションの１秒間でのフレームレートを書き込む
                 m_write_data_to_file.Add("FRAMERATE:" + now_animation.TicksPerSecond.ToString());
+
+                // アニメーションの終了までの時間を書き込む
+                m_write_data_to_file.Add("ENDTIME:" + now_animation.DurationInTicks);
 
                 // アニメーションするボーン数を書き込む
                 m_write_data_to_file.Add("BONESUM:" + now_animation.NodeAnimationChannelCount.ToString());
@@ -131,6 +135,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                             );
                     }
                 }
+
+
+                // 現在のデータをファイルとして書き込む
+                M_Write_Animation_Data_File();
             }
 
             return;
@@ -145,7 +153,7 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
             string extension = "elanmdt";  // 拡張子
 
 
-            sfd.FileName = "new_model." + extension;
+            sfd.FileName = m_animation_name + "." + extension;
             sfd.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             sfd.Filter = extension + "ファイル(*." + extension + ";*." + extension + ")| *." + extension + "; *." + extension + "| すべてのファイル(*.*)|*.*";
             sfd.FilterIndex = 1;

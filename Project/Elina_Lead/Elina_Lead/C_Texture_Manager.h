@@ -101,8 +101,8 @@ namespace ASSET::TEXTURE::MANAGER
 
 		//-☆- 削除 -☆-//
 
-		// 指定されたテクスチャ設定の所有権を放棄することを通知する　引数：所有権を放棄するテクスチャ設定のアドレスの参照
-		static void M_Release_Texture(RENDERING::CAPSULE::C_Texture_Data_System * & );
+		// 指定されたテクスチャ設定の所有権を放棄することを通知する　引数：所有権を放棄するテクスチャのアドレスの参照
+		static void M_Release_Texture(std::unique_ptr<RENDERING::CAPSULE::C_Texture_Data_System> & );
 	};
 }
 

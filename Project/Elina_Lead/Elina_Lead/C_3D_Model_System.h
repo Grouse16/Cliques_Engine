@@ -33,12 +33,28 @@ namespace ASSET::MODEL
 
 		// ☆ 構造体 ☆ //
 
+		// アニメーションモデルの特殊バッファのスロットの番号をまとめた構造体
+		struct S_Unique_Buffer_Slot
+		{
+			int transform = 0;			// トランスフォーム
+
+			int ambient_light = 0;		// アンビエントライト
+			int directional_light = 0;	// ディレクショナルライト
+			int point_light = 0;		// ポイントライト
+			int spot_light = 0;			// スポットライト
+			int area_light = 0;			// エリアライト
+
+			int main_texture = 0;	// メインとなるテクスチャ
+		};
+
 		// メッシュを管理するためのデータの構造体
 		struct S_Mesh_Data_Inform
 		{
 			std::unique_ptr<ASSET::MESH::C_Mesh_Data> mesh_data = nullptr;	// メッシュデータ
 
 			std::string name = "default";	// メッシュ名
+
+			S_Unique_Buffer_Slot unique_buffer_number;	// 特殊なバッファ番号
 		};
 
 

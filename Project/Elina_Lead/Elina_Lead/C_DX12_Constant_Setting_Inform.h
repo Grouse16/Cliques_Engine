@@ -50,6 +50,15 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		// 定数バッファに指定された情報をセットする　引数：セットするデータ, 配列数, セットするデータサイズ
 		void M_Set_Data_To_Buffer(void*, int, int) override;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// 定数バッファのデータのアドレスを返す　＊使用が終わったら必ずCloseすること　戻り値：定数バッファのデータのアドレス
+		unsigned char * M_Get_Constant_Buffer_Data_Address(void) override;
+
+		// 定数バッファのデータを使用終了する
+		void M_Close_Constant_Buffer_Data_Address(void) override;
 	};
 }
 

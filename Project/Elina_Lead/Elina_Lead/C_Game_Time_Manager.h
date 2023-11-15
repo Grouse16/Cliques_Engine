@@ -39,6 +39,7 @@ namespace GAME::TIME
 			float need_spend_time = 0;		// フレームレートを維持するためにはこの時間まで待機するべきという時間
 			float delta_second = 0.0f;		// 前の更新からの経過時間（秒単位）
 			float one_frame_time = 0.0f;	// １フレーム間で経過しているべき時間
+			float game_speed = 1.0f;		// ゲームのスピード
 
 			int frame_rate = 60;	// フレームレート
 			int fps = 1;		// 一秒間のフレーム数
@@ -99,11 +100,20 @@ namespace GAME::TIME
 		// 現在の経過時間を返す　戻り値：現在の経過時間
 		static float M_Get_Delta_Second(void);
 
+		// ゲーム内での経過時間を返す　戻り値：ゲームでの経過時間
+		static float M_Get_Game_Second(void);
+
+		// ゲーム内時間のスピードを返す　戻り値：ゲーム内時間のスピード
+		static float M_Get_Game_Speed(void);
+
 
 		//-☆- セッタ -☆-//
 
 		// フレームレートをセットする　引数：設定するフレームレート
 		static void M_Set_Frame_Rate(int);
+
+		// ゲーム内時間のスピードをセットする　引数：セットするゲーム内時間のスピード
+		static void M_Set_Game_Speed(float);
 	};
 }
 

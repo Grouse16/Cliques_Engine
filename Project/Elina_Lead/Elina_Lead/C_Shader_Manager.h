@@ -93,8 +93,8 @@ namespace ASSET::SHADER::MANAGER
 
 		//-☆- 削除 -☆-//
 
-		// 指定されたシェーダー設定の所有権を放棄することを通知する　引数：シェーダーの種類, 所有権を放棄するシェーダー設定のアドレスの参照
-		static void M_Released_Shader_Setting_Once(E_SHADER_KIND, C_Shader_Code * &);
+		// 指定されたシェーダーデータの所有権を放棄することを通知する　引数：シェーダーの種類, 所有権を放棄するシェーダーデータのアドレスの参照
+		static void M_Released_Shader_Once(E_SHADER_KIND, C_Shader_Code * &);
 	};
 }
 

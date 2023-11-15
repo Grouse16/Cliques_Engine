@@ -27,6 +27,7 @@ namespace ASSET::MATERIAL::MANAGER
 	// マテリアルを制御用するためのシステム
 	class C_Material_Manager
 	{
+		//==☆ パブリック ☆==//
 	public:
 
 		// ☆ 構造体 ☆ //
@@ -93,7 +94,7 @@ namespace ASSET::MATERIAL::MANAGER
 
 		//-☆- 削除 -☆-//
 
-		// 指定されたマテリアル設定の所有権を放棄することを通知する　引数：所有権を放棄するマテリアル設定のアドレスの参照
+		// 指定されたマテリアルの所有権を放棄することを通知する　引数：所有権を放棄するマテリアルのアドレスの参照
 		static void M_Release_Material(ASSET::MATERIAL::C_Material * &);
 	};
 }

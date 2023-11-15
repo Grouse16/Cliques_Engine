@@ -39,7 +39,7 @@ namespace ASSET::MODEL::MANAGER
 
 			std::string name = "default";	// この3Dモデル名
 
-			int user_num = 0;	// この3Dモデルを使用するインスタンス数
+			int user_sum = 0;	// この3Dモデルを使用するインスタンス数
 		};
 
 

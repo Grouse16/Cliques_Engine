@@ -34,7 +34,7 @@ namespace ASSET::MATERIAL
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			ASSET::MATERIAL::C_Material * material_address = nullptr;	// マテリアル
+			ASSET::MATERIAL::C_Material * material_address = nullptr;	// 使用するマテリアルのアドレス
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
