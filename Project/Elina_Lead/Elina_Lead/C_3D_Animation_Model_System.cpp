@@ -454,7 +454,53 @@ const std::vector<C_3D_Animation_Model_System::S_Animation_Data_Inform> & C_3D_A
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーン情報のリストを返す
+// 引数   ：void
+// 戻り値 ：const vector<S_Bone_Inform> ボーン情報のリストを返す(const)
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & C_3D_Animation_Model_System::M_Get_Bone_Inform_List(void)
+{
+	return mpr_variable.bone_list;
+}
+
+
 //-☆- 描画 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンのマトリクスをマテリアルにセットする
+// 引数   ：const std::vector<DirectX::XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
+{
+	// ☆ 変数宣言 ☆ //
+	int bone_sum = mpr_variable.bone_list.size();	// ボーン数
+
+
+	// セットするボーンマトリクス配列が現在のボーン情報と一致しないなら処理をしない
+	if (bone_sum != in_bone_matrix_list.size())
+	{
+		return;
+	}
+
+	// 全てのメッシュにボーンをセットする
+	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		// ☆ 変数宣言 ☆ //
+		ASSET::MATERIAL::S_Constant_Buffer_Data * now_bone_constant_buffer =	// 現在のボーンの定数バッファ
+			now_mesh_inform.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Index(now_mesh_inform.unique_buffer_number.bone);
+
+		// 定数バッファの中身があるときのみ、ボーンの情報をセットする
+		if (now_bone_constant_buffer)
+		{
+			now_bone_constant_buffer->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(bone_sum, 0, &in_bone_matrix_list[0]);
+		}
+	}
+
+	return;
+}
+
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：3Dモデルを描画する

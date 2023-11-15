@@ -130,20 +130,25 @@ namespace RENDERING::CAPSULE
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		template <class C_Set_Class>
-		void M_Set_Constant_Data(int in_size, int in_index, const C_Set_Class * in_data)
+		void M_Set_Constant_Data(int in_list_num, int in_index, const C_Set_Class * in_data)
 		{
+			// ☆ 変数宣言 ☆ //
+			int set_data_size = sizeof(C_Set_Class);	// セットするデータのサイズ
+
+
 			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
-			if (sizeof(C_Set_Class) > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
+			if (set_data_size > con_CONSTANT_DATA_SIZE || in_index >= mpr_variable.list_sum)
 			{
 				return;
 			}
 
 
 			// 定数データを書き換える
-			for (int l_now_slot = 0; l_now_slot < in_size; l_now_slot++)
+			for (int l_now_slot = 0; l_now_slot < in_list_num && l_now_slot < mpr_variable.list_sum; l_now_slot++)
 			{
-				mpr_variable.constant_data[in_index].data[l_now_slot] = in_data[l_now_slot];
+				memcpy_s(mpr_variable.constant_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], set_data_size);
 			}
+
 
 			return;
 		}
@@ -154,22 +159,36 @@ namespace RENDERING::CAPSULE
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		template <class C_Set_Class>
-		void M_Set_Constant_Buffer_Data(int in_size, int in_index, const C_Set_Class * in_data)
+		void M_Set_Constant_Buffer_Data(int in_list_num, int in_index, const C_Set_Class * in_data)
 		{
+			// ☆ 変数宣言 ☆ //
+			int set_data_size = sizeof(C_Set_Class);	// セットするデータのサイズ
+
+
 			// サイズが大きすぎるか、配列の外を指定しているなら抜ける
-			if (sizeof(C_Set_Class) > con_CONSTANT_DATA_SIZE  || in_index >= mpr_variable.list_sum)
+			if (set_data_size > con_CONSTANT_DATA_SIZE  || in_index >= mpr_variable.list_sum)
 			{
 				return;
 			}
 
 
 			// 定数バッファのデータを取得する
-			C_Set_Class * buffer_data = mpr_variable.constant_buffer_inform->M_Get_Constant_Buffer_Data_Address();
+			S_256_Byte_Type * buffer_data = mpr_variable.constant_buffer_inform->M_Get_Constant_Buffer_Data_Address();
+
+
+			// 定数バッファのデータが取れていないなら抜ける
+			if (buffer_data == nullptr)
+			{
+				// 定数バッファのデータの使用を終了する
+				mpr_variable.constant_buffer_inform->M_Close_Constant_Buffer_Data_Address();
+
+				return;
+			}
 
 			// 定数データを書き換える
-			for (int l_now_slot = 0; l_now_slot < in_size && l_now_slot < mpr_variable.list_sum; l_now_slot++)
+			for (int l_now_slot = 0; l_now_slot < in_list_num && l_now_slot < mpr_variable.list_sum; l_now_slot++)
 			{
-				mpr_variable.constant_data[in_index].data[l_now_slot] = in_data[l_now_slot];
+				memcpy_s(buffer_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], set_data_size);
 			}
 
 			// 定数バッファのデータの使用を終了する

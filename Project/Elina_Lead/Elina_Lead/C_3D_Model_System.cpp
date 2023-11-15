@@ -233,10 +233,10 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		now_mesh.unique_buffer_number.point_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
 
 		// スポットライト
-		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_SPOT_LIGHT");
 
 		// エリアライト
-		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
 
 		// メインとなるテクスチャ
 		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");

@@ -123,8 +123,14 @@ namespace ASSET::ANIMATION_MODEL
 		// アニメーション情報のリストの参照を返す　戻り値：アニメーション情報のリストの参照
 		const std::vector<S_Animation_Data_Inform> & M_Get_Animation_Inform_List(void);
 
+		// ボーン情報のリストを返す　戻り値：ボーン情報のリストの参照(const)
+		const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & M_Get_Bone_Inform_List(void);
+
 
 		//-☆- 描画 -☆-//
+
+		// ボーンのマトリクスをマテリアルにセットする　引数：セットするボーンマトリクス配列の参照(const)
+		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> &);
 
 		// 3Dモデルを描画する
 		void M_Draw_3D_Model(void);
