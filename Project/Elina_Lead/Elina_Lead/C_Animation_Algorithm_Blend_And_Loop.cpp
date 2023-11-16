@@ -1,13 +1,12 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：アニメーションをブレンド再生するクラス
+// 詳細   ：ブレンド後ループアニメーションを行うクラス
 // 説明   ：ブレンドが終了した際のシングルトンアニメーションと入れ替えるための情報はアニメーションステータス情報にセットされる
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Animation_Algorithm_Blend_Play.h"
-#include "C_Bone_Data.h"
+#include "C_Animation_Algorithm_Blend_And_Loop.h"
 #include "C_Game_Time_Manager.h"
 
 
@@ -26,7 +25,7 @@ using namespace ASSET::ANIMATION::ALGORITHM;
 // 引数   ：S_Animation_Status & アニメーションステータスの参照, const C_Animation_Data_System * ブレンド元のアニメーション(const), const C_Animation_Data_System * ブレンド先のアニメーション(const)
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Algorithm_Blend_Play::C_Animation_Algorithm_Blend_Play(ASSET::ANIMATION::S_Animation_Status & in_set_animation_status, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_animation_from, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_animation_to) : m_animation_status(in_set_animation_status)
+C_Animation_Algorithm_Blend_And_Loop::C_Animation_Algorithm_Blend_And_Loop(ASSET::ANIMATION::S_Animation_Status & in_set_animation_status, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_animation_from, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_animation_to) : m_animation_status(in_set_animation_status)
 {
 	// アニメーション元のステータスの設定
 	animation_from_time = m_animation_status.animation_time;
@@ -47,7 +46,7 @@ C_Animation_Algorithm_Blend_Play::C_Animation_Algorithm_Blend_Play(ASSET::ANIMAT
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Algorithm_Blend_Play::~C_Animation_Algorithm_Blend_Play(void)
+C_Animation_Algorithm_Blend_And_Loop::~C_Animation_Algorithm_Blend_And_Loop(void)
 {
 	return;
 }
@@ -60,12 +59,12 @@ C_Animation_Algorithm_Blend_Play::~C_Animation_Algorithm_Blend_Play(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_Blend_Play::M_Animation_Time_Update(void)
+void C_Animation_Algorithm_Blend_And_Loop::M_Animation_Time_Update(void)
 {
 	// アニメーションの時間の更新を行う
-	M_Animation_Time_Base_Update(m_animation_status, m_to_animation->M_Get_Animation_Time());
+	M_Loop_Animation_Time_Base_Update(m_animation_status, m_to_animation->M_Get_Animation_Time());
 
-
+	
 	// アニメーションブレンド率が100%未満なら、ブレンド元のアニメーションの時間の計算を行い、時間経過に合わせてブレンド率をあげる
 	if (m_animation_status.animation_blend_percent <= 1.0f)
 	{
@@ -92,10 +91,14 @@ void C_Animation_Algorithm_Blend_Play::M_Animation_Time_Update(void)
 // 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_Blend_Play::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix)
+void C_Animation_Algorithm_Blend_And_Loop::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix)
 {
 	// ☆ 変数宣言 ☆ //
 	std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> bone_data_list;	// ボーンのデータのリスト
+
+
+	// ボーン数分配列を生成
+	bone_data_list.resize(m_animation_status.bone_sum);
 
 
 	// ブレンドしてアニメーションを再生する
@@ -120,7 +123,8 @@ void C_Animation_Algorithm_Blend_Play::M_Animation_Update(std::vector<DirectX::X
 // 引数   ：void
 // 戻り値 ：const C_Animation_Data_System * 現在のアニメーションのアドレス(const)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_Animation_Algorithm_Blend_Play::M_Get_Now_Animation(void)
+const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_Animation_Algorithm_Blend_And_Loop::M_Get_Now_Animation(void)
 {
 	return m_to_animation;
 }
+

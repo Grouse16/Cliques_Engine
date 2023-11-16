@@ -74,7 +74,7 @@ namespace ASSET::ANIMATION::ALGORITHM
 		//-☆- ゲッタ -☆-//
 
 		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス
-		virtual ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) = 0;
+		virtual const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) = 0;
 	};
 }
 

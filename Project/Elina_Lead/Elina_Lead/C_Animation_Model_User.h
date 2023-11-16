@@ -39,7 +39,17 @@ namespace ASSET::ANIMATION_MODEL
 
 			std::unique_ptr<ASSET::ANIMATION::CALCULATOR::C_Animation_Calculation_System> animation_calculator = nullptr;	// アニメーションの計算システム
 
+			std::string model_name = "default";	// モデル名
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
+
+		
+		// ☆ 関数 ☆ //
+
+		//-☆- アニメーション -☆-//
+
+		// 指定された名前のアニメーションデータをモデルから取得するシステム　引数：アニメーション名の参照　戻り値：アニメーションデータのアドレス(const)
+		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Animation(std::string &);
 
 
 		//==☆ パブリック ☆==//
@@ -72,6 +82,36 @@ namespace ASSET::ANIMATION_MODEL
 
 		// このアニメーションモデルを描画する
 		void M_Animation_Model_Draw(void);
+
+
+		//-☆- アニメーション -☆-//
+
+		// アニメーションを現在の時間のまま再生する（ブレンドあり） 引数：アニメーション名, ブレンドに必要な時間　戻り値：成功時のみtrue
+		bool M_Play_Animation(std::string, float);
+
+		// アニメーションを指定された時間から再生する（ブレンドあり）　引数：アニメーション名, ブレンドに必要な時間, アニメーション開始時間　戻り値：成功時のみtrue
+		bool M_Play_Animation_Set_Time(std::string, float, float);
+
+		// アニメーションを現在の時間のままループ再生する（ブレンドあり）（ブレンド後のアニメーションは0秒から始まる）　引数：アニメーション名, ブレンドに必要な時間　戻り値：成功時のみtrue
+		bool M_Loop_Play_Animation(std::string, float);
+
+		// アニメーションを指定された時間からループ再生する（ブレンドあり）（ブレンド後のアニメーションは0秒から始まる）　引数：アニメーション名, ブレンドに必要な時間, アニメーション開始時間　戻り値：成功時のみtrue
+		bool M_Loop_Play_Animation_And_Set_Time(std::string, float, float);
+
+		// アニメーションを現在の時間のまま強制的に再生する（ブレンドなし）　引数：アニメーション名　戻り値：成功時のみtrue
+		bool M_Force_Play_Animation(std::string);
+
+		// アニメーションを指定された時間から強制的に再生する（ブレンドなし）　引数：アニメーション名, アニメーションの開始時間　戻り値：成功時のみtrue
+		bool M_Force_Play_Animation_And_Set_Time(std::string, float);
+
+		// アニメーションを現在の時間のまま強制的にループ再生する（ブレンドなし）　引数：アニメーション名　戻り値：成功時のみtrue
+		bool M_Force_Loop_Play_Animation(std::string);
+
+		// アニメーションを指定された時間から強制的にループ再生する（ブレンドなし）　引数：アニメーション名, アニメーションの開始時間　戻り値：成功時のみtrue
+		bool M_Force_Loop_Play_Animation_And_Set_Time(std::string, float);
+
+		// アニメーション速度をセットする　引数：セットするアニメーション速度
+		void M_Set_Animation_Speed(float);
 
 
 		//-☆- ゲッタ -☆-//

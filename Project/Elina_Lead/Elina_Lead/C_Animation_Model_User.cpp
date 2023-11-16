@@ -9,12 +9,61 @@
 #include "C_Animation_Model_User.h"
 #include "C_3D_Animation_Model_Manager.h"
 
+#ifdef _DEBUG
+#include "C_Log_System.h"
+#endif // _DEBUG
+
 
 // ☆ ネームスペースの省略 ☆ //
 using namespace ASSET::ANIMATION_MODEL;
 
 
 // ☆ 関数 ☆ //
+
+//==☆ プライベート ☆==//
+
+//-☆- アニメーション -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のアニメーションデータをモデルから取得するシステム
+// 引数   ：string & アニメーション名の参照
+// 戻り値 ：const C_Animation_Data_System * アニメーションデータのアドレス(const)
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_Animation_Model_User::M_Get_Animation(std::string & in_animation_name)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = mpr_variable.animation_model->M_Get_Animation_Data_By_Name(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションが取得できなかったらエラーを出して抜ける
+	if (selected_animation == nullptr)
+	{
+#ifdef _DEBUG
+
+		// ☆ 変数宣言 ☆ //
+		std::string print_log = "モデル名：" + mpr_variable.model_name + "\n指定された名前のアニメーションデータが見つかりませんでした：" + in_animation_name + "\n現在ののアニメーション一覧：";	// 出力するログ
+
+		const std::vector<ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System::S_Animation_Data_Inform>& animation_list = mpr_variable.animation_model->M_Get_Animation_Inform_List();	// アニメーションデータのリスト
+
+
+		// アニメーション名を記録
+		for (const ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System::S_Animation_Data_Inform& now_animation : animation_list)
+		{
+			print_log += "\n" + now_animation.name;
+		}
+
+		// ログを出力し全ての実行を停止する
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, print_log);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+#endif // _DEBUG
+
+		return nullptr;
+	}
+
+	return selected_animation;
+}
+
 
 //==☆ パブリック ☆==//
 
@@ -100,6 +149,9 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 	mpr_variable.animation_model = new_animation_model_address;
 	mpr_variable.animation_calculator.reset(new ANIMATION::CALCULATOR::C_Animation_Calculation_System(new_animation_model_address->M_Get_Bone_Inform_List()));
 
+	// モデル名を記録
+	mpr_variable.model_name = in_load_animation_model_name;
+
 	return;
 }
 
@@ -111,9 +163,28 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_animation_data_name)
 {
-	mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);
+	// デバッグ時はエラーチェックをする
+#ifdef _DEBUG
 
-	return;
+	// ☆ 変数宣言 ☆ //
+	bool flg_succeed = mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);	// 成功したかどうかのフラグ
+
+
+	// エラー時はエラーログを出す
+	if (flg_succeed == false)
+	{
+		// ログを出力し全ての実行を停止する
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "モデル名：" + mpr_variable.model_name + "\n指定されたアニメーションデータはありません：" + in_load_animation_data_name);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+	}
+
+	return flg_succeed;
+
+	// リリース時は通常通りデータを返す
+#else
+	return mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);
+#endif // _DEBUG
 }
 
 
@@ -138,12 +209,217 @@ void C_Animation_Model_User::M_Animation_Model_Draw(void)
 
 
 	// アニメーション結果をセットする
-	mpr_variable.animation_calculator->M_Create_Animationed_Bone_Matrix(bone_matrix_list);
+	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(bone_matrix_list);
 	mpr_variable.animation_model->M_Set_Bone_Matrix(bone_matrix_list);
 
 
 	// 描画を行う
 	mpr_variable.animation_model->M_Draw_3D_Model();
+
+	return;
+}
+
+
+//-☆- アニメーション -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを現在の時間のまま再生する（ブレンドあり）
+// 引数   ：string アニメーション名, float ブレンドに必要な時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Play_Animation(std::string in_animation_name, float in_need_blend_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Need_Blend_Time(in_need_blend_time);
+		mpr_variable.animation_calculator->M_Blend_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを指定された時間から再生する（ブレンドあり）
+// 引数   ：string アニメーション名, float ブレンドに必要な時間, float アニメーション開始時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Play_Animation_Set_Time(std::string in_animation_name, float in_need_blend_time, float in_start_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Need_Blend_Time(in_need_blend_time);
+		mpr_variable.animation_calculator->M_Set_Animation_Time(in_start_time);
+		mpr_variable.animation_calculator->M_Blend_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを現在の時間のままループ再生する（ブレンドあり）
+// 引数   ：string アニメーション名, float ブレンドに必要な時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Loop_Play_Animation(std::string in_animation_name, float in_need_blend_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみループアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Need_Blend_Time(in_need_blend_time);
+		mpr_variable.animation_calculator->M_Blend_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを指定された時間からループ再生する（ブレンドあり）（ブレンド後のアニメーションは0秒から始まる）
+// 引数   ：string アニメーション名, float ブレンドに必要な時間, float アニメーション開始時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Loop_Play_Animation_And_Set_Time(std::string in_animation_name, float in_need_blend_time, float in_start_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してループアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Need_Blend_Time(in_need_blend_time);
+		mpr_variable.animation_calculator->M_Set_Animation_Time(in_start_time);
+		mpr_variable.animation_calculator->M_Blend_Loop_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを現在の時間のまま強制的に再生する（ブレンドなし）
+// 引数   ：string アニメーション名
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Force_Play_Animation(std::string in_animation_name)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを指定された時間から強制的に再生する（ブレンドなし）
+// 引数   ：string アニメーション名, float アニメーションの開始時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Force_Play_Animation_And_Set_Time(std::string in_animation_name, float in_start_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Animation_Time(in_start_time);
+		mpr_variable.animation_calculator->M_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを現在の時間のまま強制的にループ再生する（ブレンドなし）
+// 引数   ：string アニメーション名
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Force_Loop_Play_Animation(std::string in_animation_name)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してループアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Loop_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを指定された時間から強制的にループ再生する（ブレンドなし）
+// 引数   ：string アニメーション名, float アニメーションの開始時間
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Animation_Model_User::M_Force_Loop_Play_Animation_And_Set_Time(std::string in_animation_name, float in_start_time)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * selected_animation = M_Get_Animation(in_animation_name);	// 指定された名前のアニメーションデータ
+
+
+	// アニメーションのデータが正しくロードされているときのみ開始時間を設定してループアニメーションを再生
+	if (selected_animation)
+	{
+		mpr_variable.animation_calculator->M_Set_Animation_Time(in_start_time);
+		mpr_variable.animation_calculator->M_Loop_Play_Animation(selected_animation);
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーション速度をセットする
+// 引数   ：float セットするアニメーション速度
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Set_Animation_Speed(float in_set_animation_speed)
+{
+	mpr_variable.animation_calculator->M_Set_Animation_Speed(in_set_animation_speed);
 
 	return;
 }

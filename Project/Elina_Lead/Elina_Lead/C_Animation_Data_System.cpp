@@ -332,7 +332,7 @@ void C_Animation_Data_System::M_Release(void)
 // 引数   ：string アニメーションデータまでのパス, vector<C_Bone_Inform> & アタッチ先モデルのボーンの情報
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Animation_Data_System::M_Load_Anmation_Data_By_Path(std::string in_animation_data_path, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_inform_list)
+bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_animation_data_path, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_inform_list)
 {
 	// ☆ 変数宣言 ☆ //
 	SYSTEM::TEXT::C_Text_And_File_Manager file_data;	// ファイルのデータを読み取るシステム
@@ -557,7 +557,7 @@ void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::A
 // 引数   ：void
 // 戻り値 ：int アニメーション開始から終了までの時間
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Animation_Data_System::M_Get_Animation_Time(void)
+int C_Animation_Data_System::M_Get_Animation_Time(void) const
 {
 	return mpr_variable.animation_max_time;
 }
