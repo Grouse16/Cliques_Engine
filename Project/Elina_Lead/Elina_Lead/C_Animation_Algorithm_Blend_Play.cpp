@@ -70,7 +70,7 @@ void C_Animation_Algorithm_Blend_Play::M_Animation_Time_Update(void)
 	if (m_animation_status.animation_blend_percent <= 1.0f)
 	{
 		// ☆ 変数宣言 ☆ //
-		float blend_up_value = GAME::TIME::C_Game_Time_Manager::M_Get_Game_Second() / m_animation_status.need_blend_time;	// ブレンド率の上昇量
+		float blend_up_value = (GAME::TIME::C_Game_Time_Manager::M_Get_Game_Second() * m_animation_status.animation_speed) / m_animation_status.need_blend_time;	// ブレンド率の上昇量
 
 
 		// ブレンド元のアニメーション時間の更新を行う
