@@ -25,6 +25,18 @@
 // アニメーションの計算システムを呼び出すための名前
 namespace ASSET::ANIMATION::CALCULATOR
 {
+	// ☆ 定数 ☆ //
+
+	// アニメーションのブレンド終了後の挙動を指定するための列挙
+	enum class E_ANIMATION_BLENDED_AFTER
+	{
+		e_NOT_BLENDING_NOW,	// 今はブレンドしていない
+
+		e_PLAY_ANIMATION,	// アニメーションを通常再生
+		e_LOOP_ANIMATION,	// アニメーションをループ再生
+	};
+
+
 	// ☆ クラス ☆ //
 	
 	// アニメーションの計算を制御するクラス
@@ -41,6 +53,8 @@ namespace ASSET::ANIMATION::CALCULATOR
 			std::unique_ptr<ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base> animation_algorithm = nullptr;	// アニメーションのアルゴリズム
 
 			ASSET::ANIMATION::S_Animation_Status animation_status;	// アニメーションのステータス
+
+			E_ANIMATION_BLENDED_AFTER blend_after = E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW;	// アニメーションブレンド終了後の状態を指定
 
 
 			// ☆ 関数 ☆ //
@@ -61,6 +75,14 @@ namespace ASSET::ANIMATION::CALCULATOR
 			}
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
+
+
+		// ☆ 関数 ☆ //
+
+		//-☆- ブレンド制御 -☆-//
+		
+		// ブレンド終了を確認し、対応したアニメーション処理に入れ替える
+		void M_Check_Blend_End_And_Animation_Setting(void);
 
 
 		//==☆ パブリック ☆==//
@@ -91,6 +113,9 @@ namespace ASSET::ANIMATION::CALCULATOR
 		// 現在のアニメーション時間をセットする　引数：セットするアニメーションのスピード
 		void M_Set_Animation_Speed(float);
 
+		// ブレンドにかかる時間をセットする　引数：セットするブレンドにかかる時間
+		void M_Set_Need_Blend_Time(float);
+
 
 		//-☆- ゲッタ -☆-//
 
@@ -109,17 +134,20 @@ namespace ASSET::ANIMATION::CALCULATOR
 
 		//-☆- アニメーション -☆-//
 
-		// 渡されたアニメーションを再生する　引数：再生するアニメーションデータのアドレス
-		void M_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		// 渡されたアニメーションを再生する　引数：再生するアニメーションデータのアドレス(const)
+		void M_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
-		// 渡されたアニメーションをループ再生する　引数：再生するアニメーションデータのアドレス
-		void M_Loop_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		// 渡されたアニメーションをループ再生する　引数：再生するアニメーションデータのアドレス(const)
+		void M_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
-		// 渡されたアニメーションをブレンドして再生する　引数：再生するアニメーションデータのアドレス（ブレンド先）
-		void M_Blend_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		// 渡されたアニメーションをブレンドして再生する　引数：再生するアニメーションデータのアドレス（ブレンド先）(const)
+		void M_Blend_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+
+		// 渡されたアニメーションをブレンド後、ループ再生する　引数：再生するアニメーションデータのアドレス（ブレンド先）(const)
+		void M_Blend_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
 		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照
-		void M_Create_Animationed_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);
+		void M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);
 	};
 }
 

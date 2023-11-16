@@ -34,7 +34,7 @@ namespace ASSET::ANIMATION::ALGORITHM
 		// ☆ 変数宣言 ☆ //
 		ASSET::ANIMATION::S_Animation_Status & m_animation_status;	// アニメーションステータス
 
-		ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * m_now_animation = nullptr;	// 現在のアニメーション
+		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * m_now_animation = nullptr;	// 現在のアニメーション
 
 
 		//==☆ パブリック ☆==//
@@ -47,8 +47,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 		// コンストラクタ　何も引数に設定しないコンストラクタを無効化
 		C_Animation_Algorithm_Play(void) = delete;
 
-		// コンストラクタ　引数：アニメーションステータスの参照, アニメーションするデータのセット
-		C_Animation_Algorithm_Play(ASSET::ANIMATION::S_Animation_Status & , ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		// コンストラクタ　引数：アニメーションステータスの参照, アニメーションするデータのセット(const)
+		C_Animation_Algorithm_Play(ASSET::ANIMATION::S_Animation_Status & , const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
 		// デストラクタ
 		~C_Animation_Algorithm_Play(void) override;
@@ -65,8 +65,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 
 		//-☆- ゲッタ -☆-//
 
-		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス
-		ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) override;
+		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス(const)
+		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) override;
 	};
 }
 

@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：アニメーションをブレンド再生するクラス
+// 詳細   ：ブレンド後ループアニメーションを行うクラス
 // 説明   ：ブレンドが終了した際のシングルトンアニメーションと入れ替えるための情報はアニメーションステータス情報にセットされる
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_H_FILE
-#define D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_H_FILE
+#ifndef D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_LOOP_H_FILE
+#define D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_LOOP_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -25,8 +25,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 {
 	// ☆ クラス ☆ //
 
-	// アニメーションをブレンド再生するクラス
-	class C_Animation_Algorithm_Blend_Play : public ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base
+	// ブレンド後ループアニメーションを行うクラス
+	class C_Animation_Algorithm_Blend_And_Loop : public ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -48,13 +48,13 @@ namespace ASSET::ANIMATION::ALGORITHM
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ　何も引数に設定しないコンストラクタを無効化
-		C_Animation_Algorithm_Blend_Play(void) = delete;
+		C_Animation_Algorithm_Blend_And_Loop(void) = delete;
 
 		// コンストラクタ　引数：アニメーションステータスの参照, ブレンド元のアニメーション(const), ブレンド先のアニメーション(const)
-		C_Animation_Algorithm_Blend_Play(ASSET::ANIMATION::S_Animation_Status &, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System *, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
+		C_Animation_Algorithm_Blend_And_Loop(ASSET::ANIMATION::S_Animation_Status &, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System *, const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System *);
 
 		// デストラクタ
-		~C_Animation_Algorithm_Blend_Play(void) override;
+		~C_Animation_Algorithm_Blend_And_Loop(void) override;
 
 
 		//-☆- 更新 -☆-//
@@ -69,9 +69,9 @@ namespace ASSET::ANIMATION::ALGORITHM
 		//-☆- ゲッタ -☆-//
 
 		// 現在のアニメーションを返す　戻り値：現在のアニメーションのアドレス(const)
-		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Now_Animation(void) override;
+		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System* M_Get_Now_Animation(void) override;
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_H_FILE
+#endif // !D_INCLUDE_GUARD_C_ANIMATION_ALGORITHM_BLEND_LOOP_H_FILE

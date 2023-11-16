@@ -11,6 +11,7 @@
 #include "C_Animation_Algorithm_Play.h"
 #include "C_Animation_Algorithm_Loop_Play.h"
 #include "C_Animation_Algorithm_Blend_Play.h"
+#include "C_Animation_Algorithm_Blend_And_Loop.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -18,6 +19,44 @@ using namespace ASSET::ANIMATION::CALCULATOR;
 
 
 // ☆ 関数 ☆ //
+
+//==☆ プライベート ☆==//
+
+//-☆- ブレンド制御 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ブレンド終了を確認し、対応したアニメーション処理に入れ替える
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Calculation_System::M_Check_Blend_End_And_Animation_Setting(void)
+{
+	// ブレンドが完了しているなら分岐をブレンド後に遷移する分岐を実行
+	if (mpr_variable.animation_status.need_blend_time >= 1.0f)
+	{
+		// ☆ ブレンド後の挙動で処理を分岐 ☆ //
+		switch (mpr_variable.blend_after)
+		{
+			//--☆ 通常の再生に遷移する ☆--//
+		case E_ANIMATION_BLENDED_AFTER::e_PLAY_ANIMATION:
+			M_Play_Animation(mpr_variable.animation_algorithm->M_Get_Now_Animation());
+			break;
+
+			//--☆ ループ再生に遷移する ☆--//
+		case E_ANIMATION_BLENDED_AFTER::e_LOOP_ANIMATION:
+			M_Loop_Play_Animation(mpr_variable.animation_algorithm->M_Get_Now_Animation());
+			break;
+
+			//--☆ ブレンドしていないとき ☆--//
+		case E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW:
+		default:
+			break;
+		}
+	}
+
+	return;
+}
+
 
 //==☆ パブリック ☆==//
 
@@ -97,6 +136,19 @@ void C_Animation_Calculation_System::M_Set_Animation_Speed(float in_set_speed)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ブレンドにかかる時間をセットする
+// 引数   ：float セットするブレンドにかかる時間
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Calculation_System::M_Set_Need_Blend_Time(float in_set_need_blend_time)
+{
+	mpr_variable.animation_status.need_blend_time = in_set_need_blend_time;
+
+	return;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -147,12 +199,13 @@ float C_Animation_Calculation_System::M_Get_Animation_Blend_Percent(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：渡されたアニメーションを再生する
-// 引数   ：C_Animation_Data_System * 再生するアニメーションデータのアドレス
+// 引数   ：const C_Animation_Data_System * 再生するアニメーションデータのアドレス(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_play_animation)
+void C_Animation_Calculation_System::M_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_play_animation)
 {
 	mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Play(mpr_variable.animation_status, in_play_animation));
+	mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW;
 
 	return;
 }
@@ -160,12 +213,13 @@ void C_Animation_Calculation_System::M_Play_Animation(ASSET::ANIMATION_SYSTEM::C
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：渡されたアニメーションをループ再生する
-// 引数   ：C_Animation_Data_System * ループ再生するアニメーションデータのアドレス
+// 引数   ：const C_Animation_Data_System * ループ再生するアニメーションデータのアドレス(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Loop_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System* in_loop_play_animation)
+void C_Animation_Calculation_System::M_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_loop_play_animation)
 {
 	mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Loop_Play(mpr_variable.animation_status, in_loop_play_animation));
+	mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW;
 
 	return;
 }
@@ -173,25 +227,56 @@ void C_Animation_Calculation_System::M_Loop_Play_Animation(ASSET::ANIMATION_SYST
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：渡されたアニメーションをブレンドして再生する
-// 引数   ：C_Animation_Data_System * 再生するアニメーションデータのアドレス（ブレンド先）
+// 引数   ：const C_Animation_Data_System * 再生するアニメーションデータのアドレス（ブレンド先）(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Blend_Play_Animation(ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_blend_play_animation)
+void C_Animation_Calculation_System::M_Blend_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_blend_play_animation)
 {
 	// ☆ 変数宣言 ☆ //
-	ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * now_animation_data = mpr_variable.animation_algorithm->M_Get_Now_Animation();	// 現在のアニメーションのデータ（ブレンド元）
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * now_animation_data = mpr_variable.animation_algorithm->M_Get_Now_Animation();	// 現在のアニメーションのデータ（ブレンド元）
 
 
 	// ブレンド元のアニメーションがあるなら、ブレンドアニメーションを開始
 	if (now_animation_data)
 	{
 		mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Blend_Play(mpr_variable.animation_status, now_animation_data, in_blend_play_animation));
+		mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_PLAY_ANIMATION;
 	}
 
 	// ブレンド元のアニメーションがないなら通常のアニメーションを行う
 	else
 	{
 		mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Play(mpr_variable.animation_status, in_blend_play_animation));
+		mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW;
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたアニメーションをブレンド後、ループ再生する
+// 引数   ：const C_Animation_Data_System * 再生するアニメーションデータのアドレス（ブレンド先）(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Calculation_System::M_Blend_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * in_blend_loop_animation)
+{
+	// ☆ 変数宣言 ☆ //
+	const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * now_animation_data = mpr_variable.animation_algorithm->M_Get_Now_Animation();	// 現在のアニメーションのデータ（ブレンド元）
+
+
+	// ブレンド元のアニメーションがあるなら、ブレンドアニメーションを開始
+	if (now_animation_data)
+	{
+		mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Blend_And_Loop(mpr_variable.animation_status, now_animation_data, in_blend_loop_animation));
+		mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_LOOP_ANIMATION;
+	}
+
+	// ブレンド元のアニメーションがないならループアニメーションを行う
+	else
+	{
+		mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Loop_Play(mpr_variable.animation_status, in_blend_loop_animation));
+		mpr_variable.blend_after = E_ANIMATION_BLENDED_AFTER::e_NOT_BLENDING_NOW;
 	}
 
 	return;
@@ -203,7 +288,7 @@ void C_Animation_Calculation_System::M_Blend_Play_Animation(ASSET::ANIMATION_SYS
 // 引数   ：vector<XMFLOAT4X4> & 設定先のボーンマトリクス配列のデータの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Create_Animationed_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list)
+void C_Animation_Calculation_System::M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list)
 {
 	// ボーンデータ用の配列を確保する
 	out_bone_matrix_list.clear();
@@ -212,6 +297,9 @@ void C_Animation_Calculation_System::M_Create_Animationed_Bone_Matrix(std::vecto
 
 	mpr_variable.animation_algorithm->M_Animation_Time_Update();
 	mpr_variable.animation_algorithm->M_Animation_Update(out_bone_matrix_list);
+
+	// アニメーションブレンド中であれば、ブレンド完了したタイミングで通常のアニメーションに戻る（ブレンドの処理だけを抜いたバージョンに入れ替える）
+	M_Check_Blend_End_And_Animation_Setting();
 
 	return;
 }

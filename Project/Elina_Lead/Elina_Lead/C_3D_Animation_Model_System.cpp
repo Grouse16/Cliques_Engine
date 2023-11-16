@@ -338,7 +338,6 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");
 	}
 
-
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -375,7 +374,7 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 	// アニメーションデータをロードする　失敗でfalseを返して抜ける
 	mpr_variable.animation_data_list.resize(new_animation_data + 1);
 	mpr_variable.animation_data_list[new_animation_data].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
-	if (mpr_variable.animation_data_list[new_animation_data].animation_data->M_Load_Anmation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
+	if (mpr_variable.animation_data_list[new_animation_data].animation_data->M_Load_Animation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
 	{
 		return false;
 	}

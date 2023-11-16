@@ -22,7 +22,7 @@ using namespace GAME::INSTANCE;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：コンストラクタ
 // 引数   ：void
-// 戻り値 ：void
+// 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆// 
 C_Game_Instance_Manager::C_Game_Instance_Manager(void)
 {
@@ -35,11 +35,10 @@ C_Game_Instance_Manager::C_Game_Instance_Manager(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ゲーム上の全てのインスタンスのなかから、削除のフラグが立っているものを消す
 // 引数   ：void
-// 戻り値 ：void
+// 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆// 
 void C_Game_Instance_Manager::M_All_Instance_Destroy_Update(void)
 {
-
 
 
 	return;

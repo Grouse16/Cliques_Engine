@@ -98,7 +98,7 @@ namespace ASSET::ANIMATION_SYSTEM
 		//-☆- ロード -☆-//
 
 		// 指定されたパスのアニメーションデータをロードする　引数：アニメーションデータまでのパス, アタッチ先モデルのボーンの情報　戻り値：成功時のみtrue
-		bool M_Load_Anmation_Data_By_Path(std::string, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> &);
+		bool M_Load_Animation_Data_By_Path(std::string, std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> &);
 
 
 		//-☆- キーフレームブレンド -☆-//
@@ -116,7 +116,7 @@ namespace ASSET::ANIMATION_SYSTEM
 		//-☆- ゲッタ -☆-//
 
 		// アニメーション開始から終了までの時間　戻り値：アニメーション開始から終了までの時間
-		int M_Get_Animation_Time(void);
+		int M_Get_Animation_Time(void) const;
 	};
 }
 

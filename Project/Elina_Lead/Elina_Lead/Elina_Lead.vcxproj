@@ -138,6 +138,7 @@
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h" />
     <ClInclude Include="C_Animation_Algorithm_Blend_Play.h" />
     <ClInclude Include="C_Animation_Algorithm_Loop_Play.h" />
     <ClInclude Include="C_Animation_Algorithm_No_Animation.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="C_Rendering_Graphics_API_Base.h" />
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Setting_System.h" />
+    <ClInclude Include="C_Scene_Base.h" />
     <ClInclude Include="C_Shader_Manager.h" />
     <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h" />
     <ClInclude Include="C_DX12_Sampling_Setting_System.h" />
@@ -259,6 +261,7 @@
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp" />
     <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp" />
@@ -278,6 +281,7 @@
     <ClCompile Include="C_Material_User.cpp" />
     <ClCompile Include="C_Mesh_Data.cpp" />
     <ClCompile Include="C_Post_Effect_Base.cpp" />
+    <ClCompile Include="C_Scene_Base.cpp" />
     <ClCompile Include="C_Shader_Setting_Manager.cpp" />
     <ClCompile Include="C_Shader_Setting_User.cpp" />
     <ClCompile Include="C_Shader_User.cpp" />

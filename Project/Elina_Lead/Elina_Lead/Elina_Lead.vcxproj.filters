@@ -493,6 +493,12 @@
     <Filter Include="ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム\基底">
       <UniqueIdentifier>{ce56824e-c08d-4314-8075-41e22d7d970d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ゲーム\シーン">
+      <UniqueIdentifier>{03e01c5e-a791-446c-96cd-529e9cbb7c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\シーン">
+      <UniqueIdentifier>{c0a168ad-1c9d-4a82-8860-c3668a22e2a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_APK_Manager.h">
@@ -864,6 +870,12 @@
     <ClInclude Include="C_Animation_Algorithm_Blend_Play.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
     </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h">
+      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scene_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\シーン</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_APK_Manager.cpp">
@@ -1132,6 +1144,12 @@
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp">
+      <Filter>ソース ファイル\アセット\アニメーションモデル\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scene_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\シーン</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
