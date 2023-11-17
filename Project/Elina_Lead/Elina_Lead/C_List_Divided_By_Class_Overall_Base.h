@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "C_Game_Instance_Base.h"
+#include "C_List_All_Base.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -21,49 +22,17 @@
 // リストの基底となるシステムを呼び出すための名前
 namespace SYSTEM::LIST::BASE
 {
-	// インスタンス分離リストの全ての元となる基底クラスを呼び出すための名前
-	namespace ALL_LIST_BASE
-	{
-		// ☆ クラス ☆ //
-
-		// インスタンス分離リストの全ての元となる基底クラス
-		class C_List_All_Base
-		{
-			//==☆ プロテクト ☆==//
-		protected:
-
-			// ☆ 変数宣言 ☆ //
-			std::vector<int> m_priority_list;	// 優先度のリスト
-
-
-			// ☆ 関数 ☆ //
-
-			//-☆- ゲッタ -☆-//
-
-			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-			// 詳細   ：優先度のリストを返す
-			// 引数   ：void
-			// 戻り値 ：vector<int> & 優先度のリスト
-			//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-			std::vector<int> & M_Get_Priority_List(void)
-			{
-				return m_priority_list;
-			}
-		};
-	}
-
-
 	// ☆ クラス ☆ //
 
 	// クラスごとに分離したリストを管理するクラスの基底、派生先のリストをまとめたリストを生成できる（テンプレートには派生先のリストのクラスを設定）
 	template <template <typename> class C_List>
-	class C_List_Divided_By_Class_Overall_Base : public ALL_LIST_BASE::C_List_All_Base
+	class C_List_Divided_By_Class_Overall_Base
 	{
 		//==☆ プロテクト ☆==//
 	protected:
 
 		// ☆ 変数宣言 ☆ //
-		static inline std::vector<C_List_All_Base * > m_list_of_all_instance_list;	// 現在あるインスタンス管理リストをまとめた配列
+		static inline std::vector<ALL_LIST_BASE::C_List_All_Base * > m_list_of_all_instance_list;	// 現在あるインスタンス管理リストをまとめた配列
 
 
 		// ☆ 関数 ☆ //
@@ -88,7 +57,7 @@ namespace SYSTEM::LIST::BASE
 		// 引数   ：C_List_All_Base * インスタンス管理リストのアドレス
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Add_To_List_Of_All_Instance_List(C_List_All_Base * in_instance_list_address)
+		static void M_Add_To_List_Of_All_Instance_List(ALL_LIST_BASE::C_List_All_Base * in_instance_list_address)
 		{
 			m_list_of_all_instance_list.reserve(m_list_of_all_instance_list.size() + 1);
 			m_list_of_all_instance_list.emplace_back(in_instance_list_address);
@@ -104,7 +73,7 @@ namespace SYSTEM::LIST::BASE
 		// 引数   ：C_List_All_Base * インスタンス管理リストのアドレス
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Delete_By_List_Of_All_Instance_List(C_List_All_Base * in_instance_list_address)
+		static void M_Delete_By_List_Of_All_Instance_List(ALL_LIST_BASE::C_List_All_Base * in_instance_list_address)
 		{
 			m_list_of_all_instance_list.erase
 			(
@@ -112,7 +81,7 @@ namespace SYSTEM::LIST::BASE
 				(
 					m_list_of_all_instance_list.begin(),
 					m_list_of_all_instance_list.end(),
-					[in_instance_list_address](C_List_All_Base * & in_check_list)
+					[in_instance_list_address](ALL_LIST_BASE::C_List_All_Base * & in_check_list)
 					{
 						return in_check_list == in_instance_list_address;
 					}
@@ -132,7 +101,7 @@ namespace SYSTEM::LIST::BASE
 		// 引数   ：function<bool(C_List_All_Base &, C_List_All_Base &)> ソート用のラムダ式、全ての要素の関係が、trueになるまでソートを続ける
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Sort_Instance_By_Lambda(std::function<bool(C_List_All_Base &, C_List_All_Base &)> in_sort_lambda)
+		static void M_Sort_Instance_By_Lambda(std::function<bool(ALL_LIST_BASE::C_List_All_Base &, ALL_LIST_BASE::C_List_All_Base &)> in_sort_lambda)
 		{
 			// ソートする
 			std::sort
@@ -171,9 +140,9 @@ namespace SYSTEM::LIST::BASE
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：テンプレート引数型のインスタンス管理リストをまとめた配列の参照を返す
 		// 引数   ：void
-		// 戻り値 ：vector<C_List_All_Base * > &  引数型の全てのリスト
+		// 戻り値 ：vector<C_List_All_Base * > & 引数型の全てのリスト
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<C_List_All_Base * > & M_Get_List_Of_All_Instance_List(void)
+		static std::vector<ALL_LIST_BASE::C_List_All_Base * > & M_Get_List_Of_All_Instance_List(void)
 		{
 			return m_list_of_all_instance_list;
 		}

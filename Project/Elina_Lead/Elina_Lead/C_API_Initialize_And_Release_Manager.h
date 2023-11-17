@@ -58,7 +58,7 @@ namespace PLATFORM
 		static bool M_Init_OS(void);
 
 		// OSの生成を行う　引数：使用するAPIの種類　戻り値：成功時のみtrue
-		static bool M_Creat_OS(E_RENDERING_API_KIND);
+		static bool M_Create_OS(E_RENDERING_API_KIND);
 
 		// APIの初期化を行う　引数：void　戻り値：成功時のみtrue
 		static bool M_Init_API(void);

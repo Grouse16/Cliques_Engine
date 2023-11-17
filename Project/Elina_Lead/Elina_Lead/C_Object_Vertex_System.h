@@ -163,7 +163,7 @@ namespace RENDERING::CAPSULE
 		// 引数   ：int 頂点データの生成数
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		void M_Creat_Vertex_Data_By_Number(int in_vertex_sum)
+		void M_Create_Vertex_Data_By_Number(int in_vertex_sum)
 		{
 			mpr_variable.m_vertex_data.clear();
 			mpr_variable.m_vertex_data.shrink_to_fit();
@@ -177,7 +177,7 @@ namespace RENDERING::CAPSULE
 		// 引数   ：int 頂点インデックスデータの生成数
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		void M_Creat_Index_Data_By_Number(int in_index_sum)
+		void M_Create_Index_Data_By_Number(int in_index_sum)
 		{
 			mpr_variable.m_index_data.clear();
 			mpr_variable.m_index_data.shrink_to_fit();

@@ -218,7 +218,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 		// 頂点数を取得し、頂点データを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
-		now_mesh_inform.mesh_data->M_Creat_Vertex_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Vertex_List(file_data.M_Get_Number());
 
 		// 頂点データをロード
 		for (DATA::VERTEX::S_3D_Animation_Model_Vertex & now_vertex_data : now_mesh_inform.mesh_data->M_Get_Vertex_Data_List())
@@ -288,7 +288,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
-		now_mesh_inform.mesh_data->M_Creat_Index_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Index_List(file_data.M_Get_Number());
 
 		// 頂点インデックスデータをロード
 		for (unsigned __int32 & now_index_data : now_mesh_inform.mesh_data->M_Get_Index_Data_List())
@@ -298,7 +298,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		}
 
 		// 頂点と頂点インデックス情報分のバッファを生成し、データをバッファにセット、その後データは使用しないので削除（バッファは残る）
-		now_mesh_inform.mesh_data->M_Creat_Vertex_Buffer_And_Index_Buffer();
+		now_mesh_inform.mesh_data->M_Create_Vertex_Buffer_And_Index_Buffer();
 		now_mesh_inform.mesh_data->M_Attach_Vertex_Data_To_Buffer();
 		now_mesh_inform.mesh_data->M_Attach_Index_Data_To_Buffer();
 		now_mesh_inform.mesh_data->M_Delete_Vertex_Data();

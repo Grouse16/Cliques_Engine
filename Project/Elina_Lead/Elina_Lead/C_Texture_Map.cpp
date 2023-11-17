@@ -35,7 +35,7 @@ C_Texture_Map::C_Texture_Map(void)
 // 引数   ：int 横幅のピクセル数, int 縦幅のピクセル数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Texture_Map::M_Creat_Texture_Map(int in_side_pixel, int in_vert_pixel)
+void C_Texture_Map::M_Create_Texture_Map(int in_side_pixel, int in_vert_pixel)
 {
 	// サイズがマイナス値を指定されたら無効
 	if (in_side_pixel < 0 || in_vert_pixel < 0)

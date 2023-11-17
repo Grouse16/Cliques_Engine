@@ -28,7 +28,7 @@
 //-☆- 初期化と終了時 -☆-//
 
 // OSシステムの生成を行う
-void M_OS_Creat_System(void);
+void M_OS_Create_System(void);
 
 // レンダリングAPIの初期化を行う
 void M_Rendering_API_Init(void);
@@ -65,7 +65,7 @@ int main(void)
 	//===☆ 処理開始 ☆===//
 	
 	// OS用システムの生成
-	M_OS_Creat_System();
+	M_OS_Create_System();
 
 
 // ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
@@ -113,10 +113,10 @@ int main(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void M_OS_Creat_System(void)
+void M_OS_Create_System(void)
 {
 	// OSを生成する　失敗で終了
-	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Creat_OS(PLATFORM::E_RENDERING_API_KIND::e_DX12))
+	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Create_OS(PLATFORM::E_RENDERING_API_KIND::e_DX12))
 	{
 		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}

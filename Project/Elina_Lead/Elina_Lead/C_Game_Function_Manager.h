@@ -63,7 +63,7 @@ namespace GAME::FUNCTION
 
 		// 指定された機能の型の生成を実行する
 		template <class TYPE_CREATE_FUNCTION>
-		static C_Game_Function_Base * M_Creat_Function_Excute(void)
+		static C_Game_Function_Base * M_Create_Function_Excute(void)
 		{
 			// ☆ 変数宣言 ☆ //
 			C_Game_Function_Base * new_function_address = nullptr;	// 新しい

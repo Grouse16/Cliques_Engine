@@ -57,6 +57,8 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		C_Post_Effect_List(void)
 		{
+			M_Set_My_Instance_Address(this);
+
 			return;
 		}
 
@@ -88,13 +90,13 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 引数   ：string 生成したポストエフェクトの名前
 		// 戻り値 ：C_Post_Effect * 生成したポストエフェクトのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Post_Effect * M_Creat_Post_Effect(std::string in_post_effect_name)
+		static C_Post_Effect * M_Create_Post_Effect(std::string in_post_effect_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_Post_Effect & post_effect_slot_address =		// 新しいポストエフェクト用のスロットの参照
 
 				// 新しいポストエフェクト用のスロットを生成する
-				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Creat_Instance(in_post_effect_name);
+				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Create_Instance(in_post_effect_name);
 
 
 			// ポストエフェクトを生成し、そのポストエフェクトのクラス用のリストに格納する
@@ -132,6 +134,32 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 
 			// リストからの削除を行う
 			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Delete_Instance_By_Lambda(delete_lambda);
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：インスタンスの削除を行う
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_Instance_Execute(void) override
+		{
+			M_Delete_Post_Effect_Update();
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：全てのインスタンスの削除を行う
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_All_Instance_Execute(void) override
+		{
+			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Delete_All_Instance();
 
 			return;
 		}

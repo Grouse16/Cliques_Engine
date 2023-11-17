@@ -85,7 +85,7 @@ void C_Texture_Data_System::M_Reset_Texture(void)
 
 
 	// テクスチャを生成し初期化色を設定
-	M_Creat_Texture_Data(10, 10);
+	M_Create_Texture_Data(10, 10);
 	mpr_variable.texture_map.M_Flush_All_Color(reset_color);
 
 	return;
@@ -99,7 +99,7 @@ void C_Texture_Data_System::M_Reset_Texture(void)
 // 引数   ：int テクスチャの横サイズ, int テクスチャの縦サイズ
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Texture_Data_System::M_Creat_Texture_Data(int in_tex_width, int in_tex_height)
+void C_Texture_Data_System::M_Create_Texture_Data(int in_tex_width, int in_tex_height)
 {
 	// マイナス時は生成できないのでエラーで抜ける
 	if (in_tex_width <= 0 || in_tex_height <= 0)
@@ -119,7 +119,7 @@ void C_Texture_Data_System::M_Creat_Texture_Data(int in_tex_width, int in_tex_he
 
 
 	// マップを指定されたピクセル数分生成する
-	mpr_variable.texture_map.M_Creat_Texture_Map(in_tex_width, in_tex_height);
+	mpr_variable.texture_map.M_Create_Texture_Map(in_tex_width, in_tex_height);
 
 	return;
 }
@@ -130,7 +130,7 @@ void C_Texture_Data_System::M_Creat_Texture_Data(int in_tex_width, int in_tex_he
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Texture_Data_System::M_Creat_Texture_Resource_By_Texture_Map(void)
+void C_Texture_Data_System::M_Create_Texture_Resource_By_Texture_Map(void)
 {
 	// ☆ 変数宣言 ☆ //
 	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報

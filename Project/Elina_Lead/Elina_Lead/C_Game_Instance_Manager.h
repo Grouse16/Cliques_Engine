@@ -56,6 +56,9 @@ namespace GAME::INSTANCE
 		void M_Delete_All_Instance(void);
 
 
+		//-☆- 更新 -☆-//
+
+
 		//-☆- ゲッタ -☆-//
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -63,7 +66,7 @@ namespace GAME::INSTANCE
 		// 引数   ：void
 		// 戻り値 ：vector<unique_ptr<C_Actor>> & 指定されたアクターのリストの参照
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		template<ACTOR::LIST::C_Checked_Actor_Class C_Actor>
+		template<ACTOR::LIST::CONCEPT::C_Checked_Actor_Class C_Actor>
 		static std::vector<std::unique_ptr<C_Actor>> & M_Get_Actor_List(void)
 		{
 			return ACTOR::LIST::C_Actor_List<C_Actor>::M_Get_Actor_List();
@@ -75,7 +78,7 @@ namespace GAME::INSTANCE
 		// 引数   ：void
 		// 戻り値 ：vector<unique_ptr<C_UI>> & 指定されたUIのリストの参照
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		template<UI::LIST::C_Checked_UI_Class C_UI>
+		template<UI::LIST::CONCEPT::C_Checked_UI_Class C_UI>
 		static std::vector<std::unique_ptr<C_UI>> & M_Get_UI_List(void)
 		{
 			return UI::LIST::C_User_Interface_List<C_UI>::M_Get_UI_List();

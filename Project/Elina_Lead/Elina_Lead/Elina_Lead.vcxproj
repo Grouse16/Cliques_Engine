@@ -178,6 +178,7 @@
     <ClInclude Include="C_Game_Instance_Base.h" />
     <ClInclude Include="C_Game_Instance_Manager.h" />
     <ClInclude Include="C_Actor_List.h" />
+    <ClInclude Include="C_List_All_Base.h" />
     <ClInclude Include="C_Material.h" />
     <ClInclude Include="C_Material_Manager.h" />
     <ClInclude Include="C_Material_User.h" />
@@ -279,6 +280,7 @@
     <ClCompile Include="C_Float_3.cpp" />
     <ClCompile Include="C_Game_Instance_Base.cpp" />
     <ClCompile Include="C_Game_Instance_Manager.cpp" />
+    <ClCompile Include="C_List_All_Base.cpp" />
     <ClCompile Include="C_Material.cpp" />
     <ClCompile Include="C_Material_Manager.cpp" />
     <ClCompile Include="C_Material_User.cpp" />

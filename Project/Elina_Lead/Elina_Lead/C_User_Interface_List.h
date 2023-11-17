@@ -19,21 +19,28 @@
 
 // ☆ ネームスペース ☆ //
 
-// ゲームのUIのリストを呼び出すための名前
-namespace GAME::INSTANCE::UI::LIST
+// ゲームのUIのリスト用のコンセプトを呼び出すための名前
+namespace GAME::INSTANCE::UI::LIST::CONCEPT
 {
 	// ☆ コンセプトクラス ☆ //
 
 	// UIの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
 	concept C_Checked_UI_Class = std::is_base_of<GAME::INSTANCE::UI::BASE::C_User_Interface_Base, C_Check_Instance>::value;
+}
 
 
+// ☆ マクロ ☆ //
+#define D_UI_TEMPLATE template <GAME::INSTANCE::UI::LIST::CONCEPT::C_Checked_UI_Class C_User_Interface>	// UIのテンプレート定義用マクロ
+
+
+// ゲームのUIのリストを呼び出すための名前
+namespace GAME::INSTANCE::UI::LIST
+{
 	// ☆ クラス ☆ //
 
 	// UI系統のリスト、UIをクラスごとに管理している
-	template <C_Checked_UI_Class C_User_Interface>
-	class C_User_Interface_List : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, std::unique_ptr<C_User_Interface>>
+	D_UI_TEMPLATE class C_User_Interface_List : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, std::unique_ptr<C_User_Interface>>
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -50,15 +57,8 @@ namespace GAME::INSTANCE::UI::LIST
 
 		//-☆- 初期化 -☆-//
 
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：コンストラクタ　シングルトン化する
-		// 引数   ：void
-		// 戻り値 ：なし
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		C_User_Interface_List(void)
-		{
-			return;
-		}
+		// コンストラクタ　シングルトン化する
+		C_User_Interface_List(void);
 
 
 		//==☆ パブリック ☆==//
@@ -68,108 +68,188 @@ namespace GAME::INSTANCE::UI::LIST
 
 		//-☆- 終了時 -☆-//
 
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：デストラクタ
-		// 引数   ：void
-		// 戻り値 ：なし
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		~C_User_Interface_List(void)
-		{
-			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_All_Instance();
-			
-			return;
-		}
+		// デストラクタ
+		~C_User_Interface_List(void);
 
 
 		//-☆- 生成 -☆-//
 
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：UIを生成する
-		// 引数   ：string 生成したUIの名前
-		// 戻り値 ：C_Instance_List_Base<C_User_Interface_List, Type_UI>::S_Instance_Inform & 生成したUIのアドレス
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_User_Interface * M_Creat_UI(std::string in_ui_name)
-		{
-			// ☆ 変数宣言 ☆ //
-			Type_UI & ui_slot_address =		// 新しいUI用のスロットの参照
-
-				// 新しいUI用のスロットを生成する
-				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Creat_Instance(in_ui_name);
-
-
-			// UIを生成し、そのUIのクラス用のリストに格納する
-			ui_slot_address.reset(new C_User_Interface());
-
-			// 新しく生成されたUIのアドレスを返す
-			return ui_slot_address.get();
-		}
+		// UIを生成する　引数：生成したUIの名前　戻り値：C_Instance_List_Base<C_User_Interface_List, Type_UI>::S_Instance_Inform & 生成したUIのアドレス
+		static C_User_Interface * M_Create_UI(std::string);
 
 
 		//-☆- 削除 -☆-//
 
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：削除のフラグが立っているアクターを消す
-		// 引数   ：void
-		// 戻り値 ：void
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Delete_UI_Update(void)
-		{
-			// ☆ ラムダ式 ☆ //
+		// 削除のフラグが立っているアクターを消す
+		static void M_Delete_UI_Update(void);
 
-			// ベクターからインスタンス削除用の判定を行うラムダ式
-			auto delete_lambda = [](Type_UI & in_check_ui)
-				{
-					// インスタンス削除のフラグが立っているなら削除し、配列からこの要素を削除する
-					if (in_check_ui->M_Get_Destroy_Instance_Flg())
-					{
-						in_check_ui.reset();
-						return true;
-					}
+		// インスタンスの削除を行う
+		void M_Delete_Instance_Execute(void) override;
 
-					return false;
-				};
-
-
-			// リストからの削除を行う
-			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_Instance_By_Lambda(delete_lambda);
-
-			return;
-		}
+		// 全てのインスタンスの削除を行う
+		void M_Delete_All_Instance_Execute(void) override;
 
 
 		//-☆- ゲッタ -☆-//
 
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：指定されたUIのリストを返す
-		// 引数   ：void
-		// 戻り値 ：vector<Type_UI> & 指定されたUIのリスト
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static std::vector<Type_UI> & M_Get_UI_List(void)
-		{
-			return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();
-		}
+		// 指定されたUIのリストを返す　戻り値：vector<Type_UI> & 指定されたUIのリスト
+		static std::vector<Type_UI>& M_Get_UI_List(void);
 
-
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：指定された名前のUIのアドレスを返す
-		// 引数   ：void
-		// 戻り値 ：C_Type_User_Interface * 名前が一致したUIのアドレス
-		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_User_Interface * M_Get_UI_By_Name(std::string in_search_name)
-		{
-			// 全てのUIを探索し、見つかったらそのアドレスを返す
-			for (Type_UI & now_ui : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List())
-			{
-				if (now_ui.get()->M_Get_Instance_Name() == in_search_name)
-				{
-					return now_ui.get();
-				}
-			}
-
-			// 見つからなかった場合は、nullを返す
-			return nullptr;
-		}
+		// 指定された名前のUIのアドレスを返す　戻り値：C_Type_User_Interface * 名前が一致したUIのアドレス
+		static C_User_Interface * M_Get_UI_By_Name(std::string);
 	};
+
+
+	// ☆ 関数 ☆ //
+
+	//==☆ プライベート ☆==//
+
+	//-☆- 初期化 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：コンストラクタ　シングルトン化する
+	// 引数   ：void
+	// 戻り値 ：なし
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline C_User_Interface_List<C_User_Interface>::C_User_Interface_List(void)
+	{
+		M_Set_My_Instance_Address(this);
+
+		return;
+	}
+
+
+	//==☆ パブリック ☆==//
+
+	//-☆- 終了時 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：デストラクタ
+	// 引数   ：void
+	// 戻り値 ：なし
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline C_User_Interface_List<C_User_Interface>::~C_User_Interface_List(void)
+	{
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_All_Instance();
+
+		return;
+	}
+
+
+	//-☆- 生成 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：UIを生成する
+	// 引数   ：string 生成したUIの名前
+	// 戻り値 ：C_Instance_List_Base<C_User_Interface_List, Type_UI>::S_Instance_Inform & 生成したUIのアドレス
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE static C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Create_UI(std::string in_ui_name)
+	{
+		// ☆ 変数宣言 ☆ //
+		Type_UI& ui_slot_address =		// 新しいUI用のスロットの参照
+
+			// 新しいUI用のスロットを生成する
+			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Create_Instance(in_ui_name);
+
+
+		// UIを生成し、そのUIのクラス用のリストに格納する
+		ui_slot_address.reset(new C_User_Interface());
+
+		// 新しく生成されたUIのアドレスを返す
+		return ui_slot_address.get();
+	}
+
+
+	//-☆- 削除 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：削除のフラグが立っているアクターを消す
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE static void C_User_Interface_List<C_User_Interface>::M_Delete_UI_Update(void)
+	{
+		// ☆ ラムダ式 ☆ //
+
+		// ベクターからインスタンス削除用の判定を行うラムダ式
+		auto delete_lambda = [](Type_UI& in_check_ui)
+			{
+				// インスタンス削除のフラグが立っているなら削除し、配列からこの要素を削除する
+				if (in_check_ui->M_Get_Destroy_Instance_Flg())
+				{
+					in_check_ui.reset();
+					return true;
+				}
+
+				return false;
+			};
+
+
+		// リストからの削除を行う
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_Instance_By_Lambda(delete_lambda);
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：インスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE void C_User_Interface_List<C_User_Interface>::M_Delete_Instance_Execute(void)
+	{
+		M_Delete_UI_Update();
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：全てのインスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE void C_User_Interface_List<C_User_Interface>::M_Delete_All_Instance_Execute(void)
+	{
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_All_Instance();
+
+		return;
+	}
+
+
+	//-☆- ゲッタ -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：指定されたUIのリストを返す
+	// 引数   ：void
+	// 戻り値 ：vector<Type_UI> & 指定されたUIのリスト
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE static std::vector<std::unique_ptr<C_User_Interface>> & C_User_Interface_List<C_User_Interface>::M_Get_UI_List(void)
+	{
+		return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：指定された名前のUIのアドレスを返す
+	// 引数   ：void
+	// 戻り値 ：C_Type_User_Interface * 名前が一致したUIのアドレス
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE static C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Get_UI_By_Name(std::string in_search_name)
+	{
+		// 全てのUIを探索し、見つかったらそのアドレスを返す
+		for (Type_UI& now_ui : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List())
+		{
+			if (now_ui.get()->M_Get_Instance_Name() == in_search_name)
+			{
+				return now_ui.get();
+			}
+		}
+
+		// 見つからなかった場合は、nullを返す
+		return nullptr;
+	}
 }
 
 

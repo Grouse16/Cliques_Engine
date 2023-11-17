@@ -511,11 +511,17 @@
     <Filter Include="ソース ファイル\ゲーム\シーンシステム\シーン">
       <UniqueIdentifier>{b438d723-ff57-4791-aa5c-dcae51b7161f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\システム\リスト">
+      <UniqueIdentifier>{609c1808-ea94-40ac-a7d7-2f0415d0f4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{8cbda869-f9e0-486d-8636-efcf0df7a7b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{f568fbeb-047f-4a99-a0cc-f52ffeb5dc5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C_APK_Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
       <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
@@ -717,9 +723,6 @@
     <ClInclude Include="C_Game_State_Manager.h">
       <Filter>ヘッダー ファイル\システム\状態</Filter>
     </ClInclude>
-    <ClInclude Include="C_Game_Manager.h">
-      <Filter>ヘッダー ファイル\ゲーム</Filter>
-    </ClInclude>
     <ClInclude Include="C_Game_Time_Manager.h">
       <Filter>ヘッダー ファイル\システム\時間</Filter>
     </ClInclude>
@@ -894,11 +897,17 @@
     <ClInclude Include="C_Scene_Game.h">
       <Filter>ヘッダー ファイル\ゲーム\シーンシステム\シーン</Filter>
     </ClInclude>
+    <ClInclude Include="C_List_All_Base.h">
+      <Filter>ヘッダー ファイル\システム\リスト</Filter>
+    </ClInclude>
+    <ClInclude Include="C_APK_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\アプリケーション</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C_APK_Manager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="C_Platform_Detection_System.cpp">
       <Filter>ソース ファイル\プラットフォーム\独立</Filter>
     </ClCompile>
@@ -1177,6 +1186,12 @@
     </ClCompile>
     <ClCompile Include="C_Scene_Title.cpp">
       <Filter>ソース ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_List_All_Base.cpp">
+      <Filter>ソース ファイル\システム\リスト</Filter>
+    </ClCompile>
+    <ClCompile Include="C_APK_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\アプリケーション</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

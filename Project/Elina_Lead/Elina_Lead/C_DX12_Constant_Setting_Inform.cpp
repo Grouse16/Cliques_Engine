@@ -15,7 +15,7 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された情報を元に定数データを生成する
-// 引数   ：C_Constant_Buffer_Setting_Inform_Base & セット先の定数データ, C_Creat_Constant_Buffer_Inform & 定数データ生成用情報
+// 引数   ：C_Constant_Buffer_Setting_Inform_Base & セット先の定数データ, C_Create_Constant_Buffer_Inform & 定数データ生成用情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_DX12_Constant_Setting_Inform::C_DX12_Constant_Setting_Inform(void)
@@ -26,7 +26,7 @@ C_DX12_Constant_Setting_Inform::C_DX12_Constant_Setting_Inform(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された情報を元に定数データを生成する
-// 引数   ：C_Constant_Buffer_Setting_Inform_Base & セット先の定数データ, C_Creat_Constant_Buffer_Inform & 定数データ生成用情報
+// 引数   ：C_Constant_Buffer_Setting_Inform_Base & セット先の定数データ, C_Create_Constant_Buffer_Inform & 定数データ生成用情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_DX12_Constant_Setting_Inform::~C_DX12_Constant_Setting_Inform(void)

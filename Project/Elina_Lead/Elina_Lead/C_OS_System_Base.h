@@ -186,7 +186,7 @@ namespace OS
 		virtual void M_Set_Window_Title(const std::wstring & ) = 0;
 
 		// メッセージボックスを表示する(ウィンドウハンドルを必要とするため)　引数：const std::wstring タイトル, const std::wstring 表示内容, const unsigned int メッセージボックスの種類
-		virtual int M_Creat_Massage_Box(const std::wstring &, const std::wstring &, const unsigned int ) = 0;
+		virtual int M_Create_Massage_Box(const std::wstring &, const std::wstring &, const unsigned int ) = 0;
 	};
 }
 

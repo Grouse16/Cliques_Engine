@@ -85,7 +85,7 @@ void C_Font_Draw_System::M_Create_Texture_On_Now_Text(void)
 	}
 
 	// GPUにテクスチャマップをテクスチャバッファへセット
-	mpr_variable.texture_data.M_Creat_Texture_Resource_By_Texture_Map();
+	mpr_variable.texture_data.M_Create_Texture_Resource_By_Texture_Map();
 
 
 	// マップを保存しないなら画像マップを削除

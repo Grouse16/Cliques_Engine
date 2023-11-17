@@ -41,6 +41,12 @@ namespace GAME::INSTANCE::ACTOR::BASE
 
 		// アクターの優先度を返す　戻り値：アクターの優先度
 		virtual int M_Get_Priority(void) = 0;
+
+
+		//-☆- 更新 -☆-//
+
+		// アクターの更新を行う
+		virtual void M_Actor_Update(void) = 0;
 	};
 }
 

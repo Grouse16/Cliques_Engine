@@ -57,6 +57,8 @@ namespace GAME::INSTANCE::SOUND::LIST
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		C_Sound_List(void)
 		{
+			M_Set_My_Instance_Address(this);
+
 			return;
 		}
 
@@ -89,13 +91,13 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 引数   ：string 生成するサウンドの名前
 		// 戻り値 ：C_Sound * 生成したサウンドのアドレス
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static C_Sound * M_Creat_Sound(std::string in_sound_name)
+		static C_Sound * M_Create_Sound(std::string in_sound_name)
 		{
 			// ☆ 変数宣言 ☆ //
 			Type_Sound & sound_slot_address =		// 新しいサウンド用のスロットの参照
 
 				// 新しいサウンド用のスロットを生成する
-				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Creat_Instance(in_sound_name);
+				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Create_Instance(in_sound_name);
 
 
 			// サウンドを生成し、そのサウンドのクラス用のリストに格納する
@@ -133,6 +135,32 @@ namespace GAME::INSTANCE::SOUND::LIST
 
 			// リストからの削除を行う
 			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Delete_Instance_By_Lambda(delete_ramada);
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：インスタンスの削除を行う
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_Instance_Execute(void) override
+		{
+			M_Delete_Sound_Update();
+
+			return;
+		}
+
+
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		// 詳細   ：全てのインスタンスの削除を行う
+		// 引数   ：void
+		// 戻り値 ：void
+		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+		void M_Delete_All_Instance_Execute(void) override
+		{
+			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Delete_All_Instance();
 
 			return;
 		}

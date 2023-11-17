@@ -187,7 +187,7 @@ void C_Game_Manager::M_Init(void)
 
 
 	// アクティブ状態を指定
-	mpr_variable.flg_Game_activate = true;
+	mpr_variable.flg_game_activate = true;
 	M_Set_Game_Exist_Flg(true);
 
 	return;
@@ -215,7 +215,7 @@ C_Game_Manager::~C_Game_Manager(void)
 void C_Game_Manager::M_Release(void)
 {
 	// アプリケーションの終了を示す
-	mpr_variable.flg_Game_activate = false;
+	mpr_variable.flg_game_activate = false;
 	M_Set_Game_Exist_Flg(false);
 
 	// アプリケーションの解放
@@ -241,7 +241,7 @@ void C_Game_Manager::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Game_Manager::M_Set_Game_Exist_Flg(bool in_set_exist)
 {
-	mpr_variable.flg_Game_exist = in_set_exist;
+	mpr_variable.flg_game_exist = in_set_exist;
 
 	return;
 }
@@ -254,7 +254,7 @@ void C_Game_Manager::M_Set_Game_Exist_Flg(bool in_set_exist)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Game_Manager::M_Set_Game_Activate_Flg(bool in_set_active)
 {
-	mpr_variable.flg_Game_activate = in_set_active;
+	mpr_variable.flg_game_activate = in_set_active;
 
 	return;
 }
@@ -269,7 +269,7 @@ void C_Game_Manager::M_Set_Game_Activate_Flg(bool in_set_active)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Game_Manager::M_Get_Game_Exist_Flg(void)
 {
-	return mpr_variable.flg_Game_exist;
+	return mpr_variable.flg_game_exist;
 }
 
 
@@ -280,7 +280,7 @@ bool C_Game_Manager::M_Get_Game_Exist_Flg(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Game_Manager::M_Get_Game_Active_Flg(void)
 {
-	return mpr_variable.flg_Game_activate;
+	return mpr_variable.flg_game_activate;
 }
 
 
