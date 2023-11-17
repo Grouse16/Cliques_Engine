@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの機能を制御するクラス
+// 詳細   ：ゲームの機能を制御するクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -8,9 +8,8 @@
 // ☆ ファイルひらき ☆ //
 #include <algorithm>
 
-#include "C_Engine_Function_Manager.h"
-#include "Engine_Function_Include_List.h"
-#include "Engine_Function_Name.h"
+#include "C_Game_Function_Manager.h"
+#include "Game_Function_Include_List.h"
 
 
 // ☆ デバッグ時なら初期化の成功および失敗を告知 ☆ //
@@ -27,9 +26,9 @@ using namespace GAME::FUNCTION;
 // ☆ 変数宣言 ☆ //
 
 // プライベート変数をまとめた構造体
-C_Engine_Function_Manager::SPR_Variable C_Engine_Function_Manager::mpr_variable;	// プライベート変数を呼び出すための名前
+C_Game_Function_Manager::SPR_Variable C_Game_Function_Manager::mpr_variable;	// プライベート変数を呼び出すための名前
 
-C_Engine_Function_Manager C_Engine_Function_Manager::m_this;	// 自身を呼び出すための名前
+C_Game_Function_Manager C_Game_Function_Manager::m_this;	// 自身を呼び出すための名前
 
 
 // ☆ 関数 ☆ //
@@ -43,7 +42,7 @@ C_Engine_Function_Manager C_Engine_Function_Manager::m_this;	// 自身を呼び出すた
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Function_Manager::C_Engine_Function_Manager(void)
+C_Game_Function_Manager::C_Game_Function_Manager(void)
 {
 	return;
 }
@@ -56,16 +55,16 @@ C_Engine_Function_Manager::C_Engine_Function_Manager(void)
 // 引数   ：string 生成する機能の種類
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Create_Function_By_Kind(std::string in_create_kind)
+void C_Game_Function_Manager::M_Create_Function_By_Kind(std::string in_create_kind)
 {
 	// ☆ 変数宣言 ☆ //
-	GAME::FUNCTION::C_Engine_Function_Base * new_function_address = nullptr;	// 新しい機能のアドレス
+	GAME::FUNCTION::C_Game_Function_Base * new_function_address = nullptr;	// 新しい機能のアドレス
 	
 
 	// ☆ 指定された種類によって生成内容を分岐 ☆ //
 
-	// 基本フレーム
-	if (in_create_kind == GAME::FUNCTION::NAME::BASE::con_FRAME_WORK)
+	// まだない
+	if (in_create_kind == "non")
 	{
 
 	}
@@ -96,10 +95,10 @@ void C_Engine_Function_Manager::M_Create_Function_By_Kind(std::string in_create_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン処理前に更新する機能を追加
-// 引数   ：C_Engine_Function_Base * 追加する機能のアドレス
+// 引数   ：C_Game_Function_Base * 追加する機能のアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Set_Before_Update_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base * in_add_function)
+void C_Game_Function_Manager::M_Set_Before_Update_Func_To_List(GAME::FUNCTION::C_Game_Function_Base * in_add_function)
 {
 	// シーン前の更新を行わないなら追加しない
 	if (in_add_function->M_Get_Before_Update_Priority() < 0)
@@ -120,7 +119,7 @@ void C_Engine_Function_Manager::M_Set_Before_Update_Func_To_List(GAME::FUNCTION:
 		mpr_variable.before_func_update_list.end(),		// ソートのおわり
 
 		// ラムダ式、右の要素が左の要素よりも値が大きければ、順番を入れ替える
-		[](GAME::FUNCTION::C_Engine_Function_Base * & l_vec, GAME::FUNCTION::C_Engine_Function_Base * & r_vec)
+		[](GAME::FUNCTION::C_Game_Function_Base * & l_vec, GAME::FUNCTION::C_Game_Function_Base * & r_vec)
 		{
 			return l_vec->M_Get_Before_Update_Priority() >= r_vec->M_Get_Before_Update_Priority();
 		}
@@ -131,10 +130,10 @@ void C_Engine_Function_Manager::M_Set_Before_Update_Func_To_List(GAME::FUNCTION:
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン処理後に更新する機能を追加
-// 引数   ：C_Engine_Function_Base * 追加する機能のアドレス
+// 引数   ：C_Game_Function_Base * 追加する機能のアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base * in_add_function)
+void C_Game_Function_Manager::M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_Game_Function_Base * in_add_function)
 {
 	// シーン後の更新を行わないなら追加しない
 	if (in_add_function->M_Get_After_Update_Priority() < 0)
@@ -155,7 +154,7 @@ void C_Engine_Function_Manager::M_Set_After_Update_Func_To_List(GAME::FUNCTION::
 		mpr_variable.after_func_update_list.end(),		// ソートのおわり
 
 		// ラムダ式、右の要素が左の要素よりも値が大きければ、順番を入れ替える
-		[](GAME::FUNCTION::C_Engine_Function_Base * & left_function, GAME::FUNCTION::C_Engine_Function_Base * & right_function)
+		[](GAME::FUNCTION::C_Game_Function_Base * & left_function, GAME::FUNCTION::C_Game_Function_Base * & right_function)
 		{
 			return left_function->M_Get_Before_Update_Priority() >= right_function->M_Get_Before_Update_Priority();
 		}
@@ -167,10 +166,10 @@ void C_Engine_Function_Manager::M_Set_After_Update_Func_To_List(GAME::FUNCTION::
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン前に描画する機能を追加する
-// 引数   ：C_Engine_Function_Base * 追加する機能のアドレス
+// 引数   ：C_Game_Function_Base * 追加する機能のアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base * in_add_function)
+void C_Game_Function_Manager::M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base * in_add_function)
 {
 	// シーン後の更新を行わないなら追加しない
 	if (in_add_function->M_Get_Before_Draw_Priority() < 0)
@@ -191,7 +190,7 @@ void C_Engine_Function_Manager::M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C
 		mpr_variable.before_func_draw_list.end(),	// ソートのおわり
 
 		// ラムダ式、左の要素が右の要素よりも値が大きければ、順番を入れ替える
-		[](GAME::FUNCTION::C_Engine_Function_Base*& left_function, GAME::FUNCTION::C_Engine_Function_Base*& right_function)
+		[](GAME::FUNCTION::C_Game_Function_Base*& left_function, GAME::FUNCTION::C_Game_Function_Base*& right_function)
 		{
 			return left_function->M_Get_After_Draw_Priority() <= right_function->M_Get_After_Draw_Priority();
 		}
@@ -203,10 +202,10 @@ void C_Engine_Function_Manager::M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン後に描画する機能を追加する
-// 引数   ：C_Engine_Function_Base * 追加する機能のアドレス
+// 引数   ：C_Game_Function_Base * 追加する機能のアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base * in_add_function)
+void C_Game_Function_Manager::M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base * in_add_function)
 {
 	// シーン後の更新を行わないなら追加しない
 	if (in_add_function->M_Get_After_Draw_Priority() < 0)
@@ -227,7 +226,7 @@ void C_Engine_Function_Manager::M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_
 		mpr_variable.after_func_draw_list.end(),	// ソートのおわり
 
 		// ラムダ式、左の要素が右の要素よりも値が大きければ、順番を入れ替える
-		[](GAME::FUNCTION::C_Engine_Function_Base * & left_function, GAME::FUNCTION::C_Engine_Function_Base * & right_function)
+		[](GAME::FUNCTION::C_Game_Function_Base * & left_function, GAME::FUNCTION::C_Game_Function_Base * & right_function)
 		{
 			return left_function->M_Get_After_Draw_Priority() <= right_function->M_Get_After_Draw_Priority();
 		}
@@ -239,15 +238,15 @@ void C_Engine_Function_Manager::M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたアドレスの機能をすべての登録から削除する
-// 引数   ：C_Engine_Function_Base * 削除する機能のアドレス
+// 引数   ：C_Game_Function_Base * 削除する機能のアドレス
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Erase_This_Function_On_All_List(GAME::FUNCTION::C_Engine_Function_Base * in_delete_function)
+void C_Game_Function_Manager::M_Erase_This_Function_On_All_List(GAME::FUNCTION::C_Game_Function_Base * in_delete_function)
 {
 	// ☆ ラムダ式 ☆ //
 
 	// ベクターから機能削除用の判定を行うラムダ式
-	auto delete_lambda = [] (GAME::FUNCTION::C_Engine_Function_Base * & in_function)
+	auto delete_lambda = [] (GAME::FUNCTION::C_Game_Function_Base * & in_function)
 	{
 		return in_function->M_Get_Flg_End_Function();
 	};
@@ -276,7 +275,7 @@ void C_Engine_Function_Manager::M_Erase_This_Function_On_All_List(GAME::FUNCTION
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Function_Manager::~C_Engine_Function_Manager(void)
+C_Game_Function_Manager::~C_Game_Function_Manager(void)
 {
 	M_Release_Memory();
 
@@ -288,7 +287,7 @@ C_Engine_Function_Manager::~C_Engine_Function_Manager(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Release_Memory(void)
+void C_Game_Function_Manager::M_Release_Memory(void)
 {
 	// 機能の処理指定用のリストのメモリを解放する
 	mpr_variable.before_func_update_list.clear();
@@ -302,7 +301,7 @@ void C_Engine_Function_Manager::M_Release_Memory(void)
 
 
 	// 機能のリストのメモリを解放する
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_func : mpr_variable.function_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_func : mpr_variable.function_list)
 	{
 		if (now_func != nullptr)
 		{
@@ -329,9 +328,9 @@ void C_Engine_Function_Manager::M_Release_Memory(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Before_Scene_Update(void)
+void C_Game_Function_Manager::M_Before_Scene_Update(void)
 {
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_function : mpr_variable.before_func_update_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.before_func_update_list)
 	{
 		now_function->M_Call_Event_Before_Scene_Process();
 	}
@@ -345,9 +344,9 @@ void C_Engine_Function_Manager::M_Before_Scene_Update(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_After_Scene_Update(void)
+void C_Game_Function_Manager::M_After_Scene_Update(void)
 {
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_function : mpr_variable.after_func_update_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.after_func_update_list)
 	{
 		now_function->M_Call_Event_After_Scene_Process();
 	}
@@ -361,9 +360,9 @@ void C_Engine_Function_Manager::M_After_Scene_Update(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Before_Scene_Draw(void)
+void C_Game_Function_Manager::M_Before_Scene_Draw(void)
 {
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_function : mpr_variable.before_func_draw_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.before_func_draw_list)
 	{
 		now_function->M_Draw_Before_Scene_Process();
 	}
@@ -377,9 +376,9 @@ void C_Engine_Function_Manager::M_Before_Scene_Draw(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_After_Scene_Draw(void)
+void C_Game_Function_Manager::M_After_Scene_Draw(void)
 {
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_function : mpr_variable.after_func_draw_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.after_func_draw_list)
 	{
 		now_function->M_After_Draw_Process();
 	}
@@ -395,10 +394,10 @@ void C_Engine_Function_Manager::M_After_Scene_Draw(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Delete_Function(void)
+void C_Game_Function_Manager::M_Delete_Function(void)
 {
 	// 削除のフラグがたっている要素を消す
-	for (GAME::FUNCTION::C_Engine_Function_Base * & now_function : mpr_variable.function_list)
+	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.function_list)
 	{
 		if (now_function != nullptr)
 		{
@@ -425,7 +424,7 @@ void C_Engine_Function_Manager::M_Delete_Function(void)
 // 引数   ：void
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Engine_Function_Manager::M_Execute_Create_Function_By_List(void)
+bool C_Game_Function_Manager::M_Execute_Create_Function_By_List(void)
 {
 	// 生成する機能がなければ何もしない
 	if (mpr_variable.function_create_kind_list.size() <= 0)
@@ -454,7 +453,7 @@ bool C_Engine_Function_Manager::M_Execute_Create_Function_By_List(void)
 // 引数   ：string 生成する機能の種類
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Manager::M_Command_Create_Function(std::string in_creat_kind)
+void C_Game_Function_Manager::M_Command_Create_Function(std::string in_creat_kind)
 {
 	mpr_variable.function_create_kind_list.reserve(mpr_variable.function_create_kind_list.size() + 1);
 	mpr_variable.function_create_kind_list.emplace_back(in_creat_kind);

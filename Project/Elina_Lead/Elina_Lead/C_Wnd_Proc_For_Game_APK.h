@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジン用のウィンドウプロシージャのクラス
+// 詳細   ：ゲーム用のウィンドウプロシージャのクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_WND_PROC_FOR_ENGINE_APK
-#define D_INCLUDE_GUARD_C_WND_PROC_FOR_ENGINE_APK
+#ifndef D_INCLUDE_GUARD_C_WND_PROC_FOR_Game_APK
+#define D_INCLUDE_GUARD_C_WND_PROC_FOR_Game_APK
 
 
 // ☆ OS検知 ☆ //
@@ -27,13 +27,13 @@ namespace OS::WINDOWS::PROC
 	// ☆ クラス ☆ //
 
 	// ウィンドウプロシージャを制御するためのシステム
-	class C_Wnd_Proc_For_Engine_APK
+	class C_Wnd_Proc_For_Game_APK
 	{
 	//==☆ プライベート ☆==//
 	private:
 
 		// ☆ 変数宣言 ☆ //
-		static C_Wnd_Proc_For_Engine_APK m_this;	// 自身のインスタンス(シングルトン化に使用)
+		static C_Wnd_Proc_For_Game_APK m_this;	// 自身のインスタンス(シングルトン化に使用)
 
 
 		// ☆ 関数 ☆ //
@@ -41,7 +41,7 @@ namespace OS::WINDOWS::PROC
 		//-☆- 初期化 -☆-//
 
 		// コンストラクタ
-		C_Wnd_Proc_For_Engine_APK(void);
+		C_Wnd_Proc_For_Game_APK(void);
 
 	//==☆ パブリック ☆==//
 	public:
@@ -57,7 +57,7 @@ namespace OS::WINDOWS::PROC
 
 
 #endif // OS_IS_WINDOWS
-#endif // !D_INCLUDE_GUARD_C_WND_PROC_FOR_ENGINE_APK
+#endif // !D_INCLUDE_GUARD_C_WND_PROC_FOR_Game_APK
 
 
 

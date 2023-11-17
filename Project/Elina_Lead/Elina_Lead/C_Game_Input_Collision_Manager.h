@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力の当たり判定を制御するシステム
+// 詳細   ：ゲームの入力の当たり判定を制御するシステム
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆　//
-#ifndef D_INCLUDE_GUARD_C_ENGINE_INPUT_COLLISION_MANAGER_H_FILE
-#define D_INCLUDE_GUARD_C_ENGINE_INPUT_COLLISION_MANAGER_H_FILE
+#ifndef D_INCLUDE_GUARD_C_Game_INPUT_COLLISION_MANAGER_H_FILE
+#define D_INCLUDE_GUARD_C_Game_INPUT_COLLISION_MANAGER_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -15,19 +15,19 @@
 #include <string>
 #include <vector>
 
-#include "E_Engine_Input_Collision_State.h"
-#include "Engine_Input_Collision_Names.h"
+#include "E_Game_Input_Collision_State.h"
+#include "Game_Input_Collision_Names.h"
 
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの入力系統を呼び出すための名前
+// ゲームの入力系統を呼び出すための名前
 namespace GAME::INPUT::COLLISION
 {
 	// ☆ クラス ☆ //
 
-	// エンジンの入力を受け取るシステム、基底クラス
-	class C_Engine_Input_Collision
+	// ゲームの入力を受け取るシステム、基底クラス
+	class C_Game_Input_Collision
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -37,9 +37,9 @@ namespace GAME::INPUT::COLLISION
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			E_Engine_Input_Collision_State collision_state;	// 当たり判定の状態
+			E_Game_Input_Collision_State collision_state;	// 当たり判定の状態
 
-			std::wstring collision_name = GAME::INPUT::COLLISION::NAME::con_ENGINE_INPUT_COLLISION_INITIALIZED_NAME;	// 入力ボックス名
+			std::wstring collision_name = GAME::INPUT::COLLISION::NAME::con_Game_INPUT_COLLISION_INITIALIZED_NAME;	// 入力ボックス名
 
 			bool is_active = true;	// 当たり判定を有効にするかどうか
 
@@ -56,10 +56,10 @@ namespace GAME::INPUT::COLLISION
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Engine_Input_Collision(void);
+		C_Game_Input_Collision(void);
 
 		// デストラクタ
-		virtual ~C_Engine_Input_Collision(void);
+		virtual ~C_Game_Input_Collision(void);
 
 
 		//-☆- セッタ -☆-//
@@ -117,8 +117,8 @@ namespace GAME::INPUT::COLLISION
 	};
 
 
-	// エンジンの入力の当たり判定を制御するシステム
-	class C_Engine_Input_Collision_Manager
+	// ゲームの入力の当たり判定を制御するシステム
+	class C_Game_Input_Collision_Manager
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -128,17 +128,17 @@ namespace GAME::INPUT::COLLISION
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::vector<C_Engine_Input_Collision * > collision_list;	// 入力判定のリスト
+			std::vector<C_Game_Input_Collision * > collision_list;	// 入力判定のリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
-		static std::unique_ptr<C_Engine_Input_Collision_Manager> m_this;	// このクラスをインスタンス化するための変数（シングルトン化）
+		static std::unique_ptr<C_Game_Input_Collision_Manager> m_this;	// このクラスをインスタンス化するための変数（シングルトン化）
 
 
 		//-☆- 初期化 -☆-//
 
 		// コンストラクタ
-		C_Engine_Input_Collision_Manager(void);
+		C_Game_Input_Collision_Manager(void);
 
 
 		//==☆ パブリック ☆==//
@@ -146,11 +146,11 @@ namespace GAME::INPUT::COLLISION
 
 		//-☆- 初期化と終了時 -☆-//
 
-		// エンジンの入力ボックス制御用システムの生成
+		// ゲームの入力ボックス制御用システムの生成
 		static void M_Init(void);
 
 		// デストラクタ
-		~C_Engine_Input_Collision_Manager(void);
+		~C_Game_Input_Collision_Manager(void);
 
 		// メモリ解放
 		static void M_Release(void);
@@ -159,21 +159,21 @@ namespace GAME::INPUT::COLLISION
 		//-☆- ゲッタ -☆-//
 
 		// 入力判定のリストの参照を返す　戻り値：入力判定のリストの参照
-		static std::vector<C_Engine_Input_Collision * > & M_Get_Input_Collision_List(void);
+		static std::vector<C_Game_Input_Collision * > & M_Get_Input_Collision_List(void);
 
 		
 		//-☆- リスト -☆-//
 
 		// 指定された入力判定のアドレスを管理用リストに追加する　引数：リストに追加する入力判定のアドレス
-		static void M_Add_Input_Box_Address_To_List(C_Engine_Input_Collision * );
+		static void M_Add_Input_Box_Address_To_List(C_Game_Input_Collision * );
 
 		// 指定された入力判定のアドレスを管理用リストから削除する　引数：リストから削除したい入力判定のアドレス
-		static void M_Delete_Input_Box_Address_From_List(C_Engine_Input_Collision * );
+		static void M_Delete_Input_Box_Address_From_List(C_Game_Input_Collision * );
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ENGINE_INPUT_COLLISION_MANAGER
+#endif // !D_INCLUDE_GUARD_C_Game_INPUT_COLLISION_MANAGER
 
 
 

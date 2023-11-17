@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの状態を共有するためのクラス
+// 詳細   ：ゲームの状態を共有するためのクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_Engine_State_Manager_H_FILE
-#define D_INCLUDE_GUARD_C_Engine_State_Manager_H_FILE
+#ifndef D_INCLUDE_GUARD_C_Game_State_Manager_H_FILE
+#define D_INCLUDE_GUARD_C_Game_State_Manager_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -17,17 +17,16 @@
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの状態を共有する
+// ゲームの状態を共有する
 namespace GAME::STATE
 {
 	// ☆ 定数 ☆ //
-
 	const std::wstring con_Invalid_Scene_Name = L"Invald";// シーンが設定されていないことを示す文字列
 
 
 	// ☆ クラス ☆ //
 
-	// エンジンの状態を共有するためのクラス
+	// ゲームの状態を共有するためのクラス
 	class C_Game_State_Manager
 	{
 	//==☆ プライベート ☆==//
@@ -38,8 +37,8 @@ namespace GAME::STATE
 		// 変数をまとめた構造体
 		struct S_Varible
 		{
-			std::wstring now_engine_scene_name = con_Invalid_Scene_Name;			// 現在のエンジンのシーン名
-			std::wstring excute_change_engine_scene_name = con_Invalid_Scene_Name;	// シーン変更要求の変更先シーン名
+			std::wstring now_Game_scene_name = con_Invalid_Scene_Name;			// 現在のゲームのシーン名
+			std::wstring excute_change_Game_scene_name = con_Invalid_Scene_Name;	// シーン変更要求の変更先シーン名
 			
 
 		};	// 変数を呼び出すための名前
@@ -79,24 +78,24 @@ namespace GAME::STATE
 		//-☆- セッタ -☆-//
 
 		// 現在のシーン名をセットする　引数：設定する現在のシーン名
-		static void M_Set_Now_Engine_Scene_Name(std::wstring);
+		static void M_Set_Now_Game_Scene_Name(std::wstring);
 
 		// シーン変更要求の変更先シーン名をセットする　引数：セットするシーン変更要求の変更先シーン名
-		static void M_Set_Execute_Change_Engine_Scene_Name(std::wstring);
+		static void M_Set_Execute_Change_Game_Scene_Name(std::wstring);
 
 
 		//-☆- ゲッタ -☆-//
 
 		// 現在のシーン名の参照を取得する　戻り値：現在のシーン名の参照(const)
-		static const std::wstring & M_Get_Now_Engine_Scene_Name(void);
+		static const std::wstring & M_Get_Now_Game_Scene_Name(void);
 
 		// シーン変更要求の変更先シーン名の参照を取得する　戻り値：シーン変更要求の変更先シーン名の参照(const)
-		static const std::wstring & M_Get_Execute_Change_Engine_Scene_Name(void);
+		static const std::wstring & M_Get_Execute_Change_Game_Scene_Name(void);
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_Engine_State_Manager_H_FILE
+#endif // !D_INCLUDE_GUARD_C_Game_State_Manager_H_FILE
 
 
 

@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの状態を共有するためのクラス
+// 詳細   ：ゲームの状態を共有するためのクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -82,9 +82,9 @@ void C_Game_State_Manager::M_Release(void)
 // 引数   ：wstring 設定する現在のシーン名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_State_Manager::M_Set_Now_Engine_Scene_Name(std::wstring in_set_name)
+void C_Game_State_Manager::M_Set_Now_Game_Scene_Name(std::wstring in_set_name)
 {
-	m_this->mpr_variable.now_engine_scene_name = in_set_name;
+	m_this->mpr_variable.now_Game_scene_name = in_set_name;
 
 	return;
 }
@@ -95,9 +95,9 @@ void C_Game_State_Manager::M_Set_Now_Engine_Scene_Name(std::wstring in_set_name)
 // 引数   ：wstring シーン変更要求の変更先シーン名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_State_Manager::M_Set_Execute_Change_Engine_Scene_Name(std::wstring in_set_name)
+void C_Game_State_Manager::M_Set_Execute_Change_Game_Scene_Name(std::wstring in_set_name)
 {
-	m_this->mpr_variable.excute_change_engine_scene_name = in_set_name;
+	m_this->mpr_variable.excute_change_Game_scene_name = in_set_name;
 }
 
 
@@ -108,9 +108,9 @@ void C_Game_State_Manager::M_Set_Execute_Change_Engine_Scene_Name(std::wstring i
 // 引数   ：void
 // 戻り値 ：const wstring & 現在のシーン名の参照(const)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const std::wstring & C_Game_State_Manager::M_Get_Now_Engine_Scene_Name(void)
+const std::wstring & C_Game_State_Manager::M_Get_Now_Game_Scene_Name(void)
 {
-	return m_this->mpr_variable.now_engine_scene_name;
+	return m_this->mpr_variable.now_Game_scene_name;
 }
 
 
@@ -119,9 +119,9 @@ const std::wstring & C_Game_State_Manager::M_Get_Now_Engine_Scene_Name(void)
 // 引数   ：void
 // 戻り値 ：const wstring & シーン変更要求の変更先シーン名の参照(const)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const std::wstring & C_Game_State_Manager::M_Get_Execute_Change_Engine_Scene_Name(void)
+const std::wstring & C_Game_State_Manager::M_Get_Execute_Change_Game_Scene_Name(void)
 {
-	return m_this->mpr_variable.excute_change_engine_scene_name;
+	return m_this->mpr_variable.excute_change_Game_scene_name;
 }
 
 

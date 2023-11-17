@@ -1,6 +1,6 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 // 詳細   ：シーンの基底となるクラス
-// 説明   ：
+// 説明   ：シーンごとに異なる挙動をするための抽象化レイヤー
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
@@ -12,7 +12,7 @@
 
 // ☆ ネームスペース ☆ //
 
-// ゲームのシーンの基底となるクラス
+// ゲームのシーンの基底のシステムを呼び出すための名前
 namespace GAME::SCENE::BASE
 {
 	// ☆ クラス ☆ //
@@ -35,7 +35,7 @@ namespace GAME::SCENE::BASE
 		C_Scene_Base(void);
 
 		// デストラクタ
-		virtual ~C_Scene_Base(void) = 0;
+		virtual ~C_Scene_Base(void);
 
 		// メモリの解放を行う
 		virtual void M_Release(void) = 0;
@@ -49,14 +49,14 @@ namespace GAME::SCENE::BASE
 
 		//-☆- 更新 -☆-//
 
-		// シーンの更新を行う
-		virtual void M_Scene_Update(void) = 0;
+		// ゲーム更新前のシーンの更新を行う
+		virtual void M_Scene_Before_Update(void) = 0;
 
+		// ゲーム更新後・描画前のシーンの更新を行う
+		virtual void M_Scene_After_Update(void) = 0;
 
-		//-☆- 描画 -☆-//
-
-		// シーンの描画を行う
-		virtual void M_Scene_Draw(void) = 0;
+		// ゲーム描画前のシーンの更新を行う
+		virtual void M_Scene_Update_After_Draw(void) = 0;
 	};
 }
 

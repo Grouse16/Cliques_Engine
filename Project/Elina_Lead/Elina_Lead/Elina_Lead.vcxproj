@@ -119,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,11 +168,11 @@
     <ClInclude Include="C_DX12_Rendering_Texture_Setting_Inform.h" />
     <ClInclude Include="C_DX12_System.h" />
     <ClInclude Include="C_DX12_Vertex_Setting_Inform.h" />
-    <ClInclude Include="C_Engine_Function_Base.h" />
-    <ClInclude Include="C_Engine_Function_Manager.h" />
-    <ClInclude Include="C_Engine_Input_Collision_Box.h" />
-    <ClInclude Include="C_Engine_Input_Collision_Manager.h" />
-    <ClInclude Include="C_Engine_Input_Manager.h" />
+    <ClInclude Include="C_Game_Function_Base.h" />
+    <ClInclude Include="C_Game_Function_Manager.h" />
+    <ClInclude Include="C_Game_Input_Collision_Box.h" />
+    <ClInclude Include="C_Game_Input_Collision_Manager.h" />
+    <ClInclude Include="C_Game_Input_Manager.h" />
     <ClInclude Include="C_Float_2.h" />
     <ClInclude Include="C_Float_3.h" />
     <ClInclude Include="C_Game_Instance_Base.h" />
@@ -200,6 +201,9 @@
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Setting_System.h" />
     <ClInclude Include="C_Scene_Base.h" />
+    <ClInclude Include="C_Scene_Game.h" />
+    <ClInclude Include="C_Scene_Manager.h" />
+    <ClInclude Include="C_Scene_Title.h" />
     <ClInclude Include="C_Shader_Manager.h" />
     <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h" />
     <ClInclude Include="C_DX12_Sampling_Setting_System.h" />
@@ -221,17 +225,16 @@
     <ClInclude Include="C_User_Interface_List.h" />
     <ClInclude Include="C_Vertex_Buffer_Setting_Inform_Base.h" />
     <ClInclude Include="C_Windows_System.h" />
-    <ClInclude Include="C_Wnd_Proc_For_Engine_APK.h" />
+    <ClInclude Include="C_Wnd_Proc_For_Game_APK.h" />
     <ClInclude Include="C_Wnd_Proc_Manager.h" />
     <ClInclude Include="Depth_Stencil_Setting_Inform.h" />
-    <ClInclude Include="Engine_Function_Include_List.h" />
-    <ClInclude Include="Engine_Function_Name.h" />
-    <ClInclude Include="Engine_Function_Priority_Setting.h" />
-    <ClInclude Include="Engine_Input_Collision_Names.h" />
-    <ClInclude Include="Engine_Input_Collision_Priority.h" />
+    <ClInclude Include="Game_Function_Include_List.h" />
+    <ClInclude Include="Game_Function_Priority_Setting.h" />
+    <ClInclude Include="Game_Input_Collision_Names.h" />
+    <ClInclude Include="Game_Input_Collision_Priority.h" />
     <ClInclude Include="Blend_Setting_Inform.h" />
     <ClInclude Include="E_BOX_VERTEX_SETTING.h" />
-    <ClInclude Include="E_Engine_Input_Collision_State.h" />
+    <ClInclude Include="E_Game_Input_Collision_State.h" />
     <ClInclude Include="Figure_Base_Data.h" />
     <ClInclude Include="Input_Layout_Data.h" />
     <ClInclude Include="Platform_Detector_Macro.h" />
@@ -282,6 +285,9 @@
     <ClCompile Include="C_Mesh_Data.cpp" />
     <ClCompile Include="C_Post_Effect_Base.cpp" />
     <ClCompile Include="C_Scene_Base.cpp" />
+    <ClCompile Include="C_Scene_Game.cpp" />
+    <ClCompile Include="C_Scene_Manager.cpp" />
+    <ClCompile Include="C_Scene_Title.cpp" />
     <ClCompile Include="C_Shader_Setting_Manager.cpp" />
     <ClCompile Include="C_Shader_Setting_User.cpp" />
     <ClCompile Include="C_Shader_User.cpp" />
@@ -310,10 +316,10 @@
     <ClCompile Include="C_DX12_Vertex_Setting_Inform.cpp" />
     <ClCompile Include="C_Engine_Function_Base.cpp" />
     <ClCompile Include="C_Engine_Function_Manager.cpp" />
-    <ClCompile Include="C_Engine_Input_Collision.cpp" />
-    <ClCompile Include="C_Engine_Input_Collision_Box.cpp" />
-    <ClCompile Include="C_Engine_Input_Collision_Manager.cpp" />
-    <ClCompile Include="C_Engine_Input_Manager.cpp" />
+    <ClCompile Include="C_Game_Input_Collision.cpp" />
+    <ClCompile Include="C_Game_Input_Collision_Box.cpp" />
+    <ClCompile Include="C_Game_Input_Collision_Manager.cpp" />
+    <ClCompile Include="C_Game_Input_Manager.cpp" />
     <ClCompile Include="C_Game_Manager.cpp" />
     <ClCompile Include="C_Game_State_Manager.cpp" />
     <ClCompile Include="C_Game_Time_Manager.cpp" />
@@ -353,12 +359,20 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ps_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="VS_Engine_UI_DX12.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vs_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

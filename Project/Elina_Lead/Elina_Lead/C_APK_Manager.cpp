@@ -4,13 +4,14 @@
 // ì¬Ò Fûüâ—´½
 //™™™™™™™™™™™™™™™™™™™™™™™//
 
+
 // ™ ƒtƒ@ƒCƒ‹‚Ğ‚ç‚« ™ //
 #include "C_APK_Manager.h"
-#include "C_DX12_System.h"
+#include "C_Scene_Manager.h"
 
 
 // ™ ƒl[ƒ€ƒXƒy[ƒX‚ÌÈ—ª ™ //
-using namespace APPLICATION;
+using namespace GAME::APPLICATION;
 
 
 // ™ •Ï”éŒ¾ ™ //
@@ -30,7 +31,6 @@ std::unique_ptr<C_APK_Manager> C_APK_Manager::m_this;	// ©ƒNƒ‰ƒX‚Ö‚ÌƒAƒNƒZƒX—p‚
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_APK_Manager::C_APK_Manager(void)
 {
-
 	return;
 }
 
@@ -48,7 +48,8 @@ bool C_APK_Manager::M_Init(void)
 {
 	m_this.reset(new C_APK_Manager);
 
-	return true;
+	// ‰ŠúƒV[ƒ“‚ğƒ[ƒh@¸”s‚Åfalse‚ª•Ô‚é
+	return GAME::SCENE::MANAGER::C_Scene_Manager::M_Scene_Load(con_INITIALIZED_SCENE_NAME);
 }
 
 
@@ -73,36 +74,7 @@ C_APK_Manager::~C_APK_Manager(void)
 void C_APK_Manager::M_Release(void)
 {
 	m_this.reset();
-
-	return;
-}
-
-
-//-™- ƒV[ƒ“ŠJn -™-//
-
-//™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒV[ƒ“‚Ìˆ—‚ğŠJn‚·‚é
-// ˆø”   Fint ƒV[ƒ“‚Ì”Ô†
-// –ß‚è’l Fvoid
-//™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-void C_APK_Manager::M_Start_Scene(int in_scene_number)
-{
-	
-
-
-	return;
-}
-
-
-//-™- ƒV[ƒ“I—¹ -™-//
-
-//™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒV[ƒ“‚Ìˆ—‚ğI—¹‚·‚é
-// ˆø”   Fvoid
-// –ß‚è’l Fvoid
-//™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-void C_APK_Manager::M_End_Scene(void)
-{
+	GAME::SCENE::MANAGER::C_Scene_Manager::M_Release();
 
 	return;
 }
@@ -126,6 +98,8 @@ void C_APK_Manager::M_APK_Input(void)
 
 	// ™ “ü—Í ™ //
 
+
+
 	return;
 }
 
@@ -148,7 +122,14 @@ void C_APK_Manager::M_APK_Update(void)
 
 	// ™ XV ™ //
 
-	
+	// ƒV[ƒ“‚É‚æ‚éƒQ[ƒ€XV‘O‚ÌXV‚ğs‚¤
+	GAME::SCENE::MANAGER::C_Scene_Manager::M_Get_Scene()->M_Scene_Before_Update();
+
+	// ƒQ[ƒ€‚ÌXV‚ğs‚¤
+
+
+	// ƒV[ƒ“‚É‚æ‚éƒQ[ƒ€XVŒã‚ÌXV‚ğs‚¤
+	GAME::SCENE::MANAGER::C_Scene_Manager::M_Get_Scene()->M_Scene_After_Update();
 
 	return;
 }
@@ -171,6 +152,12 @@ void C_APK_Manager::M_APK_Draw(void)
 
 
 	// ™ •`‰æ ™ //
+
+	// ƒQ[ƒ€‚Ì•`‰æ‚ğs‚¤
+
+
+	// ƒV[ƒ“‚É‚æ‚é•`‰æŒã‚ÌXV‚ğs‚¤
+	GAME::SCENE::MANAGER::C_Scene_Manager::M_Get_Scene()->M_Scene_Update_After_Draw();
 
 	return;
 }

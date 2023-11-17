@@ -18,7 +18,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 	// ☆ 定数 ☆ //
 
 	// シーン前の更新の優先度
-	enum class E_ENGINE_BEFORE_UPDATE_PRIORITY
+	enum class E_Game_BEFORE_UPDATE_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -28,7 +28,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 		e_ALL_TIME_1 = 0,	// 常時更新
 
 		// ☆ 基本更新 ☆ //
-		e_ENGINE_FRAME_WORK,	// タブの更新
+		e_Game_FRAME_WORK,	// タブの更新
 
 
 		// ☆ 下が一番優先度が高い ☆ //
@@ -36,7 +36,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 
 
 	// シーン後の更新の優先度
-	enum class E_ENGINE_AFTER_UPDATE_PRIORITY
+	enum class E_Game_AFTER_UPDATE_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -47,7 +47,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 
 
 	// シーン処理後の描画の優先度
-	enum class E_BEFORE_ENGINE_DRAW_PRIORITY
+	enum class E_BEFORE_Game_DRAW_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -60,7 +60,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 
 
 	// シーン処理後の描画の優先度
-	enum class E_AFTER_ENGINE_DRAW_PRIORITY
+	enum class E_AFTER_Game_DRAW_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -87,7 +87,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 		e_SCREEN_19,	// 自由な描画の優先度19
 		e_SCREEN_20,	// 自由な描画の優先度20
 
-		e_ENGINE_FRAME_WORK,	// 基本フレーム枠部分
+		e_Game_FRAME_WORK,	// 基本フレーム枠部分
 
 		// ☆ 下が一番上に表示される ☆ //
 	};

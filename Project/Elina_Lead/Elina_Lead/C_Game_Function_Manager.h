@@ -1,31 +1,31 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの機能を制御するクラス
+// 詳細   ：ゲームの機能を制御するクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ENGINE_FUNCTION_MANAGER
-#define D_INCLUDE_GUARD_C_ENGINE_FUNCTION_MANAGER
+#ifndef D_INCLUDE_GUARD_C_Game_FUNCTION_MANAGER
+#define D_INCLUDE_GUARD_C_Game_FUNCTION_MANAGER
 
 
 // ☆ ファイルひらき ☆ //
 #include <string>
 #include <vector>
 
-#include "C_Engine_Function_Base.h"
+#include "C_Game_Function_Base.h"
 
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの機能を制御するシステムを呼び出すための名前
+// ゲームの機能を制御するシステムを呼び出すための名前
 namespace GAME::FUNCTION
 {
 	// ☆ クラス ☆ //
 
-	// エンジンの機能を制御するクラス
-	class C_Engine_Function_Manager
+	// ゲームの機能を制御するクラス
+	class C_Game_Function_Manager
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -35,12 +35,12 @@ namespace GAME::FUNCTION
 		// プライベート変数をまとめた構造体
 		struct SPR_Variable
 		{
-			std::vector<GAME::FUNCTION::C_Engine_Function_Base * > function_list;	// 機能を管理する配列
+			std::vector<GAME::FUNCTION::C_Game_Function_Base * > function_list;	// 機能を管理する配列
 
-			std::vector<GAME::FUNCTION::C_Engine_Function_Base * > before_func_update_list;	// シーン処理前に更新する機能のリスト
-			std::vector<GAME::FUNCTION::C_Engine_Function_Base * > after_func_update_list;	// シーン処理後に更新する機能のリスト
-			std::vector<GAME::FUNCTION::C_Engine_Function_Base * > before_func_draw_list;		// 描画する機能のリスト
-			std::vector<GAME::FUNCTION::C_Engine_Function_Base * > after_func_draw_list;			// 描画する機能のリスト
+			std::vector<GAME::FUNCTION::C_Game_Function_Base * > before_func_update_list;	// シーン処理前に更新する機能のリスト
+			std::vector<GAME::FUNCTION::C_Game_Function_Base * > after_func_update_list;	// シーン処理後に更新する機能のリスト
+			std::vector<GAME::FUNCTION::C_Game_Function_Base * > before_func_draw_list;		// 描画する機能のリスト
+			std::vector<GAME::FUNCTION::C_Game_Function_Base * > after_func_draw_list;			// 描画する機能のリスト
 
 			std::vector<std::string> function_create_kind_list;	// 機能の生成要求をまとめたリスト
 
@@ -48,7 +48,7 @@ namespace GAME::FUNCTION
 
 		} static mpr_variable;	// プライベート変数を呼び出すための名前
 
-		static C_Engine_Function_Manager m_this;	// エンジン制御用のシステムの実体(シングルトン)
+		static C_Game_Function_Manager m_this;	// ゲーム制御用のシステムの実体(シングルトン)
 
 
 		// ☆ 関数 ☆ //
@@ -56,17 +56,17 @@ namespace GAME::FUNCTION
 		//-☆- 初期化 -☆-//
 
 		// コンストラクタ、シングルトン化に使用
-		C_Engine_Function_Manager(void);
+		C_Game_Function_Manager(void);
 
 
 		//-☆- 生成 -☆-//
 
 		// 指定された機能の型の生成を実行する
 		template <class TYPE_CREATE_FUNCTION>
-		static C_Engine_Function_Base * M_Creat_Function_Excute(void)
+		static C_Game_Function_Base * M_Creat_Function_Excute(void)
 		{
 			// ☆ 変数宣言 ☆ //
-			C_Engine_Function_Base * new_function_address = nullptr;	// 新しい
+			C_Game_Function_Base * new_function_address = nullptr;	// 新しい
 
 
 			// 生成してリストに加える
@@ -84,19 +84,19 @@ namespace GAME::FUNCTION
 		static void M_Create_Function_By_Kind(std::string);
 
 		// シーン処理前に更新する機能を追加
-		static void M_Set_Before_Update_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base *);
+		static void M_Set_Before_Update_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 		// シーン処理後に更新する機能を追加
-		static void M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base *);
+		static void M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 		// シーン前の描画する機能を追加する
-		static void M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base *);
+		static void M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 		// シーン後の描画する機能を追加する
-		static void M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_Engine_Function_Base *);
+		static void M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 		// 指定されたアドレスの機能をすべての登録から削除する　引数：削除する機能のアドレス
-		static void M_Erase_This_Function_On_All_List(GAME::FUNCTION::C_Engine_Function_Base *);
+		static void M_Erase_This_Function_On_All_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 
 		//==☆ パブリック ☆==//
@@ -107,7 +107,7 @@ namespace GAME::FUNCTION
 		//-☆- 終了時 -☆-//
 
 		// デストラクタ
-		~C_Engine_Function_Manager(void);
+		~C_Game_Function_Manager(void);
 
 		// メモリ解放
 		static void M_Release_Memory(void);
@@ -142,7 +142,7 @@ namespace GAME::FUNCTION
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ENGINE_FUNCTION_MANAGER
+#endif // !D_INCLUDE_GUARD_C_Game_FUNCTION_MANAGER
 
 
 //☆======================================================================☆

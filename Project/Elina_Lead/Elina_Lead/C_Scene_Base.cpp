@@ -14,7 +14,16 @@ using namespace GAME::SCENE::BASE;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆// 
 C_Scene_Base::C_Scene_Base(void)
 {
+	return;
+}
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：デストラクタ
+// 引数   ：void
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆// 
+C_Scene_Base::~C_Scene_Base(void)
+{
 	return;
 }

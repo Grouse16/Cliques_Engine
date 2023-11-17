@@ -82,7 +82,7 @@ bool C_Windows_System::M_Creat_Window(void)
 	w_wc.style = CS_CLASSDC | CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 
 	// ウィンドウプロシージャのアドレス
-	w_wc.lpfnWndProc = OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Get_Engine_APK_Wnd_Proc();
+	w_wc.lpfnWndProc = OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Get_Game_APK_Wnd_Proc();
 
 	// 構造体の予備のメモリ
 	w_wc.cbClsExtra = 0;

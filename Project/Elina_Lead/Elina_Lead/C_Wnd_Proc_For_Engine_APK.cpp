@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジン用のウィンドウプロシージャのクラス
+// 詳細   ：ゲーム用のウィンドウプロシージャのクラス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -11,7 +11,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Wnd_Proc_For_Engine_APK.h"
+#include "C_Wnd_Proc_For_Game_APK.h"
 #include "C_Wnd_Proc_Manager.h"
 #include "C_OS_System_Base.h"
 #include "C_Game_Manager.h"
@@ -24,7 +24,7 @@ using namespace OS::WINDOWS::PROC;
 
 
 // ☆ 変数宣言 ☆ //
-C_Wnd_Proc_For_Engine_APK C_Wnd_Proc_For_Engine_APK::m_this;	// 自身をインスタンス化するための変数
+C_Wnd_Proc_For_Game_APK C_Wnd_Proc_For_Game_APK::m_this;	// 自身をインスタンス化するための変数
 
 
 // ☆ 関数 ☆ //
@@ -38,10 +38,10 @@ C_Wnd_Proc_For_Engine_APK C_Wnd_Proc_For_Engine_APK::m_this;	// 自身をインスタン
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Wnd_Proc_For_Engine_APK::C_Wnd_Proc_For_Engine_APK(void)
+C_Wnd_Proc_For_Game_APK::C_Wnd_Proc_For_Game_APK(void)
 {
 	// ウィンドウプロシージャをセット
-	OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Set_Engine_APK_Wnd_Proc(Wnd_Proc);
+	OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Set_Game_APK_Wnd_Proc(Wnd_Proc);
 
 	return;
 }
@@ -56,7 +56,7 @@ C_Wnd_Proc_For_Engine_APK::C_Wnd_Proc_For_Engine_APK(void)
 // 引数   ：HWND 自アプリのウィンドウ情報, UINT ユーザーの入力情報, WPARAM 中ホイール等の入力情報, LPARAM マウスなどの入力情報
 // 戻り値 ：LRESULT 処理結果を返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-LRESULT CALLBACK C_Wnd_Proc_For_Engine_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, WPARAM in_w_param, LPARAM in_l_param)
+LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, WPARAM in_w_param, LPARAM in_l_param)
 {
 	// 終了されてからこの処理を行わないように止める
 	if (in_h_wnd == NULL || in_msg == WM_QUIT)

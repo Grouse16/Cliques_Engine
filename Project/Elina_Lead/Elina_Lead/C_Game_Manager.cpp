@@ -1,5 +1,5 @@
 //™™™™™™™™™™™™™™™™™™™™™™™//
-// Ú×   FƒGƒ“ƒWƒ“‚ÌƒVƒXƒeƒ€§Œä—p‚ÌƒNƒ‰ƒX
+// Ú×   FƒQ[ƒ€‚ÌƒVƒXƒeƒ€§Œä—p‚ÌƒNƒ‰ƒX
 // à–¾   F
 // ì¬Ò Fûüâ—´½
 //™™™™™™™™™™™™™™™™™™™™™™™//
@@ -8,24 +8,19 @@
 // ™ ƒtƒ@ƒCƒ‹‚Ğ‚ç‚« ™ //
 #include <algorithm>
 
-#ifdef _DEBUG
-#include "C_Log_System.h"
-#endif // _DEBUG
-
 #include "C_Game_Manager.h"
 #include "C_OS_System_Base.h"
 #include "C_Rendering_Graphics_API_Base.h"
-#include "C_Engine_Function_Manager.h"
+#include "C_Game_Function_Manager.h"
 #include "C_Game_State_Manager.h"
-
-#include "Engine_Function_Name.h"
-
 #include "C_APK_Manager.h"
-
-#include "C_Engine_Input_Manager.h"
-#include "C_Engine_Input_Collision_Manager.h"
-
+#include "C_Game_Input_Manager.h"
+#include "C_Game_Input_Collision_Manager.h"
 #include "C_Game_Time_Manager.h"
+
+#ifdef _DEBUG
+#include "C_Log_System.h"
+#endif // _DEBUG
 
 
 // ™ ƒl[ƒ€ƒXƒy[ƒX‚ÌÈ—ª ™ //
@@ -47,7 +42,7 @@ C_Game_Manager::SPr_Variable C_Game_Manager::mpr_variable;		// ©ƒNƒ‰ƒX‚Ì•Ï”‚Ö‚
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 // Ú×   FƒRƒ“ƒXƒgƒ‰ƒNƒ^A‰Šúó‘Ô‚Ìw’è‚ÆƒCƒxƒ“ƒg‚Ì¶¬‚ğs‚¤
 // ˆø”   Fvoid
-// –ß‚è’l Fvoid
+// –ß‚è’l F‚È‚µ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Game_Manager::C_Game_Manager(void)
 {
@@ -66,7 +61,7 @@ C_Game_Manager::C_Game_Manager(void)
 void C_Game_Manager::M_Data_Update(void)
 {
 	// ™ •Ï”éŒ¾ ™ //
-	const std::wstring & executed_scene_name = GAME::STATE::C_Game_State_Manager::M_Get_Execute_Change_Engine_Scene_Name();	// •ÏX—v‹‚Ì‚ ‚Á‚½ƒV[ƒ“–¼‚ÌQÆ
+	const std::wstring & executed_scene_name = GAME::STATE::C_Game_State_Manager::M_Get_Execute_Change_Game_Scene_Name();	// •ÏX—v‹‚Ì‚ ‚Á‚½ƒV[ƒ“–¼‚ÌQÆ
 
 
 	// •ÏX—v‹‚ª‚È‚¢‚È‚çƒXƒ‹[
@@ -76,9 +71,9 @@ void C_Game_Manager::M_Data_Update(void)
 	}
 
 	// •ÏXæ‚ªŒ»İ‚Æ“¯‚¶‚È‚ç•ÏX‹‘”Û
-	if (GAME::STATE::C_Game_State_Manager::M_Get_Now_Engine_Scene_Name() == executed_scene_name)
+	if (GAME::STATE::C_Game_State_Manager::M_Get_Now_Game_Scene_Name() == executed_scene_name)
 	{
-		GAME::STATE::C_Game_State_Manager::M_Set_Execute_Change_Engine_Scene_Name(executed_scene_name);
+		GAME::STATE::C_Game_State_Manager::M_Set_Execute_Change_Game_Scene_Name(executed_scene_name);
 
 		return;
 	}
@@ -86,7 +81,13 @@ void C_Game_Manager::M_Data_Update(void)
 
 	// ™ •ÏXæƒV[ƒ“–¼‚©‚ç•K—v‚È‹@”\‚Ì¶¬‚ğs‚¤ ™ //
 
-	// ƒQ[ƒ€‰æ–Ê—p‚ÌƒV[ƒ“
+	// ƒ^ƒCƒgƒ‹ƒV[ƒ“
+	if (executed_scene_name == L"TITLE")
+	{
+
+	}
+
+	// ƒQ[ƒ€ƒV[ƒ“
 	if (executed_scene_name == L"GAME")
 	{
 
@@ -138,7 +139,7 @@ void C_Game_Manager::M_Window_Title_Update(void)
 //-™- ‰Šú‰»‚ÆI—¹ -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒV[ƒ“‚Ìˆ—‘O‚És‚¤ƒGƒ“ƒWƒ“‘¤‚Ìˆ—
+// Ú×   FƒV[ƒ“‚Ìˆ—‘O‚És‚¤ƒQ[ƒ€‘¤‚Ìˆ—
 // ˆø”   Fvoid
 // –ß‚è’l Fvoid
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
@@ -147,44 +148,30 @@ void C_Game_Manager::M_Init(void)
 	// ™ ƒfƒoƒbƒO‚È‚ç‰Šú‰»ŠJn‚ğ’m ™ //
 #if _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-™-™-™-™-™-™-™- ƒGƒ“ƒWƒ“‚Ì‰Šú‰»‚ğŠJn -™-™-™-™-™-™-™-");
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-™-™-™-™-™-™-™- ƒQ[ƒ€‚Ì‰Šú‰»‚ğŠJn -™-™-™-™-™-™-™-");
 #endif
 
-	// ƒGƒ“ƒWƒ“‚Ì“ü—ÍƒVƒXƒeƒ€‚ğ¶¬‚·‚é
-	GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Init();
-	GAME::INPUT::C_Engine_Input_Manager::M_Init();
+	// ƒQ[ƒ€‚Ì‹¤’Êî•ñ‚ğ‚Ü‚Æ‚ß‚éƒVƒXƒeƒ€‚ğ¶¬‚·‚é
+	GAME::STATE::C_Game_State_Manager::M_Init();
 
-	// ƒGƒ“ƒWƒ“‚ÌŠÔƒVƒXƒeƒ€‚ğ¶¬‚·‚é
+	// ƒQ[ƒ€‚Ì“ü—ÍƒVƒXƒeƒ€‚ğ¶¬‚·‚é
+	GAME::INPUT::COLLISION::C_Game_Input_Collision_Manager::M_Init();
+	GAME::INPUT::C_Game_Input_Manager::M_Init();
+
+	// ƒQ[ƒ€‚ÌŠÔƒVƒXƒeƒ€‚ğ¶¬‚·‚é
 	GAME::TIME::C_Game_Time_Manager::M_Init();
 
-	// ‹¤—Lƒf[ƒ^‚Ì‰Šú‰»
-	GAME::STATE::C_Game_State_Manager::M_Init();
-	GAME::STATE::C_Game_State_Manager::M_Set_Execute_Change_Engine_Scene_Name(L"GAME");
-	M_Data_Update();
+	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒVƒXƒeƒ€‚Ì‰Šú‰»‚ğs‚¤
+	M_Set_Game_Exist_Flg(GAME::APPLICATION::C_APK_Manager::M_Init());
 
-
-	// Šî–{•”•ª‚Ì¶¬‚ğÀs
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Command_Create_Function(GAME::FUNCTION::NAME::BASE::con_FRAME_WORK);
-	if (GAME::FUNCTION::C_Engine_Function_Manager::M_Execute_Create_Function_By_List() == false)
-	{
-		// ™ ƒfƒoƒbƒO‚È‚ç‰Šú‰»‚Ì¬Œ÷‚¨‚æ‚Ñ¸”s‚ğ’m ™ //
-#if _DEBUG
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-™-™-™-™-™-™-™- ƒGƒ“ƒWƒ“‚Ì‰Šú‰»‚É¸”s -™-™-™-™-™-™-™-");
-#endif // _DEBUG
-
-		 M_Set_Engine_Exist_Flg(false);
-
-		return;
-	}
 
 	// ‰Šú‰»‚É¸”s‚µ‚½‚ç¸”s‚ğ’m‚·‚é
-	if (M_Get_Engine_Exist_Flg() == false)
+	if (M_Get_Game_Exist_Flg() == false)
 	{
 		// ™ ƒfƒoƒbƒO‚È‚ç‰Šú‰»‚Ì¸”s‚ğ’m ™ //
 #if _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-™-™-™-™-™-™-™- ƒGƒ“ƒWƒ“‚Ì‰Šú‰»‚É¸”s -™-™-™-™-™-™-™-");
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-™-™-™-™-™-™-™- ƒQ[ƒ€‚Ì‰Šú‰»‚É¸”s -™-™-™-™-™-™-™-");
 #endif // _DEBUG
 
 		return;
@@ -195,13 +182,13 @@ void C_Game_Manager::M_Init(void)
 #if _DEBUG
 	// ‰Šú‰»‚É¬Œ÷‚µ‚½‚ç¬Œ÷‚ğ’m‚·‚é
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-™-™-™-™-™-™-™- ƒGƒ“ƒWƒ“‚Ì‰Šú‰»‚É¬Œ÷ -™-™-™-™-™-™-™-");
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-™-™-™-™-™-™-™- ƒQ[ƒ€‚Ì‰Šú‰»‚É¬Œ÷ -™-™-™-™-™-™-™-");
 #endif //_DEBUG
 
 
 	// ƒAƒNƒeƒBƒuó‘Ô‚ğw’è
-	mpr_variable.flg_engine_activate = true;
-	M_Set_Engine_Exist_Flg(true);
+	mpr_variable.flg_Game_activate = true;
+	M_Set_Game_Exist_Flg(true);
 
 	return;
 }
@@ -210,7 +197,7 @@ void C_Game_Manager::M_Init(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 // Ú×   FƒfƒXƒgƒ‰ƒNƒ^Ag—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
 // ˆø”   Fvoid
-// –ß‚è’l Fvoid
+// –ß‚è’l F‚È‚µ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Game_Manager::~C_Game_Manager(void)
 {
@@ -228,16 +215,16 @@ C_Game_Manager::~C_Game_Manager(void)
 void C_Game_Manager::M_Release(void)
 {
 	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌI—¹‚ğ¦‚·
-	mpr_variable.flg_engine_activate = false;
-	M_Set_Engine_Exist_Flg(false);
+	mpr_variable.flg_Game_activate = false;
+	M_Set_Game_Exist_Flg(false);
 
 	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì‰ğ•ú
-	APPLICATION::C_APK_Manager::M_Release();
+	GAME::APPLICATION::C_APK_Manager::M_Release();
 
 	// ƒQ[ƒ€—pƒVƒXƒeƒ€‚ğíœ
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Release_Memory();
-	GAME::INPUT::C_Engine_Input_Manager::M_Release();
-	GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Release();
+	GAME::FUNCTION::C_Game_Function_Manager::M_Release_Memory();
+	GAME::INPUT::C_Game_Input_Manager::M_Release();
+	GAME::INPUT::COLLISION::C_Game_Input_Collision_Manager::M_Release();
 	GAME::TIME::C_Game_Time_Manager::M_Release();
 	GAME::STATE::C_Game_State_Manager::M_Release();
 
@@ -248,26 +235,26 @@ void C_Game_Manager::M_Release(void)
 //-™- ƒZƒbƒ^ -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒGƒ“ƒWƒ“‚ğ‘¶İ‚µ‚Ä‚¢‚éó‘Ô‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// Ú×   FƒQ[ƒ€‚ğ‘¶İ‚µ‚Ä‚¢‚éó‘Ô‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
 // ˆø”   Ftrue‚Í³í‚É‘¶İ‚µ‚Ä‚¢‚é
 // –ß‚è’l Fvoid
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-void C_Game_Manager::M_Set_Engine_Exist_Flg(bool in_set_exist)
+void C_Game_Manager::M_Set_Game_Exist_Flg(bool in_set_exist)
 {
-	mpr_variable.flg_engine_exist = in_set_exist;
+	mpr_variable.flg_Game_exist = in_set_exist;
 
 	return;
 }
 
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒGƒ“ƒWƒ“‚ª‰Ò“­’†‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// Ú×   FƒQ[ƒ€‚ª‰Ò“­’†‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
 // ˆø”   Ftrue‚Í³í‚É‘¶İ‚µ‚Ä‚¢‚é
 // –ß‚è’l Fvoid
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-void C_Game_Manager::M_Set_Engine_Activate_Flg(bool in_set_active)
+void C_Game_Manager::M_Set_Game_Activate_Flg(bool in_set_active)
 {
-	mpr_variable.flg_engine_activate = in_set_active;
+	mpr_variable.flg_Game_activate = in_set_active;
 
 	return;
 }
@@ -276,31 +263,31 @@ void C_Game_Manager::M_Set_Engine_Activate_Flg(bool in_set_active)
 //-™- ƒQƒbƒ^ -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒGƒ“ƒWƒ“‚ğ‘¶İ‚µ‚Ä‚¢‚éó‘Ô‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// Ú×   FƒQ[ƒ€‚ğ‘¶İ‚µ‚Ä‚¢‚éó‘Ô‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
 // ˆø”   Ftrue‚Í³í‚É‘¶İ‚µ‚Ä‚¢‚é
 // –ß‚è’l FI—¹‚Ìê‡‚ÍAtrue
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-bool C_Game_Manager::M_Get_Engine_Exist_Flg(void)
+bool C_Game_Manager::M_Get_Game_Exist_Flg(void)
 {
-	return mpr_variable.flg_engine_exist;
+	return mpr_variable.flg_Game_exist;
 }
 
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒGƒ“ƒWƒ“‚ªƒAƒNƒeƒBƒuó‘Ô‚©‚Ç‚¤‚©‚ğ•Ô‚·
+// Ú×   FƒQ[ƒ€‚ªƒAƒNƒeƒBƒuó‘Ô‚©‚Ç‚¤‚©‚ğ•Ô‚·
 // ˆø”   Fvoid
 // –ß‚è’l FƒAƒNƒeƒBƒu‚Ìê‡‚ÍAtrue
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-bool C_Game_Manager::M_Get_Engine_Active_Flg(void)
+bool C_Game_Manager::M_Get_Game_Active_Flg(void)
 {
-	return mpr_variable.flg_engine_activate;
+	return mpr_variable.flg_Game_activate;
 }
 
 
 //-™- Às -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒGƒ“ƒWƒ“‚Ìˆ—‚ğÀs‚·‚é
+// Ú×   FƒQ[ƒ€‚Ìˆ—‚ğÀs‚·‚é
 // ˆø”   Fvoid
 // –ß‚è’l Fvoid
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
@@ -308,8 +295,8 @@ void C_Game_Manager::M_Executes_Process(void)
 {
 	//======™ ÀsŠm”F ™======//
 
-	// ƒGƒ“ƒWƒ“‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚©‰Ò“­’†‚Å‚È‚¢‚È‚çÀs‚µ‚È‚¢
-	if ((M_Get_Engine_Active_Flg() & M_Get_Engine_Exist_Flg()) == false)
+	// ƒQ[ƒ€‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚©‰Ò“­’†‚Å‚È‚¢‚È‚çÀs‚µ‚È‚¢
+	if ((M_Get_Game_Active_Flg() & M_Get_Game_Exist_Flg()) == false)
 	{
 		return;
 	}
@@ -323,10 +310,10 @@ void C_Game_Manager::M_Executes_Process(void)
 		mpr_variable.flg_OS_active_now = true;
 		OS::C_OS_System_Base::M_Get_Instance()->M_Update();
 
-		// OS‚ªI—¹‚µ‚Ä‚¢‚½‚çƒGƒ“ƒWƒ“‚ğI—¹‚·‚é
+		// OS‚ªI—¹‚µ‚Ä‚¢‚½‚çƒQ[ƒ€‚ğI—¹‚·‚é
 		if (OS::C_OS_System_Base::M_Get_OS_Active() == false)
 		{
-			M_Set_Engine_Exist_Flg(false);
+			M_Set_Game_Exist_Flg(false);
 
 			return;
 		}
@@ -344,23 +331,23 @@ void C_Game_Manager::M_Executes_Process(void)
 	//======™ “ü—Í ™======//
 
 	// ƒQ[ƒ€‚Ì“ü—Í
-	GAME::INPUT::C_Engine_Input_Manager::M_Update();
+	GAME::INPUT::C_Game_Input_Manager::M_Update();
 
 	// ƒV[ƒ“‚Ì“ü—Í
-	APPLICATION::C_APK_Manager::M_APK_Input();
+	GAME::APPLICATION::C_APK_Manager::M_APK_Input();
 
 
 
 	//======™ XV ™======//
 
 	// ƒV[ƒ“XV‘O‚Ì‹@”\‚ÌXV
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Before_Scene_Update();
+	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Update();
 
 	// ƒV[ƒ“XV
-	APPLICATION::C_APK_Manager::M_APK_Update();
+	GAME::APPLICATION::C_APK_Manager::M_APK_Update();
 
 	// ƒV[ƒ“XVŒã‚Ì‹@”\‚ÌXV
-	GAME::FUNCTION::C_Engine_Function_Manager::M_After_Scene_Update();
+	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Update();
 
 
 
@@ -371,13 +358,13 @@ void C_Game_Manager::M_Executes_Process(void)
 
 
 	// ƒV[ƒ“•`‰æ‘O‚Ì‹@”\‚Ì•`‰æ
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Before_Scene_Draw();
+	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Draw();
 
 	// ƒV[ƒ“‚Ì•`‰æ
-	APPLICATION::C_APK_Manager::M_APK_Draw();
+	GAME::APPLICATION::C_APK_Manager::M_APK_Draw();
 
 	// ƒV[ƒ“•`‰æŒã‚Ì‹@”\‚Ì•`‰æ
-	GAME::FUNCTION::C_Engine_Function_Manager::M_After_Scene_Draw();
+	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw();
 
 
 	//  ƒŒƒ“ƒ_ƒŠƒ“ƒOI—¹‚Æ‰æ–Êo—Í  //
@@ -388,12 +375,12 @@ void C_Game_Manager::M_Executes_Process(void)
 	//======™ Ÿ‚ÌƒtƒŒ[ƒ€‚Ö‚Ì€”õ ™======//
 
 	// •K—v‚Ì‚È‚¢‹@”\‚Ìíœ
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Delete_Function();
+	GAME::FUNCTION::C_Game_Function_Manager::M_Delete_Function();
 
 	// •K—v‚È‹@”\‚Ì¶¬
-	GAME::FUNCTION::C_Engine_Function_Manager::M_Execute_Create_Function_By_List();
+	GAME::FUNCTION::C_Game_Function_Manager::M_Execute_Create_Function_By_List();
 
-	// ƒGƒ“ƒWƒ“‚Ì‹¤—Lƒf[ƒ^‚ÌXV
+	// ƒQ[ƒ€‚Ì‹¤—Lƒf[ƒ^‚ÌXV
 	M_Data_Update();
 
 	// ƒtƒŒ[ƒ€‚ÌI—¹‚ÌXV
