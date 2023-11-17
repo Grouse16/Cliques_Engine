@@ -330,23 +330,23 @@ void C_Game_Manager::M_Executes_Process(void)
 
 	//======☆ 入力 ☆======//
 
-	// ゲームの入力
+	// ゲーム制御システムの入力
 	GAME::INPUT::C_Game_Input_Manager::M_Update();
 
-	// シーンの入力
+	// ゲームの入力
 	GAME::APPLICATION::C_APK_Manager::M_APK_Input();
 
 
 
 	//======☆ 更新 ☆======//
 
-	// シーン更新前の機能の更新
+	// ゲーム更新前の機能の更新
 	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Update();
 
-	// シーン更新
+	// ゲームの更新
 	GAME::APPLICATION::C_APK_Manager::M_APK_Update();
 
-	// シーン更新後の機能の更新
+	// ゲーム更新後の機能の更新
 	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Update();
 
 
@@ -356,15 +356,11 @@ void C_Game_Manager::M_Executes_Process(void)
 	//  レンダリングシステムの描画準備  //
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Start();
 
-
-	// シーン描画前の機能の描画
-	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Draw();
-
-	// シーンの描画
+	// ゲームの描画
 	GAME::APPLICATION::C_APK_Manager::M_APK_Draw();
 
-	// シーン描画後の機能の描画
-	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw();
+	// ゲーム描画後の機能の更新
+	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw_Update();
 
 
 	//  レンダリング終了と画面出力  //

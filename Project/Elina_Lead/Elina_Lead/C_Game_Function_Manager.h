@@ -89,10 +89,7 @@ namespace GAME::FUNCTION
 		// シーン処理後に更新する機能を追加
 		static void M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
-		// シーン前の描画する機能を追加する
-		static void M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
-
-		// シーン後の描画する機能を追加する
+		// シーン後の更新する機能を追加する
 		static void M_Set_After_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base *);
 
 		// 指定されたアドレスの機能をすべての登録から削除する　引数：削除する機能のアドレス
@@ -121,11 +118,8 @@ namespace GAME::FUNCTION
 		// シーン処理後の機能の更新を行う
 		static void M_After_Scene_Update(void);
 
-		// シーン処理前の機能の描画を行う
-		static void M_Before_Scene_Draw(void);
-
 		// シーン処理後の機能の描画を行う
-		static void M_After_Scene_Draw(void);
+		static void M_After_Scene_Draw_Update(void);
 
 
 		//-☆- 機能 -☆-//

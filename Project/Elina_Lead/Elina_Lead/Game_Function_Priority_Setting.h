@@ -18,7 +18,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 	// ☆ 定数 ☆ //
 
 	// シーン前の更新の優先度
-	enum class E_Game_BEFORE_UPDATE_PRIORITY
+	enum class E_GAME_BEFORE_UPDATE_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -36,7 +36,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 
 
 	// シーン後の更新の優先度
-	enum class E_Game_AFTER_UPDATE_PRIORITY
+	enum class E_GAME_AFTER_UPDATE_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効
@@ -47,20 +47,7 @@ namespace GAME::FUNCTION::PRIOTRITY
 
 
 	// シーン処理後の描画の優先度
-	enum class E_BEFORE_Game_DRAW_PRIORITY
-	{
-		// ☆ 特殊値 ☆ //
-		e_INVALID = -1,	// 無効
-
-		// ☆ 自由画面優先度 ☆ //	// ここから先は自由に番号を振れる
-		e_SCREEN_1 = 0,	// 自由な描画の優先度1
-		
-		// ☆ 下が一番上に表示される ☆ //
-	};
-
-
-	// シーン処理後の描画の優先度
-	enum class E_AFTER_Game_DRAW_PRIORITY
+	enum class E_AFTER_GAME_DRAW_PRIORITY
 	{
 		// ☆ 特殊値 ☆ //
 		e_INVALID = -1,	// 無効

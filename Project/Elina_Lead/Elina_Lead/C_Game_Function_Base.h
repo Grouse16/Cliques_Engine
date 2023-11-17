@@ -35,11 +35,10 @@ namespace GAME::FUNCTION
 		{
 			float update_period_time = 0.0f;	// イベント実行の周期
 
-			int before_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_BEFORE_Game_DRAW_PRIORITY::e_INVALID;	// シーン前の描画の優先度、高いほど上に表示される
-			int after_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_AFTER_Game_DRAW_PRIORITY::e_INVALID;	// シーン後の描画の優先度、高いほど上に表示される
+			int after_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_AFTER_GAME_DRAW_PRIORITY::e_INVALID;	// シーン後の描画の優先度、高いほど上に表示される
 
-			int before_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_Game_BEFORE_UPDATE_PRIORITY::e_INVALID;	// シーン前の更新の優先度、高いほど先に更新される
-			int after_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_Game_AFTER_UPDATE_PRIORITY::e_INVALID;	// シーン後の更新の優先度、高いほど先に更新される
+			int before_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_GAME_BEFORE_UPDATE_PRIORITY::e_INVALID;	// シーン前の更新の優先度、高いほど先に更新される
+			int after_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_GAME_AFTER_UPDATE_PRIORITY::e_INVALID;	// シーン後の更新の優先度、高いほど先に更新される
 
 			bool flg_function_end = false;	// 機能を終了するかどうかのフラグ
 
@@ -65,9 +64,6 @@ namespace GAME::FUNCTION
 
 		// シーン後の更新の優先度レベルを設定する　引数：設定する優先度
 		void M_Set_After_Update_Priority(int);
-
-		// シーン前の描画の優先度レベルを設定する　引数：設定する優先度
-		void M_Set_Before_Draw_Priority(int);
 
 		// シーン後の描画の優先度レベルを設定する　引数：設定する優先度
 		void M_Set_After_Draw_Priority(int);
@@ -120,13 +116,10 @@ namespace GAME::FUNCTION
 		const int & M_Get_Before_Update_Priority(void);
 
 		// シーン後の更新の優先度のレベルを返す　戻り値：優先度の値の参照
-		const int& M_Get_After_Update_Priority(void);
-
-		// シーン前の描画の優先度のレベル返す　戻り値：優先度の値の参照
-		const int & M_Get_Before_Draw_Priority(void);
+		const int & M_Get_After_Update_Priority(void);
 
 		// シーン後の描画の優先度のレベル返す　戻り値：優先度の値の参照
-		const int& M_Get_After_Draw_Priority(void);
+		const int & M_Get_After_Draw_Priority(void);
 
 		// 機能を終了するかどうかのフラグを返す　戻り値：機能を終了するかどうかのフラグの参照
 		const bool & M_Get_Flg_End_Function(void);
