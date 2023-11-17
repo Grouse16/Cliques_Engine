@@ -116,9 +116,9 @@ namespace SYSTEM::LIST::BASE
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：渡されたラムダ式の条件に当てはまるインスタンスを消す
 		// 引数   ：function<bool(C_Instance &)> 削除インスタンスのチェック用のラムダ式
-		// 戻り値 ：void
+		// 戻り値 ：bool リストの中の全ての要素が削除されたらtrue
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		static void M_Delete_Instance_By_Lambda(std::function<bool(C_Instance & )> in_delete_lambda)
+		static bool M_Delete_Instance_By_Lambda(std::function<bool(C_Instance & )> in_delete_lambda)
 		{
 			// 指定された条件通りのインスタンスを削除する
 			m_instance_list.before_func_update_list.erase
@@ -137,9 +137,11 @@ namespace SYSTEM::LIST::BASE
 			if (m_instance_list.size() <= 0)
 			{
 				C_List_Divided_By_Class_Overall_Base<C_List>::M_Delete_By_List_Of_All_Instance_List(this);
+
+				return true;
 			}
 
-			return;
+			return false;
 		}
 		
 

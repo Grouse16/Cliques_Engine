@@ -45,6 +45,8 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// ☆ 変数宣言 ☆ //
 		static C_Actor_List<C_Actor> m_this;	// シングルトン化用のインスタンス
 
+		bool m_actor_is_nothing = true;	// アクターを持っていない状態の時のみたつフラグ
+
 
 		// ☆ 関数 ☆ //
 
@@ -57,13 +59,6 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		C_Actor_List(void)
 		{
-			// ☆ 変数宣言 ☆ //
-			std::vector<int> & priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
-
-			
-			// 優先度用の配列を生成
-			priority_list.resize(1);
-
 			return;
 		}
 
@@ -131,7 +126,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 
 			// 一体目が新しく追加されたらクラスの優先度を追加して全体をソートする
-			if (SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List().size() <= 1)
+			if (m_actor_is_nothing)
 			{
 				// ☆ 変数宣言 ☆ //
 				std::vector<int> & priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
@@ -145,6 +140,9 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 				// ソートを実行
 				M_Sort_Actor_By_Class();
+
+				// アクターを持ったのでアクターがない状態のフラグを下げる
+				m_actor_is_nothing = false;
 			}
 
 
@@ -179,7 +177,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 
 			// リストからの削除を行う
-			SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Delete_Instance_By_Lambda(delete_lambda);
+			m_actor_is_nothing = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Delete_Instance_By_Lambda(delete_lambda);
 
 			return;
 		}
