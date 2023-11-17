@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：ゲーム、エリナ・リードのメイン関数部
+// 詳細   ：自作ゲーム、エリナ・リードのメイン関数部
 // 説明   ：ここでメインループやセットアップを行う
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -33,10 +33,10 @@ void M_OS_Creat_System(void);
 // レンダリングAPIの初期化を行う
 void M_Rendering_API_Init(void);
 
-// エンジンシステムの初期化を行う
+// ゲームシステムの初期化を行う
 void M_Game_Set_Up(void);
 
-// エンジンの終了処理
+// ゲームの終了処理
 void M_Game_End(void);
 
 
@@ -47,11 +47,6 @@ void M_Game_End(void);
 void M_Print_Log_Of_Succeeded_Init(void);
 
 #endif // _DEBUG
-
-
-// * 注釈 *
-// エンジンをエンジンシステムや機能とし
-// アプリケーションをシーンの更新や描画時のオブジェクト管理システムのこととする
 
 
 // ☆ メイン関数 ☆ //
@@ -82,7 +77,7 @@ int main(void)
 	// レンダリングAPIの生成
 	M_Rendering_API_Init();
 
-	// エンジン用システムの初期化
+	// ゲーム用システムの初期化
 	M_Game_Set_Up();
 
 
@@ -93,9 +88,9 @@ int main(void)
 	
 
 	// ☆ メインループ ☆ //
-	while (GAME::C_Game_Manager::M_Get_Engine_Exist_Flg())
+	while (GAME::C_Game_Manager::M_Get_Game_Exist_Flg())
 	{
-		// エンジンの更新を行う
+		// ゲームのプロセスを実行
 		GAME::C_Game_Manager::M_Executes_Process();
 	}
 
@@ -123,7 +118,7 @@ void M_OS_Creat_System(void)
 	// OSを生成する　失敗で終了
 	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Creat_OS(PLATFORM::E_RENDERING_API_KIND::e_DX12))
 	{
-		GAME::C_Game_Manager::M_Set_Engine_Exist_Flg(false);
+		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}
 
 	return;
@@ -140,14 +135,14 @@ void M_Rendering_API_Init(void)
 	// OSの初期化を行う　失敗で終了
 	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Init_OS())
 	{
-		GAME::C_Game_Manager::M_Set_Engine_Exist_Flg(false);
+		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}
 
 
 	// レンダリングAPIを生成する　失敗で終了
 	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Init_API())
 	{
-		GAME::C_Game_Manager::M_Set_Engine_Exist_Flg(false);
+		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}
 
 	return;
@@ -155,14 +150,14 @@ void M_Rendering_API_Init(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：エンジンシステムの初期化を行う
+// 詳細   ：ゲームシステムの初期化を行う
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void M_Game_Set_Up(void)
 {
 	// これまでの初期化が成功している時のみ初期化を行う
-	if (GAME::C_Game_Manager::M_Get_Engine_Exist_Flg())
+	if (GAME::C_Game_Manager::M_Get_Game_Exist_Flg())
 	{
 		GAME::C_Game_Manager::M_Init();
 	}
@@ -173,7 +168,7 @@ void M_Game_Set_Up(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：エンジンの終了処理
+// 詳細   ：ゲームの終了処理
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -188,7 +183,7 @@ void M_Game_End(void)
 #endif // _DEBUG
 
 
-	// エンジンのメモリ解放
+	// ゲームのメモリ解放
 	GAME::C_Game_Manager::M_Release();
 
 	// レンダリング用のアプリケーションを終了する
@@ -209,7 +204,7 @@ void M_Game_End(void)
 void M_Print_Log_Of_Succeeded_Init(void)
 {
 	// 初期化に成功していなかったら抜ける
-	if (!GAME::C_Game_Manager::M_Get_Engine_Exist_Flg())
+	if (!GAME::C_Game_Manager::M_Get_Game_Exist_Flg())
 	{
 		return;
 	}

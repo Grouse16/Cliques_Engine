@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力を制御するシステム
+// 詳細   ：ゲームの入力を制御するシステム
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -37,7 +37,7 @@ C_Game_Time_Manager::C_Game_Time_Manager(void)
 	// デバッグ時は生成したことをログに残す
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "エンジン用の時間システムを生成");
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ゲーム用の時間システムを生成");
 #endif // _DEBUG
 
 	// 初期時間を記録
@@ -77,7 +77,7 @@ C_Game_Time_Manager::~C_Game_Time_Manager(void)
 	// デバッグ時は削除したことをログに残す
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "エンジン用の時間システムを削除");
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ゲーム用の時間システムを削除");
 #endif // _DEBUG
 
 	M_Release();

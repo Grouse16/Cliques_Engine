@@ -6,7 +6,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Engine_Function_Base.h"
+#include "C_Game_Function_Base.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -24,7 +24,7 @@ using namespace GAME::FUNCTION;
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Before_Event_Update(void)
+void C_Game_Function_Base::M_Before_Event_Update(void)
 {
 	return;
 }
@@ -35,7 +35,7 @@ void C_Engine_Function_Base::M_Before_Event_Update(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_After_Event_Update(void)
+void C_Game_Function_Base::M_After_Event_Update(void)
 {
 	return;
 }
@@ -48,7 +48,7 @@ void C_Engine_Function_Base::M_After_Event_Update(void)
 // 引数   ：int 設定する優先度
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_Before_Update_Priority(int in_set_priority)
+void C_Game_Function_Base::M_Set_Before_Update_Priority(int in_set_priority)
 {
 	mpr_variable.before_update_priority = in_set_priority;
 
@@ -61,7 +61,7 @@ void C_Engine_Function_Base::M_Set_Before_Update_Priority(int in_set_priority)
 // 引数   ：int 設定する優先度
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_After_Update_Priority(int in_set_priority)
+void C_Game_Function_Base::M_Set_After_Update_Priority(int in_set_priority)
 {
 	mpr_variable.after_update_priority = in_set_priority;
 
@@ -74,7 +74,7 @@ void C_Engine_Function_Base::M_Set_After_Update_Priority(int in_set_priority)
 // 引数   ：int 設定する優先度
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_Before_Draw_Priority(int in_set_priority)
+void C_Game_Function_Base::M_Set_Before_Draw_Priority(int in_set_priority)
 {
 	mpr_variable.before_draw_priority = in_set_priority;
 
@@ -87,7 +87,7 @@ void C_Engine_Function_Base::M_Set_Before_Draw_Priority(int in_set_priority)
 // 引数   ：int 設定する優先度
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_After_Draw_Priority(int in_set_priority)
+void C_Game_Function_Base::M_Set_After_Draw_Priority(int in_set_priority)
 {
 	mpr_variable.after_draw_priority = in_set_priority;
 
@@ -104,7 +104,7 @@ void C_Engine_Function_Base::M_Set_After_Draw_Priority(int in_set_priority)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Function_Base::C_Engine_Function_Base(void)
+C_Game_Function_Base::C_Game_Function_Base(void)
 {
 	return;
 }
@@ -115,7 +115,7 @@ C_Engine_Function_Base::C_Engine_Function_Base(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Function_Base::~C_Engine_Function_Base(void)
+C_Game_Function_Base::~C_Game_Function_Base(void)
 {
 	return;
 }
@@ -128,7 +128,7 @@ C_Engine_Function_Base::~C_Engine_Function_Base(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Call_Event_Before_Scene_Process(void)
+void C_Game_Function_Base::M_Call_Event_Before_Scene_Process(void)
 {
 	// 待ち時間があるなら呼ばれても待機
 	if (mpr_variable.update_period_time > 0.0f)
@@ -149,7 +149,7 @@ void C_Engine_Function_Base::M_Call_Event_Before_Scene_Process(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Call_Event_After_Scene_Process(void)
+void C_Game_Function_Base::M_Call_Event_After_Scene_Process(void)
 {
 	// 待ち時間があるなら呼ばれても待機
 	if (mpr_variable.update_period_time > 0.0f)
@@ -170,7 +170,7 @@ void C_Engine_Function_Base::M_Call_Event_After_Scene_Process(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Draw_Before_Scene_Process(void)
+void C_Game_Function_Base::M_Draw_Before_Scene_Process(void)
 {
 	return;
 }
@@ -181,7 +181,7 @@ void C_Engine_Function_Base::M_Draw_Before_Scene_Process(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_After_Draw_Process(void)
+void C_Game_Function_Base::M_After_Draw_Process(void)
 {
 	return;
 }
@@ -194,7 +194,7 @@ void C_Engine_Function_Base::M_After_Draw_Process(void)
 // 引数   ：float 設定する次の実行までの待ち時間
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_Update_Period_Time(float in_set_period)
+void C_Game_Function_Base::M_Set_Update_Period_Time(float in_set_period)
 {
 	mpr_variable.update_period_time = in_set_period;
 
@@ -207,7 +207,7 @@ void C_Engine_Function_Base::M_Set_Update_Period_Time(float in_set_period)
 // 引数   ：bool 設定する終了するかどうかのフラグ
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Function_Base::M_Set_Flg_End_Function(bool in_set_flg_end_function)
+void C_Game_Function_Base::M_Set_Flg_End_Function(bool in_set_flg_end_function)
 {
 	mpr_variable.flg_function_end = in_set_flg_end_function;
 
@@ -222,7 +222,7 @@ void C_Engine_Function_Base::M_Set_Flg_End_Function(bool in_set_flg_end_function
 // 引数   ：void
 // 戻り値 ：const int & 優先度の値の参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const int & C_Engine_Function_Base::M_Get_Before_Update_Priority(void)
+const int & C_Game_Function_Base::M_Get_Before_Update_Priority(void)
 {
 	return mpr_variable.before_update_priority;
 }
@@ -233,7 +233,7 @@ const int & C_Engine_Function_Base::M_Get_Before_Update_Priority(void)
 // 引数   ：void
 // 戻り値 ：const int & 優先度の値の参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const int & C_Engine_Function_Base::M_Get_After_Update_Priority(void)
+const int & C_Game_Function_Base::M_Get_After_Update_Priority(void)
 {
 	return mpr_variable.after_update_priority;
 }
@@ -244,7 +244,7 @@ const int & C_Engine_Function_Base::M_Get_After_Update_Priority(void)
 // 引数   ：void
 // 戻り値 ：const int & 優先度の値の参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const int & C_Engine_Function_Base::M_Get_Before_Draw_Priority(void)
+const int & C_Game_Function_Base::M_Get_Before_Draw_Priority(void)
 {
 	return mpr_variable.before_draw_priority;
 }
@@ -255,7 +255,7 @@ const int & C_Engine_Function_Base::M_Get_Before_Draw_Priority(void)
 // 引数   ：void
 // 戻り値 ：const int & 優先度の値の参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const int & C_Engine_Function_Base::M_Get_After_Draw_Priority(void)
+const int & C_Game_Function_Base::M_Get_After_Draw_Priority(void)
 {
 	return mpr_variable.after_draw_priority;
 }
@@ -266,7 +266,7 @@ const int & C_Engine_Function_Base::M_Get_After_Draw_Priority(void)
 // 引数   ：void
 // 戻り値 ：const bool & 機能を終了するかどうかのフラグの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const bool & C_Engine_Function_Base::M_Get_Flg_End_Function(void)
+const bool & C_Game_Function_Base::M_Get_Flg_End_Function(void)
 {
 	return mpr_variable.flg_function_end;
 }

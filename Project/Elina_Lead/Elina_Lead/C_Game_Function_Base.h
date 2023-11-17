@@ -1,17 +1,17 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの機能の基底インスタンスの定義
+// 詳細   ：ゲームの機能の基底インスタンスの定義
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_ENGINE_FUNCTION_BASE_H_FILE
-#define D_INCLUDE_GUARD_ENGINE_FUNCTION_BASE_H_FILE
+#ifndef D_INCLUDE_GUARD_Game_FUNCTION_BASE_H_FILE
+#define D_INCLUDE_GUARD_Game_FUNCTION_BASE_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
-#include "Engine_Function_Priority_Setting.h"
+#include "Game_Function_Priority_Setting.h"
 
 
 
@@ -22,8 +22,8 @@ namespace GAME::FUNCTION
 {
 	// ☆ クラス ☆ //
 
-	// エンジンのイベント用の基底クラスを定義
-	class C_Engine_Function_Base
+	// ゲームのイベント用の基底クラスを定義
+	class C_Game_Function_Base
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -35,11 +35,11 @@ namespace GAME::FUNCTION
 		{
 			float update_period_time = 0.0f;	// イベント実行の周期
 
-			int before_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_BEFORE_ENGINE_DRAW_PRIORITY::e_INVALID;	// シーン前の描画の優先度、高いほど上に表示される
-			int after_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_AFTER_ENGINE_DRAW_PRIORITY::e_INVALID;	// シーン後の描画の優先度、高いほど上に表示される
+			int before_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_BEFORE_Game_DRAW_PRIORITY::e_INVALID;	// シーン前の描画の優先度、高いほど上に表示される
+			int after_draw_priority = (int)GAME::FUNCTION::PRIOTRITY::E_AFTER_Game_DRAW_PRIORITY::e_INVALID;	// シーン後の描画の優先度、高いほど上に表示される
 
-			int before_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_ENGINE_BEFORE_UPDATE_PRIORITY::e_INVALID;	// シーン前の更新の優先度、高いほど先に更新される
-			int after_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_ENGINE_AFTER_UPDATE_PRIORITY::e_INVALID;	// シーン後の更新の優先度、高いほど先に更新される
+			int before_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_Game_BEFORE_UPDATE_PRIORITY::e_INVALID;	// シーン前の更新の優先度、高いほど先に更新される
+			int after_update_priority = (int)GAME::FUNCTION::PRIOTRITY::E_Game_AFTER_UPDATE_PRIORITY::e_INVALID;	// シーン後の更新の優先度、高いほど先に更新される
 
 			bool flg_function_end = false;	// 機能を終了するかどうかのフラグ
 
@@ -81,10 +81,10 @@ namespace GAME::FUNCTION
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Engine_Function_Base(void);
+		C_Game_Function_Base(void);
 
 		// デストラクタ
-		virtual ~C_Engine_Function_Base(void);
+		virtual ~C_Game_Function_Base(void);
 
 
 		//-☆- 更新 -☆-//

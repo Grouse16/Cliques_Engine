@@ -173,7 +173,7 @@ namespace RENDERING::CAPSULE
 
 
 			// 定数バッファのデータを取得する
-			S_256_Byte_Type * buffer_data = mpr_variable.constant_buffer_inform->M_Get_Constant_Buffer_Data_Address();
+			S_256_Byte_Type * buffer_data = reinterpret_cast<S_256_Byte_Type * >(mpr_variable.constant_buffer_inform->M_Get_Constant_Buffer_Data_Address());
 
 
 			// 定数バッファのデータが取れていないなら抜ける
@@ -188,7 +188,7 @@ namespace RENDERING::CAPSULE
 			// 定数データを書き換える
 			for (int l_now_slot = 0; l_now_slot < in_list_num && l_now_slot < mpr_variable.list_sum; l_now_slot++)
 			{
-				memcpy_s(buffer_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, in_data[l_now_slot], con_SET_DATA_SIZE);
+				memcpy_s(buffer_data[in_index + l_now_slot].data, con_CONSTANT_DATA_SIZE, &in_data[l_now_slot], con_SET_DATA_SIZE);
 			}
 
 			// 定数バッファのデータの使用を終了する

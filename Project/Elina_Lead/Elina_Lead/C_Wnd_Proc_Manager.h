@@ -33,7 +33,7 @@ namespace OS::WINDOWS::PROC
 	private:
 
 		// ☆ 変数宣言 ☆ //
-		static WNDPROC m_add_engine_apk_wnd_proc;	// エンジンアプリケーション用のウィンドウプロシージャのアドレス
+		static WNDPROC m_add_Game_apk_wnd_proc;	// ゲームアプリケーション用のウィンドウプロシージャのアドレス
 
 
 	//==☆ パブリック ☆==//
@@ -43,14 +43,14 @@ namespace OS::WINDOWS::PROC
 
 		//-☆- セッタ -☆-//
 
-		// エンジン用のウィンドウプロシージャを返す
-		static void M_Set_Engine_APK_Wnd_Proc(WNDPROC);
+		// ゲーム用のウィンドウプロシージャを返す
+		static void M_Set_Game_APK_Wnd_Proc(WNDPROC);
 
 
 		//-☆- ゲッタ -☆-//
 
-		// エンジン用のウィンドウプロシージャを返す
-		static WNDPROC M_Get_Engine_APK_Wnd_Proc(void);
+		// ゲーム用のウィンドウプロシージャを返す
+		static WNDPROC M_Get_Game_APK_Wnd_Proc(void);
 	};
 }
 

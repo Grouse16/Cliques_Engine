@@ -25,7 +25,7 @@ using namespace ASSET::ANIMATION::ALGORITHM;
 // 引数   ：float & 値１, float 値２
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Algorithm_Base::M_Guard_1_Over_2(float & out_value_1, float in_value_2)
+void C_Animation_Algorithm_Base::M_Guard_1_Over_2(float & out_value_1, float in_value_2)
 {
 	out_value_1 =
 		(out_value_1 > in_value_2) * in_value_2
@@ -41,7 +41,7 @@ inline void C_Animation_Algorithm_Base::M_Guard_1_Over_2(float & out_value_1, fl
 // 引数   ：S_Animation_Status & アニメーションの情報の参照, float アニメーション開始から終了までの時間
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Algorithm_Base::M_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status & out_animation_status, float in_animation_max_time)
+void C_Animation_Algorithm_Base::M_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status & out_animation_status, float in_animation_max_time)
 {
 	// アニメーション時間の再生、または逆再生
 	out_animation_status.animation_time += GAME::TIME::C_Game_Time_Manager::M_Get_Game_Second() * out_animation_status.animation_speed * (1.0f - 2.0f * out_animation_status.flg_animation_reverse);
@@ -78,7 +78,7 @@ inline void C_Animation_Algorithm_Base::M_Animation_Time_Base_Update(ASSET::ANIM
 // 引数   ：const S_Animation_Status & アニメーションの情報(const), ブレンド元の時間の参照, アニメーション開始から終了までの時間
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Algorithm_Base::M_Animation_Blend_Time_Update(const ASSET::ANIMATION::S_Animation_Status & in_animation_status, float & out_blend_from_time, float in_animation_max_time)
+void C_Animation_Algorithm_Base::M_Animation_Blend_Time_Update(const ASSET::ANIMATION::S_Animation_Status & in_animation_status, float & out_blend_from_time, float in_animation_max_time)
 {
 	// アニメーション時間の再生、または逆再生
 	out_blend_from_time += GAME::TIME::C_Game_Time_Manager::M_Get_Game_Second() * in_animation_status.animation_speed * (1.0f - 2.0f * in_animation_status.flg_animation_reverse);
@@ -106,7 +106,7 @@ inline void C_Animation_Algorithm_Base::M_Animation_Blend_Time_Update(const ASSE
 // 引数   ：S_Animation_Status & アニメーションの情報の参照, float アニメーション開始から終了までの時間
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void C_Animation_Algorithm_Base::M_Loop_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status & out_animation_status, float in_animation_max_time)
+void C_Animation_Algorithm_Base::M_Loop_Animation_Time_Base_Update(ASSET::ANIMATION::S_Animation_Status & out_animation_status, float in_animation_max_time)
 {
 	// ゲーム時間に合わせて時間経過する
 	out_animation_status.animation_time += GAME::TIME::C_Game_Time_Manager::M_Get_Game_Second() * out_animation_status.animation_speed * (1.0f - 2.0f * out_animation_status.flg_animation_reverse);

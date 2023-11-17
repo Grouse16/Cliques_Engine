@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力を制御するシステム
+// 詳細   ：ゲームの入力を制御するシステム
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -9,7 +9,7 @@
 #include <algorithm>
 
 #include "C_OS_System_Base.h"
-#include "C_Engine_Input_Manager.h"
+#include "C_Game_Input_Manager.h"
 
 #include "C_Log_System.h"
 
@@ -19,7 +19,7 @@ using namespace GAME::INPUT;
 
 
 // ☆ スタティック変数 ☆ //
-std::unique_ptr<C_Engine_Input_Manager> C_Engine_Input_Manager::m_this;
+std::unique_ptr<C_Game_Input_Manager> C_Game_Input_Manager::m_this;
 
 
 // ☆ 関数 ☆ //
@@ -33,12 +33,12 @@ std::unique_ptr<C_Engine_Input_Manager> C_Engine_Input_Manager::m_this;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Input_Manager::C_Engine_Input_Manager(void)
+C_Game_Input_Manager::C_Game_Input_Manager(void)
 {
 	// デバッグ時は生成したことをログに残す
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "エンジン用入力システムを生成");
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ゲーム用入力システムを生成");
 #endif // _DEBUG
 
 	return;
@@ -52,7 +52,7 @@ C_Engine_Input_Manager::C_Engine_Input_Manager(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Update_Mouse_Input(void)
+void C_Game_Input_Manager::M_Update_Mouse_Input(void)
 {
 	// ☆ 変数宣言 ☆ //
 	const OS::S_Mouse_State & now_mouse_state = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Mouse_State();	// 現在のマウスの状態の参照
@@ -107,16 +107,16 @@ void C_Engine_Input_Manager::M_Update_Mouse_Input(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Update_Input_Collision_On_Normal_Timing(void)
+void C_Game_Input_Manager::M_Update_Input_Collision_On_Normal_Timing(void)
 {
 	// ☆ 変数宣言 ☆ //
-	std::vector<GAME::INPUT::COLLISION::C_Engine_Input_Collision* > & input_collision_list =	// 入力判定リストへの参照
-		GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Get_Input_Collision_List();
+	std::vector<GAME::INPUT::COLLISION::C_Game_Input_Collision* > & input_collision_list =	// 入力判定リストへの参照
+		GAME::INPUT::COLLISION::C_Game_Input_Collision_Manager::M_Get_Input_Collision_List();
 
 	bool flg_ones_overed = false;	// 一つの判定と重なったかどうかのフラグ
 
 	// 入力判定の更新
-	for (GAME::INPUT::COLLISION::C_Engine_Input_Collision * & input_collision : input_collision_list)
+	for (GAME::INPUT::COLLISION::C_Game_Input_Collision * & input_collision : input_collision_list)
 	{
 		// 判定がアクティブな状態でないなら飛ばす
 		if (input_collision->M_Get_Is_Active() == false)
@@ -172,11 +172,11 @@ void C_Engine_Input_Manager::M_Update_Input_Collision_On_Normal_Timing(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Update_Input_Collision_After_Clicked(void)
+void C_Game_Input_Manager::M_Update_Input_Collision_After_Clicked(void)
 {
 	// ☆ 変数宣言 ☆ //
-	std::vector<GAME::INPUT::COLLISION::C_Engine_Input_Collision * > & input_collision_list =	// 入力判定リストへの参照
-		GAME::INPUT::COLLISION::C_Engine_Input_Collision_Manager::M_Get_Input_Collision_List();
+	std::vector<GAME::INPUT::COLLISION::C_Game_Input_Collision * > & input_collision_list =	// 入力判定リストへの参照
+		GAME::INPUT::COLLISION::C_Game_Input_Collision_Manager::M_Get_Input_Collision_List();
 
 	bool flg_exist_collision = false;	// まだ当たり判定が存在しているかどうかのフラグ
 	bool flg_overed = false;			// 一つでも重なった判定があるかどうか
@@ -187,7 +187,7 @@ void C_Engine_Input_Manager::M_Update_Input_Collision_After_Clicked(void)
 
 
 	// 入力判定の更新
-	for (GAME::INPUT::COLLISION::C_Engine_Input_Collision * & input_collision : input_collision_list)
+	for (GAME::INPUT::COLLISION::C_Game_Input_Collision * & input_collision : input_collision_list)
 	{
 		// クリック中の判定があるならあることを示す
 		if (input_collision == mpr_variable.mouse.clicking_collision_add)
@@ -277,7 +277,7 @@ void C_Engine_Input_Manager::M_Update_Input_Collision_After_Clicked(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Update_Input_Collision(void)
+void C_Game_Input_Manager::M_Update_Input_Collision(void)
 {
 	// クリック入力がされていない状態なら通常通りの入力判定をする
 	if (mpr_variable.mouse.clicking_collision_add == nullptr)
@@ -304,9 +304,9 @@ void C_Engine_Input_Manager::M_Update_Input_Collision(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Init(void)
+void C_Game_Input_Manager::M_Init(void)
 {
-	m_this.reset(new C_Engine_Input_Manager);
+	m_this.reset(new C_Game_Input_Manager);
 
 	return;
 }
@@ -317,7 +317,7 @@ void C_Engine_Input_Manager::M_Init(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Engine_Input_Manager::~C_Engine_Input_Manager(void)
+C_Game_Input_Manager::~C_Game_Input_Manager(void)
 {	
 	M_Release();
 
@@ -330,7 +330,7 @@ C_Engine_Input_Manager::~C_Engine_Input_Manager(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Release(void)
+void C_Game_Input_Manager::M_Release(void)
 {
 	m_this.reset();
 
@@ -345,7 +345,7 @@ void C_Engine_Input_Manager::M_Release(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Engine_Input_Manager::M_Update(void)
+void C_Game_Input_Manager::M_Update(void)
 {
 	// マウスの判定を行う
 	m_this->M_Update_Mouse_Input();

@@ -582,6 +582,10 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 	mpr_variable.texture_data_list.resize(in_resource_signature.all_shader_signature.texture_data.size());
 	for (const ASSET::SHADER::S_Texture_Resource_Signature & now_texture_inform : in_resource_signature.all_shader_signature.texture_data)
 	{
+		// テクスチャのデータを生成する
+		mpr_variable.texture_data_list[now_constant_index_number].data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
+
+
 		// 初期からテクスチャないことを示されているなら何もしない
 		if (now_texture_inform.initialized_texture_name == "NOTHING")
 		{
@@ -591,25 +595,25 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 		// オリジナル指定がされていたらでオリジナルのテクスチャを生成する
 		else if (now_texture_inform.initialized_texture_name == "ORIGINAL")
 		{
-			mpr_variable.texture_data_list[now_constant_index_number].data.M_Create_Original_Texture_Data();
+			mpr_variable.texture_data_list[now_constant_index_number].data->M_Create_Original_Texture_Data();
 		}
 
 		// 初期からテクスチャがあるならそれをロードする
 		else
 		{
-			mpr_variable.texture_data_list[now_constant_index_number].data.M_Load_Texture(now_texture_inform.initialized_texture_name);
+			mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name);
 		}
 
 
 		// テクスチャバッファのアタッチ先のシェーダーを設定
-		mpr_variable.texture_data_list[now_constant_index_number].data.M_Set_Texture_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
+		mpr_variable.texture_data_list[now_constant_index_number].data->M_Set_Texture_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
 
 		// 設定先のGPUでのテクスチャバッファスロット番号
 		mpr_variable.texture_data_list[now_constant_index_number].index = now_index_number;
 
 		// テクスチャバッファ識別名
 		mpr_variable.texture_data_list[now_constant_index_number].signature_name = now_texture_inform.signature_name;
-		mpr_variable.texture_data_list[now_constant_index_number].data.M_Set_Texture_Signature(now_texture_inform.signature_name);
+		mpr_variable.texture_data_list[now_constant_index_number].data->M_Set_Texture_Signature(now_texture_inform.signature_name);
 
 		// 次のテクスチャスロットと設定先のスロット番号を設定
 		now_texture_index_number += 1;
@@ -656,6 +660,10 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 		mpr_variable.texture_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].texture_data.size());
 		for (const ASSET::SHADER::S_Texture_Resource_Signature & now_texture_inform : in_resource_signature.signature_list[l_now_shader_number].texture_data)
 		{
+			// テクスチャのデータを生成する
+			mpr_variable.texture_data_list[now_constant_index_number].data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
+
+
 			// 初期からテクスチャないことを示されているなら何もしない
 			if (now_texture_inform.initialized_texture_name == "NOTHING")
 			{
@@ -665,25 +673,25 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			// オリジナル指定がされていたらでオリジナルのテクスチャを生成する
 			else if (now_texture_inform.initialized_texture_name == "ORIGINAL")
 			{
-				mpr_variable.texture_data_list[now_constant_index_number].data.M_Create_Original_Texture_Data();
+				mpr_variable.texture_data_list[now_constant_index_number].data->M_Create_Original_Texture_Data();
 			}
 
 			// 初期からテクスチャがあるならそれをロードする
 			else
 			{
-				mpr_variable.texture_data_list[now_constant_index_number].data.M_Load_Texture(now_texture_inform.initialized_texture_name);
+				mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name);
 			}
 
 
 			// テクスチャバッファのアタッチ先のシェーダーを設定
-			mpr_variable.texture_data_list[now_constant_index_number].data.M_Set_Texture_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
+			mpr_variable.texture_data_list[now_constant_index_number].data->M_Set_Texture_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
 
 			// 設定先のGPUでのテクスチャバッファスロット番号
 			mpr_variable.texture_data_list[now_constant_index_number].index = now_index_number;
 
 			// テクスチャバッファ識別名
 			mpr_variable.texture_data_list[now_constant_index_number].signature_name = now_texture_inform.signature_name;
-			mpr_variable.texture_data_list[now_constant_index_number].data.M_Set_Texture_Signature(now_texture_inform.signature_name);
+			mpr_variable.texture_data_list[now_constant_index_number].data->M_Set_Texture_Signature(now_texture_inform.signature_name);
 
 			// 次のテクスチャスロットと設定先のスロット番号を設定
 			now_texture_index_number += 1;
@@ -768,8 +776,11 @@ void C_Material::M_Release(void)
 	// 定数バッファ
 	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
 	{
-		now_constant_buffer.data->M_Release();
-		now_constant_buffer.data.reset();
+		if(now_constant_buffer.data)
+		{
+			now_constant_buffer.data->M_Release();
+			now_constant_buffer.data.reset();
+		}
 	}
 	mpr_variable.constant_data_list.clear();
 	mpr_variable.constant_data_list.shrink_to_fit();
@@ -777,7 +788,11 @@ void C_Material::M_Release(void)
 	// テクスチャ
 	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
 	{
-		now_texture_buffer.data.M_Release();
+		if (now_texture_buffer.data)
+		{
+			now_texture_buffer.data->M_Release();
+			now_texture_buffer.data.reset();
+		}
 	}
 	mpr_variable.texture_data_list.clear();
 	mpr_variable.texture_data_list.shrink_to_fit();
@@ -889,7 +904,7 @@ void C_Material::M_Attach_To_GPU(void)
 	// テクスチャバッファを一つづつ適用する
 	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
 	{
-		now_texture_buffer.data.M_Texture_Attach_To_Draw_By_Index(now_texture_buffer.index);
+		now_texture_buffer.data->M_Texture_Attach_To_Draw_By_Index(now_texture_buffer.index);
 	}
 
 	return;
@@ -911,7 +926,7 @@ void C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_l
 		return;
 	}
 
-	mpr_variable.texture_data_list[in_index].data.M_Load_Texture(in_load_texture_name);
+	mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
 
 	return;
 }

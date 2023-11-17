@@ -125,15 +125,27 @@ namespace GAME::INSTANCE::ACTOR::LIST
 				// 新しいアクター用のスロットを生成する
 				SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Creat_Instance(in_actor_name);
 
-			std::vector<int>& priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
-
 
 			// アクターを生成し、そのアクターのクラス用のリストに格納する
 			actor_slot_address.reset(new C_Actor());
 
 
-			// 優先度を登録する
-			priority_list[0] = actor_slot_address->M_Get_Priority();
+			// 一体目が新しく追加されたらクラスの優先度を追加して全体をソートする
+			if (SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List().size() <= 1)
+			{
+				// ☆ 変数宣言 ☆ //
+				std::vector<int> & priority_list = SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base::M_Get_Priority_List();	// 優先度のリスト
+
+				int priority_list_slot = priority_list.size();	// 優先度設定先のスロット
+
+
+				// 優先度を登録する
+				priority_list.resize(priority_list_slot + 1);
+				priority_list[priority_list_slot] = actor_slot_address->M_Get_Priority();
+
+				// ソートを実行
+				M_Sort_Actor_By_Class();
+			}
 
 
 			// 新しく生成されたアクターのアドレスを返す

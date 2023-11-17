@@ -1,30 +1,30 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力判定をとるボックス
+// 詳細   ：ゲームの入力判定をとるボックス
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ENGINE_INPUT_BOX_H_FILE
-#define D_INCLUDE_GUARD_C_ENGINE_INPUT_BOX_H_FILE
+#ifndef D_INCLUDE_GUARD_C_Game_INPUT_BOX_H_FILE
+#define D_INCLUDE_GUARD_C_Game_INPUT_BOX_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Engine_Input_Collision_Manager.h"
+#include "C_Game_Input_Collision_Manager.h"
 
 #include "S_Rect.h"
 
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの当たり判定の入力のシステムを呼び出すための名前
+// ゲームの当たり判定の入力のシステムを呼び出すための名前
 namespace GAME::INPUT::COLLISION
 {
 	// ☆ クラス ☆ //
 
-	// エンジンの入力判定をとるボックス
-	class C_Engine_Input_Collision_Box : public GAME::INPUT::COLLISION::C_Engine_Input_Collision
+	// ゲームの入力判定をとるボックス
+	class C_Game_Input_Collision_Box : public GAME::INPUT::COLLISION::C_Game_Input_Collision
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -47,10 +47,10 @@ namespace GAME::INPUT::COLLISION
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Engine_Input_Collision_Box(void);
+		C_Game_Input_Collision_Box(void);
 
 		// デストラクタ
-		~C_Engine_Input_Collision_Box(void) override;
+		~C_Game_Input_Collision_Box(void) override;
 
 
 		//-☆- セッタ -☆-//
@@ -73,6 +73,6 @@ namespace GAME::INPUT::COLLISION
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ENGINE_INPUT_BOX_H_FILE
+#endif // !D_INCLUDE_GUARD_C_Game_INPUT_BOX_H_FILE
 
 

@@ -360,7 +360,7 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 	{
 		if (now_animation_data.name == in_animation_data_name)
 		{
-			return;
+			return true;
 		}
 	}
 

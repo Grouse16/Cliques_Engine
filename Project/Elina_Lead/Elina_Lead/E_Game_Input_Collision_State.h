@@ -1,24 +1,24 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力判定の状態を指定する列挙
+// 詳細   ：ゲームの入力判定の状態を指定する列挙
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_E_ENGINE_INPUT_COLLISION_STATE_H_FILE
-#define D_INCLUDE_GUARD_E_ENGINE_INPUT_COLLISION_STATE_H_FILE
+#ifndef D_INCLUDE_GUARD_E_Game_INPUT_COLLISION_STATE_H_FILE
+#define D_INCLUDE_GUARD_E_Game_INPUT_COLLISION_STATE_H_FILE
 
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの入力系統を呼び出すための名前
+// ゲームの入力系統を呼び出すための名前
 namespace GAME::INPUT::COLLISION
 {
 	// ☆ 列挙 ☆ //
 
-	// エンジンの入力判定の状態を指定する列挙
-	enum class E_Engine_Input_Collision_State
+	// ゲームの入力判定の状態を指定する列挙
+	enum class E_Game_Input_Collision_State
 	{
 		e_NOT_HIT,		// カーソルに触れていない
 		
@@ -42,4 +42,4 @@ namespace GAME::INPUT::COLLISION
 }
 
 
-#endif // !D_INCLUDE_GUARD_E_ENGINE_INPUT_COLLISION_STATE_H_FILE
+#endif // !D_INCLUDE_GUARD_E_Game_INPUT_COLLISION_STATE_H_FILE

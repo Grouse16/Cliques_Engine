@@ -1,13 +1,13 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：エンジンの入力を制御するシステム
+// 詳細   ：ゲームの入力を制御するシステム
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ENGINE_TIME_MANAGER_H_FILE
-#define D_INCLUDE_GUARD_C_ENGINE_TIME_MANAGER_H_FILE
+#ifndef D_INCLUDE_GUARD_C_Game_TIME_MANAGER_H_FILE
+#define D_INCLUDE_GUARD_C_Game_TIME_MANAGER_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -16,12 +16,12 @@
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの時間を呼び出すための名前
+// ゲームの時間を呼び出すための名前
 namespace GAME::TIME
 {
 	// ☆ クラス ☆ //
 
-	// エンジンの時間を制御するシステム
+	// ゲームの時間を制御するシステム
 	class C_Game_Time_Manager
 	{
 		//==☆ プライベート ☆==//
@@ -45,7 +45,7 @@ namespace GAME::TIME
 			int fps = 1;		// 一秒間のフレーム数
 			int now_frame = 0;	// 現在のフレーム数
 
-			bool flg_constant_frame = false;	// 固定フレームにするかどうかのフラグ
+			bool flg_constant_frame = true;	// 固定フレームにするかどうかのフラグ
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -118,4 +118,4 @@ namespace GAME::TIME
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ENGINE_TIME_H_FILE
+#endif // !D_INCLUDE_GUARD_C_Game_TIME_H_FILE

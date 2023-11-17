@@ -12,13 +12,18 @@
 
 // ☆ ファイルひらき ☆ //
 #include <memory>
+#include <string>
 
 
 // ☆ ネームスペース ☆ //
 
 // アプリケーション用のシステムを呼び出すための名前
-namespace APPLICATION
+namespace GAME::APPLICATION
 {
+	// ☆ 定数 ☆ //
+	const std::string con_INITIALIZED_SCENE_NAME = "TITLE";	// 初期のシーン名
+
+
 	// ☆ クラス ☆ //
 
 	// アプリケーション制御用のクラス、（ゲームタブの実行時）
@@ -63,18 +68,6 @@ namespace APPLICATION
 		static void M_Release(void);
 
 
-		//-☆- シーン開始 -☆-//
-
-		// シーンの処理を開始する
-		static void M_Start_Scene(int);
-
-
-		//-☆- シーン終了 -☆-//
-
-		// シーンの処理を終了する
-		static void M_End_Scene(void);
-
-
 		//-☆- 入力 -☆-//
 
 		// アプリケーションの入力
@@ -91,11 +84,6 @@ namespace APPLICATION
 
 		// アプリケーションの描画
 		static void M_APK_Draw(void);
-
-
-		//-☆- 生成 -☆-//
-
-
 	};
 }
 

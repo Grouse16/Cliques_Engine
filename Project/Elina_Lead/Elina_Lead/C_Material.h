@@ -43,7 +43,7 @@ namespace ASSET::MATERIAL
 	// テクスチャバッファを使用する際の情報をまとめた構造体
 	struct S_Texture_Buffer_Data
 	{
-		ASSET::TEXTURE::C_Texture_Data_User data;	// テクスチャを使用するためのシステム
+		std::unique_ptr<ASSET::TEXTURE::C_Texture_Data_User> data;	// テクスチャを使用するためのシステム
 
 		std::string signature_name = "default";	// テクスチャスロット識別用名
 

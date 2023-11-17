@@ -232,9 +232,8 @@ void C_Log_System::M_Stop_Update_And_Log_Present(void)
 
 	// enter‚ð‘Ò‚Â
 	std::cout << "Press Enter to continue...";
-	fflush(stdin);
-	std::cin.get();
-
+	std::system("pause");
+	
 	return;
 }
 

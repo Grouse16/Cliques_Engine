@@ -19,7 +19,7 @@ using namespace OS::WINDOWS::PROC;
 
 
 // ☆ 変数宣言 ☆ //
-WNDPROC C_Wnd_Proc_Manager::m_add_engine_apk_wnd_proc = nullptr;	// ウィンドウプロシージャのアドレスを持つ
+WNDPROC C_Wnd_Proc_Manager::m_add_Game_apk_wnd_proc = nullptr;	// ウィンドウプロシージャのアドレスを持つ
 
 
 // ☆ 関数 ☆ //
@@ -29,13 +29,13 @@ WNDPROC C_Wnd_Proc_Manager::m_add_engine_apk_wnd_proc = nullptr;	// ウィンドウプ
 //-☆- セッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：エンジン用のウィンドウプロシージャを設定する
+// 詳細   ：ゲーム用のウィンドウプロシージャを設定する
 // 引数   ：void
 // 戻り値 ：WNDPROC ウィンドウプロシージャ関数のアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Wnd_Proc_Manager::M_Set_Engine_APK_Wnd_Proc(WNDPROC in_proc)
+void C_Wnd_Proc_Manager::M_Set_Game_APK_Wnd_Proc(WNDPROC in_proc)
 {
-	m_add_engine_apk_wnd_proc = in_proc;
+	m_add_Game_apk_wnd_proc = in_proc;
 
 	return;
 }
@@ -44,13 +44,13 @@ void C_Wnd_Proc_Manager::M_Set_Engine_APK_Wnd_Proc(WNDPROC in_proc)
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：エンジン用のウィンドウプロシージャを返す
+// 詳細   ：ゲーム用のウィンドウプロシージャを返す
 // 引数   ：void
 // 戻り値 ：WNDPROC ウィンドウプロシージャ関数のアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-WNDPROC C_Wnd_Proc_Manager::M_Get_Engine_APK_Wnd_Proc(void)
+WNDPROC C_Wnd_Proc_Manager::M_Get_Game_APK_Wnd_Proc(void)
 {
-	return m_add_engine_apk_wnd_proc;
+	return m_add_Game_apk_wnd_proc;
 }
 
 

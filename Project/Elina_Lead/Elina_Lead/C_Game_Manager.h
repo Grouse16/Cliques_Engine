@@ -6,8 +6,8 @@
 
 
 // ☆ インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_ENGINE_MANAGER_H_FILE
-#define D_INCLUDE_GUARD_C_ENGINE_MANAGER_H_FILE
+#ifndef D_INCLUDE_GUARD_C_Game_MANAGER_H_FILE
+#define D_INCLUDE_GUARD_C_Game_MANAGER_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -18,12 +18,12 @@
 
 // ☆ ネームスペース ☆ //
 
-// エンジンの制御用のシステム
+// ゲームの制御用のシステム
 namespace GAME
 {
 	// ☆ クラス ☆ //
 
-	// エンジン制御用システム
+	// ゲーム制御用システム
 	class C_Game_Manager
 	{
 		//==☆ プライベート ☆==//
@@ -34,13 +34,13 @@ namespace GAME
 		// 変数をまとめた構造体
 		struct SPr_Variable
 		{
-			bool flg_engine_exist = true;		// エンジンが存在しているかどうかのフラグ
-			bool flg_engine_activate = false;	// エンジンが稼働中かどうかのフラグ
+			bool flg_Game_exist = true;		// ゲームが存在しているかどうかのフラグ
+			bool flg_Game_activate = false;	// ゲームが稼働中かどうかのフラグ
 			bool flg_OS_active_now = false;		// OSシステムが稼働中かどうかのフラグ
 
 		} static mpr_variable;	// 変数を呼び出すための名前
 
-		static C_Game_Manager m_this;	// エンジン制御用のシステムの実体(シングルトン)
+		static C_Game_Manager m_this;	// ゲーム制御用のシステムの実体(シングルトン)
 
 
 		// ☆ 関数 ☆ //
@@ -67,7 +67,7 @@ namespace GAME
 
 		//-☆- 初期化と終了時 -☆-//
 
-		// エンジンの初期化
+		// ゲームの初期化
 		static void M_Init(void);
 
 		// デストラクタ
@@ -79,31 +79,31 @@ namespace GAME
 
 		//-☆- セッタ -☆-//
 
-		// エンジンを存在している状態かどうかを設定する　引数：trueは正常に存在している
-		static void M_Set_Engine_Exist_Flg(bool);
+		// ゲームを存在している状態かどうかを設定する　引数：trueは正常に存在している
+		static void M_Set_Game_Exist_Flg(bool);
 
-		// エンジンが稼働中かどうかを設定する　引数：trueは稼働中
-		static void M_Set_Engine_Activate_Flg(bool);
+		// ゲームが稼働中かどうかを設定する　引数：trueは稼働中
+		static void M_Set_Game_Activate_Flg(bool);
 
 
 		//-☆- ゲッタ -☆-//
 
-		// エンジンを存在している状態かどうかを取得する　引数：trueは正常に存在している
-		static bool M_Get_Engine_Exist_Flg(void);
+		// ゲームを存在している状態かどうかを取得する　引数：trueは正常に存在している
+		static bool M_Get_Game_Exist_Flg(void);
 
-		// エンジンがアクティブ状態かどうかを返す　戻り値：アクティブ時のみture
-		static bool M_Get_Engine_Active_Flg(void);
+		// ゲームがアクティブ状態かどうかを返す　戻り値：アクティブ時のみture
+		static bool M_Get_Game_Active_Flg(void);
 
 
 		//-☆- 実行 -☆-//
 
-		// エンジンの処理を実行する
+		// ゲームの処理を実行する
 		static void M_Executes_Process(void);
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_ENGINE_MANAGER_H_FILE
+#endif // !D_INCLUDE_GUARD_C_Game_MANAGER_H_FILE
 
 
 //☆======================================================================☆
