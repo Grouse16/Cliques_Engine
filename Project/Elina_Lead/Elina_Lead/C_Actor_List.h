@@ -15,6 +15,7 @@
 
 #include "C_List_Divided_By_Class_Base.h"
 #include "C_Actor_Base.h"
+#include "C_Actor_Draw_Manager.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -111,13 +112,13 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 		//-☆- 更新 -☆-//
 
-		// リスト内のアクターの更新を行う
+		// アクターの更新を行う
 		void M_Instance_Update(void) override;
 
 
 		//-☆- 描画 -☆-//
 
-		// リスト内のアクターの描画を行う
+		// アクターの描画処理を行う、ここでは近いアクターから順に並べた描画用の配列を作る
 		void M_Instance_Draw(void) override;
 	};
 
@@ -286,7 +287,7 @@ namespace GAME::INSTANCE::ACTOR::LIST
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：指定されたアクターのリストを返す
 	// 引数   ：void
-	// 戻り値 ：vector<Type_Actor> & 指定されたアクターのリスト
+	// 戻り値 ：vector<unique_ptr<C_Actor>> & 指定されたアクターのリスト
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	D_ACTOR_TEMPLATE inline std::vector<std::unique_ptr<C_Actor>> & C_Actor_List<C_Actor>::M_Get_Actor_List(void)
 	{
@@ -301,8 +302,12 @@ namespace GAME::INSTANCE::ACTOR::LIST
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	D_ACTOR_TEMPLATE inline C_Actor * C_Actor_List<C_Actor>::M_Get_Actor_By_Name(std::string in_search_name)
 	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_Actor>> & actor_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List();	// アクターのリスト
+
+
 		// 全てのアクターを探索し、見つかったらそのアドレスを返す
-		for (Type_Actor & now_actor : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List())
+		for (Type_Actor & now_actor : actor_list)
 		{
 			if (now_actor.get()->M_Get_Instance_Name() == in_search_name)
 			{
@@ -318,16 +323,44 @@ namespace GAME::INSTANCE::ACTOR::LIST
 	//-☆- 更新 -☆-//
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	// 詳細   ：リスト内のアクターの更新を行う
+	// 詳細   ：アクターの更新を行う
 	// 引数   ：void
 	// 戻り値 ：void
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	D_ACTOR_TEMPLATE inline void C_Actor_List<C_Actor>::M_Instance_Update(void)
 	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_Actor>> & actor_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List();	// アクターのリスト
+
+
 		// 全てのアクターを更新する
-		for (Type_Actor & now_actor : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List())
+		for (Type_Actor & now_actor : actor_list)
 		{
 			now_actor->M_Actor_Update();
+		}
+
+		return;
+	}
+
+
+	//-☆- 描画 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：アクターの描画処理を行う、ここでは近いアクターから順に並べた描画用の配列を作る
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_ACTOR_TEMPLATE inline void C_Actor_List<C_Actor>::M_Instance_Draw(void)
+	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_Actor>> & actor_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Get_List();	// アクターのリスト
+
+
+		// アクターを描画リストに追加
+		for (std::unique_ptr<C_Actor> & actor_address : actor_list)
+		{
+			GAME::INSTANCE::ACTOR::DRAW_MANAGER::C_Actor_Draw_Manager::M_Set_Actor_To_Draw_List(actor_address.get());
+			GAME::INSTANCE::ACTOR::DRAW_MANAGER::C_Actor_Draw_Manager::M_Set_Actor_To_After_Draw_List(actor_address.get());
 		}
 
 		return;

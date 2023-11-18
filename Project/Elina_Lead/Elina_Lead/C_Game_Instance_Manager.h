@@ -50,13 +50,43 @@ namespace GAME::INSTANCE
 		//-☆- 削除 -☆-//
 
 		// ゲーム上の全てのインスタンスのなかから、削除のフラグが立っているものを消す
-		void M_All_Instance_Destroy_Update(void);
+		static void M_All_Instance_Destroy_Update(void);
 
 		// 全てのインスタンスを削除する
-		void M_Delete_All_Instance(void);
+		static void M_Delete_All_Instance(void);
 
 
 		//-☆- 更新 -☆-//
+
+		// 全てのアクターの更新をする
+		static void M_Update_Actor(void);
+
+		// 全てのUIの更新をする
+		static void M_Update_UI(void);
+
+		// 全てのポストエフェクトの更新をする
+		static void M_Update_Post_Effect(void);
+
+		// 全てのサウンドの更新をする
+		static void M_Update_Sound(void);
+
+
+		//-☆- 描画 -☆-//
+
+		// 全てのアクターの描画をする
+		static void M_Draw_Actor(void);
+
+		// ポストエフェクトを描画用リストに追加する
+		static void M_Set_Post_Effect_To_Draw_List(void);
+
+		// UIの前にポストエフェクトをかける描画をする
+		static void M_Draw_Post_Effect_Before_UI(void);
+
+		// 全てのUIを描画する
+		static void M_Draw_UI(void);
+
+		// UIの後にポストエフェクトをかける描画をする
+		static void M_Draw_Post_Effect_After_UI(void);
 
 
 		//-☆- ゲッタ -☆-//
@@ -90,7 +120,7 @@ namespace GAME::INSTANCE
 		// 引数   ：void
 		// 戻り値 ：vector<unique_ptr<C_Sound>> & 指定されたサウンドのリストの参照
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		template<SOUND::LIST::C_Checked_Sound_Class C_Sound>
+		template<SOUND::LIST::CONCEPT::C_Checked_Sound_Class C_Sound>
 		static std::vector<std::unique_ptr<C_Sound>> & M_Get_Sound_List(void)
 		{
 			return SOUND::LIST::C_Sound_List<C_Sound>::M_Get_Sound_List();
@@ -102,7 +132,7 @@ namespace GAME::INSTANCE
 		// 引数   ：void
 		// 戻り値 ：vector<unique_ptr<UI>> & 指定されたポストエフェクトのリストの参照
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		template<SOUND::LIST::C_Checked_Sound_Class C_Sound>
+		template<SOUND::LIST::CONCEPT::C_Checked_Sound_Class C_Sound>
 		static std::vector<std::unique_ptr<C_Sound>> & M_Get_Post_Effect_List(void)
 		{
 			return POST_EFFECT::LIST::C_Post_Effect_List<C_Sound>::M_Get_Post_Effect_List();

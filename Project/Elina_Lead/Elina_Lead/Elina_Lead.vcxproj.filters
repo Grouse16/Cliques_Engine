@@ -520,6 +520,18 @@
     <Filter Include="ソース ファイル\ゲーム\アプリケーション">
       <UniqueIdentifier>{f568fbeb-047f-4a99-a0cc-f52ffeb5dc5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{a49f03f0-df1e-42e0-927d-c34efdf300d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{9b7ba0e9-c550-433b-83e1-aac0dc5dc5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{70532259-fd45-489f-86d5-e99eea68bbc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{e876fe89-7ef1-4760-8add-e2df635f3daf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -906,6 +918,12 @@
     <ClInclude Include="C_Game_Manager.h">
       <Filter>ヘッダー ファイル\ゲーム</Filter>
     </ClInclude>
+    <ClInclude Include="C_Actor_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Post_Effect_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1192,6 +1210,12 @@
     </ClCompile>
     <ClCompile Include="C_APK_Manager.cpp">
       <Filter>ソース ファイル\ゲーム\アプリケーション</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Actor_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Post_Effect_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

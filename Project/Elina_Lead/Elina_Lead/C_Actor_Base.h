@@ -28,14 +28,23 @@ namespace GAME::INSTANCE::ACTOR::BASE
 	private:
 
 		// ☆ 変数宣言 ☆ //
-		
-
+		bool m_draw_flg = true;			// 描画するかどうかのフラグ
+		bool m_after_draw_flg = false;	// 通常描画後に描画するかどうかのフラグ
 
 
 		//==☆ パブリック ☆==//
 	public:
 
 		// ☆ 関数 ☆ //
+
+		//-☆- 初期化と終了時 -☆-//
+
+		// コンストラクタ
+		C_Actor_Base(void);
+
+		// デストラクタ
+		~C_Actor_Base(void);
+
 
 		//-☆- 優先度 -☆-//
 
@@ -47,6 +56,33 @@ namespace GAME::INSTANCE::ACTOR::BASE
 
 		// アクターの更新を行う
 		virtual void M_Actor_Update(void) = 0;
+
+
+		//-☆- 描画 -☆-//
+
+		// アクター描画する
+		virtual void M_Actor_Draw(void) = 0;
+
+		// 通常描画後にアクターを描画する
+		virtual void M_Actor_After_Draw(void) = 0;
+
+
+		//-☆- セッタ -☆-//
+
+		// アクターを通常描画で描画するかどうかのフラグをセットする　引数：trueの時は描画する、falseの時は描画しない
+		void M_Set_Draw_Flg(bool);
+
+		// 通常描画後にアクターを描画するかどうかのフラグをセットする　引数：trueの時は描画する、falseの時は描画しない
+		void M_Set_After_Draw_Flg(bool);
+
+		
+		//-☆- ゲッタ -☆-//
+
+		// アクターを描画するかどうかのフラグを返す　戻り値：trueは描画する、falseは描画しない
+		bool M_Get_Draw_Flg(void);
+
+		// 通常描画後にアクターを描画するかどうかのフラグを返す　戻り値：trueは描画する、falseは描画しない
+		bool M_Get_After_Draw_Flg(void);
 	};
 }
 

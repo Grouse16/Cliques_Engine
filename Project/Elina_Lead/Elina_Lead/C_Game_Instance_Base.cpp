@@ -30,6 +30,17 @@ C_Game_Instance_Base::C_Game_Instance_Base(void)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：デストラクタ
+// 引数   ：void
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Game_Instance_Base::~C_Game_Instance_Base(void)
+{
+	return;
+}
+
+
 //-☆- セッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

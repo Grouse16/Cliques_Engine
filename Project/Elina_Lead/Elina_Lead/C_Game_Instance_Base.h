@@ -42,7 +42,7 @@ namespace GAME::INSTANCE::BASE
 		C_Game_Instance_Base(void);
 
 		// デストラクタ
-		virtual ~C_Game_Instance_Base(void) = 0;
+		virtual ~C_Game_Instance_Base(void);
 
 
 		//-☆- セッタ -☆-//

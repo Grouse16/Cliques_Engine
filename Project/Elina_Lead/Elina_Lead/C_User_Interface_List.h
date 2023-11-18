@@ -93,10 +93,22 @@ namespace GAME::INSTANCE::UI::LIST
 		//-☆- ゲッタ -☆-//
 
 		// 指定されたUIのリストを返す　戻り値：vector<Type_UI> & 指定されたUIのリスト
-		static std::vector<Type_UI>& M_Get_UI_List(void);
+		static std::vector<Type_UI> & M_Get_UI_List(void);
 
 		// 指定された名前のUIのアドレスを返す　戻り値：C_Type_User_Interface * 名前が一致したUIのアドレス
 		static C_User_Interface * M_Get_UI_By_Name(std::string);
+
+
+		//-☆- 更新 -☆-//
+
+		// UIの更新を行う
+		void M_Instance_Update(void) override;
+
+
+		//-☆- 描画 -☆-//
+
+		// UIを描画リストに追加する
+		void M_Instance_Draw(void) override;
 	};
 
 
@@ -143,7 +155,7 @@ namespace GAME::INSTANCE::UI::LIST
 	// 引数   ：string 生成したUIの名前
 	// 戻り値 ：C_Instance_List_Base<C_User_Interface_List, Type_UI>::S_Instance_Inform & 生成したUIのアドレス
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE static C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Create_UI(std::string in_ui_name)
+	D_UI_TEMPLATE inline C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Create_UI(std::string in_ui_name)
 	{
 		// ☆ 変数宣言 ☆ //
 		Type_UI& ui_slot_address =		// 新しいUI用のスロットの参照
@@ -167,7 +179,7 @@ namespace GAME::INSTANCE::UI::LIST
 	// 引数   ：void
 	// 戻り値 ：void
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE static void C_User_Interface_List<C_User_Interface>::M_Delete_UI_Update(void)
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_UI_Update(void)
 	{
 		// ☆ ラムダ式 ☆ //
 
@@ -197,7 +209,7 @@ namespace GAME::INSTANCE::UI::LIST
 	// 引数   ：void
 	// 戻り値 ：void
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE void C_User_Interface_List<C_User_Interface>::M_Delete_Instance_Execute(void)
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_Instance_Execute(void)
 	{
 		M_Delete_UI_Update();
 
@@ -210,7 +222,7 @@ namespace GAME::INSTANCE::UI::LIST
 	// 引数   ：void
 	// 戻り値 ：void
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE void C_User_Interface_List<C_User_Interface>::M_Delete_All_Instance_Execute(void)
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_All_Instance_Execute(void)
 	{
 		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_All_Instance();
 
@@ -223,9 +235,9 @@ namespace GAME::INSTANCE::UI::LIST
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：指定されたUIのリストを返す
 	// 引数   ：void
-	// 戻り値 ：vector<Type_UI> & 指定されたUIのリスト
+	// 戻り値 ：vector<unique_ptr<C_User_Interface>> & 指定されたUIのリスト
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE static std::vector<std::unique_ptr<C_User_Interface>> & C_User_Interface_List<C_User_Interface>::M_Get_UI_List(void)
+	D_UI_TEMPLATE inline std::vector<std::unique_ptr<C_User_Interface>> & C_User_Interface_List<C_User_Interface>::M_Get_UI_List(void)
 	{
 		return SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();
 	}
@@ -236,10 +248,14 @@ namespace GAME::INSTANCE::UI::LIST
 	// 引数   ：void
 	// 戻り値 ：C_Type_User_Interface * 名前が一致したUIのアドレス
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-	D_UI_TEMPLATE static C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Get_UI_By_Name(std::string in_search_name)
+	D_UI_TEMPLATE inline C_User_Interface * C_User_Interface_List<C_User_Interface>::M_Get_UI_By_Name(std::string in_search_name)
 	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_User_Interface>> & ui_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();	// UIのリスト
+
+
 		// 全てのUIを探索し、見つかったらそのアドレスを返す
-		for (Type_UI& now_ui : SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List())
+		for (Type_UI & now_ui : ui_list)
 		{
 			if (now_ui.get()->M_Get_Instance_Name() == in_search_name)
 			{
@@ -250,7 +266,57 @@ namespace GAME::INSTANCE::UI::LIST
 		// 見つからなかった場合は、nullを返す
 		return nullptr;
 	}
+
+
+	//-☆- 更新 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：UIの更新を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Instance_Update(void)
+	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_User_Interface>> & ui_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();	// UIのリスト
+
+
+		// 全てのUIを更新する
+		for (Type_UI & now_ui : ui_list)
+		{
+			now_ui->M_UI_Update();
+		}
+
+		return;
+	}
+
+
+	//-☆- 描画 -☆-//
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：UIを描画リストに追加する
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Instance_Draw(void)
+	{
+		// ☆ 変数宣言 ☆ //
+		std::vector<std::unique_ptr<C_User_Interface>> & ui_list = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Get_List();	// UIのリスト
+
+
+		// 全てのUIを描画する
+		for (Type_UI & now_ui : ui_list)
+		{
+			now_ui->M_UI_Draw();
+		}
+
+		return;
+	}
 }
+
+
+// ☆ マクロ削除 ☆ //
+#undef D_UI_TEMPLATE
 
 
 #endif // !D_INCLUDE_GUARD_C_UI_LIST_H_FILE

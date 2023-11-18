@@ -59,6 +59,12 @@ namespace SYSTEM::LIST::BASE::ALL_LIST_BASE
 		virtual void M_Instance_Update(void) = 0;
 
 
+		//-☆- 描画 -☆-//
+
+		// リスト内のインスタンスの描画を行う
+		virtual void M_Instance_Draw(void) = 0;
+
+
 		//-☆- 削除 -☆-//
 
 		// 一部のインスタンスの削除を行う
