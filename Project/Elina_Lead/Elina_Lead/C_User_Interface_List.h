@@ -190,7 +190,7 @@ namespace GAME::INSTANCE::UI::LIST
 		// ☆ ラムダ式 ☆ //
 
 		// ベクターからインスタンス削除用の判定を行うラムダ式
-		auto delete_lambda = [](Type_UI& in_check_ui)
+		auto delete_lambda = [](Type_UI & in_check_ui)
 			{
 				// インスタンス削除のフラグが立っているなら削除し、配列からこの要素を削除する
 				if (in_check_ui->M_Get_Destroy_Instance_Flg())
@@ -333,7 +333,9 @@ namespace GAME::INSTANCE::UI::LIST
 		// 全てのUIを更新する
 		for (Type_UI & now_ui : ui_list)
 		{
+			now_ui->M_Update_Component();
 			now_ui->M_UI_Update();
+			now_ui->M_Delete_Component_Update();
 		}
 
 		return;

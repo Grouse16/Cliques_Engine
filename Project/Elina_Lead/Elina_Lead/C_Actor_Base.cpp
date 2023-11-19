@@ -15,7 +15,42 @@ using namespace GAME::INSTANCE::ACTOR::BASE;
 
 // ☆ 関数 ☆ //
 
+//==☆ プライベート ☆==//
+
+//-☆- コンポーネント -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のコンポーネントを削除する
+// 引数   ：string 削除するコンポーネント名
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Actor_Base::M_Delete_Component_By_Name(std::string in_delete_ui_component_name)
+{
+	// 指定された条件通りのインスタンスを削除する
+	m_component_list.erase
+	(
+		std::remove_if
+		(
+			m_component_list.begin(),
+			m_component_list.end(),
+
+			// コンポーネントの名前が一致するものを削除
+			[in_delete_ui_component_name](S_Component_Inform& in_component_inform)
+			{
+				return in_component_inform.name == in_delete_ui_component_name;
+			}
+		),
+
+		m_component_list.end()
+	);
+
+	return;
+}
+
+
 //==☆ パブリック ☆==//
+
+//-☆- 初期化と終了時 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：コンストラクタ
@@ -35,6 +70,63 @@ C_Actor_Base::C_Actor_Base(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_Actor_Base::~C_Actor_Base(void)
 {
+	m_component_list.clear();
+	m_component_list.shrink_to_fit();
+
+	return;
+}
+
+
+//-☆- 更新 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：コンポーネントの更新を行う
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Actor_Base::M_Component_Update(void)
+{
+	for (S_Component_Inform & now_component : m_component_list)
+	{
+		now_component.component->M_Update();
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：削除のフラグが立っているコンポーネントを削除する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Actor_Base::M_Delete_Component_Update(void)
+{
+	// 指定された条件通りのインスタンスを削除する
+	m_component_list.erase
+	(
+		std::remove_if
+		(
+			m_component_list.begin(),
+			m_component_list.end(),
+
+			// 削除のフラグが立っているコンポーネントを削除
+			[](S_Component_Inform& in_component_inform)
+			{
+				if (in_component_inform.component->M_Get_Component_Destroy_Flg())
+				{
+					in_component_inform.component.reset();
+
+					return true;
+				}
+
+				return false;
+			}
+		),
+
+		m_component_list.end()
+	);
+
 	return;
 }
 
