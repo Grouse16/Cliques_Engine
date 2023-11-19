@@ -7,6 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Scene_Title.h"
+#include "C_Game_Instance_Manager.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -26,6 +27,9 @@ using namespace GAME::SCENE;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_Scene_Title::C_Scene_Title(void)
 {
+
+
+
 	return;
 }
 

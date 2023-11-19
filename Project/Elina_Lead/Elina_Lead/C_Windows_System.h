@@ -66,7 +66,7 @@ namespace OS::WINDOWS
 		C_Windows_System(void);
 
 		// ウィンドウを生成する処理
-		bool M_Creat_Window(void);
+		bool M_Create_Window(void);
 
 
 		//==☆  パブリック  ☆==//
@@ -77,7 +77,7 @@ namespace OS::WINDOWS
 		//-☆-  初期化と終了時  -☆-//
 
 		// ウィンドウズ用のシステムを生成する
-		static void M_Creat_Windows_System(void);
+		static void M_Create_Windows_System(void);
 
 		// ウィンドウズ機能の初期化用処理、引数：HINSTANCE& インスタンスハンドル, int& コマンド番号
 		bool M_Set_Up(void) override;
@@ -122,7 +122,7 @@ namespace OS::WINDOWS
 		void M_Set_Window_Title(const std::wstring &) override;
 
 		// メッセージボックスを表示する(ウィンドウハンドルを必要とするため)　引数：const std::wstring & タイトル, const std::wstring & 表示内容, const unsigned int メッセージボックスの種類
-		int M_Creat_Massage_Box(const std::wstring &, const std::wstring &, const unsigned int) override;
+		int M_Create_Massage_Box(const std::wstring &, const std::wstring &, const unsigned int) override;
 	};
 }
 

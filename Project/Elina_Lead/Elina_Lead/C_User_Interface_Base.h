@@ -31,8 +31,15 @@ namespace GAME::INSTANCE::UI::BASE
 		//==☆ パブリック ☆==//
 	public:
 
+		// ☆ 関数 ☆ //
 
+		//-☆- 初期化と終了時 -☆-//
 
+		// コンストラクタ
+		C_User_Interface_Base(void);
+
+		// デストラクタ
+		virtual ~C_User_Interface_Base(void);
 	};
 }
 

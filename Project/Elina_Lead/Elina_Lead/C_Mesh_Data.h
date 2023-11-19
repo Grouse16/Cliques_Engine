@@ -63,13 +63,13 @@ namespace ASSET::MESH
 		//-☆- 設定 -☆-//
 
 		// 頂点を指定された数分生成　引数：生成する頂点数
-		void M_Creat_Vertex_List(int);
+		void M_Create_Vertex_List(int);
 
 		// 頂点インデックスを指定された数分生成　引数：生成する頂点インデックス数
-		void M_Creat_Index_List(int);
+		void M_Create_Index_List(int);
 
 		// 頂点バッファと頂点インデックスバッファを生成する　＊頂点データと頂点インデックスを必要な数だけ生成してから実行すること
-		void M_Creat_Vertex_Buffer_And_Index_Buffer(void);
+		void M_Create_Vertex_Buffer_And_Index_Buffer(void);
 
 		// 頂点インデックスデータを頂点インデックスバッファに設定する
 		void M_Attach_Index_Data_To_Buffer(void);

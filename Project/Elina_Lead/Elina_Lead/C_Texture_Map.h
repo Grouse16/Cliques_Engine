@@ -56,7 +56,7 @@ namespace ASSET::TEXTURE
 		C_Texture_Map(void);
 
 		// テクスチャマップを生成する　引数：横幅のピクセル数, 縦幅のピクセル数
-		void M_Creat_Texture_Map(int, int);
+		void M_Create_Texture_Map(int, int);
 
 		// デストラクタ
 		~C_Texture_Map(void);

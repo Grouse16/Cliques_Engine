@@ -84,6 +84,12 @@ namespace GAME::APPLICATION
 
 		// アプリケーションの描画
 		static void M_APK_Draw(void);
+
+
+		//-☆- 削除 -☆-//
+
+		// 削除のフラグが立っているインスタンスを削除する
+		static void M_Instance_Destroy_Update(void);
 	};
 }
 

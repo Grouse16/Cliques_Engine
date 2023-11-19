@@ -34,8 +34,8 @@ namespace GAME
 		// 変数をまとめた構造体
 		struct SPr_Variable
 		{
-			bool flg_Game_exist = true;		// ゲームが存在しているかどうかのフラグ
-			bool flg_Game_activate = false;	// ゲームが稼働中かどうかのフラグ
+			bool flg_game_exist = true;		// ゲームが存在しているかどうかのフラグ
+			bool flg_game_activate = false;	// ゲームが稼働中かどうかのフラグ
 			bool flg_OS_active_now = false;		// OSシステムが稼働中かどうかのフラグ
 
 		} static mpr_variable;	// 変数を呼び出すための名前

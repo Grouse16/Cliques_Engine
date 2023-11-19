@@ -187,7 +187,7 @@ void C_Game_Manager::M_Init(void)
 
 
 	// アクティブ状態を指定
-	mpr_variable.flg_Game_activate = true;
+	mpr_variable.flg_game_activate = true;
 	M_Set_Game_Exist_Flg(true);
 
 	return;
@@ -215,7 +215,7 @@ C_Game_Manager::~C_Game_Manager(void)
 void C_Game_Manager::M_Release(void)
 {
 	// アプリケーションの終了を示す
-	mpr_variable.flg_Game_activate = false;
+	mpr_variable.flg_game_activate = false;
 	M_Set_Game_Exist_Flg(false);
 
 	// アプリケーションの解放
@@ -241,7 +241,7 @@ void C_Game_Manager::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Game_Manager::M_Set_Game_Exist_Flg(bool in_set_exist)
 {
-	mpr_variable.flg_Game_exist = in_set_exist;
+	mpr_variable.flg_game_exist = in_set_exist;
 
 	return;
 }
@@ -254,7 +254,7 @@ void C_Game_Manager::M_Set_Game_Exist_Flg(bool in_set_exist)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Game_Manager::M_Set_Game_Activate_Flg(bool in_set_active)
 {
-	mpr_variable.flg_Game_activate = in_set_active;
+	mpr_variable.flg_game_activate = in_set_active;
 
 	return;
 }
@@ -269,7 +269,7 @@ void C_Game_Manager::M_Set_Game_Activate_Flg(bool in_set_active)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Game_Manager::M_Get_Game_Exist_Flg(void)
 {
-	return mpr_variable.flg_Game_exist;
+	return mpr_variable.flg_game_exist;
 }
 
 
@@ -280,7 +280,7 @@ bool C_Game_Manager::M_Get_Game_Exist_Flg(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Game_Manager::M_Get_Game_Active_Flg(void)
 {
-	return mpr_variable.flg_Game_activate;
+	return mpr_variable.flg_game_activate;
 }
 
 
@@ -330,23 +330,23 @@ void C_Game_Manager::M_Executes_Process(void)
 
 	//======☆ 入力 ☆======//
 
-	// ゲームの入力
+	// ゲーム制御システムの入力
 	GAME::INPUT::C_Game_Input_Manager::M_Update();
 
-	// シーンの入力
+	// ゲームの入力
 	GAME::APPLICATION::C_APK_Manager::M_APK_Input();
 
 
 
 	//======☆ 更新 ☆======//
 
-	// シーン更新前の機能の更新
+	// ゲーム更新前の機能の更新
 	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Update();
 
-	// シーン更新
+	// ゲームの更新
 	GAME::APPLICATION::C_APK_Manager::M_APK_Update();
 
-	// シーン更新後の機能の更新
+	// ゲーム更新後の機能の更新
 	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Update();
 
 
@@ -356,15 +356,11 @@ void C_Game_Manager::M_Executes_Process(void)
 	//  レンダリングシステムの描画準備  //
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Start();
 
-
-	// シーン描画前の機能の描画
-	GAME::FUNCTION::C_Game_Function_Manager::M_Before_Scene_Draw();
-
-	// シーンの描画
+	// ゲームの描画
 	GAME::APPLICATION::C_APK_Manager::M_APK_Draw();
 
-	// シーン描画後の機能の描画
-	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw();
+	// ゲーム描画後の機能の更新
+	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw_Update();
 
 
 	//  レンダリング終了と画面出力  //
@@ -373,6 +369,9 @@ void C_Game_Manager::M_Executes_Process(void)
 
 
 	//======☆ 次のフレームへの準備 ☆======//
+
+	// インスタンスの削除を行う
+	GAME::APPLICATION::C_APK_Manager::M_Instance_Destroy_Update();
 
 	// 必要のない機能の削除
 	GAME::FUNCTION::C_Game_Function_Manager::M_Delete_Function();

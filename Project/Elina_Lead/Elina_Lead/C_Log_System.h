@@ -69,7 +69,7 @@ namespace DEBUGGER::LOG
 			constexpr char con_GAME_INIT[] = "GAME_INIT";					// 立ち上げログ
 			constexpr char con_GAME_INIT_ERROR[] = "GAME_INIT_ERROR";		// 立ち上げ失敗時のログ
 			constexpr char con_GAME_SHADER_ERROR[] = "SHADER_ERROR";		// シェーダーの生成失敗時
-			constexpr char con_GAME_CREAT_FUNCTION[] = "CREAT_FUNCTION";	// 機能の生成
+			constexpr char con_GAME_CREATE_FUNCTION[] = "CREATE_FUNCTION";	// 機能の生成
 		};
 
 		// ゲームの描画システム用のログ文字列

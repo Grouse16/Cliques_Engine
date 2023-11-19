@@ -64,9 +64,9 @@ void C_Mesh_Data::M_Release(void)
 // 引数   ：int 生成する頂点数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Vertex_List(int in_creat_vertex_sum)
+void C_Mesh_Data::M_Create_Vertex_List(int in_creat_vertex_sum)
 {
-	mpr_variable.vertex_setting.M_Creat_Vertex_Data_By_Number(in_creat_vertex_sum);
+	mpr_variable.vertex_setting.M_Create_Vertex_Data_By_Number(in_creat_vertex_sum);
 
 	return;
 }
@@ -77,9 +77,9 @@ void C_Mesh_Data::M_Creat_Vertex_List(int in_creat_vertex_sum)
 // 引数   ：int 生成する頂点インデックス数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Index_List(int in_creat_index_sum)
+void C_Mesh_Data::M_Create_Index_List(int in_creat_index_sum)
 {
-	mpr_variable.vertex_setting.M_Creat_Index_Data_By_Number(in_creat_index_sum);
+	mpr_variable.vertex_setting.M_Create_Index_Data_By_Number(in_creat_index_sum);
 
 	return;
 }
@@ -90,7 +90,7 @@ void C_Mesh_Data::M_Creat_Index_List(int in_creat_index_sum)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Mesh_Data::M_Creat_Vertex_Buffer_And_Index_Buffer(void)
+void C_Mesh_Data::M_Create_Vertex_Buffer_And_Index_Buffer(void)
 {
 	mpr_variable.vertex_setting.M_Create_Vertex_And_Index_Buffer_By_Now_Parameter();
 

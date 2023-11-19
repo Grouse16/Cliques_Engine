@@ -30,6 +30,17 @@ C_Game_Instance_Base::C_Game_Instance_Base(void)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：デストラクタ
+// 引数   ：void
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Game_Instance_Base::~C_Game_Instance_Base(void)
+{
+	return;
+}
+
+
 //-☆- セッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -45,6 +56,19 @@ void C_Game_Instance_Base::M_Set_Instance_Name(std::string in_set_name)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：シーン遷移時に削除されるかどうかのフラグをセットする
+// 引数   ：bool trueで削除されない、falseで削除される
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Game_Instance_Base::M_Set_Scene_Over_Flg(bool in_set_scene_over_flg)
+{
+	m_flg_scene_over = in_set_scene_over_flg;
+
+	return;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -55,6 +79,17 @@ void C_Game_Instance_Base::M_Set_Instance_Name(std::string in_set_name)
 bool C_Game_Instance_Base::M_Get_Destroy_Instance_Flg(void)
 {
 	return m_flg_destroy_instance;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：シーン遷移時に削除されるかどうかのフラグを返す
+// 引数   ：void
+// 戻り値 ：bool trueで削除されない、falseで削除される
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Game_Instance_Base::M_Get_Scene_Over_Flg(void)
+{
+	return m_flg_scene_over;
 }
 
 

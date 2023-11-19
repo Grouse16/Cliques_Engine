@@ -54,7 +54,7 @@ C_API_Initialize_And_Release_Manager::C_API_Initialize_And_Release_Manager(void)
 // 引数   ：E_RENDERING_API_KIND 使用するAPIの種類への参照
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_API_Initialize_And_Release_Manager::M_Creat_OS(E_RENDERING_API_KIND in_use_api_kind)
+bool C_API_Initialize_And_Release_Manager::M_Create_OS(E_RENDERING_API_KIND in_use_api_kind)
 {
 	// ☆ ウィンドウズ非対応時はOpenGLに切り替える ☆ //
 	if ((in_use_api_kind == E_RENDERING_API_KIND::e_DX12 || in_use_api_kind == E_RENDERING_API_KIND::e_DX11) && PLATFORM::DETECTION::C_Platform_Detection_System::M_Get_Platform_Number() != PLATFORM::DETECTION::E_PLATFORM_NUMBER::e_WINDOWS)
@@ -73,7 +73,7 @@ bool C_API_Initialize_And_Release_Manager::M_Creat_OS(E_RENDERING_API_KIND in_us
 	case E_RENDERING_API_KIND::e_DX11:
 
 		// ウィンドウズの生成
-		OS::WINDOWS::C_Windows_System::M_Creat_Windows_System();
+		OS::WINDOWS::C_Windows_System::M_Create_Windows_System();
 
 
 		// レンダリングAPIがDX11であることを示す
@@ -85,7 +85,7 @@ bool C_API_Initialize_And_Release_Manager::M_Creat_OS(E_RENDERING_API_KIND in_us
 	case E_RENDERING_API_KIND::e_DX12:
 
 		// ウィンドウズの生成
-		OS::WINDOWS::C_Windows_System::M_Creat_Windows_System();
+		OS::WINDOWS::C_Windows_System::M_Create_Windows_System();
 		
 
 		// レンダリングAPIがDX12であることを示す

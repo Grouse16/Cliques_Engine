@@ -96,10 +96,10 @@ namespace SYSTEM::TEXT
 		//-☆- 生成 -☆-//
 
 		// 渡されたパスのファイルが存在していなければ生成する（パス名+改行文字をフォルダとする）　引数：ファイルまでのパス
-		bool M_Creat_Path_Of_Folder(std::string);
+		bool M_Create_Path_Of_Folder(std::string);
 
 		// パスまでのファイルとフォルダがなければ生成する（パス名+改行文字をフォルダとする）　引数：ファイルまでのパス
-		bool M_Creat_File_And_Folder_If_File_Not_Exist(std::string);
+		bool M_Create_File_And_Folder_If_File_Not_Exist(std::string);
 
 
 		//-☆- セッタ -☆-//

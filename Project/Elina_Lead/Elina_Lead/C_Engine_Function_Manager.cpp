@@ -75,8 +75,8 @@ void C_Game_Function_Manager::M_Create_Function_By_Kind(std::string in_create_ki
 		// ☆ デバッグ時なら生成できなかったことを告知 ☆ //
 #if _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_CREAT_FUNCTION, "機能の生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_CREAT_FUNCTION, "指定されたタイプ：＜" + in_create_kind + "＞　は見つかりませんでした。未定義の機能、およびスペルミスの可能性があります。");
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_CREATE_FUNCTION, "機能の生成に失敗");
+		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_CREATE_FUNCTION, "指定されたタイプ：＜" + in_create_kind + "＞　は見つかりませんでした。未定義の機能、およびスペルミスの可能性があります。");
 #endif // _DEBUG
 
 		return;
@@ -86,7 +86,6 @@ void C_Game_Function_Manager::M_Create_Function_By_Kind(std::string in_create_ki
 	// 処理順のリストに新しく生成された機能を追加
 	M_Set_Before_Update_Func_To_List(new_function_address);
 	M_Set_After_Update_Func_To_List(new_function_address);
-	M_Set_Before_Draw_Func_To_List(new_function_address);
 	M_Set_After_Draw_Func_To_List(new_function_address);
 
 	return;
@@ -157,42 +156,6 @@ void C_Game_Function_Manager::M_Set_After_Update_Func_To_List(GAME::FUNCTION::C_
 		[](GAME::FUNCTION::C_Game_Function_Base * & left_function, GAME::FUNCTION::C_Game_Function_Base * & right_function)
 		{
 			return left_function->M_Get_Before_Update_Priority() >= right_function->M_Get_Before_Update_Priority();
-		}
-	);
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：シーン前に描画する機能を追加する
-// 引数   ：C_Game_Function_Base * 追加する機能のアドレス
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_Function_Manager::M_Set_Before_Draw_Func_To_List(GAME::FUNCTION::C_Game_Function_Base * in_add_function)
-{
-	// シーン後の更新を行わないなら追加しない
-	if (in_add_function->M_Get_Before_Draw_Priority() < 0)
-	{
-		return;
-	}
-
-
-	// 配列に生成された直近の機能を追加
-	mpr_variable.before_func_draw_list.reserve(mpr_variable.before_func_draw_list.size() + 1);
-	mpr_variable.before_func_draw_list.emplace_back(in_add_function);
-
-
-	// 優先度を元に昇順にソートする
-	std::sort
-	(
-		mpr_variable.before_func_draw_list.begin(),	// ソートの開始
-		mpr_variable.before_func_draw_list.end(),	// ソートのおわり
-
-		// ラムダ式、左の要素が右の要素よりも値が大きければ、順番を入れ替える
-		[](GAME::FUNCTION::C_Game_Function_Base*& left_function, GAME::FUNCTION::C_Game_Function_Base*& right_function)
-		{
-			return left_function->M_Get_After_Draw_Priority() <= right_function->M_Get_After_Draw_Priority();
 		}
 	);
 
@@ -356,27 +319,11 @@ void C_Game_Function_Manager::M_After_Scene_Update(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：シーン処理前の機能の描画を行う
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_Function_Manager::M_Before_Scene_Draw(void)
-{
-	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.before_func_draw_list)
-	{
-		now_function->M_Draw_Before_Scene_Process();
-	}
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン処理後の機能の描画を行う
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_Function_Manager::M_After_Scene_Draw(void)
+void C_Game_Function_Manager::M_After_Scene_Draw_Update(void)
 {
 	for (GAME::FUNCTION::C_Game_Function_Base * & now_function : mpr_variable.after_func_draw_list)
 	{

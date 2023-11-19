@@ -30,6 +30,18 @@ namespace GAME::SCENE::MANAGER
 		//==☆ プライベート ☆==//
 	private:
 
+		// ☆ 構造体 ☆ //
+
+		// シーン遷移の命令を記録するための情報の構造体
+		struct S_Scene_Change_Inform
+		{
+			std::string scene_name = "default";	// 遷移先のシーン名
+
+			bool flg_scene_change = false;	// シーン遷移を実行するかどうかのフラグ、trueでシーン遷移実行
+		};
+
+
+
 		// ☆ 変数宣言 ☆ //
 
 		// プライベート変数をまとめた構造体
@@ -50,6 +62,12 @@ namespace GAME::SCENE::MANAGER
 		C_Scene_Manager(void);
 
 
+		//-☆- シーン遷移 -☆-//
+
+		// シーン遷移時に必要なシステム
+		static void M_Scene_Change_Option(void);
+
+
 		//==☆ パブリック ☆==//
 	public:
 
@@ -65,7 +83,7 @@ namespace GAME::SCENE::MANAGER
 
 
 		//-☆- ロード -☆-//
-
+		
 		// 名前からシーンをロードする　引数：ロードするシーン名
 		static bool M_Scene_Load(std::string);
 

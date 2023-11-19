@@ -511,11 +511,50 @@
     <Filter Include="ソース ファイル\ゲーム\シーンシステム\シーン">
       <UniqueIdentifier>{b438d723-ff57-4791-aa5c-dcae51b7161f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\システム\リスト">
+      <UniqueIdentifier>{609c1808-ea94-40ac-a7d7-2f0415d0f4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{8cbda869-f9e0-486d-8636-efcf0df7a7b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{f568fbeb-047f-4a99-a0cc-f52ffeb5dc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{a49f03f0-df1e-42e0-927d-c34efdf300d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{9b7ba0e9-c550-433b-83e1-aac0dc5dc5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{70532259-fd45-489f-86d5-e99eea68bbc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{e876fe89-7ef1-4760-8add-e2df635f3daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{b25335d9-bf76-4106-907a-32d802782980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{071f2d4c-9f5e-447b-aff7-c9d82bc4efb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム">
+      <UniqueIdentifier>{6ec07a60-e2e4-4e20-bb1d-e98b13ac27dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{6ee5c25d-53f3-47ef-a6c2-ae798db493a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{43c475b2-0c95-4030-8d66-ad3cb0cc1d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{b167962e-39b0-44bd-9631-8892d780d881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{8a16fcf4-fbd5-43ce-842d-2fe994848f64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C_APK_Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
       <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
@@ -717,9 +756,6 @@
     <ClInclude Include="C_Game_State_Manager.h">
       <Filter>ヘッダー ファイル\システム\状態</Filter>
     </ClInclude>
-    <ClInclude Include="C_Game_Manager.h">
-      <Filter>ヘッダー ファイル\ゲーム</Filter>
-    </ClInclude>
     <ClInclude Include="C_Game_Time_Manager.h">
       <Filter>ヘッダー ファイル\システム\時間</Filter>
     </ClInclude>
@@ -894,11 +930,29 @@
     <ClInclude Include="C_Scene_Game.h">
       <Filter>ヘッダー ファイル\ゲーム\シーンシステム\シーン</Filter>
     </ClInclude>
+    <ClInclude Include="C_List_All_Base.h">
+      <Filter>ヘッダー ファイル\システム\リスト</Filter>
+    </ClInclude>
+    <ClInclude Include="C_APK_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\アプリケーション</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Actor_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Post_Effect_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_System_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_System_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\基底</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C_APK_Manager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="C_Platform_Detection_System.cpp">
       <Filter>ソース ファイル\プラットフォーム\独立</Filter>
     </ClCompile>
@@ -1177,6 +1231,21 @@
     </ClCompile>
     <ClCompile Include="C_Scene_Title.cpp">
       <Filter>ソース ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_List_All_Base.cpp">
+      <Filter>ソース ファイル\システム\リスト</Filter>
+    </ClCompile>
+    <ClCompile Include="C_APK_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\アプリケーション</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Actor_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Post_Effect_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_System_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\システム\基底</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

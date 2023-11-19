@@ -139,6 +139,7 @@
     <ClInclude Include="C_3D_Model_System.h" />
     <ClInclude Include="C_3D_Model_User.h" />
     <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Actor_Draw_Manager.h" />
     <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h" />
     <ClInclude Include="C_Animation_Algorithm_Blend_Play.h" />
     <ClInclude Include="C_Animation_Algorithm_Loop_Play.h" />
@@ -178,11 +179,13 @@
     <ClInclude Include="C_Game_Instance_Base.h" />
     <ClInclude Include="C_Game_Instance_Manager.h" />
     <ClInclude Include="C_Actor_List.h" />
+    <ClInclude Include="C_List_All_Base.h" />
     <ClInclude Include="C_Material.h" />
     <ClInclude Include="C_Material_Manager.h" />
     <ClInclude Include="C_Material_User.h" />
     <ClInclude Include="C_Mesh_Data.h" />
     <ClInclude Include="C_Post_Effect_Base.h" />
+    <ClInclude Include="C_Post_Effect_Draw_Manager.h" />
     <ClInclude Include="C_Post_Effect_List.h" />
     <ClInclude Include="C_List_Divided_By_Class_Overall_Base.h" />
     <ClInclude Include="C_Game_Manager.h" />
@@ -216,6 +219,8 @@
     <ClInclude Include="C_Shader_User.h" />
     <ClInclude Include="C_Sound_Base.h" />
     <ClInclude Include="C_Sound_List.h" />
+    <ClInclude Include="C_Game_System_Base.h" />
+    <ClInclude Include="C_Game_System_List.h" />
     <ClInclude Include="C_Texture_Data_System.h" />
     <ClInclude Include="C_Texture_Data_User.h" />
     <ClInclude Include="C_Texture_Manager.h" />
@@ -264,6 +269,7 @@
     <ClCompile Include="C_3D_Model_System.cpp" />
     <ClCompile Include="C_3D_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Actor_Draw_Manager.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp" />
@@ -279,11 +285,13 @@
     <ClCompile Include="C_Float_3.cpp" />
     <ClCompile Include="C_Game_Instance_Base.cpp" />
     <ClCompile Include="C_Game_Instance_Manager.cpp" />
+    <ClCompile Include="C_List_All_Base.cpp" />
     <ClCompile Include="C_Material.cpp" />
     <ClCompile Include="C_Material_Manager.cpp" />
     <ClCompile Include="C_Material_User.cpp" />
     <ClCompile Include="C_Mesh_Data.cpp" />
     <ClCompile Include="C_Post_Effect_Base.cpp" />
+    <ClCompile Include="C_Post_Effect_Draw_Manager.cpp" />
     <ClCompile Include="C_Scene_Base.cpp" />
     <ClCompile Include="C_Scene_Game.cpp" />
     <ClCompile Include="C_Scene_Manager.cpp" />
@@ -292,6 +300,7 @@
     <ClCompile Include="C_Shader_Setting_User.cpp" />
     <ClCompile Include="C_Shader_User.cpp" />
     <ClCompile Include="C_Sound_Base.cpp" />
+    <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />

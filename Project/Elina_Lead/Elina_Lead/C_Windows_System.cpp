@@ -51,7 +51,7 @@ C_Windows_System::C_Windows_System(void)
 // 引数   ：void
 // 戻り値 ：成功したかどうか 成功してたらtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Windows_System::M_Creat_Window(void)
+bool C_Windows_System::M_Create_Window(void)
 {
 	// ☆ 変数宣言 ☆ //
 	WNDCLASSEX w_wc;	// WNDCLASSEX構造体の中身の準備
@@ -175,7 +175,7 @@ bool C_Windows_System::M_Creat_Window(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Creat_Windows_System(void)
+void C_Windows_System::M_Create_Windows_System(void)
 {
 	m_this_instance.reset(new C_Windows_System());
 
@@ -203,7 +203,7 @@ bool C_Windows_System::M_Set_Up(void)
 
 
 	// ウィンドウを生成する
-	M_Creat_Window();
+	M_Create_Window();
 
 
 	// ☆ デバッグ時のみセットアップ完了を通知 ☆ //
@@ -410,7 +410,7 @@ void C_Windows_System::M_Set_Window_Title(const std::wstring & in_set_title_name
 // 引数   ：const wstring & タイトル, const wstring & 表示内容, const unsigned int メッセージボックスの種類
 // 戻り値 ：int ウィンドウ入力の結果
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Windows_System::M_Creat_Massage_Box(const std::wstring & in_title, const std::wstring & in_text, const unsigned int in_type)
+int C_Windows_System::M_Create_Massage_Box(const std::wstring & in_title, const std::wstring & in_text, const unsigned int in_type)
 {
 	return MessageBox(mpr_variable.s_wnd.h_my_wind, in_text.c_str(), in_title.c_str(), in_type);
 }

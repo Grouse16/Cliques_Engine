@@ -1468,7 +1468,7 @@ inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const AS
 // 引数   ：const D3D12_ROOT_SIGNATURE_DESC & ルートシグネチャを設定するための情報の参照(const), ComPtr<ID3D12RootSignature> & ルートシグネチャの設定先
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Serialize_And_Creat_RootSignature_By_Desc(const D3D12_ROOT_SIGNATURE_DESC & in_root_signature_desc, Microsoft::WRL::ComPtr<ID3D12RootSignature> & in_root_signature)
+bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROOT_SIGNATURE_DESC & in_root_signature_desc, Microsoft::WRL::ComPtr<ID3D12RootSignature> & in_root_signature)
 {
     // ☆ 変数宣言 ☆ //
     ID3DBlob * root_signature_serialized_data = nullptr;    // ルート署名生成時のシリアライズデータを得る
@@ -1546,7 +1546,7 @@ bool C_DX12_System::M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graph
     // ☆ ルートシグネチャの生成 ☆ //
 
     // ルートシグネチャを生成して結果を返す
-    return M_Serialize_And_Creat_RootSignature_By_Desc(root_signature_desc, in_dx12_pipeline_inform->m_root_signature);
+    return M_Serialize_And_Create_RootSignature_By_Desc(root_signature_desc, in_dx12_pipeline_inform->m_root_signature);
 }
 
 

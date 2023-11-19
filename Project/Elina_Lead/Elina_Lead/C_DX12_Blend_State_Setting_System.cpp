@@ -275,7 +275,7 @@ DXGI_FORMAT RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された情報をもとにブレンドの設定を行う
-// 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & 設定先のパイプラインステート情報, const C_Creat_Rendering_Graphics_Setting_Inform & レンダリング設定生成用の情報
+// 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & 設定先のパイプラインステート情報, const C_Create_Rendering_Graphics_Setting_Inform & レンダリング設定生成用の情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)

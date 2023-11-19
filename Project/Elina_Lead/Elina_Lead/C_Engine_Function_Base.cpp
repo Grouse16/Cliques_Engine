@@ -70,19 +70,6 @@ void C_Game_Function_Base::M_Set_After_Update_Priority(int in_set_priority)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：シーン前の描画の優先度レベルを設定する
-// 引数   ：int 設定する優先度
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Game_Function_Base::M_Set_Before_Draw_Priority(int in_set_priority)
-{
-	mpr_variable.before_draw_priority = in_set_priority;
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シーン後の描画の優先度レベルを設定する
 // 引数   ：int 設定する優先度
 // 戻り値 ：void
@@ -236,17 +223,6 @@ const int & C_Game_Function_Base::M_Get_Before_Update_Priority(void)
 const int & C_Game_Function_Base::M_Get_After_Update_Priority(void)
 {
 	return mpr_variable.after_update_priority;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：シーン前の描画の優先度のレベルを返す
-// 引数   ：void
-// 戻り値 ：const int & 優先度の値の参照
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const int & C_Game_Function_Base::M_Get_Before_Draw_Priority(void)
-{
-	return mpr_variable.before_draw_priority;
 }
 
 

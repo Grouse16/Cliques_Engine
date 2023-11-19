@@ -78,10 +78,10 @@ namespace RENDERING::CAPSULE
 		//-☆- 生成 -☆-//
 
 		// テクスチャデータを生成する　引数：テクスチャの横サイズ, テクスチャの縦サイズ
-		void M_Creat_Texture_Data(int, int);
+		void M_Create_Texture_Data(int, int);
 
 		// テクスチャマップに合わせて、テクスチャのリソースを生成する
-		void M_Creat_Texture_Resource_By_Texture_Map(void);
+		void M_Create_Texture_Resource_By_Texture_Map(void);
 
 		// テクスチャをロードしたデータを元に生成する　引数：テクスチャのパス　戻り値：成功時のみtrue
 		bool M_Create_Texture_By_Load_Texture_File(std::string);

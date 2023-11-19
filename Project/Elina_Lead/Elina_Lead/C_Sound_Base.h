@@ -31,7 +31,21 @@ namespace GAME::INSTANCE::SOUND::BASE
 		//==☆ パブリック ☆==//
 	public:
 
+		// ☆ 関数 ☆ //
 
+		//-☆- 初期化と終了時 -☆-//
+
+		// コンストラクタ
+		C_Sound_Base(void);
+
+		// デストラクタ
+		virtual ~C_Sound_Base(void);
+
+
+		//-☆- 更新 -☆-//
+
+		// サウンドの更新を行う
+		virtual void M_Sound_Update(void) = 0;
 	};
 }
 

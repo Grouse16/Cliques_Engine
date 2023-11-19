@@ -191,7 +191,7 @@ namespace RENDERING::GRAPHICS::DX12
 		bool M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Texture_Setting_Inform * &, const CREATE::C_Create_Texture_Setting_Inform & );
 
 		// ルートシグネチャデスクからルートシグネチャをシリアライズし生成する,　引数：ルートシグネチャを設定するための情報の参照(const), ルートシグネチャの設定先　戻り値：成功時のみtrue
-		bool M_Serialize_And_Creat_RootSignature_By_Desc(const D3D12_ROOT_SIGNATURE_DESC &, Microsoft::WRL::ComPtr<ID3D12RootSignature> &);
+		bool M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROOT_SIGNATURE_DESC &, Microsoft::WRL::ComPtr<ID3D12RootSignature> &);
 
 		// ルートシグネチャを生成する　引数：設定先の描画パイプライン用情報, 生成用の情報(const)　戻り値：成功時のみtrue
 		bool M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREATE::C_Create_Rendering_Graphics_Setting_Inform & );

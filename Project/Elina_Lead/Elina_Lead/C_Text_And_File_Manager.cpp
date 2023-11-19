@@ -228,7 +228,7 @@ int C_Text_And_File_Manager::M_Convert_Data_Char_To_X16INT(std::string in_data)
 // 引数   ：std::string ファイルまでのパス
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Creat_Path_Of_Folder(std::string in_path_string)
+bool C_Text_And_File_Manager::M_Create_Path_Of_Folder(std::string in_path_string)
 {
 	// フォルダのパスが正しくない時はスルー
 	if (M_Is_Folder_Path_Is_Succeed(in_path_string) == false)
@@ -351,7 +351,7 @@ bool C_Text_And_File_Manager::M_Creat_Path_Of_Folder(std::string in_path_string)
 // 引数   ：string ファイルまでのパス
 // 戻り値 ：成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Creat_File_And_Folder_If_File_Not_Exist(std::string in_path_string)
+bool C_Text_And_File_Manager::M_Create_File_And_Folder_If_File_Not_Exist(std::string in_path_string)
 {
 	// フォルダのパスが正しくない時はスルー
 	if (M_Is_Folder_Path_Is_Succeed(in_path_string) == false)
@@ -368,7 +368,7 @@ bool C_Text_And_File_Manager::M_Creat_File_And_Folder_If_File_Not_Exist(std::str
 
 
 	// ☆ フォルダを生成する ☆ //
-	M_Creat_Path_Of_Folder(in_path_string);
+	M_Create_Path_Of_Folder(in_path_string);
 
 
 	// フォルダのみの指定であればそこで中断
@@ -412,7 +412,7 @@ bool C_Text_And_File_Manager::M_Set_File_Path(std::string in_file_path)
 
 
 	// ☆ ファイルが見つからなければ作る ☆ //		// 生成失敗でエラーを出す
-	if (M_Creat_File_And_Folder_If_File_Not_Exist(in_file_path) == false)
+	if (M_Create_File_And_Folder_If_File_Not_Exist(in_file_path) == false)
 	{
 		return false;
 	}
