@@ -386,7 +386,9 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 全てのアクターを更新する
 		for (Type_Actor & now_actor : actor_list)
 		{
+			now_actor->M_Component_Update();
 			now_actor->M_Actor_Update();
+			now_actor->M_Delete_Component_Update();
 		}
 
 		return;

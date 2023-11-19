@@ -553,6 +553,42 @@
     <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\派生">
       <UniqueIdentifier>{8a16fcf4-fbd5-43ce-842d-2fe994848f64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント">
+      <UniqueIdentifier>{dba880d9-a5f4-448e-b0ed-7c775a36513f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント">
+      <UniqueIdentifier>{6c5a9c86-dc2c-4a23-8859-c74707891a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\基底">
+      <UniqueIdentifier>{650dc87b-1a29-402c-bb8a-272acbbd03a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\基底">
+      <UniqueIdentifier>{f5ed09cc-77c4-4923-adc8-852c9f805748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント">
+      <UniqueIdentifier>{378dd47f-8431-462a-83c7-021117d48857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント">
+      <UniqueIdentifier>{4ff1dc4a-8a05-490b-89ed-a789cef3f1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\基底">
+      <UniqueIdentifier>{49e61694-be6a-4395-b71a-81922848485b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\基底">
+      <UniqueIdentifier>{b657540b-f575-4b21-81dd-033ba9b1d0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\派生">
+      <UniqueIdentifier>{ad77a841-9b46-493c-8982-c0ba55602de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\派生">
+      <UniqueIdentifier>{0d71ae37-23ee-4da9-aa35-84a7f88e383c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生">
+      <UniqueIdentifier>{7cb1e708-2ef5-44ea-b997-c9ba1ff416ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生">
+      <UniqueIdentifier>{3e5e58d0-d630-49e3-af0e-b08e33ee9dfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -951,6 +987,12 @@
     <ClInclude Include="C_Game_System_Base.h">
       <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\基底</Filter>
     </ClInclude>
+    <ClInclude Include="C_UI_Component_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Component_Base.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1246,6 +1288,12 @@
     </ClCompile>
     <ClCompile Include="C_Game_System_Base.cpp">
       <Filter>ソース ファイル\ゲーム\インスタンス\システム\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UI_Component_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\UIコンポーネント\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Component_Base.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

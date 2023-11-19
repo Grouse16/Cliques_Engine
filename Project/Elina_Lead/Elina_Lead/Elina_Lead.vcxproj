@@ -153,6 +153,7 @@
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
     <ClInclude Include="C_Bone_Data.h" />
+    <ClInclude Include="C_Component_Base.h" />
     <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
     <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
     <ClInclude Include="C_Constant_Buffer_Setting_Inform_Base.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="C_Texture_Manager.h" />
     <ClInclude Include="C_Texture_Map.h" />
     <ClInclude Include="C_Text_And_File_Manager.h" />
+    <ClInclude Include="C_UI_Component_Base.h" />
     <ClInclude Include="C_User_Interface_Base.h" />
     <ClInclude Include="C_User_Interface_List.h" />
     <ClInclude Include="C_Vertex_Buffer_Setting_Inform_Base.h" />
@@ -281,6 +283,7 @@
     <ClCompile Include="C_Animation_Model_User.cpp" />
     <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Bone_Data.cpp" />
+    <ClCompile Include="C_Component_Base.cpp" />
     <ClCompile Include="C_Float_2.cpp" />
     <ClCompile Include="C_Float_3.cpp" />
     <ClCompile Include="C_Game_Instance_Base.cpp" />
@@ -303,6 +306,7 @@
     <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
+    <ClCompile Include="C_UI_Component_Base.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />
     <ClCompile Include="Elina_Lead_main.cpp" />
     <ClCompile Include="C_API_Initialize_And_Release_Manager.cpp" />
