@@ -10,6 +10,7 @@
 #include "C_Scene_Title.h"
 #include "C_Scene_Game.h"
 #include "C_Game_State_Manager.h"
+#include "C_Game_Instance_Manager.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -38,6 +39,25 @@ C_Scene_Manager C_Scene_Manager::m_this;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_Scene_Manager::C_Scene_Manager(void)
 {
+	return;
+}
+
+
+//-☆- シーン遷移 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：シーン遷移時に必要なシステム
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Scene_Manager::M_Scene_Change_Option(void)
+{
+	if (m_this.mpr_variable.game_scene)
+	{
+		m_this.mpr_variable.game_scene->M_Release();
+		GAME::INSTANCE::C_Game_Instance_Manager::M_Instance_Destroy_On_Scene_Change();
+	}
+
 	return;
 }
 
@@ -88,9 +108,9 @@ bool C_Scene_Manager::M_Scene_Load(std::string in_load_scene)
 	// タイトルシーン
 	if (in_load_scene == "TITLE")
 	{
-		M_Release();
-		m_this.mpr_variable.game_scene.reset(new C_Scene_Title());
+		M_Scene_Change_Option();
 		GAME::STATE::C_Game_State_Manager::M_Set_Now_Game_Scene_Name(L"TITLE");
+		m_this.mpr_variable.game_scene.reset(new C_Scene_Title());
 
 		return true;
 	}
@@ -98,9 +118,9 @@ bool C_Scene_Manager::M_Scene_Load(std::string in_load_scene)
 	// ゲームシーン
 	if (in_load_scene == "GAME")
 	{
-		M_Release();
-		m_this.mpr_variable.game_scene.reset(new C_Scene_Game());
+		M_Scene_Change_Option();
 		GAME::STATE::C_Game_State_Manager::M_Set_Now_Game_Scene_Name(L"GAME");
+		m_this.mpr_variable.game_scene.reset(new C_Scene_Game());
 
 		return true;
 	}

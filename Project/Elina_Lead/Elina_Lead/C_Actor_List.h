@@ -94,8 +94,14 @@ namespace GAME::INSTANCE::ACTOR::LIST
 		// 削除のフラグが立っているアクターを消す
 		static void M_Delete_Actor_Update(void);
 
-		// 削除のフラグが立っているインスタンスの削除を行う
+		// シーン遷移で削除しないフラグが立っていないアクターを全て削除する
+		static void M_Delete_Actor_Is_Not_Scene_Over(void);
+
+		// 削除のフラグが立っているインスタンスの削除の実行
 		void M_Delete_Instance_Execute(void) override;
+
+		// 大部分のインスタンスの削除を行う
+		void M_Delete_Most_OF_Instance_Execute(void) override;
 
 		// 全てのインスタンスの削除を行う
 		void M_Delete_All_Instance_Execute(void) override;
@@ -258,6 +264,36 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：シーン遷移で削除しないフラグが立っていないアクターを全て削除する
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_ACTOR_TEMPLATE inline void C_Actor_List<C_Actor>::M_Delete_Actor_Is_Not_Scene_Over(void)
+	{
+		// ☆ ラムダ式 ☆ //
+
+		// ベクターからインスタンス削除用の判定を行うラムダ式
+		auto delete_lambda = [](Type_Actor & in_check_actor)
+			{
+				// シーン遷移時に残るフラグが立っていないなら削除する
+				if (in_check_actor->M_Get_Scene_Over_Flg() == false)
+				{
+					in_check_actor.reset();
+					return true;
+				}
+
+				return false;
+			};
+
+
+		// リストからの削除を行う
+		m_actor_is_nothing = SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Actor_List, Type_Actor>::M_Delete_Instance_By_Lambda(delete_lambda);
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：削除のフラグが立っているインスタンスの削除を行う
 	// 引数   ：void
 	// 戻り値 ：void
@@ -268,6 +304,20 @@ namespace GAME::INSTANCE::ACTOR::LIST
 
 		return;
 	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：大部分のインスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_ACTOR_TEMPLATE inline void C_Actor_List<C_Actor>::M_Delete_Most_OF_Instance_Execute(void)
+	{
+		M_Delete_Actor_Is_Not_Scene_Over();
+
+		return;
+	}
+
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：全てのインスタンスの削除を行う

@@ -74,8 +74,9 @@ C_APK_Manager::~C_APK_Manager(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_APK_Manager::M_Release(void)
 {
-	m_this.reset();
 	GAME::SCENE::MANAGER::C_Scene_Manager::M_Release();
+	GAME::INSTANCE::C_Game_Instance_Manager::M_All_Instance_Destroy_Update();
+	m_this.reset();
 
 	return;
 }
@@ -138,6 +139,9 @@ void C_APK_Manager::M_APK_Update(void)
 	// サウンドの更新を行う
 	GAME::INSTANCE::C_Game_Instance_Manager::M_Update_Sound();
 
+	// ゲームシステムの更新を行う
+	GAME::INSTANCE::C_Game_Instance_Manager::M_Update_Game_System();
+
 	// シーンによるゲーム更新後の更新を行う
 	GAME::SCENE::MANAGER::C_Scene_Manager::M_Get_Scene()->M_Scene_After_Update();
 
@@ -180,6 +184,21 @@ void C_APK_Manager::M_APK_Draw(void)
 
 	// シーンによる描画後の更新を行う
 	GAME::SCENE::MANAGER::C_Scene_Manager::M_Get_Scene()->M_Scene_Update_After_Draw();
+
+	return;
+}
+
+
+//-☆- 削除 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：削除のフラグが立っているインスタンスを削除する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_APK_Manager::M_Instance_Destroy_Update(void)
+{
+	GAME::INSTANCE::C_Game_Instance_Manager::M_All_Instance_Destroy_Update();
 
 	return;
 }

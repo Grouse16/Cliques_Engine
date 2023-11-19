@@ -1,21 +1,19 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：サウンドの基底となるクラス
-// 説明   ：
+// 詳細   ：ゲーム上のシステムの基底となるクラス
+// 説明   ：特定のクラスのインスタンスをまとめるクラスなど、ゲーム上で存在するが描画されないインスタンス
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Sound_Base.h"
+#include "C_Game_System_Base.h"
 
 
-// ☆ ネームスペースの省略 ☆ //
-using namespace GAME::INSTANCE::SOUND::BASE;
+// ☆ ネームスペース ☆ //
+using namespace GAME::INSTANCE::GAME_SYSTEM::BASE;
 
 
 // ☆ 関数 ☆ //
-
-//==☆ パブリック ☆==//
 
 //-☆- 初期化と終了時 -☆-//
 
@@ -24,7 +22,7 @@ using namespace GAME::INSTANCE::SOUND::BASE;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Sound_Base::C_Sound_Base(void)
+C_Game_System_Base::C_Game_System_Base(void)
 {
 	return;
 }
@@ -35,7 +33,7 @@ C_Sound_Base::C_Sound_Base(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Sound_Base::~C_Sound_Base(void)
+C_Game_System_Base::~C_Game_System_Base(void)
 {
 	return;
 }

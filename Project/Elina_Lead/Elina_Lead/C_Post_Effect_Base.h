@@ -35,6 +35,17 @@ namespace GAME::INSTANCE::POST_EFFECT::BASE
 		//==☆ パブリック ☆==//
 	public:
 
+		// ☆ 関数 ☆ //
+
+		//-☆- 初期化と終了時 -☆-//
+
+		// コンストラクタ
+		C_Post_Effect_Base(void);
+
+		// デストラクタ
+		virtual ~C_Post_Effect_Base(void);
+
+
 		//-☆- 更新 -☆-//
 
 		// ポストエフェクトの更新を行う

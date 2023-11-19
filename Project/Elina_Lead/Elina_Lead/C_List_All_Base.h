@@ -70,6 +70,9 @@ namespace SYSTEM::LIST::BASE::ALL_LIST_BASE
 		// 一部のインスタンスの削除を行う
 		virtual void M_Delete_Instance_Execute(void) = 0;
 
+		// 大部分のインスタンスの削除を行う
+		virtual void M_Delete_Most_OF_Instance_Execute(void) = 0;
+
 		// 全てのインスタンスの削除を行う
 		virtual void M_Delete_All_Instance_Execute(void) = 0;
 	};

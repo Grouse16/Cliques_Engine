@@ -219,6 +219,8 @@
     <ClInclude Include="C_Shader_User.h" />
     <ClInclude Include="C_Sound_Base.h" />
     <ClInclude Include="C_Sound_List.h" />
+    <ClInclude Include="C_Game_System_Base.h" />
+    <ClInclude Include="C_Game_System_List.h" />
     <ClInclude Include="C_Texture_Data_System.h" />
     <ClInclude Include="C_Texture_Data_User.h" />
     <ClInclude Include="C_Texture_Manager.h" />
@@ -298,6 +300,7 @@
     <ClCompile Include="C_Shader_Setting_User.cpp" />
     <ClCompile Include="C_Shader_User.cpp" />
     <ClCompile Include="C_Sound_Base.cpp" />
+    <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />

@@ -370,6 +370,9 @@ void C_Game_Manager::M_Executes_Process(void)
 
 	//======☆ 次のフレームへの準備 ☆======//
 
+	// インスタンスの削除を行う
+	GAME::APPLICATION::C_APK_Manager::M_Instance_Destroy_Update();
+
 	// 必要のない機能の削除
 	GAME::FUNCTION::C_Game_Function_Manager::M_Delete_Function();
 

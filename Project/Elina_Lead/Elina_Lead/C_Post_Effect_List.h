@@ -27,12 +27,12 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST::CONCEPT
 
 	// ポストエフェクトの派生クラスのみを登録できるようにする（テンプレート引数を制限する） (C++20なので注意)
 	template<typename C_Check_Instance>
-	concept C_Checked_Instance_Class = std::is_base_of<GAME::INSTANCE::POST_EFFECT::BASE::C_Post_Effect_Base, C_Check_Instance>::value;
+	concept C_Checked_Post_Effect_Class = std::is_base_of<GAME::INSTANCE::POST_EFFECT::BASE::C_Post_Effect_Base, C_Check_Instance>::value;
 }
 
 
 // ☆ マクロ ☆ //
-#define D_POST_EFFECT_TEMPLATE template <GAME::INSTANCE::POST_EFFECT::LIST::CONCEPT::C_Checked_Instance_Class C_Post_Effect>	// ポストエフェクトのテンプレート定義用マクロ
+#define D_POST_EFFECT_TEMPLATE template <GAME::INSTANCE::POST_EFFECT::LIST::CONCEPT::C_Checked_Post_Effect_Class C_Post_Effect>	// ポストエフェクトのテンプレート定義用マクロ
 
 
 // ゲームのポストエフェクトのリストを呼び出すための名前
@@ -84,8 +84,14 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 		// 削除のフラグが立っているポストエフェクトを消す
 		static void M_Delete_Post_Effect_Update(void);
 
-		// インスタンスの削除を行う
+		// シーン遷移で削除しないフラグが立っていないポストエフェクトを全て削除する
+		static void M_Delete_Post_Effect_Is_Not_Scene_Over(void);
+
+		// 削除のフラグが立っているインスタンスの削除の実行
 		void M_Delete_Instance_Execute(void) override;
+
+		// 大部分のインスタンスの削除を行う
+		void M_Delete_Most_OF_Instance_Execute(void) override;
 
 		// 全てのインスタンスの削除を行う
 		void M_Delete_All_Instance_Execute(void) override;
@@ -208,6 +214,36 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：シーン遷移で削除しないフラグが立っていないポストエフェクトを全て削除する
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_POST_EFFECT_TEMPLATE inline void C_Post_Effect_List<C_Post_Effect>::M_Delete_Post_Effect_Is_Not_Scene_Over(void)
+	{
+		// ☆ ラムダ式 ☆ //
+
+		// ベクターからインスタンス削除用の判定を行うラムダ式
+		auto delete_lambda = [](Type_Post_Effect & in_check_post_effect)
+			{
+				// シーン遷移時に残るフラグが立っていないなら削除する
+				if (in_check_post_effect->M_Get_Scene_Over_Flg() == false)
+				{
+					in_check_post_effect.reset();
+					return true;
+				}
+
+				return false;
+			};
+
+
+		// リストからの削除を行う
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Post_Effect_List, Type_Post_Effect>::M_Delete_Instance_By_Lambda(delete_lambda);
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：インスタンスの削除を行う
 	// 引数   ：void
 	// 戻り値 ：void
@@ -215,6 +251,19 @@ namespace GAME::INSTANCE::POST_EFFECT::LIST
 	D_POST_EFFECT_TEMPLATE inline void C_Post_Effect_List<C_Post_Effect>::M_Delete_Instance_Execute(void)
 	{
 		M_Delete_Post_Effect_Update();
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：大部分のインスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_POST_EFFECT_TEMPLATE inline void C_Post_Effect_List<C_Post_Effect>::M_Delete_Most_OF_Instance_Execute(void)
+	{
+		M_Delete_Post_Effect_Is_Not_Scene_Over();
 
 		return;
 	}

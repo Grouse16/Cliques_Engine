@@ -83,8 +83,14 @@ namespace GAME::INSTANCE::UI::LIST
 		// 削除のフラグが立っているアクターを消す
 		static void M_Delete_UI_Update(void);
 
-		// インスタンスの削除を行う
+		// シーン遷移で削除しないフラグが立っていないUIを全て削除する
+		static void M_Delete_User_Interface_Is_Not_Scene_Over(void);
+
+		// 削除のフラグが立っているインスタンスの削除の実行
 		void M_Delete_Instance_Execute(void) override;
+
+		// 大部分のインスタンスの削除を行う
+		void M_Delete_Most_OF_Instance_Execute(void) override;
 
 		// 全てのインスタンスの削除を行う
 		void M_Delete_All_Instance_Execute(void) override;
@@ -205,6 +211,36 @@ namespace GAME::INSTANCE::UI::LIST
 
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：シーン遷移で削除しないフラグが立っていないUIを全て削除する
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_User_Interface_Is_Not_Scene_Over(void)
+	{
+		// ☆ ラムダ式 ☆ //
+
+		// ベクターからインスタンス削除用の判定を行うラムダ式
+		auto delete_lambda = [](Type_UI & in_check_ui)
+			{
+				// シーン遷移時に残るフラグが立っていないなら削除する
+				if (in_check_ui->M_Get_Scene_Over_Flg() == false)
+				{
+					in_check_ui.reset();
+					return true;
+				}
+
+				return false;
+			};
+
+
+		// リストからの削除を行う
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_User_Interface_List, Type_UI>::M_Delete_Instance_By_Lambda(delete_lambda);
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：インスタンスの削除を行う
 	// 引数   ：void
 	// 戻り値 ：void
@@ -212,6 +248,19 @@ namespace GAME::INSTANCE::UI::LIST
 	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_Instance_Execute(void)
 	{
 		M_Delete_UI_Update();
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：大部分のインスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_UI_TEMPLATE inline void C_User_Interface_List<C_User_Interface>::M_Delete_Most_OF_Instance_Execute(void)
+	{
+		M_Delete_User_Interface_Is_Not_Scene_Over();
 
 		return;
 	}

@@ -83,6 +83,55 @@ void C_Game_Instance_Manager::M_All_Instance_Destroy_Update(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：インスタンスのシーン遷移時の削除を行う
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Game_Instance_Manager::M_Instance_Destroy_On_Scene_Change(void)
+{
+	// ☆ 変数宣言 ☆ //
+	std::vector<SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * > & actor_list_system_list =	// アクター管理用リストのリスト
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<GAME::INSTANCE::ACTOR::LIST::C_Actor_List>::M_Get_List_Of_All_Instance_List();
+
+	std::vector<SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * > & ui_list_system_list =	// UI管理用リストのリスト
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<GAME::INSTANCE::UI::LIST::C_User_Interface_List>::M_Get_List_Of_All_Instance_List();
+
+	std::vector<SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * > & post_effect_list_system_list =	// ポストエフェクト管理用リストのリスト
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<GAME::INSTANCE::POST_EFFECT::LIST::C_Post_Effect_List>::M_Get_List_Of_All_Instance_List();
+
+	std::vector<SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * > & sound_list_system_list =	// サウンド管理用リストのリスト
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<GAME::INSTANCE::SOUND::LIST::C_Sound_List>::M_Get_List_Of_All_Instance_List();
+
+
+	// シーン遷移によるアクター削除
+	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * actor_list : actor_list_system_list)
+	{
+		actor_list->M_Delete_Most_OF_Instance_Execute();
+	}
+
+	// シーン遷移によるUI削除
+	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * ui_list : ui_list_system_list)
+	{
+		ui_list->M_Delete_Most_OF_Instance_Execute();
+	}
+
+	// シーン遷移によるポストエフェクト削除
+	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * post_effect_list : post_effect_list_system_list)
+	{
+		post_effect_list->M_Delete_Most_OF_Instance_Execute();
+	}
+
+	// シーン遷移によるサウンド削除
+	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * sound_list : sound_list_system_list)
+	{
+		sound_list->M_Delete_Most_OF_Instance_Execute();
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：全てのインスタンスを削除する
 // 引数   ：void
 // 戻り値 ：void
@@ -215,6 +264,28 @@ void C_Game_Instance_Manager::M_Update_Sound(void)
 	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * sound_list : sound_list_system_list)
 	{
 		sound_list->M_Instance_Update();
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：全てのゲームシステムの更新をする
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Game_Instance_Manager::M_Update_Game_System(void)
+{
+	// ☆ 変数宣言 ☆ //
+	std::vector<SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * > & system_list_system_list =	// システム管理用リストのリスト
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Overall_Base<GAME::INSTANCE::GAME_SYSTEM::LIST::C_Game_System_List>::M_Get_List_Of_All_Instance_List();
+
+
+	// システムの更新
+	for (SYSTEM::LIST::BASE::ALL_LIST_BASE::C_List_All_Base * system_list : system_list_system_list)
+	{
+		system_list->M_Instance_Update();
 	}
 
 	return;

@@ -43,7 +43,7 @@ namespace GAME::INSTANCE::ACTOR::BASE
 		C_Actor_Base(void);
 
 		// デストラクタ
-		~C_Actor_Base(void);
+		virtual ~C_Actor_Base(void);
 
 
 		//-☆- 優先度 -☆-//

@@ -532,6 +532,27 @@
     <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
       <UniqueIdentifier>{e876fe89-7ef1-4760-8add-e2df635f3daf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{b25335d9-bf76-4106-907a-32d802782980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{071f2d4c-9f5e-447b-aff7-c9d82bc4efb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム">
+      <UniqueIdentifier>{6ec07a60-e2e4-4e20-bb1d-e98b13ac27dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{6ee5c25d-53f3-47ef-a6c2-ae798db493a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{43c475b2-0c95-4030-8d66-ad3cb0cc1d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{b167962e-39b0-44bd-9631-8892d780d881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{8a16fcf4-fbd5-43ce-842d-2fe994848f64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -924,6 +945,12 @@
     <ClInclude Include="C_Post_Effect_Draw_Manager.h">
       <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
     </ClInclude>
+    <ClInclude Include="C_Game_System_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_System_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\基底</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1216,6 +1243,9 @@
     </ClCompile>
     <ClCompile Include="C_Post_Effect_Draw_Manager.cpp">
       <Filter>ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_System_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\システム\基底</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

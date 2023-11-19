@@ -83,8 +83,14 @@ namespace GAME::INSTANCE::SOUND::LIST
 		// 削除のフラグが立っているサウンドを消す
 		static void M_Delete_Sound_Update(void);
 
-		// インスタンスの削除を行う
+		// シーン遷移で削除しないフラグが立っていないサウンドを全て削除する
+		static void M_Delete_Sound_Is_Not_Scene_Over(void);
+
+		// 削除のフラグが立っているインスタンスの削除の実行
 		void M_Delete_Instance_Execute(void) override;
+
+		// 大部分のインスタンスの削除を行う
+		void M_Delete_Most_OF_Instance_Execute(void) override;
 
 		// 全てのインスタンスの削除を行う
 		void M_Delete_All_Instance_Execute(void) override;
@@ -107,7 +113,7 @@ namespace GAME::INSTANCE::SOUND::LIST
 
 		//-☆- 描画 -☆-//
 
-		// サウンドの描画を行う
+		// 描画はないがエラー防止用に定義
 		void M_Instance_Draw(void) override;
 	};
 
@@ -208,6 +214,36 @@ namespace GAME::INSTANCE::SOUND::LIST
 
 
 	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：シーン遷移で削除しないフラグが立っていないサウンドを全て削除する
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_SOUND_TEMPLATE inline void C_Sound_List<C_Sound>::M_Delete_Sound_Is_Not_Scene_Over(void)
+	{
+		// ☆ ラムダ式 ☆ //
+
+		// ベクターからインスタンス削除用の判定を行うラムダ式
+		auto delete_ramada = [](Type_Sound & in_check_sound)
+			{
+				// シーン遷移時に残るフラグが立っていないなら削除する
+				if (in_check_sound->M_Get_Scene_Over_Flg() == false)
+				{
+					in_check_sound.reset();
+					return true;
+				}
+
+				return false;
+			};
+
+
+		// リストからの削除を行う
+		SYSTEM::LIST::BASE::C_List_Divided_By_Class_Base<C_Sound_List, Type_Sound>::M_Delete_Instance_By_Lambda(delete_ramada);
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 	// 詳細   ：インスタンスの削除を行う
 	// 引数   ：void
 	// 戻り値 ：void
@@ -215,6 +251,19 @@ namespace GAME::INSTANCE::SOUND::LIST
 	D_SOUND_TEMPLATE inline void C_Sound_List<C_Sound>::M_Delete_Instance_Execute(void)
 	{
 		M_Delete_Sound_Update();
+
+		return;
+	}
+
+
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	// 詳細   ：大部分のインスタンスの削除を行う
+	// 引数   ：void
+	// 戻り値 ：void
+	//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+	D_SOUND_TEMPLATE inline void C_Sound_List<C_Sound>::M_Delete_Most_OF_Instance_Execute(void)
+	{
+		M_Delete_Sound_Is_Not_Scene_Over();
 
 		return;
 	}
