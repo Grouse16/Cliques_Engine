@@ -16,12 +16,10 @@ using namespace DATA::FIGURE::UI;
 // ☆ 変数宣言 ☆ //
 C_UI_SETTING_DATA C_UI_SETTING_DATA::m_this;	// 自身を定義するための変数
 
-float C_UI_SETTING_DATA::ui_width;	// UI
-float C_UI_SETTING_DATA::ui_height;	// UI
-
-float C_UI_SETTING_DATA::aspect_x;	// アスペクト
-float C_UI_SETTING_DATA::aspect_y;		// アスペクト
-
+float C_UI_SETTING_DATA::ui_width;
+float C_UI_SETTING_DATA::ui_height;
+float C_UI_SETTING_DATA::aspect_x;
+float C_UI_SETTING_DATA::aspect_y;
 float C_UI_SETTING_DATA::percent_of_aspect_x;
 float C_UI_SETTING_DATA::percent_of_aspect_y;
 

@@ -70,19 +70,6 @@ namespace DATA::FIGURE::UI
 	};	// UI設定用の変数群を呼び出すための名前
 
 
-	// ☆ 構造体 ☆ //
-
-	// UI用の頂点データ
-	struct S_UI_Vertex
-	{
-		DATA::POSITION_2D::C_2D_Position position;	// ピクセルでの頂点座標
-
-		DATA::COLOR::C_Color color;	// 色
-
-		DATA::TEXTURE_UV::C_Textuer_UV uv;	// テクスチャ座標
-	};
-
-
 	// ☆ クラス ☆ //
 
 	// 四角形のUI用のクラス

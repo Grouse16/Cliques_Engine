@@ -227,6 +227,7 @@
     <ClInclude Include="C_Texture_Manager.h" />
     <ClInclude Include="C_Texture_Map.h" />
     <ClInclude Include="C_Text_And_File_Manager.h" />
+    <ClInclude Include="C_UIC_Graph_Box.h" />
     <ClInclude Include="C_UI_Component_Base.h" />
     <ClInclude Include="C_User_Interface_Base.h" />
     <ClInclude Include="C_User_Interface_List.h" />
@@ -259,6 +260,7 @@
     <ClInclude Include="S_Rect.h" />
     <ClInclude Include="S_Shader_Resource_Signature_Inform.h" />
     <ClInclude Include="S_Tex_Color.h" />
+    <ClInclude Include="S_UI_Vertex.h" />
     <ClInclude Include="Texture_UV_Data.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UI_Figure_Data.h" />
@@ -306,6 +308,7 @@
     <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
+    <ClCompile Include="C_UIC_Graph_Box.cpp" />
     <ClCompile Include="C_UI_Component_Base.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />
     <ClCompile Include="Elina_Lead_main.cpp" />

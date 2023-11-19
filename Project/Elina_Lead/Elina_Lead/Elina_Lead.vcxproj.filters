@@ -991,7 +991,13 @@
       <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\基底</Filter>
     </ClInclude>
     <ClInclude Include="C_Component_Base.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_UIC_Graph_Box.h">
+      <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="S_UI_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1293,7 +1299,10 @@
       <Filter>ソース ファイル\ゲーム\UIコンポーネント\基底</Filter>
     </ClCompile>
     <ClCompile Include="C_Component_Base.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ゲーム\コンポーネント\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UIC_Graph_Box.cpp">
+      <Filter>ソース ファイル\ゲーム\UIコンポーネント\派生</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
