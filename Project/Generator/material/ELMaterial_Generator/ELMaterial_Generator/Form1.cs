@@ -80,6 +80,11 @@ namespace ELMaterial_Generator
             CB_Rasterizer_Mesh_Setting.SelectedIndex = 1;
             CB_Rasterizer_Front.SelectedIndex = 1;
 
+            Track_Sampling_Count.Value = 0;
+            TB_Sampling_Count.Text = Track_Sampling_Count.Value.ToString();
+            Track_Sampling_Quality.Value = 0;
+            TB_Sampling_Quality.Text = Track_Sampling_Quality.Value.ToString();
+
             Track_Depth_Value.Value = 0;
             TB_Depth_Value.Text = Track_Depth_Value.Value.ToString();
             Track_Depth_Max_Value.Value = 0;
@@ -324,6 +329,11 @@ namespace ELMaterial_Generator
 
         private void B_Reset_MouseUp(object sender, MouseEventArgs e)
         {
+            for (int loop_num = 0; loop_num < 8; loop_num++)
+            {
+                m_blend_list[loop_num] = new S_Blend_Setting(0, 0, 4, 2);
+            }
+
             m_blend_count = 0;
             CB_Blend_Number.Items.Clear();
             for (int blend_num = 1; blend_num <= CB_Blend_Sum.SelectedIndex + 1; blend_num++)
@@ -356,6 +366,11 @@ namespace ELMaterial_Generator
             TB_Depth_Max_Value.Text = Track_Depth_Max_Value.Value.ToString();
             Track_Depth_Slope.Value = 0;
             TB_Depth_Slope.Text = Track_Depth_Slope.Value.ToString();
+
+            Track_Sampling_Count.Value = 0;
+            TB_Sampling_Count.Text = Track_Sampling_Count.Value.ToString();
+            Track_Sampling_Quality.Value = 0;
+            TB_Sampling_Quality.Text = Track_Sampling_Quality.Value.ToString();
 
             Track_Ambient_Red.Value = 0;
             TB_Ambient_Red.Text = Track_Ambient_Red.Value.ToString();
@@ -440,16 +455,16 @@ namespace ELMaterial_Generator
                 write_text.Add("BLEND" + (l_blend_num + 1).ToString() + ":");
 
                 // ブレンドモードを書き込む
-                write_text.Add(CB_Blend_Mode.Text.Substring(0, M_Search_End_Mark(CB_Blend_Mode.Text)));
+                write_text.Add(CB_Blend_Mode.Items[m_blend_list[l_blend_num].Blend_Mode].ToString().Substring(0, M_Search_End_Mark(CB_Blend_Mode.Items[m_blend_list[l_blend_num].Blend_Mode].ToString())));
 
                 // 混ぜ方を書き込む
-                write_text.Add(CB_How_To_Blend.Text.Substring(0, M_Search_End_Mark(CB_How_To_Blend.Text)));
+                write_text.Add(CB_How_To_Blend.Items[m_blend_list[l_blend_num].How_To_Blend].ToString().Substring(0, M_Search_End_Mark(CB_How_To_Blend.Items[m_blend_list[l_blend_num].How_To_Blend].ToString())));
 
                 // フォーマット
-                write_text.Add(CB_Blend_Byte_Format.Text.Substring(0, M_Search_End_Mark(CB_Blend_Byte_Format.Text)));
+                write_text.Add(CB_Blend_Byte_Format.Items[m_blend_list[l_blend_num].Blend_Byte_Format].ToString().Substring(0, M_Search_End_Mark(CB_Blend_Byte_Format.Items[m_blend_list[l_blend_num].Blend_Byte_Format].ToString())));
 
                 // カラー
-                write_text.Add(CB_Blend_Color_Format.Text.Substring(0, M_Search_End_Mark(CB_Blend_Color_Format.Text)));
+                write_text.Add(CB_Blend_Color_Format.Items[m_blend_list[l_blend_num].Blend_Color_Format].ToString().Substring(0, M_Search_End_Mark(CB_Blend_Color_Format.Items[m_blend_list[l_blend_num].Blend_Color_Format].ToString())));
             }
 
 
@@ -528,7 +543,6 @@ namespace ELMaterial_Generator
             write_text.Add((Track_Transparent_Red.Value / 100.0f).ToString() + "," + (Track_Transparent_Green.Value / 100.0f).ToString() + "," + (Track_Transparent_Blue.Value / 100.0f).ToString() + "," + (Track_Transparent_Alpha.Value / 100.0f).ToString());
 
 
-
             // ☆ 変数宣言 ☆ //
             SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
 
@@ -563,26 +577,29 @@ namespace ELMaterial_Generator
         {
             m_blend_count = CB_Blend_Number.SelectedIndex;
 
-            CB_Blend_Mode.Text = m_blend_list[m_blend_count].Blend_Mode.ToString();
-            CB_How_To_Blend.Text = m_blend_list[m_blend_count].How_To_Blend.ToString();
-            CB_Blend_Byte_Format.Text = m_blend_list[m_blend_count].Blend_Byte_Format.ToString();
-            CB_Blend_Color_Format.Text = m_blend_list[m_blend_count].Blend_Color_Format.ToString();
+            CB_Blend_Mode.SelectedIndex = m_blend_list[m_blend_count].Blend_Mode;
+            CB_How_To_Blend.SelectedIndex = m_blend_list[m_blend_count].How_To_Blend;
+            CB_Blend_Byte_Format.SelectedIndex = m_blend_list[m_blend_count].Blend_Byte_Format;
+            CB_Blend_Color_Format.SelectedIndex = m_blend_list[m_blend_count].Blend_Color_Format;
         }
 
         private void CB_Blend_Sum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_blend_count = 0;
+            if (CB_Blend_Sum.SelectedIndex + 1 < CB_Blend_Number.Items.Count)
+            {
+                m_blend_count = CB_Blend_Sum.SelectedIndex;
+            }
             CB_Blend_Number.Items.Clear();
             for (int blend_num = 1; blend_num <= CB_Blend_Sum.SelectedIndex + 1; blend_num++)
             {
                 CB_Blend_Number.Items.Add(blend_num.ToString());
             }
-            CB_Blend_Number.SelectedIndex = 0;
+            CB_Blend_Number.SelectedIndex = m_blend_count;
 
-            CB_Blend_Mode.Text = m_blend_list[m_blend_count].Blend_Mode.ToString();
-            CB_How_To_Blend.Text = m_blend_list[m_blend_count].How_To_Blend.ToString();
-            CB_Blend_Byte_Format.Text = m_blend_list[m_blend_count].Blend_Byte_Format.ToString();
-            CB_Blend_Color_Format.Text = m_blend_list[m_blend_count].Blend_Color_Format.ToString();
+            CB_Blend_Mode.SelectedIndex = m_blend_list[m_blend_count].Blend_Mode;
+            CB_How_To_Blend.SelectedIndex = m_blend_list[m_blend_count].How_To_Blend;
+            CB_Blend_Byte_Format.SelectedIndex = m_blend_list[m_blend_count].Blend_Byte_Format;
+            CB_Blend_Color_Format.SelectedIndex = m_blend_list[m_blend_count].Blend_Color_Format;
         }
 
         // 指定された文字列から終了マーク（：）を探してその番号を返す
@@ -639,6 +656,26 @@ namespace ELMaterial_Generator
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void CB_Blend_Mode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_blend_list[m_blend_count] = new S_Blend_Setting(CB_Blend_Mode.SelectedIndex, m_blend_list[m_blend_count].How_To_Blend, m_blend_list[m_blend_count].Blend_Byte_Format, m_blend_list[m_blend_count].Blend_Color_Format);
+        }
+
+        private void CB_How_To_Blend_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_blend_list[m_blend_count] = new S_Blend_Setting(m_blend_list[m_blend_count].Blend_Mode, CB_How_To_Blend.SelectedIndex, m_blend_list[m_blend_count].Blend_Byte_Format, m_blend_list[m_blend_count].Blend_Color_Format);
+        }
+
+        private void CB_Blend_Byte_Format_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_blend_list[m_blend_count] = new S_Blend_Setting(m_blend_list[m_blend_count].Blend_Mode, m_blend_list[m_blend_count].How_To_Blend, CB_Blend_Byte_Format.SelectedIndex, m_blend_list[m_blend_count].Blend_Color_Format);
+        }
+
+        private void CB_Blend_Color_Format_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_blend_list[m_blend_count] = new S_Blend_Setting(m_blend_list[m_blend_count].Blend_Mode, m_blend_list[m_blend_count].How_To_Blend, m_blend_list[m_blend_count].Blend_Byte_Format, CB_Blend_Color_Format.SelectedIndex);
         }
     }
 }
