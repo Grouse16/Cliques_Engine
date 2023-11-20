@@ -362,7 +362,6 @@ void C_Game_Manager::M_Executes_Process(void)
 	// ゲーム描画後の機能の更新
 	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw_Update();
 
-
 	//  レンダリング終了と画面出力  //
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_End_And_Swap_Screen();
 

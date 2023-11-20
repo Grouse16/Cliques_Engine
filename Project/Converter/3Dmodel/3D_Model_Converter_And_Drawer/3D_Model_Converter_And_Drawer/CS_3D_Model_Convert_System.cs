@@ -75,6 +75,7 @@ namespace _3D_Model_Converter_And_Drawer
         static List<string> m_file_write_data = new List<string>(); // 書き込むファイルのデータ
         static List<string> m_file_mat_write_data = new List<string>(); // 書き込むマテリアルの質感用ファイルのデータ
 
+        static int m_mat_num = 0;
 
         // 3Dモデルを変換する　引数：シーンデータ
         public static void M_Convert_Data_Set(ref Scene in_scene)
@@ -117,11 +118,8 @@ namespace _3D_Model_Converter_And_Drawer
                 M_Save_Animation_Model_This_File();
             }
 
-            // マテリアルの質感情報を取り出す
+            // マテリアルの質感情報を取り出してそのファイルを保存
             M_Convert_Material_Inform();
-
-            // マテリアルの質感情報を抜き出したファイルを保存
-            M_Save_Mat_Inform_File();
 
             return;
         }
@@ -495,14 +493,16 @@ namespace _3D_Model_Converter_And_Drawer
         // マテリアルの質感情報の変換
         private static void M_Convert_Material_Inform()
         {
+            // 質感情報であることを示す
+            m_file_mat_write_data.Add("This-Is-ELMATINFORM");
+            m_mat_num = 0;
             for (int now_mat_num = 0; now_mat_num < m_now_scene.MaterialCount; now_mat_num++)
             {
-                m_file_mat_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[now_mat_num]);
-
                 // アンビエント
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorAmbient.R.ToString() + ","
+                        "AMBIENT:"
+                         + m_now_scene.Materials[now_mat_num].ColorAmbient.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorAmbient.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorAmbient.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorAmbient.A.ToString() + ","
@@ -511,7 +511,8 @@ namespace _3D_Model_Converter_And_Drawer
                 // ディフューズ
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorDiffuse.R.ToString() + ","
+                        "DIFFUSE:"
+                         + m_now_scene.Materials[now_mat_num].ColorDiffuse.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorDiffuse.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorDiffuse.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorDiffuse.A.ToString() + ","
@@ -520,7 +521,8 @@ namespace _3D_Model_Converter_And_Drawer
                 // エミッション
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorEmissive.R.ToString() + ","
+                        "EMISSION:"
+                         + m_now_scene.Materials[now_mat_num].ColorEmissive.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorEmissive.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorEmissive.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorEmissive.A.ToString() + ","
@@ -529,7 +531,8 @@ namespace _3D_Model_Converter_And_Drawer
                 // リフレクション
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorReflective.R.ToString() + ","
+                        "REFLECTION:"
+                         + m_now_scene.Materials[now_mat_num].ColorReflective.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorReflective.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorReflective.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorReflective.A.ToString() + ","
@@ -538,7 +541,8 @@ namespace _3D_Model_Converter_And_Drawer
                 // スペキュラー
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorSpecular.R.ToString() + ","
+                        "SPECLAR:"
+                         + m_now_scene.Materials[now_mat_num].ColorSpecular.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorSpecular.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorSpecular.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorSpecular.A.ToString() + ","
@@ -547,14 +551,15 @@ namespace _3D_Model_Converter_And_Drawer
                 // トランスペアレント
                 m_file_mat_write_data.Add
                     (
-                        m_now_scene.Materials[now_mat_num].ColorTransparent.R.ToString() + ","
+                        "TRANSPARENT:"
+                         + m_now_scene.Materials[now_mat_num].ColorTransparent.R.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorTransparent.G.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorTransparent.B.ToString() + ","
                          + m_now_scene.Materials[now_mat_num].ColorTransparent.A.ToString() + ","
                     );
 
-                // １行あける
-                m_file_mat_write_data.Add("");
+                // 質感情報を保存
+                M_Save_Mat_Inform_File();
             }
         }
 
@@ -567,7 +572,7 @@ namespace _3D_Model_Converter_And_Drawer
             string extension = "elmatinform";   // 拡張子
 
 
-            sfd.FileName = "new_mat_inform." + extension;
+            sfd.FileName = _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[m_mat_num] + "." + extension;
             sfd.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             sfd.Filter = extension + "ファイル(*." + extension + ";*." + extension +")|*." + ";*." + extension +"|すべてのファイル(*.*)|*.*";
             sfd.FilterIndex = 1;
