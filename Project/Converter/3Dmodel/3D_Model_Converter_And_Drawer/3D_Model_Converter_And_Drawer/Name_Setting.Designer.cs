@@ -34,28 +34,32 @@
             // 
             // TB_material_number
             // 
-            this.TB_material_number.Location = new System.Drawing.Point(3, 3);
+            this.TB_material_number.Location = new System.Drawing.Point(4, 4);
+            this.TB_material_number.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_material_number.Name = "TB_material_number";
             this.TB_material_number.ReadOnly = true;
-            this.TB_material_number.Size = new System.Drawing.Size(100, 19);
+            this.TB_material_number.Size = new System.Drawing.Size(132, 22);
             this.TB_material_number.TabIndex = 0;
             this.TB_material_number.TextChanged += new System.EventHandler(this.TB_material_number_TextChanged);
             // 
             // TB_material_name
             // 
-            this.TB_material_name.Location = new System.Drawing.Point(109, 3);
+            this.TB_material_name.Location = new System.Drawing.Point(145, 4);
+            this.TB_material_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_material_name.Name = "TB_material_name";
-            this.TB_material_name.Size = new System.Drawing.Size(337, 19);
+            this.TB_material_name.Size = new System.Drawing.Size(448, 22);
             this.TB_material_name.TabIndex = 1;
+            this.TB_material_name.TextChanged += new System.EventHandler(this.TB_material_name_TextChanged);
             // 
             // Name_Setting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TB_material_name);
             this.Controls.Add(this.TB_material_number);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Name_Setting";
-            this.Size = new System.Drawing.Size(449, 23);
+            this.Size = new System.Drawing.Size(599, 29);
             this.ResumeLayout(false);
             this.PerformLayout();
 

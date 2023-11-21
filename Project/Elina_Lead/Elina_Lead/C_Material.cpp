@@ -374,26 +374,37 @@ RENDERING::INFORM::RASTERIZER::E_ANTIALIASING C_Material::M_Get_Antialiasing_By_
 void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// ☆ 定数 ☆ //
-	const int con_blend_setting_max = 8;	// ブレンド設定を生成できる上限値
+	const int con_BLEND_SETTING_MAX = 8;	// ブレンド設定を生成できる上限値
+
+	int blend_sum = 0;	// ブレンド設定数
 
 
 	// 情報の最初へ移動
 	in_file_data.M_Goto_Sentence_Start();
 
+	// ブレンド設定数を取り出す
+	in_file_data.M_Goto_Right_By_Text_In_Front_Row("BLENDSUM:");
+	blend_sum = in_file_data.M_Get_Number();
+
+	// ブレンド設定の上限値を超えないようにする
+	blend_sum = 
+		(blend_sum > con_BLEND_SETTING_MAX) * con_BLEND_SETTING_MAX
+		+
+		(blend_sum <= con_BLEND_SETTING_MAX) * blend_sum;
+
+
+	// ブレンド設定登録用の配列を拡張
+	in_blend_setting_list.resize(blend_sum);
+
 
 	// ブレンドの情報が残っている間、8つになるまでは設定し続ける
-	for (int l_slot_num = 0; l_slot_num < con_blend_setting_max; l_slot_num++)
+	for (int l_slot_num = 0; l_slot_num < blend_sum; l_slot_num++)
 	{
 		// ブレンド設定の現在の番号まで移動、なければ終了
 		if (in_file_data.M_Goto_Left_By_Text_In_Front_Row("BLEND" + std::to_string(l_slot_num + 1) + ":") == false)
 		{
 			return;
 		}
-
-
-		// ブレンド設定登録用の配列を拡張
-		in_blend_setting_list.resize(l_slot_num + 1);
-
 
 		// ブレンドモードを取得
 		in_file_data.M_Move_Next_Raw();

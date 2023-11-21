@@ -37,5 +37,10 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         {
 
         }
+
+        private void TB_material_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
