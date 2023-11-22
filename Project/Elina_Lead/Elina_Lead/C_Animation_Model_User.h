@@ -35,6 +35,8 @@ namespace ASSET::ANIMATION_MODEL
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
+			std::vector<DirectX::XMFLOAT4X4> bone_matrix_list;	// ボーンマトリクスの配列
+
 			ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * animation_model = nullptr;	// 使用するアニメーションモデルまでのアドレス
 
 			std::unique_ptr<ASSET::ANIMATION::CALCULATOR::C_Animation_Calculation_System> animation_calculator = nullptr;	// アニメーションの計算システム
@@ -80,8 +82,23 @@ namespace ASSET::ANIMATION_MODEL
 
 		//-☆- 描画 -☆-//
 
-		// このアニメーションモデルを描画する
+		// アニメーションの結果を生成する、描画前に実行する必要がある
+		void m_Animation_Execute(void);
+
+		// アニメーションモデルを描画する
 		void M_Animation_Model_Draw(void);
+
+		// アニメーションモデルから指定された名前のメッシュのみを描画する　引数：メッシュ名
+		void M_Animation_Model_Draw_By_Mesh_Name(std::string);
+
+		// 指定されたマテリアルでアニメーションモデルを描画する　引数：使用するマテリアル参照
+		void M_Animation_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & );
+
+		// 指定されたマテリアルでアニメーションモデルから指定された名前のメッシュのみを描画する　引数：使用するマテリアルの参照, メッシュ名
+		void M_Animation_Model_Draw_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & ,std::string);
+
+		// アニメーションの計算結果のボーンマトリクス行列を解放する、このモデルの描画が完了したときに実行することでメモリが最適化される
+		void M_Animation_Bone_Matrix_Release(void);
 
 
 		//-☆- アニメーション -☆-//

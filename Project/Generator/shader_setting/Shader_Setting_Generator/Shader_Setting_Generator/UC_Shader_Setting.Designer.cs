@@ -33,6 +33,7 @@
             this.CB_Setting_Shader_Kind = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.CL_Active_Shader_List = new System.Windows.Forms.CheckedListBox();
+            this.TB_Setting_Shader_Name = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -62,11 +63,11 @@
             this.CB_Setting_Shader_Kind.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.CB_Setting_Shader_Kind.FormattingEnabled = true;
             this.CB_Setting_Shader_Kind.Items.AddRange(new object[] {
-            "Vertex",
-            "Hul",
-            "Domain",
-            "Geometry",
-            "Pixel"});
+            "頂点シェーダー　Vertex Shader",
+            "ハルシェーダー　Hul Shader",
+            "ドメインシェーダー　Domain Shader",
+            "ジオメトリシェーダー　Geometry Shader",
+            "ピクセルシェーダー　Pixel Shader"});
             this.CB_Setting_Shader_Kind.Location = new System.Drawing.Point(1, 46);
             this.CB_Setting_Shader_Kind.Name = "CB_Setting_Shader_Kind";
             this.CB_Setting_Shader_Kind.Size = new System.Drawing.Size(414, 24);
@@ -88,21 +89,32 @@
             this.CL_Active_Shader_List.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.CL_Active_Shader_List.FormattingEnabled = true;
             this.CL_Active_Shader_List.Items.AddRange(new object[] {
-            "Vertex Shader",
-            "Hul Shader",
-            "Domain Shader",
-            "Geometry Shader",
-            "Pixel Shader"});
+            "頂点シェーダー　Vertex Shader",
+            "ハルシェーダー　Hul Shader",
+            "ドメインシェーダー　Domain Shader",
+            "ジオメトリシェーダー　Geometry Shader",
+            "ピクセルシェーダー　Pixel Shader"});
             this.CL_Active_Shader_List.Location = new System.Drawing.Point(414, 46);
             this.CL_Active_Shader_List.Name = "CL_Active_Shader_List";
             this.CL_Active_Shader_List.Size = new System.Drawing.Size(462, 94);
             this.CL_Active_Shader_List.TabIndex = 3;
+            // 
+            // TB_Setting_Shader_Name
+            // 
+            this.TB_Setting_Shader_Name.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.TB_Setting_Shader_Name.Location = new System.Drawing.Point(1, 140);
+            this.TB_Setting_Shader_Name.Name = "TB_Setting_Shader_Name";
+            this.TB_Setting_Shader_Name.ReadOnly = true;
+            this.TB_Setting_Shader_Name.Size = new System.Drawing.Size(876, 23);
+            this.TB_Setting_Shader_Name.TabIndex = 4;
+            this.TB_Setting_Shader_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // UC_Shader_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.TB_Setting_Shader_Name);
             this.Controls.Add(this.CL_Active_Shader_List);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.CB_Setting_Shader_Kind);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.ComboBox CB_Setting_Shader_Kind;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckedListBox CL_Active_Shader_List;
+        private System.Windows.Forms.TextBox TB_Setting_Shader_Name;
     }
 }

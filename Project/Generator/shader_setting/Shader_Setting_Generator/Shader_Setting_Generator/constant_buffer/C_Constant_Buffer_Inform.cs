@@ -9,7 +9,7 @@ namespace Shader_Setting_Generator
     // ☆ クラス ☆ //
 
     // 定数バッファの情報用のクラス
-    internal class C_Constant_Buffer_Inform
+    public class C_Constant_Buffer_Inform
     {
         // ☆ 変数宣言 ☆ //
         public string m_name = "default"; // 定数バッファ名

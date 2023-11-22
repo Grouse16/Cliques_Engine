@@ -142,6 +142,54 @@ void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Mesh_Name(std::string in_mesh_na
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルを設定せずに、3Dモデルを描画する（描画前にマテリアルをセットするとき用）
+// 引数   ：C_Material_User & 使用するマテリアルの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_User::M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
+{
+	// モデルを持っていないなら描画はしない
+	if (mpr_variable.use_model_address == nullptr)
+	{
+		return;
+	}
+
+
+	// 指定されたマテリアルをレンダリンシステムに送る
+	in_use_material.M_Material_Attach_To_Draw();
+
+	// 3Dモデルを描画する
+	mpr_variable.use_model_address->M_Draw_3D_Model_Do_Not_Use_Material();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   マテリアルを設定せずに、3Dモデルから指定されたメッシュ名のみ描画する（描画前にマテリアルをセットするとき用）
+// 引数   ：C_Material_User & 使用するマテリアルの参照, string 描画するメッシュ名（複数判定する）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
+{
+	// モデルを持っていないなら描画はしない
+	if (mpr_variable.use_model_address == nullptr)
+	{
+		return;
+	}
+
+
+	// 指定されたマテリアルをレンダリンシステムに送る
+	in_use_material.M_Material_Attach_To_Draw();
+
+	// 指定された名前のメッシュのみを描画する
+	mpr_variable.use_model_address->M_Draw_Meshes_By_Name_Do_Not_Use_Material(in_mesh_name);
+
+	return;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

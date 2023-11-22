@@ -220,3 +220,16 @@ void C_Animative_Mesh::M_Draw_Mesh(void)
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルの設定をせずに面の描画のみ行う（外部でマテリアルを設定してから描画するとき用）
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animative_Mesh::m_Draw_Mesh_Do_Not_Set_Material(void)
+{
+	mpr_variable.vertex_setting.M_Draw_All_Vertex();
+
+	return;
+}
+
+

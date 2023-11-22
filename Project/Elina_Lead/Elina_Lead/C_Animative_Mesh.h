@@ -103,6 +103,9 @@ namespace ASSET::ANIMATION::MESH
 
 		// メッシュの描画を実行する
 		void M_Draw_Mesh(void);
+
+		// マテリアルの設定をせずに面の描画のみ行う（外部でマテリアルを設定してから描画するとき用）
+		void m_Draw_Mesh_Do_Not_Set_Material(void);
 	};
 }
 

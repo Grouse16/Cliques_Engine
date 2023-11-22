@@ -191,7 +191,22 @@ bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_a
 //-☆- 描画 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：このアニメーションモデルを描画する
+// 詳細   ：アニメーションの結果を生成する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::m_Animation_Execute(void)
+{
+	// アニメーション結果をセットする
+	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(mpr_variable.bone_matrix_list);
+	mpr_variable.animation_model->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションモデルを描画する
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -203,18 +218,112 @@ void C_Animation_Model_User::M_Animation_Model_Draw(void)
 		return;
 	}
 
-	
-	// ☆ 変数宣言 ☆ //
-	std::vector<DirectX::XMFLOAT4X4> bone_matrix_list;	// ボーンマトリクスの配列
-
-
-	// アニメーション結果をセットする
-	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(bone_matrix_list);
-	mpr_variable.animation_model->M_Set_Bone_Matrix(bone_matrix_list);
-
-
 	// 描画を行う
 	mpr_variable.animation_model->M_Draw_3D_Model();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションモデルから指定された名前のメッシュのみを描画する
+// 引数   ：string メッシュ名
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name(std::string in_mesh_name)
+{
+	// アニメーションモデルを持っていないなら描画しない
+	if (mpr_variable.animation_model == nullptr)
+	{
+		return;
+	}
+
+	// 描画を行う
+	mpr_variable.animation_model->M_Draw_Meshes_By_Name(in_mesh_name);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたマテリアルでアニメーションモデルを描画する
+// 引数   ：C_Material_User & 使用するマテリアルの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Animation_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
+{
+	// アニメーションモデルを持っていないなら描画しない
+	if (mpr_variable.animation_model == nullptr)
+	{
+		return;
+	}
+
+
+	// ☆ 変数宣言 ☆ //
+	ASSET::MATERIAL::S_Constant_Buffer_Data * bone_constant_buffer_address = in_use_material.M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Name("CB_BONE");	// 定数バッファのアドレス
+
+
+	// ボーン用の定数バッファがなければ抜ける
+	if (bone_constant_buffer_address == nullptr)
+	{
+		return;
+	}
+
+	// アニメーション結果をマテリアルにセットし、マテリアルを描画にレンダリングシステムへ送る
+	bone_constant_buffer_address->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(mpr_variable.bone_matrix_list.size(), 0, &mpr_variable.bone_matrix_list[0]);
+	in_use_material.M_Material_Attach_To_Draw();
+
+	// 描画を行う
+	mpr_variable.animation_model->M_Draw_3D_Model_Do_Not_Use_Material();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたマテリアルでアニメーションモデルから指定された名前のメッシュのみを描画する
+// 引数   ：C_Material_User & 使用するマテリアルの参照, string メッシュ名
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
+{
+	// アニメーションモデルを持っていないなら描画しない
+	if (mpr_variable.animation_model == nullptr)
+	{
+		return;
+	}
+
+
+	// ☆ 変数宣言 ☆ //
+	ASSET::MATERIAL::S_Constant_Buffer_Data * bone_constant_buffer_address = in_use_material.M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Name("CB_BONE");	// 定数バッファのアドレス
+
+
+	// ボーン用の定数バッファがなければ抜ける
+	if (bone_constant_buffer_address == nullptr)
+	{
+		return;
+	}
+
+	// アニメーション結果をマテリアルにセットし、マテリアルを描画にレンダリングシステムへ送る
+	bone_constant_buffer_address->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(mpr_variable.bone_matrix_list.size(), 0, &mpr_variable.bone_matrix_list[0]);
+	in_use_material.M_Material_Attach_To_Draw();
+
+	// 指定されたメッシュのみ描画する
+	mpr_variable.animation_model->M_Draw_Meshes_By_Name_Do_Not_Use_Material(in_mesh_name);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションの計算結果のボーンマトリクス行列を解放する、このモデルの描画が完了したときに実行することでメモリが最適化される
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Animation_Bone_Matrix_Release(void)
+{
+	mpr_variable.bone_matrix_list.clear();
+	mpr_variable.bone_matrix_list.shrink_to_fit();
 
 	return;
 }

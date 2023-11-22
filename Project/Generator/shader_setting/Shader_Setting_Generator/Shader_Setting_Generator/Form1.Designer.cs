@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.uC_Vertex_Layout1 = new Shader_Setting_Generator.UC_Vertex_Layout();
+            this.uC_Shader_Setting1 = new Shader_Setting_Generator.UC_Shader_Setting();
             this.SuspendLayout();
             // 
             // uC_Vertex_Layout1
@@ -39,11 +40,20 @@
             this.uC_Vertex_Layout1.Size = new System.Drawing.Size(461, 359);
             this.uC_Vertex_Layout1.TabIndex = 0;
             // 
+            // uC_Shader_Setting1
+            // 
+            this.uC_Shader_Setting1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.uC_Shader_Setting1.Location = new System.Drawing.Point(471, 5);
+            this.uC_Shader_Setting1.Name = "uC_Shader_Setting1";
+            this.uC_Shader_Setting1.Size = new System.Drawing.Size(876, 627);
+            this.uC_Shader_Setting1.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 639);
+            this.ClientSize = new System.Drawing.Size(1348, 639);
+            this.Controls.Add(this.uC_Shader_Setting1);
             this.Controls.Add(this.uC_Vertex_Layout1);
             this.Name = "Form1";
             this.Text = "シェーダー設定生成用システム";
@@ -55,6 +65,7 @@
         #endregion
 
         private UC_Vertex_Layout uC_Vertex_Layout1;
+        private UC_Shader_Setting uC_Shader_Setting1;
     }
 }
 

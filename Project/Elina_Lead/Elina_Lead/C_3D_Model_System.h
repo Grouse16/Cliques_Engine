@@ -110,6 +110,12 @@ namespace ASSET::MODEL
 
 		// 3Dモデルから指定されたメッシュ名のみ描画する　引数：描画するメッシュ名（複数判定する）
 		void M_Draw_Meshes_By_Name(std::string);
+
+		// マテリアルを設定せずに、3Dモデルを描画する（描画前にマテリアルをセットするとき用）
+		void M_Draw_3D_Model_Do_Not_Use_Material(void);
+
+		// マテリアルを設定せずに、3Dモデルから指定されたメッシュ名のみ描画する（描画前にマテリアルをセットするとき用）　引数：描画するメッシュ名（複数判定する）
+		void M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string);
 	};
 }
 
