@@ -30,7 +30,7 @@ namespace DATA::VERTEX
 
 		DATA::COLOR::C_Color color;	// 色
 
-		DATA::TEXTURE_UV::C_Textuer_UV uv;	// テクスチャ座標
+		DATA::TEXTURE_UV::C_Texture_UV uv;	// テクスチャ座標
 	};
 }
 

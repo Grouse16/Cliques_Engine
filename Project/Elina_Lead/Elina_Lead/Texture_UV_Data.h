@@ -18,7 +18,7 @@ namespace DATA::TEXTURE_UV
 	// ☆ クラス ☆ //
 
 	// 頂点座標のクラス
-	class C_Textuer_UV
+	class C_Texture_UV
 	{
 		//==☆ パブリック ☆==//
 	public:
@@ -33,10 +33,10 @@ namespace DATA::TEXTURE_UV
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_Textuer_UV(void) { return; }
+		C_Texture_UV(void) { return; }
 		
 		// ＵＶ座標をセットするコンストラクタ
-		C_Textuer_UV(float in_u, float in_v) 
+		C_Texture_UV(float in_u, float in_v) 
 		{
 			u = in_u;
 			v = in_v;
@@ -45,7 +45,7 @@ namespace DATA::TEXTURE_UV
 		}
 
 		// デストラクタ
-		~C_Textuer_UV(void) { return; }
+		~C_Texture_UV(void) { return; }
 
 
 		//-☆- 設定 -☆-//

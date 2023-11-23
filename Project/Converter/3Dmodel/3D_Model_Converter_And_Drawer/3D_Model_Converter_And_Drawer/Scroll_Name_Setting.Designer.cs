@@ -123,29 +123,32 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(478, 19);
+            this.textBox1.Size = new System.Drawing.Size(636, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // scroll_bar
             // 
-            this.scroll_bar.Location = new System.Drawing.Point(456, 18);
+            this.scroll_bar.Location = new System.Drawing.Point(608, 22);
             this.scroll_bar.Maximum = 10;
             this.scroll_bar.Name = "scroll_bar";
-            this.scroll_bar.Size = new System.Drawing.Size(23, 86);
+            this.scroll_bar.Size = new System.Drawing.Size(23, 108);
             this.scroll_bar.TabIndex = 1;
             this.scroll_bar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
             // Scroll_Name_Setting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.scroll_bar);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Scroll_Name_Setting";
-            this.Size = new System.Drawing.Size(478, 104);
+            this.Size = new System.Drawing.Size(637, 130);
+            this.Load += new System.EventHandler(this.Scroll_Name_Setting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

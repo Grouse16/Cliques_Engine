@@ -329,13 +329,10 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
 
 		// エリアライト
-		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
+		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
 
 		// ボーン
 		now_mesh.unique_buffer_number.bone = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_BONE");
-
-		// メインとなるテクスチャ
-		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");
 	}
 
 	// ロードに成功、デバッグ時は成功ログを表示
@@ -537,3 +534,39 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh
 	return;
 }
 
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルを設定せずに、3Dモデルを描画する（描画前にマテリアルをセットするとき用）
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Animation_Model_System::M_Draw_3D_Model_Do_Not_Use_Material(void)
+{
+	// 全てのメッシュを描画
+	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルを設定せずに、3Dモデルから指定されたメッシュ名のみ描画する（描画前にマテリアルをセットするとき用）
+// 引数   ：string 描画するメッシュ名（複数判定する）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in_draw_mesh_name)
+{
+	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
+	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		if (now_mesh_inform.name == in_draw_mesh_name)
+		{
+			now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
+		}
+	}
+
+	return;
+}

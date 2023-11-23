@@ -68,6 +68,12 @@ namespace ASSET::MODEL
 		// 指定された名前のメッシュのみ描画する　引数：描画するメッシュ名
 		void M_Draw_3D_Model_Meshes_By_Mesh_Name(std::string);
 
+		// 指定されたマテリアルを使って、3Dモデルを描画する　引数：使用するマテリアルの参照
+		void M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & );
+
+		// 指定されたマテリアルを使って、3Dモデルから指定されたメッシュ名のみ描画する　引数：使用するマテリアルの参照, 描画するメッシュ名（複数判定する）
+		void M_Draw_3D_Model_Meshes_By_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & , std::string);
+
 
 		//-☆- ゲッタ -☆-//
 
