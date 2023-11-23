@@ -1345,11 +1345,50 @@ inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_roo
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡された文字列をテクスチャのUV使用方法に変換して返す
+// 引数   ：string UVの使用方法の指定用文字列
+// 戻り値 ：D3D12_TEXTURE_ADDRESS_MODE UVの使用方法の列挙
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture_address_mode_text)
+{
+    // UVが０～１を超えると繰り返し表示
+    if (in_texture_address_mode_text == "WARP")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    }
+
+    // UVが０～１を超えるとテクスチャの端に到達するたびに反転して繰り返し表示
+    else if (in_texture_address_mode_text == "MIRROR")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
+    }
+
+    // UVが０～１を超えるとUVを強制的に０か１に設定
+    else if (in_texture_address_mode_text == "CLAMP")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+    }
+
+    // UVが０～１を超えるとUVを強制的に黒色を返す
+    else if (in_texture_address_mode_text == "BORDER")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+    }
+
+    // UVが０～１を超えるとUVを一度反転したテクスチャが出現するがその後は何も表示しない
+    else
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
+    }
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ルートシグネチャのパラメータの設定を行う
-// 引数   ：vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報, int レジスタ番号, int シェーダー番号
+// 引数   ：vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報, int レジスタ番号, int シェーダー番号, D3D12_TEXTURE_ADDRESS_MODE UVの使用方法
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler_desc, int in_register_num, int in_shader_num)
+inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler_desc, int in_register_num, int in_shader_num, D3D12_TEXTURE_ADDRESS_MODE in_address_mode)
 {
     // ☆ 変数宣言 ☆ //
     int set_static_number = (int)in_sampler_desc.size();    // 設定先のパラメータの配列番号
@@ -1363,13 +1402,13 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in
     in_sampler_desc[set_static_number].Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
 
     // U座標の処理の仕方
-    in_sampler_desc[set_static_number].AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    in_sampler_desc[set_static_number].AddressU = in_address_mode;
 
     // V座標の処理の仕方
-    in_sampler_desc[set_static_number].AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    in_sampler_desc[set_static_number].AddressV = in_address_mode;
 
     // W座標の処理の仕方
-    in_sampler_desc[set_static_number].AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    in_sampler_desc[set_static_number].AddressW = in_address_mode;
 
     // ミップマップレベルのオフセット
     in_sampler_desc[set_static_number].MipLODBias = 0.0f;
@@ -1680,7 +1719,7 @@ void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSE
         // ☆ 変数宣言 ☆ //
         int constant_buffer_sum = (int)in_shader_inform.all_shader_signature.constant_data.size();   // 定数バッファ数
         int texture_sum = (int)in_shader_inform.all_shader_signature.texture_data.size();   // テクスチャリソース数
-        int sampler_sum = in_shader_inform.all_shader_signature.sampler_sum;   // サンプラー数
+        int sampler_sum = in_shader_inform.all_shader_signature.sampler_data.size();   // サンプラー数
         
 
         // シェーダーの定数バッファ分繰り返す
@@ -1699,11 +1738,10 @@ void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSE
             shader_paramater_register_start += 1;
         }
 
-
         // サンプラー分繰り返す
         for (int now_sampler_num = 0; now_sampler_num < sampler_sum; now_sampler_num++)
         {
-            Inline_Set_Sampler_State(in_sampler, shader_sampler_register_start, D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL);
+            Inline_Set_Sampler_State(in_sampler, shader_sampler_register_start, D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL, Inline_Get_Texture_Mode(in_shader_inform.all_shader_signature.sampler_data[now_sampler_num].uv_setting));
 
             shader_sampler_register_start += 1;
         }
@@ -1716,7 +1754,7 @@ void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSE
         // ☆ 変数宣言 ☆ //
         int constant_buffer_sum = (int)in_shader_inform.signature_list[now_shader_kind].constant_data.size();   // 定数バッファ数
         int texture_sum = (int)in_shader_inform.signature_list[now_shader_kind].texture_data.size();   // テクスチャリソース数
-        int sampler_sum = (int)in_shader_inform.signature_list[now_shader_kind].sampler_sum;   // サンプラー数
+        int sampler_sum = (int)in_shader_inform.signature_list[now_shader_kind].sampler_data.size();   // サンプラー数
         int set_param_register_num = shader_paramater_register_start; // 設定するレジスタ番号
         int set_sampler_register_num = shader_sampler_register_start; // 設定するレジスタ番号
 
@@ -1740,7 +1778,7 @@ void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSE
         // サンプラー分繰り返す
         for (int now_sampler_num = 0; now_sampler_num < sampler_sum; now_sampler_num++)
         {
-            Inline_Set_Sampler_State(in_sampler, set_sampler_register_num, now_shader_kind + 1);
+            Inline_Set_Sampler_State(in_sampler, set_sampler_register_num, now_shader_kind + 1, Inline_Get_Texture_Mode(in_shader_inform.signature_list[now_shader_kind].sampler_data[now_sampler_num].uv_setting));
 
             set_sampler_register_num += 1;
         }

@@ -41,6 +41,12 @@ namespace ASSET::SHADER
 		std::string initialized_texture_name = "";	// 使用するテクスチャ名
 	};
 
+	// サンプラー設定の情報の構造体
+	struct S_Sampler_Resource_Signature
+	{
+		std::string uv_setting = "";	// UVの使用方法
+	};
+
 
 	// シェーダーのリソースの識別名を管理するための構造体
 	struct S_Shader_Resource_Signature_Inform
@@ -49,7 +55,7 @@ namespace ASSET::SHADER
 
 		std::vector<S_Texture_Resource_Signature> texture_data;	// テクスチャデータの識別用の情報
 
-		int sampler_sum = 0;	// サンプラー数
+		std::vector<S_Sampler_Resource_Signature> sampler_data;	// サンプラー数
 	};
 
 
