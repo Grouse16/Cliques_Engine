@@ -34,5 +34,17 @@ namespace Shader_Setting_Generator
 
             uC_Vertex_Setting_List1.M_Reset();
         }
+
+        // 頂点レイアウトの変数情報の数を返す　戻り値：頂点レイアウトの変数の数
+        public int M_Get_Vertex_Instance_Sum()
+        {
+            return (int)NB_Vertex_Layout_Sum.Value;
+        }
+
+        // 頂点の変数のリストを返す　戻り値：頂点の変数のリスト
+        public List<UC_Vertex_Setting> M_Get_Vertex_Layout_List()
+        {
+            return uC_Vertex_Setting_List1.M_Get_Vertex_Layout_List();
+        }
     }
 }

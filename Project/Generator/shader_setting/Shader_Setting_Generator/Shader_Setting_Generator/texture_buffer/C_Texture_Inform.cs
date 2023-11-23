@@ -9,7 +9,7 @@ namespace Shader_Setting_Generator
     // ☆ クラス ☆ //
 
     // テクスチャ用の情報
-    internal class C_Texture_Inform
+    public class C_Texture_Inform
     {
         // ☆ 変数宣言 ☆ //
         public string m_name = "default";   // テクスチャ識別名

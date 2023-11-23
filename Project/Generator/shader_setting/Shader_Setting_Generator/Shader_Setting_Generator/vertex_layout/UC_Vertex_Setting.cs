@@ -54,5 +54,40 @@ namespace Shader_Setting_Generator
         {
 
         }
+
+
+        // バイト数を返す　戻り値：バイト数
+        public int M_Get_Byte_Sum()
+        {
+            // 1バイト
+            if (CB_Byte_Format.SelectedIndex == 0)
+            {
+                return 1;
+            }
+
+            // 2バイト
+            else if (CB_Byte_Format.SelectedIndex == 1)
+            {
+                return 2;
+            }
+
+            // 4バイト
+            else
+            {
+                return 4;
+            }
+        }
+
+        // 頂点のフォーマットを返す　戻り値：フォーマットを示す文字列
+        public string M_Get_Format_String()
+        {
+            return CB_Type_Format.Text;
+        }
+
+        // 変数の要素数を返す　戻り値：要素数
+        public int M_Get_Vertex_Element_Sum()
+        {
+            return CB_Element.SelectedIndex + 1;
+        }
     }
 }

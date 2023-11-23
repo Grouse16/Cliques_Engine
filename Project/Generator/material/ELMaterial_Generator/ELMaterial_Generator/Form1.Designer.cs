@@ -263,7 +263,6 @@
             this.TB_material_name.Size = new System.Drawing.Size(928, 23);
             this.TB_material_name.TabIndex = 0;
             this.TB_material_name.Text = "Default_Name";
-            this.TB_material_name.TextChanged += new System.EventHandler(this.TB_material_name_TextChanged);
             // 
             // textBox2
             // 
@@ -339,7 +338,6 @@
             this.textBox3.Size = new System.Drawing.Size(95, 23);
             this.textBox3.TabIndex = 0;
             this.textBox3.Text = "バイト数";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // CB_Blend_Byte_Format
             // 
@@ -368,7 +366,6 @@
             this.textBox6.Size = new System.Drawing.Size(95, 23);
             this.textBox6.TabIndex = 0;
             this.textBox6.Text = "色数";
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // CB_Blend_Color_Format
             // 
@@ -395,7 +392,6 @@
             this.textBox7.Size = new System.Drawing.Size(928, 23);
             this.textBox7.TabIndex = 0;
             this.textBox7.Text = "ラスタライザ設定";
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox8
             // 
@@ -406,7 +402,6 @@
             this.textBox8.Size = new System.Drawing.Size(95, 23);
             this.textBox8.TabIndex = 0;
             this.textBox8.Text = "表示モード";
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // CB_Rasterize_Draw_Mode
             // 
@@ -421,7 +416,6 @@
             this.CB_Rasterize_Draw_Mode.Name = "CB_Rasterize_Draw_Mode";
             this.CB_Rasterize_Draw_Mode.Size = new System.Drawing.Size(836, 24);
             this.CB_Rasterize_Draw_Mode.TabIndex = 1;
-            this.CB_Rasterize_Draw_Mode.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterize_Draw_Mode_SelectedIndexChanged);
             // 
             // textBox9
             // 
@@ -432,7 +426,6 @@
             this.textBox9.Size = new System.Drawing.Size(95, 23);
             this.textBox9.TabIndex = 0;
             this.textBox9.Text = "面の表示基準";
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // CB_Rasterizer_Mesh_Setting
             // 
@@ -448,7 +441,6 @@
             this.CB_Rasterizer_Mesh_Setting.Name = "CB_Rasterizer_Mesh_Setting";
             this.CB_Rasterizer_Mesh_Setting.Size = new System.Drawing.Size(836, 24);
             this.CB_Rasterizer_Mesh_Setting.TabIndex = 1;
-            this.CB_Rasterizer_Mesh_Setting.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterizer_Mesh_Setting_SelectedIndexChanged);
             // 
             // textBox10
             // 
@@ -459,7 +451,6 @@
             this.textBox10.Size = new System.Drawing.Size(95, 23);
             this.textBox10.TabIndex = 0;
             this.textBox10.Text = "表面の基準";
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // CB_Rasterizer_Front
             // 
@@ -474,7 +465,6 @@
             this.CB_Rasterizer_Front.Name = "CB_Rasterizer_Front";
             this.CB_Rasterizer_Front.Size = new System.Drawing.Size(836, 24);
             this.CB_Rasterizer_Front.TabIndex = 1;
-            this.CB_Rasterizer_Front.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterizer_Front_SelectedIndexChanged);
             // 
             // textBox11
             // 
@@ -486,7 +476,6 @@
             this.textBox11.Size = new System.Drawing.Size(95, 23);
             this.textBox11.TabIndex = 0;
             this.textBox11.Text = "奥行き値";
-            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Depth_Value
             // 
@@ -527,7 +516,6 @@
             this.TB_Depth_Value.TabIndex = 0;
             this.TB_Depth_Value.Text = "0";
             this.TB_Depth_Value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Depth_Value.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox14
             // 
@@ -539,7 +527,6 @@
             this.textBox14.Size = new System.Drawing.Size(28, 21);
             this.textBox14.TabIndex = 0;
             this.textBox14.Text = "100";
-            this.textBox14.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox15
             // 
@@ -552,7 +539,6 @@
             this.textBox15.TabIndex = 0;
             this.textBox15.Text = "0";
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox15.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox16
             // 
@@ -564,7 +550,6 @@
             this.textBox16.Size = new System.Drawing.Size(95, 21);
             this.textBox16.TabIndex = 0;
             this.textBox16.Text = "奥行き最大値";
-            this.textBox16.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Depth_Max_Value
             // 
@@ -577,7 +562,6 @@
             this.TB_Depth_Max_Value.TabIndex = 0;
             this.TB_Depth_Max_Value.Text = "0";
             this.TB_Depth_Max_Value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Depth_Max_Value.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Depth_Max_Value
             // 
@@ -598,7 +582,6 @@
             this.textBox18.Size = new System.Drawing.Size(28, 21);
             this.textBox18.TabIndex = 0;
             this.textBox18.Text = "200";
-            this.textBox18.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox19
             // 
@@ -611,7 +594,6 @@
             this.textBox19.TabIndex = 0;
             this.textBox19.Text = "0";
             this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox19.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox17
             // 
@@ -623,7 +605,6 @@
             this.textBox17.Size = new System.Drawing.Size(95, 21);
             this.textBox17.TabIndex = 0;
             this.textBox17.Text = "奥行き傾斜値";
-            this.textBox17.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Depth_Slope
             // 
@@ -636,7 +617,6 @@
             this.TB_Depth_Slope.TabIndex = 0;
             this.TB_Depth_Slope.Text = "0";
             this.TB_Depth_Slope.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Depth_Slope.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Depth_Slope
             // 
@@ -657,7 +637,6 @@
             this.textBox21.Size = new System.Drawing.Size(28, 21);
             this.textBox21.TabIndex = 0;
             this.textBox21.Text = "100";
-            this.textBox21.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox22
             // 
@@ -670,7 +649,6 @@
             this.textBox22.TabIndex = 0;
             this.textBox22.Text = "0";
             this.textBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox22.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox20
             // 
@@ -681,7 +659,6 @@
             this.textBox20.Size = new System.Drawing.Size(928, 23);
             this.textBox20.TabIndex = 0;
             this.textBox20.Text = "サンプリング設定";
-            this.textBox20.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox23
             // 
@@ -693,7 +670,6 @@
             this.textBox23.Size = new System.Drawing.Size(119, 23);
             this.textBox23.TabIndex = 0;
             this.textBox23.Text = "サンプリング回数";
-            this.textBox23.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Sampling_Count
             // 
@@ -706,7 +682,6 @@
             this.TB_Sampling_Count.TabIndex = 0;
             this.TB_Sampling_Count.Text = "0";
             this.TB_Sampling_Count.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Sampling_Count.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Sampling_Count
             // 
@@ -727,7 +702,6 @@
             this.textBox25.Size = new System.Drawing.Size(28, 21);
             this.textBox25.TabIndex = 0;
             this.textBox25.Text = "20";
-            this.textBox25.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox26
             // 
@@ -740,7 +714,6 @@
             this.textBox26.TabIndex = 0;
             this.textBox26.Text = "0";
             this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox26.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox24
             // 
@@ -752,7 +725,6 @@
             this.textBox24.Size = new System.Drawing.Size(119, 23);
             this.textBox24.TabIndex = 0;
             this.textBox24.Text = "サンプリング品質";
-            this.textBox24.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Sampling_Quality
             // 
@@ -765,7 +737,6 @@
             this.TB_Sampling_Quality.TabIndex = 0;
             this.TB_Sampling_Quality.Text = "0";
             this.TB_Sampling_Quality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Sampling_Quality.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Sampling_Quality
             // 
@@ -786,7 +757,6 @@
             this.textBox28.Size = new System.Drawing.Size(28, 21);
             this.textBox28.TabIndex = 0;
             this.textBox28.Text = "20";
-            this.textBox28.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox29
             // 
@@ -799,7 +769,6 @@
             this.textBox29.TabIndex = 0;
             this.textBox29.Text = "0";
             this.textBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox29.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox13
             // 
@@ -810,7 +779,6 @@
             this.textBox13.Size = new System.Drawing.Size(449, 23);
             this.textBox13.TabIndex = 0;
             this.textBox13.Text = "質感（マテリアル）";
-            this.textBox13.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox27
             // 
@@ -822,7 +790,6 @@
             this.textBox27.Size = new System.Drawing.Size(449, 23);
             this.textBox27.TabIndex = 0;
             this.textBox27.Text = "アンビエント（基本の明るさ）";
-            this.textBox27.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Ambient_Red
             // 
@@ -835,7 +802,6 @@
             this.TB_Ambient_Red.TabIndex = 0;
             this.TB_Ambient_Red.Text = "0";
             this.TB_Ambient_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Ambient_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Ambient_Red
             // 
@@ -856,20 +822,18 @@
             this.textBox31.Size = new System.Drawing.Size(28, 21);
             this.textBox31.TabIndex = 0;
             this.textBox31.Text = "1";
-            this.textBox31.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox32
             // 
             this.textBox32.BackColor = System.Drawing.SystemColors.Control;
             this.textBox32.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox32.Location = new System.Drawing.Point(1082, 54);
+            this.textBox32.Location = new System.Drawing.Point(1085, 54);
             this.textBox32.Name = "textBox32";
             this.textBox32.ReadOnly = true;
             this.textBox32.Size = new System.Drawing.Size(28, 21);
             this.textBox32.TabIndex = 0;
             this.textBox32.Text = "0";
             this.textBox32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox32.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox33
             // 
@@ -882,7 +846,6 @@
             this.textBox33.TabIndex = 0;
             this.textBox33.Text = "R";
             this.textBox33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox33.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Ambient_Green
             // 
@@ -895,7 +858,6 @@
             this.TB_Ambient_Green.TabIndex = 0;
             this.TB_Ambient_Green.Text = "0";
             this.TB_Ambient_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Ambient_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox34
             // 
@@ -908,7 +870,6 @@
             this.textBox34.TabIndex = 0;
             this.textBox34.Text = "G";
             this.textBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox34.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Ambient_Green
             // 
@@ -929,20 +890,18 @@
             this.textBox35.Size = new System.Drawing.Size(28, 21);
             this.textBox35.TabIndex = 0;
             this.textBox35.Text = "1";
-            this.textBox35.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox36
             // 
             this.textBox36.BackColor = System.Drawing.SystemColors.Control;
             this.textBox36.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox36.Location = new System.Drawing.Point(1082, 76);
+            this.textBox36.Location = new System.Drawing.Point(1085, 76);
             this.textBox36.Name = "textBox36";
             this.textBox36.ReadOnly = true;
             this.textBox36.Size = new System.Drawing.Size(28, 21);
             this.textBox36.TabIndex = 0;
             this.textBox36.Text = "0";
             this.textBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox36.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox30
             // 
@@ -955,7 +914,6 @@
             this.textBox30.TabIndex = 0;
             this.textBox30.Text = "0";
             this.textBox30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox30.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Ambient_Blue
             // 
@@ -968,7 +926,6 @@
             this.TB_Ambient_Blue.TabIndex = 0;
             this.TB_Ambient_Blue.Text = "B";
             this.TB_Ambient_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Ambient_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Ambient_Blue
             // 
@@ -989,20 +946,18 @@
             this.textBox38.Size = new System.Drawing.Size(28, 21);
             this.textBox38.TabIndex = 0;
             this.textBox38.Text = "1";
-            this.textBox38.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox39
             // 
             this.textBox39.BackColor = System.Drawing.SystemColors.Control;
             this.textBox39.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox39.Location = new System.Drawing.Point(1083, 99);
+            this.textBox39.Location = new System.Drawing.Point(1086, 99);
             this.textBox39.Name = "textBox39";
             this.textBox39.ReadOnly = true;
             this.textBox39.Size = new System.Drawing.Size(28, 21);
             this.textBox39.TabIndex = 0;
             this.textBox39.Text = "0";
             this.textBox39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox39.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Ambient_Alpha
             // 
@@ -1015,7 +970,6 @@
             this.TB_Ambient_Alpha.TabIndex = 0;
             this.TB_Ambient_Alpha.Text = "0";
             this.TB_Ambient_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Ambient_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox40
             // 
@@ -1028,7 +982,6 @@
             this.textBox40.TabIndex = 0;
             this.textBox40.Text = "A";
             this.textBox40.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox40.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Ambient_Alpha
             // 
@@ -1049,20 +1002,18 @@
             this.textBox41.Size = new System.Drawing.Size(28, 21);
             this.textBox41.TabIndex = 0;
             this.textBox41.Text = "1";
-            this.textBox41.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox42
             // 
             this.textBox42.BackColor = System.Drawing.SystemColors.Control;
             this.textBox42.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox42.Location = new System.Drawing.Point(1083, 121);
+            this.textBox42.Location = new System.Drawing.Point(1086, 121);
             this.textBox42.Name = "textBox42";
             this.textBox42.ReadOnly = true;
             this.textBox42.Size = new System.Drawing.Size(28, 21);
             this.textBox42.TabIndex = 0;
             this.textBox42.Text = "0";
             this.textBox42.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox42.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox37
             // 
@@ -1074,7 +1025,6 @@
             this.textBox37.Size = new System.Drawing.Size(449, 23);
             this.textBox37.TabIndex = 0;
             this.textBox37.Text = "ディフューズ（色の減衰）";
-            this.textBox37.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Diffuse_Red
             // 
@@ -1087,7 +1037,6 @@
             this.TB_Diffuse_Red.TabIndex = 0;
             this.TB_Diffuse_Red.Text = "0";
             this.TB_Diffuse_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Diffuse_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox44
             // 
@@ -1100,7 +1049,6 @@
             this.textBox44.TabIndex = 0;
             this.textBox44.Text = "R";
             this.textBox44.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox44.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Diffuse_Green
             // 
@@ -1113,7 +1061,6 @@
             this.TB_Diffuse_Green.TabIndex = 0;
             this.TB_Diffuse_Green.Text = "0";
             this.TB_Diffuse_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Diffuse_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Diffuse_Blue
             // 
@@ -1126,7 +1073,6 @@
             this.TB_Diffuse_Blue.TabIndex = 0;
             this.TB_Diffuse_Blue.Text = "0";
             this.TB_Diffuse_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Diffuse_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox47
             // 
@@ -1139,7 +1085,6 @@
             this.textBox47.TabIndex = 0;
             this.textBox47.Text = "G";
             this.textBox47.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox47.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Diffuse_Alpha
             // 
@@ -1152,7 +1097,6 @@
             this.TB_Diffuse_Alpha.TabIndex = 0;
             this.TB_Diffuse_Alpha.Text = "0";
             this.TB_Diffuse_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Diffuse_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox49
             // 
@@ -1165,7 +1109,6 @@
             this.textBox49.TabIndex = 0;
             this.textBox49.Text = "B";
             this.textBox49.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox49.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox50
             // 
@@ -1178,7 +1121,6 @@
             this.textBox50.TabIndex = 0;
             this.textBox50.Text = "A";
             this.textBox50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox50.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Diffuse_Red
             // 
@@ -1226,7 +1168,6 @@
             this.textBox51.Size = new System.Drawing.Size(28, 21);
             this.textBox51.TabIndex = 0;
             this.textBox51.Text = "1";
-            this.textBox51.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox52
             // 
@@ -1238,7 +1179,6 @@
             this.textBox52.Size = new System.Drawing.Size(28, 21);
             this.textBox52.TabIndex = 0;
             this.textBox52.Text = "1";
-            this.textBox52.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox53
             // 
@@ -1250,7 +1190,6 @@
             this.textBox53.Size = new System.Drawing.Size(28, 21);
             this.textBox53.TabIndex = 0;
             this.textBox53.Text = "1";
-            this.textBox53.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox54
             // 
@@ -1262,59 +1201,54 @@
             this.textBox54.Size = new System.Drawing.Size(28, 21);
             this.textBox54.TabIndex = 0;
             this.textBox54.Text = "1";
-            this.textBox54.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox55
             // 
             this.textBox55.BackColor = System.Drawing.SystemColors.Control;
             this.textBox55.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox55.Location = new System.Drawing.Point(1082, 165);
+            this.textBox55.Location = new System.Drawing.Point(1085, 165);
             this.textBox55.Name = "textBox55";
             this.textBox55.ReadOnly = true;
             this.textBox55.Size = new System.Drawing.Size(28, 21);
             this.textBox55.TabIndex = 0;
             this.textBox55.Text = "0";
             this.textBox55.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox55.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox56
             // 
             this.textBox56.BackColor = System.Drawing.SystemColors.Control;
             this.textBox56.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox56.Location = new System.Drawing.Point(1082, 187);
+            this.textBox56.Location = new System.Drawing.Point(1085, 187);
             this.textBox56.Name = "textBox56";
             this.textBox56.ReadOnly = true;
             this.textBox56.Size = new System.Drawing.Size(28, 21);
             this.textBox56.TabIndex = 0;
             this.textBox56.Text = "0";
             this.textBox56.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox56.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox57
             // 
             this.textBox57.BackColor = System.Drawing.SystemColors.Control;
             this.textBox57.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox57.Location = new System.Drawing.Point(1083, 210);
+            this.textBox57.Location = new System.Drawing.Point(1085, 210);
             this.textBox57.Name = "textBox57";
             this.textBox57.ReadOnly = true;
             this.textBox57.Size = new System.Drawing.Size(28, 21);
             this.textBox57.TabIndex = 0;
             this.textBox57.Text = "0";
             this.textBox57.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox57.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox58
             // 
             this.textBox58.BackColor = System.Drawing.SystemColors.Control;
             this.textBox58.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox58.Location = new System.Drawing.Point(1083, 232);
+            this.textBox58.Location = new System.Drawing.Point(1085, 232);
             this.textBox58.Name = "textBox58";
             this.textBox58.ReadOnly = true;
             this.textBox58.Size = new System.Drawing.Size(28, 21);
             this.textBox58.TabIndex = 0;
             this.textBox58.Text = "0";
             this.textBox58.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox58.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Emission_Red
             // 
@@ -1327,7 +1261,6 @@
             this.TB_Emission_Red.TabIndex = 0;
             this.TB_Emission_Red.Text = "0";
             this.TB_Emission_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Emission_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox45
             // 
@@ -1340,7 +1273,6 @@
             this.textBox45.TabIndex = 0;
             this.textBox45.Text = "R";
             this.textBox45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox45.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Emission_Green
             // 
@@ -1353,7 +1285,6 @@
             this.TB_Emission_Green.TabIndex = 0;
             this.TB_Emission_Green.Text = "0";
             this.TB_Emission_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Emission_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Emission_Blue
             // 
@@ -1366,7 +1297,6 @@
             this.TB_Emission_Blue.TabIndex = 0;
             this.TB_Emission_Blue.Text = "0";
             this.TB_Emission_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Emission_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox59
             // 
@@ -1379,7 +1309,6 @@
             this.textBox59.TabIndex = 0;
             this.textBox59.Text = "G";
             this.textBox59.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox59.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Emission_Alpha
             // 
@@ -1392,7 +1321,6 @@
             this.TB_Emission_Alpha.TabIndex = 0;
             this.TB_Emission_Alpha.Text = "0";
             this.TB_Emission_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Emission_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox61
             // 
@@ -1405,7 +1333,6 @@
             this.textBox61.TabIndex = 0;
             this.textBox61.Text = "B";
             this.textBox61.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox61.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox62
             // 
@@ -1418,7 +1345,6 @@
             this.textBox62.TabIndex = 0;
             this.textBox62.Text = "A";
             this.textBox62.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox62.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Emission_Red
             // 
@@ -1466,7 +1392,6 @@
             this.textBox63.Size = new System.Drawing.Size(28, 21);
             this.textBox63.TabIndex = 0;
             this.textBox63.Text = "10";
-            this.textBox63.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox64
             // 
@@ -1478,7 +1403,6 @@
             this.textBox64.Size = new System.Drawing.Size(28, 21);
             this.textBox64.TabIndex = 0;
             this.textBox64.Text = "10";
-            this.textBox64.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox65
             // 
@@ -1490,7 +1414,6 @@
             this.textBox65.Size = new System.Drawing.Size(28, 21);
             this.textBox65.TabIndex = 0;
             this.textBox65.Text = "10";
-            this.textBox65.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox66
             // 
@@ -1502,59 +1425,54 @@
             this.textBox66.Size = new System.Drawing.Size(28, 21);
             this.textBox66.TabIndex = 0;
             this.textBox66.Text = "10";
-            this.textBox66.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox67
             // 
             this.textBox67.BackColor = System.Drawing.SystemColors.Control;
             this.textBox67.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox67.Location = new System.Drawing.Point(1083, 276);
+            this.textBox67.Location = new System.Drawing.Point(1085, 276);
             this.textBox67.Name = "textBox67";
             this.textBox67.ReadOnly = true;
             this.textBox67.Size = new System.Drawing.Size(28, 21);
             this.textBox67.TabIndex = 0;
             this.textBox67.Text = "0";
             this.textBox67.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox67.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox68
             // 
             this.textBox68.BackColor = System.Drawing.SystemColors.Control;
             this.textBox68.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox68.Location = new System.Drawing.Point(1083, 298);
+            this.textBox68.Location = new System.Drawing.Point(1085, 298);
             this.textBox68.Name = "textBox68";
             this.textBox68.ReadOnly = true;
             this.textBox68.Size = new System.Drawing.Size(28, 21);
             this.textBox68.TabIndex = 0;
             this.textBox68.Text = "0";
             this.textBox68.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox68.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox69
             // 
             this.textBox69.BackColor = System.Drawing.SystemColors.Control;
             this.textBox69.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox69.Location = new System.Drawing.Point(1084, 321);
+            this.textBox69.Location = new System.Drawing.Point(1085, 321);
             this.textBox69.Name = "textBox69";
             this.textBox69.ReadOnly = true;
             this.textBox69.Size = new System.Drawing.Size(28, 21);
             this.textBox69.TabIndex = 0;
             this.textBox69.Text = "0";
             this.textBox69.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox69.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox70
             // 
             this.textBox70.BackColor = System.Drawing.SystemColors.Control;
             this.textBox70.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox70.Location = new System.Drawing.Point(1084, 343);
+            this.textBox70.Location = new System.Drawing.Point(1085, 343);
             this.textBox70.Name = "textBox70";
             this.textBox70.ReadOnly = true;
             this.textBox70.Size = new System.Drawing.Size(28, 21);
             this.textBox70.TabIndex = 0;
             this.textBox70.Text = "0";
             this.textBox70.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox70.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox71
             // 
@@ -1566,7 +1484,6 @@
             this.textBox71.Size = new System.Drawing.Size(449, 23);
             this.textBox71.TabIndex = 0;
             this.textBox71.Text = "エミッション（輝き）";
-            this.textBox71.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Reflection_Red
             // 
@@ -1579,7 +1496,6 @@
             this.TB_Reflection_Red.TabIndex = 0;
             this.TB_Reflection_Red.Text = "0";
             this.TB_Reflection_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Reflection_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox46
             // 
@@ -1592,7 +1508,6 @@
             this.textBox46.TabIndex = 0;
             this.textBox46.Text = "R";
             this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox46.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Reflection_Green
             // 
@@ -1605,7 +1520,6 @@
             this.TB_Reflection_Green.TabIndex = 0;
             this.TB_Reflection_Green.Text = "0";
             this.TB_Reflection_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Reflection_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Reflection_Blue
             // 
@@ -1618,7 +1532,6 @@
             this.TB_Reflection_Blue.TabIndex = 0;
             this.TB_Reflection_Blue.Text = "0";
             this.TB_Reflection_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Reflection_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox72
             // 
@@ -1631,7 +1544,6 @@
             this.textBox72.TabIndex = 0;
             this.textBox72.Text = "G";
             this.textBox72.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox72.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Reflection_Alpha
             // 
@@ -1644,7 +1556,6 @@
             this.TB_Reflection_Alpha.TabIndex = 0;
             this.TB_Reflection_Alpha.Text = "0";
             this.TB_Reflection_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Reflection_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox74
             // 
@@ -1657,7 +1568,6 @@
             this.textBox74.TabIndex = 0;
             this.textBox74.Text = "B";
             this.textBox74.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox74.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox75
             // 
@@ -1670,7 +1580,6 @@
             this.textBox75.TabIndex = 0;
             this.textBox75.Text = "A";
             this.textBox75.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox75.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Reflection_Red
             // 
@@ -1718,7 +1627,6 @@
             this.textBox76.Size = new System.Drawing.Size(28, 21);
             this.textBox76.TabIndex = 0;
             this.textBox76.Text = "1";
-            this.textBox76.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox77
             // 
@@ -1730,7 +1638,6 @@
             this.textBox77.Size = new System.Drawing.Size(28, 21);
             this.textBox77.TabIndex = 0;
             this.textBox77.Text = "1";
-            this.textBox77.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox78
             // 
@@ -1742,7 +1649,6 @@
             this.textBox78.Size = new System.Drawing.Size(28, 21);
             this.textBox78.TabIndex = 0;
             this.textBox78.Text = "1";
-            this.textBox78.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox79
             // 
@@ -1754,59 +1660,54 @@
             this.textBox79.Size = new System.Drawing.Size(28, 21);
             this.textBox79.TabIndex = 0;
             this.textBox79.Text = "1";
-            this.textBox79.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox80
             // 
             this.textBox80.BackColor = System.Drawing.SystemColors.Control;
             this.textBox80.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox80.Location = new System.Drawing.Point(1084, 386);
+            this.textBox80.Location = new System.Drawing.Point(1085, 386);
             this.textBox80.Name = "textBox80";
             this.textBox80.ReadOnly = true;
             this.textBox80.Size = new System.Drawing.Size(28, 21);
             this.textBox80.TabIndex = 0;
             this.textBox80.Text = "0";
             this.textBox80.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox80.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox81
             // 
             this.textBox81.BackColor = System.Drawing.SystemColors.Control;
             this.textBox81.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox81.Location = new System.Drawing.Point(1084, 408);
+            this.textBox81.Location = new System.Drawing.Point(1085, 408);
             this.textBox81.Name = "textBox81";
             this.textBox81.ReadOnly = true;
             this.textBox81.Size = new System.Drawing.Size(28, 21);
             this.textBox81.TabIndex = 0;
             this.textBox81.Text = "0";
             this.textBox81.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox81.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox82
             // 
             this.textBox82.BackColor = System.Drawing.SystemColors.Control;
             this.textBox82.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox82.Location = new System.Drawing.Point(1084, 430);
+            this.textBox82.Location = new System.Drawing.Point(1085, 430);
             this.textBox82.Name = "textBox82";
             this.textBox82.ReadOnly = true;
             this.textBox82.Size = new System.Drawing.Size(28, 21);
             this.textBox82.TabIndex = 0;
             this.textBox82.Text = "0";
             this.textBox82.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox82.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox83
             // 
             this.textBox83.BackColor = System.Drawing.SystemColors.Control;
             this.textBox83.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox83.Location = new System.Drawing.Point(1084, 453);
+            this.textBox83.Location = new System.Drawing.Point(1085, 453);
             this.textBox83.Name = "textBox83";
             this.textBox83.ReadOnly = true;
             this.textBox83.Size = new System.Drawing.Size(28, 21);
             this.textBox83.TabIndex = 0;
             this.textBox83.Text = "0";
             this.textBox83.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox83.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox84
             // 
@@ -1818,7 +1719,6 @@
             this.textBox84.Size = new System.Drawing.Size(449, 23);
             this.textBox84.TabIndex = 0;
             this.textBox84.Text = "リフレクション（反射）";
-            this.textBox84.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Specular_Red
             // 
@@ -1831,7 +1731,6 @@
             this.TB_Specular_Red.TabIndex = 0;
             this.TB_Specular_Red.Text = "0";
             this.TB_Specular_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Specular_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox85
             // 
@@ -1844,7 +1743,6 @@
             this.textBox85.TabIndex = 0;
             this.textBox85.Text = "R";
             this.textBox85.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox85.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Specular_Green
             // 
@@ -1857,7 +1755,6 @@
             this.TB_Specular_Green.TabIndex = 0;
             this.TB_Specular_Green.Text = "0";
             this.TB_Specular_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Specular_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Specular_Blue
             // 
@@ -1870,7 +1767,6 @@
             this.TB_Specular_Blue.TabIndex = 0;
             this.TB_Specular_Blue.Text = "0";
             this.TB_Specular_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Specular_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox88
             // 
@@ -1883,7 +1779,6 @@
             this.textBox88.TabIndex = 0;
             this.textBox88.Text = "G";
             this.textBox88.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox88.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Specular_Alpha
             // 
@@ -1896,7 +1791,6 @@
             this.TB_Specular_Alpha.TabIndex = 0;
             this.TB_Specular_Alpha.Text = "0";
             this.TB_Specular_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Specular_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox90
             // 
@@ -1909,7 +1803,6 @@
             this.textBox90.TabIndex = 0;
             this.textBox90.Text = "B";
             this.textBox90.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox90.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox91
             // 
@@ -1922,7 +1815,6 @@
             this.textBox91.TabIndex = 0;
             this.textBox91.Text = "A";
             this.textBox91.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox91.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Specular_Red
             // 
@@ -1970,7 +1862,6 @@
             this.textBox92.Size = new System.Drawing.Size(28, 21);
             this.textBox92.TabIndex = 0;
             this.textBox92.Text = "1";
-            this.textBox92.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox93
             // 
@@ -1982,7 +1873,6 @@
             this.textBox93.Size = new System.Drawing.Size(28, 21);
             this.textBox93.TabIndex = 0;
             this.textBox93.Text = "1";
-            this.textBox93.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox94
             // 
@@ -1994,7 +1884,6 @@
             this.textBox94.Size = new System.Drawing.Size(28, 21);
             this.textBox94.TabIndex = 0;
             this.textBox94.Text = "1";
-            this.textBox94.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox95
             // 
@@ -2006,33 +1895,30 @@
             this.textBox95.Size = new System.Drawing.Size(28, 21);
             this.textBox95.TabIndex = 0;
             this.textBox95.Text = "1";
-            this.textBox95.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox96
             // 
             this.textBox96.BackColor = System.Drawing.SystemColors.Control;
             this.textBox96.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox96.Location = new System.Drawing.Point(1084, 493);
+            this.textBox96.Location = new System.Drawing.Point(1085, 493);
             this.textBox96.Name = "textBox96";
             this.textBox96.ReadOnly = true;
             this.textBox96.Size = new System.Drawing.Size(28, 21);
             this.textBox96.TabIndex = 0;
             this.textBox96.Text = "0";
             this.textBox96.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox96.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox97
             // 
             this.textBox97.BackColor = System.Drawing.SystemColors.Control;
             this.textBox97.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox97.Location = new System.Drawing.Point(1084, 515);
+            this.textBox97.Location = new System.Drawing.Point(1085, 515);
             this.textBox97.Name = "textBox97";
             this.textBox97.ReadOnly = true;
             this.textBox97.Size = new System.Drawing.Size(28, 21);
             this.textBox97.TabIndex = 0;
             this.textBox97.Text = "0";
             this.textBox97.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox97.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox98
             // 
@@ -2045,7 +1931,6 @@
             this.textBox98.TabIndex = 0;
             this.textBox98.Text = "0";
             this.textBox98.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox98.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox99
             // 
@@ -2058,7 +1943,6 @@
             this.textBox99.TabIndex = 0;
             this.textBox99.Text = "0";
             this.textBox99.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox99.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox100
             // 
@@ -2070,7 +1954,6 @@
             this.textBox100.Size = new System.Drawing.Size(449, 23);
             this.textBox100.TabIndex = 0;
             this.textBox100.Text = "スペキュラー（滑らかさ、ハイライト）";
-            this.textBox100.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Transparent_Red
             // 
@@ -2083,7 +1966,6 @@
             this.TB_Transparent_Red.TabIndex = 0;
             this.TB_Transparent_Red.Text = "1";
             this.TB_Transparent_Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Transparent_Red.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox48
             // 
@@ -2096,7 +1978,6 @@
             this.textBox48.TabIndex = 0;
             this.textBox48.Text = "R";
             this.textBox48.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox48.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Transparent_Green
             // 
@@ -2109,7 +1990,6 @@
             this.TB_Transparent_Green.TabIndex = 0;
             this.TB_Transparent_Green.Text = "1";
             this.TB_Transparent_Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Transparent_Green.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Transparent_Blue
             // 
@@ -2122,7 +2002,6 @@
             this.TB_Transparent_Blue.TabIndex = 0;
             this.TB_Transparent_Blue.Text = "1";
             this.TB_Transparent_Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Transparent_Blue.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox86
             // 
@@ -2135,7 +2014,6 @@
             this.textBox86.TabIndex = 0;
             this.textBox86.Text = "G";
             this.textBox86.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox86.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // TB_Transparent_Alpha
             // 
@@ -2148,7 +2026,6 @@
             this.TB_Transparent_Alpha.TabIndex = 0;
             this.TB_Transparent_Alpha.Text = "1";
             this.TB_Transparent_Alpha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Transparent_Alpha.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox89
             // 
@@ -2161,7 +2038,6 @@
             this.textBox89.TabIndex = 0;
             this.textBox89.Text = "B";
             this.textBox89.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox89.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox101
             // 
@@ -2174,7 +2050,6 @@
             this.textBox101.TabIndex = 0;
             this.textBox101.Text = "A";
             this.textBox101.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox101.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // Track_Transparent_Red
             // 
@@ -2226,7 +2101,6 @@
             this.textBox102.Size = new System.Drawing.Size(28, 21);
             this.textBox102.TabIndex = 0;
             this.textBox102.Text = "1";
-            this.textBox102.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox103
             // 
@@ -2238,7 +2112,6 @@
             this.textBox103.Size = new System.Drawing.Size(28, 21);
             this.textBox103.TabIndex = 0;
             this.textBox103.Text = "1";
-            this.textBox103.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox104
             // 
@@ -2250,7 +2123,6 @@
             this.textBox104.Size = new System.Drawing.Size(28, 21);
             this.textBox104.TabIndex = 0;
             this.textBox104.Text = "1";
-            this.textBox104.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox105
             // 
@@ -2262,59 +2134,54 @@
             this.textBox105.Size = new System.Drawing.Size(28, 21);
             this.textBox105.TabIndex = 0;
             this.textBox105.Text = "1";
-            this.textBox105.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox106
             // 
             this.textBox106.BackColor = System.Drawing.SystemColors.Control;
             this.textBox106.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox106.Location = new System.Drawing.Point(1082, 605);
+            this.textBox106.Location = new System.Drawing.Point(1085, 605);
             this.textBox106.Name = "textBox106";
             this.textBox106.ReadOnly = true;
             this.textBox106.Size = new System.Drawing.Size(28, 21);
             this.textBox106.TabIndex = 0;
             this.textBox106.Text = "0";
             this.textBox106.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox106.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox107
             // 
             this.textBox107.BackColor = System.Drawing.SystemColors.Control;
             this.textBox107.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox107.Location = new System.Drawing.Point(1082, 627);
+            this.textBox107.Location = new System.Drawing.Point(1085, 627);
             this.textBox107.Name = "textBox107";
             this.textBox107.ReadOnly = true;
             this.textBox107.Size = new System.Drawing.Size(28, 21);
             this.textBox107.TabIndex = 0;
             this.textBox107.Text = "0";
             this.textBox107.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox107.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox108
             // 
             this.textBox108.BackColor = System.Drawing.SystemColors.Control;
             this.textBox108.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox108.Location = new System.Drawing.Point(1084, 650);
+            this.textBox108.Location = new System.Drawing.Point(1085, 651);
             this.textBox108.Name = "textBox108";
             this.textBox108.ReadOnly = true;
             this.textBox108.Size = new System.Drawing.Size(28, 21);
             this.textBox108.TabIndex = 0;
             this.textBox108.Text = "0";
             this.textBox108.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox108.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox109
             // 
             this.textBox109.BackColor = System.Drawing.SystemColors.Control;
             this.textBox109.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.textBox109.Location = new System.Drawing.Point(1084, 672);
+            this.textBox109.Location = new System.Drawing.Point(1085, 672);
             this.textBox109.Name = "textBox109";
             this.textBox109.ReadOnly = true;
             this.textBox109.Size = new System.Drawing.Size(28, 21);
             this.textBox109.TabIndex = 0;
             this.textBox109.Text = "0";
             this.textBox109.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox109.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox110
             // 
@@ -2326,32 +2193,29 @@
             this.textBox110.Size = new System.Drawing.Size(449, 23);
             this.textBox110.TabIndex = 0;
             this.textBox110.Text = "トランスペアレント（透明度）";
-            this.textBox110.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // B_Generate
             // 
             this.B_Generate.Font = new System.Drawing.Font("MS UI Gothic", 14F);
             this.B_Generate.Location = new System.Drawing.Point(16, 686);
-            this.B_Generate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.B_Generate.Margin = new System.Windows.Forms.Padding(2);
             this.B_Generate.Name = "B_Generate";
             this.B_Generate.Size = new System.Drawing.Size(181, 42);
             this.B_Generate.TabIndex = 3;
             this.B_Generate.Text = "Generate";
             this.B_Generate.UseVisualStyleBackColor = true;
-            this.B_Generate.Click += new System.EventHandler(this.B_Generate_Click);
             this.B_Generate.MouseUp += new System.Windows.Forms.MouseEventHandler(this.B_Generate_MouseUp);
             // 
             // B_Reset
             // 
             this.B_Reset.Font = new System.Drawing.Font("MS UI Gothic", 14F);
             this.B_Reset.Location = new System.Drawing.Point(216, 686);
-            this.B_Reset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.B_Reset.Margin = new System.Windows.Forms.Padding(2);
             this.B_Reset.Name = "B_Reset";
             this.B_Reset.Size = new System.Drawing.Size(181, 42);
             this.B_Reset.TabIndex = 3;
             this.B_Reset.Text = "Reset";
             this.B_Reset.UseVisualStyleBackColor = true;
-            this.B_Reset.Click += new System.EventHandler(this.B_Reset_Click);
             this.B_Reset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.B_Reset_MouseUp);
             // 
             // CB_Blend_Number
@@ -2425,7 +2289,6 @@
             this.textBox73.Size = new System.Drawing.Size(928, 23);
             this.textBox73.TabIndex = 0;
             this.textBox73.Text = "深度ステンシル設定";
-            this.textBox73.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox87
             // 
@@ -2436,7 +2299,6 @@
             this.textBox87.Size = new System.Drawing.Size(95, 23);
             this.textBox87.TabIndex = 0;
             this.textBox87.Text = "深度モード";
-            this.textBox87.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox111
             // 
@@ -2447,7 +2309,6 @@
             this.textBox111.Size = new System.Drawing.Size(95, 23);
             this.textBox111.TabIndex = 0;
             this.textBox111.Text = "深度オプション";
-            this.textBox111.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // textBox112
             // 
@@ -2458,7 +2319,6 @@
             this.textBox112.Size = new System.Drawing.Size(95, 23);
             this.textBox112.TabIndex = 0;
             this.textBox112.Text = "ステンシル設定";
-            this.textBox112.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // CB_Depth_Mode
             // 
@@ -2474,7 +2334,6 @@
             this.CB_Depth_Mode.Name = "CB_Depth_Mode";
             this.CB_Depth_Mode.Size = new System.Drawing.Size(836, 24);
             this.CB_Depth_Mode.TabIndex = 1;
-            this.CB_Depth_Mode.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterize_Draw_Mode_SelectedIndexChanged);
             // 
             // CB_Depth_Option
             // 
@@ -2494,7 +2353,6 @@
             this.CB_Depth_Option.Name = "CB_Depth_Option";
             this.CB_Depth_Option.Size = new System.Drawing.Size(836, 24);
             this.CB_Depth_Option.TabIndex = 1;
-            this.CB_Depth_Option.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterizer_Mesh_Setting_SelectedIndexChanged);
             // 
             // CB_Stencil
             // 
@@ -2509,7 +2367,6 @@
             this.CB_Stencil.Name = "CB_Stencil";
             this.CB_Stencil.Size = new System.Drawing.Size(836, 24);
             this.CB_Stencil.TabIndex = 1;
-            this.CB_Stencil.SelectedIndexChanged += new System.EventHandler(this.CB_Rasterizer_Front_SelectedIndexChanged);
             // 
             // Form1
             // 

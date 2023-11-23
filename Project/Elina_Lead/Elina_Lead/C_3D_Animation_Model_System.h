@@ -43,8 +43,6 @@ namespace ASSET::ANIMATION_MODEL
 			int area_light = 0;			// エリアライト
 
 			int bone = 0;				// ボーン
-
-			int main_texture = 0;	// メインとなるテクスチャ
 		};
 
 		// メッシュを管理するためのデータの構造体

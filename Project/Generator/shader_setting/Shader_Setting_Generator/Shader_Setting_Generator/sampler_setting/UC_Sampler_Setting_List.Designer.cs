@@ -1,6 +1,6 @@
-﻿namespace Shader_Setting_Generator
+﻿namespace Shader_Setting_Generator.sampler_setting
 {
-    partial class UC_Vertex_Setting_List
+    partial class UC_Sampler_Setting_List
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -28,36 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SB_Vertex_Setting = new System.Windows.Forms.VScrollBar();
+            this.SB_Sampler_Scroll_Bar = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
-            // SB_Vertex_Setting
+            // SB_Sampler_Scroll_Bar
             // 
-            this.SB_Vertex_Setting.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SB_Vertex_Setting.LargeChange = 1;
-            this.SB_Vertex_Setting.Location = new System.Drawing.Point(440, 0);
-            this.SB_Vertex_Setting.Maximum = 0;
-            this.SB_Vertex_Setting.Name = "SB_Vertex_Setting";
-            this.SB_Vertex_Setting.Size = new System.Drawing.Size(21, 279);
-            this.SB_Vertex_Setting.TabIndex = 0;
-            this.SB_Vertex_Setting.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBar_Vertex_Setting_Scroll);
+            this.SB_Sampler_Scroll_Bar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SB_Sampler_Scroll_Bar.LargeChange = 2;
+            this.SB_Sampler_Scroll_Bar.Location = new System.Drawing.Point(394, 0);
+            this.SB_Sampler_Scroll_Bar.Maximum = 1;
+            this.SB_Sampler_Scroll_Bar.Name = "SB_Sampler_Scroll_Bar";
+            this.SB_Sampler_Scroll_Bar.Size = new System.Drawing.Size(17, 139);
+            this.SB_Sampler_Scroll_Bar.TabIndex = 0;
+            this.SB_Sampler_Scroll_Bar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.SB_Sampler_Scroll_Bar_Scroll);
             // 
-            // UC_Vertex_Setting_List
+            // UC_Sampler_Setting_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Controls.Add(this.SB_Vertex_Setting);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "UC_Vertex_Setting_List";
-            this.Size = new System.Drawing.Size(461, 279);
-            this.Load += new System.EventHandler(this.UC_Vertex_Setting_List_Load);
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.Controls.Add(this.SB_Sampler_Scroll_Bar);
+            this.Name = "UC_Sampler_Setting_List";
+            this.Size = new System.Drawing.Size(411, 139);
+            this.Load += new System.EventHandler(this.UC_Sampler_Setting_List_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.VScrollBar SB_Vertex_Setting;
+        private System.Windows.Forms.VScrollBar SB_Sampler_Scroll_Bar;
     }
 }

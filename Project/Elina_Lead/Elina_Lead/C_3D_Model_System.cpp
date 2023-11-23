@@ -217,10 +217,10 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 	for (S_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
 	{
 		// ☆ 変数宣言 ☆ //
-		ASSET::MATERIAL::C_Material* now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
+		ASSET::MATERIAL::C_Material * now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
 
 
-		// トランスフォーム　あれば定数バッファを確保する
+		// トランスフォーム
 		now_mesh.unique_buffer_number.transform = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_TRANSFORM");
 
 		// アンビエントライト
@@ -237,9 +237,6 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 
 		// エリアライト
 		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
-
-		// メインとなるテクスチャ
-		now_mesh.unique_buffer_number.main_texture = now_material->M_Get_Texture_Number_By_Name("CT_MAIN_TEXTURE");
 	}
 
 	// ロードに成功、デバッグ時は成功ログを表示

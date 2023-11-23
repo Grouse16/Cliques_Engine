@@ -49,12 +49,12 @@ namespace Shader_Setting_Generator
                 this.Controls.Remove(now_vertex_list);
             }
 
-            // 指定されたレイアウト数分要素を確保
-            for (int loop_num = 0; loop_num < 1; loop_num++)
+            // 初期の頂点レイアウト情報を生成
+            for (int l_num = 0; l_num < 1; l_num++)
             {
                 new_vertex_setting_list.Add(new UC_Vertex_Setting());
-                this.Controls.Add(new_vertex_setting_list[loop_num]);
-                new_vertex_setting_list[loop_num].M_Set_Vertex_Layout_Number(loop_num + 1);
+                this.Controls.Add(new_vertex_setting_list[l_num]);
+                new_vertex_setting_list[l_num].M_Set_Vertex_Layout_Number(l_num + 1);
             }
 
             // 新しく生成したリストに入れ替える
@@ -62,19 +62,19 @@ namespace Shader_Setting_Generator
 
             // リストを整列する
             m_vertex_setting_list[0].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN);
-            for (int loop_num = 1; loop_num < m_vertex_setting_list.Count; loop_num++)
+            for (int l_num = 1; l_num < m_vertex_setting_list.Count; l_num++)
             {
-                m_vertex_setting_list[loop_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * loop_num);
+                m_vertex_setting_list[l_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * l_num);
             }
 
             // スクロールバーを初期化する
-            ScrollBar_Vertex_Setting.Value = 0;
-            ScrollBar_Vertex_Setting.Maximum = con_VERTICAL_SET_SPAN * (m_vertex_setting_list.Count - 2);
-            if (ScrollBar_Vertex_Setting.Maximum < 1)
+            SB_Vertex_Setting.Value = 0;
+            SB_Vertex_Setting.Maximum = con_VERTICAL_SET_SPAN * (m_vertex_setting_list.Count - 2);
+            if (SB_Vertex_Setting.Maximum < 1)
             {
-                ScrollBar_Vertex_Setting.Maximum = 1;
+                SB_Vertex_Setting.Maximum = 1;
             }
-            ScrollBar_Vertex_Setting.Minimum = 0;
+            SB_Vertex_Setting.Minimum = 0;
 
             return;
         }
@@ -94,21 +94,21 @@ namespace Shader_Setting_Generator
             }
 
             // 指定されたレイアウト数分要素を確保
-            for (int loop_num = 0; loop_num < in_vertex_sum; loop_num++)
+            for (int l_num = 0; l_num < in_vertex_sum; l_num++)
             {
                 // 設定中の頂点レイアウト情報が現在持っている情報数未満なら、情報を引き継ぐ
-                if (loop_num < m_vertex_setting_list.Count)
+                if (l_num < m_vertex_setting_list.Count)
                 {
-                    new_vertex_setting_list.Add(m_vertex_setting_list[loop_num]);
-                    this.Controls.Add(new_vertex_setting_list[loop_num]);
+                    new_vertex_setting_list.Add(m_vertex_setting_list[l_num]);
+                    this.Controls.Add(new_vertex_setting_list[l_num]);
                 }
 
                 // 新しい頂点レイアウトであれば、生成して追加する
                 else
                 {
                     new_vertex_setting_list.Add(new UC_Vertex_Setting());
-                    new_vertex_setting_list[loop_num].M_Set_Vertex_Layout_Number(loop_num + 1);
-                    this.Controls.Add(new_vertex_setting_list[loop_num]);
+                    new_vertex_setting_list[l_num].M_Set_Vertex_Layout_Number(l_num + 1);
+                    this.Controls.Add(new_vertex_setting_list[l_num]);
                 }
             }
 
@@ -117,25 +117,25 @@ namespace Shader_Setting_Generator
 
             // リストを整列する
             m_vertex_setting_list[0].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN);
-            for (int loop_num = 0; loop_num < m_vertex_setting_list.Count; loop_num++)
+            for (int l_num = 0; l_num < m_vertex_setting_list.Count; l_num++)
             {
-                m_vertex_setting_list[loop_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * loop_num);
+                m_vertex_setting_list[l_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * l_num);
             }
 
             // スクロールバーを初期化する
-            ScrollBar_Vertex_Setting.Value = 0;
-            ScrollBar_Vertex_Setting.Maximum = con_VERTICAL_SET_SPAN * (m_vertex_setting_list.Count - 2);
-            if (ScrollBar_Vertex_Setting.Maximum < 1)
+            SB_Vertex_Setting.Value = 0;
+            SB_Vertex_Setting.Maximum = con_VERTICAL_SET_SPAN * (m_vertex_setting_list.Count - 2);
+            if (SB_Vertex_Setting.Maximum < 1)
             {
-                ScrollBar_Vertex_Setting.Maximum = 1;
+                SB_Vertex_Setting.Maximum = 1;
             }
-            ScrollBar_Vertex_Setting.Minimum = 0;
+            SB_Vertex_Setting.Minimum = 0;
 
             return;
         }
 
 
-        // 頂点レイアウト情報の配列を返す　戻り値：頂点レイアウト数
+        // 頂点レイアウト情報の配列を返す　戻り値：頂点レイアウト情報リスト
         public List<UC_Vertex_Setting> M_Get_Vertex_Layout_List()
         {
             return m_vertex_setting_list;
@@ -145,10 +145,12 @@ namespace Shader_Setting_Generator
         private void ScrollBar_Vertex_Setting_Scroll(object sender, ScrollEventArgs e)
         {
             // リストを整列する
-            for (int loop_num = 0; loop_num < m_vertex_setting_list.Count; loop_num++)
+            for (int l_num = 0; l_num < m_vertex_setting_list.Count; l_num++)
             {
-                m_vertex_setting_list[loop_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * loop_num - ScrollBar_Vertex_Setting.Value);
+                m_vertex_setting_list[l_num].Location = new Point(con_HORIZONTAL_SET_POS, con_VERTICAL_INITIAL_SPAN + con_VERTICAL_SET_SPAN * l_num - SB_Vertex_Setting.Value);
             }
+
+            return;
         }
     }
 }

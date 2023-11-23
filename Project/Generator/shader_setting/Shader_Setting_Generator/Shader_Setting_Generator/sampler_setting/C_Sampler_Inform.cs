@@ -9,7 +9,7 @@ namespace Shader_Setting_Generator
     // ☆ クラス ☆ //
 
     // サンプラー情報のクラス
-    internal class C_Sampler_Inform
+    public class C_Sampler_Inform
     {
         // ☆ 変数宣言 ☆ //
         public string m_uv_setting = "default";    // UVの扱い方を指定する文字列

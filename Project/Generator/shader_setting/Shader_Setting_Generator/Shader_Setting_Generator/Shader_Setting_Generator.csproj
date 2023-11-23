@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,10 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C_Constant_Buffer_Inform.cs" />
-    <Compile Include="C_Sampler_Inform.cs" />
-    <Compile Include="C_Shader_Data.cs" />
-    <Compile Include="C_Texture_Inform.cs" />
+    <Compile Include="constant_buffer\C_Constant_Buffer_Inform.cs" />
+    <Compile Include="constant_buffer\UC_Constant_Buffer_Setting_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="constant_buffer\UC_Constant_Buffer_Setting_List.Designer.cs">
+      <DependentUpon>UC_Constant_Buffer_Setting_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sampler_setting\C_Sampler_Inform.cs" />
+    <Compile Include="sampler_setting\UC_Sampler_Setting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="sampler_setting\UC_Sampler_Setting.Designer.cs">
+      <DependentUpon>UC_Sampler_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sampler_setting\UC_Sampler_Setting_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="sampler_setting\UC_Sampler_Setting_List.Designer.cs">
+      <DependentUpon>UC_Sampler_Setting_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="shader_set\C_Shader_Data.cs" />
+    <Compile Include="texture_buffer\C_Texture_Inform.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,30 +77,54 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UC_Shader_Setting.cs">
+    <Compile Include="constant_buffer\UC_Constant_Buffer_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Shader_Setting.Designer.cs">
-      <DependentUpon>UC_Shader_Setting.cs</DependentUpon>
+    <Compile Include="constant_buffer\UC_Constant_Buffer_Setting.Designer.cs">
+      <DependentUpon>UC_Constant_Buffer_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC_Vertex_Setting.cs">
+    <Compile Include="shader_set\UC_Shader_Inform.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Vertex_Setting.Designer.cs">
+    <Compile Include="shader_set\UC_Shader_Inform.Designer.cs">
+      <DependentUpon>UC_Shader_Inform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="texture_buffer\UC_Texture_Inform.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="texture_buffer\UC_Texture_Inform.Designer.cs">
+      <DependentUpon>UC_Texture_Inform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="texture_buffer\UC_Texture_Inform_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="texture_buffer\UC_Texture_Inform_List.Designer.cs">
+      <DependentUpon>UC_Texture_Inform_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vertex_layout\UC_Vertex_Setting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vertex_layout\UC_Vertex_Setting.Designer.cs">
       <DependentUpon>UC_Vertex_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC_Vertex_Layout.cs">
+    <Compile Include="vertex_layout\UC_Vertex_Layout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Vertex_Layout.Designer.cs">
+    <Compile Include="vertex_layout\UC_Vertex_Layout.Designer.cs">
       <DependentUpon>UC_Vertex_Layout.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC_Vertex_Setting_List.cs">
+    <Compile Include="vertex_layout\UC_Vertex_Setting_List.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Vertex_Setting_List.Designer.cs">
+    <Compile Include="vertex_layout\UC_Vertex_Setting_List.Designer.cs">
       <DependentUpon>UC_Vertex_Setting_List.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="constant_buffer\UC_Constant_Buffer_Setting.resx">
+      <DependentUpon>UC_Constant_Buffer_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="constant_buffer\UC_Constant_Buffer_Setting_List.resx">
+      <DependentUpon>UC_Constant_Buffer_Setting_List.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,16 +137,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UC_Shader_Setting.resx">
-      <DependentUpon>UC_Shader_Setting.cs</DependentUpon>
+    <EmbeddedResource Include="sampler_setting\UC_Sampler_Setting.resx">
+      <DependentUpon>UC_Sampler_Setting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UC_Vertex_Layout.resx">
+    <EmbeddedResource Include="sampler_setting\UC_Sampler_Setting_List.resx">
+      <DependentUpon>UC_Sampler_Setting_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="shader_set\UC_Shader_Inform.resx">
+      <DependentUpon>UC_Shader_Inform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="texture_buffer\UC_Texture_Inform.resx">
+      <DependentUpon>UC_Texture_Inform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="texture_buffer\UC_Texture_Inform_List.resx">
+      <DependentUpon>UC_Texture_Inform_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vertex_layout\UC_Vertex_Layout.resx">
       <DependentUpon>UC_Vertex_Layout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UC_Vertex_Setting.resx">
+    <EmbeddedResource Include="vertex_layout\UC_Vertex_Setting.resx">
       <DependentUpon>UC_Vertex_Setting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UC_Vertex_Setting_List.resx">
+    <EmbeddedResource Include="vertex_layout\UC_Vertex_Setting_List.resx">
       <DependentUpon>UC_Vertex_Setting_List.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -119,5 +174,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

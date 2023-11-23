@@ -43,8 +43,6 @@ namespace ASSET::MODEL
 			int point_light = 0;		// ポイントライト
 			int spot_light = 0;			// スポットライト
 			int area_light = 0;			// エリアライト
-
-			int main_texture = 0;	// メインとなるテクスチャ
 		};
 
 		// メッシュを管理するためのデータの構造体
