@@ -35,6 +35,9 @@ namespace Shader_Setting_Generator.shader_set
 
             CB_Setting_Shader_Kind.SelectedIndex = 1;
             m_now_shader_kind = 1;
+
+            // 全シェーダー共通情報のみシェーダー名を削除
+            m_shader_data[(int)E_SHADER_NUMBER.e_ALL_SHADER].m_use_shader_name = "";
         }
 
 

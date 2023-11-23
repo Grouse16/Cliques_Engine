@@ -25,7 +25,7 @@ namespace Shader_Setting_Generator.texture_buffer
 
         private void UC_Texture_Inform_Load(object sender, EventArgs e)
         {
-
+            CB_Use_Texture.SelectedIndex = 0;
         }
 
         // テクスチャ情報の番号を設定する　引数：テクスチャ情報の番号

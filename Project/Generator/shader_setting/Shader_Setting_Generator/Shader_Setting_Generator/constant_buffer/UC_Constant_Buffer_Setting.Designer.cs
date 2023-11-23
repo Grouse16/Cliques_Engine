@@ -150,6 +150,7 @@
             this.CB_Constant_Buffer_Name.Name = "CB_Constant_Buffer_Name";
             this.CB_Constant_Buffer_Name.Size = new System.Drawing.Size(264, 24);
             this.CB_Constant_Buffer_Name.TabIndex = 3;
+            this.CB_Constant_Buffer_Name.Text = "Default";
             // 
             // UC_Constant_Buffer_Setting
             // 

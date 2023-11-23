@@ -34,7 +34,7 @@ namespace Shader_Setting_Generator
 
         public List<C_Sampler_Inform> m_sampler_inform = new List<C_Sampler_Inform>();    // サンプラー情報リスト
 
-        public string m_use_shader_name;   // 使用するシェーダー名
+        public string m_use_shader_name = "Default";   // 使用するシェーダー名
 
         public int m_constant_buffer_sum = 0;   // 定数バッファ数
         public int m_texture_buffer_sum = 0;    // テクスチャバッファ数
