@@ -23,17 +23,6 @@
 using namespace ASSET::SHADER;
 
 
-// ☆ 定数 ☆ //
-
-// レンダリングAPIごとのファイル名を設定
-namespace RENDER_API_FILENAME
-{
-	const char * C_DX12 = "_DX12.cso";	// dx12時のファイル名
-	const char * C_DX11 = "_DX11.cso";	// dx11時のファイル名
-	const char * C_OPENGL = "_GLSL.cso";	// openGL時のファイル名
-}
-
-
 // ☆ 関数 ☆ //
 
 //==☆ パブリック ☆==//
@@ -94,34 +83,6 @@ bool C_Shader_Code::M_Load_Shader_File(std::string in_shader_file_name)
 	FILE * file_address = nullptr;	// コンパイル済みシェーダーのファイルを入手
 
 	std::string file_name = in_shader_file_name;	// ファイル名
-
-
-	// プラットフォーム毎に分岐する
-	switch (PLATFORM::DETECTION::C_Platform_Detection_System::M_Get_Rendering_API_Number())
-	{
-	//  DX12  //
-	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_DX12:
-
-		file_name += RENDER_API_FILENAME::C_DX12;
-
-		break;
-
-		//  DX11  //
-	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_DX11:
-
-		file_name += RENDER_API_FILENAME::C_DX11;
-
-		break;
-
-		//  OpenGL  Vulkan  不明時  //
-	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_OPENGL:
-	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_VULKAN:
-	case PLATFORM::DETECTION::E_RENDERING_API_NUMBER::e_UNKNOWN:
-
-		file_name += RENDER_API_FILENAME::C_OPENGL;
-
-		break;
-	}
 
 
 	// コンパイル済みシェーダーのファイルを開く

@@ -79,7 +79,7 @@ namespace GAME::UI_COMPONENT
 
 		//-☆- 座標 -☆-//
 
-		// UIの座標をセットする　引数：四角形（左下が０，右上が１）
+		// UIの座標をセットする　引数：セット位置の四角形（左下が０，右上が１）
 		void M_Set_UI_Position(DATA::RECTSETTING::S_Rect);
 
 

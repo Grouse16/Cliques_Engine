@@ -21,7 +21,7 @@
 namespace GAME::APPLICATION
 {
 	// ☆ 定数 ☆ //
-	const std::string con_INITIALIZED_SCENE_NAME = "TITLE";	// 初期のシーン名
+	constexpr wchar_t con_INITIALIZED_SCENE_NAME[] = L"TITLE";	// 初期のシーン名
 
 
 	// ☆ クラス ☆ //

@@ -1047,7 +1047,7 @@ void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting
 void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREATE::C_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 定数 ☆ //
-    const int con_CONSTANT_BUFFER_ONE_BYTE = 256;	// 定数バッファ一つ分のバイト数
+    constexpr int con_CONSTANT_BUFFER_ONE_BYTE = 256;	// 定数バッファ一つ分のバイト数
 
 
     // ☆ 定数バッファデータを生成 ☆ //
@@ -2703,7 +2703,7 @@ bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Fon
 bool C_DX12_System::M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph_Package & in_set_inform)
 {
     // ☆ 定数 ☆ //
-    const MAT2 texture_uv_setting_mat = { {0,1},{0,0},{0,0},{0,1} };   // テクスチャ座標指定用の二次元配列コード
+    constexpr MAT2 texture_uv_setting_mat = { {0,1},{0,0},{0,0},{0,1} };   // テクスチャ座標指定用の二次元配列コード
 
 
     // ☆ 変数宣言 ☆ //
@@ -2898,6 +2898,17 @@ bool C_DX12_System::M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph
 std::string C_DX12_System::M_Get_Shader_Folder_Path(void)
 {
     return "project/asset/shader/compile/hlsl/dx12/";
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：DX12のレンダリングシステムのシェーダーの拡張子を返す
+// 引数   ：void
+// 戻り値 ：string DX12でのシェーダーの拡張子
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::string C_DX12_System::M_Get_Shader_Extension(void)
+{
+    return ".cso";
 }
 
 

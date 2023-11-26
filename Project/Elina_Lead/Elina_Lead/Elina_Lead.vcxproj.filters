@@ -577,9 +577,6 @@
     <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\基底">
       <UniqueIdentifier>{b657540b-f575-4b21-81dd-033ba9b1d0e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\派生">
-      <UniqueIdentifier>{ad77a841-9b46-493c-8982-c0ba55602de1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\派生">
       <UniqueIdentifier>{0d71ae37-23ee-4da9-aa35-84a7f88e383c}</UniqueIdentifier>
     </Filter>
@@ -588,6 +585,9 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生">
       <UniqueIdentifier>{3e5e58d0-d630-49e3-af0e-b08e33ee9dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\派生">
+      <UniqueIdentifier>{ad77a841-9b46-493c-8982-c0ba55602de1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1306,10 +1306,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="PS_Engine_UI_DX12.hlsl">
+    <FxCompile Include="PS_UI_DX12.hlsl">
       <Filter>リソース ファイル\shader\dx12\PS</Filter>
     </FxCompile>
-    <FxCompile Include="VS_Engine_UI_DX12.hlsl">
+    <FxCompile Include="VS_UI_DX12.hlsl">
       <Filter>リソース ファイル\shader\dx12\VS</Filter>
     </FxCompile>
   </ItemGroup>

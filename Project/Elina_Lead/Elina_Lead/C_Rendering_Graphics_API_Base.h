@@ -127,8 +127,11 @@ namespace RENDERING::GRAPHICS
 		// このクラスの実体のアドレスを返す　戻り値：自クラスのインスタンスへのアドレス
 		static C_Rendering_Graphics_API_Base * M_Get_Instance(void);
 
-		// このレンダリングシステムのシェーダーのフォルダまでのパス　戻り値：シェーダーのフォルダまでのパス
+		// このレンダリングシステムのシェーダーのフォルダまでのパスを返す　戻り値：シェーダーのフォルダまでのパス
 		virtual std::string M_Get_Shader_Folder_Path(void) = 0;
+
+		// このレンダリングシステムのシェーダーの拡張子を返す　戻り値：シェーダーの拡張子
+		virtual std::string M_Get_Shader_Extension(void) = 0;
 
 
 		//-☆- セッタ -☆-//
