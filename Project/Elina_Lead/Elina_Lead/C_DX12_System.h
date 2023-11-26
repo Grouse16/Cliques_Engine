@@ -313,8 +313,11 @@ namespace RENDERING::GRAPHICS::DX12
 
 		//-☆- ゲッタ -☆-//
 
-		// このレンダリングシステムのシェーダーのフォルダまでのパス　戻り値：シェーダーのフォルダまでのパス
+		// DX12のレンダリングシステムのシェーダーのフォルダまでのパスを返す　戻り値：シェーダーのフォルダまでのパス
 		std::string M_Get_Shader_Folder_Path(void) override;
+
+		// DX12のレンダリングシステムのシェーダーの拡張子を返す　戻り値：DX12でのシェーダーの拡張子
+		std::string M_Get_Shader_Extension(void) override;
 
 
 		//-☆- セッタ -☆-//

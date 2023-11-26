@@ -192,6 +192,7 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 	// ☆ 変数宣言 ☆ //
 	int constant_sum = 0;	// 定数の数
 	int texture_sum = 0;	// テキストの数
+	int sampler_sum = 0;	// サンプラーの数
 
 
 	// 定数バッファ数を取得
@@ -204,32 +205,40 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 
 	// サンプラー数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	mpr_variable.resource_signature.all_shader_signature.sampler_sum = in_shader_data_file.M_Get_Number();
+	sampler_sum = in_shader_data_file.M_Get_Number();
 
 
 	// 取得した数分リソースの識別を生成
 	mpr_variable.resource_signature.all_shader_signature.constant_data.resize(constant_sum);
 	mpr_variable.resource_signature.all_shader_signature.texture_data.resize(texture_sum);
+	mpr_variable.resource_signature.all_shader_signature.sampler_data.resize(sampler_sum);
 
 
 	// 定数バッファの識別名の行に移動
 	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "CON:");
 
-	// 定数バッファの識別名と数を取得する
-	for (int now_constant = 0; now_constant < constant_sum; now_constant++)
+	// 定数バッファの情報を取得
+	for (ASSET::SHADER::S_Constant_Resource_Signature & now_constant_data : mpr_variable.resource_signature.all_shader_signature.constant_data)
 	{
-		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].signature_name = in_shader_data_file.M_Get_Data_By_Text(":");
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
-		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum = in_shader_data_file.M_Get_Number();
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
-		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].data_create_flg = in_shader_data_file.M_Get_Data_By_Text(",") == "TRUE";
+		// 次の行に移動
+		in_shader_data_file.M_Move_Next_Raw();
+
+		// 識別名を取得
+		now_constant_data.signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
+
+		// 配列数を取得
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+		now_constant_data.array_sum = in_shader_data_file.M_Get_Number();
+
+		// データを生成するかどうかのフラグを取得
+		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+		now_constant_data.data_create_flg = in_shader_data_file.M_Get_Data_By_Text(",") == "TRUE";
 
 		// 配列数が０なら少なくとも一つは確保する
-		mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum =
-			(mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum <= 0) * 1
+		now_constant_data.array_sum =
+			(now_constant_data.array_sum <= 0)
 			+
-			(mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum > 0) * mpr_variable.resource_signature.all_shader_signature.constant_data[now_constant].array_sum;
+			(now_constant_data.array_sum > 0) * now_constant_data.array_sum;
 	}
 
 
@@ -237,12 +246,31 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "TEX:");
 
 	// テクスチャの識別名を取得する
-	for (int now_texture = 0; now_texture < texture_sum; now_texture++)
+	for (ASSET::SHADER::S_Texture_Resource_Signature & now_texture_data : mpr_variable.resource_signature.all_shader_signature.texture_data)
 	{
-		mpr_variable.resource_signature.all_shader_signature.texture_data[now_texture].signature_name = in_shader_data_file.M_Get_Data_By_Text(":");
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(":");
-		mpr_variable.resource_signature.all_shader_signature.texture_data[now_texture].initialized_texture_name = in_shader_data_file.M_Get_Data_By_Text(",");
+		// 次の行に移動
+		in_shader_data_file.M_Move_Next_Raw();
+
+		// 識別名を取得
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+
+		// 初期ロードする時のテクスチャの動作を取得
+		now_texture_data.signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
+		now_texture_data.initialized_texture_name = in_shader_data_file.M_Get_Data_By_Text(",");
+	}
+
+
+	// サンプラーの識別名と数の行に移動
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "SAM:");
+
+	// サンプラーの識別名を取得する
+	for (ASSET::SHADER::S_Sampler_Resource_Signature & now_sampler_data : mpr_variable.resource_signature.all_shader_signature.sampler_data)
+	{
+		// 次の行に移動
+		in_shader_data_file.M_Move_Next_Raw();
+
+		// UVの使用方法を取得
+		now_sampler_data.uv_setting = in_shader_data_file.M_Get_Data_By_Text(",");
 	}
 	
 	// 成功
@@ -409,7 +437,8 @@ void C_Shader_Setting::M_Release(void)
 	mpr_variable.resource_signature.all_shader_signature.constant_data.shrink_to_fit();
 	mpr_variable.resource_signature.all_shader_signature.texture_data.clear();
 	mpr_variable.resource_signature.all_shader_signature.texture_data.shrink_to_fit();
-	mpr_variable.resource_signature.all_shader_signature.sampler_sum = 0;
+	mpr_variable.resource_signature.all_shader_signature.sampler_data.clear();
+	mpr_variable.resource_signature.all_shader_signature.sampler_data.shrink_to_fit();
 
 
 	// シェーダーごとのリソース定義用情報をすべて削除
@@ -419,7 +448,8 @@ void C_Shader_Setting::M_Release(void)
 		mpr_variable.resource_signature.signature_list[now_shader_kind].constant_data.shrink_to_fit();
 		mpr_variable.resource_signature.signature_list[now_shader_kind].texture_data.clear();
 		mpr_variable.resource_signature.signature_list[now_shader_kind].texture_data.shrink_to_fit();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].sampler_sum = 0;
+		mpr_variable.resource_signature.signature_list[now_shader_kind].sampler_data.clear();
+		mpr_variable.resource_signature.signature_list[now_shader_kind].sampler_data.shrink_to_fit();
 	}
 
 	return;

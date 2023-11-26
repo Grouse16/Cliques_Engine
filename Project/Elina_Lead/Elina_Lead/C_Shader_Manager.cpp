@@ -115,7 +115,10 @@ ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Get_Shader_Setting(E_SHADER_K
 ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_By_Name(E_SHADER_KIND in_shader_kind, std::string in_shader_name)
 {
 	// ☆ 変数宣言 ☆ //
-	std::string shader_inform_path = RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Folder_Path() + in_shader_name;	// シェーダー情報へのパス
+	std::string shader_inform_path = 	// シェーダー情報へのパス
+		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Folder_Path() + 
+		in_shader_name +
+		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Extension();
 
 	int shader_slot_num = m_this.mpr_variable.shader_inform_list[(int)in_shader_kind].size();	// 操作するシェーダーの番号
 

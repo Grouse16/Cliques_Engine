@@ -370,7 +370,7 @@
     <ClCompile Include="C_Wnd_Proc_Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="PS_Engine_UI_DX12.hlsl">
+    <FxCompile Include="PS_UI_DX12.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
@@ -380,7 +380,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
-    <FxCompile Include="VS_Engine_UI_DX12.hlsl">
+    <FxCompile Include="VS_UI_DX12.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

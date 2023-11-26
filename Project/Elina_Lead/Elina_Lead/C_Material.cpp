@@ -374,7 +374,7 @@ RENDERING::INFORM::RASTERIZER::E_ANTIALIASING C_Material::M_Get_Antialiasing_By_
 void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// ☆ 定数 ☆ //
-	const int con_BLEND_SETTING_MAX = 8;	// ブレンド設定を生成できる上限値
+	constexpr int con_BLEND_SETTING_MAX = 8;	// ブレンド設定を生成できる上限値
 
 	int blend_sum = 0;	// ブレンド設定数
 
