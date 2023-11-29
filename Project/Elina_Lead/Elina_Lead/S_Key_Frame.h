@@ -13,6 +13,8 @@
 // ☆ ファイルひらき ☆ //
 #include <DirectXMath.h>
 
+#include "C_Quaternion.h"
+
 
 // ☆ ネームスペース ☆ //
 
@@ -33,7 +35,7 @@ namespace ASSET::ANIMATION_SYSTEM
 	// 回転用のキーフレーム情報
 	struct S_Quaternion_Key_Frame
 	{
-		DirectX::XMVECTOR quaternion = DirectX::XMQuaternionIdentity();	// クォータニオン値
+		MATH::QUATERNION::C_Quaternion quaternion;	// クォータニオンシステム
 
 		float time_of_frame = 0.0f;	// フレームの時間
 

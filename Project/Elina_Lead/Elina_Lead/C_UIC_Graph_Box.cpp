@@ -26,9 +26,9 @@ using namespace GAME::UI_COMPONENT;
 C_UIC_Text_Box::C_UIC_Text_Box(void)
 {
 	// ☆ 変数宣言　☆ //
-	std::vector<DATA::VERTEX::S_UI_Vertex>& vertex_list = mpr_variable.vertex_system.M_Get_Vertex_Data();	// 頂点データのリスト
+	std::vector<DATA::VERTEX::S_UI_Vertex> & vertex_list = mpr_variable.vertex_system.M_Get_Vertex_Data();	// 頂点データのリスト
 
-	std::vector<unsigned int>& index_list = mpr_variable.vertex_system.M_Get_Index_Data();	// インデックスデータのリスト
+	std::vector<unsigned int> & index_list = mpr_variable.vertex_system.M_Get_Index_Data();	// インデックスデータのリスト
 
 
 	// マテリアルのロード

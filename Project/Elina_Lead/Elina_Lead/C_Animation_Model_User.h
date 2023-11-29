@@ -15,6 +15,7 @@
 
 #include "C_3D_Animation_Model_System.h"
 #include "C_Animation_Calculation_System.h"
+#include "C_Transform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -82,23 +83,23 @@ namespace ASSET::ANIMATION_MODEL
 
 		//-☆- 描画 -☆-//
 
-		// アニメーションの結果を生成する、描画前に実行する必要がある
-		void m_Animation_Execute(void);
+		// モデルの描画を開始する、描画前に実行する必要がある　引数：トランスフォームの参照（const）
+		void M_Model_Draw_Start(const MATH::C_Transform & );
 
 		// アニメーションモデルを描画する
-		void M_Animation_Model_Draw(void);
+		void M_Draw_Model(void);
 
 		// アニメーションモデルから指定された名前のメッシュのみを描画する　引数：メッシュ名
-		void M_Animation_Model_Draw_By_Mesh_Name(std::string);
+		void M_Draw_Mesh_By_Mesh_Name(std::string);
 
 		// 指定されたマテリアルでアニメーションモデルを描画する　引数：使用するマテリアル参照
-		void M_Animation_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & );
+		void M_Draw_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & );
 
 		// 指定されたマテリアルでアニメーションモデルから指定された名前のメッシュのみを描画する　引数：使用するマテリアルの参照, メッシュ名
-		void M_Animation_Model_Draw_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & ,std::string);
+		void M_Draw_Mesh_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & ,std::string);
 
-		// アニメーションの計算結果のボーンマトリクス行列を解放する、このモデルの描画が完了したときに実行することでメモリが最適化される
-		void M_Animation_Bone_Matrix_Release(void);
+		// モデルの描画を終了する
+		void M_Model_Draw_End(void);
 
 
 		//-☆- アニメーション -☆-//

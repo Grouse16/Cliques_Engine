@@ -76,7 +76,7 @@ void C_Animation_Algorithm_Loop_Play::M_Animation_Update(std::vector<DirectX::XM
 	std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> bone_data_list;	// ボーンのデータのリスト
 
 
-	// ボーンデータにアニメーションによるボーンデータを受け取る
+	// アニメーションによるボーンデータを受け取る
 	bone_data_list.resize(m_animation_status.bone_sum);
 	m_now_animation->M_Set_Bone_Key(m_animation_status.animation_time, bone_data_list);
 

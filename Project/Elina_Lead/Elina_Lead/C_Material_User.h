@@ -11,9 +11,9 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Material.h"
-
 #include <string>
+
+#include "C_Material.h"
 
 
 // ☆ ネームスペース ☆ //

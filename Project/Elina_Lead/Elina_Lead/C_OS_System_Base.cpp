@@ -175,9 +175,20 @@ bool C_OS_System_Base::M_Get_OS_Active(void)
 // 引数   ：void
 // 戻り値 ：const S_Window_Size_Data & ウィンドウのサイズ
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_Window_Size_Data & OS::C_OS_System_Base::M_Get_Window_Size(void)
+const S_Window_Size_Data & OS::C_OS_System_Base::M_Get_Window_Size(void) const
 {
 	return m_size_of_window;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ウィンドウのアスペクト比を返す
+// 引数   ：void
+// 戻り値 ：float アスペクト比
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+float C_OS_System_Base::M_Get_Aspect_Size(void) const
+{
+	return static_cast<float>(m_size_of_window.width) / static_cast<float>(m_size_of_window.height);
 }
 
 

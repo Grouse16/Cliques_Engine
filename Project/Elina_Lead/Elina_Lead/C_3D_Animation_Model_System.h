@@ -14,6 +14,7 @@
 #include "C_Animative_Mesh.h"
 #include "S_Bone_Inform.h"
 #include "C_Animation_Data_System.h"
+#include "C_Transform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -31,28 +32,12 @@ namespace ASSET::ANIMATION_MODEL
 
 		// ☆ 構造体 ☆ //
 
-		// アニメーションモデルの特殊バッファのスロットの番号をまとめた構造体
-		struct S_Unique_Buffer_Slot
-		{
-			int transform = 0;			// トランスフォーム
-			
-			int ambient_light = 0;		// アンビエントライト
-			int directional_light = 0;	// ディレクショナルライト
-			int point_light = 0;		// ポイントライト
-			int spot_light = 0;			// スポットライト
-			int area_light = 0;			// エリアライト
-
-			int bone = 0;				// ボーン
-		};
-
 		// メッシュを管理するためのデータの構造体
 		struct S_Animative_Mesh_Data_Inform
 		{
 			std::unique_ptr<ASSET::ANIMATION::MESH::C_Animative_Mesh> mesh_data = nullptr;	// メッシュデータ
 
 			std::string name = "default";	// メッシュ名
-
-			S_Unique_Buffer_Slot unique_buffer_number;	// 特殊なバッファ番号
 		};
 
 		// アニメーションを管理するためのデータの構造体
@@ -127,9 +112,6 @@ namespace ASSET::ANIMATION_MODEL
 
 		//-☆- 描画 -☆-//
 
-		// ボーンのマトリクスをマテリアルにセットする　引数：セットするボーンマトリクス配列の参照(const)
-		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> &);
-
 		// 3Dモデルを描画する
 		void M_Draw_3D_Model(void);
 
@@ -141,6 +123,15 @@ namespace ASSET::ANIMATION_MODEL
 
 		// マテリアルを設定せずに、3Dモデルから指定されたメッシュ名のみ描画する（描画前にマテリアルをセットするとき用）　引数：描画するメッシュ名（複数判定する）
 		void M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string);
+
+
+		//-☆- 定数バッファ -☆-//
+
+		// ボーンのマトリクスをマテリアルにセットする　引数：セットするボーンマトリクス配列の参照(const)
+		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>&);
+
+		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする　引数：トランスフォームの参照（const）
+		void M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & );
 	};
 }
 

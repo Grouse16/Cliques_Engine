@@ -20,6 +20,8 @@
 #include "C_Constant_Data_System.h"
 #include "C_Text_And_File_Manager.h"
 #include "C_Shader_Setting_User.h"
+#include "S_Material_Detail.h"
+#include "S_World_View_Projection.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -50,6 +52,21 @@ namespace ASSET::MATERIAL
 		int index = 0;	// テクスチャのインデックス番号
 	};
 
+	// 特殊バッファのスロットの番号をまとめたリストの構造体
+	struct S_Unique_Buffer_Slot
+	{
+		int wvp = -1;	// ワールド ビュー プロジェクション
+		int bone = -1;	// ボーンマトリクス
+
+		int material = -1;	// 質感データ
+
+		int ambient_light = -1;		// アンビエントライト
+		int directional_light = -1;	// ディレクショナルライト
+		int point_light = -1;		// ポイントライト
+		int spot_light = -1;		// スポットライト
+		int area_light = -1;		// エリアライト
+	};
+
 
 	// ☆ クラス ☆ //
 	
@@ -71,6 +88,8 @@ namespace ASSET::MATERIAL
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
 			ASSET::SHADER::C_Shader_Setting_User shader_setting_data;	// シェーダー設定用情報
+
+			S_Unique_Buffer_Slot unique_slot_list;	// 特殊なバッファスロットのリストの構造体
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -133,6 +152,9 @@ namespace ASSET::MATERIAL
 		// その他設定をロードする　引数：設定先のレンダリング設定生成用情報, 読み込んだファイルの情報
 		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
+		// 特殊なバッファスロットを探索して番号を記録する　引数：読み込んだファイルの情報
+		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager & );
+
 
 		//-☆- 生成 -☆-//
 
@@ -141,6 +163,7 @@ namespace ASSET::MATERIAL
 
 		// レンダリング情報を生成する　引数：現在のファイル文字列　戻り値：成功時のみtrue
 		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &);
+
 
 		//==☆ パブリック ☆==//
 	public:
@@ -221,6 +244,33 @@ namespace ASSET::MATERIAL
 
 		// 指定された名前のテクスチャ管理用データのスロット番号を返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャの番号、なければ-1
 		int M_Get_Texture_Number_By_Name(std::string);
+
+
+		//-☆- WVP ワールド ビュー プロジェクション -☆-//
+
+		// 渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする　引数：セットするワールド変換行列の参照(const)
+		void M_Set_World_Matrix(const DirectX::XMMATRIX & );
+
+		// 渡されたビュー変換行列（カメラ）をWVP用の定数バッファにセットする　引数：セットするビュー変換行列の参照(const)
+		void M_Set_View_Matrix(const DirectX::XMMATRIX & );
+
+		// 渡されたプロジェクション変換行列（描画スクリーン設定）をWVP用の定数バッファにセットする　引数：セットするプロジェクション変換行列の参照(const)
+		void M_Set_Projection_Matrix(const DirectX::XMMATRIX & );
+
+		// 渡されたWVP変換行列をWVP用の定数バッファにセットする　引数：セットするWVP変換行列の参照(const)
+		void M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data & );
+
+
+		//-☆- ボーン -☆-//
+
+		// 渡されたボーンマトリクス行列をボーン用の定数バッファにセットする
+		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & );
+
+
+		//-☆- 質感情報 -☆-//
+
+		// マテリアルの質感情報をセットする　引数：セットするマテリアル質感情報の参照（const）
+		void M_Set_Material_Detail(const DATA::MATERIAL_DETAIL::S_Material_Detail & );
 	};
 }
 

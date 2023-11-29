@@ -147,7 +147,7 @@ namespace ASSET::ANIMATION::CALCULATOR
 		void M_Blend_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
 		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照
-		void M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> &);
+		void M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & );
 	};
 }
 

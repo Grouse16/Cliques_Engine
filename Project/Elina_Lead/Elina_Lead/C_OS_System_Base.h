@@ -165,7 +165,10 @@ namespace OS
 		static bool M_Get_OS_Active(void);
 
 		// ウィンドウのサイズを返す　戻り値：ウィンドウサイズ
-		const S_Window_Size_Data & M_Get_Window_Size(void);
+		const S_Window_Size_Data & M_Get_Window_Size(void) const;
+
+		// ウィンドウのアスペクト比を返す　戻り値：アスペクト比
+		float M_Get_Aspect_Size(void) const;
 
 		// ウィンドウの座標を返す　戻り値：ウィンドウ座標
 		const S_Window_Position & M_Get_Window_Position(void);
