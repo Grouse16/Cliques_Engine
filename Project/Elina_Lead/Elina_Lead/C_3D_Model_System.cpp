@@ -340,11 +340,11 @@ void C_3D_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in
 //-☆- 定数バッファ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする
+// 詳細   ：ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする、トランスフォームを受け取る
 // 引数   ：const C_Transform & トランスフォームの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & in_transform)
+void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & in_transform)
 {
 	// ☆ 変数宣言 ☆ //
 	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方
@@ -367,3 +367,98 @@ void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera(const MATH:
 
 	return;
 }
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする、ワールドマトリクスを受け取る
+// 引数   ：const C_Transform & ワールドマトリクスの参照（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(const DirectX::XMMATRIX & in_world_matrix)
+{
+	// ☆ 変数宣言 ☆ //
+	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方
+
+
+	// ワールドマトリクスを生成
+	in_set_wvp.world = in_world_matrix;
+
+	// ビューマトリクスをセット
+	in_set_wvp.view = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix();
+
+	// プロジェクションマトリクスをセット
+	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
+
+	// 全てのメッシュのマテリアルにトランスフォームをセット
+	for (S_Mesh_Data_Inform& now_mesh : mpr_variable.mesh_inform_list)
+	{
+		now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
+	}
+
+	return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//☆======================================================================☆
+// Copyright 2023 髙坂龍誠
+// 
+// もしもこのコードを自分のプロジェクトに利用したいのであれば、
+// メールアドレス：takasaka.ryusei1116@gmail.com
+// または、髙坂龍誠までご連絡ください。
+// コードの不明部分の解説や、最新の状態の提供などに対応いたします。
+//☆======================================================================☆

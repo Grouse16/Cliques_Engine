@@ -8,6 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Material.h"
 #include "C_Rendering_Graphics_API_Base.h"
+#include "C_Main_Camera.h"
 
 
 // デバッグ時のみログシステムを使用
@@ -1288,6 +1289,29 @@ void C_Material::M_Set_World_Matrix(const DirectX::XMMATRIX & in_set_matrix)
 	}
 
 	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 0, &in_set_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインカメラのビュー変換行列、プロジェクション変換行列をWVP用の定数バッファにセットする
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_View_Projection_By_Main_Camera(void)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	// ビューマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 1, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix());
+
+	// プロジェクションマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 2, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix());
 
 	return;
 }

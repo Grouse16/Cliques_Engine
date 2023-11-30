@@ -187,6 +187,7 @@
     <ClInclude Include="C_Material_Manager.h" />
     <ClInclude Include="C_Material_User.h" />
     <ClInclude Include="C_Mesh_Data.h" />
+    <ClInclude Include="S_Model_Draw_Command.h" />
     <ClInclude Include="C_Position.h" />
     <ClInclude Include="C_Post_Effect_Base.h" />
     <ClInclude Include="C_Post_Effect_Draw_Manager.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h" />
     <ClInclude Include="C_Quaternion.h" />
     <ClInclude Include="C_Scale.h" />
+    <ClInclude Include="C_Static_Model_Component.h" />
     <ClInclude Include="E_MATRIX_DIRECTION.h" />
     <ClInclude Include="C_Projection_System.h" />
     <ClInclude Include="C_Rendering_Font_Inform_Base.h" />
@@ -322,6 +324,7 @@
     <ClCompile Include="C_Shader_User.cpp" />
     <ClCompile Include="C_Sound_Base.cpp" />
     <ClCompile Include="C_Game_System_Base.cpp" />
+    <ClCompile Include="C_Static_Model_Component.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
     <ClCompile Include="C_UIC_Graph_Box.cpp" />

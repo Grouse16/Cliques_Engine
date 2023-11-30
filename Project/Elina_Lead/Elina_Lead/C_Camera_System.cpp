@@ -151,7 +151,7 @@ void C_Camera_System::M_Set_Far_Clip(float in_far_clip_distance)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ビューのマトリクス変換行列を返す
 // 引数   ：void
-// 戻り値 ：cosnt XMMATRIX & ビューのマトリクス変換行列の参照（const）
+// 戻り値 ：const XMMATRIX & ビューのマトリクス変換行列の参照（const）
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 const DirectX::XMMATRIX & C_Camera_System::M_Get_View_Matrix(void) const
 {
@@ -162,7 +162,7 @@ const DirectX::XMMATRIX & C_Camera_System::M_Get_View_Matrix(void) const
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：プロジェクションのマトリクス変換行列を返す
 // 引数   ：void
-// 戻り値 ：cosnt XMMATRIX & プロジェクションのマトリクス変換行列の参照（const）
+// 戻り値 ：const XMMATRIX & プロジェクションのマトリクス変換行列の参照（const）
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 const DirectX::XMMATRIX & C_Camera_System::M_Get_Projection_Matrix(void) const
 {

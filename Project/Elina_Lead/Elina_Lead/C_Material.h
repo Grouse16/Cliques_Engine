@@ -251,6 +251,9 @@ namespace ASSET::MATERIAL
 		// 渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする　引数：セットするワールド変換行列の参照(const)
 		void M_Set_World_Matrix(const DirectX::XMMATRIX & );
 
+		// メインカメラのビュー変換行列、プロジェクション変換行列をWVP用の定数バッファにセットする
+		void M_Set_View_Projection_By_Main_Camera(void);
+
 		// 渡されたビュー変換行列（カメラ）をWVP用の定数バッファにセットする　引数：セットするビュー変換行列の参照(const)
 		void M_Set_View_Matrix(const DirectX::XMMATRIX & );
 
