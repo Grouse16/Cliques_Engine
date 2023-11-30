@@ -21,6 +21,13 @@
 using namespace ASSET::MATERIAL;
 
 
+// ☆ 定数 ☆ //
+constexpr int con_WVP_NUMBER = 0;	// WVPの番号
+constexpr int con_WVP_WORLD_NUMBER = 0;	// WVPのワールドのマトリクスの番号
+constexpr int con_WVP_VIEW_NUMBER = 0;	// WVPのビューのマトリクスの番号
+constexpr int con_WVP_PROJECTION_NUMBER = 0;	// WVPのプロジェクションのマトリクスの番号
+
+
 // ☆ クラス ☆ //
 
 // データと名前を関連付けるための構造体
@@ -1288,7 +1295,7 @@ void C_Material::M_Set_World_Matrix(const DirectX::XMMATRIX & in_set_matrix)
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 0, &in_set_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_WORLD_NUMBER, &in_set_matrix);
 
 	return;
 }
@@ -1308,10 +1315,10 @@ void C_Material::M_Set_View_Projection_By_Main_Camera(void)
 	}
 
 	// ビューマトリクスをセット
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 1, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix());
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix());
 
 	// プロジェクションマトリクスをセット
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 2, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix());
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix());
 
 	return;
 }
@@ -1330,7 +1337,7 @@ void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX& in_set_view_matrix)
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 1, &in_set_view_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &in_set_view_matrix);
 
 	return;
 }
@@ -1349,7 +1356,7 @@ void C_Material::M_Set_Projection_Matrix(const DirectX::XMMATRIX & in_set_projec
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 2, &in_set_projection_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &in_set_projection_matrix);
 
 	return;
 }
@@ -1368,7 +1375,7 @@ void C_Material::M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data 
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, 0, &in_set_wvp);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, con_WVP_NUMBER, &in_set_wvp);
 
 	return;
 }

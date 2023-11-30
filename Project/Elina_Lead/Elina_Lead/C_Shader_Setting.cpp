@@ -368,12 +368,9 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 	int shader_slot_num = mpr_variable.shader_list.size();	// 操作するシェーダーの配列番号
 
 	
-	// シェーダーを取得する
+	// シェーダーを取得する、生成に失敗したらエラーを出して抜ける
 	mpr_variable.shader_list.resize(shader_slot_num + 1);
-	mpr_variable.shader_list[shader_slot_num].M_Load_Shader_Code(shader_kind, in_shader_data_file.M_Get_Data_Right_In_Row());
-
-	// 生成に失敗したらエラーを出して抜ける
-	if (mpr_variable.shader_list[shader_slot_num].M_Get_Shader_Code() == nullptr)
+	if (mpr_variable.shader_list[shader_slot_num].M_Load_Shader_Code(shader_kind, in_shader_data_file.M_Get_Data_Right_In_Row()) == false)
 	{
 		return false;
 	}

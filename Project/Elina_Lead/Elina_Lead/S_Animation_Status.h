@@ -24,6 +24,7 @@ namespace ASSET::ANIMATION
 		float animation_blend_percent = 0.0f;	// アニメーションブレンド率
 		float need_blend_time = 0.1f;	// アニメーションブレンド完了までの時間
 		float animation_speed = 1.0f;	// アニメーション速度
+		float passed_time = 0.0f;		// 経過時間
 
 		const int bone_sum = 0;	// ボーン数
 

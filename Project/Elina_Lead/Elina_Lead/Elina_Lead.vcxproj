@@ -148,6 +148,7 @@
     <ClInclude Include="C_Animation_Calculation_System.h" />
     <ClInclude Include="C_Animation_Algorithm_Base.h" />
     <ClInclude Include="C_Animation_Data_System.h" />
+    <ClInclude Include="C_Animation_Model_Component.h" />
     <ClInclude Include="C_Animation_Model_User.h" />
     <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
@@ -294,6 +295,7 @@
     <ClCompile Include="C_Animation_Calculation_System.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Base.cpp" />
     <ClCompile Include="C_Animation_Data_System.cpp" />
+    <ClCompile Include="C_Animation_Model_Component.cpp" />
     <ClCompile Include="C_Animation_Model_User.cpp" />
     <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Bone_Data.cpp" />

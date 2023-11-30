@@ -625,6 +625,12 @@
     <Filter Include="ソース ファイル\アセット\モデル用システム">
       <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{84008d83-bedc-49e4-bca0-18e4b582ab13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{63adf544-d1fa-425c-9be6-00ab51b5b828}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -1065,11 +1071,14 @@
     <ClInclude Include="C_Scale.h">
       <Filter>ヘッダー ファイル\システム\計算システム</Filter>
     </ClInclude>
-    <ClInclude Include="C_Static_Model_Component.h">
-      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生</Filter>
-    </ClInclude>
     <ClInclude Include="S_Model_Draw_Command.h">
       <Filter>ヘッダー ファイル\アセット\モデル用システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1394,8 +1403,11 @@
     <ClCompile Include="C_Texture_Data_User.cpp">
       <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
     </ClCompile>
+    <ClCompile Include="C_Animation_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
     <ClCompile Include="C_Static_Model_Component.cpp">
-      <Filter>ソース ファイル\ゲーム\コンポーネント\派生</Filter>
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

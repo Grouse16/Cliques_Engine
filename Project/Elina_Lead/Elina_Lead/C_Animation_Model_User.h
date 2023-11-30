@@ -74,17 +74,23 @@ namespace ASSET::ANIMATION_MODEL
 
 		//-☆- ロード -☆-//
 
-		// 指定された名前のアニメーションモデルを読み込む　引数：ロードするアニメーションモデル名
-		void M_Load_Animation_Model(std::string);
+		// 指定された名前のアニメーションモデルを読み込む　引数：ロードするアニメーションモデル名　戻り値：成功時のみtrue
+		bool M_Load_Animation_Model(std::string);
 
 		// 指定された名前のアニメーションデータをロードする　引数：ロードするアニメーションデータ名　戻り値：成功時のみtrue
 		bool M_Load_Animation_Data_By_Name(std::string);
 
 
+		//-☆- 更新 -☆-//
+
+		// アニメーションを指定された時間分経過させる　引数：経過させる時間
+		void M_Time_Update(float);
+
+
 		//-☆- 描画 -☆-//
 
-		// モデルの描画を開始する、描画前に実行する必要がある　引数：トランスフォームの参照（const）
-		void M_Model_Draw_Start(const MATH::C_Transform & );
+		// モデルの描画を開始する、描画前に実行する必要がある　引数：ワールドマトリクス変換行列の参照（const）
+		void M_Model_Draw_Start(const DirectX::XMMATRIX & );
 
 		// アニメーションモデルを描画する
 		void M_Draw_Model(void);

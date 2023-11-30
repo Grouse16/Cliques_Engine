@@ -131,7 +131,10 @@ namespace ASSET::ANIMATION_MODEL
 		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>&);
 
 		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする　引数：トランスフォームの参照（const）
-		void M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & );
+		void M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & );
+
+		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする、ワールドマトリクスを受け取る　引数：ワールドマトリクスの参照（const）
+		void M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(const DirectX::XMMATRIX & );
 	};
 }
 
