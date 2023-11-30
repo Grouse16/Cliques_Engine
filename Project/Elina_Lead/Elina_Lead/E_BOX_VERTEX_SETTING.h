@@ -40,7 +40,7 @@ namespace DATA::VERTEX::SETTING
 		e_INDEX_5 = (int)E_BOX_VERTEX_SETTING::e_RIGHT_BOTTOM,	// 三角形２の右下頂点
 		e_INDEX_6 = (int)E_BOX_VERTEX_SETTING::e_LEFT_BOTTOM,	// 三角形２の左下頂点
 
-		e_SUM = 6,	// インデックスの総数
+		e_SUM,	// インデックスの総数
 	};
 }
 

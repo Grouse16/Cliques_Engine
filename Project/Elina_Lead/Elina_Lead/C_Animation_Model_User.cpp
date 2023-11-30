@@ -191,15 +191,18 @@ bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_a
 //-☆- 描画 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：アニメーションの結果を生成する
-// 引数   ：void
+// 詳細   ：モデルの描画を開始する、描画前に実行する必要がある
+// 引数   ：const C_Transform & トランスフォームの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::m_Animation_Execute(void)
+void C_Animation_Model_User::M_Model_Draw_Start(const MATH::C_Transform & in_set_transform)
 {
 	// アニメーション結果をセットする
 	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(mpr_variable.bone_matrix_list);
 	mpr_variable.animation_model->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
+
+	// トランスフォームをセットする
+	mpr_variable.animation_model->M_Set_World_View_Projection_With_Main_Camera(in_set_transform);
 
 	return;
 }
@@ -210,7 +213,7 @@ void C_Animation_Model_User::m_Animation_Execute(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Animation_Model_Draw(void)
+void C_Animation_Model_User::M_Draw_Model(void)
 {
 	// アニメーションモデルを持っていないなら描画しない
 	if (mpr_variable.animation_model == nullptr)
@@ -230,7 +233,7 @@ void C_Animation_Model_User::M_Animation_Model_Draw(void)
 // 引数   ：string メッシュ名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name(std::string in_mesh_name)
+void C_Animation_Model_User::M_Draw_Mesh_By_Mesh_Name(std::string in_mesh_name)
 {
 	// アニメーションモデルを持っていないなら描画しない
 	if (mpr_variable.animation_model == nullptr)
@@ -250,7 +253,7 @@ void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name(std::string in_
 // 引数   ：C_Material_User & 使用するマテリアルの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Animation_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
+void C_Animation_Model_User::M_Draw_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
 {
 	// アニメーションモデルを持っていないなら描画しない
 	if (mpr_variable.animation_model == nullptr)
@@ -259,18 +262,7 @@ void C_Animation_Model_User::M_Animation_Model_And_Set_Material(ASSET::MATERIAL:
 	}
 
 
-	// ☆ 変数宣言 ☆ //
-	ASSET::MATERIAL::S_Constant_Buffer_Data * bone_constant_buffer_address = in_use_material.M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Name("CB_BONE");	// 定数バッファのアドレス
-
-
-	// ボーン用の定数バッファがなければ抜ける
-	if (bone_constant_buffer_address == nullptr)
-	{
-		return;
-	}
-
-	// アニメーション結果をマテリアルにセットし、マテリアルを描画にレンダリングシステムへ送る
-	bone_constant_buffer_address->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(mpr_variable.bone_matrix_list.size(), 0, &mpr_variable.bone_matrix_list[0]);
+	// マテリアルをセットする
 	in_use_material.M_Material_Attach_To_Draw();
 
 	// 描画を行う
@@ -285,7 +277,7 @@ void C_Animation_Model_User::M_Animation_Model_And_Set_Material(ASSET::MATERIAL:
 // 引数   ：C_Material_User & 使用するマテリアルの参照, string メッシュ名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
+void C_Animation_Model_User::M_Draw_Mesh_By_Mesh_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
 {
 	// アニメーションモデルを持っていないなら描画しない
 	if (mpr_variable.animation_model == nullptr)
@@ -294,18 +286,7 @@ void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name_And_Set_Materia
 	}
 
 
-	// ☆ 変数宣言 ☆ //
-	ASSET::MATERIAL::S_Constant_Buffer_Data * bone_constant_buffer_address = in_use_material.M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Name("CB_BONE");	// 定数バッファのアドレス
-
-
-	// ボーン用の定数バッファがなければ抜ける
-	if (bone_constant_buffer_address == nullptr)
-	{
-		return;
-	}
-
-	// アニメーション結果をマテリアルにセットし、マテリアルを描画にレンダリングシステムへ送る
-	bone_constant_buffer_address->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(mpr_variable.bone_matrix_list.size(), 0, &mpr_variable.bone_matrix_list[0]);
+	// マテリアルをセットする
 	in_use_material.M_Material_Attach_To_Draw();
 
 	// 指定されたメッシュのみ描画する
@@ -316,11 +297,11 @@ void C_Animation_Model_User::M_Animation_Model_Draw_By_Mesh_Name_And_Set_Materia
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：アニメーションの計算結果のボーンマトリクス行列を解放する、このモデルの描画が完了したときに実行することでメモリが最適化される
+// 詳細   ：モデルの描画を終了する、モデルの描画が完了したときに実行することでメモリが最適化される
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Animation_Bone_Matrix_Release(void)
+void C_Animation_Model_User::M_Model_Draw_End(void)
 {
 	mpr_variable.bone_matrix_list.clear();
 	mpr_variable.bone_matrix_list.shrink_to_fit();
@@ -354,6 +335,7 @@ bool C_Animation_Model_User::M_Play_Animation(std::string in_animation_name, flo
 	return false;
 }
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションを指定された時間から再生する（ブレンドあり）
 // 引数   ：string アニメーション名, float ブレンドに必要な時間, float アニメーション開始時間
@@ -377,6 +359,7 @@ bool C_Animation_Model_User::M_Play_Animation_Set_Time(std::string in_animation_
 
 	return false;
 }
+
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションを現在の時間のままループ再生する（ブレンドあり）

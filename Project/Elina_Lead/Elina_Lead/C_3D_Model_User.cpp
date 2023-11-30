@@ -117,7 +117,7 @@ void C_3D_Model_User::M_Draw_3D_Model(void)
 		return;
 	}
 
-	mpr_variable.use_model_address->M_Draw_3D_Model();
+	mpr_variable.use_model_address->M_Draw_Model();
 
 	return;
 }
@@ -160,7 +160,7 @@ void C_3D_Model_User::M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Materi
 	in_use_material.M_Material_Attach_To_Draw();
 
 	// 3Dƒ‚ƒfƒ‹‚ð•`‰æ‚·‚é
-	mpr_variable.use_model_address->M_Draw_3D_Model_Do_Not_Use_Material();
+	mpr_variable.use_model_address->M_Draw_Model_Do_Not_Use_Material();
 
 	return;
 }

@@ -28,13 +28,13 @@ void C_Bone_Data::M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & out_matrix)
 {
     DirectX::XMStoreFloat4x4
     (
-        // 設定先
+        // 設定先マトリクス行列
         &out_matrix,
 
         // スケール
-        DirectX::XMMatrixScaling(scale.x, scale.y, scale.z) *
+        DirectX::XMMatrixScaling(scale.x, scale.y, scale.z) * 
 
-        // クォータニオン
+        // クォータニオン（回転）
         DirectX::XMMatrixRotationQuaternion(quaternion) *
 
         // ポジション

@@ -134,7 +134,7 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 	// 現在のキーが配列の最後であればそれをそのまま使用する
 	if (key_is_end)
 	{
-		result_quaternion = in_quaternion_key[start_key_slot].quaternion;
+		result_quaternion = in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector();
 	}
 
 	// 現在のキーが配列の途中であれば次のキーフレームまでの時間から現在の位置を割り出す
@@ -148,7 +148,12 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 		time_percent = (in_time - in_quaternion_key[start_key_slot].time_of_frame) / (in_quaternion_key[start_key_slot + 1].time_of_frame - in_quaternion_key[start_key_slot].time_of_frame);
 
 		// 遷移先までのキーのクォータニオンの補間を時間のパーセントから掛ける（球面線形補間）
-		result_quaternion = DirectX::XMQuaternionSlerp(in_quaternion_key[start_key_slot].quaternion, in_quaternion_key[start_key_slot + 1].quaternion, time_percent);
+		result_quaternion = DirectX::XMQuaternionSlerp
+		(
+			in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector(),
+			in_quaternion_key[start_key_slot + 1].quaternion.M_Get_Quaternion_Rotation_Vector(), 
+			time_percent
+		);
 	}
 
 
@@ -250,7 +255,7 @@ inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, c
 	// 現在のキーが配列の最後であればそれをそのまま使用する
 	if (key_is_end)
 	{
-		out_set_quaternion = in_quaternion_key[start_key_slot].quaternion;
+		out_set_quaternion = in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector();
 	}
 
 	// 現在のキーが配列の途中であれば次のキーフレームまでの時間から現在の位置を割り出す
@@ -264,7 +269,12 @@ inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, c
 		time_percent = (in_time - in_quaternion_key[start_key_slot].time_of_frame) / (in_quaternion_key[start_key_slot + 1].time_of_frame - in_quaternion_key[start_key_slot].time_of_frame);
 
 		// 遷移先までのキーのクォータニオンの補間を時間のパーセントから掛ける（球面線形補間）
-		out_set_quaternion = DirectX::XMQuaternionSlerp(in_quaternion_key[start_key_slot].quaternion, in_quaternion_key[start_key_slot + 1].quaternion, time_percent);
+		out_set_quaternion = DirectX::XMQuaternionSlerp
+		(
+			in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector(),
+			in_quaternion_key[start_key_slot + 1].quaternion.M_Get_Quaternion_Rotation_Vector(),
+			time_percent
+		);
 	}
 
 	return;
@@ -460,7 +470,7 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			set_rotation_value.w = file_data.M_Get_Float_Double_Number();
 
 			// クォータニオンにセット
-			now_rotation_key.quaternion = DirectX::XMVectorSet(set_rotation_value.x, set_rotation_value.y, set_rotation_value.z, set_rotation_value.w);
+			now_rotation_key.quaternion.M_Set_Quaternion(DirectX::XMVectorSet(set_rotation_value.x, set_rotation_value.y, set_rotation_value.z, set_rotation_value.w));
 		}
 
 

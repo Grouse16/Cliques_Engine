@@ -153,6 +153,7 @@
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
     <ClInclude Include="C_Bone_Data.h" />
+    <ClInclude Include="C_Camera_System.h" />
     <ClInclude Include="C_Component_Base.h" />
     <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
     <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
@@ -181,10 +182,12 @@
     <ClInclude Include="C_Game_Instance_Manager.h" />
     <ClInclude Include="C_Actor_List.h" />
     <ClInclude Include="C_List_All_Base.h" />
+    <ClInclude Include="C_Main_Camera.h" />
     <ClInclude Include="C_Material.h" />
     <ClInclude Include="C_Material_Manager.h" />
     <ClInclude Include="C_Material_User.h" />
     <ClInclude Include="C_Mesh_Data.h" />
+    <ClInclude Include="C_Position.h" />
     <ClInclude Include="C_Post_Effect_Base.h" />
     <ClInclude Include="C_Post_Effect_Draw_Manager.h" />
     <ClInclude Include="C_Post_Effect_List.h" />
@@ -200,6 +203,10 @@
     <ClInclude Include="C_OS_System_Base.h" />
     <ClInclude Include="C_Platform_Detection_System.h" />
     <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h" />
+    <ClInclude Include="C_Quaternion.h" />
+    <ClInclude Include="C_Scale.h" />
+    <ClInclude Include="E_MATRIX_DIRECTION.h" />
+    <ClInclude Include="C_Projection_System.h" />
     <ClInclude Include="C_Rendering_Font_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Graphics_API_Base.h" />
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h" />
@@ -235,6 +242,9 @@
     <ClInclude Include="C_Windows_System.h" />
     <ClInclude Include="C_Wnd_Proc_For_Game_APK.h" />
     <ClInclude Include="C_Wnd_Proc_Manager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="S_Material_Detail.h" />
+    <ClInclude Include="S_World_View_Projection.h" />
     <ClInclude Include="Depth_Stencil_Setting_Inform.h" />
     <ClInclude Include="Game_Function_Include_List.h" />
     <ClInclude Include="Game_Function_Priority_Setting.h" />
@@ -262,7 +272,7 @@
     <ClInclude Include="S_Tex_Color.h" />
     <ClInclude Include="S_UI_Vertex.h" />
     <ClInclude Include="Texture_UV_Data.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="C_Transform.h" />
     <ClInclude Include="UI_Figure_Data.h" />
     <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
   </ItemGroup>
@@ -285,18 +295,24 @@
     <ClCompile Include="C_Animation_Model_User.cpp" />
     <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Bone_Data.cpp" />
+    <ClCompile Include="C_Camera_System.cpp" />
     <ClCompile Include="C_Component_Base.cpp" />
     <ClCompile Include="C_Float_2.cpp" />
     <ClCompile Include="C_Float_3.cpp" />
     <ClCompile Include="C_Game_Instance_Base.cpp" />
     <ClCompile Include="C_Game_Instance_Manager.cpp" />
     <ClCompile Include="C_List_All_Base.cpp" />
+    <ClCompile Include="C_Main_Camera.cpp" />
     <ClCompile Include="C_Material.cpp" />
     <ClCompile Include="C_Material_Manager.cpp" />
     <ClCompile Include="C_Material_User.cpp" />
     <ClCompile Include="C_Mesh_Data.cpp" />
+    <ClCompile Include="C_Position.cpp" />
     <ClCompile Include="C_Post_Effect_Base.cpp" />
     <ClCompile Include="C_Post_Effect_Draw_Manager.cpp" />
+    <ClCompile Include="C_Projection_System.cpp" />
+    <ClCompile Include="C_Quaternion.cpp" />
+    <ClCompile Include="C_Scale.cpp" />
     <ClCompile Include="C_Scene_Base.cpp" />
     <ClCompile Include="C_Scene_Game.cpp" />
     <ClCompile Include="C_Scene_Manager.cpp" />
@@ -393,6 +409,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Elina_Lead.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

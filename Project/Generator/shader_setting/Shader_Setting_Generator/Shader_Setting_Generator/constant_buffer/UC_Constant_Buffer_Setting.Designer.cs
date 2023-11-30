@@ -42,10 +42,11 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.textBox1.Location = new System.Drawing.Point(0, 23);
+            this.textBox1.Location = new System.Drawing.Point(0, 29);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(104, 23);
+            this.textBox1.Size = new System.Drawing.Size(137, 27);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "定数バッファ名";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -53,10 +54,11 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.textBox2.Location = new System.Drawing.Point(1, 43);
+            this.textBox2.Location = new System.Drawing.Point(1, 54);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(103, 23);
+            this.textBox2.Size = new System.Drawing.Size(136, 27);
             this.textBox2.TabIndex = 0;
             this.textBox2.Text = "配列数";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -64,10 +66,11 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.textBox3.Location = new System.Drawing.Point(0, 65);
+            this.textBox3.Location = new System.Drawing.Point(0, 81);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(104, 23);
+            this.textBox3.Size = new System.Drawing.Size(137, 27);
             this.textBox3.TabIndex = 0;
             this.textBox3.Text = "データが必要か";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -80,16 +83,18 @@
             this.CB_Constant_Data_Enough_Flg.Items.AddRange(new object[] {
             "true：定数データを生成する",
             "false：定数バッファのみ生成する"});
-            this.CB_Constant_Data_Enough_Flg.Location = new System.Drawing.Point(102, 64);
+            this.CB_Constant_Data_Enough_Flg.Location = new System.Drawing.Point(136, 80);
+            this.CB_Constant_Data_Enough_Flg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CB_Constant_Data_Enough_Flg.Name = "CB_Constant_Data_Enough_Flg";
-            this.CB_Constant_Data_Enough_Flg.Size = new System.Drawing.Size(264, 24);
+            this.CB_Constant_Data_Enough_Flg.Size = new System.Drawing.Size(351, 28);
             this.CB_Constant_Data_Enough_Flg.TabIndex = 1;
             this.CB_Constant_Data_Enough_Flg.SelectedIndexChanged += new System.EventHandler(this.CB_Constant_Data_Enough_Flg_SelectedIndexChanged);
             // 
             // NM_Element_Sum
             // 
             this.NM_Element_Sum.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.NM_Element_Sum.Location = new System.Drawing.Point(102, 43);
+            this.NM_Element_Sum.Location = new System.Drawing.Point(136, 54);
+            this.NM_Element_Sum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NM_Element_Sum.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -101,7 +106,7 @@
             0,
             0});
             this.NM_Element_Sum.Name = "NM_Element_Sum";
-            this.NM_Element_Sum.Size = new System.Drawing.Size(264, 23);
+            this.NM_Element_Sum.Size = new System.Drawing.Size(352, 27);
             this.NM_Element_Sum.TabIndex = 2;
             this.NM_Element_Sum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NM_Element_Sum.Value = new decimal(new int[] {
@@ -114,10 +119,11 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.textBox5.Location = new System.Drawing.Point(101, 0);
+            this.textBox5.Location = new System.Drawing.Point(135, 0);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(265, 23);
+            this.textBox5.Size = new System.Drawing.Size(352, 27);
             this.textBox5.TabIndex = 0;
             this.textBox5.Text = "定数バッファ設定";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -126,9 +132,10 @@
             // 
             this.TB_Constant_Buffer_Number.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.TB_Constant_Buffer_Number.Location = new System.Drawing.Point(0, 0);
+            this.TB_Constant_Buffer_Number.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_Constant_Buffer_Number.Name = "TB_Constant_Buffer_Number";
             this.TB_Constant_Buffer_Number.ReadOnly = true;
-            this.TB_Constant_Buffer_Number.Size = new System.Drawing.Size(104, 23);
+            this.TB_Constant_Buffer_Number.Size = new System.Drawing.Size(137, 27);
             this.TB_Constant_Buffer_Number.TabIndex = 0;
             this.TB_Constant_Buffer_Number.Text = "1";
             this.TB_Constant_Buffer_Number.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -139,22 +146,23 @@
             this.CB_Constant_Buffer_Name.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.CB_Constant_Buffer_Name.FormattingEnabled = true;
             this.CB_Constant_Buffer_Name.Items.AddRange(new object[] {
-            "CB_TRANSFORM：トランスフォーム設定を自動で登録",
-            "CB_AMBIENT_LIGHT：アンビエントライトを自動で登録",
-            "CB_DIRECTIONAL_LIGHT：ディレクショナルライトを自動で登録",
-            "CB_POINT_LIGHT：ポイントライトを自動で登録",
-            "CB_SPOT_LIGHT：スポットライトを自動で登録",
-            "CB_AREA_LIGHT：エリアライトを自動で登録",
-            "CB_BONE：ボーンマトリクス行列を自動で登録"});
-            this.CB_Constant_Buffer_Name.Location = new System.Drawing.Point(102, 22);
+            "CB_WBP：ワールド ビュー プロジェクション行列",
+            "CB_BONE：ボーンマトリクス行列",
+            "CB_AMBIENT_LIGHT：アンビエントライト",
+            "CB_DIRECTIONAL_LIGHT：ディレクショナルライト",
+            "CB_POINT_LIGHT：ポイントライト",
+            "CB_SPOT_LIGHT：スポットライト",
+            "CB_AREA_LIGHT：エリアライト"});
+            this.CB_Constant_Buffer_Name.Location = new System.Drawing.Point(136, 28);
+            this.CB_Constant_Buffer_Name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CB_Constant_Buffer_Name.Name = "CB_Constant_Buffer_Name";
-            this.CB_Constant_Buffer_Name.Size = new System.Drawing.Size(264, 24);
+            this.CB_Constant_Buffer_Name.Size = new System.Drawing.Size(351, 28);
             this.CB_Constant_Buffer_Name.TabIndex = 3;
             this.CB_Constant_Buffer_Name.Text = "Default";
             // 
             // UC_Constant_Buffer_Setting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CB_Constant_Buffer_Name);
             this.Controls.Add(this.NM_Element_Sum);
@@ -164,8 +172,9 @@
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.TB_Constant_Buffer_Number);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UC_Constant_Buffer_Setting";
-            this.Size = new System.Drawing.Size(366, 88);
+            this.Size = new System.Drawing.Size(488, 110);
             this.Load += new System.EventHandler(this.UC_Constant_Buffer_Setting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NM_Element_Sum)).EndInit();
             this.ResumeLayout(false);

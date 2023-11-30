@@ -7,6 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_3D_Animation_Model_System.h"
+#include "C_Main_Camera.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -305,36 +306,6 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 	}
 
-
-	// マテリアルの定数バッファを探索し、特殊な名前のスロットを取得する
-	for (S_Animative_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
-	{
-		// ☆ 変数宣言 ☆ //
-		ASSET::MATERIAL::C_Material * now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
-
-
-		// トランスフォーム　あれば定数バッファを確保する
-		now_mesh.unique_buffer_number.transform = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_TRANSFORM");
-
-		// アンビエントライト
-		now_mesh.unique_buffer_number.ambient_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AMBIENT_LIGHT");
-
-		// ディレクショナルライト
-		now_mesh.unique_buffer_number.directional_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_DIRECTIONAL_LIGHT");
-
-		// ポイントライト
-		now_mesh.unique_buffer_number.point_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
-
-		// スポットライト
-		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
-
-		// エリアライト
-		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
-
-		// ボーン
-		now_mesh.unique_buffer_number.bone = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_BONE");
-	}
-
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -464,41 +435,6 @@ const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & C_3D_Animation_Model_
 //-☆- 描画 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ボーンのマトリクスをマテリアルにセットする
-// 引数   ：const std::vector<DirectX::XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
-{
-	// ☆ 変数宣言 ☆ //
-	int bone_sum = mpr_variable.bone_list.size();	// ボーン数
-
-
-	// セットするボーンマトリクス配列が現在のボーン情報と一致しないなら処理をしない
-	if (bone_sum != in_bone_matrix_list.size())
-	{
-		return;
-	}
-
-	// 全てのメッシュにボーンをセットする
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
-	{
-		// ☆ 変数宣言 ☆ //
-		ASSET::MATERIAL::S_Constant_Buffer_Data * now_bone_constant_buffer =	// 現在のボーンの定数バッファ
-			now_mesh_inform.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Get_Constant_Buffer_Data_By_Index(now_mesh_inform.unique_buffer_number.bone);
-
-		// 定数バッファの中身があるときのみ、ボーンの情報をセットする
-		if (now_bone_constant_buffer)
-		{
-			now_bone_constant_buffer->data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(bone_sum, 0, &in_bone_matrix_list[0]);
-		}
-	}
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：3Dモデルを描画する
 // 引数   ：void
 // 戻り値 ：void
@@ -566,6 +502,65 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std:
 		{
 			now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
 		}
+	}
+
+	return;
+}
+
+
+//-☆- 定数バッファ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンのマトリクスをマテリアルにセットする
+// 引数   ：const vector<XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>& in_bone_matrix_list)
+{
+	// ☆ 変数宣言 ☆ //
+	int bone_sum = mpr_variable.bone_list.size();	// ボーン数
+
+
+	// セットするボーンマトリクス配列が現在のボーン情報と一致しないなら処理をしない
+	if (bone_sum != in_bone_matrix_list.size())
+	{
+		return;
+	}
+
+	// 全てのメッシュにボーンをセットする
+	for (S_Animative_Mesh_Data_Inform& now_mesh_inform : mpr_variable.mesh_inform_list)
+	{
+		now_mesh_inform.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_Bone_Matrix(in_bone_matrix_list);
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする
+// 引数   ：const C_Transform & トランスフォームの参照（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & in_transform)
+{
+	// ☆ 変数宣言 ☆ //
+	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方
+
+
+	// ワールドマトリクスを生成
+	in_transform.M_Generate_World_Matrix(in_set_wvp.world);
+
+	// ビューマトリクスをセット
+	in_set_wvp.view = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix();
+
+	// プロジェクションマトリクスをセット
+	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
+
+	// 全てのメッシュのマテリアルにトランスフォームをセット
+	for (S_Animative_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	{
+		now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}
 
 	return;

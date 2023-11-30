@@ -20,6 +20,32 @@
 using namespace ASSET::MATERIAL;
 
 
+// ☆ クラス ☆ //
+
+// データと名前を関連付けるための構造体
+class C_Store_Data
+{
+	//==☆ パブリック ☆==//
+public:
+
+	// ☆ 変数宣言 ☆ //
+	std::string name = "default";	// 名前
+
+	int & data;	// データ
+
+	
+	// ☆ 関数 ☆ //
+
+	//-☆- 初期化と終了時 -☆-//
+	C_Store_Data(int & in_data, std::string in_set_name) : data(in_data)
+	{
+		name = in_set_name;
+
+		return;
+	}
+};
+
+
 // ☆ 関数 ☆ //
 
 //==☆ プライベート ☆==//
@@ -536,6 +562,157 @@ void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Re
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：特殊なバッファスロットを探索して番号を記録する
+// 引数   ：C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// ☆ 定数 ☆ //
+	constexpr int con_CONSTANT_UNIQUE_BUFFER_KIND_SUM = 8;	// 特殊な定数バッファスロットの総数数
+	constexpr int con_MATERIAL_DETAIL_SUM = 6;	// マテリアル質感情報の設定できる項目数
+
+
+	// ☆ 変数宣言 ☆ //
+	std::vector <std::unique_ptr<C_Store_Data>> data_list;	// データのリスト
+	
+	int constant_buffer_sum = mpr_variable.constant_data_list.size();	// 定数バッファ数
+
+
+	// 名前と変数の関連を登録
+	data_list.resize(con_CONSTANT_UNIQUE_BUFFER_KIND_SUM);
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.wvp, "CB_WVP"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.bone, "CB_BONE"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.material, "CB_MATERIAL"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.ambient_light, "CB_AMBIENT_LIGHT"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.directional_light, "CB_DIRECTIONAL_LIGHT"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.point_light, "CB_POINT_LIGHT"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.spot_light, "CB_SPOT_LIGHT"));
+	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_slot_list.area_light, "CB_AREA_LIGHT"));
+
+
+	// マテリアルの定数バッファを探索し、特殊な名前のスロットの番号を取得する
+	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < constant_buffer_sum; l_now_constant_buffer_num++)
+	{
+		// ☆ 変数宣言 ☆ //
+		std::string signature_name = mpr_variable.constant_data_list[l_now_constant_buffer_num].signature_name;	// 定数バッファの識別名
+
+
+		// データ名＆変数関連リストから名前が一致するものにデータを設定し、設定が完了したものはリストから削除
+		data_list.erase
+		(
+			std::remove_if
+			(
+				data_list.begin(),
+				data_list.end(),
+
+				// 名前が一致すれば番号をセットして削除、そうでなければスルーするラムダ
+				[signature_name, l_now_constant_buffer_num](std::unique_ptr<C_Store_Data> & in_data)
+				{
+					if (in_data->name == signature_name)
+					{
+						in_data->data = l_now_constant_buffer_num;
+						in_data.reset();
+
+						return true;
+					}
+
+					return false;
+				}
+			)
+		);
+	}
+
+
+	// 質感情報のスロットがないならロードとセットはしない
+	if (mpr_variable.unique_slot_list.material == -1)
+	{
+		return;
+	}
+
+	
+	//--☆ 質感情報のスロットがあるならマテリアル情報をロードしてバッファにセットする ☆--//
+
+	// マテリアル質感情報まで移動する、無ければ抜ける
+	in_file_data.M_Goto_Start_Row();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("MATERIAL:") == false)
+	{
+		return;
+	}
+
+	
+	// ☆ 変数宣言 ☆ //
+	DATA::MATERIAL_DETAIL::S_Material_Detail set_material_detail;	// 設定するマテリアル質感情報
+
+
+	// アンビエント（基礎値）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.ambient.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.ambient.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.ambient.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.ambient.w = in_file_data.M_Get_Float_Double_Number();
+
+	// ディフューズ（減衰値）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.diffuse.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.diffuse.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.diffuse.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.diffuse.w = in_file_data.M_Get_Float_Double_Number();
+
+	// エミッション（照射）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.emission.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.emission.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.emission.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.emission.w = in_file_data.M_Get_Float_Double_Number();
+
+	// リフレクション（反射）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.reflection.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.reflection.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.reflection.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.reflection.w = in_file_data.M_Get_Float_Double_Number();
+
+	// スペキュラー（滑らかさ、ハイライト）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.specular.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.specular.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.specular.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.specular.w = in_file_data.M_Get_Float_Double_Number();
+
+	// トランスペアレント（透明度）をロード
+	in_file_data.M_Move_Next_Raw();
+	set_material_detail.transparent.x = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.transparent.y = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.transparent.z = in_file_data.M_Get_Float_Double_Number();
+	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
+	set_material_detail.transparent.w = in_file_data.M_Get_Float_Double_Number();
+	
+	// 質感情報をバッファにセット
+	M_Set_Material_Detail(set_material_detail);
+
+	return;
+}
+
+
 //-☆- 生成 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -896,6 +1073,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 		return false;
 	}
 
+	// 特殊なバッファスロットの設定を行う
+	M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(material_inform_file_data);
+
 
 	// デバッグ時は生成に成功したことを記録する
 #ifdef _DEBUG
@@ -1083,4 +1263,128 @@ int C_Material::M_Get_Texture_Number_By_Name(std::string in_texture_buffer_name)
 }
 
 
+//-☆- WVP ワールド ビュー プロジェクション -☆-//
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするワールド変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_World_Matrix(const DirectX::XMMATRIX & in_set_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 0, &in_set_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたビュー変換行列（カメラ）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするビュー変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX& in_set_view_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 1, &in_set_view_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたプロジェクション変換行列（描画スクリーン設定）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするプロジェクション変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Projection_Matrix(const DirectX::XMMATRIX & in_set_projection_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 2, &in_set_projection_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたWVP変換行列をWVP用の定数バッファにセットする
+// 引数   ：const S_World_View_Projection_Data & セットするWVP変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data & in_set_wvp)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, 0, &in_set_wvp);
+
+	return;
+}
+
+
+//-☆- ボーン -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンのマトリクスをマテリアルにセットする
+// 引数   ：const vector<XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
+{
+	// ボーンマトリクスのスロットがないならセットしない
+	if (mpr_variable.unique_slot_list.bone < 0)
+	{
+		return;
+	}
+
+
+	// ☆ 変数宣言 ☆ //
+	int bone_sum = in_bone_matrix_list.size();	// ボーン数
+
+
+	// ボーンの情報をセットする
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.bone].data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(bone_sum, 0, &in_bone_matrix_list[0]);
+
+	return;
+}
+
+
+//-☆- 質感情報 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルの質感情報をセットする
+// 引数   ：const S_Material_Detail & セットするマテリアル質感情報の参照（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Material_Detail(const DATA::MATERIAL_DETAIL::S_Material_Detail & in_set_material_detail)
+{
+	// 質感情報のスロットがないならセットしない
+	if (mpr_variable.unique_slot_list.material < 0)
+	{
+		return;
+	}
+
+	// 質感情報をセットする
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.material].data->M_Set_Constant_Buffer_Data<DATA::MATERIAL_DETAIL::S_Material_Detail>(1, 0, &in_set_material_detail);
+
+	return;
+}

@@ -8,6 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_3D_Model_System.h"
 #include "C_Text_And_File_Manager.h"
+#include "C_Main_Camera.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -213,32 +214,6 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 		now_mesh_inform.mesh_data->M_Delete_Index_Data();
 	}
 
-	// マテリアルの定数バッファを探索し、特殊な名前のスロットを取得する
-	for (S_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
-	{
-		// ☆ 変数宣言 ☆ //
-		ASSET::MATERIAL::C_Material * now_material = now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address();	// マテリアルのアドレス
-
-
-		// トランスフォーム
-		now_mesh.unique_buffer_number.transform = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_TRANSFORM");
-
-		// アンビエントライト
-		now_mesh.unique_buffer_number.ambient_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AMBIENT_LIGHT");
-
-		// ディレクショナルライト
-		now_mesh.unique_buffer_number.directional_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_DIRECTIONAL_LIGHT");
-
-		// ポイントライト
-		now_mesh.unique_buffer_number.point_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_POINT_LIGHT");
-
-		// スポットライト
-		now_mesh.unique_buffer_number.spot_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_SPOT_LIGHT");
-
-		// エリアライト
-		now_mesh.unique_buffer_number.area_light = now_material->M_Get_Constant_Buffer_Number_By_Name("CB_AREA_LIGHT");
-	}
-
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
@@ -290,7 +265,7 @@ std::vector<C_3D_Model_System::S_Mesh_Data_Inform> & C_3D_Model_System::M_Get_Me
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_3D_Model(void)
+void C_3D_Model_System::M_Draw_Model(void)
 {
 	// 全てのメッシュを描画
 	for (S_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
@@ -327,7 +302,7 @@ void C_3D_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_3D_Model_Do_Not_Use_Material(void)
+void C_3D_Model_System::M_Draw_Model_Do_Not_Use_Material(void)
 {
 	// 全てのメッシュを描画
 	for (S_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
@@ -353,6 +328,38 @@ void C_3D_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in
 		{
 			now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
 		}
+	}
+
+	return;
+}
+
+
+//-☆- 定数バッファ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする
+// 引数   ：const C_Transform & トランスフォームの参照（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & in_transform)
+{
+	// ☆ 変数宣言 ☆ //
+	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方
+	
+
+	// ワールドマトリクスを生成
+	in_transform.M_Generate_World_Matrix(in_set_wvp.world);
+
+	// ビューマトリクスをセット
+	in_set_wvp.view = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix();
+
+	// プロジェクションマトリクスをセット
+	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
+
+	// 全てのメッシュのマテリアルにトランスフォームをセット
+	for (S_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	{
+		now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}
 
 	return;

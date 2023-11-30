@@ -589,6 +589,36 @@
     <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\派生">
       <UniqueIdentifier>{ad77a841-9b46-493c-8982-c0ba55602de1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ">
+      <UniqueIdentifier>{9149098e-646c-41b1-90c1-a9cca95438fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ">
+      <UniqueIdentifier>{af67b7a8-2a4e-4cd8-b1a2-e552ac57f6dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\メインカメラ">
+      <UniqueIdentifier>{3fd6b7fb-b125-4a85-87bf-e20ade5bc93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\メインカメラ">
+      <UniqueIdentifier>{a4aa0403-eda8-4dde-b3c9-65a6f2660a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\システム">
+      <UniqueIdentifier>{2e98a2b9-6211-4e70-85a1-ff8c56eab270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\システム">
+      <UniqueIdentifier>{7d99ed24-d70f-43b8-bd47-d28126ff20c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\プロジェクション">
+      <UniqueIdentifier>{9d34203c-f37f-4d6a-b2d7-3a94473579c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\プロジェクション">
+      <UniqueIdentifier>{4c754df2-bbd7-4009-b227-5adc7324bb1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\計算システム">
+      <UniqueIdentifier>{f21a269d-d0d1-46c1-a19d-a062b58f4839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\計算システム">
+      <UniqueIdentifier>{9b1db0f8-a581-470e-8592-8eb147288f76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -723,7 +753,7 @@
     <ClInclude Include="2D_Position_Data.h">
       <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
+    <ClInclude Include="C_Transform.h">
       <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
     <ClInclude Include="Challenge_Mode_Macro.h">
@@ -998,6 +1028,36 @@
     </ClInclude>
     <ClInclude Include="S_3D_Animation_Model_Vertex.h">
       <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="S_World_View_Projection.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Material_Detail.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Main_Camera.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\メインカメラ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Camera_System.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Projection_System.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\プロジェクション</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Quaternion.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Position.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="E_MATRIX_DIRECTION.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scale.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1304,6 +1364,24 @@
     <ClCompile Include="C_UIC_Graph_Box.cpp">
       <Filter>ソース ファイル\ゲーム\UIコンポーネント\派生</Filter>
     </ClCompile>
+    <ClCompile Include="C_Main_Camera.cpp">
+      <Filter>ソース ファイル\ゲーム\カメラ\メインカメラ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Camera_System.cpp">
+      <Filter>ソース ファイル\ゲーム\カメラ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Quaternion.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Position.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scale.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Projection_System.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PS_UI_DX12.hlsl">
@@ -1317,5 +1395,10 @@
     <None Include="packages.config">
       <Filter>リソース ファイル\package</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Elina_Lead.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

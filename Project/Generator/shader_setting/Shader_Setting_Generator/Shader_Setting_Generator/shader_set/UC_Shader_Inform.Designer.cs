@@ -338,7 +338,7 @@
             "Hul Shader：ハルシェーダー用リソース",
             "Domain Shader：ドメインシェーダー用リソース",
             "Geometry Shader：ジオメトリシェーダー用リソース",
-            "Pixel SHader：ピクセルシェーダー用リソース"});
+            "Pixel Shader：ピクセルシェーダー用リソース"});
             this.CB_Setting_Shader_Kind.Location = new System.Drawing.Point(0, 46);
             this.CB_Setting_Shader_Kind.Name = "CB_Setting_Shader_Kind";
             this.CB_Setting_Shader_Kind.Size = new System.Drawing.Size(414, 24);
