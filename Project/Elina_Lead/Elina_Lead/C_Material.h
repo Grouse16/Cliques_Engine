@@ -221,8 +221,8 @@ namespace ASSET::MATERIAL
 			return;
 		}
 
-		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名
-		void M_Load_Texture_For_Slot_By_Index(int, std::string);
+		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名　戻り値：成功時のみtrue
+		bool M_Load_Texture_For_Slot_By_Index(int, std::string);
 
 
 		//-☆- ゲッタ -☆-//

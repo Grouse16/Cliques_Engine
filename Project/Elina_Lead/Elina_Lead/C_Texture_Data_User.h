@@ -61,8 +61,8 @@ namespace ASSET::TEXTURE
 
 		//-☆- ロード -☆-//
 
-		// 指定された名前のテクスチャを読み込む　引数：ロードするテクスチャ名
-		void M_Load_Texture(std::string);
+		// 指定された名前のテクスチャを読み込む　引数：ロードするテクスチャ名　戻り値：成功時のみtrue
+		bool M_Load_Texture(std::string);
 
 		// オリジナルのテクスチャデータを生成する
 		void M_Create_Original_Texture_Data(void);

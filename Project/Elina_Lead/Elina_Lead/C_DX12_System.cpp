@@ -200,6 +200,7 @@ bool C_DX12_System::M_Create_Factory(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ファクトリの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;   // 失敗したらエラーで抜ける
@@ -239,6 +240,7 @@ bool C_DX12_System::M_Create_Device(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "アダプターの取得に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -283,6 +285,7 @@ bool C_DX12_System::M_Create_Device(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "デバイスの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -318,6 +321,7 @@ bool C_DX12_System::M_Create_Command_Allocator(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドアロケータの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;   // 失敗したらエラーで抜ける
@@ -352,6 +356,7 @@ bool C_DX12_System::M_Create_Command_List(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドリストの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;   // 失敗したらエラーで抜ける
@@ -405,6 +410,7 @@ bool C_DX12_System::M_Create_Command_Queue(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドキューの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -439,6 +445,7 @@ bool C_DX12_System::M_Create_Fence(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "フェンスの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -501,6 +508,7 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "スワップチェインの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -551,6 +559,7 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "レンダーターゲットヒープ生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;   // 失敗したらエラーで抜ける
@@ -578,6 +587,7 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(void)
 #if _DEBUG
             DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
             DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, ((std::string)"Buffer_Count:" + std::to_string(loop_x) + "-" + "レンダーターゲットの取得に失敗").c_str());
+            DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
             return false;   // 失敗したらエラーで抜ける
@@ -641,6 +651,7 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 #if _DEBUG
             DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
             DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルヒープの生成に失敗");
+            DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
             return false;
@@ -749,6 +760,7 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 #if _DEBUG
             DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
             DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルバッファの生成に失敗");
+            DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
             return false;
@@ -1520,6 +1532,7 @@ bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROO
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャのシリアライズ化に失敗しました");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -1533,6 +1546,7 @@ bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROO
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャの生成に失敗しました");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -1682,6 +1696,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "パイプラインステートの生成に失敗しました");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -2045,6 +2060,7 @@ bool C_DX12_System::M_Set_Up(void)
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "Error-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ失敗-☆-☆-☆-☆-☆-☆-☆-Error");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;	// 失敗ならエラーを返して抜ける
@@ -2558,6 +2574,7 @@ bool C_DX12_System::M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Renderin
 #if _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "テクスチャヒープの生成に失敗");
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -2663,10 +2680,9 @@ bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Fon
     if (handle_font == NULL)
     {
 #ifdef _DEBUG
-
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Text_Color(DEBUGGER::LOG::E_LOG_COLOR::e_RED);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, "フォントハンドルの生成に失敗", "DX12_FONT_SYSTEM");
-
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;
@@ -2722,7 +2738,7 @@ bool C_DX12_System::M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph
 #ifdef _DEBUG
         DEBUGGER::LOG::C_Log_System::M_Set_Console_Text_Color(DEBUGGER::LOG::E_LOG_COLOR::e_RED);
         DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, "DX12_FONT_SYSTEM", "フォントの生成に失敗、もしくはフォント情報が設定されていないため、このフォント情報を使用する事はできませんでした");
-
+        DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
         return false;

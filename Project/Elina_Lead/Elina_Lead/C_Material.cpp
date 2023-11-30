@@ -577,8 +577,6 @@ void C_Material::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TE
 	// ☆ 変数宣言 ☆ //
 	std::vector <std::unique_ptr<C_Store_Data>> data_list;	// データのリスト
 	
-	int constant_buffer_sum = mpr_variable.constant_data_list.size();	// 定数バッファ数
-
 
 	// 名前と変数の関連を登録
 	data_list.resize(con_CONSTANT_UNIQUE_BUFFER_KIND_SUM);
@@ -593,7 +591,7 @@ void C_Material::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TE
 
 
 	// マテリアルの定数バッファを探索し、特殊な名前のスロットの番号を取得する
-	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < constant_buffer_sum; l_now_constant_buffer_num++)
+	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < mpr_variable.constant_data_list.size(); l_now_constant_buffer_num++)
 	{
 		// ☆ 変数宣言 ☆ //
 		std::string signature_name = mpr_variable.constant_data_list[l_now_constant_buffer_num].signature_name;	// 定数バッファの識別名
@@ -867,7 +865,15 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			// 初期からテクスチャがあるならそれをロードする
 			else
 			{
-				mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name);
+				// 初期テクスチャ名のテクスチャをロード、なければエラーログを出す
+				if (mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name) == false)
+				{
+#ifdef _DEBUG
+					DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+					DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + now_texture_inform.initialized_texture_name);
+					DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+#endif // _DEBUG
+				}
 			}
 
 
@@ -1011,6 +1017,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1023,6 +1030,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "これはマテリアルのファイルではありません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1039,6 +1047,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1052,6 +1061,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1068,6 +1078,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1119,19 +1130,17 @@ void C_Material::M_Attach_To_GPU(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたスロットにテクスチャをロードする
 // 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
+bool C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
 {
 	// 配列外を指定されたら抜ける
 	if (mpr_variable.texture_data_list.size() <= in_index)
 	{
-		return;
+		return false;
 	}
 
-	mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
-
-	return;
+	return mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
 }
 
 

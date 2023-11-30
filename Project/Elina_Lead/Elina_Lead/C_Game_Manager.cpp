@@ -40,7 +40,7 @@ C_Game_Manager::SPr_Variable C_Game_Manager::mpr_variable;		// Ž©ƒNƒ‰ƒX‚Ì•Ï”‚Ö‚
 //-™- ‰Šú‰» -™-//
 
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
-// Ú×   FƒRƒ“ƒXƒgƒ‰ƒNƒ^A‰Šúó‘Ô‚ÌŽw’è‚ÆƒCƒxƒ“ƒg‚Ì¶¬‚ðs‚¤
+// Ú×   FƒRƒ“ƒXƒgƒ‰ƒNƒ^
 // ˆø”   Fvoid
 // –ß‚è’l F‚È‚µ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
@@ -172,6 +172,7 @@ void C_Game_Manager::M_Init(void)
 #if _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-™-™-™-™-™-™-™- ƒQ[ƒ€‚Ì‰Šú‰»‚ÉŽ¸”s -™-™-™-™-™-™-™-");
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return;

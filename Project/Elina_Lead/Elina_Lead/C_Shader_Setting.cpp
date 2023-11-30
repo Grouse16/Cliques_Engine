@@ -88,6 +88,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：バイト数" + get_text
 			);
+			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 			return false;
@@ -124,6 +125,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：フォーマット" + get_text
 			);
+			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 			return false;
@@ -164,6 +166,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：変数の数　x,y,z,w" + get_text
 			);
+			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 			return false;

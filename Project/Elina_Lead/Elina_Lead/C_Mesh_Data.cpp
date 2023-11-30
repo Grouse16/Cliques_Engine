@@ -157,11 +157,7 @@ void C_Mesh_Data::M_Delete_Index_Data(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 bool C_Mesh_Data::M_Load_Material_By_Name(std::string in_load_material_name)
 {
-	mpr_variable.material.M_Release();
-	mpr_variable.material.M_Load_Material(in_load_material_name);
-
-	// ƒ}ƒeƒŠƒAƒ‹‚ªæ“¾‚Å‚«‚Ä‚¢‚½‚çtrue
-	return mpr_variable.material.M_Get_Material_Address() != nullptr;
+	return mpr_variable.material.M_Load_Material(in_load_material_name);
 }
 
 
