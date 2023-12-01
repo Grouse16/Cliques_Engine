@@ -86,9 +86,9 @@ void C_Texture_Data_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のテクスチャを読み込む
 // 引数   ：string テクスチャ名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Texture_Data_User::M_Load_Texture(std::string in_texture_name)
+bool C_Texture_Data_User::M_Load_Texture(std::string in_texture_name)
 {
 	// ☆ 変数宣言 ☆ //
 	RENDERING::CAPSULE::C_Texture_Data_System * get_texture = nullptr;	// 入手したテクスチャデータ
@@ -106,7 +106,7 @@ void C_Texture_Data_User::M_Load_Texture(std::string in_texture_name)
 		// 生成にも失敗したら抜ける
 		if (get_texture == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -118,7 +118,7 @@ void C_Texture_Data_User::M_Load_Texture(std::string in_texture_name)
 	// オリジナルのテクスチャではないことを示す
 	mpr_variable.flg_original_texture = false;
 
-	return;
+	return true;
 }
 
 

@@ -58,8 +58,8 @@ namespace ASSET::MATERIAL
 		
 		//-☆- ロード -☆-//
 
-		// 指定された名前のマテリアルを読み込む　引数：ロードするマテリアル名
-		void M_Load_Material(std::string);
+		// 指定された名前のマテリアルを読み込む　引数：ロードするマテリアル名　戻り値：成功時のみtrue
+		bool M_Load_Material(std::string);
 
 
 		//-☆- 描画 -☆-//

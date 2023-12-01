@@ -66,9 +66,9 @@ void C_Shader_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のシェーダーを読み込む
 // 引数   ：E_SHADER_KIND シェーダーの種類, string シェーダー名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Shader_User::M_Load_Shader_Code(ASSET::SHADER::E_SHADER_KIND in_shader_kind, std::string in_shader_name)
+bool C_Shader_User::M_Load_Shader_Code(ASSET::SHADER::E_SHADER_KIND in_shader_kind, std::string in_shader_name)
 {
 	// ☆ 変数宣言 ☆ //
 	C_Shader_Code * new_shader_code_address = nullptr;	// 新しいシェーダーのアドレス
@@ -85,7 +85,7 @@ void C_Shader_User::M_Load_Shader_Code(ASSET::SHADER::E_SHADER_KIND in_shader_ki
 		// 生成に失敗したら抜ける
 		if (new_shader_code_address == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -95,7 +95,7 @@ void C_Shader_User::M_Load_Shader_Code(ASSET::SHADER::E_SHADER_KIND in_shader_ki
 	mpr_variable.use_shader_kind = in_shader_kind;
 	mpr_variable.shader_code_address = new_shader_code_address;
 
-	return;
+	return true;
 }
 
 

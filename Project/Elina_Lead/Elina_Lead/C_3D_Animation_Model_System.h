@@ -131,10 +131,55 @@ namespace ASSET::ANIMATION_MODEL
 		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>&);
 
 		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする　引数：トランスフォームの参照（const）
-		void M_Set_World_View_Projection_With_Main_Camera(const MATH::C_Transform & );
+		void M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & );
+
+		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする、ワールドマトリクスを受け取る　引数：ワールドマトリクスの参照（const）
+		void M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(const DirectX::XMMATRIX & );
 	};
 }
 
 
 #endif // !D_INCLUDE_GUARD_C_3D_ANIMATION_MODEL_SYSTEM_H_FILE
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//☆======================================================================☆
+// Copyright 2023 髙坂龍誠
+// 
+// もしもこのコードを自分のプロジェクトに利用したいのであれば、
+// メールアドレス：takasaka.ryusei1116@gmail.com
+// または、髙坂龍誠までご連絡ください。
+// コードの不明部分の解説や、最新の状態の提供などに対応いたします。
+//☆======================================================================☆

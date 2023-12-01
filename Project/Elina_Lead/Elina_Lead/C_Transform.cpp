@@ -39,6 +39,21 @@ C_Transform::~C_Transform(void)
 }
 
 
+//-☆- 移動 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：今向いている方向を前方として移動を行う
+// 引数   ：移動量
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Transform::M_Move(DirectX::XMFLOAT3 in_move_value)
+{
+	position.M_Move_By_Direction(quaternion.M_Get_Rotation_Matrix(), in_move_value);
+
+	return;
+}
+
+
 //-☆- 行列変換 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

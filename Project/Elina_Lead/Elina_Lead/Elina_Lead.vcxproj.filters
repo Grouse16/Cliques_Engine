@@ -619,6 +619,18 @@
     <Filter Include="ソース ファイル\システム\計算システム">
       <UniqueIdentifier>{9b1db0f8-a581-470e-8592-8eb147288f76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\モデル用システム">
+      <UniqueIdentifier>{abde107a-f882-4d09-b716-8dac413ca63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\モデル用システム">
+      <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{84008d83-bedc-49e4-bca0-18e4b582ab13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{63adf544-d1fa-425c-9be6-00ab51b5b828}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -751,9 +763,6 @@
       <Filter>ヘッダー ファイル\システム\図形</Filter>
     </ClInclude>
     <ClInclude Include="2D_Position_Data.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Transform.h">
       <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
     <ClInclude Include="Challenge_Mode_Macro.h">
@@ -1056,8 +1065,20 @@
     <ClInclude Include="E_MATRIX_DIRECTION.h">
       <Filter>ヘッダー ファイル\システム\計算システム</Filter>
     </ClInclude>
+    <ClInclude Include="C_Transform.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
     <ClInclude Include="C_Scale.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Model_Draw_Command.h">
+      <Filter>ヘッダー ファイル\アセット\モデル用システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1178,9 +1199,6 @@
     <ClCompile Include="C_UI_Box.cpp">
       <Filter>ソース ファイル\システム\図形</Filter>
     </ClCompile>
-    <ClCompile Include="C_Transform.cpp">
-      <Filter>ソース ファイル\システム\図形</Filter>
-    </ClCompile>
     <ClCompile Include="C_Float_4.cpp">
       <Filter>ソース ファイル\システム\数式</Filter>
     </ClCompile>
@@ -1254,9 +1272,6 @@
       <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Texture_Manager.cpp">
-      <Filter>ソース ファイル\アセット\テクスチャ\制御</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Texture_Data_User.cpp">
       <Filter>ソース ファイル\アセット\テクスチャ\制御</Filter>
     </ClCompile>
     <ClCompile Include="C_Shader_Setting.cpp">
@@ -1377,10 +1392,22 @@
       <Filter>ソース ファイル\システム\計算システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Scale.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\システム\計算システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Projection_System.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Transform.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture_Data_User.cpp">
+      <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

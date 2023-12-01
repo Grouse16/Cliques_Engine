@@ -69,9 +69,9 @@ void C_Material_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のマテリアルを読み込む
 // 引数   ：std::string マテリアル名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material_User::M_Load_Material(std::string in_material_name)
+bool C_Material_User::M_Load_Material(std::string in_material_name)
 {
 	// ☆ 変数宣言 ☆ //
 	ASSET::MATERIAL::C_Material * new_material_address = nullptr;	// 新しいマテリアルのアドレス
@@ -88,7 +88,7 @@ void C_Material_User::M_Load_Material(std::string in_material_name)
 		// 生成に失敗したら抜ける
 		if (new_material_address == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -97,7 +97,7 @@ void C_Material_User::M_Load_Material(std::string in_material_name)
 	M_Release();
 	mpr_variable.material_address = new_material_address;
 
-	return;
+	return true;
 }
 
 

@@ -120,9 +120,9 @@ void C_Animation_Model_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のアニメーションモデルを読み込む
 // 引数   ：string ロードするアニメーションモデル名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animation_model_name)
+bool C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animation_model_name)
 {
 	// ☆ 変数宣言 ☆ //
 	ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * new_animation_model_address = nullptr;	// 新しいアニメーションモデルのアドレス
@@ -139,7 +139,7 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 		// 生成に失敗したら抜ける
 		if (new_animation_model_address == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -152,7 +152,7 @@ void C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animatio
 	// モデル名を記録
 	mpr_variable.model_name = in_load_animation_model_name;
 
-	return;
+	return true;
 }
 
 
@@ -167,7 +167,11 @@ bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_a
 #ifdef _DEBUG
 
 	// ☆ 変数宣言 ☆ //
-	bool flg_succeed = mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);	// 成功したかどうかのフラグ
+	bool flg_succeed = false;	// 成功したかどうかのフラグ
+
+
+	// アニメーションをロードする
+	flg_succeed = mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);
 
 
 	// エラー時はエラーログを出す
@@ -183,8 +187,26 @@ bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_a
 
 	// リリース時は通常通りデータを返す
 #else
+
+	// アニメーションをロードして結果を返す
 	return mpr_variable.animation_model->M_Load_Animation_Data_By_Name(in_load_animation_data_name);
+
 #endif // _DEBUG
+}
+
+
+//-☆- 更新 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションを指定された時間分経過させる
+// 引数   ：float 経過させる時間
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Model_User::M_Time_Update(float in_time_update)
+{
+	mpr_variable.animation_calculator->M_Update_Time(in_time_update);
+
+	return;
 }
 
 
@@ -192,17 +214,17 @@ bool C_Animation_Model_User::M_Load_Animation_Data_By_Name(std::string in_load_a
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：モデルの描画を開始する、描画前に実行する必要がある
-// 引数   ：const C_Transform & トランスフォームの参照（const）
+// 引数   ：const C_Transform & ワールドマトリクス変換行列の参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_User::M_Model_Draw_Start(const MATH::C_Transform & in_set_transform)
+void C_Animation_Model_User::M_Model_Draw_Start(const DirectX::XMMATRIX & in_world_matrix)
 {
 	// アニメーション結果をセットする
 	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(mpr_variable.bone_matrix_list);
 	mpr_variable.animation_model->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
 
-	// トランスフォームをセットする
-	mpr_variable.animation_model->M_Set_World_View_Projection_With_Main_Camera(in_set_transform);
+	// ワールドマトリクス変換行列をセット
+	mpr_variable.animation_model->M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(in_world_matrix);
 
 	return;
 }
@@ -262,6 +284,9 @@ void C_Animation_Model_User::M_Draw_Model_And_Set_Material(ASSET::MATERIAL::C_Ma
 	}
 
 
+	// マテリアルにボーンマトリクスをセットする
+	in_use_material.M_Get_Material_Address()->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
+
 	// マテリアルをセットする
 	in_use_material.M_Material_Attach_To_Draw();
 
@@ -285,6 +310,9 @@ void C_Animation_Model_User::M_Draw_Mesh_By_Mesh_Name_And_Set_Material(ASSET::MA
 		return;
 	}
 
+
+	// マテリアルにボーンマトリクスをセットする
+	in_use_material.M_Get_Material_Address()->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
 
 	// マテリアルをセットする
 	in_use_material.M_Material_Attach_To_Draw();

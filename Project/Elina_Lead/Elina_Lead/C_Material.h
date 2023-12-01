@@ -221,8 +221,8 @@ namespace ASSET::MATERIAL
 			return;
 		}
 
-		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名
-		void M_Load_Texture_For_Slot_By_Index(int, std::string);
+		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名　戻り値：成功時のみtrue
+		bool M_Load_Texture_For_Slot_By_Index(int, std::string);
 
 
 		//-☆- ゲッタ -☆-//
@@ -250,6 +250,9 @@ namespace ASSET::MATERIAL
 
 		// 渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする　引数：セットするワールド変換行列の参照(const)
 		void M_Set_World_Matrix(const DirectX::XMMATRIX & );
+
+		// メインカメラのビュー変換行列、プロジェクション変換行列をWVP用の定数バッファにセットする
+		void M_Set_View_Projection_By_Main_Camera(void);
 
 		// 渡されたビュー変換行列（カメラ）をWVP用の定数バッファにセットする　引数：セットするビュー変換行列の参照(const)
 		void M_Set_View_Matrix(const DirectX::XMMATRIX & );

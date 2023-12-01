@@ -24,8 +24,8 @@ namespace ASSET::MODEL
 	// 3Dモデルを使用するためのシステム
 	class C_3D_Model_User
 	{
-		//==☆ パブリック ☆==//
-	public:
+		//==☆ プライベート ☆==//
+	private:
 
 		// ☆ 変数宣言 ☆ //
 
@@ -37,8 +37,8 @@ namespace ASSET::MODEL
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 
-		//==☆ プライベート ☆==//
-	private:
+		//==☆ パブリック ☆==//
+	public:
 
 		// ☆ 関数 ☆ //
 
@@ -56,8 +56,8 @@ namespace ASSET::MODEL
 
 		//-☆- ロード -☆-//
 
-		// 指定された名前の3Dモデルを読み込む　引数：ロードする3Dモデル名
-		void M_Load_3D_Model(std::string);
+		// 指定された名前の3Dモデルを読み込む　引数：ロードする3Dモデル名　戻り値：成功時のみtrue
+		bool M_Load_3D_Model(std::string);
 
 
 		//-☆- 描画 -☆-//

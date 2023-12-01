@@ -8,6 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Material.h"
 #include "C_Rendering_Graphics_API_Base.h"
+#include "C_Main_Camera.h"
 
 
 // デバッグ時のみログシステムを使用
@@ -18,6 +19,13 @@
 
 // ☆ ネームスペースの省略 ☆ //
 using namespace ASSET::MATERIAL;
+
+
+// ☆ 定数 ☆ //
+constexpr int con_WVP_NUMBER = 0;	// WVPの番号
+constexpr int con_WVP_WORLD_NUMBER = 0;	// WVPのワールドのマトリクスの番号
+constexpr int con_WVP_VIEW_NUMBER = 0;	// WVPのビューのマトリクスの番号
+constexpr int con_WVP_PROJECTION_NUMBER = 0;	// WVPのプロジェクションのマトリクスの番号
 
 
 // ☆ クラス ☆ //
@@ -577,8 +585,6 @@ void C_Material::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TE
 	// ☆ 変数宣言 ☆ //
 	std::vector <std::unique_ptr<C_Store_Data>> data_list;	// データのリスト
 	
-	int constant_buffer_sum = mpr_variable.constant_data_list.size();	// 定数バッファ数
-
 
 	// 名前と変数の関連を登録
 	data_list.resize(con_CONSTANT_UNIQUE_BUFFER_KIND_SUM);
@@ -593,7 +599,7 @@ void C_Material::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TE
 
 
 	// マテリアルの定数バッファを探索し、特殊な名前のスロットの番号を取得する
-	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < constant_buffer_sum; l_now_constant_buffer_num++)
+	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < mpr_variable.constant_data_list.size(); l_now_constant_buffer_num++)
 	{
 		// ☆ 変数宣言 ☆ //
 		std::string signature_name = mpr_variable.constant_data_list[l_now_constant_buffer_num].signature_name;	// 定数バッファの識別名
@@ -867,7 +873,15 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			// 初期からテクスチャがあるならそれをロードする
 			else
 			{
-				mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name);
+				// 初期テクスチャ名のテクスチャをロード、なければエラーログを出す
+				if (mpr_variable.texture_data_list[now_constant_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name) == false)
+				{
+#ifdef _DEBUG
+					DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+					DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + now_texture_inform.initialized_texture_name);
+					DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+#endif // _DEBUG
+				}
 			}
 
 
@@ -1011,6 +1025,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1023,6 +1038,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "これはマテリアルのファイルではありません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1039,6 +1055,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1052,6 +1069,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1068,6 +1086,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました：" + in_material_path);
+		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
 
 		return false;
@@ -1119,19 +1138,17 @@ void C_Material::M_Attach_To_GPU(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたスロットにテクスチャをロードする
 // 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
+bool C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
 {
 	// 配列外を指定されたら抜ける
 	if (mpr_variable.texture_data_list.size() <= in_index)
 	{
-		return;
+		return false;
 	}
 
-	mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
-
-	return;
+	return mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
 }
 
 
@@ -1278,7 +1295,30 @@ void C_Material::M_Set_World_Matrix(const DirectX::XMMATRIX & in_set_matrix)
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 0, &in_set_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_WORLD_NUMBER, &in_set_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインカメラのビュー変換行列、プロジェクション変換行列をWVP用の定数バッファにセットする
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_View_Projection_By_Main_Camera(void)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list.wvp < -1)
+	{
+		return;
+	}
+
+	// ビューマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix());
+
+	// プロジェクションマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix());
 
 	return;
 }
@@ -1297,7 +1337,7 @@ void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX& in_set_view_matrix)
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 1, &in_set_view_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &in_set_view_matrix);
 
 	return;
 }
@@ -1316,7 +1356,7 @@ void C_Material::M_Set_Projection_Matrix(const DirectX::XMMATRIX & in_set_projec
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, 2, &in_set_projection_matrix);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &in_set_projection_matrix);
 
 	return;
 }
@@ -1335,7 +1375,7 @@ void C_Material::M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data 
 		return;
 	}
 
-	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, 0, &in_set_wvp);
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list.wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, con_WVP_NUMBER, &in_set_wvp);
 
 	return;
 }

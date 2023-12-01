@@ -70,9 +70,9 @@ void C_3D_Model_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前の3Dモデルを読み込む
 // 引数   ：string ロードする3Dモデル名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
+bool C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
 {
 	// ☆ 変数宣言 ☆ //
 	ASSET::MODEL::C_3D_Model_System * new_3D_model_address = nullptr;	// 新しい3Dモデルのアドレス
@@ -89,7 +89,7 @@ void C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
 		// 生成に失敗したら抜ける
 		if (new_3D_model_address == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -98,7 +98,7 @@ void C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
 	M_Release();
 	mpr_variable.use_model_address = new_3D_model_address;
 
-	return;
+	return true;
 }
 
 

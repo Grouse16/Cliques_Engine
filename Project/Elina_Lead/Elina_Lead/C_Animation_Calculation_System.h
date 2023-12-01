@@ -132,6 +132,12 @@ namespace ASSET::ANIMATION::CALCULATOR
 		float M_Get_Animation_Blend_Percent(void);
 
 
+		//-☆- 更新 -☆-//
+
+		// アニメーション時間の経過を行う　引数：経過させる時間
+		void M_Update_Time(float);
+
+
 		//-☆- アニメーション -☆-//
 
 		// 渡されたアニメーションを再生する　引数：再生するアニメーションデータのアドレス(const)

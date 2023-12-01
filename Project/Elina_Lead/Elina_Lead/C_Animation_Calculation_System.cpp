@@ -195,6 +195,24 @@ float C_Animation_Calculation_System::M_Get_Animation_Blend_Percent(void)
 }
 
 
+//-☆- 更新 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーション時間の経過を行う
+// 引数   ：float 経過させる時間
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Calculation_System::M_Update_Time(float in_pass_time)
+{
+	mpr_variable.animation_status.passed_time = 
+		in_pass_time 
+		* mpr_variable.animation_status.animation_speed
+		* (1.0f - 2.0f * mpr_variable.animation_status.flg_animation_reverse);
+
+	return;
+}
+
+
 //-☆- アニメーション -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
