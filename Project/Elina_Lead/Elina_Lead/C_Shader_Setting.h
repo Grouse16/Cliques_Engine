@@ -27,7 +27,26 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
+	// ☆ 列挙 ☆ //
+
+	// リソースの種類
+	enum class E_RESOURCE_KIND
+	{
+		e_CONSTANT_BUFFER,		// 定数バッファ
+		e_TEXTURE,				// テクスチャ
+		e_RENDERING_SCREEN,		// レンダリング画像
+	};
+
+
 	// ☆ 構造体 ☆ //
+
+	// シェーダーのリソース情報の構造体
+	struct S_Resource_Inform
+	{
+		E_RESOURCE_KIND shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;	// リソースの種類
+
+		std::string resource_name = "default";	// リソースの名前
+	};
 
 
 	// ☆ クラス ☆ //
@@ -46,6 +65,8 @@ namespace ASSET::SHADER
 			std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> vertex_layout_setting;	// 頂点レイアウト設定
 
 			std::vector<C_Shader_User> shader_list;	// シェーダーコードのリスト
+
+			std::vector<S_Resource_Inform> resource_inform_list;	// リソース情報のリスト
 
 			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
 
@@ -70,8 +91,11 @@ namespace ASSET::SHADER
 		// 一種類分のシェーダーロードを行う処理　引数：シェーダー情報ファイルのデータ, シェーダーがあるフォルダ, シェーダーの種類　戻り値：成功時のみtrue
 		bool M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & , int );
 
-		// 特殊なバッファスロットを探索して番号を記録する　引数：読み込んだファイルの情報
-		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager&);
+		// シェーダーのスロット情報を整列する
+		void M_Slot_Inform_Alignment(void);
+
+		// 特殊なバッファスロットを探索して番号を記録する
+		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(void);
 
 
 	//==☆ パブリック ☆==//

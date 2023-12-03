@@ -28,7 +28,7 @@ public:
 	// ☆ 変数宣言 ☆ //
 	std::string name = "default";	// 名前
 
-	int& data;	// データ
+	int & data;	// データ
 
 
 	// ☆ 関数 ☆ //
@@ -410,11 +410,91 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：特殊なバッファスロットを探索して番号を記録する
-// 引数   ：C_Text_And_File_Manager & 読み込んだファイルの情報
+// 詳細   ：シェーダーのスロット情報を整列する
+// 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+void C_Shader_Setting::M_Slot_Inform_Alignment(void)
+{
+	// ☆ 変数宣言 ☆ //
+	int now_slot_num = 0;	// 現在のスロット番号
+	
+
+	// 全シェーダー共通情報のリソース数を取得
+	mpr_variable.resource_inform_list.resize(
+		mpr_variable.resource_signature.all_shader_signature.constant_data.size() + 
+		mpr_variable.resource_signature.all_shader_signature.texture_data.size()
+	);
+
+	// シェーダー共通情報の定数バッファを探索し、スロット番号とスロット名を取得
+	for (ASSET::SHADER::S_Constant_Resource_Signature & constant_buffer_inform : mpr_variable.resource_signature.all_shader_signature.constant_data)
+	{
+		mpr_variable.resource_inform_list[now_slot_num].resource_name = constant_buffer_inform.signature_name;
+		mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;
+		now_slot_num += 1;
+	}
+
+	// シェーダー共通情報のテクスチャバッファを探索し、スロット番号とスロット名を取得
+	for (ASSET::SHADER::S_Texture_Resource_Signature & texture_buffer_inform : mpr_variable.resource_signature.all_shader_signature.texture_data)
+	{
+		mpr_variable.resource_inform_list[now_slot_num].resource_name = texture_buffer_inform.signature_name;
+
+		// レンダリング画像を使用するバッファを識別して登録
+		if(texture_buffer_inform.signature_name.substr(0,3) == "RSC")
+		{
+			mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_RENDERING_SCREEN;
+		}
+
+		// それ以外はテクスチャ
+		else
+		{
+			mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_TEXTURE;
+		}
+		now_slot_num += 1;
+	}
+
+
+	// シェーダーごとのリソース設定を行う
+	for (ASSET::SHADER::S_Shader_Resource_Signature_Inform & signature_inform : mpr_variable.resource_signature.signature_list)
+	{
+		// シェーダー共通情報の定数バッファを探索し、スロット番号とスロット名を取得
+		for (ASSET::SHADER::S_Constant_Resource_Signature & constant_buffer_inform : signature_inform.constant_data)
+		{
+			mpr_variable.resource_inform_list[now_slot_num].resource_name = constant_buffer_inform.signature_name;
+			mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;
+			now_slot_num += 1;
+		}
+
+		// シェーダー共通情報のテクスチャバッファを探索し、スロット番号とスロット名を取得
+		for (ASSET::SHADER::S_Texture_Resource_Signature& texture_buffer_inform : signature_inform.texture_data)
+		{
+			mpr_variable.resource_inform_list[now_slot_num].resource_name = texture_buffer_inform.signature_name;
+
+			// レンダリング画像を使用するバッファを識別して登録
+			if (texture_buffer_inform.signature_name.substr(0, 3) == "RSC")
+			{
+				mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_RENDERING_SCREEN;
+			}
+
+			// それ以外はテクスチャ
+			else
+			{
+				mpr_variable.resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_TEXTURE;
+			}
+			now_slot_num += 1;
+		}
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：特殊なバッファスロットを探索して番号を記録する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(void)
 {
 	// ☆ 定数 ☆ //
 	constexpr int con_CONSTANT_UNIQUE_BUFFER_KIND_SUM = 8;	// 特殊な定数バッファスロットの総数数
@@ -423,6 +503,8 @@ void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYST
 
 	// ☆ 変数宣言 ☆ //
 	std::vector <std::unique_ptr<C_Store_Data>> data_list;	// データのリスト
+
+	int instance_slot_sum = mpr_variable.resource_inform_list.size();	// インスタンススロットの数
 
 
 	// 名前と変数の関連を登録
@@ -435,14 +517,20 @@ void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYST
 	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_buffer_slot_list.point_light, "CB_POINT_LIGHT"));
 	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_buffer_slot_list.spot_light, "CB_SPOT_LIGHT"));
 	data_list.emplace_back(new C_Store_Data(mpr_variable.unique_buffer_slot_list.area_light, "CB_AREA_LIGHT"));
-
+	
 
 	// シェーダー共通情報の定数バッファを探索し、特殊な名前のスロットの番号を取得する
-	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < mpr_variable.resource_signature.all_shader_signature.constant_data.size(); l_now_constant_buffer_num++)
+	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < instance_slot_sum; l_now_constant_buffer_num++)
 	{
 		// ☆ 変数宣言 ☆ //
-		std::string signature_name = mpr_variable.resource_signature.all_shader_signature.constant_data[l_now_constant_buffer_num].signature_name;	// 定数バッファの識別名
+		ASSET::SHADER::S_Resource_Inform & now_resource_data = mpr_variable.resource_inform_list[l_now_constant_buffer_num];	// 現在のリソース情報
 
+
+		// 定数バッファ以外はスルー
+		if (now_resource_data.shader_resource_kind != E_RESOURCE_KIND::e_CONSTANT_BUFFER)
+		{
+			continue;
+		}
 
 		// データ名＆変数関連リストから名前が一致するものにデータを設定し、設定が完了したものはリストから削除
 		data_list.erase
@@ -453,9 +541,9 @@ void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYST
 				data_list.end(),
 
 				// 名前が一致すれば番号をセットして削除、そうでなければスルーするラムダ
-				[signature_name, l_now_constant_buffer_num](std::unique_ptr<C_Store_Data>& in_data)
+				[now_resource_data, l_now_constant_buffer_num](std::unique_ptr<C_Store_Data>& in_data)
 				{
-					if (in_data->name == signature_name)
+					if (in_data->name == now_resource_data.resource_name)
 					{
 						in_data->data = l_now_constant_buffer_num;
 						in_data.reset();
@@ -468,123 +556,6 @@ void C_Shader_Setting::M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYST
 			)
 		);
 	}
-
-	// 各シェーダー共通情報の定数バッファを探索し、特殊な名前のスロットの番号を取得する
-	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < mpr_variable.resource_signature.all_shader_signature.constant_data.size(); l_now_constant_buffer_num++)
-	{
-		// ☆ 変数宣言 ☆ //
-		std::string signature_name = mpr_variable.resource_signature.all_shader_signature.constant_data[l_now_constant_buffer_num].signature_name;	// 定数バッファの識別名
-
-
-		// データ名＆変数関連リストから名前が一致するものにデータを設定し、設定が完了したものはリストから削除
-		data_list.erase
-		(
-			std::remove_if
-			(
-				data_list.begin(),
-				data_list.end(),
-
-				// 名前が一致すれば番号をセットして削除、そうでなければスルーするラムダ
-				[signature_name, l_now_constant_buffer_num](std::unique_ptr<C_Store_Data>& in_data)
-				{
-					if (in_data->name == signature_name)
-					{
-						in_data->data = l_now_constant_buffer_num;
-						in_data.reset();
-
-						return true;
-					}
-
-					return false;
-				}
-			)
-		);
-	}
-
-
-	// 質感情報のスロットがないならロードとセットはしない
-	if (mpr_variable.unique_buffer_slot_list.material == -1)
-	{
-		return;
-	}
-
-
-	//--☆ 質感情報のスロットがあるならマテリアル情報をロードしてバッファにセットする ☆--//
-
-	// マテリアル質感情報まで移動する、無ければ抜ける
-	in_file_data.M_Goto_Start_Row();
-	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("MATERIAL:") == false)
-	{
-		return;
-	}
-
-
-	// ☆ 変数宣言 ☆ //
-	DATA::MATERIAL_DETAIL::S_Material_Detail set_material_detail;	// 設定するマテリアル質感情報
-
-
-	// アンビエント（基礎値）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.ambient.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.ambient.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.ambient.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.ambient.w = in_file_data.M_Get_Float_Double_Number();
-
-	// ディフューズ（減衰値）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.diffuse.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.diffuse.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.diffuse.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.diffuse.w = in_file_data.M_Get_Float_Double_Number();
-
-	// エミッション（照射）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.emission.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.emission.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.emission.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.emission.w = in_file_data.M_Get_Float_Double_Number();
-
-	// リフレクション（反射）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.reflection.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.reflection.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.reflection.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.reflection.w = in_file_data.M_Get_Float_Double_Number();
-
-	// スペキュラー（滑らかさ、ハイライト）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.specular.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.specular.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.specular.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.specular.w = in_file_data.M_Get_Float_Double_Number();
-
-	// トランスペアレント（透明度）をロード
-	in_file_data.M_Move_Next_Raw();
-	set_material_detail.transparent.x = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.transparent.y = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.transparent.z = in_file_data.M_Get_Float_Double_Number();
-	in_file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-	set_material_detail.transparent.w = in_file_data.M_Get_Float_Double_Number();
-
-	// 質感情報をバッファにセット
-	M_Set_Material_Detail(set_material_detail);
 
 	return;
 }
@@ -701,6 +672,11 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_File_Path(std::st
 	{
 		return false;
 	}
+
+
+	// シェーダーのリソース情報を整列
+	M_Slot_Inform_Alignment();
+
 
 	// 成功した
 	return true;
