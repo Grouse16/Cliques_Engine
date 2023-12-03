@@ -109,7 +109,7 @@ void C_Texture_Data_System::M_Create_Texture_Data(int in_tex_width, int in_tex_h
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
@@ -133,7 +133,7 @@ void C_Texture_Data_System::M_Create_Texture_Data(int in_tex_width, int in_tex_h
 void C_Texture_Data_System::M_Create_Texture_Resource_By_Texture_Map(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
@@ -161,7 +161,7 @@ bool C_Texture_Data_System::M_Create_Texture_By_Load_Texture_File(std::string in
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する

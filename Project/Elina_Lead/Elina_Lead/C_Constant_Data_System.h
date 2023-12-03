@@ -18,7 +18,7 @@
 
 #include "E_Shader_Kind.h"
 #include "C_Constant_Buffer_Setting_Inform_Base.h"
-#include "C_Create_Constant_Buffer_Inform.h"
+#include "S_Create_Constant_Buffer_Inform.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
 

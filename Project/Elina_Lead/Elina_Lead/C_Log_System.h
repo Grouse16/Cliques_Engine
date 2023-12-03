@@ -76,6 +76,7 @@ namespace DEBUGGER::LOG
 		namespace GAME_RENDERING
 		{
 			constexpr char con_INIT[] = "GAME_RENDERING_INIT";		// 立ち上げログ
+			constexpr char con_RENDERING_ERROR[] = "GAME_RENDERING";		// レンダリング系統の処理でのエラー
 			constexpr char con_ERROR[] = "GAME_RENDERING_ERROR";	// エラーログ
 		};
 

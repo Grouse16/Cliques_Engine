@@ -33,18 +33,12 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	public:
 
 		// ☆ 変数宣言 ☆ //
+		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> m_texture_heap;	// テクスチャ用ヒープ
 
-		// プライベート変数をまとめた構造体
-		struct SPr_Variable
-		{
-			Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> texture_heap;	// テクスチャ用ヒープ
+		Microsoft::WRL::ComPtr<ID3D12Resource> m_texture_data;	// テクスチャ用データ
 
-			Microsoft::WRL::ComPtr<ID3D12Resource> texture_data;	// テクスチャ用データ
-
-			int pix_size_x = 0;	// テクスチャのピクセルサイズx
-			int pix_size_y = 0;	// テクスチャのピクセルサイズy
-
-		} mpr_variable;	// プライベート変数を呼び出すための名前
+		int m_pix_size_x = 0;	// テクスチャのピクセルサイズx
+		int m_pix_size_y = 0;	// テクスチャのピクセルサイズy
 
 
 		//-☆- 終了時 -☆-//
@@ -61,8 +55,8 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		//-☆- 更新 -☆-//
 
-		// テクスチャのデータをセットする　引数：設定するテクスチャ配列への参照, テクスチャの横幅, テクスチャの縦幅
-		void M_Set_Texture_Data(const std::vector<DATA::TEXTURE::S_Tex_Color>&, int, int) override;
+		// テクスチャのデータをセットする　引数：設定する色配列への参照, テクスチャの横幅, テクスチャの縦幅
+		void M_Set_Texture_Data(const std::vector<DATA::COLOR::C_Color> &, int, int) override;
 	};
 }
 

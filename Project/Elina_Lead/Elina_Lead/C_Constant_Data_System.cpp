@@ -74,7 +74,7 @@ void C_Constant_Buffer_Data_System::M_Release(void)
 void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buffer_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
 
 
 	// 現在持っているデータを解放する
@@ -103,7 +103,7 @@ void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buf
 void C_Constant_Buffer_Data_System::M_Create_Only_Constant_Buffer(int in_buffer_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
 
 
 	// 現在持っているデータを解放する

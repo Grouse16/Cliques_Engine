@@ -24,7 +24,7 @@ using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
 // 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & パイプライン設定用情報, const C_Create_Rendering_Graphics_Setting_Inform & レンダリング生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_setting_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
+void C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_setting_desc, const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
     //-☆- 表示モードによって設定内容を分岐 -☆-//
     switch (in_create_inform.rasterizer_data.draw_mode)

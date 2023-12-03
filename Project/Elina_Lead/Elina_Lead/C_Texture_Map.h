@@ -14,7 +14,7 @@
 #include <vector>
 #include <string>
 
-#include "Color_Data.h"
+#include "C_Color.h"
 #include "S_Rect.h"
 #include "S_Tex_Color.h"
 
@@ -37,7 +37,7 @@ namespace ASSET::TEXTURE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::vector<DATA::TEXTURE::S_Tex_Color> texture_map;	// テクスチャ用のマップ、０列目は左下とする（0,0を左下にしたほうがtop>bottomになるので分かりやすい）
+			std::vector<DATA::COLOR::C_Color> texture_map;	// テクスチャ用のマップ、０列目は左下とする（0,0を左下にしたほうがtop>bottomになるので分かりやすい）
 			
 			int texture_size_x = 0;	// 横幅のテクスチャのサイズ
 			int texture_size_y = 0;	// 縦幅のテクスチャのサイズ
@@ -80,13 +80,13 @@ namespace ASSET::TEXTURE
 		void M_Set_Color(DATA::COLOR::C_Color &, DATA::RECTSETTING::S_Rect &);
 
 		// 指定された場所に色を直接書き込む　引数：書き込む色, 書き込む座標ｘ, 書き込む座標ｙ
-		void M_Set_Color_At_Point(const DATA::COLOR::C_Color&, int, int);
+		void M_Set_Color_At_Point(const DATA::COLOR::C_Color &, int, int);
 
 
 		//-☆- ゲッタ -☆-//
 
 		// 今のテクスチャ用のマップを返す　戻り値：テクスチャ用のマップの参照（０列目が左下なので注意）
-		std::vector<DATA::TEXTURE::S_Tex_Color> & M_Get_Texture_Map(void);
+		std::vector<DATA::COLOR::C_Color> & M_Get_Texture_Map(void);
 
 		// 横幅のピクセルサイズを返す　戻り値：横幅の値
 		int M_Get_Width_Size(void);

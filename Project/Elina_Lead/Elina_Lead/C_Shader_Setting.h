@@ -19,6 +19,7 @@
 #include "E_Shader_Kind.h"
 #include "Input_Layout_Data.h"
 #include "C_Text_And_File_Manager.h"
+#include "S_Unique_Buffer_Slot.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -26,6 +27,9 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
+	// ☆ 構造体 ☆ //
+
+
 	// ☆ クラス ☆ //
 
 	// 一組のシェーダーの設定をまとめるためのクラス
@@ -45,6 +49,8 @@ namespace ASSET::SHADER
 
 			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
 
+			ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot unique_buffer_slot_list;	// 特殊なバッファスロットのリスト
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 
@@ -63,6 +69,9 @@ namespace ASSET::SHADER
 
 		// 一種類分のシェーダーロードを行う処理　引数：シェーダー情報ファイルのデータ, シェーダーがあるフォルダ, シェーダーの種類　戻り値：成功時のみtrue
 		bool M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & , int );
+
+		// 特殊なバッファスロットを探索して番号を記録する　引数：読み込んだファイルの情報
+		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager&);
 
 
 	//==☆ パブリック ☆==//

@@ -111,7 +111,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_And_Index_Data_And_Buffer(int in_creat_vertex_sum, int in_creat_index_sum)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// 初期化して、必要な分だけ配列を生成しなおす
@@ -141,7 +141,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_And_Index_Buffer_By_Now_Parameter(void)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// ☆ 頂点生成用情報の設定 ☆ //

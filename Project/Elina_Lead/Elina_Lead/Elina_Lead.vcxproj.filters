@@ -37,9 +37,6 @@
     <Filter Include="ソース ファイル\レンダリング">
       <UniqueIdentifier>{a26a1fe4-48d2-4b1a-ba73-648bf20efe77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\レンダリング\生成定義">
-      <UniqueIdentifier>{de08ac4a-0b05-48e6-8711-29296ef68edb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\レンダリング\インスタンス基底">
       <UniqueIdentifier>{6a56f9d0-946f-435c-9199-37409fc3d21d}</UniqueIdentifier>
     </Filter>
@@ -631,6 +628,27 @@
     <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル">
       <UniqueIdentifier>{63adf544-d1fa-425c-9be6-00ab51b5b828}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\宣言">
+      <UniqueIdentifier>{7b5bb22f-4de2-4563-a2a9-0003f1de9ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\カラー">
+      <UniqueIdentifier>{b9c714e9-6385-46fd-9d52-9f4d62052e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\型">
+      <UniqueIdentifier>{8831a35b-d3fc-417b-9eef-881b0aa6777f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\型\カラー">
+      <UniqueIdentifier>{0ccfc9dd-ddd8-41e4-a23a-249a3e535a1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\モデル＆アニメーション">
+      <UniqueIdentifier>{2278c1b7-e398-414f-975d-5428578380ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\頂点データ">
+      <UniqueIdentifier>{fd573df8-d55f-4f14-a58c-0867c65f7c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\生成定義\定義">
+      <UniqueIdentifier>{3db88dda-ad84-427b-a7f5-368ed8ad0726}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -654,19 +672,19 @@
     <ClInclude Include="C_Platform_Detection_System.h">
       <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
-    <ClInclude Include="C_Create_Vertex_Buffer_Inform.h">
+    <ClInclude Include="S_Create_Vertex_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Create_Constant_Buffer_Inform.h">
+    <ClInclude Include="S_Create_Constant_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Create_Font_Data_Inform.h">
+    <ClInclude Include="S_Create_Font_Data_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Create_Rendering_Graphics_Setting_Inform.h">
+    <ClInclude Include="S_Create_Rendering_Graphics_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
-    <ClInclude Include="C_Create_Texture_Setting_Inform.h">
+    <ClInclude Include="S_Create_Texture_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
     </ClInclude>
     <ClInclude Include="C_DX12_System.h">
@@ -729,9 +747,6 @@
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
     </ClInclude>
-    <ClInclude Include="Input_Layout_Data.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
-    </ClInclude>
     <ClInclude Include="C_Constant_Buffer_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
     </ClInclude>
@@ -762,35 +777,17 @@
     <ClInclude Include="All_Figure_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
     </ClInclude>
-    <ClInclude Include="2D_Position_Data.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
     <ClInclude Include="Challenge_Mode_Macro.h">
       <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
-    <ClInclude Include="E_BOX_VERTEX_SETTING.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
     <ClInclude Include="UI_Figure_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture_UV_Data.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
-    <ClInclude Include="S_Rect.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
-    <ClInclude Include="S_Tex_Color.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
     <ClInclude Include="Figure_Base_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
     </ClInclude>
     <ClInclude Include="C_Text_And_File_Manager.h">
       <Filter>ヘッダー ファイル\アセット\ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Color_Data.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h">
       <Filter>ヘッダー ファイル\アセット\フォント</Filter>
@@ -918,9 +915,6 @@
     <ClInclude Include="C_Mesh_Data.h">
       <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
     </ClInclude>
-    <ClInclude Include="S_3D_Model_Vertex.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
     <ClInclude Include="C_Float_4.h">
       <Filter>ヘッダー ファイル\システム\数式</Filter>
     </ClInclude>
@@ -1032,15 +1026,6 @@
     <ClInclude Include="C_UIC_Graph_Box.h">
       <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\派生</Filter>
     </ClInclude>
-    <ClInclude Include="S_UI_Vertex.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
-    <ClInclude Include="S_3D_Animation_Model_Vertex.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
-    <ClInclude Include="S_World_View_Projection.h">
-      <Filter>ヘッダー ファイル\システム\型</Filter>
-    </ClInclude>
     <ClInclude Include="S_Material_Detail.h">
       <Filter>ヘッダー ファイル\システム\型</Filter>
     </ClInclude>
@@ -1080,6 +1065,63 @@
     <ClInclude Include="C_Animation_Model_Component.h">
       <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClInclude>
+    <ClInclude Include="C_Rendering_Screen_System_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Render_Screen_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Rendering_Screen_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DX12_PARAMATOR.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\宣言</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Half_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_1_Byte_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Color_Converter.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="S_3D_Animation_Model_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\モデル＆アニメーション</Filter>
+    </ClInclude>
+    <ClInclude Include="S_3D_Model_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\モデル＆アニメーション</Filter>
+    </ClInclude>
+    <ClInclude Include="2D_Position_Data.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_BOX_VERTEX_SETTING.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_UI_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Rect.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="S_World_View_Projection.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture_UV_Data.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Layout_Data.h">
+      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h">
+      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h">
+      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1099,21 +1141,6 @@
     </ClCompile>
     <ClCompile Include="C_Wnd_Proc_For_Engine_APK.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Create_Vertex_Buffer_Inform.cpp">
-      <Filter>ソース ファイル\レンダリング\生成定義</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Create_Constant_Buffer_Inform.cpp">
-      <Filter>ソース ファイル\レンダリング\生成定義</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Create_Font_Data_Inform.cpp">
-      <Filter>ソース ファイル\レンダリング\生成定義</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Create_Rendering_Graphics_Setting_Inform.cpp">
-      <Filter>ソース ファイル\レンダリング\生成定義</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Create_Texture_Setting_Inform.cpp">
-      <Filter>ソース ファイル\レンダリング\生成定義</Filter>
     </ClCompile>
     <ClCompile Include="C_Constant_Buffer_Setting_Inform_Base.cpp">
       <Filter>ソース ファイル\レンダリング\インスタンス基底</Filter>
@@ -1408,6 +1435,24 @@
     </ClCompile>
     <ClCompile Include="C_Static_Model_Component.cpp">
       <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Screen_System_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\インスタンス基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Rendering_Screen_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Half_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_1_Byte_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Color_Converter.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,7 @@
 #include "C_Texture_Data_User.h"
 #include "C_Constant_Data_System.h"
 #include "C_Text_And_File_Manager.h"
+#include "C_Rendering_Screen_System_Base.h"
 #include "C_Shader_Setting_User.h"
 #include "S_Material_Detail.h"
 #include "S_World_View_Projection.h"
@@ -52,19 +53,11 @@ namespace ASSET::MATERIAL
 		int index = 0;	// テクスチャのインデックス番号
 	};
 
-	// 特殊バッファのスロットの番号をまとめたリストの構造体
-	struct S_Unique_Buffer_Slot
+
+	// レンダリング画面を使用する際の情報をまとめた構造体
+	struct S_Rendering_Screen_Data
 	{
-		int wvp = -1;	// ワールド ビュー プロジェクション
-		int bone = -1;	// ボーンマトリクス
-
-		int material = -1;	// 質感データ
-
-		int ambient_light = -1;		// アンビエントライト
-		int directional_light = -1;	// ディレクショナルライト
-		int point_light = -1;		// ポイントライト
-		int spot_light = -1;		// スポットライト
-		int area_light = -1;		// エリアライト
+		int index = 0;	// テクスチャのインデックス番号
 	};
 
 
@@ -88,8 +81,6 @@ namespace ASSET::MATERIAL
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
 			ASSET::SHADER::C_Shader_Setting_User shader_setting_data;	// シェーダー設定用情報
-
-			S_Unique_Buffer_Slot unique_slot_list;	// 特殊なバッファスロットのリストの構造体
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -141,19 +132,16 @@ namespace ASSET::MATERIAL
 		//-☆- ロード -☆-//
 
 		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
-		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// 深度ステンシルをマテリアル情報からロードする　引数：深度ステンシルの設定先, 読み込んだファイルの情報
-		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// ラスタライザをマテリアル情報からロードする　引数：ラスタライザの設定先, 読み込んだファイルの情報
-		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// その他設定をロードする　引数：設定先のレンダリング設定生成用情報, 読み込んだファイルの情報
-		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
-
-		// 特殊なバッファスロットを探索して番号を記録する　引数：読み込んだファイルの情報
-		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(SYSTEM::TEXT::C_Text_And_File_Manager & );
+		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 
 		//-☆- 生成 -☆-//

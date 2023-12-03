@@ -14,7 +14,7 @@
 #include <d3d12.h>
 
 #include "2D_Position_Data.h"
-#include "Color_Data.h"
+#include "C_Color.h"
 #include "Texture_UV_Data.h"
 #include "Figure_Base_Data.h"
 #include "S_Rect.h"

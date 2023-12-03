@@ -245,13 +245,13 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 			// 色のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.color.r = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_r = file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.g = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_g = file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.b = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_b = file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.a = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_a = file_data.M_Get_Float_Double_Number();
 
 			// 法線ベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");

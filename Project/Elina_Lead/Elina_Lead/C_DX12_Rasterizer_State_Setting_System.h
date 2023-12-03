@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <d3d12.h>
 
-#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+#include "S_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -34,7 +34,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- 設定 -☆-//
 
 		// 指定された情報を元にラスタライザの設定を行う　引数：パイプライン設定用情報, レンダリング生成用情報(const)
-		static void M_Rasterizer_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform &);
+		static void M_Rasterizer_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform &);
 	};
 }
 

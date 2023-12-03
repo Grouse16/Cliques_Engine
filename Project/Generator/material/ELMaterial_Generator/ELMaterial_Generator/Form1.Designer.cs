@@ -280,7 +280,7 @@
             this.textBox4.Location = new System.Drawing.Point(21, 134);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(95, 23);
+            this.textBox4.Size = new System.Drawing.Size(104, 23);
             this.textBox4.TabIndex = 0;
             this.textBox4.Text = "ブレンドモード";
             // 
@@ -290,7 +290,7 @@
             this.textBox5.Location = new System.Drawing.Point(21, 156);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(95, 23);
+            this.textBox5.Size = new System.Drawing.Size(104, 23);
             this.textBox5.TabIndex = 0;
             this.textBox5.Text = "混ぜ方";
             // 
@@ -305,9 +305,9 @@
             "NORMAL_NOT_ALPHA：α値を１に固定して描画",
             "INVERT：減算方式で描画",
             "INVERT_NOT_ALPHA：減算方式でα値を１に固定して描画"});
-            this.CB_Blend_Mode.Location = new System.Drawing.Point(112, 133);
+            this.CB_Blend_Mode.Location = new System.Drawing.Point(122, 133);
             this.CB_Blend_Mode.Name = "CB_Blend_Mode";
-            this.CB_Blend_Mode.Size = new System.Drawing.Size(836, 24);
+            this.CB_Blend_Mode.Size = new System.Drawing.Size(826, 24);
             this.CB_Blend_Mode.TabIndex = 1;
             this.CB_Blend_Mode.SelectedIndexChanged += new System.EventHandler(this.CB_Blend_Mode_SelectedIndexChanged);
             // 
@@ -323,9 +323,9 @@
             "SUB_PIX：ピクセルシェーダーの色を現在の色で減算",
             "MAX：現在の色とピクセルシェーダーの色を比較したときの最大値",
             "MIN：現在の色とピクセルシェーダーの色を比較したときの最小値"});
-            this.CB_How_To_Blend.Location = new System.Drawing.Point(112, 155);
+            this.CB_How_To_Blend.Location = new System.Drawing.Point(122, 155);
             this.CB_How_To_Blend.Name = "CB_How_To_Blend";
-            this.CB_How_To_Blend.Size = new System.Drawing.Size(836, 24);
+            this.CB_How_To_Blend.Size = new System.Drawing.Size(826, 24);
             this.CB_How_To_Blend.TabIndex = 1;
             this.CB_How_To_Blend.SelectedIndexChanged += new System.EventHandler(this.CB_How_To_Blend_SelectedIndexChanged);
             // 
@@ -335,7 +335,7 @@
             this.textBox3.Location = new System.Drawing.Point(21, 179);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(95, 23);
+            this.textBox3.Size = new System.Drawing.Size(104, 23);
             this.textBox3.TabIndex = 0;
             this.textBox3.Text = "バイト数";
             // 
@@ -351,9 +351,9 @@
             "BYTE_4_UINT：４バイトのUINT",
             "BYTE_2_FLOAT：２バイトのFLOAT",
             "BYTE_4_FLOAT：４バイトのFLOAT"});
-            this.CB_Blend_Byte_Format.Location = new System.Drawing.Point(112, 179);
+            this.CB_Blend_Byte_Format.Location = new System.Drawing.Point(122, 179);
             this.CB_Blend_Byte_Format.Name = "CB_Blend_Byte_Format";
-            this.CB_Blend_Byte_Format.Size = new System.Drawing.Size(836, 24);
+            this.CB_Blend_Byte_Format.Size = new System.Drawing.Size(826, 24);
             this.CB_Blend_Byte_Format.TabIndex = 1;
             this.CB_Blend_Byte_Format.SelectedIndexChanged += new System.EventHandler(this.CB_Blend_Byte_Format_SelectedIndexChanged);
             // 
@@ -363,7 +363,7 @@
             this.textBox6.Location = new System.Drawing.Point(20, 202);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(95, 23);
+            this.textBox6.Size = new System.Drawing.Size(104, 23);
             this.textBox6.TabIndex = 0;
             this.textBox6.Text = "色数";
             // 
@@ -377,9 +377,9 @@
             "R：赤のみ",
             "RG：赤と緑",
             "RGBA：赤と緑と青とα値"});
-            this.CB_Blend_Color_Format.Location = new System.Drawing.Point(112, 202);
+            this.CB_Blend_Color_Format.Location = new System.Drawing.Point(122, 202);
             this.CB_Blend_Color_Format.Name = "CB_Blend_Color_Format";
-            this.CB_Blend_Color_Format.Size = new System.Drawing.Size(836, 24);
+            this.CB_Blend_Color_Format.Size = new System.Drawing.Size(826, 24);
             this.CB_Blend_Color_Format.TabIndex = 1;
             this.CB_Blend_Color_Format.SelectedIndexChanged += new System.EventHandler(this.CB_Blend_Color_Format_SelectedIndexChanged);
             // 
@@ -399,7 +399,7 @@
             this.textBox8.Location = new System.Drawing.Point(21, 366);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(95, 23);
+            this.textBox8.Size = new System.Drawing.Size(104, 23);
             this.textBox8.TabIndex = 0;
             this.textBox8.Text = "表示モード";
             // 
@@ -412,9 +412,9 @@
             this.CB_Rasterize_Draw_Mode.Items.AddRange(new object[] {
             "NORMAL：通常表示",
             "WIRE_FRAME：辺のみ表示"});
-            this.CB_Rasterize_Draw_Mode.Location = new System.Drawing.Point(112, 366);
+            this.CB_Rasterize_Draw_Mode.Location = new System.Drawing.Point(122, 366);
             this.CB_Rasterize_Draw_Mode.Name = "CB_Rasterize_Draw_Mode";
-            this.CB_Rasterize_Draw_Mode.Size = new System.Drawing.Size(836, 24);
+            this.CB_Rasterize_Draw_Mode.Size = new System.Drawing.Size(826, 24);
             this.CB_Rasterize_Draw_Mode.TabIndex = 1;
             // 
             // textBox9
@@ -423,7 +423,7 @@
             this.textBox9.Location = new System.Drawing.Point(21, 390);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(95, 23);
+            this.textBox9.Size = new System.Drawing.Size(104, 23);
             this.textBox9.TabIndex = 0;
             this.textBox9.Text = "面の表示基準";
             // 
@@ -437,9 +437,9 @@
             "ALWAYS：常に描画",
             "FRONT：表面のみ描画",
             "BACK：裏面のみ描画"});
-            this.CB_Rasterizer_Mesh_Setting.Location = new System.Drawing.Point(112, 388);
+            this.CB_Rasterizer_Mesh_Setting.Location = new System.Drawing.Point(122, 388);
             this.CB_Rasterizer_Mesh_Setting.Name = "CB_Rasterizer_Mesh_Setting";
-            this.CB_Rasterizer_Mesh_Setting.Size = new System.Drawing.Size(836, 24);
+            this.CB_Rasterizer_Mesh_Setting.Size = new System.Drawing.Size(826, 24);
             this.CB_Rasterizer_Mesh_Setting.TabIndex = 1;
             // 
             // textBox10
@@ -448,7 +448,7 @@
             this.textBox10.Location = new System.Drawing.Point(21, 412);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(95, 23);
+            this.textBox10.Size = new System.Drawing.Size(104, 23);
             this.textBox10.TabIndex = 0;
             this.textBox10.Text = "表面の基準";
             // 
@@ -461,9 +461,9 @@
             this.CB_Rasterizer_Front.Items.AddRange(new object[] {
             "ANTI_CLOCK_WISE：反時計回りの面が表面",
             "CLOCK_WISE：時計回りの面が表面"});
-            this.CB_Rasterizer_Front.Location = new System.Drawing.Point(112, 411);
+            this.CB_Rasterizer_Front.Location = new System.Drawing.Point(122, 411);
             this.CB_Rasterizer_Front.Name = "CB_Rasterizer_Front";
-            this.CB_Rasterizer_Front.Size = new System.Drawing.Size(836, 24);
+            this.CB_Rasterizer_Front.Size = new System.Drawing.Size(826, 24);
             this.CB_Rasterizer_Front.TabIndex = 1;
             // 
             // textBox11
@@ -2296,7 +2296,7 @@
             this.textBox87.Location = new System.Drawing.Point(21, 262);
             this.textBox87.Name = "textBox87";
             this.textBox87.ReadOnly = true;
-            this.textBox87.Size = new System.Drawing.Size(95, 23);
+            this.textBox87.Size = new System.Drawing.Size(104, 23);
             this.textBox87.TabIndex = 0;
             this.textBox87.Text = "深度モード";
             // 
@@ -2306,7 +2306,7 @@
             this.textBox111.Location = new System.Drawing.Point(21, 286);
             this.textBox111.Name = "textBox111";
             this.textBox111.ReadOnly = true;
-            this.textBox111.Size = new System.Drawing.Size(95, 23);
+            this.textBox111.Size = new System.Drawing.Size(104, 23);
             this.textBox111.TabIndex = 0;
             this.textBox111.Text = "深度オプション";
             // 
@@ -2316,7 +2316,7 @@
             this.textBox112.Location = new System.Drawing.Point(21, 308);
             this.textBox112.Name = "textBox112";
             this.textBox112.ReadOnly = true;
-            this.textBox112.Size = new System.Drawing.Size(95, 23);
+            this.textBox112.Size = new System.Drawing.Size(104, 23);
             this.textBox112.TabIndex = 0;
             this.textBox112.Text = "ステンシル設定";
             // 
@@ -2330,9 +2330,9 @@
             "NO：深度無効",
             "ZERO：０の部分に書き込む",
             "ONE：全てに書き込む"});
-            this.CB_Depth_Mode.Location = new System.Drawing.Point(112, 262);
+            this.CB_Depth_Mode.Location = new System.Drawing.Point(122, 262);
             this.CB_Depth_Mode.Name = "CB_Depth_Mode";
-            this.CB_Depth_Mode.Size = new System.Drawing.Size(836, 24);
+            this.CB_Depth_Mode.Size = new System.Drawing.Size(826, 24);
             this.CB_Depth_Mode.TabIndex = 1;
             // 
             // CB_Depth_Option
@@ -2349,9 +2349,9 @@
             "GREATERE_EQUAL：比較元の値以上の時のみ書き込む",
             "LESS：比較元の値未満の時のみ書き込む",
             "LESS_EQUAL：比較元の値以下の時のみ書き込む"});
-            this.CB_Depth_Option.Location = new System.Drawing.Point(112, 284);
+            this.CB_Depth_Option.Location = new System.Drawing.Point(122, 284);
             this.CB_Depth_Option.Name = "CB_Depth_Option";
-            this.CB_Depth_Option.Size = new System.Drawing.Size(836, 24);
+            this.CB_Depth_Option.Size = new System.Drawing.Size(826, 24);
             this.CB_Depth_Option.TabIndex = 1;
             // 
             // CB_Stencil
@@ -2363,9 +2363,9 @@
             this.CB_Stencil.Items.AddRange(new object[] {
             "NO_ACTIVE：無効",
             "ACTIVE：有効"});
-            this.CB_Stencil.Location = new System.Drawing.Point(112, 307);
+            this.CB_Stencil.Location = new System.Drawing.Point(122, 307);
             this.CB_Stencil.Name = "CB_Stencil";
-            this.CB_Stencil.Size = new System.Drawing.Size(836, 24);
+            this.CB_Stencil.Size = new System.Drawing.Size(826, 24);
             this.CB_Stencil.TabIndex = 1;
             // 
             // Form1

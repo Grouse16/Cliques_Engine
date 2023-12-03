@@ -166,6 +166,27 @@ bool C_Windows_System::M_Create_Window(void)
 }
 
 
+//-☆- 入力 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マウス入力の更新
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Windows_System::M_Mouse_Input_Update(void)
+{
+	// ☆ 変数宣言 ☆ //
+	POINT mouse_point;	// マウス座標
+
+
+	// マウス座標を取得する
+	GetCursorPos(&mouse_point);
+	M_Set_Mouse_Position_Variable(mouse_point.x, mouse_point.y);
+
+	return;
+}
+
+
 //==☆  パブリック  ☆==//
 
 //-☆-  初期化と終了時  -☆-//
@@ -173,7 +194,7 @@ bool C_Windows_System::M_Create_Window(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ウィンドウズのシステムを初期化する
 // 引数   ：void
-// 戻り値 ：なし
+// 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_System::M_Create_Windows_System(void)
 {
@@ -283,6 +304,9 @@ void C_Windows_System::M_Update(void)
 	// ウィンドウサイズの更新
 	M_Window_Size_Update();
 
+	// マウス座標の更新
+	M_Mouse_Input_Update();
+
 	return;
 }
 
@@ -321,13 +345,13 @@ void C_Windows_System::M_Window_Size_Update(void)
 // 引数   ：int コマンド番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Set_Cmd_Show(int in_cmdshow)
+void C_Windows_System::M_Set_Cmd_Show(int in_command_show)
 {
 	// ☆ 変数宣言 ☆ //
 	C_Windows_System * wind_os_system = static_cast<C_Windows_System*>(m_this_instance.get());	// ウィンドウズOS用のシステム
 
 
-	wind_os_system->mpr_variable.m_cmd_show = in_cmdshow;
+	wind_os_system->mpr_variable.m_cmd_show = in_command_show;
 
 	return;
 }

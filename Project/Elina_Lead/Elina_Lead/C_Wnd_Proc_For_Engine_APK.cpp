@@ -58,6 +58,10 @@ C_Wnd_Proc_For_Game_APK::C_Wnd_Proc_For_Game_APK(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, WPARAM in_w_param, LPARAM in_l_param)
 {
+	// ☆ 変数宣言 ☆ //
+	LRESULT window_update_result = DefWindowProc(in_h_wnd, in_msg, in_w_param, in_l_param);	// ウィンドウの更新結果
+
+
 	// 終了されてからこの処理を行わないように止める
 	if (in_h_wnd == NULL || in_msg == WM_QUIT)
 	{
@@ -147,14 +151,6 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 
 		break;
 
-		// マウスの移動
-	case WM_MOUSEMOVE:
-
-		// マウスの座標を入手
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Mouse_Position_Variable(GET_X_LPARAM(in_l_param) + 1, OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height - GET_Y_LPARAM(in_l_param) + 1);
-		
-		break;
-
 
 		// ウィンドウのサイズ変更中
 	case WM_SIZING:
@@ -218,17 +214,12 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 
 		break;
 
-
-		// 上のcase以外の場合の処理を実行
+		// その他の時は何もしない
 	default:
-
-		// returnに注意、ウィンドウの情報を更新して処理を抜ける
-		return DefWindowProc(in_h_wnd, in_msg, in_w_param, in_l_param);
-
 		break;
 	}
 
-	return 0;
+	return window_update_result;
 }
 
 
