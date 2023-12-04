@@ -68,9 +68,9 @@ void C_Shader_Setting_User::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のシェーダー設定を読み込む
 // 引数   ：string シェーダー設定名
-// 戻り値 ：void
+// 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Shader_Setting_User::M_Load_Shader_Setting(std::string in_shader_setting_name)
+bool C_Shader_Setting_User::M_Load_Shader_Setting(std::string in_shader_setting_name)
 {
 	// ☆ 変数宣言 ☆ //
 	C_Shader_Setting * new_shader_setting_address = nullptr;	// 新しいシェーダー設定のアドレス
@@ -87,7 +87,7 @@ void C_Shader_Setting_User::M_Load_Shader_Setting(std::string in_shader_setting_
 		// 生成に失敗したら抜ける
 		if (new_shader_setting_address == nullptr)
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -96,7 +96,7 @@ void C_Shader_Setting_User::M_Load_Shader_Setting(std::string in_shader_setting_
 	M_Release();
 	mpr_variable.shader_settting_address = new_shader_setting_address;
 
-	return;
+	return true;
 }
 
 

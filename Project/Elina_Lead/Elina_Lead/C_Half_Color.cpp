@@ -111,10 +111,10 @@ void C_Half_Color::M_Set_Color_By_0_255(int in_red, int in_green, int in_blue, i
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色同士の掛け算
-// 引数   ：C_Half_Color & 色情報への参照
+// 引数   ：C_Half_Color 色情報
 // 戻り値 ：C_Half_Color 色情報の掛け算結果
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Half_Color C_Half_Color::operator*(C_Half_Color & in_color)
+C_Half_Color C_Half_Color::operator*(C_Half_Color in_color)
 {
 	// ☆ 変数宣言 ☆ //
 	C_Half_Color result_value;	// 結果の色情報
@@ -131,10 +131,10 @@ C_Half_Color C_Half_Color::operator*(C_Half_Color & in_color)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色を設定する
-// 引数   ：C_Half_Color & 色情報への参照
+// 引数   ：C_Half_Color 色情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Half_Color::operator=(C_Half_Color & in_color)
+void C_Half_Color::operator=(C_Half_Color in_color)
 {
 	m_r = in_color.m_r;
 	m_g = in_color.m_g;

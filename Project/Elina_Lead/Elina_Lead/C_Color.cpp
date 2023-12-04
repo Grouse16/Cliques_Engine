@@ -111,10 +111,10 @@ void C_Color::M_Set_Color_By_0_255(int in_r, int in_g, int in_b, int in_a)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色同士の掛け算
-// 引数   ：C_Color & 色情報への参照
+// 引数   ：C_Color 色情報
 // 戻り値 ：C_Color 色情報の掛け算結果
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Color C_Color::operator*(C_Color & in_color)
+C_Color C_Color::operator*(C_Color in_color)
 {
 	// ☆ 変数宣言 ☆ //
 	C_Color result;	// 計算結果
@@ -132,10 +132,10 @@ C_Color C_Color::operator*(C_Color & in_color)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色を設定する
-// 引数   ：C_Color & 色情報への参照
+// 引数   ：C_Color 色情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Color::operator=(C_Color & in_color)
+void C_Color::operator=(C_Color in_color)
 {
 	// 色をセットする
 	m_r = in_color.m_r;

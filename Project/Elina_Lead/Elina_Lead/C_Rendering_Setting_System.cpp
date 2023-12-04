@@ -9,7 +9,7 @@
 #include "C_Rendering_Setting_System.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
-#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+#include "S_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペースの省略 ☆ //

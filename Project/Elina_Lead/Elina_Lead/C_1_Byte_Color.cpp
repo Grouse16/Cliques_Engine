@@ -111,10 +111,10 @@ void C_1_Byte_Color::M_Set_Color_By_0_255(int in_red, int in_blue, int in_green,
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色同士の掛け算
-// 引数   ：C_1_Byte_Color & 色情報への参照 
+// 引数   ：C_1_Byte_Color 色情報
 // 戻り値 ：C_1_Byte_Color 色情報の掛け算結果
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_1_Byte_Color C_1_Byte_Color::operator*(C_1_Byte_Color & in_color)
+C_1_Byte_Color C_1_Byte_Color::operator*(C_1_Byte_Color in_color)
 {
 	// ☆ 変数宣言 ☆ //
 	C_1_Byte_Color result_color;	// 結果の色
@@ -131,10 +131,10 @@ C_1_Byte_Color C_1_Byte_Color::operator*(C_1_Byte_Color & in_color)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：色同士の掛け算
-// 引数   ：C_1_Byte_Color & 色を設定する
+// 引数   ：C_1_Byte_Color 色情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_1_Byte_Color::operator=(C_1_Byte_Color & in_color)
+void C_1_Byte_Color::operator=(C_1_Byte_Color in_color)
 {
 	m_r = in_color.m_r;
 	m_g = in_color.m_g;

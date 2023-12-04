@@ -45,6 +45,12 @@ namespace RENDERING::GRAPHICS::INSTANCE
 
 		// 指定された番号のレンダリング画面をテクスチャ画像として保存する　引数：レンダリング画面番号, 保存先のテクスチャ画面の参照　戻り値：成功時のみtrue
 		virtual bool M_Save_Screen_For_Texture(int, ASSET::TEXTURE::C_Texture_Map & ) = 0;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// レンダリング画面数を返す　戻り値：レンダリング画面数
+		virtual int M_Get_Rendering_Screen_Sum(void) = 0;
 	};
 }
 

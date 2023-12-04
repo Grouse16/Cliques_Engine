@@ -55,7 +55,7 @@ namespace Shader_Setting_Generator.texture_buffer
         // テクスチャバッファ識別名が変更されたら更新
         private void TB_Texture_Name_TextChanged(object sender, EventArgs e)
         {
-            m_texture_inform = new C_Texture_Inform(TB_Texture_Name.Text, m_texture_inform.m_initialize_texture_setting);
+            m_texture_inform = new C_Texture_Inform(CB_Texture_Name.Text, m_texture_inform.m_initialize_texture_setting);
 
             return;
         }

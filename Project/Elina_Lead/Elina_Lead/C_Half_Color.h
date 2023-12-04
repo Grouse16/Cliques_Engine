@@ -63,11 +63,11 @@ namespace DATA::COLOR
 
 		//-☆- オペレーター -☆-//
 
-		// 色同士の掛け算　引数：色情報への参照 戻り値：色情報の掛け算結果
-		C_Half_Color operator*(C_Half_Color & );
+		// 色同士の掛け算　引数：色情報　戻り値：色情報の掛け算結果
+		C_Half_Color operator*(C_Half_Color);
 
-		// 色を設定する　引数：色情報への参照
-		void operator=(C_Half_Color & );
+		// 色を設定する　引数：色情報
+		void operator=(C_Half_Color);
 	};
 }
 

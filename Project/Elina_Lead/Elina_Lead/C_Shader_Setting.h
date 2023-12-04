@@ -27,25 +27,14 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
-	// ☆ 列挙 ☆ //
-
-	// リソースの種類
-	enum class E_RESOURCE_KIND
-	{
-		e_CONSTANT_BUFFER,		// 定数バッファ
-		e_TEXTURE,				// テクスチャ
-		e_RENDERING_SCREEN,		// レンダリング画像
-	};
-
-
 	// ☆ 構造体 ☆ //
 
-	// シェーダーのリソース情報の構造体
-	struct S_Resource_Inform
+	// シェーダーリソースごとの総数をもつ構造体
+	struct S_Shader_Resource_Sum
 	{
-		E_RESOURCE_KIND shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;	// リソースの種類
-
-		std::string resource_name = "default";	// リソースの名前
+		int constant_buffer_sum = 0;	// 定数バッファ数
+		int texture_buffer_sum = 0;		// テクスチャバッファ数
+		int screen_resource_sum = 0;	// スクリーン画面スロット数
 	};
 
 
@@ -66,11 +55,11 @@ namespace ASSET::SHADER
 
 			std::vector<C_Shader_User> shader_list;	// シェーダーコードのリスト
 
-			std::vector<S_Resource_Inform> resource_inform_list;	// リソース情報のリスト
-
 			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
 
 			ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot unique_buffer_slot_list;	// 特殊なバッファスロットのリスト
+
+			S_Shader_Resource_Sum shader_resource_sum;	// シェーダーリソースの総数
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -131,6 +120,12 @@ namespace ASSET::SHADER
 
 		// 頂点入力レイアウトのリストを返す　戻り値：入力レイアウトへの参照(const)
 		const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & M_Get_Input_Layout(void) const;
+
+		// 特殊なシェーダーのリストの参照を返す　戻り値：特殊なシェーダーのリストの参照（const）
+		const ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot & M_Get_Unique_Buffer_Slot(void) const;
+
+		// リソース情報の総数の情報の参照を返す　戻り値：リソース情報の総数の情報の参照（const）
+		const S_Shader_Resource_Sum & M_Get_Resource_Sum(void);
 	};
 }
 

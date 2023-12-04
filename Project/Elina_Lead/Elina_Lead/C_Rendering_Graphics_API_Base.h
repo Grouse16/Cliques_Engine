@@ -98,8 +98,20 @@ namespace RENDERING::GRAPHICS
 		// 指定されたレンダリング画面をセットする　引数：設定するレンダリング画面番号, 設定先のレンダリング画面の参照
 		virtual void M_Set_Rendering_Screen_To_Render_Target(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) = 0;
 
-		// レンダリング画面を指定されたテクスチャのスロットにセットする　引数：設定するレンダリング画面番号, 設定先のテクスチャのスロット番号, レンダリング画面システムの参照
+		// レンダリング画面を指定されたテクスチャのスロットにセットする　引数：レンダリング画面番号, 設定先のテクスチャのスロット番号, レンダリング画面システムの参照
 		virtual void M_Set_Rendering_Screen_To_Texture_Slot(int, int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) = 0;
+
+		// レンダリング画面のデータ（画素配列）を取得可能な状態にする　引数：設定するレンダリング画面番号, レンダリング画面システムの参照
+		virtual void M_Set_Rendering_Screen_Can_Readable(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) = 0;
+
+		// メインのレンダリング画面に戻す
+		virtual void M_Set_Main_Rendering_Screen(void) = 0;
+
+		// メインのレンダリング画面のデータをテクスチャに移す　引数：設定先のテクスチャの参照
+		virtual void M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) = 0;
+
+		// 指定されたレンダリング画面のデータをテクスチャに移す　引数：設定するレンダリング画面番号, レンダリング画面システムの参照, 設定先のテクスチャの参照
+		virtual void M_Save_Set_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>&, ASSET::TEXTURE::C_Texture_Map & ) = 0;
 
 
 		//-☆- 頂点バッファ -☆-//
@@ -136,9 +148,6 @@ namespace RENDERING::GRAPHICS
 
 		// 指定されたインデックス番号のスロットにテクスチャのデータをセットする　引数：セットするテクスチャデータ情報(const), セット先のインデックス番号
 		virtual void M_Rendering_Set_Texture_By_Index(std::unique_ptr<INSTANCE::C_Rendering_Texture_Setting_Inform_Base> & , int) = 0;
-
-		// レンダリング画面を指定されたテクスチャのスロットにセットする　引数：設定先のテクスチャのスロット番号, レンダリング画面システムの参照
-		virtual void M_Set_Rendering_Screen_To_Texture_Slot(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) = 0;
 
 
 		//-☆- フォント -☆-//

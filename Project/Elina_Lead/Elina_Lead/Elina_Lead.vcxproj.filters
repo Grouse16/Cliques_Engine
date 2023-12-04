@@ -649,6 +649,9 @@
     <Filter Include="ヘッダー ファイル\レンダリング\生成定義\定義">
       <UniqueIdentifier>{3db88dda-ad84-427b-a7f5-368ed8ad0726}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\定義">
+      <UniqueIdentifier>{86b02d3f-4153-4b87-8f25-ea77c4163850}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
@@ -1122,6 +1125,12 @@
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
     </ClInclude>
+    <ClInclude Include="S_Unique_Buffer_Slot.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Screen_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1453,6 +1462,9 @@
     </ClCompile>
     <ClCompile Include="C_Color_Converter.cpp">
       <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Screen_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

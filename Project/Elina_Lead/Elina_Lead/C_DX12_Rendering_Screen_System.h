@@ -1,6 +1,6 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 // 詳細   ：DX12のレンダリングスクリーン（レンダリング先画像）のシステム
-// 説明   ：レンダーターゲットビューと深度ステンシルビューを管理する
+// 説明   ：レンダーターゲットビューを管理する
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
@@ -33,9 +33,6 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		Microsoft::WRL::ComPtr<ID3D12Resource> render_buffer;	// レンダー先の画面バッファ
 
 		D3D12_CPU_DESCRIPTOR_HANDLE handle;	// テクスチャリソース識別用情報(GPUのためにリソースを分解して変換する)
-
-		int screen_width = 0;	// 横幅のスクリーンピクセルサイズ
-		int screen_height = 0;	// 縦幅のスクリーンピクセルサイズ
 	};
 
 
@@ -61,11 +58,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
         // ☆ 変数宣言 ☆ //
 		S_DX12_Render_Target_View m_render_target_view;	// レンダーターゲットビュー用パラメータ
 
-		DXGI_FORMAT m_screen_format = DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT;	// 画素の型
-
-		RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING m_screen_texture_setting = RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING::e_TEXTURE_2D;	// レンダリング画像のテクスチャの設定
-
-		int m_rendering_screen_sum = 0;	// レンダリング画面の番号
+		int m_rendering_screen_sum = 0;	// レンダリング画面数
 
 
 		// ☆ 関数 ☆ //
@@ -86,6 +79,12 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 
 		// 指定された番号のレンダリング画面をテクスチャ画像として保存する　引数：レンダリング画面番号, 保存先のテクスチャ画面の参照　戻り値：成功時のみtrue
 		bool M_Save_Screen_For_Texture(int, ASSET::TEXTURE::C_Texture_Map & ) override;
+
+
+		//-☆- ゲッタ -☆-//
+
+		// レンダリング画面数を返す　戻り値：レンダリング画面数
+		int M_Get_Rendering_Screen_Sum(void) override;
     };
 }
 

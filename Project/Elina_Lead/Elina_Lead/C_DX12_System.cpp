@@ -794,7 +794,6 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
         set_pixel_format = DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT;
         break;
     }
-    in_dx12_screen_system->m_screen_format = set_pixel_format;
 
     // レンダーターゲットビューの種類を指定
     switch (in_create_rendering_screen_inform.m_screen_texture_setting)
@@ -819,9 +818,6 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
         render_target_view_texture = D3D12_RTV_DIMENSION::D3D12_RTV_DIMENSION_TEXTURE3D;
         break;
     }
-
-    // テクスチャの仕様をセット
-    in_dx12_screen_system->m_screen_texture_setting = in_create_rendering_screen_inform.m_screen_texture_setting;
 
 
     // 初期化
@@ -2038,6 +2034,7 @@ void C_DX12_System::M_Wait_For_Command_Queue(void)
     return;
 }
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ビューポートとシザーの設定を行う
 // 引数   ：void
@@ -2045,39 +2042,33 @@ void C_DX12_System::M_Wait_For_Command_Queue(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_System::M_Set_Scissor_And_View_Port(void)
 {
-    // ☆ 変数宣言 ☆ //
-    D3D12_VIEWPORT view_port = {};	// ビューポートパラメータ
-
-    D3D12_RECT scissor_rect = {};	// シザーレクト
-
-
     // ☆ ビューポート設定 ☆ //
 
     // 画面サイズ
-    view_port.Width = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().width;
-    view_port.Height = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height;
+    mpr_variable->s_frame_work.view_port.Width = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().width;
+    mpr_variable->s_frame_work.view_port.Height = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height;
 
     // 画面の左上座標
-    view_port.TopLeftX = 0.0f;
-    view_port.TopLeftY = 0.0f;
+    mpr_variable->s_frame_work.view_port.TopLeftX = 0.0f;
+    mpr_variable->s_frame_work.view_port.TopLeftY = 0.0f;
 
     // 深度設定
-    view_port.MinDepth = 0.0f;
-    view_port.MaxDepth = 1.0f;
+    mpr_variable->s_frame_work.view_port.MinDepth = 0.0f;
+    mpr_variable->s_frame_work.view_port.MaxDepth = 1.0f;
 
 
     // ☆ シザーレクト設定 ☆ //
 
     // 座標設定
-    scissor_rect.left = 0;
-    scissor_rect.right = (LONG)view_port.Width;
-    scissor_rect.top = 0;
-    scissor_rect.bottom = (LONG)view_port.Height;
+    mpr_variable->s_frame_work.scissor_rect.left = 0;
+    mpr_variable->s_frame_work.scissor_rect.right = (LONG)mpr_variable->s_frame_work.view_port.Width;
+    mpr_variable->s_frame_work.scissor_rect.top = 0;
+    mpr_variable->s_frame_work.scissor_rect.bottom = (LONG)mpr_variable->s_frame_work.view_port.Height;
 
 
     // 画面サイズ更新
-    mpr_variable->s_command.list->RSSetViewports(1, &view_port);
-    mpr_variable->s_command.list->RSSetScissorRects(1, &scissor_rect);
+    mpr_variable->s_command.list->RSSetViewports(1, &mpr_variable->s_frame_work.view_port);
+    mpr_variable->s_command.list->RSSetScissorRects(1, &mpr_variable->s_frame_work.scissor_rect);
 
     return;
 }
@@ -2270,13 +2261,14 @@ void C_DX12_System::M_Rendering_Start(void)
     // リソース同期用のバリアを描画書き込み用に変更 (変更が完了するまで待つ)
     M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
-
     // ビューポートとシザーの更新
     M_Set_Scissor_And_View_Port();
 
-
     // 画面クリア
     M_Clear_Render_Target_View(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view);
+
+    // メインをセット
+    M_Set_Main_Rendering_Screen();
 
     return;
 }
@@ -2361,6 +2353,9 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 
     // ☆ 描画命令の記録終了 ☆ //
 
+    // メインの画面に戻す
+    M_Set_Main_Rendering_Screen();
+
     // リソース同期用のバリアを出力用に変更 (変更が完了するまで待つ)
     M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_PRESENT);
 
@@ -2427,7 +2422,7 @@ bool C_DX12_System::M_Create_Rendering_Screen(std::unique_ptr<RENDERING::GRAPHIC
 void C_DX12_System::M_Clear_Rendering_Screen(int in_rendering_screen_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen)
 {
     // ☆ 変数宣言 ☆ //
-    DX12INSTANCE::C_DX12_Rendering_Screen_System* dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
+    DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
 
 
     // レンダリング画面をレンダリング先としてセット
@@ -2457,26 +2452,113 @@ void C_DX12_System::M_Set_Rendering_Screen_To_Render_Target(int in_rendering_scr
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：レンダリング画面を指定されたテクスチャのスロットにセットする
-// 引数   ：int 設定先のテクスチャのスロット番号, unique_ptr<C_Rendering_Screen_System_Base> & レンダリング画面システムの参照
+// 引数   ：int レンダリング画面番号, int 設定先のテクスチャのスロット番号, unique_ptr<C_Rendering_Screen_System_Base> & レンダリング画面システムの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Set_Rendering_Screen_To_Texture_Slot(int in_texture_slot_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen)
+void C_DX12_System::M_Set_Rendering_Screen_To_Texture_Slot(int in_rendering_screen_number, int in_texture_slot_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
 
+    D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = dx12_rendering_screen->m_render_target_view.heap->GetGPUDescriptorHandleForHeapStart();   // GPUでのリソースへのハンドル
 
-    // レンダーターゲットビューをテクスチャで使用する設定に変更
+    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
+
+
+    // レンダーターゲットビューをシェーダーで使用する設定に変更
     for (int l_now_screen_number = 0; l_now_screen_number < dx12_rendering_screen->m_rendering_screen_sum; l_now_screen_number++)
     {
         M_Set_Resource_Barrier(l_now_screen_number, dx12_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_ALL_SHADER_RESOURCE);
     }
 
+
     // テクスチャ用ヒープのセット
     mpr_variable->s_command.list->SetDescriptorHeaps(1, &dx12_rendering_screen->m_render_target_view.heap);
 
-    // ルートシグネチャにテクスチャを紐付ける
-    mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot_number, dx12_rendering_screen->m_render_target_view.heap->GetGPUDescriptorHandleForHeapStart());
+    // 指定されたレンダーターゲットビューまで移動
+    descriptor_handle.ptr += byte_of_handle * (UINT)in_rendering_screen_number;
+
+    // ルートシグネチャに指定されたレンダーターゲットビューを紐付ける
+    mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot_number, descriptor_handle);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング画面のデータ（画素配列）を取得可能な状態にする
+// 引数   ：int 設定するレンダリング画面番号, unique_ptr<C_Rendering_Screen_System_Base> & レンダリング画面システムの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Rendering_Screen_Can_Readable(int in_screen_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
+
+
+    M_Set_Resource_Barrier(in_screen_number, dx12_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインのレンダリング画面に戻す
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Main_Rendering_Screen(void)
+{
+    M_Set_Render_Target_View(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインのレンダリング画面のデータをテクスチャに移す
+// 引数   ：C_Texture_Map & 設定先のテクスチャの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & out_texture)
+{
+    // ☆ 変数宣言 ☆ //
+    D3D12_RESOURCE_STATES before_state = mpr_variable->s_render.main_rendering_screen->m_render_target_view.now_resource_barrier;   // 変更前のリソースバリアの状態を取得
+
+
+    // レンダーターゲットビューを読み取り可能に設定
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ);
+    
+    // メインのレンダリング画面のデータをテクスチャに移す
+    mpr_variable->s_render.main_rendering_screen->M_Save_Screen_For_Texture(mpr_variable->s_command.num_back_screen, out_texture);
+
+    // レンダーターゲットビューを元の状態に戻す
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, before_state);
+
+    return;
+}
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたレンダリング画面のデータをテクスチャに移す
+// 引数   ：int 設定するレンダリング画面番号, unique_ptr<C_Rendering_Screen_System_Base> & レンダリング画面システムの参照, C_Texture_Map & 設定先のテクスチャの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Save_Set_Rendering_Screen_To_Texture(int in_rendering_screen_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen, ASSET::TEXTURE::C_Texture_Map & out_texture)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
+
+    D3D12_RESOURCE_STATES before_state = dx12_rendering_screen->m_render_target_view.now_resource_barrier;   // 変更前のリソースバリアの状態を取得
+
+
+    // レンダーターゲットビューを読み取り可能に設定
+    M_Set_Resource_Barrier(in_rendering_screen_number, dx12_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ);
+
+    // メインのレンダリング画面のデータをテクスチャに移す
+    mpr_variable->s_render.main_rendering_screen->M_Save_Screen_For_Texture(in_rendering_screen_number, out_texture);
+
+    // レンダーターゲットビューを元の状態に戻す
+    M_Set_Resource_Barrier(in_rendering_screen_number, dx12_rendering_screen->m_render_target_view, before_state);
 
     return;
 }

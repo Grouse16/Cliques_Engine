@@ -18,7 +18,7 @@ namespace RENDERING::GRAPHICS::CREATE
 	// ☆ 列挙 ☆ //
 
 	// スクリーン画面のテクスチャの設定を行うための列挙
-	enum class E_SCREEN_TEXTURE_SETTING
+	enum class E_SCREEN_TEXTURE_SETTING : char
 	{
 		e_BUFFER,		// バッファの設定
 		e_TEXTURE_1D,	// 1次元テクスチャの設定

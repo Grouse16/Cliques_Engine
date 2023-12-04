@@ -56,8 +56,8 @@ namespace ASSET::SHADER
 
 		//-☆- ロード -☆-//
 
-		// 指定された名前のシェーダー設定を読み込む　引数：ロードするシェーダー設定名
-		void M_Load_Shader_Setting(std::string);
+		// 指定された名前のシェーダー設定を読み込む　引数：ロードするシェーダー設定名　戻り値：成功時のみtrue
+		bool M_Load_Shader_Setting(std::string);
 
 
 		//-☆- ゲッタ -☆-//

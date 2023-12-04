@@ -61,6 +61,10 @@ namespace RENDERING::GRAPHICS::DX12
 
 				Microsoft::WRL::ComPtr<IDXGIFactory3> factory;	// ファクトリ（全画面表示の切り替え用システム）
 
+				D3D12_VIEWPORT view_port = D3D12_VIEWPORT();	// ビューポートパラメータ
+
+				D3D12_RECT scissor_rect = D3D12_RECT();	// シザーレクト
+
 				float clear_color[(int)E_DX12_PARAMATOR::e_COLOR_SUM] = { 0.0f,0.0f,0.0f,0.0f };  // 画面塗りつぶし色
 
 			} s_frame_work;	// フレームワーク用パラメータ(デバイスや画面切り替え、構成の設定など)
@@ -155,10 +159,10 @@ namespace RENDERING::GRAPHICS::DX12
 		bool M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rendering_Screen_System * & , const RENDERING::GRAPHICS::CREATE::S_Create_Render_Screen_Inform & );
 
 		// レンダリング画面をクリアする　引数：レンダリング画像の番号, レンダーターゲットビュー情報の参照
-		void M_Clear_Render_Target_View(int, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View&);
+		void M_Clear_Render_Target_View(int, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View & );
 
 		// レンダリング画面をセットする　引数：レンダリング画像の番号, レンダーターゲットビュー情報の参照
-		void M_Set_Render_Target_View(int, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View&);
+		void M_Set_Render_Target_View(int, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View & );
 
 
 		//-☆- 深度ステンシルビュー -☆-//
@@ -292,8 +296,20 @@ namespace RENDERING::GRAPHICS::DX12
 		// 指定されたレンダリング画面をセットする　引数：設定するレンダリング画面番号, 設定先のレンダリング画面の参照
 		void M_Set_Rendering_Screen_To_Render_Target(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> &) override;
 		
-		// レンダリング画面を指定されたテクスチャのスロットにセットする　引数：設定先のテクスチャのスロット番号, レンダリング画面システムの参照
-		void M_Set_Rendering_Screen_To_Texture_Slot(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> &) override;
+		// レンダリング画面を指定されたテクスチャのスロットにセットする　引数：レンダリング画面番号, 設定先のテクスチャのスロット番号, レンダリング画面システムの参照
+		void M_Set_Rendering_Screen_To_Texture_Slot(int, int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> &) override;
+
+		// レンダリング画面のデータ（画素配列）を取得可能な状態にする　引数：設定するレンダリング画面番号, レンダリング画面システムの参照
+		void M_Set_Rendering_Screen_Can_Readable(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) override;
+
+		// メインのレンダリング画面に戻す
+		void M_Set_Main_Rendering_Screen(void) override;
+
+		// メインのレンダリング画面のデータをテクスチャに移す　引数：設定先のテクスチャの参照
+		void M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) override;
+
+		// 指定されたレンダリング画面のデータをテクスチャに移す　引数：設定するレンダリング画面番号, レンダリング画面システムの参照, 設定先のテクスチャの参照
+		void M_Save_Set_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & , ASSET::TEXTURE::C_Texture_Map & ) override;
 
 
 		//-☆- 頂点バッファ -☆-//

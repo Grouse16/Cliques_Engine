@@ -18,7 +18,7 @@ namespace RENDERING::INFORM::RENDERING_SCREEN
 	// ☆ 列挙 ☆ //
 	
 	// レンダリング画像の型を設定するための列挙
-	enum class E_RENDERING_SCREEN_FORMAT
+	enum class E_RENDERING_SCREEN_FORMAT : char
 	{
 		e_1_BYTE,	// RGBAそれぞれ１バイト
 		e_2_BYTE,	// RGBAそれぞれ２バイト

@@ -21,6 +21,7 @@
 #include "C_Text_And_File_Manager.h"
 #include "C_Rendering_Screen_System_Base.h"
 #include "C_Shader_Setting_User.h"
+#include "C_Rendering_Screen_System.h"
 #include "S_Material_Detail.h"
 #include "S_World_View_Projection.h"
 
@@ -37,7 +38,7 @@ namespace ASSET::MATERIAL
 	{
 		std::unique_ptr<RENDERING::CAPSULE::C_Constant_Buffer_Data_System> data;	// 定数バッファを管理するシステム
 
-		std::string signature_name = "default";	// 定数バッファ識別用名
+		std::string signature_name = "default";	// 定数バッファ識別名
 
 		int index = 0;	// 定数バッファのインデックス番号
 	};
@@ -48,7 +49,7 @@ namespace ASSET::MATERIAL
 	{
 		std::unique_ptr<ASSET::TEXTURE::C_Texture_Data_User> data;	// テクスチャを使用するためのシステム
 
-		std::string signature_name = "default";	// テクスチャスロット識別用名
+		std::string signature_name = "default";	// テクスチャスロット識別名
 
 		int index = 0;	// テクスチャのインデックス番号
 	};
@@ -57,7 +58,9 @@ namespace ASSET::MATERIAL
 	// レンダリング画面を使用する際の情報をまとめた構造体
 	struct S_Rendering_Screen_Data
 	{
-		int index = 0;	// テクスチャのインデックス番号
+		std::string signature_name = "default";	// レンダリング画面の識別名
+
+		int index = 0;	// レンダリング画面用のテクスチャスロットの番号
 	};
 
 
@@ -74,13 +77,17 @@ namespace ASSET::MATERIAL
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			RENDERING::CAPSULE::C_Rendering_Setting_System rendering_setting;	// 描画用設定
-
 			std::vector<S_Constant_Buffer_Data> constant_data_list;	// 使用する定数バッファのリスト
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
+			std::vector<S_Rendering_Screen_Data> rendering_screen_data_list;	// 使用するレンダリングスクリーンのリスト
+
+			RENDERING::CAPSULE::C_Rendering_Setting_System rendering_setting;	// 描画用設定
+
 			ASSET::SHADER::C_Shader_Setting_User shader_setting_data;	// シェーダー設定用情報
+
+			ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot * unique_slot_list = nullptr;	// 特殊スロットのリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -219,7 +226,10 @@ namespace ASSET::MATERIAL
 		S_Constant_Buffer_Data * M_Get_Constant_Buffer_Data_By_Index(int);
 
 		// 指定されたテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの番号　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
-		S_Texture_Buffer_Data* M_Get_Texture_Data_By_Index(int);
+		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Index(int);
+
+		// 指定されたレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの番号　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+		S_Rendering_Screen_Data * M_Get_Rendering_Screen_Data_By_Index(int);
 
 		// 指定された名前の定数バッファ管理用データのアドレスを返す　引数：取得する定数バッファ管理用データの名前　戻り値：指定された定数バッファ情報のアドレス、なければnullptr
 		S_Constant_Buffer_Data * M_Get_Constant_Buffer_Data_By_Name(std::string);
@@ -227,11 +237,17 @@ namespace ASSET::MATERIAL
 		// 指定された名前のテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
 		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Name(std::string);
 
+		// 指定された名前のレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+		S_Rendering_Screen_Data * M_Get_Rendering_Screen_By_Name(std::string);
+
 		// 指定された名前の定数バッファ管理用データのスロット番号を返す　引数：取得する定数バッファ管理用データの名前　戻り値：int 指定された定数バッファの番号、なければ-1
 		int M_Get_Constant_Buffer_Number_By_Name(std::string);
 
 		// 指定された名前のテクスチャ管理用データのスロット番号を返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャの番号、なければ-1
 		int M_Get_Texture_Number_By_Name(std::string);
+
+		// 指定された名前のレンダリング画面管理用データのスロット番号を返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面の番号、なければ-1
+		int M_Get_Rendering_Screen_Number_By_Name(std::string);
 
 
 		//-☆- WVP ワールド ビュー プロジェクション -☆-//

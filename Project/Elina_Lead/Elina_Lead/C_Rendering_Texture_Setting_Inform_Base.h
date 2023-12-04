@@ -17,7 +17,7 @@
 
 #include "E_Shader_Kind.h"
 #include "C_Texture_Map.h"
-#include "S_Tex_Color.h"
+#include "C_Half_Color.h"
 
 
 // ☆ ネームスペース ☆ //

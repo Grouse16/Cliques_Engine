@@ -16,7 +16,7 @@
 
 #include "C_Color.h"
 #include "S_Rect.h"
-#include "S_Tex_Color.h"
+#include "C_Half_Color.h"
 
 
 // ☆ ネームスペース ☆ //
