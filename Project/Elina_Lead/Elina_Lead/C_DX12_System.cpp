@@ -2543,7 +2543,7 @@ void C_DX12_System::M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Te
 // 引数   ：int 設定するレンダリング画面番号, unique_ptr<C_Rendering_Screen_System_Base> & レンダリング画面システムの参照, C_Texture_Map & 設定先のテクスチャの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Save_Set_Rendering_Screen_To_Texture(int in_rendering_screen_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen, ASSET::TEXTURE::C_Texture_Map & out_texture)
+void C_DX12_System::M_Save_Rendering_Screen_To_Texture(int in_rendering_screen_number, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_rendering_screen, ASSET::TEXTURE::C_Texture_Map & out_texture)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス

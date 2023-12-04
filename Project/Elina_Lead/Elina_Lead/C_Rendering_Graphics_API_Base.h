@@ -111,7 +111,7 @@ namespace RENDERING::GRAPHICS
 		virtual void M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) = 0;
 
 		// 指定されたレンダリング画面のデータをテクスチャに移す　引数：設定するレンダリング画面番号, レンダリング画面システムの参照, 設定先のテクスチャの参照
-		virtual void M_Save_Set_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>&, ASSET::TEXTURE::C_Texture_Map & ) = 0;
+		virtual void M_Save_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>&, ASSET::TEXTURE::C_Texture_Map & ) = 0;
 
 
 		//-☆- 頂点バッファ -☆-//

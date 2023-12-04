@@ -91,8 +91,7 @@ bool C_Rendering_Screen_System::M_Create_Rendering_Screen(int in_screen_sum, REN
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Rendering_Screen_System::M_Save_Screen_For_Texture(int in_rendering_screen_num, ASSET::TEXTURE::C_Texture_Map & in_texture_map)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Rendering_Screen_Can_Readable(in_rendering_screen_num, mpr_variable.rendering_screen);
-	mpr_variable.rendering_screen->M_Save_Screen_For_Texture(in_rendering_screen_num, in_texture_map);
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Save_Rendering_Screen_To_Texture(in_rendering_screen_num, mpr_variable.rendering_screen, in_texture_map);
 
 	return;
 }
