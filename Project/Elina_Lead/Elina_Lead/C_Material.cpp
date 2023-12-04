@@ -392,7 +392,7 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::S
 
 	// ブレンド設定数を取り出す
 	in_file_data.M_Goto_Right_By_Text_In_Front_Row("BLENDSUM:");
-	blend_sum = in_file_data.M_Get_Number();
+	blend_sum = (int)in_file_data.M_Get_Number();
 
 	// ブレンド設定の上限値を超えないようにする
 	blend_sum = 
@@ -495,15 +495,15 @@ void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::S_Raster
 
 	// 深度バイアスを決める
 	in_file_data.M_Move_Next_Raw();
-	in_rasterizer_setting.depth_value.depth_bias = in_file_data.M_Get_Number();
+	in_rasterizer_setting.depth_value.depth_bias = (int)in_file_data.M_Get_Number();
 
 	// メッシュの表面設定を決める
 	in_file_data.M_Move_Next_Raw();
-	in_rasterizer_setting.depth_value.depth_max = in_file_data.M_Get_Float_Double_Number();
+	in_rasterizer_setting.depth_value.depth_max = (float)in_file_data.M_Get_Float_Double_Number();
 
 	// メッシュの表面設定を決める
 	in_file_data.M_Move_Next_Raw();
-	in_rasterizer_setting.depth_value.depth_slope = in_file_data.M_Get_Float_Double_Number();
+	in_rasterizer_setting.depth_value.depth_slope = (float)in_file_data.M_Get_Float_Double_Number();
 
 	// アンチエイリアシング設定を決める
 	in_file_data.M_Move_Next_Raw();
@@ -534,11 +534,11 @@ void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::S_Create_Re
 
 	// サンプリング回数を取得
 	in_file_data.M_Move_Next_Raw();
-	in_creat_rendering_graphics_setting.sampling_setting.sampling_count = in_file_data.M_Get_Number();
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_count = (int)in_file_data.M_Get_Number();
 
 	// サンプリング品質を取得
 	in_file_data.M_Move_Next_Raw();
-	in_creat_rendering_graphics_setting.sampling_setting.sampling_quality = in_file_data.M_Get_Number();
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_quality = (int)in_file_data.M_Get_Number();
 
 	return;
 }
@@ -1129,7 +1129,7 @@ S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_By_Name(std::string
 int C_Material::M_Get_Constant_Buffer_Number_By_Name(std::string in_constant_buffer_name)
 {
 	// ☆ 変数宣言 ☆ //
-	int constant_sum = mpr_variable.constant_data_list.size();	// 定数バッファ数
+	int constant_sum = (int)mpr_variable.constant_data_list.size();	// 定数バッファ数
 
 
 	// 一致する名前を探索し、あればそのアドレスを返す
@@ -1154,7 +1154,7 @@ int C_Material::M_Get_Constant_Buffer_Number_By_Name(std::string in_constant_buf
 int C_Material::M_Get_Texture_Number_By_Name(std::string in_texture_buffer_name)
 {
 	// ☆ 変数宣言 ☆ //
-	int texture_sum = mpr_variable.texture_data_list.size();	// テクスチャ数
+	int texture_sum = (int)mpr_variable.texture_data_list.size();	// テクスチャ数
 
 
 	// 一致する名前を探索し、あればそのアドレスを返す
@@ -1179,7 +1179,7 @@ int C_Material::M_Get_Texture_Number_By_Name(std::string in_texture_buffer_name)
 int C_Material::M_Get_Rendering_Screen_Number_By_Name(std::string in_rendering_screen_name)
 {
 	// ☆ 変数宣言 ☆ //
-	int rendering_screen_sum = mpr_variable.rendering_screen_data_list.size();	// レンダリング画面数
+	int rendering_screen_sum = (int)mpr_variable.rendering_screen_data_list.size();	// レンダリング画面数
 
 
 	// 一致する名前を探索し、あればそのアドレスを返す
@@ -1314,7 +1314,7 @@ void C_Material::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_b
 
 
 	// ☆ 変数宣言 ☆ //
-	int bone_sum = in_bone_matrix_list.size();	// ボーン数
+	int bone_sum = (int)in_bone_matrix_list.size();	// ボーン数
 
 
 	// ボーンの情報をセットする

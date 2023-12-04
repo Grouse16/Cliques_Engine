@@ -14,7 +14,7 @@
 #include <memory>
 #include <vector>
 
-#include "C_Vertex_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
 
@@ -36,7 +36,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> m_setting_inform;	// 頂点バッファ設定用情報
+			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> m_setting_inform;	// 頂点バッファ設定用情報
 
 			std::vector <_My_Vertex_Type> m_vertex_data;	// 頂点データ
 

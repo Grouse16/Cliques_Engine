@@ -129,67 +129,67 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 		// オフセットマトリクスA１をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._11 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._11 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスA２をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._12 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._12 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスA３をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._13 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._13 = (float)file_data.M_Get_Float_Double_Number();
 		
 		// オフセットマトリクスA４をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._14 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._14 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスB１をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._21 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._21 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスB２をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._22 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._22 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスB３をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._23 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._23 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスB４をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._24 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._24 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスC１をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._31 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._31 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスC２をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._32 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._32 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスC３をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._33 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._33 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスC４をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._34 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._34 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスD１をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._41 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._41 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスD２をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._42 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._42 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスD３をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._43 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._43 = (float)file_data.M_Get_Float_Double_Number();
 
 		// オフセットマトリクスD４をロード
 		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._44 = file_data.M_Get_Number();
+		bone_inform.offset_matrix._44 = (float)file_data.M_Get_Float_Double_Number();
 	}
 
 
@@ -222,7 +222,7 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 
 		// 頂点数を取得し、頂点データを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
-		now_mesh_inform.mesh_data->M_Create_Vertex_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Vertex_List((int)file_data.M_Get_Number());
 
 		// 頂点データをロード
 		for (DATA::VERTEX::S_3D_Animation_Model_Vertex & now_vertex_data : now_mesh_inform.mesh_data->M_Get_Vertex_Data_List())
@@ -231,51 +231,51 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 			file_data.M_Move_Next_Raw();
 
 			// 頂点座標のロード
-			now_vertex_data.vertex.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// UV座標のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.uv.u = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.uv.u = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.uv.v = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.uv.v = (float)file_data.M_Get_Float_Double_Number();
 
 			// 色のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.color.m_r = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_r = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_g = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_g = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_b = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_b = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_a = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_a = (float)file_data.M_Get_Float_Double_Number();
 
 			// 法線ベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.normal.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// タンジェントベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.tangent.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// バイノーマルタンジェントベクトル（従法線ベクトル）のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.binormal_tangent.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// ボーンウェイト（ボーン影響値）情報の位置へ移動
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
@@ -283,22 +283,22 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 			// ボーンウェイト情報の終了の記号がくるか、４回繰り返すまで、ボーンウェイト情報をロードし続ける
 			for (int loop_cnt = 0; loop_cnt < DATA::VERTEX::con_BONE_WEIGHT_INDEX_SUM || file_data.M_Get_Text_Of_Now_Position() != ':'; loop_cnt++)
 			{
-				now_vertex_data.bone_weight[loop_cnt].bone_index = file_data.M_Get_Number();
+				now_vertex_data.bone_weight[loop_cnt].bone_index = (int)file_data.M_Get_Number();
 				file_data.M_Goto_Right_By_Text_In_Front_Column("/");
-				now_vertex_data.bone_weight[loop_cnt].weight = file_data.M_Get_Float_Double_Number();
+				now_vertex_data.bone_weight[loop_cnt].weight = (float)file_data.M_Get_Float_Double_Number();
 				file_data.M_Goto_Right_By_Text_In_Front_Column(",");
 			}
 		}
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
-		now_mesh_inform.mesh_data->M_Create_Index_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Index_List((int)file_data.M_Get_Number());
 
 		// 頂点インデックスデータをロード
 		for (unsigned __int32 & now_index_data : now_mesh_inform.mesh_data->M_Get_Index_Data_List())
 		{
 			file_data.M_Move_Next_Raw();
-			now_index_data = file_data.M_Get_Number();
+			now_index_data = (unsigned int)file_data.M_Get_Number();
 		}
 
 		// 頂点と頂点インデックス情報分のバッファを生成し、データをバッファにセット、その後データは使用しないので削除（バッファは残る）
@@ -339,7 +339,7 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 	// ☆ 変数宣言 ☆ //
 	std::string load_path = "project/asset/animation/" + in_animation_data_name + ".elanmdt";	// アニメーションデータまでのパス
 
-	int new_animation_data = mpr_variable.animation_data_list.size();	// 新しいアニメーションデータの配列番号
+	int new_animation_data = (int)mpr_variable.animation_data_list.size();	// 新しいアニメーションデータの配列番号
 
 
 	// アニメーションデータをロードする　失敗でfalseを返して抜ける
@@ -521,7 +521,7 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std:
 void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>& in_bone_matrix_list)
 {
 	// ☆ 変数宣言 ☆ //
-	int bone_sum = mpr_variable.bone_list.size();	// ボーン数
+	int bone_sum = (int)mpr_variable.bone_list.size();	// ボーン数
 
 
 	// セットするボーンマトリクス配列が現在のボーン情報と一致しないなら処理をしない

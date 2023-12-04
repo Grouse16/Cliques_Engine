@@ -6,7 +6,7 @@
 
 
 // ™ ƒtƒ@ƒCƒ‹‚Ğ‚ç‚« ™ //
-#include "C_Vertex_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
 #include "C_DX12_Vertex_Setting_Inform.h"
 
 

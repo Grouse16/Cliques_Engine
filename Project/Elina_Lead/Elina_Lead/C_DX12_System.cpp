@@ -862,7 +862,7 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
 
 
     // 全てのバッファにレンダーターゲットを設定
-    for (UINT loop_x = 0; loop_x < in_create_rendering_screen_inform.m_screen_buffer_sum; loop_x++)
+    for (UINT loop_x = 0; loop_x < (UINT)in_create_rendering_screen_inform.m_screen_buffer_sum; loop_x++)
     {
         // 画面のバッファにレンダーターゲットを指定
         if (FAILED(mpr_variable->s_frame_work.swap_chain->GetBuffer(loop_x, IID_PPV_ARGS(in_dx12_screen_system->m_render_target_view.buffer_list[loop_x].render_buffer.GetAddressOf()))))
@@ -1868,7 +1868,7 @@ void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSE
         // ☆ 変数宣言 ☆ //
         int constant_buffer_sum = (int)in_shader_inform.all_shader_signature.constant_data.size();   // 定数バッファ数
         int texture_sum = (int)in_shader_inform.all_shader_signature.texture_data.size();   // テクスチャリソース数
-        int sampler_sum = in_shader_inform.all_shader_signature.sampler_data.size();   // サンプラー数
+        int sampler_sum = (int)in_shader_inform.all_shader_signature.sampler_data.size();   // サンプラー数
         
 
         // シェーダーの定数バッファ分繰り返す
@@ -2045,8 +2045,8 @@ void C_DX12_System::M_Set_Scissor_And_View_Port(void)
     // ☆ ビューポート設定 ☆ //
 
     // 画面サイズ
-    mpr_variable->s_frame_work.view_port.Width = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().width;
-    mpr_variable->s_frame_work.view_port.Height = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height;
+    mpr_variable->s_frame_work.view_port.Width = (FLOAT)OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().width;
+    mpr_variable->s_frame_work.view_port.Height = (FLOAT)OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height;
 
     // 画面の左上座標
     mpr_variable->s_frame_work.view_port.TopLeftX = 0.0f;
@@ -2571,7 +2571,7 @@ void C_DX12_System::M_Save_Set_Rendering_Screen_To_Texture(int in_rendering_scre
 // 引数   ：unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セット先の頂点データ, const C_Create_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>& in_set_to, const CREATE::S_Create_Vertex_Buffer_Inform& in_create_inform)
+void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_set_to, const CREATE::S_Create_Vertex_Buffer_Inform& in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = new DX12INSTANCE::C_DX12_Vertex_Setting_Inform();   // DX12用の頂点用情報
@@ -2599,7 +2599,7 @@ void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Bu
 // 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セットする頂点データ情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform)
+void C_DX12_System::M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform)
 {
     // ☆ 変数宣言 ☆ //
     const DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_vertex_inform.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
@@ -2623,7 +2623,7 @@ void C_DX12_System::M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C
 // 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セットする頂点データ情報(const), int 描画するインデックスの描画の開始番号, int 描画するインデックスの終了番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform, int start_point, int end_point)
+void C_DX12_System::M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform, int start_point, int end_point)
 {
     // ☆ 変数宣言 ☆ //
     const DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_vertex_inform.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
@@ -2649,7 +2649,7 @@ void C_DX12_System::M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE
 // 引数   ：unique_ptr<C_Constant_Buffer_Setting_Inform_Base> & セット先の定数データ, const C_Create_Constant_Buffer_Inform & 定数データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> & in_constant_inform, const CREATE::S_Create_Constant_Buffer_Inform & in_create_inform)
+void C_DX12_System::M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base> & in_constant_inform, const CREATE::S_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Constant_Setting_Inform* dx12_constant_inform = new DX12INSTANCE::C_DX12_Constant_Setting_Inform();   // DX12用の定数用情報
@@ -2759,7 +2759,7 @@ void C_DX12_System::M_Rendering_Set_Constant_Buffer(INSTANCE::S_Constant_Buffer_
 // 引数   ：unique_ptr<C_Constant_Buffer_Setting_Inform_Base> & 定数バッファデータ, int セット先のインデックス番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Rendering_Set_Constant_Buffer_By_Index(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> & in_constant_buffer, int in_set_index_slot_num)
+void C_DX12_System::M_Rendering_Set_Constant_Buffer_By_Index(std::unique_ptr<INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base> & in_constant_buffer, int in_set_index_slot_num)
 {
     // ☆ 変数宣言 ☆ //
     DX12::DX12INSTANCE::C_DX12_Constant_Setting_Inform * dx12_constant_buffer = reinterpret_cast<DX12::DX12INSTANCE::C_DX12_Constant_Setting_Inform * >(in_constant_buffer.get());    // 定数バッファ情報をDX12用へキャストした結果のアドレス
@@ -2969,7 +2969,7 @@ bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Fon
         DEFAULT_PITCH | FF_MODERN,  // フォントのピッチとファミリ(フォントのデザイン方法の定義)
 
         // フォント名
-        (WCHAR)in_create_inform.m_font_name.data()
+        (WCHAR)*in_create_inform.m_font_name.data()
     };
 
     // フォントのハンドルを読み込む

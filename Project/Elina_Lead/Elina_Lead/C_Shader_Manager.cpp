@@ -120,7 +120,7 @@ ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_By_Name(E_SHADER_
 		in_shader_name +
 		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Extension();
 
-	int shader_slot_num = m_this.mpr_variable.shader_inform_list[(int)in_shader_kind].size();	// 操作するシェーダーの番号
+	int shader_slot_num = (int)m_this.mpr_variable.shader_inform_list[(int)in_shader_kind].size();	// 操作するシェーダーの番号
 
 
 	// 新しいシェーダー設定用のスロットを生成

@@ -6,7 +6,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Constant_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Constant_Buffer_Setting_Inform_Base.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -24,7 +24,7 @@ using namespace RENDERING::GRAPHICS::INSTANCE;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Constant_Buffer_Setting_Inform_Base::C_Constant_Buffer_Setting_Inform_Base(void)
+C_Rendering_Constant_Buffer_Setting_Inform_Base::C_Rendering_Constant_Buffer_Setting_Inform_Base(void)
 {
 	return;
 }
@@ -35,7 +35,7 @@ C_Constant_Buffer_Setting_Inform_Base::C_Constant_Buffer_Setting_Inform_Base(voi
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Constant_Buffer_Setting_Inform_Base::~C_Constant_Buffer_Setting_Inform_Base(void)
+C_Rendering_Constant_Buffer_Setting_Inform_Base::~C_Rendering_Constant_Buffer_Setting_Inform_Base(void)
 {
 	return;
 }

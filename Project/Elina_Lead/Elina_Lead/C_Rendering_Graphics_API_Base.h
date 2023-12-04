@@ -16,9 +16,9 @@
 #include<vector>
 #include<string>
 
-#include "C_Vertex_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
 #include "C_Rendering_Texture_Setting_Inform_Base.h"
-#include "C_Constant_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Constant_Buffer_Setting_Inform_Base.h"
 #include "C_Rendering_Graphics_Setting_Inform_Base.h"
 #include "C_Rendering_Font_Inform_Base.h"
 #include "C_Rendering_Screen_System_Base.h"
@@ -117,25 +117,25 @@ namespace RENDERING::GRAPHICS
 		//-☆- 頂点バッファ -☆-//
 
 		// 頂点データ用の情報を生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		virtual void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>&, const CREATE::S_Create_Vertex_Buffer_Inform&) = 0;
+		virtual void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&, const CREATE::S_Create_Vertex_Buffer_Inform&) = 0;
 
 		// 今の描画を実行する　引数：頂点データ設定用情報(const)
-		virtual void M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>&) = 0;
+		virtual void M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&) = 0;
 
 		// 描画するインデックス番号を指定したうえで今の描画を実行する　引数：頂点データ設定用情報(const), 描画するインデックスの描画の開始番号,描画するインデックスの終了番号
-		virtual void M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Vertex_Buffer_Setting_Inform_Base>&, int, int) = 0;
+		virtual void M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&, int, int) = 0;
 
 
 		//-☆- 定数バッファ -☆-//
 
 		// 定数データ用の情報を生成する　引数：設定先の定数情報, 生成用の情報(const)
-		virtual void M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base>&, const CREATE::S_Create_Constant_Buffer_Inform&) = 0;
+		virtual void M_Create_Constant_Inform(std::unique_ptr<INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base>&, const CREATE::S_Create_Constant_Buffer_Inform&) = 0;
 
 		// 定数データをセットする　引数：定数データ設定用情報(const)
 		virtual void M_Rendering_Set_Constant_Buffer(INSTANCE::S_Constant_Buffer_Drawing_Setting & ) = 0;
 
 		// 指定されたインデックス番号のスロットに定数データをセットする　引数：定数データ設定用情報, セット先のインデックス番号
-		virtual void M_Rendering_Set_Constant_Buffer_By_Index(std::unique_ptr<INSTANCE::C_Constant_Buffer_Setting_Inform_Base> & , int) = 0;
+		virtual void M_Rendering_Set_Constant_Buffer_By_Index(std::unique_ptr<INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base> & , int) = 0;
 
 
 		//-☆- テクスチャ -☆-//

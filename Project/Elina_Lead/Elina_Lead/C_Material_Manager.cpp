@@ -108,7 +108,7 @@ ASSET::MATERIAL::C_Material * C_Material_Manager::M_Load_Material_By_Name(std::s
 	// ☆ 定数 ☆ //
 	std::string material_inform_path = "project/asset/material/" + in_material_name + ".elmat";	// マテリアル情報へのパス
 
-	int material_slot_num = m_this.mpr_variable.material_inform_list.size();	// 操作するマテリアルの番号
+	int material_slot_num = (int)m_this.mpr_variable.material_inform_list.size();	// 操作するマテリアルの番号
 
 
 	// 新しいマテリアル設定用のスロットを生成

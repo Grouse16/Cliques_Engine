@@ -6,8 +6,8 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE
-#define D_INCLUDE_GUARD_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE
+#ifndef D_INCLUDE_GUARD_C_RENDERING_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE
+#define D_INCLUDE_GUARD_C_RENDERING_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE
 
 
 // ☆ ネームスペース ☆ //
@@ -18,17 +18,20 @@ namespace RENDERING::GRAPHICS::INSTANCE
 	// ☆ クラス ☆ //
 
 	// 頂点バッファのセット用のデータの基底クラス
-	class C_Vertex_Buffer_Setting_Inform_Base
+	class C_Rendering_Vertex_Buffer_Setting_Inform_Base
 	{
 		//==☆ パブリック ☆==//
 	public:
 
 		// ☆ 関数 ☆ //
 
-		//-☆- 終了時 -☆-//
+		//-☆- 初期化と終了時 -☆-//
+
+		// コンストラクタ
+		C_Rendering_Vertex_Buffer_Setting_Inform_Base(void);
 
 		// デストラクタ
-		virtual ~C_Vertex_Buffer_Setting_Inform_Base(void) = 0;
+		virtual ~C_Rendering_Vertex_Buffer_Setting_Inform_Base(void);
 
 
 		//-☆- セッタ -☆-//
@@ -37,9 +40,9 @@ namespace RENDERING::GRAPHICS::INSTANCE
 		virtual void M_Set_Vertex_Setting(void * ) = 0;
 
 		// インデックスデータをセットする　引数：インデックスのアドレス
-		virtual void M_Set_Index_Setting(void*) = 0;
+		virtual void M_Set_Index_Setting(void * ) = 0;
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE
+#endif // !D_INCLUDE_GUARD_C_RENDERING_VERTEX_BUFFER_SETTING_INFORM_BASE_H_FILE

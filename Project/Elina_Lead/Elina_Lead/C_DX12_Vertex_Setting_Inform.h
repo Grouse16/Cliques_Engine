@@ -14,7 +14,7 @@
 #include <d3d12.h>
 #include <wrl.h>
 
-#include "C_Vertex_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -25,7 +25,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	// ☆ クラス ☆ //
 
 	// DX12の頂点バッファのセット用データのクラス
-	class C_DX12_Vertex_Setting_Inform : public INSTANCE::C_Vertex_Buffer_Setting_Inform_Base
+	class C_DX12_Vertex_Setting_Inform : public INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base
 	{
 		//==☆ パブリック ☆==//
 	public:

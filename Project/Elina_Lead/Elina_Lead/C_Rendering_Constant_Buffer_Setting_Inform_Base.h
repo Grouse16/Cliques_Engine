@@ -25,7 +25,7 @@ namespace RENDERING::GRAPHICS::INSTANCE
 	// ☆ クラス ☆ //
 
 	// 定数バッファ制御用データの基底クラス
-	class C_Constant_Buffer_Setting_Inform_Base
+	class C_Rendering_Constant_Buffer_Setting_Inform_Base
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -35,10 +35,10 @@ namespace RENDERING::GRAPHICS::INSTANCE
 		//-☆- 終了時 -☆-//
 
 		// コンストラクタ
-		C_Constant_Buffer_Setting_Inform_Base(void);
+		C_Rendering_Constant_Buffer_Setting_Inform_Base(void);
 
 		// デストラクタ
-		virtual ~C_Constant_Buffer_Setting_Inform_Base(void);
+		virtual ~C_Rendering_Constant_Buffer_Setting_Inform_Base(void);
 
 
 		//-☆- セッタ -☆-//
@@ -60,7 +60,7 @@ namespace RENDERING::GRAPHICS::INSTANCE
 	// 定数バッファを描画するときの情報セット
 	struct S_Constant_Buffer_Drawing_Setting
 	{
-		C_Constant_Buffer_Setting_Inform_Base * add_constant_buffer = nullptr;	// 定数バッファ用情報のアドレス
+		C_Rendering_Constant_Buffer_Setting_Inform_Base * add_constant_buffer = nullptr;	// 定数バッファ用情報のアドレス
 
 		std::string * add_signature_name = nullptr;	// 識別名のアドレス
 

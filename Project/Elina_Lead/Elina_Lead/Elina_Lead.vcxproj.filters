@@ -750,10 +750,10 @@
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
     </ClInclude>
-    <ClInclude Include="C_Constant_Buffer_Setting_Inform_Base.h">
+    <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
     </ClInclude>
-    <ClInclude Include="C_Vertex_Buffer_Setting_Inform_Base.h">
+    <ClInclude Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
     </ClInclude>
     <ClInclude Include="C_Font_Draw_System.h">
@@ -1151,10 +1151,10 @@
     <ClCompile Include="C_Wnd_Proc_For_Engine_APK.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClCompile>
-    <ClCompile Include="C_Constant_Buffer_Setting_Inform_Base.cpp">
+    <ClCompile Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.cpp">
       <Filter>ソース ファイル\レンダリング\インスタンス基底</Filter>
     </ClCompile>
-    <ClCompile Include="C_Vertex_Buffer_Setting_Inform_Base.cpp">
+    <ClCompile Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.cpp">
       <Filter>ソース ファイル\レンダリング\インスタンス基底</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Texture_Setting_Inform_Base.cpp">
