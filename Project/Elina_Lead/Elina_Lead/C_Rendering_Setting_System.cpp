@@ -9,7 +9,7 @@
 #include "C_Rendering_Setting_System.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
-#include "C_Create_Rendering_Graphics_Setting_Inform.h"
+#include "S_Create_Rendering_Graphics_Setting_Inform.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -64,7 +64,7 @@ void C_Rendering_Setting_System::M_Delete(void)
 // 引数   ：const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform レンダリング設定生成用情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Rendering_Setting_System::M_Create_Pipeline_Setting(const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform& in_create_inform)
+bool C_Rendering_Setting_System::M_Create_Pipeline_Setting(const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform& in_create_inform)
 {
 	// 生成用の情報を設定して生成する
 	return RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Rendering_Graphics_Inform(mpr_variable.rendering_setting_inform, in_create_inform);

@@ -142,7 +142,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 
 		// 頂点数を取得し、頂点データを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
-		now_mesh_inform.mesh_data->M_Create_Vertex_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Vertex_List((int)file_data.M_Get_Number());
 
 		// 頂点データをロード
 		for (DATA::VERTEX::S_3D_Model_Vertex & now_vertex_data : now_mesh_inform.mesh_data->M_Get_Vertex_Data_List())
@@ -151,62 +151,62 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 			file_data.M_Move_Next_Raw();
 
 			// 頂点座標のロード
-			now_vertex_data.vertex.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.vertex.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// UV座標のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.uv.u = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.uv.u = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.uv.v = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.uv.v = (float)file_data.M_Get_Float_Double_Number();
 
 			// 色のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.color.r = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_r = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.g = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_g = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.b = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_b = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.a = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.color.m_a = (float)file_data.M_Get_Float_Double_Number();
 
 			// 法線ベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.normal.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.normal.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// タンジェントベクトルのロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.tangent.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.tangent.z = (float)file_data.M_Get_Float_Double_Number();
 
 			// バイノーマルタンジェントベクトル（従法線ベクトル）のロード
 			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.binormal_tangent.x = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.y = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.z = file_data.M_Get_Float_Double_Number();
+			now_vertex_data.binormal_tangent.z = (float)file_data.M_Get_Float_Double_Number();
 		}
 
 		// 頂点インデックス数を取得して、頂点インデックスデータを生成
 		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
-		now_mesh_inform.mesh_data->M_Create_Index_List(file_data.M_Get_Number());
+		now_mesh_inform.mesh_data->M_Create_Index_List((int)file_data.M_Get_Number());
 
 		// 頂点インデックスデータをロード
 		for (unsigned __int32 & now_index_data : now_mesh_inform.mesh_data->M_Get_Index_Data_List())
 		{
 			file_data.M_Move_Next_Raw();
-			now_index_data = file_data.M_Get_Number();
+			now_index_data = (unsigned int)file_data.M_Get_Number();
 		}
 
 		// 頂点と頂点インデックス情報分のバッファを生成し、データをバッファにセット、その後データは使用しないので削除（バッファは残る）

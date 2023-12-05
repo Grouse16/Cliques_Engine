@@ -45,7 +45,7 @@ void C_Texture_Map::M_Create_Texture_Map(int in_side_pixel, int in_vert_pixel)
 
 
 	// ☆ 変数宣言 ☆ //
-	DATA::COLOR::C_Color flush_color(1.0f, 1.0f, 1.0f, 0.0f);	// 画像の色を初期化するための色設定
+	DATA::COLOR::C_Color flush_color(1.0f, 1.0f, 1.0f, 1.0f);	// 画像の色を初期化するための色設定
 
 
 	// 現在のデータは消す
@@ -104,7 +104,7 @@ void C_Texture_Map::M_Delete_Map(void)
 void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_extend_y_size)
 {
 	// ☆ 変数宣言 ☆ //
-	std::vector<DATA::TEXTURE::S_Tex_Color> then_texture_map;	// 拡張後のデータとなるテクスチャマップ
+	std::vector<DATA::COLOR::C_Color> then_texture_map;	// 拡張後のデータとなるテクスチャマップ
 
 	int then_size_x = mpr_variable.texture_size_x;	// 拡張前のｘでのサイズ
 	int then_size_y = mpr_variable.texture_size_y;	// 拡張前のｙでのサイズ
@@ -154,7 +154,10 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 				// 保持する範囲外なら初期化色を入れる
 				else
 				{
-					mpr_variable.texture_map[map_write_pos] = DATA::TEXTURE::S_Tex_Color(255, 255, 255, 0);
+					mpr_variable.texture_map[map_write_pos].m_r = 1.0f;
+					mpr_variable.texture_map[map_write_pos].m_g = 1.0f;
+					mpr_variable.texture_map[map_write_pos].m_b = 1.0f;
+					mpr_variable.texture_map[map_write_pos].m_a = 1.0f;
 				}
 			}
 		}
@@ -168,7 +171,10 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 				int map_write_pos = l_pixel_y * mpr_variable.texture_size_x + l_pixel_x;	// 書き込む座標
 
 
-				mpr_variable.texture_map[map_write_pos] = DATA::TEXTURE::S_Tex_Color(255, 255, 255, 0);
+				mpr_variable.texture_map[map_write_pos].m_r = 1.0f;
+				mpr_variable.texture_map[map_write_pos].m_g = 1.0f;
+				mpr_variable.texture_map[map_write_pos].m_b = 1.0f;
+				mpr_variable.texture_map[map_write_pos].m_a = 1.0f;
 			}
 		}
 	}
@@ -194,10 +200,7 @@ void C_Texture_Map::M_Flush_All_Color(DATA::COLOR::C_Color & in_flush_color)
 
 		for (int len_x = 0; len_x < mpr_variable.texture_size_x; len_x++)
 		{
-			mpr_variable.texture_map[row_plus + len_x].r = (unsigned char)(in_flush_color.r * (unsigned char)255);
-			mpr_variable.texture_map[row_plus + len_x].g = (unsigned char)(in_flush_color.g * (unsigned char)255);
-			mpr_variable.texture_map[row_plus + len_x].b = (unsigned char)(in_flush_color.b * (unsigned char)255);
-			mpr_variable.texture_map[row_plus + len_x].a = (unsigned char)(in_flush_color.a * (unsigned char)255);
+			mpr_variable.texture_map[row_plus + len_x] = in_flush_color;
 		}
 	}
 
@@ -246,10 +249,7 @@ void C_Texture_Map::M_Set_Color(DATA::COLOR::C_Color & in_set_color, DATA::RECTS
 
 		for (int len_x = y_start; len_x < x_limit; len_x++)
 		{
-			mpr_variable.texture_map[row_plus + len_x].r = in_set_color.r * 255;
-			mpr_variable.texture_map[row_plus + len_x].g = in_set_color.g * 255;
-			mpr_variable.texture_map[row_plus + len_x].b = in_set_color.b * 255;
-			mpr_variable.texture_map[row_plus + len_x].a = in_set_color.a * 255;
+			mpr_variable.texture_map[row_plus + len_x] = in_set_color;
 		}
 	}
 
@@ -288,10 +288,10 @@ void C_Texture_Map::M_Set_Color_At_Point(const DATA::COLOR::C_Color & in_set_col
 
 
 	// 色を設定
-	mpr_variable.texture_map[set_pos].r = in_set_color.r * 255;
-	mpr_variable.texture_map[set_pos].g = in_set_color.g * 255;
-	mpr_variable.texture_map[set_pos].b = in_set_color.b * 255;
-	mpr_variable.texture_map[set_pos].a = in_set_color.a * 255;
+	mpr_variable.texture_map[set_pos].m_r = in_set_color.m_r;
+	mpr_variable.texture_map[set_pos].m_g = in_set_color.m_g;
+	mpr_variable.texture_map[set_pos].m_b = in_set_color.m_b;
+	mpr_variable.texture_map[set_pos].m_a = in_set_color.m_a;
 
 	return;
 }
@@ -302,9 +302,9 @@ void C_Texture_Map::M_Set_Color_At_Point(const DATA::COLOR::C_Color & in_set_col
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：今のテクスチャ用のマップを返す
 // 引数   ：void
-// 戻り値 ：std::vector<S_Tex_Color> テクスチャ用のマップの参照（０列目が左下なので注意）
+// 戻り値 ：vector<C_Color> テクスチャ用のマップの参照（０列目が左下なので注意）
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<DATA::TEXTURE::S_Tex_Color> & C_Texture_Map::M_Get_Texture_Map(void)
+std::vector<DATA::COLOR::C_Color> & C_Texture_Map::M_Get_Texture_Map(void)
 {
 	return mpr_variable.texture_map;
 }

@@ -50,10 +50,10 @@ C_DX12_Rendering_Texture_Setting_Inform::~C_DX12_Rendering_Texture_Setting_Infor
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_Rendering_Texture_Setting_Inform::M_Delete(void)
 {
-	mpr_variable.texture_data.Reset();
-	mpr_variable.texture_heap.Reset();
-	mpr_variable.pix_size_x = 0;
-	mpr_variable.pix_size_y = 0;
+	m_texture_data.Reset();
+	m_texture_heap.Reset();
+	m_pix_size_x = 0;
+	m_pix_size_y = 0;
 
 	return;
 }
@@ -63,10 +63,10 @@ void C_DX12_Rendering_Texture_Setting_Inform::M_Delete(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：テクスチャのデータをセットする
-// 引数   ：const std::vector<DATA::TEXTURE::S_Tex_Color> & 設定するテクスチャ情報への参照, int テクスチャの横幅, int テクスチャの縦幅
+// 引数   ：const vector<C_Color> & 設定する色配列への参照, int テクスチャの横幅, int テクスチャの縦幅
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Rendering_Texture_Setting_Inform::M_Set_Texture_Data(const std::vector<DATA::TEXTURE::S_Tex_Color> & in_texture_map, int in_width, int in_height)
+void C_DX12_Rendering_Texture_Setting_Inform::M_Set_Texture_Data(const std::vector<DATA::COLOR::C_Color> & in_texture_map, int in_width, int in_height)
 {
 	// ☆ 変数宣言 ☆ //
 	int pixel_width = in_width;	// 横幅でのピクセルサイズ
@@ -74,19 +74,19 @@ void C_DX12_Rendering_Texture_Setting_Inform::M_Set_Texture_Data(const std::vect
 
 
 	// 書き込み範囲の方が広いなら自身のピクセルサイズに調整
-	if (pixel_width > mpr_variable.pix_size_x)
+	if (pixel_width > m_pix_size_x)
 	{
-		pixel_width = mpr_variable.pix_size_x;
+		pixel_width = m_pix_size_x;
 	}
 
-	if (pixel_height > mpr_variable.pix_size_y)
+	if (pixel_height > m_pix_size_y)
 	{
-		pixel_height = mpr_variable.pix_size_y;
+		pixel_height = m_pix_size_y;
 	}
 
 
 	//サブリソースに書き込み
-	mpr_variable.texture_data->WriteToSubresource(0, nullptr, &in_texture_map[0], (pixel_width * 4), (pixel_height * 4));
+	m_texture_data->WriteToSubresource(0, nullptr, &in_texture_map[0], (pixel_width * 4), (pixel_height * 4));
 
 	return;
 }

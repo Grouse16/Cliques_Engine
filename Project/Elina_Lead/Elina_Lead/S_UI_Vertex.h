@@ -12,7 +12,7 @@
 
 // ™ ƒtƒ@ƒCƒ‹‚Ğ‚ç‚« ™ //
 #include "2D_Position_Data.h"
-#include "Color_Data.h"
+#include "C_Color.h"
 #include "Texture_UV_Data.h"
 
 

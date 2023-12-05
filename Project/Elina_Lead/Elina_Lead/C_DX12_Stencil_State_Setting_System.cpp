@@ -74,7 +74,7 @@ D3D12_COMPARISON_FUNC C_DX12_Stencil_State_Setting_System::M_Get_Depth_Write_Opt
 // 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & パイプライン設定用情報, const C_Create_Rendering_Graphics_Setting_Inform & レンダリング生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Stencil_State_Setting_System::M_Depth_Stencil_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_setting_desc, const RENDERING::GRAPHICS::CREATE::C_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
+void C_DX12_Stencil_State_Setting_System::M_Depth_Stencil_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_setting_desc, const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
     //-☆- 深度のモードによって設定を分岐 -☆-//
     switch (in_create_inform.depth_stencil_data.mode)

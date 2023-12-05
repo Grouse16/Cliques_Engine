@@ -27,10 +27,10 @@ using namespace DATA::FIGURE::UI;
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Scale_Constant_UI::C_Scale_Constant_UI(void)
 {
-    m_box_color.r = 1.0f;
-    m_box_color.g = 1.0f;
-    m_box_color.b = 1.0f;
-    m_box_color.a = 1.0f;
+    m_box_color.m_r = 1.0f;
+    m_box_color.m_g = 1.0f;
+    m_box_color.m_b = 1.0f;
+    m_box_color.m_a = 1.0f;
 
     return;
 }

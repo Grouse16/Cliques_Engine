@@ -68,6 +68,12 @@ namespace OS::WINDOWS
 		// ウィンドウを生成する処理
 		bool M_Create_Window(void);
 
+		
+		//-☆- 入力 -☆-//
+
+		// マウス入力の更新
+		void M_Mouse_Input_Update(void);
+
 
 		//==☆  パブリック  ☆==//
 	public:

@@ -33,7 +33,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.TB_Texture_Buffer_Number = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.TB_Texture_Name = new System.Windows.Forms.TextBox();
+            this.CB_Texture_Name = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // CB_Use_Texture
@@ -43,8 +43,8 @@
             this.CB_Use_Texture.FormattingEnabled = true;
             this.CB_Use_Texture.Items.AddRange(new object[] {
             "NOTHING：テクスチャを使用するが初期ロードはしない",
-            "ORIGINAL：ゲーム内で生成したテクスチャを使用する",
-            "＊＊直接入力して初期ロードするテクスチャの名前を設定可能＊＊"});
+            "ORIGINAL：ゲーム内で生成したテクスチャを使用する。　RSC時は無効",
+            "＊＊：＊＊に直接入力して初期ロードするテクスチャの名前を設定　RSC時は無効"});
             this.CB_Use_Texture.Location = new System.Drawing.Point(126, 44);
             this.CB_Use_Texture.Name = "CB_Use_Texture";
             this.CB_Use_Texture.Size = new System.Drawing.Size(239, 24);
@@ -94,22 +94,25 @@
             this.textBox1.Text = "初期テクスチャ名";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // TB_Texture_Name
+            // CB_Texture_Name
             // 
-            this.TB_Texture_Name.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.TB_Texture_Name.Location = new System.Drawing.Point(126, 22);
-            this.TB_Texture_Name.Name = "TB_Texture_Name";
-            this.TB_Texture_Name.Size = new System.Drawing.Size(240, 23);
-            this.TB_Texture_Name.TabIndex = 6;
-            this.TB_Texture_Name.Text = "default";
-            this.TB_Texture_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_Texture_Name.TextChanged += new System.EventHandler(this.TB_Texture_Name_TextChanged);
+            this.CB_Texture_Name.DropDownWidth = 560;
+            this.CB_Texture_Name.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.CB_Texture_Name.FormattingEnabled = true;
+            this.CB_Texture_Name.Items.AddRange(new object[] {
+            "RSC_＊＊：レンダリングした画像をセットする（＊＊に名前を設定可能）",
+            "＊＊：初期ロードするテクスチャの名前（＊＊に名前を設定可能）"});
+            this.CB_Texture_Name.Location = new System.Drawing.Point(126, 20);
+            this.CB_Texture_Name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_Texture_Name.Name = "CB_Texture_Name";
+            this.CB_Texture_Name.Size = new System.Drawing.Size(241, 24);
+            this.CB_Texture_Name.TabIndex = 6;
             // 
             // UC_Texture_Inform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.TB_Texture_Name);
+            this.Controls.Add(this.CB_Texture_Name);
             this.Controls.Add(this.CB_Use_Texture);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox3);
@@ -130,6 +133,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox TB_Texture_Buffer_Number;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox TB_Texture_Name;
+        private System.Windows.Forms.ComboBox CB_Texture_Name;
     }
 }

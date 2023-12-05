@@ -17,8 +17,8 @@
 #include <string>
 
 #include "E_Shader_Kind.h"
-#include "C_Constant_Buffer_Setting_Inform_Base.h"
-#include "C_Create_Constant_Buffer_Inform.h"
+#include "C_Rendering_Constant_Buffer_Setting_Inform_Base.h"
+#include "S_Create_Constant_Buffer_Inform.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
 
@@ -56,7 +56,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr <RENDERING::GRAPHICS::INSTANCE::C_Constant_Buffer_Setting_Inform_Base> constant_buffer_inform;	// 定数データ用のバッファ
+			std::unique_ptr <RENDERING::GRAPHICS::INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base> constant_buffer_inform;	// 定数データ用のバッファ
 
 			std::vector<S_256_Byte_Type> constant_data;	// 定数データ
 

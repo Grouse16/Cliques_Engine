@@ -1,5 +1,5 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
-// 詳細   ：テクスチャ用情報を生成するための情報のクラス
+// 詳細   ：テクスチャ用情報を生成するための情報の構造体
 // 説明   ：
 // 作成者 ：髙坂龍誠
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
@@ -30,15 +30,11 @@ namespace RENDERING::GRAPHICS::CREATE
 	};
 
 
-	// ☆ クラス ☆ //
+	// ☆ 構造体 ☆ //
 
-	// テクスチャ用情報を生成するための情報のクラス
-	class C_Create_Texture_Setting_Inform
+	// テクスチャ用情報を生成するための情報の構造体
+	struct S_Create_Texture_Setting_Inform
 	{
-	//==☆ パブリック ☆==//
-	public:
-
-		// ☆ 変数宣言 ☆ //
 		int pixel_width = 0;		// 横幅のピクセル数
 		int pixel_height = 0;		// 縦幅のピクセル数
 	};

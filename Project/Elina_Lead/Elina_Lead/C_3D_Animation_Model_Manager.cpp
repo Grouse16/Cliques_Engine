@@ -107,7 +107,7 @@ ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manag
 	// ☆ 変数宣言 ☆ //
 	std::string model_3d_inform_path = "project/asset/animation_model/" + in_load_animation_model_name + ".elanmmdl";	// アニメーションモデル情報へのパス
 
-	int animation_model_slot_num = m_this.mpr_variable.animation_model_inform_list.size();	// 操作するアニメーションモデルの番号
+	int animation_model_slot_num = (int)m_this.mpr_variable.animation_model_inform_list.size();	// 操作するアニメーションモデルの番号
 
 
 	// 新しいアニメーションモデル設定用のスロットを生成

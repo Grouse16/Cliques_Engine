@@ -15,7 +15,7 @@
 #include <d3d12.h>
 #include <wrl.h>
 
-#include "C_Constant_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Constant_Buffer_Setting_Inform_Base.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -26,7 +26,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	// ☆ クラス ☆ //
 
 	// 定数バッファ用データのクラス
-	class C_DX12_Constant_Setting_Inform : public INSTANCE::C_Constant_Buffer_Setting_Inform_Base
+	class C_DX12_Constant_Setting_Inform : public INSTANCE::C_Rendering_Constant_Buffer_Setting_Inform_Base
 	{
 		//==☆ パブリック ☆==//
 	public:

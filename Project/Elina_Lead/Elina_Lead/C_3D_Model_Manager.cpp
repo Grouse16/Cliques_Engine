@@ -106,7 +106,7 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(st
 	// ☆ 変数宣言 ☆ //
 	std::string model_3d_inform_path = "project/asset/model/" + in_3D_model_name + ".elsttmdl";	// 3Dモデル情報へのパス
 
-	int model_slot_num = m_this.mpr_variable.model_list.size();	// 操作する3Dモデルの番号
+	int model_slot_num = (int)m_this.mpr_variable.model_list.size();	// 操作する3Dモデルの番号
 
 
 	// 新しい3Dモデル設定用のスロットを生成

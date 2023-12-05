@@ -150,7 +150,7 @@ void C_Font_Draw_System::M_Reset(void)
 bool C_Font_Draw_System::M_Load_Font_By_Font_Name(std::wstring in_load_font_name, int in_font_pixel_size)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::C_Create_Font_Data_Inform creat_setting;	// 生成用情報
+	RENDERING::GRAPHICS::CREATE::S_Create_Font_Data_Inform creat_setting;	// 生成用情報
 
 
 	// 今持っているデータは削除する

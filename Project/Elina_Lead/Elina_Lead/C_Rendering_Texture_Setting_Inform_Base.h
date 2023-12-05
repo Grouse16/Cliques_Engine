@@ -17,7 +17,7 @@
 
 #include "E_Shader_Kind.h"
 #include "C_Texture_Map.h"
-#include "S_Tex_Color.h"
+#include "C_Half_Color.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -46,8 +46,8 @@ namespace RENDERING::GRAPHICS::INSTANCE
 
 		//-☆- 更新 -☆-//
 
-		// テクスチャのデータをセットする　引数：設定するテクスチャ配列への参照, テクスチャの横幅, テクスチャの縦幅
-		virtual void M_Set_Texture_Data(const std::vector<DATA::TEXTURE::S_Tex_Color> & , int, int) = 0;
+		// テクスチャのデータをセットする　引数：設定する色配列への参照, テクスチャの横幅, テクスチャの縦幅
+		virtual void M_Set_Texture_Data(const std::vector<DATA::COLOR::C_Color> & , int, int) = 0;
 	};
 
 

@@ -19,10 +19,10 @@
 // レンダリングAPIに使用するシステムを生成するための情報
 namespace RENDERING::GRAPHICS::CREATE
 {
-	// ☆ クラス ☆ //
+	// ☆ 構造体 ☆ //
 
-	// フォントデータを生成するための情報
-	class C_Create_Font_Data_Inform
+	// フォントデータを生成するための情報の構造体
+	struct S_Create_Font_Data_Inform
 	{
 	//==☆ パブリック ☆==//
 	public:
@@ -31,7 +31,6 @@ namespace RENDERING::GRAPHICS::CREATE
 		std::wstring m_font_name = L"\0";	// フォント名
 
 		int m_height = 0;	// 使用可能なフォントの縦サイズ
-
 		int m_width = 0;	// フォントの太さ
 	};
 }

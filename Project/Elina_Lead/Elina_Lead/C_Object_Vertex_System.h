@@ -14,7 +14,7 @@
 #include <memory>
 #include <vector>
 
-#include "C_Vertex_Buffer_Setting_Inform_Base.h"
+#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
 #include "C_Rendering_Graphics_API_Base.h"
 
 
@@ -36,7 +36,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Vertex_Buffer_Setting_Inform_Base> m_setting_inform;	// 頂点バッファ設定用情報
+			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> m_setting_inform;	// 頂点バッファ設定用情報
 
 			std::vector <_My_Vertex_Type> m_vertex_data;	// 頂点データ
 
@@ -111,7 +111,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_And_Index_Data_And_Buffer(int in_creat_vertex_sum, int in_creat_index_sum)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// 初期化して、必要な分だけ配列を生成しなおす
@@ -141,7 +141,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_And_Index_Buffer_By_Now_Parameter(void)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::C_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// ☆ 頂点生成用情報の設定 ☆ //

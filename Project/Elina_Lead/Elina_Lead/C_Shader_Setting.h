@@ -19,6 +19,7 @@
 #include "E_Shader_Kind.h"
 #include "Input_Layout_Data.h"
 #include "C_Text_And_File_Manager.h"
+#include "S_Unique_Buffer_Slot.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -26,6 +27,17 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
+	// ☆ 構造体 ☆ //
+
+	// シェーダーリソースごとの総数をもつ構造体
+	struct S_Shader_Resource_Sum
+	{
+		int constant_buffer_sum = 0;	// 定数バッファ数
+		int texture_buffer_sum = 0;		// テクスチャバッファ数
+		int screen_resource_sum = 0;	// スクリーン画面スロット数
+	};
+
+
 	// ☆ クラス ☆ //
 
 	// 一組のシェーダーの設定をまとめるためのクラス
@@ -45,6 +57,10 @@ namespace ASSET::SHADER
 
 			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
 
+			ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot unique_buffer_slot_list;	// 特殊なバッファスロットのリスト
+
+			S_Shader_Resource_Sum shader_resource_sum;	// シェーダーリソースの総数
+
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
 
@@ -63,6 +79,12 @@ namespace ASSET::SHADER
 
 		// 一種類分のシェーダーロードを行う処理　引数：シェーダー情報ファイルのデータ, シェーダーがあるフォルダ, シェーダーの種類　戻り値：成功時のみtrue
 		bool M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & , int );
+
+		// シェーダーのスロット情報を整列する
+		void M_Slot_Inform_Alignment(void);
+
+		// 特殊なバッファスロットを探索して番号を記録する
+		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(void);
 
 
 	//==☆ パブリック ☆==//
@@ -98,6 +120,12 @@ namespace ASSET::SHADER
 
 		// 頂点入力レイアウトのリストを返す　戻り値：入力レイアウトへの参照(const)
 		const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & M_Get_Input_Layout(void) const;
+
+		// 特殊なシェーダーのリストの参照を返す　戻り値：特殊なシェーダーのリストの参照（const）
+		const ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot & M_Get_Unique_Buffer_Slot(void) const;
+
+		// リソース情報の総数の情報の参照を返す　戻り値：リソース情報の総数の情報の参照（const）
+		const S_Shader_Resource_Sum & M_Get_Resource_Sum(void);
 	};
 }
 
