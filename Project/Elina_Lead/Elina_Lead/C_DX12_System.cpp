@@ -25,6 +25,7 @@
 #include "C_DX12_Cached_PSO_Base.h"
 #include "C_DX12_Font_Data_Set.h"
 #include "S_Create_Render_Screen_Inform.h"
+#include "E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -243,7 +244,7 @@ inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_
 // 引数   ：D3D12_SHADER_BYTECODE & セット先のバイトコードの参照, const C_Shader_Code * セットするシェーダーコード
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE& in_set_code, const ASSET::SHADER::C_Shader_Code* in_shader_code)
+inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const ASSET::SHADER::C_Shader_Code * in_shader_code)
 {
     // シェーダーのコードがないなら抜ける
     if (in_shader_code == nullptr)
@@ -1039,11 +1040,11 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
         // 設定するリソース情報の配置番号
         desc_resource.Alignment = 0;
 
-        // リソースのバイト数
-        desc_resource.Width = 1920;
+        // リソースの横幅ピクセル数
+        desc_resource.Width = (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_WIDTH_SIZE;
 
-        // リソースの配列数
-        desc_resource.Height = 1080;
+        // リソースの縦幅ピクセル数
+        desc_resource.Height = (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_HEIGHT_SIZE;
 
         // リソースの深さ、または配列数
         desc_resource.DepthOrArraySize = 1;

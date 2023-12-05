@@ -95,11 +95,8 @@ bool C_DX12_Rendering_Screen_System::M_Save_Screen_For_Texture(int in_screen_num
 	void * map_data = nullptr;	// マップによって取得したデータ
 
 
-	// レンダーターゲットビューのデータを取得
-	m_render_target_view.buffer_list[in_screen_number].render_buffer.Get()->Map(0, nullptr, &map_data);
-
-	// 取得に失敗したらエラーで抜ける
-	if (map_data == nullptr)
+	// レンダーターゲットビューのデータを取得、取得に失敗したらエラーで抜ける
+	if (FAILED(m_render_target_view.buffer_list[in_screen_number].render_buffer.Get()->Map(0, nullptr, &map_data)))
 	{
 #ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
