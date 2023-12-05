@@ -276,7 +276,7 @@ namespace RENDERING::GRAPHICS::DX12
 		void M_Rendering_Start(void) override;
 
 		// 描画パイプライン用の情報を生成する　引数：設定先のパイプライン情報, 生成用の情報(const)　戻り値：成功時のみtrue
-		bool M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base>&, const CREATE::S_Create_Rendering_Graphics_Setting_Inform&) override;
+		bool M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> & , const CREATE::S_Create_Rendering_Graphics_Setting_Inform&) override;
 
 		// レンダリング用情報をセット　引数：レンダリングパイプライン用情報(const)
 		void M_Rendering_Set_Rendering_Setting(const std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> & ) override;

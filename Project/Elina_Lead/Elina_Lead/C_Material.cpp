@@ -591,7 +591,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 		mpr_variable.constant_data_list[now_constant_index_number].data->M_Set_Attach_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
 
 		// 設定先のGPUでの定数バッファスロット番号
-		mpr_variable.constant_data_list[now_constant_index_number].index = now_index_number;
+		mpr_variable.constant_data_list[now_constant_index_number].slot_index = now_index_number;
 
 		// 定数バッファ識別名
 		mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
@@ -609,7 +609,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 		// レンダリング画面を使用するときはレンダリング画面登録用の情報を設定
 		if (now_texture_inform.signature_name.substr(0,3) == "RSC")
 		{
-			mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].index = now_index_number;
+			mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].slot_index = now_index_number;
 			mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].signature_name = now_texture_inform.signature_name;
 
 			// 次のテクスチャスロットと設定先のスロット番号を設定
@@ -646,7 +646,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 		mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
 
 		// 設定先のGPUでのテクスチャバッファスロット番号
-		mpr_variable.texture_data_list[now_texture_index_number].index = now_index_number;
+		mpr_variable.texture_data_list[now_texture_index_number].slot_index = now_index_number;
 
 		// テクスチャバッファ識別名
 		mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
@@ -683,7 +683,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			mpr_variable.constant_data_list[now_constant_index_number].data->M_Set_Attach_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
 
 			// 設定先のGPUでの定数バッファスロット番号
-			mpr_variable.constant_data_list[now_constant_index_number].index = now_index_number;
+			mpr_variable.constant_data_list[now_constant_index_number].slot_index = now_index_number;
 
 			// 定数バッファ識別名
 			mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
@@ -700,7 +700,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			// レンダリング画面を使用するときはレンダリング画面登録用の情報を設定
 			if (now_texture_inform.signature_name.substr(0, 3) == "RSC")
 			{
-				mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].index = now_index_number;
+				mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].slot_index = now_index_number;
 				mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].signature_name = now_texture_inform.signature_name;
 
 				// 次のテクスチャスロットと設定先のスロット番号を設定
@@ -746,7 +746,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Al
 			mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
 
 			// 設定先のGPUでのテクスチャバッファスロット番号
-			mpr_variable.texture_data_list[now_texture_index_number].index = now_index_number;
+			mpr_variable.texture_data_list[now_texture_index_number].slot_index = now_index_number;
 
 			// テクスチャバッファ識別名
 			mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
@@ -973,13 +973,22 @@ void C_Material::M_Attach_To_GPU(void)
 	// 定数バッファを一つづつ適用する
 	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
 	{
-		now_constant_buffer.data->M_Set_Constant_Buffer_To_GPU_By_Index(now_constant_buffer.index);
+		now_constant_buffer.data->M_Set_Constant_Buffer_To_GPU_By_Index(now_constant_buffer.slot_index);
 	}
 
 	// テクスチャバッファを一つづつ適用する
 	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
 	{
-		now_texture_buffer.data->M_Texture_Attach_To_Draw_By_Index(now_texture_buffer.index);
+		now_texture_buffer.data->M_Texture_Attach_To_Draw_By_Index(now_texture_buffer.slot_index);
+	}
+
+	// レンダリング画面を一つづつ適用する
+	for (S_Rendering_Screen_Data & now_rendering_buffer : mpr_variable.rendering_screen_data_list)
+	{
+		if (now_rendering_buffer.data)
+		{
+			now_rendering_buffer.data->M_Set_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.use_screen_index, now_rendering_buffer.slot_index);
+		}
 	}
 
 	return;

@@ -40,7 +40,7 @@ namespace ASSET::MATERIAL
 
 		std::string signature_name = "default";	// 定数バッファ識別名
 
-		int index = 0;	// 定数バッファのインデックス番号
+		int slot_index = 0;	// 定数バッファのインデックス番号
 	};
 
 
@@ -51,16 +51,20 @@ namespace ASSET::MATERIAL
 
 		std::string signature_name = "default";	// テクスチャスロット識別名
 
-		int index = 0;	// テクスチャのインデックス番号
+		int slot_index = 0;	// テクスチャのインデックス番号
 	};
 
 
 	// レンダリング画面を使用する際の情報をまとめた構造体
 	struct S_Rendering_Screen_Data
 	{
+		RENDERING::CAPSULE::C_Rendering_Screen_System * data = nullptr;	// レンダリング画面を管理するシステムのアドレス
+
 		std::string signature_name = "default";	// レンダリング画面の識別名
 
-		int index = 0;	// レンダリング画面用のテクスチャスロットの番号
+		int use_screen_index = 0;	// テクスチャとして使用するレンダリング画面番号
+
+		int slot_index = 0;	// レンダリング画面用のテクスチャスロットの番号
 	};
 
 
