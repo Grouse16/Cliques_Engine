@@ -989,6 +989,16 @@ void C_Material::M_Attach_To_GPU(void)
 		{
 			now_rendering_buffer.data->M_Set_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.use_screen_index, now_rendering_buffer.slot_index);
 		}
+
+		// デバッグ時はレンダリング画面未設定の状態でセットの処理が行われたことを示す
+#ifdef _DEBUG
+		else
+		{
+			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング画面が未設定のままテクスチャに使用されようとしています。レンダリング画面スロット名：" + now_rendering_buffer.signature_name);
+			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		}
+#endif // _DEBUG
 	}
 
 	return;
