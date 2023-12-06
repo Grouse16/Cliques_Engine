@@ -18,10 +18,10 @@ namespace ASSET::SHADER
 	// ☆ 定数 ☆ //
 
 	// シェーダーの種類を指定するための列挙
-	enum class E_SHADER_KIND
+	enum class E_SHADER_KIND : char
 	{
 		e_VERTEX,			// 頂点
-		e_HUL_TCS,			// ハル、テッセレーション制御
+		e_HULL_TCS,			// ハル、テッセレーション制御
 		e_DOMAIN_TES,		// ドメイン、テッセレーション評価
 		e_GEOMETRY,			// ジオメトリ
 		e_PIXEL_FRAGMENT,	// ピクセル、フラグメント

@@ -17,17 +17,6 @@
 using namespace ASSET::SHADER;
 
 
-// ☆ 列挙 ☆ //
-
-// リソースの種類
-enum class E_RESOURCE_KIND : char
-{
-	e_CONSTANT_BUFFER,		// 定数バッファ
-	e_TEXTURE,				// テクスチャ
-	e_RENDERING_SCREEN,		// レンダリング画像
-};
-
-
 // ☆ クラス ☆ //
 
 // データと名前を関連付けるための構造体
@@ -45,7 +34,7 @@ public:
 	// ☆ 関数 ☆ //
 
 	//-☆- 初期化と終了時 -☆-//
-	C_Store_Data(int& in_data, std::string in_set_name) : data(in_data)
+	C_Store_Data(int & in_data, std::string in_set_name) : data(in_data)
 	{
 		name = in_set_name;
 
@@ -54,16 +43,52 @@ public:
 };
 
 
-// ☆ 構造体 ☆ //
+// ☆ インライン関数 ☆ //
 
-// シェーダーのリソース情報の構造体
-struct S_Resource_Inform
+//-☆- 変換 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：フラグ型を文字列に変換する
+// 引数   ：bool 変換するフラグ
+// 戻り値 ：string 変換した文字列
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::string M_Convert_Bool_To_String(bool in_flg)
 {
-	E_RESOURCE_KIND shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;	// リソースの種類
+	// trueなら"TRUE"を返す
+	if (in_flg == true)
+	{
+		return "TRUE";
+	}
 
-	std::string resource_name = "default";	// リソースの名前
-};
+	// falseなら"FALSE"を返す
+	return "FALSE";
+}
 
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：シェーダーの種類を指定する列挙を文字列に変換する
+// 引数   ：E_SHADER_KIND 変換するシェーダーの種類
+// 戻り値 ：string 変換した文字列
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::string M_Convert_Shader_Kind_Flg_To_String(E_SHADER_KIND in_shader_kind)
+{
+	switch (in_shader_kind)
+	{
+	case ASSET::SHADER::E_SHADER_KIND::e_VERTEX:
+		return "VS";
+	case ASSET::SHADER::E_SHADER_KIND::e_HULL_TCS:
+		return "HS";
+	case ASSET::SHADER::E_SHADER_KIND::e_DOMAIN_TES:
+		return "DS";
+	case ASSET::SHADER::E_SHADER_KIND::e_GEOMETRY:
+		return "GS";
+	case ASSET::SHADER::E_SHADER_KIND::e_PIXEL_FRAGMENT:
+		return "PS";
+	case ASSET::SHADER::E_SHADER_KIND::e_ALL:
+	default:
+		return "AS";
+	}
+}
 
 
 // ☆ 関数 ☆ //
@@ -228,101 +253,206 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：シェーダーのリソースをロードした情報から設定する
-// 引数   ：string シェーダーの種類名, C_Text_And_File_Manager & シェーダー情報ファイルのデータ
+// 引数   ：E_SHADER_KIND シェーダーの種類名, C_Text_And_File_Manager & シェーダー情報ファイルのデータ
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_kind_name, SYSTEM::TEXT::C_Text_And_File_Manager& in_shader_data_file)
+bool C_Shader_Setting::M_Load_Resource_Signature(E_SHADER_KIND in_shader_kind, SYSTEM::TEXT::C_Text_And_File_Manager & in_shader_data_file)
 {
+	// ☆ 変数宣言 ☆ //
+	std::string shader_kind_name = "default";	// シェーダーの種類名
+
+
+	// シェーダーの種類名を取得
+	shader_kind_name = M_Convert_Shader_Kind_Flg_To_String(in_shader_kind);
+
+
 	// シェーダーの情報の開始位置を探す、なければエラー
 	in_shader_data_file.M_Goto_Sentence_Start();
-	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(in_shader_kind_name + "START:") == false)
+	if (in_shader_data_file.M_Goto_Right_By_Text_In_Front_Row(shader_kind_name + "START:") == false)
 	{
 		return false;
 	}
 
 
 	// ☆ 変数宣言 ☆ //
-	int constant_sum = 0;	// 定数の数
-	int texture_sum = 0;	// テキストの数
-	int sampler_sum = 0;	// サンプラーの数
+	int constant_number = mpr_variable.resource_inform.constant_list.size();	// 現在の定数バッファの番号
+	int sampler_number = mpr_variable.resource_inform.sampler_list.size();		// 現在のサンプラーバッファの番号
+
+	int texture_number = mpr_variable.resource_inform.texture_list.size();		// 現在のテクスチャバッファの番号
+	int screen_number = mpr_variable.resource_inform.screen_list.size();		// 現在のレンダリング画面の番号
+	int depth_stencil_number = mpr_variable.resource_inform.depth_stencil_list.size();		// 現在の深度ステンシルバッファの番号
+	
+	int texture_kind_number = texture_number + screen_number + depth_stencil_number;		// 現在のテクスチャ系のバッファの番号
+	
+	int constant_sum = constant_number;		// 定数の数
+	int texture_sum = texture_kind_number;	// テキストの数
+	int sampler_sum = sampler_number;		// サンプラーの数
 
 
 	// 定数バッファ数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	constant_sum = in_shader_data_file.M_Get_Number();
+	constant_sum += in_shader_data_file.M_Get_Number();
 
 	// テキスト数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	texture_sum = in_shader_data_file.M_Get_Number();
+	texture_sum += in_shader_data_file.M_Get_Number();
 
 	// サンプラー数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	sampler_sum = in_shader_data_file.M_Get_Number();
+	sampler_sum += in_shader_data_file.M_Get_Number();
 
 
 	// 取得した数分リソースの識別を生成
-	mpr_variable.resource_signature.all_shader_signature.constant_data.resize(constant_sum);
-	mpr_variable.resource_signature.all_shader_signature.texture_data.resize(texture_sum);
-	mpr_variable.resource_signature.all_shader_signature.sampler_data.resize(sampler_sum);
+	mpr_variable.resource_inform.constant_list.resize(constant_sum);
+	mpr_variable.resource_inform.sampler_list.resize(sampler_sum);
+
+	// スロットの情報を生成
+	mpr_variable.resource_inform.slot_list.resize(mpr_variable.slot_number + constant_sum + texture_sum);
 
 
 	// 定数バッファの識別名の行に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "CON:");
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(shader_kind_name + "CON:");
 
 	// 定数バッファの情報を取得
-	for (ASSET::SHADER::S_Constant_Resource_Signature & now_constant_data : mpr_variable.resource_signature.all_shader_signature.constant_data)
+	for (constant_number; constant_number < constant_sum; constant_number++)
 	{
 		// 次の行に移動
 		in_shader_data_file.M_Move_Next_Raw();
 
 		// 識別名を取得
-		now_constant_data.signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
+		mpr_variable.resource_inform.constant_list[constant_number].resource_name = in_shader_data_file.M_Get_Data_By_Text(",");
 
 		// 配列数を取得
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
-		now_constant_data.array_sum = in_shader_data_file.M_Get_Number();
+		mpr_variable.resource_inform.constant_list[constant_number].array_sum = in_shader_data_file.M_Get_Number();
+
+		// 配列数が０なら少なくとも一つは確保する
+		mpr_variable.resource_inform.constant_list[constant_number].array_sum =
+			(mpr_variable.resource_inform.constant_list[constant_number].array_sum <= 0)
+			+
+			(mpr_variable.resource_inform.constant_list[constant_number].array_sum > 0) * mpr_variable.resource_inform.constant_list[constant_number].array_sum;
 
 		// データを生成するかどうかのフラグを取得
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
-		now_constant_data.data_create_flg = in_shader_data_file.M_Get_Data_By_Text(",") == "TRUE";
+		mpr_variable.resource_inform.constant_list[constant_number].flg_data_creation = in_shader_data_file.M_Get_Data_By_Text(",") == "TRUE";
 
-		// 配列数が０なら少なくとも一つは確保する
-		now_constant_data.array_sum =
-			(now_constant_data.array_sum <= 0)
-			+
-			(now_constant_data.array_sum > 0) * now_constant_data.array_sum;
+		// シェーダーの種類を指定
+		mpr_variable.resource_inform.constant_list[constant_number].shader_kind = in_shader_kind;
+
+		// スロット番号を記録
+		mpr_variable.resource_inform.constant_list[constant_number].slot_number = mpr_variable.slot_number;
+
+
+		// スロットの情報を設定
+		mpr_variable.resource_inform.slot_list[mpr_variable.slot_number].resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;
+		mpr_variable.resource_inform.slot_list[mpr_variable.slot_number].shader_kind = in_shader_kind;
+
+
+		// 次のスロットへ移動
+		mpr_variable.slot_number += 1;
 	}
 
 
 	// テクスチャの識別名と数の行に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "TEX:");
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(shader_kind_name + "TEX:");
 
 	// テクスチャの識別名を取得する
-	for (ASSET::SHADER::S_Texture_Resource_Signature & now_texture_data : mpr_variable.resource_signature.all_shader_signature.texture_data)
+	for (texture_kind_number; texture_kind_number < texture_sum; texture_kind_number++)
 	{
+		// ☆ 変数宣言 ☆ //
+		std::string resource_name = "\0";	// リソース名
+
 		// 次の行に移動
 		in_shader_data_file.M_Move_Next_Raw();
 
 		// 識別名を取得
-		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+		resource_name = in_shader_data_file.M_Get_Data_By_Text(",");
 
-		// 初期ロードする時のテクスチャの動作を取得
-		now_texture_data.signature_name = in_shader_data_file.M_Get_Data_By_Text(",");
-		now_texture_data.initialized_texture_name = in_shader_data_file.M_Get_Data_By_Text(",");
+
+		// レンダリング画面の識別名の時は、レンダリング画面の情報を設定
+		if (resource_name.substr(0, 3) == "RSC")
+		{
+			// レンダリング画面用のスロットを増やす
+			mpr_variable.resource_inform.screen_list.resize(screen_number + 1);
+
+			// レンダリング画面の識別名を取得
+			mpr_variable.resource_inform.screen_list[screen_number].resource_name = resource_name;
+
+			// シェーダーの種類を指定
+			mpr_variable.resource_inform.screen_list[screen_number].shader_kind = in_shader_kind;
+
+			// スロット番号を記録
+			mpr_variable.resource_inform.screen_list[screen_number].slot_number = mpr_variable.slot_number;
+
+			// 次のスロットへ移動
+			screen_number += 1;
+		}
+
+		// 深度ステンシルバッファの識別名の時は、深度ステンシルバッファの情報を設定
+		else if (resource_name.substr(0,3) == "DSB")
+		{
+			// 深度ステンシルバッファ用のスロットを増やす
+			mpr_variable.resource_inform.depth_stencil_list.resize(depth_stencil_number + 1);
+
+			// レンダリング画面の識別名を取得
+			mpr_variable.resource_inform.depth_stencil_list[depth_stencil_number].resource_name = resource_name;
+
+			// シェーダーの種類を指定
+			mpr_variable.resource_inform.depth_stencil_list[depth_stencil_number].shader_kind = in_shader_kind;
+
+			// スロット番号を記録
+			mpr_variable.resource_inform.depth_stencil_list[depth_stencil_number].slot_number = mpr_variable.slot_number;
+
+			// 次のスロットへ移動
+			depth_stencil_number += 1;
+		}
+
+		// 通常時は、テクスチャの情報を設定
+		else
+		{
+			// テクスチャ用のスロットを増やす
+			mpr_variable.resource_inform.texture_list.resize(texture_number + 1);
+
+			// 識別名を設定
+			mpr_variable.resource_inform.texture_list[texture_number].resource_name = resource_name;
+
+			// 初期ロードする時のテクスチャの動作を取得
+			in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
+			mpr_variable.resource_inform.texture_list[texture_number].initialize_texture_name = in_shader_data_file.M_Get_Data_By_Text(",");
+
+			// シェーダーの種類を指定
+			mpr_variable.resource_inform.texture_list[texture_number].shader_kind = in_shader_kind;
+
+			// スロット番号を記録
+			mpr_variable.resource_inform.texture_list[texture_number].slot_number = mpr_variable.slot_number;
+
+			// 次のスロットへ移動
+			texture_number += 1;
+		}
+
+		// スロットの情報を設定
+		mpr_variable.resource_inform.slot_list[mpr_variable.slot_number].resource_kind = E_RESOURCE_KIND::e_TEXTURE;
+		mpr_variable.resource_inform.slot_list[mpr_variable.slot_number].shader_kind = in_shader_kind;
+
+		// 次のスロットへ移動
+		mpr_variable.slot_number += 1;
 	}
 
 
 	// サンプラーの識別名と数の行に移動
-	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(in_shader_kind_name + "SAM:");
+	in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(shader_kind_name + "SAM:");
 
 	// サンプラーの識別名を取得する
-	for (ASSET::SHADER::S_Sampler_Resource_Signature & now_sampler_data : mpr_variable.resource_signature.all_shader_signature.sampler_data)
+	for (sampler_number; sampler_number < sampler_sum; sampler_number++)
 	{
 		// 次の行に移動
 		in_shader_data_file.M_Move_Next_Raw();
 
 		// UVの使用方法を取得
-		now_sampler_data.uv_setting = in_shader_data_file.M_Get_Data_By_Text(",");
+		mpr_variable.resource_inform.sampler_list[sampler_number].uv_setting = in_shader_data_file.M_Get_Data_By_Text(",");
+
+		// シェーダーの種類を指定
+		mpr_variable.resource_inform.sampler_list[sampler_number].shader_kind = in_shader_kind;
 	}
 	
 	// 成功
@@ -338,7 +468,7 @@ bool C_Shader_Setting::M_Load_Shader_Resource_Signature(std::string in_shader_ki
 bool C_Shader_Setting::M_Load_Shaders_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager & in_shader_data_file)
 {
 	// 全てのシェーダーに共通する設定をロード
-	M_Load_Shader_Resource_Signature("AS", in_shader_data_file);
+	M_Load_Resource_Signature(E_SHADER_KIND::e_ALL, in_shader_data_file);
 
 	// 各種シェーダーの情報を読み取りコンパイル結果を取得
 	for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
@@ -377,9 +507,9 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 		break;
 
 		//  ハルシェーダー  //
-	case (int)E_SHADER_KIND::e_HUL_TCS:
+	case (int)E_SHADER_KIND::e_HULL_TCS:
 		shader_type_text = "HS";
-		shader_kind = E_SHADER_KIND::e_HUL_TCS;
+		shader_kind = E_SHADER_KIND::e_HULL_TCS;
 		break;
 
 		//  ドメインシェーダー  //
@@ -425,7 +555,7 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 	}
 
 	// シェーダーのリソースを取得
-	M_Load_Shader_Resource_Signature(shader_type_text, in_shader_data_file);
+	M_Load_Resource_Signature(shader_kind, in_shader_data_file);
 
 	// 成功
 	return true;
@@ -441,111 +571,13 @@ void C_Shader_Setting::M_Slot_Inform_Alignment(void)
 {
 	// ☆ 定数 ☆ //
 	constexpr int con_CONSTANT_UNIQUE_BUFFER_KIND_SUM = 8;	// 特殊な定数バッファスロットの総数数
-	constexpr int con_MATERIAL_DETAIL_SUM = 6;	// マテリアル質感情報の設定できる項目数
 
 
 	// ☆ 変数宣言 ☆ //
-	std::vector<S_Resource_Inform> resource_inform_list;	// リソースの情報リスト
-
 	std::vector <std::unique_ptr<C_Store_Data>> data_list;	// データのリスト
 
-	int instance_slot_sum = 0;	// インスタンススロットの数
-
-	int now_slot_num = 0;	// 現在のスロット番号
+	int constant_slot_sum = 0;	// インスタンススロットの数
 	
-
-	// シェーダーリソースの総数を初期化
-	mpr_variable.shader_resource_sum.constant_buffer_sum = 0;
-	mpr_variable.shader_resource_sum.texture_buffer_sum = 0;
-	mpr_variable.shader_resource_sum.screen_resource_sum = 0;
-
-
-	// 全シェーダー共通情報のリソース数を取得
-	resource_inform_list.clear();
-	resource_inform_list.shrink_to_fit();
-	resource_inform_list.resize(
-		mpr_variable.resource_signature.all_shader_signature.constant_data.size() + 
-		mpr_variable.resource_signature.all_shader_signature.texture_data.size()
-	);
-
-	// シェーダー共通情報の定数バッファを探索し、スロット番号とスロット名を取得
-	for (ASSET::SHADER::S_Constant_Resource_Signature & constant_buffer_inform : mpr_variable.resource_signature.all_shader_signature.constant_data)
-	{
-		resource_inform_list[now_slot_num].resource_name = constant_buffer_inform.signature_name;
-		resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;
-
-		mpr_variable.shader_resource_sum.constant_buffer_sum += 1;
-		now_slot_num += 1;
-	}
-
-	// シェーダー共通情報のテクスチャバッファを探索し、スロット番号とスロット名を取得
-	for (ASSET::SHADER::S_Texture_Resource_Signature & texture_buffer_inform : mpr_variable.resource_signature.all_shader_signature.texture_data)
-	{
-		resource_inform_list[now_slot_num].resource_name = texture_buffer_inform.signature_name;
-
-		// レンダリング画像を使用するバッファを識別して登録
-		if(texture_buffer_inform.signature_name.substr(0,3) == "RSC")
-		{
-			resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_RENDERING_SCREEN;
-
-			mpr_variable.shader_resource_sum.screen_resource_sum += 1;
-		}
-
-		// それ以外はテクスチャ
-		else
-		{
-			resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_TEXTURE;
-
-			mpr_variable.shader_resource_sum.texture_buffer_sum += 1;
-		}
-		now_slot_num += 1;
-	}
-
-
-	// シェーダーごとのリソース設定を行う
-	for (ASSET::SHADER::S_Shader_Resource_Signature_Inform & signature_inform : mpr_variable.resource_signature.signature_list)
-	{
-		// 全シェーダー共通情報のリソース数を取得
-		resource_inform_list.resize(
-			resource_inform_list.size() +
-			signature_inform.constant_data.size() +
-			signature_inform.texture_data.size()
-		);
-
-		// シェーダー共通情報の定数バッファを探索し、スロット番号とスロット名を取得
-		for (ASSET::SHADER::S_Constant_Resource_Signature & constant_buffer_inform : signature_inform.constant_data)
-		{
-			resource_inform_list[now_slot_num].resource_name = constant_buffer_inform.signature_name;
-			resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;
-			now_slot_num += 1;
-
-			mpr_variable.shader_resource_sum.constant_buffer_sum += 1;
-		}
-
-		// シェーダー共通情報のテクスチャバッファを探索し、スロット番号とスロット名を取得
-		for (ASSET::SHADER::S_Texture_Resource_Signature & texture_buffer_inform : signature_inform.texture_data)
-		{
-			resource_inform_list[now_slot_num].resource_name = texture_buffer_inform.signature_name;
-
-			// レンダリング画像を使用するバッファを識別して登録
-			if (texture_buffer_inform.signature_name.substr(0, 3) == "RSC")
-			{
-				resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_RENDERING_SCREEN;
-
-				mpr_variable.shader_resource_sum.screen_resource_sum += 1;
-			}
-
-			// それ以外はテクスチャ
-			else
-			{
-				resource_inform_list[now_slot_num].shader_resource_kind = E_RESOURCE_KIND::e_TEXTURE;
-
-				mpr_variable.shader_resource_sum.texture_buffer_sum += 1;
-			}
-			now_slot_num += 1;
-		}
-	}
-
 
 	// 名前と変数の関連を登録
 	data_list.resize(con_CONSTANT_UNIQUE_BUFFER_KIND_SUM);
@@ -560,19 +592,19 @@ void C_Shader_Setting::M_Slot_Inform_Alignment(void)
 
 
 	// 定数バッファのスロットの総数を取得
-	instance_slot_sum = resource_inform_list.size();
+	constant_slot_sum = mpr_variable.resource_inform.constant_list.size();
 
 	// シェーダー共通情報の定数バッファを探索し、特殊な名前のスロットの番号を取得する
-	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < instance_slot_sum; l_now_constant_buffer_num++)
+	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < constant_slot_sum; l_now_constant_buffer_num++)
 	{
 		// ☆ 変数宣言 ☆ //
-		S_Resource_Inform & now_resource_data = resource_inform_list[l_now_constant_buffer_num];	// 現在のリソース情報
+		S_Constant_Resource_Inform & now_resource_data = mpr_variable.resource_inform.constant_list[l_now_constant_buffer_num];	// 現在のリソース情報
 
 
-		// 定数バッファ以外はスルー
-		if (now_resource_data.shader_resource_kind != E_RESOURCE_KIND::e_CONSTANT_BUFFER)
+		// 全ての名前を探索し終えたら抜ける
+		if (data_list.size() <= 0)
 		{
-			continue;
+			return;
 		}
 
 		// データ名＆変数関連リストから名前が一致するものにデータを設定し、設定が完了したものはリストから削除
@@ -598,6 +630,7 @@ void C_Shader_Setting::M_Slot_Inform_Alignment(void)
 				}
 			)
 		);
+		data_list.shrink_to_fit();
 	}
 
 	return;
@@ -652,26 +685,20 @@ void C_Shader_Setting::M_Release(void)
 	mpr_variable.vertex_layout_setting.clear();
 	mpr_variable.vertex_layout_setting.shrink_to_fit();
 
-
-	// 全体共通のリソース定義用情報をすべて削除
-	mpr_variable.resource_signature.all_shader_signature.constant_data.clear();
-	mpr_variable.resource_signature.all_shader_signature.constant_data.shrink_to_fit();
-	mpr_variable.resource_signature.all_shader_signature.texture_data.clear();
-	mpr_variable.resource_signature.all_shader_signature.texture_data.shrink_to_fit();
-	mpr_variable.resource_signature.all_shader_signature.sampler_data.clear();
-	mpr_variable.resource_signature.all_shader_signature.sampler_data.shrink_to_fit();
-
-
-	// シェーダーごとのリソース定義用情報をすべて削除
-	for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
-	{
-		mpr_variable.resource_signature.signature_list[now_shader_kind].constant_data.clear();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].constant_data.shrink_to_fit();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].texture_data.clear();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].texture_data.shrink_to_fit();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].sampler_data.clear();
-		mpr_variable.resource_signature.signature_list[now_shader_kind].sampler_data.shrink_to_fit();
-	}
+	// リソース情報の削除
+	mpr_variable.resource_inform.constant_list.clear();
+	mpr_variable.resource_inform.constant_list.shrink_to_fit();
+	mpr_variable.resource_inform.texture_list.clear();
+	mpr_variable.resource_inform.texture_list.shrink_to_fit();
+	mpr_variable.resource_inform.screen_list.clear();
+	mpr_variable.resource_inform.screen_list.shrink_to_fit();
+	mpr_variable.resource_inform.depth_stencil_list.clear();
+	mpr_variable.resource_inform.depth_stencil_list.shrink_to_fit();
+	mpr_variable.resource_inform.sampler_list.clear();
+	mpr_variable.resource_inform.sampler_list.shrink_to_fit();
+	mpr_variable.resource_inform.slot_list.clear();
+	mpr_variable.resource_inform.slot_list.shrink_to_fit();
+	mpr_variable.slot_number = 0;
 
 	return;
 }
@@ -720,7 +747,6 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_File_Path(std::st
 	// シェーダーのリソース情報を整列
 	M_Slot_Inform_Alignment();
 
-
 	// 成功した
 	return true;
 }
@@ -736,17 +762,6 @@ bool C_Shader_Setting::M_Load_Shaders_Inform_By_Shader_Setting_File_Path(std::st
 const std::vector<C_Shader_User> & C_Shader_Setting::M_Get_Shader_Code_List(void) const
 {
 	return mpr_variable.shader_list;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：リソース識別用情報を返す
-// 引数   ：void
-// 戻り値 ：const S_All_Shader_Resource_Signatures & リソース識別用情報の参照
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_All_Shader_Resource_Signatures & C_Shader_Setting::M_Get_Resource_Signature(void) const
-{
-	return mpr_variable.resource_signature;
 }
 
 
@@ -773,11 +788,15 @@ const ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot & C_Shader_Setting::M_Get_Un
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：リソース情報の総数の情報の参照を返す
+// 詳細   ：リソース情報のリストを返す
 // 引数   ：void
-// 戻り値 ：const vector<S_Resource_Inform> & リソース情報の総数の情報の参照（const）
+// 戻り値 ：S_Resource_Inform & リソース情報のリストの参照(const)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const S_Shader_Resource_Sum & C_Shader_Setting::M_Get_Resource_Sum(void)
+const S_Resource_Inform_List & C_Shader_Setting::M_Get_Resource_Inform(void) const
 {
-	return mpr_variable.shader_resource_sum;
+	return mpr_variable.resource_inform;
 }
+
+
+
+

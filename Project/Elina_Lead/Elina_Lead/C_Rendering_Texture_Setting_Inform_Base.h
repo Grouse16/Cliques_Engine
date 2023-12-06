@@ -58,7 +58,7 @@ namespace RENDERING::GRAPHICS::INSTANCE
 
 		std::string * add_signature_name = nullptr;	// 識別名のアドレス
 
-		ASSET::SHADER::E_SHADER_KIND * add_attach_shader_kind = nullptr;	// 設定先のシェーダーの種類のアドレス
+		ASSET::SHADER::E_SHADER_KIND attach_shader_kind = nullptr;	// 設定先のシェーダーの種類のアドレス
 	};
 }
 

@@ -228,7 +228,7 @@ void C_Constant_Buffer_Data_System::M_Set_Constant_Buffer_To_GPU(void)
 
 	// •`‰æî•ñ‚ðÝ’è‚µ‚ÄGPU‚É“n‚·
 	drawing_setting.add_constant_buffer = mpr_variable.constant_buffer_inform.get();
-	drawing_setting.add_attach_shader_kind = &mpr_variable.attach_shader_kind;
+	drawing_setting.add_attach_shader_kind = mpr_variable.attach_shader_kind;
 	drawing_setting.add_signature_name = &mpr_variable.data_signature_name;
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Constant_Buffer(drawing_setting);
 

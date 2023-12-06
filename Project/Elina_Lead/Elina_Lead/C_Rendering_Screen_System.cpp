@@ -49,6 +49,13 @@ C_Rendering_Screen_System::~C_Rendering_Screen_System(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Rendering_Screen_System::M_Release(void)
 {
+	if (mpr_variable.rendering_screen == nullptr)
+	{
+		return;
+	}
+	
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Notice_Rendering_Screen_Deleted(mpr_variable.rendering_screen.get());
+
 	mpr_variable.rendering_screen.reset();
 
 	return;

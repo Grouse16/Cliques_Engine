@@ -1131,6 +1131,24 @@
     <ClInclude Include="C_Rendering_Screen_System.h">
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
+    <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Depth_Stencil_Buffer_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Depth_Stencil_Buffer_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_Platform_Detection_System.cpp">
@@ -1464,6 +1482,15 @@
       <Filter>ソース ファイル\システム\型\カラー</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Screen_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Depth_Stencil_Buffer_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\インスタンス基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Depth_Stencil_Buffer_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Depth_Stencil_Buffer_System.cpp">
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
   </ItemGroup>

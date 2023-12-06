@@ -270,7 +270,7 @@ void C_Texture_Data_System::M_Attach_To_Shader(void)
 
 	// •`‰æ—pî•ñ‚ðÝ’è‚µ‚Ä•`‰æ‚·‚é
 	drawing_setting.add_texture_data = mpr_variable.texture_setting_inform.get();
-	drawing_setting.add_attach_shader_kind = &mpr_variable.attach_shader;
+	drawing_setting.attach_shader_kind = mpr_variable.attach_shader;
 	drawing_setting.add_signature_name = &mpr_variable.data_signature_name;
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Texture(drawing_setting);
 
@@ -285,15 +285,7 @@ void C_Texture_Data_System::M_Attach_To_Shader(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Texture_Data_System::M_Attach_To_Shader_By_Index(int in_index)
 {
-	// ™ •Ï”éŒ¾ ™ //
-	RENDERING::GRAPHICS::INSTANCE::S_Texture_Buffer_Drawing_Setting drawing_setting;	// •`‰æ—pÝ’è
-
-
-	// •`‰æ—pî•ñ‚ðÝ’è‚µ‚Ä•`‰æ‚·‚é
-	drawing_setting.add_texture_data = mpr_variable.texture_setting_inform.get();
-	drawing_setting.add_attach_shader_kind = &mpr_variable.attach_shader;
-	drawing_setting.add_signature_name = &mpr_variable.data_signature_name;
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Texture(drawing_setting);
+	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Texture_By_Index(mpr_variable.texture_setting_inform, in_index);
 
 	return;
 }

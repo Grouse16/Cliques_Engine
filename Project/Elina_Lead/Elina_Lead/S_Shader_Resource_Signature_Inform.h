@@ -22,49 +22,99 @@
 // シェーダー用の定義を呼び出すための名前
 namespace ASSET::SHADER
 {
+	// ☆ 列挙 ☆ //
+
+	// リソースの種類
+	enum class E_RESOURCE_KIND : char
+	{
+		e_CONSTANT_BUFFER,	// 定数バッファ
+		e_TEXTURE,			// テクスチャ
+	};
+
+
 	// ☆ 構造体 ☆ //
 
-	// 定数バッファの識別用の情報の構造体
-	struct S_Constant_Resource_Signature
+	// 定数バッファのリソース情報の構造体
+	struct S_Constant_Resource_Inform
 	{
-		std::string signature_name = "";	// 識別用の名前
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
 
-		int array_sum = 0;	// 配列数
+		std::string resource_name = "default";	// 定数バッファの名前
 
-		bool data_create_flg = false;	// データを生成するかどうかのフラグ
+		int array_sum = 0;	// 定数バッファの配列数
+
+		bool flg_data_creation = false;	// データを生成するかどうかのフラグ
+
+		int slot_number = 0;	// スロット番号
 	};
 
-	// テクスチャバッファの識別用の情報の構造体
-	struct S_Texture_Resource_Signature
+
+	// テクスチャバッファのリソース情報の構造体
+	struct S_Texture_Resource_Inform
 	{
-		std::string signature_name = "";	// 識別用の名前
-		std::string initialized_texture_name = "";	// 使用するテクスチャ名
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
+
+		std::string resource_name = "default";	// テクスチャの名前
+		std::string initialize_texture_name = "default";	// 初期ロードするテクスチャ名
+
+		int slot_number = 0;	// スロット番号
 	};
 
-	// サンプラー設定の情報の構造体
-	struct S_Sampler_Resource_Signature
+
+	// レンダリング画面のリソース情報の構造体
+	struct S_Screen_Resource_Inform
 	{
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
+
+		std::string resource_name = "default";	// テクスチャの名前
+
+		int slot_number = 0;	// スロット番号
+	};
+
+
+	// 深度ステンシルのリソース情報の構造体
+	struct S_Depth_Stencil_Resource_Inform
+	{
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
+
+		std::string resource_name = "default";	// テクスチャの名前
+
+		int slot_number = 0;	// スロット番号
+	};
+
+
+	// サンプラーのリソース情報の構造体
+	struct S_Sampler_Resource_Inform
+	{
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
+
 		std::string uv_setting = "";	// UVの使用方法
 	};
 
 
-	// シェーダーのリソースの識別名を管理するための構造体
-	struct S_Shader_Resource_Signature_Inform
+	// スロットの情報の構造体
+	struct S_Resource_Slot_Inform
 	{
-		std::vector<S_Constant_Resource_Signature> constant_data;	// 定数バッファデータ識別用の情報
+		E_RESOURCE_KIND resource_kind = E_RESOURCE_KIND::e_CONSTANT_BUFFER;	// リソースの種類
 
-		std::vector<S_Texture_Resource_Signature> texture_data;	// テクスチャデータの識別用の情報
-
-		std::vector<S_Sampler_Resource_Signature> sampler_data;	// サンプラー数
+		E_SHADER_KIND shader_kind = E_SHADER_KIND::e_ALL;	// 設定先のシェーダーの種類
 	};
 
 
-	// すべてのシェーダーのリソースの識別名をまとめるための構造体
-	struct S_All_Shader_Resource_Signatures
+	// リソースの情報をまとめた構造体
+	struct S_Resource_Inform_List
 	{
-		S_Shader_Resource_Signature_Inform all_shader_signature;	// 全てのシェーダーに共通するリソース識別名
+		std::vector<S_Constant_Resource_Inform> constant_list;	// 定数バッファの情報リスト
 
-		S_Shader_Resource_Signature_Inform signature_list[(int)E_SHADER_KIND::e_ALL];	// シェーダーのリソース
+		std::vector<S_Texture_Resource_Inform> texture_list;	// テクスチャの情報リスト
+
+		std::vector<S_Screen_Resource_Inform> screen_list;	// レンダリング画面の情報リスト
+
+		std::vector<S_Depth_Stencil_Resource_Inform> depth_stencil_list;	// 深度ステンシルの情報リスト
+
+		std::vector<S_Sampler_Resource_Inform> sampler_list;	// サンプラーの情報リスト
+
+		std::vector<S_Resource_Slot_Inform> slot_list;	// スロットの情報リスト
 	};
 }
 

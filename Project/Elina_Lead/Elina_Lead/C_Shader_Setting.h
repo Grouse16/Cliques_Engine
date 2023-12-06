@@ -13,6 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "C_Shader_User.h"
 #include "S_Shader_Resource_Signature_Inform.h"
@@ -27,17 +28,6 @@
 // シェーダー用のシステムを呼び出すための名前
 namespace ASSET::SHADER
 {
-	// ☆ 構造体 ☆ //
-
-	// シェーダーリソースごとの総数をもつ構造体
-	struct S_Shader_Resource_Sum
-	{
-		int constant_buffer_sum = 0;	// 定数バッファ数
-		int texture_buffer_sum = 0;		// テクスチャバッファ数
-		int screen_resource_sum = 0;	// スクリーン画面スロット数
-	};
-
-
 	// ☆ クラス ☆ //
 
 	// 一組のシェーダーの設定をまとめるためのクラス
@@ -55,11 +45,11 @@ namespace ASSET::SHADER
 
 			std::vector<C_Shader_User> shader_list;	// シェーダーコードのリスト
 
-			S_All_Shader_Resource_Signatures resource_signature;	// リソース識別用情報のリスト
+			S_Resource_Inform_List resource_inform;	// リソースのリスト
 
 			ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot unique_buffer_slot_list;	// 特殊なバッファスロットのリスト
 
-			S_Shader_Resource_Sum shader_resource_sum;	// シェーダーリソースの総数
+			int slot_number = 0;	// スロット番号
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -72,7 +62,7 @@ namespace ASSET::SHADER
 		bool M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// 全てのシェーダーに共通するリソースの定義を行う　引数：シェーダーの種類名, シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
-		bool M_Load_Shader_Resource_Signature(std::string, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		bool M_Load_Resource_Signature(E_SHADER_KIND, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// 各種シェーダーのロードとリソースの定義を行う　引数：シェーダー情報ファイルのデータ　戻り値：成功時のみtrue
 		bool M_Load_Shaders_And_Setting_Resource_Signature(SYSTEM::TEXT::C_Text_And_File_Manager &);
@@ -82,9 +72,6 @@ namespace ASSET::SHADER
 
 		// シェーダーのスロット情報を整列する
 		void M_Slot_Inform_Alignment(void);
-
-		// 特殊なバッファスロットを探索して番号を記録する
-		void M_Search_And_Save_Index_Of_Unique_Buffer_Slot_Number(void);
 
 
 	//==☆ パブリック ☆==//
@@ -115,17 +102,14 @@ namespace ASSET::SHADER
 		// シェーダーの使用システムのセットを返す　戻り値：シェーダーの使用システムの種類別リストの参照(const)
 		const std::vector<C_Shader_User> & M_Get_Shader_Code_List(void) const;
 
-		// リソース識別用情報を返す　戻り値：リソース識別用情報の参照(const)
-		const S_All_Shader_Resource_Signatures & M_Get_Resource_Signature(void) const;
-
 		// 頂点入力レイアウトのリストを返す　戻り値：入力レイアウトへの参照(const)
 		const std::vector<DATA::INPUTLAYOUT::S_INPUT_LAYOUT_SETTING> & M_Get_Input_Layout(void) const;
 
 		// 特殊なシェーダーのリストの参照を返す　戻り値：特殊なシェーダーのリストの参照（const）
 		const ASSET::SHADER::RESOURCE::S_Unique_Buffer_Slot & M_Get_Unique_Buffer_Slot(void) const;
 
-		// リソース情報の総数の情報の参照を返す　戻り値：リソース情報の総数の情報の参照（const）
-		const S_Shader_Resource_Sum & M_Get_Resource_Sum(void);
+		// リソースのリストを返す　戻り値：リソースのリストの参照(const)
+		const S_Resource_Inform_List & M_Get_Resource_Inform(void) const;
 	};
 }
 
