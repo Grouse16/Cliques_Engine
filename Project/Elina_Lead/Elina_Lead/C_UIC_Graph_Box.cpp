@@ -83,7 +83,7 @@ C_UIC_Text_Box::~C_UIC_Text_Box(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_UIC_Text_Box::M_Load_Texture(std::string in_load_texture_name)
 {
-	mpr_variable.material.M_Get_Material_Address()->M_Load_Texture_For_Slot_By_Index(0, in_load_texture_name);
+	mpr_variable.material.M_Get_Material_Address()->M_Load_Texture_To_Slot_By_Index(0, in_load_texture_name);
 
 	return;
 }

@@ -100,10 +100,11 @@
             this.CB_Texture_Name.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this.CB_Texture_Name.FormattingEnabled = true;
             this.CB_Texture_Name.Items.AddRange(new object[] {
-            "RSC_＊＊：レンダリングした画像をセットする（＊＊に名前を設定可能）",
-            "＊＊：初期ロードするテクスチャの名前（＊＊に名前を設定可能）"});
+            "＊＊：テクスチャスロットの名前を設定（＊＊に名前を設定可能）",
+            "RSC_＊＊：レンダリングした画像をセットするスロット（＊＊に名前を設定可能）",
+            "DSB_＊＊：深度ステンシルのテクスチャをセットするスロット（＊＊に名前を設定可能）"});
             this.CB_Texture_Name.Location = new System.Drawing.Point(126, 20);
-            this.CB_Texture_Name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_Texture_Name.Margin = new System.Windows.Forms.Padding(2);
             this.CB_Texture_Name.Name = "CB_Texture_Name";
             this.CB_Texture_Name.Size = new System.Drawing.Size(241, 24);
             this.CB_Texture_Name.TabIndex = 6;

@@ -11,8 +11,9 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Color.h"
 #include <directxpackedvector.h>
+
+#include "C_Color.h"
 
 
 // ☆ ネームスペース ☆ //

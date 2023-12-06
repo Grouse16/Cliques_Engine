@@ -22,6 +22,7 @@
 #include "C_Rendering_Graphics_Setting_Inform_Base.h"
 #include "C_Rendering_Font_Inform_Base.h"
 #include "C_Rendering_Screen_System_Base.h"
+#include "C_Rendering_Depth_Stencil_Buffer_Base.h"
 
 #include "S_Create_Vertex_Buffer_Inform.h"
 #include "S_Create_Constant_Buffer_Inform.h"
@@ -29,6 +30,7 @@
 #include "S_Create_Texture_Setting_Inform.h"
 #include "S_Create_Font_Data_Inform.h"
 #include "S_Create_Render_Screen_Inform.h"
+#include "S_Create_Depth_Stencil_Buffer_Inform.h"
 
 #include "C_Color.h"
 #include "S_Rect.h"
@@ -105,25 +107,55 @@ namespace RENDERING::GRAPHICS
 		virtual void M_Set_Rendering_Screen_Can_Readable(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) = 0;
 
 		// メインのレンダリング画面に戻す
-		virtual void M_Set_Main_Rendering_Screen(void) = 0;
+		virtual void M_Set_Main_Rendering_Screen_To_Rendering(void) = 0;
+
+		// メインのレンダリング画面をテクスチャスロットにセットする　引数：設定先のテクスチャのスロット番号
+		virtual void M_Set_Main_Rendering_Screen_To_Texture_Slot(int) = 0;
 
 		// メインのレンダリング画面のデータをテクスチャに移す　引数：設定先のテクスチャの参照
 		virtual void M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) = 0;
 
 		// 指定されたレンダリング画面のデータをテクスチャに移す　引数：設定するレンダリング画面番号, レンダリング画面システムの参照, 設定先のテクスチャの参照
-		virtual void M_Save_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>&, ASSET::TEXTURE::C_Texture_Map & ) = 0;
+		virtual void M_Save_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & , ASSET::TEXTURE::C_Texture_Map & ) = 0;
+
+		// レンダリング画面の削除を通知する　引数：削除されたレンダリング画面のアドレス（const）
+		virtual void M_Notice_Rendering_Screen_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base * ) = 0;
+
+
+		//-☆- 深度ステンシルバッファ -☆-//
+
+		// 深度ステンシルバッファを生成する　引数：生成先の深度ステンシルバッファの参照, 深度ステンシルバッファを生成するための情報の参照（const）　戻り値：成功時のみtrue
+		virtual bool M_Create_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & , const RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform & ) = 0;
+
+		// 深度ステンシルバッファを描画用にセットする　引数：設定する深度ステンシルバッファの参照
+		virtual void M_Set_Depth_Stencil_Buffer_To_Rendering(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) = 0;
+
+		// 深度ステンシルバッファをクリアする　引数：クリアする深度ステンシルバッファの参照
+		virtual void M_Clear_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) = 0;
+
+		// 深度ステンシルバッファをGPU用リソースのテクスチャスロットにセット　引数：設定先のスロット番号, 設定する深度ステンシルバッファの参照
+		virtual void M_Set_Depth_Stencil_Buffer_To_Texture_Slot(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) = 0;
+
+		// メインの深度ステンシルバッファをセットする
+		virtual void M_Set_Main_Depth_Stencil_Buffer_To_Rendering(void) = 0;
+
+		// メインの深度ステンシルバッファをテクスチャスロットにセットする　引数：設定先のテクスチャのスロット番号
+		virtual void M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(int) = 0;
+
+		// 深度ステンシルバッファの削除を通知する　引数：削除された深度ステンシルバッファのアドレス（const）
+		virtual void M_Notice_Depth_Stencil_Buffer_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base * ) = 0;
 
 
 		//-☆- 頂点バッファ -☆-//
 
 		// 頂点データ用の情報を生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		virtual void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&, const CREATE::S_Create_Vertex_Buffer_Inform&) = 0;
+		virtual void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> & , const CREATE::S_Create_Vertex_Buffer_Inform&) = 0;
 
 		// 今の描画を実行する　引数：頂点データ設定用情報(const)
-		virtual void M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&) = 0;
+		virtual void M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> & ) = 0;
 
 		// 描画するインデックス番号を指定したうえで今の描画を実行する　引数：頂点データ設定用情報(const), 描画するインデックスの描画の開始番号,描画するインデックスの終了番号
-		virtual void M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>&, int, int) = 0;
+		virtual void M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> & , int, int) = 0;
 
 
 		//-☆- 定数バッファ -☆-//
@@ -169,6 +201,9 @@ namespace RENDERING::GRAPHICS
 
 		// このレンダリングシステムのシェーダーの拡張子を返す　戻り値：シェーダーの拡張子
 		virtual std::string M_Get_Shader_Extension(void) = 0;
+
+		// レンダリングシステムが終了しているかどうかのフラグを返す　戻り値：レンダリングシステムが終了しているかどうかのフラグ
+		virtual bool M_Get_End_Rendering_System(void) = 0;
 
 
 		//-☆- セッタ -☆-//

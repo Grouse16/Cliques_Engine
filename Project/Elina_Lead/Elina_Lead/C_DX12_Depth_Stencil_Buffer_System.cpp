@@ -6,9 +6,12 @@
 
 
 // ☆ ファイルひらき ☆ //
+#include <directxpackedvector.h>
+
 #include "C_DX12_Depth_Stencil_Buffer_System.h"
 #include "E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h"
 #include "C_Log_System.h"
+#include "C_Half_Color.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -63,9 +66,9 @@ void C_DX12_Depth_Stencil_Buffer_System::M_Release(void)
 bool C_DX12_Depth_Stencil_Buffer_System::M_Save_Screen_For_Texture(ASSET::TEXTURE::C_Texture_Map & in_texture_map)
 {
 	// ☆ 変数宣言 ☆ //
-	void * get_mapped_data = nullptr;	// 取得したテクスチャデータ
+	D3D12_RESOURCE_DESC resource_inform = m_data.depth_stencil_buffer->GetDesc();	// リソースの情報
 
-	float * get_depth_data = nullptr;	// 深度データ（マップのデータをfloat型で読み替え）
+	void * get_mapped_data = nullptr;	// 取得したテクスチャデータ
 
 
 	// 深度ステンシルバッファのデータを取得、失敗したらエラーで抜ける
@@ -80,29 +83,60 @@ bool C_DX12_Depth_Stencil_Buffer_System::M_Save_Screen_For_Texture(ASSET::TEXTUR
 		return false;
 	}
 
-	// floatに読み替える
-	get_depth_data = reinterpret_cast<float *>(get_mapped_data);
-
 	// 必要なテクスチャサイズを生成
 	in_texture_map.M_Create_Texture_Map((int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_WIDTH_SIZE, (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_HEIGHT_SIZE);
 
 
-	// ☆ 変数宣言 ☆ //
-	std::vector<DATA::COLOR::C_Color> & texture_map = in_texture_map.M_Get_Texture_Map();	// テクスチャマップへの参照
-
-
-	// ☆ 変数宣言 ☆ //
-
-	// テクスチャのデータを移す
-	for (int now_depth_pixel = 0; now_depth_pixel < (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_ALL_SIZE; now_depth_pixel++)
+	// バイトの設定に合わせてテクスチャのデータを移す
+	switch (resource_inform.Format)
 	{
+		// ２バイトの読み取り
+	case DXGI_FORMAT::DXGI_FORMAT_D16_UNORM:
+	{
+		// ☆ 変数宣言 ☆ //
+		DirectX::PackedVector::HALF * get_depth_data = reinterpret_cast<DirectX::PackedVector::HALF * >(get_mapped_data);	// 深度データ（マップのデータをhalf_float型で読み替え)
+
+		std::vector<DATA::COLOR::C_Color> & texture_map = in_texture_map.M_Get_Texture_Map();	// テクスチャマップへの参照
+
+
 		// テクスチャのデータを移す
-		texture_map[now_depth_pixel].m_r = get_depth_data[now_depth_pixel];
-		texture_map[now_depth_pixel].m_g = get_depth_data[now_depth_pixel];
-		texture_map[now_depth_pixel].m_b = get_depth_data[now_depth_pixel];
-		texture_map[now_depth_pixel].m_a = 1.0f;
+		for (int now_depth_pixel = 0; now_depth_pixel < (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_ALL_SIZE; now_depth_pixel++)
+		{
+			// ☆ 変数宣言 ☆ //
+			float color_data = DirectX::PackedVector::XMConvertHalfToFloat(get_depth_data[now_depth_pixel]);	// 色のデータ
+
+
+			// テクスチャのデータを移す
+			texture_map[now_depth_pixel].m_r = color_data;
+			texture_map[now_depth_pixel].m_g = color_data;
+			texture_map[now_depth_pixel].m_b = color_data;
+			texture_map[now_depth_pixel].m_a = 1.0f;
+		}
+	}
+	return true;
+
+	// ４バイトの読み取り
+	case DXGI_FORMAT::DXGI_FORMAT_D32_FLOAT:
+	{
+		// ☆ 変数宣言 ☆ //
+		float * get_depth_data = reinterpret_cast<float*>(get_mapped_data);	// 深度データ（マップのデータをfloat型で読み替え)
+
+		std::vector<DATA::COLOR::C_Color> & texture_map = in_texture_map.M_Get_Texture_Map();	// テクスチャマップへの参照
+
+
+		// テクスチャのデータを移す
+		for (int now_depth_pixel = 0; now_depth_pixel < (int)RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE::e_ALL_SIZE; now_depth_pixel++)
+		{
+			// テクスチャのデータを移す
+			texture_map[now_depth_pixel].m_r = get_depth_data[now_depth_pixel];
+			texture_map[now_depth_pixel].m_g = get_depth_data[now_depth_pixel];
+			texture_map[now_depth_pixel].m_b = get_depth_data[now_depth_pixel];
+			texture_map[now_depth_pixel].m_a = 1.0f;
+		}
+	}
+	return true;
 	}
 
-	// 成功
-	return true;
+	// 型が無効なのでエラー
+	return false;
 }

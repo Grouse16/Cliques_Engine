@@ -32,6 +32,7 @@
 #include "S_Shader_Resource_Signature_Inform.h"
 #include "E_DX12_PARAMATOR.h"
 #include "C_DX12_Rendering_Screen_System.h"
+#include "C_DX12_Depth_Stencil_Buffer_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -93,20 +94,16 @@ namespace RENDERING::GRAPHICS::DX12
 
 				std::unique_ptr<RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Rendering_Screen_System> main_rendering_screen = nullptr;	// レンダリング画面の情報
 
-				// 深度ステンシルビュー用の構造体
-				struct S_Depth_Stencil_View
-				{
-					Microsoft::WRL::ComPtr<ID3D12Resource> buffer;	// 深度ステンシル用のバッファ
+				std::unique_ptr<RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System> main_depth_stencil_buffer = nullptr;	// 深度ステンシルビュー用パラメータ
 
-					Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> heap;	// デスクリプタを整理するための木構造データシステム
-
-					D3D12_CPU_DESCRIPTOR_HANDLE handle = D3D12_CPU_DESCRIPTOR_HANDLE();	// テクスチャリソース識別用情報(GPUのためにリソースを分解して変換する)
-
-				} dsv;	// 深度ステンシルビュー用パラメータ
+				RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_Buffer * now_screen_address_handle = nullptr;	// 今のスクリーンシステムへのアドレス
+				RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Depth_Stencil_Buffer * now_depth_stencil_address_handle = nullptr;	// 今の深度ステンシルバッファへのアドレス
 
 			} s_render;	// レンダー用パラメータ
 
-			std::unique_ptr<const ASSET::SHADER::S_All_Shader_Resource_Signatures> shader_resource_list = nullptr;	// 現在適用されているシェーダーのリソース識別名のリスト
+			std::unique_ptr<const ASSET::SHADER::S_Resource_Inform_List> shader_resource_list = nullptr;	// 現在適用されているシェーダーのリソース識別名のリスト
+
+			bool flg_rendering_api_end = true;	// レンダリングAPIが終了しているときのみtrueとなるフラグ
 		};
 
 		std::unique_ptr<SPr_Variable> mpr_variable;	// このクラスの変数を呼び出すための名前
@@ -167,8 +164,14 @@ namespace RENDERING::GRAPHICS::DX12
 
 		//-☆- 深度ステンシルビュー -☆-//
 
-		// 深度ステンシルビューを生成する（深度ステンシル適用先の画面バッファの切り替え用システム）　戻り値：成功時のみtrue
-		bool M_Create_Depth_Stencil_View_Descriptor_Heap(void);
+		// 深度ステンシルビューを生成する（深度ステンシル適用先の画面バッファの切り替え用システム）　引数：DX12用の深度ステンシルバッファのアドレスの参照,深度ステンシルバッファを生成するための情報の参照（const）　戻り値：成功時のみtrue
+		bool M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * &, const RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform & );
+
+		// 深度ステンシルバッファをセットする　引数：DX12用深度ステンシルバッファ情報の参照
+		void M_Set_Depth_Stencil_View(RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Depth_Stencil_Buffer & );
+
+		// 深度ステンシルバッファをクリアする　引数：DX12用深度ステンシルバッファ情報の参照
+		void M_Clear_Depth_Stencil_View_Buffer(RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Depth_Stencil_Buffer & );
 
 
 		//-☆- 頂点バッファ -☆-//
@@ -213,7 +216,7 @@ namespace RENDERING::GRAPHICS::DX12
 		bool M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * &, const CREATE::S_Create_Rendering_Graphics_Setting_Inform&);
 
 		// シェーダー毎にリソースを定義する（ディスクリプタとレンジ、サンプラーを生成する）　引数：シェーダーのリソース識別情報の参照, ディスクリプタ設定用情報の参照, レンジの設定用情報の参照, サンプラー設定用情報の参照
-		void M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures &, std::vector<D3D12_ROOT_PARAMETER> &, std::vector<D3D12_DESCRIPTOR_RANGE> &, std::vector<D3D12_STATIC_SAMPLER_DESC> &);
+		void M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_Resource_Inform_List &, std::vector<D3D12_ROOT_PARAMETER> &, std::vector<D3D12_DESCRIPTOR_RANGE> &, std::vector<D3D12_STATIC_SAMPLER_DESC> &);
 
 
 		//-☆- 描画 -☆-//
@@ -284,6 +287,9 @@ namespace RENDERING::GRAPHICS::DX12
 		// 画面をフリップして描画する処理
 		void M_Rendering_End_And_Swap_Screen(void) override;
 
+		// レンダリング先のレンダリング画面と深度ステンシルバッファをメインに戻す
+		void M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer(void);
+
 
 		//-☆- レンダリング画面 -☆-//
 
@@ -303,13 +309,43 @@ namespace RENDERING::GRAPHICS::DX12
 		void M_Set_Rendering_Screen_Can_Readable(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & ) override;
 
 		// メインのレンダリング画面に戻す
-		void M_Set_Main_Rendering_Screen(void) override;
+		void M_Set_Main_Rendering_Screen_To_Rendering(void) override;
+		
+		// メインのレンダリング画面をテクスチャスロットにセットする　引数：設定先のテクスチャのスロット番号
+		void M_Set_Main_Rendering_Screen_To_Texture_Slot(int) override;
 
 		// メインのレンダリング画面のデータをテクスチャに移す　引数：設定先のテクスチャの参照
 		void M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) override;
 
 		// 指定されたレンダリング画面のデータをテクスチャに移す　引数：設定するレンダリング画面番号, レンダリング画面システムの参照, 設定先のテクスチャの参照
 		void M_Save_Rendering_Screen_To_Texture(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & , ASSET::TEXTURE::C_Texture_Map & ) override;
+
+		// レンダリング画面の削除を通知する　引数：削除されたレンダリング画面のアドレス（const）
+		void M_Notice_Rendering_Screen_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base * ) override;
+
+
+		//-☆- 深度ステンシルバッファ -☆-//
+
+		// 深度ステンシルバッファを生成する　引数：生成先の深度ステンシルバッファの参照, 深度ステンシルバッファを生成するための情報の参照（const）　戻り値：成功時のみtrue
+		bool M_Create_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & , const RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform & ) override;
+
+		// 深度ステンシルバッファを描画用にセットする　引数：設定する深度ステンシルバッファの参照
+		void M_Set_Depth_Stencil_Buffer_To_Rendering(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) override;
+
+		// 深度ステンシルバッファをクリアする　引数：クリアする深度ステンシルバッファの参照
+		void M_Clear_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) override;
+
+		// 深度ステンシルバッファをGPU用リソースのテクスチャスロットにセット　引数：設定先のスロット番号, 設定する深度ステンシルバッファの参照
+		void M_Set_Depth_Stencil_Buffer_To_Texture_Slot(int, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & ) override;
+
+		// メインの深度ステンシルバッファをセットする
+		void M_Set_Main_Depth_Stencil_Buffer_To_Rendering(void) override;
+
+		// メインの深度ステンシルバッファをテクスチャスロットにセットする　引数：設定先のテクスチャのスロット番号
+		void M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(int) override;
+
+		// 深度ステンシルバッファの削除を通知する　引数：削除された深度ステンシルバッファのアドレス（const）
+		void M_Notice_Depth_Stencil_Buffer_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base * ) override;
 
 
 		//-☆- 頂点バッファ -☆-//
@@ -364,6 +400,9 @@ namespace RENDERING::GRAPHICS::DX12
 
 		// DX12のレンダリングシステムのシェーダーの拡張子を返す　戻り値：DX12でのシェーダーの拡張子
 		std::string M_Get_Shader_Extension(void) override;
+
+		// レンダリングシステムが終了しているかどうかのフラグを返す　戻り値：レンダリングシステムが終了しているかどうかのフラグ
+		bool M_Get_End_Rendering_System(void) override;
 
 
 		//-☆- セッタ -☆-//

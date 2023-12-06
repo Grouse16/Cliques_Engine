@@ -548,216 +548,142 @@ void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::S_Create_Re
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：スロットの情報をセットする
-// 引数   ：const S_All_Shader_Resource_Signatures & 設定するスロット識別用の情報
+// 引数   ：const S_Resource_Inform_List & 設定するスロット識別用の情報
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures& in_resource_signature)
+void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Resource_Inform_List & in_resource_signature)
 {
 	// ☆ 変数宣言 ☆ //
-	const ASSET::SHADER::S_Shader_Resource_Sum & resource_sum = mpr_variable.shader_setting_data.M_Get_Shader_Setting()->M_Get_Resource_Sum();	// シェーダーリソースの総数
-
-	int now_index_number = 0;			// 現在操作中のインデックススロット番号
-	int now_constant_index_number = 0;	// 現在操作中の定数バッファ
-	int now_texture_index_number = 0;	// 現在操作中のテクスチャスロット
-	int now_rendering_screen_index_number = 0;	// 現在操作中のレンダリング画面スロット
+	int now_constant_number = 0;		// 現在の定数バッファ番号
+	int now_texture_number = 0;			// 現在のテクスチャ番号
+	int now_screen_number = 0;			// 現在のレンダリング画面番号
+	int now_depth_stencil_number = 0;	// 現在の深度ステンシルバッファ番号
 
 
-	//-☆- リソースの生成 -☆-//
+	// 定数バッファを生成する
+	mpr_variable.constant_data_list.resize(in_resource_signature.constant_list.size());
 
-	//--☆ 全シェーダーに共通するスロットを設定 -☆-//
-
-	// 定義数分の定数バッファ用の情報を作り、情報を設定する
-	mpr_variable.constant_data_list.resize(resource_sum.constant_buffer_sum);
-	mpr_variable.texture_data_list.resize(resource_sum.texture_buffer_sum);
-	mpr_variable.rendering_screen_data_list.resize(resource_sum.screen_resource_sum);
-	for (const ASSET::SHADER::S_Constant_Resource_Signature & now_constant_inform : in_resource_signature.all_shader_signature.constant_data)
+	// 定数バッファのリソースを定義する
+	for (ASSET::MATERIAL::S_Constant_Buffer_Data & l_now_constant_inform : mpr_variable.constant_data_list)
 	{
 		// 定数バッファを生成
-		mpr_variable.constant_data_list[now_constant_index_number].data.reset(new RENDERING::CAPSULE::C_Constant_Buffer_Data_System());
+		l_now_constant_inform.data.reset(new RENDERING::CAPSULE::C_Constant_Buffer_Data_System());
 
 		// 定数バッファとデータを生成
-		if (now_constant_inform.data_create_flg)
+		if (in_resource_signature.constant_list[now_constant_number].flg_data_creation)
 		{
-			mpr_variable.constant_data_list[now_constant_index_number].data->M_Create_Constant_Buffer_And_Data(now_constant_inform.array_sum);
+			l_now_constant_inform.data->M_Create_Constant_Buffer_And_Data(in_resource_signature.constant_list[now_constant_number].array_sum);
 		}
 
 		// 定数バッファのみ生成
 		else
 		{
-			mpr_variable.constant_data_list[now_constant_index_number].data->M_Create_Only_Constant_Buffer(now_constant_inform.array_sum);
+			l_now_constant_inform.data->M_Create_Only_Constant_Buffer(in_resource_signature.constant_list[now_constant_number].array_sum);
 		}
 
 		// 定数バッファのアタッチ先のシェーダーを設定
-		mpr_variable.constant_data_list[now_constant_index_number].data->M_Set_Attach_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
+		l_now_constant_inform.data->M_Set_Attach_Shader_Kind(in_resource_signature.constant_list[now_constant_number].shader_kind);
 
 		// 設定先のGPUでの定数バッファスロット番号
-		mpr_variable.constant_data_list[now_constant_index_number].slot_index = now_index_number;
+		l_now_constant_inform.slot_index = in_resource_signature.constant_list[now_constant_number].slot_number;
 
 		// 定数バッファ識別名
-		mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
-		mpr_variable.constant_data_list[now_constant_index_number].data->M_Set_Data_Signature_Name(now_constant_inform.signature_name);
+		l_now_constant_inform.signature_name = in_resource_signature.constant_list[now_constant_number].resource_name;
+		l_now_constant_inform.data->M_Set_Data_Signature_Name(l_now_constant_inform.signature_name);
 
 		// 次の定数バッファスロットと設定先のスロット番号を設定
-		now_constant_index_number += 1;
-		now_index_number += 1;
+		now_constant_number += 1;
 	}
 
+	
 	// テクスチャ数分のスロットを作る
-	mpr_variable.texture_data_list.resize(in_resource_signature.all_shader_signature.texture_data.size());
-	for (const ASSET::SHADER::S_Texture_Resource_Signature & now_texture_inform : in_resource_signature.all_shader_signature.texture_data)
+	mpr_variable.texture_data_list.resize(in_resource_signature.texture_list.size());
+	
+	// テクスチャのリソースを定義する
+	for (ASSET::MATERIAL::S_Texture_Buffer_Data & l_now_texture_inform : mpr_variable.texture_data_list)
 	{
-		// レンダリング画面を使用するときはレンダリング画面登録用の情報を設定
-		if (now_texture_inform.signature_name.substr(0,3) == "RSC")
-		{
-			mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].slot_index = now_index_number;
-			mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].signature_name = now_texture_inform.signature_name;
+		// ☆ 変数宣言 ☆ //
+		std::string initialize_texture_name = in_resource_signature.texture_list[now_texture_number].initialize_texture_name;	// 初期化するテクスチャの名前
 
-			// 次のテクスチャスロットと設定先のスロット番号を設定
-			now_texture_index_number += 1;
-			now_rendering_screen_index_number += 1;
-			now_index_number += 1;
-			continue;
-		}
 
 		// テクスチャのデータを生成する
-		mpr_variable.texture_data_list[now_texture_index_number].data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
+		l_now_texture_inform.data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
 
 
 		// 初期からテクスチャないことを示されているなら何もしない
-		if (now_texture_inform.initialized_texture_name == "NOTHING")
+		if (initialize_texture_name == "NOTHING" || initialize_texture_name == "")
 		{
 
 		}
 
 		// オリジナル指定がされていたらでオリジナルのテクスチャを生成する
-		else if (now_texture_inform.initialized_texture_name == "ORIGINAL")
+		else if (initialize_texture_name == "ORIGINAL")
 		{
-			mpr_variable.texture_data_list[now_texture_index_number].data->M_Create_Original_Texture_Data();
+			l_now_texture_inform.data->M_Create_Original_Texture_Data();
 		}
 
 		// 初期からテクスチャがあるならそれをロードする
 		else
 		{
-			mpr_variable.texture_data_list[now_texture_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name);
+			if (l_now_texture_inform.data->M_Load_Texture(initialize_texture_name) == true)
+			{
+#ifdef _DEBUG
+				DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+				DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + initialize_texture_name);
+				DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+#endif // _DEBUG
+			}
 		}
 
 
 		// テクスチャバッファのアタッチ先のシェーダーを設定
-		mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Shader_Kind(ASSET::SHADER::E_SHADER_KIND::e_ALL);
+		l_now_texture_inform.data->M_Set_Texture_Shader_Kind(in_resource_signature.texture_list[now_texture_number].shader_kind);
 
 		// 設定先のGPUでのテクスチャバッファスロット番号
-		mpr_variable.texture_data_list[now_texture_index_number].slot_index = now_index_number;
+		l_now_texture_inform.slot_index = in_resource_signature.texture_list[now_texture_number].slot_number;
 
 		// テクスチャバッファ識別名
-		mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
-		mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Signature(now_texture_inform.signature_name);
+		l_now_texture_inform.signature_name = in_resource_signature.texture_list[now_texture_number].resource_name;
+		l_now_texture_inform.data->M_Set_Texture_Signature(l_now_texture_inform.signature_name);
 
 		// 次のテクスチャスロットと設定先のスロット番号を設定
-		now_texture_index_number += 1;
-		now_index_number += 1;
+		now_texture_number += 1;
 	}
 
-	//--☆ 各シェーダーごとのスロットを設定 -☆-//
-	for (int l_now_shader_number = 0; l_now_shader_number < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; l_now_shader_number++)
+
+	// レンダリング画面の数分のスロットを作る
+	mpr_variable.rendering_screen_list.resize(in_resource_signature.screen_list.size());
+
+	// レンダリング画面のリソースを定義する
+	for (ASSET::MATERIAL::S_Rendering_Screen_Data & l_now_screen_inform : mpr_variable.rendering_screen_list)
 	{
-		// 定義数分の定数バッファ用の情報を作り、情報を設定する
-		mpr_variable.constant_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].constant_data.size());
-		for (const ASSET::SHADER::S_Constant_Resource_Signature & now_constant_inform : in_resource_signature.signature_list[l_now_shader_number].constant_data)
-		{
-			// 定数バッファを生成
-			mpr_variable.constant_data_list[now_constant_index_number].data.reset(new RENDERING::CAPSULE::C_Constant_Buffer_Data_System());
+		// 設定先のGPUでのレンダリング画面スロット番号
+		l_now_screen_inform.slot_index = in_resource_signature.screen_list[now_screen_number].slot_number;
 
-			// 定数バッファとデータを生成
-			if (now_constant_inform.data_create_flg)
-			{
-				mpr_variable.constant_data_list[now_constant_index_number].data->M_Create_Constant_Buffer_And_Data(now_constant_inform.array_sum);
-			}
-
-			// 定数バッファのみ生成
-			else
-			{
-				mpr_variable.constant_data_list[now_constant_index_number].data->M_Create_Only_Constant_Buffer(now_constant_inform.array_sum);
-			}
-
-			// 定数バッファのアタッチ先のシェーダーを設定
-			mpr_variable.constant_data_list[now_constant_index_number].data->M_Set_Attach_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
-
-			// 設定先のGPUでの定数バッファスロット番号
-			mpr_variable.constant_data_list[now_constant_index_number].slot_index = now_index_number;
-
-			// 定数バッファ識別名
-			mpr_variable.constant_data_list[now_constant_index_number].signature_name = now_constant_inform.signature_name;
-
-			// 次の定数バッファスロットと設定先のスロット番号を設定
-			now_constant_index_number += 1;
-			now_index_number += 1;
-		}
-
-		// テクスチャ数分のスロットを作る
-		mpr_variable.texture_data_list.resize(in_resource_signature.signature_list[l_now_shader_number].texture_data.size());
-		for (const ASSET::SHADER::S_Texture_Resource_Signature & now_texture_inform : in_resource_signature.signature_list[l_now_shader_number].texture_data)
-		{
-			// レンダリング画面を使用するときはレンダリング画面登録用の情報を設定
-			if (now_texture_inform.signature_name.substr(0, 3) == "RSC")
-			{
-				mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].slot_index = now_index_number;
-				mpr_variable.rendering_screen_data_list[now_rendering_screen_index_number].signature_name = now_texture_inform.signature_name;
-
-				// 次のテクスチャスロットと設定先のスロット番号を設定
-				now_texture_index_number += 1;
-				now_rendering_screen_index_number += 1;
-				now_index_number += 1;
-				continue;
-			}
-
-
-			// テクスチャのデータを生成する
-			mpr_variable.texture_data_list[now_texture_index_number].data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
-
-
-			// 初期からテクスチャないことを示されているなら何もしない
-			if (now_texture_inform.initialized_texture_name == "NOTHING")
-			{
-
-			}
-
-			// オリジナル指定がされていたらでオリジナルのテクスチャを生成する
-			else if (now_texture_inform.initialized_texture_name == "ORIGINAL")
-			{
-				mpr_variable.texture_data_list[now_texture_index_number].data->M_Create_Original_Texture_Data();
-			}
-
-			// 初期からテクスチャがあるならそれをロードする
-			else
-			{
-				// 初期テクスチャ名のテクスチャをロード、なければエラーログを出す
-				if (mpr_variable.texture_data_list[now_texture_index_number].data->M_Load_Texture(now_texture_inform.initialized_texture_name) == false)
-				{
-#ifdef _DEBUG
-					DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-					DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + now_texture_inform.initialized_texture_name);
-					DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
-				}
-			}
-
-
-			// テクスチャバッファのアタッチ先のシェーダーを設定
-			mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Shader_Kind((ASSET::SHADER::E_SHADER_KIND)l_now_shader_number);
-
-			// 設定先のGPUでのテクスチャバッファスロット番号
-			mpr_variable.texture_data_list[now_texture_index_number].slot_index = now_index_number;
-
-			// テクスチャバッファ識別名
-			mpr_variable.texture_data_list[now_texture_index_number].signature_name = now_texture_inform.signature_name;
-			mpr_variable.texture_data_list[now_texture_index_number].data->M_Set_Texture_Signature(now_texture_inform.signature_name);
-
-			// 次のテクスチャスロットと設定先のスロット番号を設定
-			now_texture_index_number += 1;
-			now_index_number += 1;
-		}
+		// レンダリング画面識別名
+		l_now_screen_inform.signature_name = in_resource_signature.screen_list[now_screen_number].resource_name;
+		
+		// 次のレンダリング画面スロットと設定先のスロット番号を設定
+		now_screen_number += 1;
 	}
 
+
+	// 深度ステンシルバッファの数分のスロットを作る
+	mpr_variable.depth_stencil_list.resize(in_resource_signature.depth_stencil_list.size());
+
+	// 深度ステンシルバッファのリソースを定義する
+	for (ASSET::MATERIAL::S_Depth_Stencil_Data & l_now_depth_stencil_inform : mpr_variable.depth_stencil_list)
+	{
+		// 設定先のGPUでの深度ステンシルバッファスロット番号
+		l_now_depth_stencil_inform.slot_index = in_resource_signature.depth_stencil_list[now_screen_number].slot_number;
+
+		// 深度ステンシルバッファ識別名
+		l_now_depth_stencil_inform.signature_name = in_resource_signature.depth_stencil_list[now_screen_number].resource_name;
+
+		// 次の深度ステンシルバッファスロットと設定先のスロット番号を設定
+		now_depth_stencil_number += 1;
+	}
+	
 	return;
 }
 
@@ -933,7 +859,7 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 
 
 	// シェーダー設定のリソースの情報をもとにリソースを生成する
-	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Shader_Setting()->M_Get_Resource_Signature());
+	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Shader_Setting()->M_Get_Resource_Inform());
 
 
 	// レンダリング設定を生成する、失敗でエラーを出して抜ける
@@ -983,48 +909,44 @@ void C_Material::M_Attach_To_GPU(void)
 	}
 
 	// レンダリング画面を一つづつ適用する
-	for (S_Rendering_Screen_Data & now_rendering_buffer : mpr_variable.rendering_screen_data_list)
+	for (S_Rendering_Screen_Data & now_rendering_buffer : mpr_variable.rendering_screen_list)
 	{
+		// データがセットされているならそれをテクスチャとして適用する
 		if (now_rendering_buffer.data)
 		{
 			now_rendering_buffer.data->M_Set_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.use_screen_index, now_rendering_buffer.slot_index);
 		}
 
-		// デバッグ時はレンダリング画面未設定の状態でセットの処理が行われたことを示す
-#ifdef _DEBUG
+		// データがセットされていない場合はメインのレンダリング画面をテクスチャとして適用する
 		else
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング画面が未設定のままテクスチャに使用されようとしています。レンダリング画面スロット名：" + now_rendering_buffer.signature_name);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Main_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.slot_index);
 		}
-#endif // _DEBUG
+	}
+
+	// 深度ステンシルバッファを一つづつ適用する
+	for (S_Depth_Stencil_Data & now_depth_stencil_buffer : mpr_variable.depth_stencil_list)
+	{
+		// データがセットされているならそれをテクスチャとして適用する
+		if (now_depth_stencil_buffer.data)
+		{
+			now_depth_stencil_buffer.data->M_Set_Depth_Stencil_Buffer_To_Texture_Slot(now_depth_stencil_buffer.slot_index);
+		}
+
+		// データがセットされていない場合はメインの深度ステンシルバッファをテクスチャとして適用する
+		else
+		{
+			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(now_depth_stencil_buffer.slot_index);
+		}
 	}
 
 	return;
 }
 
 
-//-☆- セッタ -☆-//
+//-☆- 定数バッファ -☆-//
 
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたスロットにテクスチャをロードする
-// 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
-// 戻り値 ：bool 成功時のみtrue
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Material::M_Load_Texture_For_Slot_By_Index(int in_index, std::string in_load_texture_name)
-{
-	// 配列外を指定されたら抜ける
-	if (mpr_variable.texture_data_list.size() <= in_index)
-	{
-		return false;
-	}
-
-	return mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
-}
-
-
-//-☆- ゲッタ -☆-//
+//--☆ ゲッタ ☆--//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された定数バッファ管理用データのアドレスを返す
@@ -1040,40 +962,6 @@ S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Index(int in_
 	}
 
 	return &mpr_variable.constant_data_list[in_index];
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたテクスチャ管理用データのアドレスを返す
-// 引数   ：int 取得するテクスチャ管理用データの番号
-// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Index(int in_index)
-{
-	// 範囲外を指定されたらnullptrで見つからなかったことを示す
-	if (0 <= in_index || in_index < mpr_variable.texture_data_list.size())
-	{
-		return nullptr;
-	}
-
-	return &mpr_variable.texture_data_list[in_index];
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定されたレンダリング画面管理用データのアドレスを返す　引数：
-// 引数   ：int 取得するレンダリング画面管理用データの番号
-// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_Data_By_Index(int in_index)
-{
-	// 範囲外を指定されたらnullptrで見つからなかったことを示す
-	if (0 <= in_index || in_index < mpr_variable.rendering_screen_data_list.size())
-	{
-		return nullptr;
-	}
-
-	return &mpr_variable.rendering_screen_data_list[in_index];
 }
 
 
@@ -1099,53 +987,11 @@ S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Name(std::str
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された名前のテクスチャバッファ管理用データのアドレスを返す
-// 引数   ：string 取得するテクスチャバッファ管理用データの名前
-// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
-{
-	// 一致する名前を探索し、あればそのアドレスを返す
-	for (S_Texture_Buffer_Data & texture_data_inform : mpr_variable.texture_data_list)
-	{
-		if (texture_data_inform.signature_name == in_texture_buffer_name)
-		{
-			return &texture_data_inform;
-		}
-	}
-
-	// 見つからなかった
-	return nullptr;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された名前のレンダリング画面管理用データのアドレスを返す
-// 引数   ：string 取得するレンダリング画面管理用データの名前
-// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_By_Name(std::string in_rendering_screen_name)
-{
-	// 一致する名前を探索し、あればそのアドレスを返す
-	for (S_Rendering_Screen_Data & rendering_screen_inform : mpr_variable.rendering_screen_data_list)
-	{
-		if (rendering_screen_inform.signature_name == in_rendering_screen_name)
-		{
-			return &rendering_screen_inform;
-		}
-	}
-
-	// 見つからなかった
-	return nullptr;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前の定数管理用データのスロット番号を返す
 // 引数   ：string 取得する定数バッファ管理用データの名前
 // 戻り値 ：int 指定された定数バッファの番号、なければ-1
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Material::M_Get_Constant_Buffer_Number_By_Name(std::string in_constant_buffer_name)
+int C_Material::M_Get_Constant_Buffer_Slot_Number_By_Name(std::string in_constant_buffer_name)
 {
 	// ☆ 変数宣言 ☆ //
 	int constant_sum = (int)mpr_variable.constant_data_list.size();	// 定数バッファ数
@@ -1164,58 +1010,7 @@ int C_Material::M_Get_Constant_Buffer_Number_By_Name(std::string in_constant_buf
 	return -1;
 }
 
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された名前のテクスチャバッファ管理用データのスロット番号を返す
-// 引数   ：string 取得するテクスチャバッファ管理用データの名前
-// 戻り値 ：int 指定されたテクスチャの番号、なければ-1
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Material::M_Get_Texture_Number_By_Name(std::string in_texture_buffer_name)
-{
-	// ☆ 変数宣言 ☆ //
-	int texture_sum = (int)mpr_variable.texture_data_list.size();	// テクスチャ数
-
-
-	// 一致する名前を探索し、あればそのアドレスを返す
-	for (int l_texture_num = 0; l_texture_num < texture_sum; l_texture_num++)
-	{
-		if (mpr_variable.texture_data_list[l_texture_num].signature_name == in_texture_buffer_name)
-		{
-			return l_texture_num;
-		}
-	}
-
-	// 見つからなかった
-	return -1;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：指定された名前のレンダリング画面管理用データのスロット番号を返す
-// 引数   ：string 取得するレンダリング画面管理用データの名前
-// 戻り値 ：int 指定されたレンダリング画面の番号、なければ-1
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Material::M_Get_Rendering_Screen_Number_By_Name(std::string in_rendering_screen_name)
-{
-	// ☆ 変数宣言 ☆ //
-	int rendering_screen_sum = (int)mpr_variable.rendering_screen_data_list.size();	// レンダリング画面数
-
-
-	// 一致する名前を探索し、あればそのアドレスを返す
-	for (int l_rendering_screen_num = 0; l_rendering_screen_num < rendering_screen_sum; l_rendering_screen_num++)
-	{
-		if (mpr_variable.rendering_screen_data_list[l_rendering_screen_num].signature_name == in_rendering_screen_name)
-		{
-			return l_rendering_screen_num;
-		}
-	}
-
-	// 見つからなかった
-	return -1;
-}
-
-
-//-☆- WVP ワールド ビュー プロジェクション -☆-//
+//--☆ WVP ワールド ビュー プロジェクション ☆--//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする
@@ -1264,7 +1059,7 @@ void C_Material::M_Set_View_Projection_By_Main_Camera(void)
 // 引数   ：const XMMATRIX & セットするビュー変換行列の参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX& in_set_view_matrix)
+void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX & in_set_view_matrix)
 {
 	// WVP用のスロットがないときはセットしない
 	if (mpr_variable.unique_slot_list->wvp < -1)
@@ -1315,8 +1110,7 @@ void C_Material::M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data 
 	return;
 }
 
-
-//-☆- ボーン -☆-//
+//--☆ ボーン ☆--//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ボーンのマトリクスをマテリアルにセットする
@@ -1342,8 +1136,7 @@ void C_Material::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_b
 	return;
 }
 
-
-//-☆- 質感情報 -☆-//
+//--☆ 質感情報 ☆--//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：マテリアルの質感情報をセットする
@@ -1363,3 +1156,306 @@ void C_Material::M_Set_Material_Detail(const DATA::MATERIAL_DETAIL::S_Material_D
 
 	return;
 }
+
+
+//-☆- テクスチャ -☆-//
+
+//--☆ ロード ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたスロットにテクスチャをロードする
+// 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Material::M_Load_Texture_To_Slot_By_Index(int in_index, std::string in_load_texture_name)
+{
+	// 配列外を指定されたら抜ける
+	if (in_index < 0 || mpr_variable.texture_data_list.size() <= in_index)
+	{
+		return false;
+	}
+
+	return mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたテクスチャ管理用データのアドレスを返す
+// 引数   ：int 取得するテクスチャ管理用データの番号
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.texture_data_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.texture_data_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のテクスチャバッファ管理用データのアドレスを返す
+// 引数   ：string 取得するテクスチャバッファ管理用データの名前
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Texture_Buffer_Data* C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Texture_Buffer_Data & texture_data_inform : mpr_variable.texture_data_list)
+	{
+		if (texture_data_inform.signature_name == in_texture_buffer_name)
+		{
+			return &texture_data_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のテクスチャバッファ管理用データのスロット番号を返す
+// 引数   ：string 取得するテクスチャバッファ管理用データの名前
+// 戻り値 ：int 指定されたテクスチャの番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Texture_Slot_Number_By_Name(std::string in_texture_buffer_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int texture_sum = (int)mpr_variable.texture_data_list.size();	// テクスチャ数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_texture_num = 0; l_texture_num < texture_sum; l_texture_num++)
+	{
+		if (mpr_variable.texture_data_list[l_texture_num].signature_name == in_texture_buffer_name)
+		{
+			return l_texture_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+
+//-☆- レンダリング画面 -☆-//
+
+//--☆ セッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int レンダリング画像の設定先スロット番号, C_Rendering_Screen_System & レンダリング画像の参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Rendering_Screen_To_Slot_By_Index(int in_rendering_slot_number, RENDERING::CAPSULE::C_Rendering_Screen_System & in_rendering_screen)
+{
+	// 配列外を指定されたら抜ける
+	if (in_rendering_slot_number < 0 || mpr_variable.rendering_screen_list.size() <= in_rendering_slot_number)
+	{
+		return;
+	}
+
+	// レンダリング画面をセットする
+	mpr_variable.rendering_screen_list[in_rendering_slot_number].data = &in_rendering_screen;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインのレンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int レンダリング画像の設定先スロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Main_Rendering_Screen_To_Slot_By_Index(int in_rendering_slot_number)
+{
+	// 配列外を指定されたら抜ける
+	if (in_rendering_slot_number < 0 || mpr_variable.rendering_screen_list.size() <= in_rendering_slot_number)
+	{
+		return;
+	}
+
+	// レンダリング画面をセットする（nullptrでメインのレンダリング画面）
+	mpr_variable.rendering_screen_list[in_rendering_slot_number].data = nullptr;
+
+	return;
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたレンダリング画面管理用データのアドレスを返す
+// 引数   ：int 取得するレンダリング画面管理用データの番号
+// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.rendering_screen_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.rendering_screen_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のレンダリング画面管理用データのアドレスを返す
+// 引数   ：string 取得するレンダリング画面管理用データの名前
+// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_By_Name(std::string in_rendering_screen_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Rendering_Screen_Data & rendering_screen_inform : mpr_variable.rendering_screen_list)
+	{
+		if (rendering_screen_inform.signature_name == in_rendering_screen_name)
+		{
+			return &rendering_screen_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のレンダリング画面管理用データのスロット番号を返す
+// 引数   ：string 取得するレンダリング画面管理用データの名前
+// 戻り値 ：int 指定されたレンダリング画面の番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Rendering_Screen_Slot_Number_By_Name(std::string in_rendering_screen_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int rendering_screen_sum = (int)mpr_variable.rendering_screen_list.size();	// レンダリング画面数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_rendering_screen_num = 0; l_rendering_screen_num < rendering_screen_sum; l_rendering_screen_num++)
+	{
+		if (mpr_variable.rendering_screen_list[l_rendering_screen_num].signature_name == in_rendering_screen_name)
+		{
+			return l_rendering_screen_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+
+//-☆- 深度ステンシルバッファ -☆-//
+
+//--☆ セッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int 深度ステンシルバッファの設定先スロット番号, C_Depth_Stencil_Buffer_System & 深度ステンシルバッファの参照
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Depth_Stencil_Buffer_To_Slot_By_Index(int in_depth_stencil_buffer_slot, RENDERING::CAPSULE::C_Depth_Stencil_Buffer_System & in_depth_stencil_buffer)
+{
+	// 配列外を指定されたら抜ける
+	if (in_depth_stencil_buffer_slot < 0 || mpr_variable.depth_stencil_list.size() <= in_depth_stencil_buffer_slot)
+	{
+		return;
+	}
+
+	// 深度ステンシルバッファをセットする
+	mpr_variable.depth_stencil_list[in_depth_stencil_buffer_slot].data = &in_depth_stencil_buffer;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインの深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int 深度ステンシルバッファの設定先スロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Main_Depth_Stencil_Buffer_To_Slot_To_Index(int in_depth_stencil_buffer_slot)
+{
+	// 配列外を指定されたら抜ける
+	if (in_depth_stencil_buffer_slot < 0 || mpr_variable.depth_stencil_list.size() <= in_depth_stencil_buffer_slot)
+	{
+		return;
+	}
+
+	// 深度ステンシルバッファをセットする（nullptrでメインの深度ステンシルバッファ）
+	mpr_variable.depth_stencil_list[in_depth_stencil_buffer_slot].data = nullptr;
+
+	return;
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された深度ステンシルバッファ管理用データのアドレスを返す
+// 引数   ：int 取得する深度ステンシルバッファ管理用データの番号
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Depth_Stencil_Data * C_Material::M_Get_Depth_Stencil_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.depth_stencil_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.depth_stencil_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の深度ステンシルバッファ管理用データのアドレスを返す
+// 引数   ：string 取得する深度ステンシルバッファ管理用データの名前
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Depth_Stencil_Data * C_Material::M_Get_Depth_Stencil_Buffer_By_Name(std::string in_depth_stencil_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Depth_Stencil_Data & depth_stencil_inform : mpr_variable.depth_stencil_list)
+	{
+		if (depth_stencil_inform.signature_name == in_depth_stencil_name)
+		{
+			return &depth_stencil_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の深度ステンシルバッファ管理用データのスロット番号を返す
+// 引数   ：string 取得する深度ステンシルバッファ管理用データの名前
+// 戻り値 ：int 指定された深度ステンシルバッファの番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Depth_Stencil_Buffer_Slot_Number_By_Name(std::string in_depth_stencil_buffer_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int depth_stencil_sum = (int)mpr_variable.depth_stencil_list.size();	// 深度ステンシルバッファ数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_depth_stencil_num = 0; l_depth_stencil_num < depth_stencil_sum; l_depth_stencil_num++)
+	{
+		if (mpr_variable.depth_stencil_list[l_depth_stencil_num].signature_name == in_depth_stencil_buffer_name)
+		{
+			return l_depth_stencil_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+

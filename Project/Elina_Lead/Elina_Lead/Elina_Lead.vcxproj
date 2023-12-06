@@ -157,14 +157,17 @@
     <ClInclude Include="C_Camera_System.h" />
     <ClInclude Include="C_Color_Converter.h" />
     <ClInclude Include="C_Component_Base.h" />
+    <ClInclude Include="C_Depth_Stencil_Buffer_System.h" />
     <ClInclude Include="C_DX12_Depth_Stencil_Buffer_System.h" />
     <ClInclude Include="C_DX12_Rendering_Screen_System.h" />
     <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h" />
     <ClInclude Include="C_Rendering_Screen_System.h" />
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
     <ClInclude Include="E_DX12_PARAMATOR.h" />
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
+    <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Render_Screen_Inform.h" />
     <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
     <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
@@ -316,6 +319,7 @@
     <ClCompile Include="C_Color.cpp" />
     <ClCompile Include="C_Color_Converter.cpp" />
     <ClCompile Include="C_Component_Base.cpp" />
+    <ClCompile Include="C_Depth_Stencil_Buffer_System.cpp" />
     <ClCompile Include="C_DX12_Depth_Stencil_Buffer_System.cpp" />
     <ClCompile Include="C_DX12_Rendering_Screen_System.cpp" />
     <ClCompile Include="C_Float_2.cpp" />

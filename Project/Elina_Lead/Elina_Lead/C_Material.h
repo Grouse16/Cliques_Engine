@@ -24,6 +24,7 @@
 #include "C_Rendering_Screen_System.h"
 #include "S_Material_Detail.h"
 #include "S_World_View_Projection.h"
+#include "C_Depth_Stencil_Buffer_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -68,6 +69,17 @@ namespace ASSET::MATERIAL
 	};
 
 
+	// 深度ステンシルバッファを使用する際の情報をまとめた構造体
+	struct S_Depth_Stencil_Data
+	{
+		RENDERING::CAPSULE::C_Depth_Stencil_Buffer_System * data = nullptr;	// 深度ステンシルバッファを管理するシステムのアドレス
+
+		std::string signature_name = "default";	// 深度ステンシルバッファの識別名
+
+		int slot_index = 0;	// 深度ステンシルバッファ用のテクスチャスロットの番号
+	};
+
+
 	// ☆ クラス ☆ //
 	
 	// マテリアルのクラス、描画時の描画方法の設定を行う
@@ -85,7 +97,9 @@ namespace ASSET::MATERIAL
 		
 			std::vector<S_Texture_Buffer_Data> texture_data_list;	// 使用するテクスチャのリスト
 
-			std::vector<S_Rendering_Screen_Data> rendering_screen_data_list;	// 使用するレンダリングスクリーンのリスト
+			std::vector<S_Rendering_Screen_Data> rendering_screen_list;	// 使用するレンダリングスクリーンのリスト
+
+			std::vector<S_Depth_Stencil_Data> depth_stencil_list;	// 使用する深度ステンシルのリスト
 
 			RENDERING::CAPSULE::C_Rendering_Setting_System rendering_setting;	// 描画用設定
 
@@ -158,7 +172,7 @@ namespace ASSET::MATERIAL
 		//-☆- 生成 -☆-//
 
 		// スロットの情報をセットする　引数：設定するスロット識別用の情報
-		void M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & );
+		void M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Resource_Inform_List & );
 
 		// レンダリング情報を生成する　引数：現在のファイル文字列　戻り値：成功時のみtrue
 		bool M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager &);
@@ -193,7 +207,9 @@ namespace ASSET::MATERIAL
 		void M_Attach_To_GPU(void);
 
 
-		//-☆- セッタ -☆-//
+		//-☆- 定数バッファ -☆-//
+
+		//--☆ セッタ ☆--//
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：指定された定数バッファにデータをセットする
@@ -201,10 +217,10 @@ namespace ASSET::MATERIAL
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		template<class C_Constant_Data_Class>
-		void M_Set_Constant_Data_To_Buffer_By_Index(int in_index, int in_buffer_index, const C_Constant_Data_Class & in_set_data)
+		void M_Set_Constant_Data_To_Slot_By_Index(int in_index, int in_buffer_index, const C_Constant_Data_Class& in_set_data)
 		{
 			// 配列外を指定されたら抜ける
-			if (mpr_variable.constant_data_list.size() <= in_index)
+			if (in_index < 0 || mpr_variable.constant_data_list.size() <= in_index)
 			{
 				return;
 			}
@@ -215,46 +231,23 @@ namespace ASSET::MATERIAL
 
 
 			// データをセットする
-			mpr_variable.constant_data_list[in_index].data->M_Set_Constant_Data(constant_data_size, in_buffer_index, reinterpret_cast<void * >(&in_set_data));
+			mpr_variable.constant_data_list[in_index].data->M_Set_Constant_Data(constant_data_size, in_buffer_index, reinterpret_cast<void*>(&in_set_data));
 
 			return;
 		}
 
-		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名　戻り値：成功時のみtrue
-		bool M_Load_Texture_For_Slot_By_Index(int, std::string);
-
-
-		//-☆- ゲッタ -☆-//
+		//--☆ ゲッタ ☆--//
 
 		// 指定された定数バッファ管理用データのアドレスを返す　引数：取得する定数バッファ管理用データの番号　戻り値：指定された定数バッファ情報のアドレス、なければnullptr
 		S_Constant_Buffer_Data * M_Get_Constant_Buffer_Data_By_Index(int);
 
-		// 指定されたテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの番号　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
-		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Index(int);
-
-		// 指定されたレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの番号　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
-		S_Rendering_Screen_Data * M_Get_Rendering_Screen_Data_By_Index(int);
-
 		// 指定された名前の定数バッファ管理用データのアドレスを返す　引数：取得する定数バッファ管理用データの名前　戻り値：指定された定数バッファ情報のアドレス、なければnullptr
 		S_Constant_Buffer_Data * M_Get_Constant_Buffer_Data_By_Name(std::string);
 
-		// 指定された名前のテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
-		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Name(std::string);
-
-		// 指定された名前のレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
-		S_Rendering_Screen_Data * M_Get_Rendering_Screen_By_Name(std::string);
-
 		// 指定された名前の定数バッファ管理用データのスロット番号を返す　引数：取得する定数バッファ管理用データの名前　戻り値：int 指定された定数バッファの番号、なければ-1
-		int M_Get_Constant_Buffer_Number_By_Name(std::string);
+		int M_Get_Constant_Buffer_Slot_Number_By_Name(std::string);
 
-		// 指定された名前のテクスチャ管理用データのスロット番号を返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャの番号、なければ-1
-		int M_Get_Texture_Number_By_Name(std::string);
-
-		// 指定された名前のレンダリング画面管理用データのスロット番号を返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面の番号、なければ-1
-		int M_Get_Rendering_Screen_Number_By_Name(std::string);
-
-
-		//-☆- WVP ワールド ビュー プロジェクション -☆-//
+		//--☆ WVP ワールド ビュー プロジェクション ☆--//
 
 		// 渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする　引数：セットするワールド変換行列の参照(const)
 		void M_Set_World_Matrix(const DirectX::XMMATRIX & );
@@ -271,17 +264,78 @@ namespace ASSET::MATERIAL
 		// 渡されたWVP変換行列をWVP用の定数バッファにセットする　引数：セットするWVP変換行列の参照(const)
 		void M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data & );
 
-
-		//-☆- ボーン -☆-//
+		//--☆ ボーン ☆--//
 
 		// 渡されたボーンマトリクス行列をボーン用の定数バッファにセットする
 		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & );
 
-
-		//-☆- 質感情報 -☆-//
+		//--☆ 質感情報 ☆--//
 
 		// マテリアルの質感情報をセットする　引数：セットするマテリアル質感情報の参照（const）
 		void M_Set_Material_Detail(const DATA::MATERIAL_DETAIL::S_Material_Detail & );
+
+
+		//-☆- テクスチャ -☆-//
+
+		//--☆ ロード ☆--//
+
+		// 指定されたスロットにテクスチャをロードする　引数：テクスチャスロット番号, ロードするテクスチャ名　戻り値：成功時のみtrue
+		bool M_Load_Texture_To_Slot_By_Index(int, std::string);
+
+		//--☆ ゲッタ ☆--//
+
+		// 指定されたテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの番号　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
+		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Index(int);
+
+		// 指定された名前のテクスチャ管理用データのアドレスを返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャバッファ情報のアドレス、なければnullptr
+		S_Texture_Buffer_Data * M_Get_Texture_Data_By_Name(std::string);
+
+		// 指定された名前のテクスチャ管理用データのスロット番号を返す　引数：取得するテクスチャ管理用データの名前　戻り値：指定されたテクスチャの番号、なければ-1
+		int M_Get_Texture_Slot_Number_By_Name(std::string);
+
+
+		//-☆- レンダリング画面 -☆-//
+
+		//--☆ セッタ ☆--//
+
+		// レンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない　引数：レンダリング画像の設定先スロット番号, レンダリング画像の参照
+		void M_Set_Rendering_Screen_To_Slot_By_Index(int, RENDERING::CAPSULE::C_Rendering_Screen_System & );
+
+		// メインのレンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない　引数：レンダリング画像の設定先スロット番号
+		void M_Set_Main_Rendering_Screen_To_Slot_By_Index(int);
+
+		//--☆ ゲッタ ☆--//
+
+		// 指定されたレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの番号　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+		S_Rendering_Screen_Data * M_Get_Rendering_Screen_Data_By_Index(int);
+
+		// 指定された名前のレンダリング画面管理用データのアドレスを返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+		S_Rendering_Screen_Data * M_Get_Rendering_Screen_By_Name(std::string);
+
+		// 指定された名前のレンダリング画面管理用データのスロット番号を返す　引数：取得するレンダリング画面管理用データの名前　戻り値：指定されたレンダリング画面の番号、なければ-1
+		int M_Get_Rendering_Screen_Slot_Number_By_Name(std::string);
+
+
+		//-☆- 深度ステンシルバッファ -☆-//
+
+		//--☆ セッタ ☆--//
+
+		// 深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない　引数：深度ステンシルバッファの設定先スロット番号, 深度ステンシルバッファの参照
+		void M_Set_Depth_Stencil_Buffer_To_Slot_By_Index(int, RENDERING::CAPSULE::C_Depth_Stencil_Buffer_System & );
+
+		// メインの深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない　引数：深度ステンシルバッファの設定先スロット番号
+		void M_Set_Main_Depth_Stencil_Buffer_To_Slot_To_Index(int);
+
+		//--☆ ゲッタ ☆--//
+
+		// 指定された深度ステンシルバッファ管理用データのアドレスを返す　引数：取得する深度ステンシルバッファ管理用データの番号　戻り値：指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+		S_Depth_Stencil_Data * M_Get_Depth_Stencil_Data_By_Index(int);
+
+		// 指定された名前の深度ステンシルバッファ管理用データのアドレスを返す　引数：取得する深度ステンシルバッファ管理用データの名前　戻り値：指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+		S_Depth_Stencil_Data * M_Get_Depth_Stencil_Buffer_By_Name(std::string);
+
+		// 指定された名前の深度ステンシルバッファ管理用データのスロット番号を返す　引数：取得する深度ステンシルバッファ管理用データの名前　戻り値：指定された深度ステンシルバッファの番号、なければ-1
+		int M_Get_Depth_Stencil_Buffer_Slot_Number_By_Name(std::string);
 	};
 }
 

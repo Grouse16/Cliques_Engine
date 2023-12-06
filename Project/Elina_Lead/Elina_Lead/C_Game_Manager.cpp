@@ -305,6 +305,14 @@ void C_Game_Manager::M_Executes_Process(void)
 
 	//======☆ スタート ☆======//
 
+	// レンダリングAPIが削除されているならゲームを終了
+	if (RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_End_Rendering_System())
+	{
+		M_Set_Game_Exist_Flg(false);
+
+		return;
+	}
+
 	// OSの更新　すでに更新中ならスルー
 	if (mpr_variable.flg_OS_active_now == false)
 	{

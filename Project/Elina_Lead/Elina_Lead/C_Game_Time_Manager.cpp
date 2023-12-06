@@ -181,7 +181,7 @@ void C_Game_Time_Manager::M_Frame_End_Update(void)
 
 
 	// タイムラインを削除する要求が来ている場合は削除を行う
-	if (m_this->mpr_variable.time_line_list.size() <= 0)
+	if (m_this->mpr_variable.time_line_list.size() > 0)
 	{
 		m_this->mpr_variable.time_line_list.erase
 		(

@@ -18,7 +18,7 @@ namespace RENDERING::INFORM::DEPTH_STENCIL
 	// ☆ 列挙 ☆ //
 
 	// 深度ステンシルバッファのピクセル数を指定する列挙
-	enum class E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE
+	enum class E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE : unsigned int
 	{
 		e_WIDTH_SIZE = 1920,	// 横幅のピクセル数
 		e_HEIGHT_SIZE = 1080,	// 縦幅のピクセル数

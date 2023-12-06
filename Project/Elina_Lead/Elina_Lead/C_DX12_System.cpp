@@ -26,6 +26,7 @@
 #include "C_DX12_Font_Data_Set.h"
 #include "S_Create_Render_Screen_Inform.h"
 #include "E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h"
+#include "C_DX12_Depth_Stencil_Buffer_System.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -52,12 +53,14 @@ using namespace RENDERING::GRAPHICS::DX12;
 
 // ☆ インライン関数 ☆ //
 
+//-☆- 設定 -☆-//
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ルートシグネチャのパラメータの設定を行う
 // 引数   ：vector<D3D12_ROOT_PARAMETER> & 設定先ルートパラメーターの参照, vector<D3D12_DESCRIPTOR_RANGE> & 設定先のレンジの参照, D3D12_DESCRIPTOR_RANGE_TYPE 設定する種類, int レジスタ番号, int シェーダー番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER>& in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE>& in_range, D3D12_DESCRIPTOR_RANGE_TYPE in_set_type, int register_num, int shader_num)
+inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE>& in_range, D3D12_DESCRIPTOR_RANGE_TYPE in_set_type, int register_num, int shader_num)
 {
     // ☆ 変数宣言 ☆ //
     int set_param_number = (int)in_root_param.size();    // 設定先のパラメータの配列番号
@@ -103,50 +106,11 @@ inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER>& in_root
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：渡された文字列をテクスチャのUV使用方法に変換して返す
-// 引数   ：string UVの使用方法の指定用文字列
-// 戻り値 ：D3D12_TEXTURE_ADDRESS_MODE UVの使用方法の列挙
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture_address_mode_text)
-{
-    // UVが０～１を超えると繰り返し表示
-    if (in_texture_address_mode_text == "WARP")
-    {
-        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-    }
-
-    // UVが０～１を超えるとテクスチャの端に到達するたびに反転して繰り返し表示
-    else if (in_texture_address_mode_text == "MIRROR")
-    {
-        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
-    }
-
-    // UVが０～１を超えるとUVを強制的に０か１に設定
-    else if (in_texture_address_mode_text == "CLAMP")
-    {
-        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
-    }
-
-    // UVが０～１を超えるとUVを強制的に黒色を返す
-    else if (in_texture_address_mode_text == "BORDER")
-    {
-        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_BORDER;
-    }
-
-    // UVが０～１を超えるとUVを一度反転したテクスチャが出現するがその後は何も表示しない
-    else
-    {
-        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
-    }
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ルートシグネチャのパラメータの設定を行う
 // 引数   ：vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報, int レジスタ番号, int シェーダー番号, D3D12_TEXTURE_ADDRESS_MODE UVの使用方法
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC>& in_sampler_desc, int in_register_num, int in_shader_num, D3D12_TEXTURE_ADDRESS_MODE in_address_mode)
+inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler_desc, int in_register_num, int in_shader_num, D3D12_TEXTURE_ADDRESS_MODE in_address_mode)
 {
     // ☆ 変数宣言 ☆ //
     int set_static_number = (int)in_sampler_desc.size();    // 設定先のパラメータの配列番号
@@ -204,7 +168,7 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC>& in_
 // 引数   ：D3D12_ROOT_SIGNATURE_DESC & ルートシグネチャの設定用情報の参照, vector<D3D12_ROOT_PARAMETER> & ディスクリプタ設定用情報の参照, vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_ROOT_SIGNATURE_DESC& in_root_signature, std::vector<D3D12_ROOT_PARAMETER>& in_parameter, std::vector<D3D12_STATIC_SAMPLER_DESC>& in_sampler)
+inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_ROOT_SIGNATURE_DESC & in_root_signature, std::vector<D3D12_ROOT_PARAMETER>& in_parameter, std::vector<D3D12_STATIC_SAMPLER_DESC>& in_sampler)
 {
     // ディスクリプタ情報があればディスクリプタスロット数と最初のアドレスをセット
     if (in_parameter.size() > 0)
@@ -257,6 +221,72 @@ inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const AS
     in_set_code.BytecodeLength = in_shader_code->M_Get_Cord_Size();
 
     return;
+}
+
+
+//-☆- 変換 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡された文字列をテクスチャのUV使用方法に変換して返す
+// 引数   ：string UVの使用方法の指定用文字列
+// 戻り値 ：D3D12_TEXTURE_ADDRESS_MODE UVの使用方法の列挙
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture_address_mode_text)
+{
+    // UVが０～１を超えると繰り返し表示
+    if (in_texture_address_mode_text == "WARP")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+    }
+
+    // UVが０～１を超えるとテクスチャの端に到達するたびに反転して繰り返し表示
+    else if (in_texture_address_mode_text == "MIRROR")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR;
+    }
+
+    // UVが０～１を超えるとUVを強制的に０か１に設定
+    else if (in_texture_address_mode_text == "CLAMP")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+    }
+
+    // UVが０～１を超えるとUVを強制的に黒色を返す
+    else if (in_texture_address_mode_text == "BORDER")
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+    }
+
+    // UVが０～１を超えるとUVを一度反転したテクスチャが出現するがその後は何も表示しない
+    else
+    {
+        return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
+    }
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡された文字列をDX12のシェーダーの種類に変換して返す
+// 引数   ：E_SHADER_KIND シェーダーの種類
+// 戻り値 ：D3D12_SHADER_VISIBILITY DX12のシェーダーの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER::E_SHADER_KIND in_shader_kind)
+{
+    switch (in_shader_kind)
+    {
+    case ASSET::SHADER::E_SHADER_KIND::e_VERTEX:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_VERTEX;
+    case ASSET::SHADER::E_SHADER_KIND::e_HULL_TCS:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_HULL;
+    case ASSET::SHADER::E_SHADER_KIND::e_DOMAIN_TES:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_DOMAIN;
+    case ASSET::SHADER::E_SHADER_KIND::e_GEOMETRY:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_GEOMETRY;
+    case ASSET::SHADER::E_SHADER_KIND::e_PIXEL_FRAGMENT:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_PIXEL;
+    case ASSET::SHADER::E_SHADER_KIND::e_ALL:
+        return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL;
+    }
 }
 
 
@@ -354,7 +384,7 @@ bool C_DX12_System::M_DirectX12_Init(void)
 
         // 生成するスクリーンの情報
         create_screen_inform.m_screen_buffer_sum = 2;	// 生成するスクリーンバッファ数
-        create_screen_inform.m_rendering_screen_format = RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_4_BYTE;  // データのバイトフォーマット
+        create_screen_inform.m_rendering_screen_format = RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_2_BYTE;  // データのバイトフォーマット
         create_screen_inform.m_screen_texture_setting = RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING::e_TEXTURE_2D;        // テクスチャの仕様
 
         // レンダリング先の画面バッファの生成
@@ -369,18 +399,37 @@ bool C_DX12_System::M_DirectX12_Init(void)
     }
 
 
-    // ☆ 深度ステンシルビューの生成 ☆ //  （深度ステンシル適用先の画面バッファの切り替え用システム）  // 失敗で初期化を中断
-    if (M_Create_Depth_Stencil_View_Descriptor_Heap() == false)
+    // ☆ 深度ステンシルビューの生成 ☆ //
     {
-        return false;
+        // ☆ 変数宣言 ☆ //
+        DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = new DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System(); // DX12用の深度ステンシルバッファ
+
+        RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform create_system;    // 深度ステンシルバッファを生成するための情報
+
+
+        // 深度ステンシルバッファを生成するための情報をセットする
+        create_system.m_byte_format = RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT::e_4_BYTE;
+
+        // 深度ステンシルバッファを生成する、失敗したらエラーで抜ける
+        if (M_Create_Depth_Stencil_View_Descriptor_Heap(dx12_depth_stencil_screen, create_system) == false)
+        {
+            return false;
+        }
+
+        // 新しい深度ステンシルバッファに入れ替える
+        mpr_variable->s_render.main_depth_stencil_buffer.reset(dx12_depth_stencil_screen);
+        mpr_variable->s_render.now_depth_stencil_address_handle = &dx12_depth_stencil_screen->m_data;
     }
 
 
     // 画面を塗りつぶす色を設定
-    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_RED] = 0.0f; // 赤
-    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_GREEN] = 0.8f; // 緑
-    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_BLUE] = 0.8f; // 青
-    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_ALPHA] = 1.0f; // α
+    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_RED] = 0.0f;    // 赤
+    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_GREEN] = 0.8f;  // 緑
+    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_BLUE] = 0.8f;   // 青
+    mpr_variable->s_frame_work.clear_color[(int)E_DX12_PARAMATOR::e_ALPHA] = 1.0f;  // α
+
+    // レンダリングAPIは存在しているのでいないフラグを下げる
+    mpr_variable->flg_rendering_api_end = false;
 
 	// 成功した
 	return true;
@@ -711,7 +760,7 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
     ZeroMemory(&desc_swap_chain, sizeof(desc_swap_chain));
 
     // バックバッファのフォーマット
-    desc_swap_chain.BufferDesc.Format = DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT;
+    desc_swap_chain.BufferDesc.Format = DXGI_FORMAT::DXGI_FORMAT_R16G16B16A16_FLOAT;
 
     // サンプリング用バッファ数
     desc_swap_chain.SampleDesc.Count = 1;
@@ -779,20 +828,10 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
     // 指定された画素の型に合わせてレンダリング画素の型を設定する
     switch (in_create_rendering_screen_inform.m_rendering_screen_format)
     {
-        // RGBA全て１バイトづつ
-    case RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_1_BYTE:
-        set_pixel_format = DXGI_FORMAT::DXGI_FORMAT_B8G8R8A8_UNORM;
-        break;
-
         // RGBA全て２バイトづつ
     case RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_2_BYTE:
     default:
         set_pixel_format = DXGI_FORMAT::DXGI_FORMAT_R16G16B16A16_FLOAT;
-        break;
-
-        // RGBA全て４バイトづつ
-    case RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_4_BYTE:
-        set_pixel_format = DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT;
         break;
     }
 
@@ -863,6 +902,7 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
 
 
     // 全てのバッファにレンダーターゲットを設定
+    in_dx12_screen_system->m_render_target_view.buffer_list.resize(in_create_rendering_screen_inform.m_screen_buffer_sum);
     for (UINT loop_x = 0; loop_x < (UINT)in_create_rendering_screen_inform.m_screen_buffer_sum; loop_x++)
     {
         // 画面のバッファにレンダーターゲットを指定
@@ -939,7 +979,8 @@ void C_DX12_System::M_Set_Render_Target_View(int in_rendering_screen_number, REN
     M_Set_Resource_Barrier(in_rendering_screen_number, in_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_RENDER_TARGET);
 
     // ビューのバインド
-    mpr_variable->s_command.list->OMSetRenderTargets(1, &in_render_target_view.buffer_list[in_rendering_screen_number].handle, TRUE, &mpr_variable->s_render.dsv.handle);
+    mpr_variable->s_command.list->OMSetRenderTargets(1, &in_render_target_view.buffer_list[in_rendering_screen_number].handle, TRUE, &mpr_variable->s_render.now_depth_stencil_address_handle->handle);
+    mpr_variable->s_render.now_screen_address_handle = &in_render_target_view.buffer_list[in_rendering_screen_number];
 
     return;
 }
@@ -949,11 +990,31 @@ void C_DX12_System::M_Set_Render_Target_View(int in_rendering_screen_number, REN
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：深度ステンシルビューを生成する（深度ステンシル適用先の画面バッファの切り替え用システム）
-// 引数   ：void
+// 引数   ：C_DX12_Depth_Stencil_Buffer_System * & DX12用の深度ステンシルバッファのアドレスの参照, const S_Create_Depth_Stencil_Buffer_Inform & 深度ステンシルバッファを生成するための情報
 // 戻り値 ：bool 生成が成功したかどうかを返す 成功でtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
+bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * & in_dx12_depth_stencil_buffer, const RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform & in_create_inform)
 {
+    // ☆ 変数宣言 ☆ //
+    DXGI_FORMAT set_format = DXGI_FORMAT::DXGI_FORMAT_D32_FLOAT;   // 深度ステンシルバッファのピクセルのバイト型のフォーマット
+
+
+    // バイト型のフォーマットを設定
+    switch (in_create_inform.m_byte_format)
+    {
+        // ２バイト
+    case RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT::e_2_BYTE:
+			set_format = DXGI_FORMAT::DXGI_FORMAT_D16_UNORM;
+			break;
+
+        // ４バイト
+    case RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT::e_4_BYTE:
+		default:
+            set_format = DXGI_FORMAT::DXGI_FORMAT_D32_FLOAT;
+            break;
+    }
+
+
     // ☆ 深度ステンシルヒープ ☆ //    //（管理用木構造）
     {
         // ☆ 変数宣言 ☆ //
@@ -964,20 +1025,20 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
         ZeroMemory(&desc_descriptor_heap, sizeof(desc_descriptor_heap));
 
         // ヒープ内のデスクリプタの種類
-        desc_descriptor_heap.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
+        desc_descriptor_heap.Type = D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 
         // デスクリプタの数
         desc_descriptor_heap.NumDescriptors = 1;
 
         // ヒープオプション
-        desc_descriptor_heap.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
+        desc_descriptor_heap.Flags = D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 
         // デスクリプタに適応するノード(GPUや物理アダプター)の数
         desc_descriptor_heap.NodeMask = 0;
 
 
         // ☆ 深度ステンシルヒープの生成 ☆ //     // 失敗ならエラー
-        if (FAILED(mpr_variable->s_frame_work.device->CreateDescriptorHeap(&desc_descriptor_heap, IID_PPV_ARGS(mpr_variable->s_render.dsv.heap.GetAddressOf()))))
+        if (FAILED(mpr_variable->s_frame_work.device->CreateDescriptorHeap(&desc_descriptor_heap, IID_PPV_ARGS(in_dx12_depth_stencil_buffer->m_data.heap.GetAddressOf()))))
         {
             // ☆ デバッグ時なら初期化の失敗を表示 ☆ //
 #if _DEBUG
@@ -1014,13 +1075,13 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
         ZeroMemory(&heap_propertie, sizeof(heap_propertie));
 
         // ヒープの動作の種類
-        heap_propertie.Type = D3D12_HEAP_TYPE_DEFAULT;
+        heap_propertie.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_DEFAULT;
 
         // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-        heap_propertie.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+        heap_propertie.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 
         // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-        heap_propertie.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+        heap_propertie.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
 
         // ヒープメモリを生成するノード(GPUや物理アダプター)の数
         heap_propertie.CreationNodeMask = 1;
@@ -1035,7 +1096,7 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
         ZeroMemory(&desc_resource, sizeof(desc_resource));
 
         // 使用されるリソースの種類
-        desc_resource.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+        desc_resource.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_TEXTURE2D;
 
         // 設定するリソース情報の配置番号
         desc_resource.Alignment = 0;
@@ -1053,7 +1114,7 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
         desc_resource.MipLevels = 0;
 
         // リソースがDX12側が用意した型かどうか
-        desc_resource.Format = DXGI_FORMAT_D32_FLOAT;
+        desc_resource.Format = set_format;
 
 
         // ☆ サンプリング設定 ☆ //
@@ -1066,17 +1127,17 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 
 
         // テクスチャレイアウトのオプション
-        desc_resource.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
+        desc_resource.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_UNKNOWN;
 
         // リソースを操作するためのオプション
-        desc_resource.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL | D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE;
+        desc_resource.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL | D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE;
 
 
 
         // ☆ 深度ステンシルバッファクリア設定 ☆ //
 
         // クリア用の変数のデータ形式
-        clear_setting.Format = DXGI_FORMAT_D32_FLOAT;
+        clear_setting.Format = set_format;
 
         // 初期化用深度値
         clear_setting.DepthStencil.Depth = 1.0f;
@@ -1086,7 +1147,7 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 
 
         // ☆ 深度ステンシルバッファ生成 ☆ //
-        if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&heap_propertie, D3D12_HEAP_FLAG_NONE, &desc_resource, D3D12_RESOURCE_STATE_DEPTH_WRITE, &clear_setting, IID_PPV_ARGS(&mpr_variable->s_render.dsv.buffer))))
+        if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&heap_propertie, D3D12_HEAP_FLAG_NONE, &desc_resource, D3D12_RESOURCE_STATE_DEPTH_WRITE, &clear_setting, IID_PPV_ARGS(&in_dx12_depth_stencil_buffer->m_data.depth_stencil_buffer))))
         {
             // ☆ デバッグ時なら初期化の失敗を表示 ☆ //
 #if _DEBUG
@@ -1114,23 +1175,52 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(void)
 
 
         // 深度ステンシルバッファのデータ形式
-        dsv_desc.Format = DXGI_FORMAT_D32_FLOAT;
+        dsv_desc.Format = set_format;
 
         // 深度ステンシルバッファの寸法（テクスチャ形式）
-        dsv_desc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+        dsv_desc.ViewDimension = D3D12_DSV_DIMENSION::D3D12_DSV_DIMENSION_TEXTURE2D;
 
         // テクスチャの使用方法
-        dsv_desc.Flags = D3D12_DSV_FLAG_NONE;
+        dsv_desc.Flags = D3D12_DSV_FLAGS::D3D12_DSV_FLAG_NONE;
 
 
         // アドレスの取得
-        mpr_variable->s_render.dsv.handle = mpr_variable->s_render.dsv.heap->GetCPUDescriptorHandleForHeapStart();
+        in_dx12_depth_stencil_buffer->m_data.handle = in_dx12_depth_stencil_buffer->m_data.heap->GetCPUDescriptorHandleForHeapStart();
 
         //深度ステンシルビュー生成
-        mpr_variable->s_frame_work.device->CreateDepthStencilView(mpr_variable->s_render.dsv.buffer.Get(), &dsv_desc, mpr_variable->s_render.dsv.handle);
+        mpr_variable->s_frame_work.device->CreateDepthStencilView(in_dx12_depth_stencil_buffer->m_data.depth_stencil_buffer.Get(), &dsv_desc, in_dx12_depth_stencil_buffer->m_data.handle);
     }
 
     return true;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをセットする
+// 引数   ：S_DX12_Depth_Stencil_Buffer & 深度ステンシルバッファ情報の参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Depth_Stencil_View(RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Depth_Stencil_Buffer & in_depth_stencil_buffer)
+{
+    mpr_variable->s_command.list->OMSetRenderTargets(1, &mpr_variable->s_render.now_screen_address_handle->handle, TRUE, &in_depth_stencil_buffer.handle);
+    mpr_variable->s_render.now_depth_stencil_address_handle = &in_depth_stencil_buffer;
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをセットする
+// 引数   ：S_DX12_Depth_Stencil_Buffer & 深度ステンシルバッファ情報の参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Clear_Depth_Stencil_View_Buffer(RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Depth_Stencil_Buffer & in_depth_stencil_buffer)
+{
+    // 深度ステンシルの初期化
+    mpr_variable->s_command.list->ClearDepthStencilView(in_depth_stencil_buffer.handle, D3D12_CLEAR_FLAGS::D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
+    mpr_variable->s_command.list->ClearDepthStencilView(in_depth_stencil_buffer.handle, D3D12_CLEAR_FLAGS::D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
+
+    return;
 }
 
 
@@ -1714,7 +1804,7 @@ bool C_DX12_System::M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graph
 
 
     // シェーダー毎にリソースを定義する（ディスクリプタとレンジ、サンプラーを生成する）
-    M_Create_Descriptor_And_Sampler_By_Shaders_Inform(in_create_inform.shader_setting->M_Get_Resource_Signature(), paramater_setting_list, range_setting_list, static_sampler_desc);
+    M_Create_Descriptor_And_Sampler_By_Shaders_Inform(in_create_inform.shader_setting->M_Get_Resource_Inform(), paramater_setting_list, range_setting_list, static_sampler_desc);
 
 
     // ☆ ルートシグネチャデスクの設定 ☆ //
@@ -1857,81 +1947,59 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12INSTANCE::C_DX12_Rendering_Graph
 // 引数   ：const S_All_Shader_Resource_Signatures & シェーダーのリソース識別情報の参照, vector<D3D12_ROOT_PARAMETER> & ディスクリプタ設定用情報の参照, vector<D3D12_DESCRIPTOR_RANGE> & レンジの設定用情報の参照, vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_All_Shader_Resource_Signatures & in_shader_inform, std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
+void C_DX12_System::M_Create_Descriptor_And_Sampler_By_Shaders_Inform(const ASSET::SHADER::S_Resource_Inform_List & in_shader_inform, std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
 {
     // ☆ 変数宣言 ☆ //
-    int shader_paramater_register_start = 0;    // シェーダーのディスクリプタの開始レジスタ番号
-    int shader_sampler_register_start = 0;      // シェーダーのサンプラーの開始レジスタ番号
+    int resource_register_number = 0;    // シェーダーのディスクリプタの開始レジスタ番号
+    int sampler_register_number = 0;      // シェーダーのサンプラーの開始レジスタ番号
+    
 
-
-    // ☆ 全てのシェーダーに共通する情報の設定 ☆ //
+    // シェーダーの定数バッファ分繰り返す
+    for (const ASSET::SHADER::S_Resource_Slot_Inform & l_now_slot : in_shader_inform.slot_list)
     {
-        // ☆ 変数宣言 ☆ //
-        int constant_buffer_sum = (int)in_shader_inform.all_shader_signature.constant_data.size();   // 定数バッファ数
-        int texture_sum = (int)in_shader_inform.all_shader_signature.texture_data.size();   // テクスチャリソース数
-        int sampler_sum = (int)in_shader_inform.all_shader_signature.sampler_data.size();   // サンプラー数
-        
-
-        // シェーダーの定数バッファ分繰り返す
-        for (int now_csv_num = 0; now_csv_num < constant_buffer_sum; now_csv_num++)
+        // リソースの種類によってディスクリプタの種類を変える
+        switch (l_now_slot.resource_kind)
         {
-            Inline_Set_Root_Parameter(in_root_param, in_range, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, shader_paramater_register_start, D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL);
+            // 定数バッファ
+        case ASSET::SHADER::E_RESOURCE_KIND::e_CONSTANT_BUFFER:
+            Inline_Set_Root_Parameter
+            (
+                in_root_param,
+                in_range,
+                D3D12_DESCRIPTOR_RANGE_TYPE::D3D12_DESCRIPTOR_RANGE_TYPE_CBV,
+                resource_register_number,
+                M_Convert_Shader_Kind_To_DX12_Shader_Kind(l_now_slot.shader_kind)
+            );
+            break;
 
-            shader_paramater_register_start += 1;
+            // テクスチャ
+        case ASSET::SHADER::E_RESOURCE_KIND::e_TEXTURE:
+            Inline_Set_Root_Parameter
+            (
+                in_root_param,
+                in_range,
+                D3D12_DESCRIPTOR_RANGE_TYPE::D3D12_DESCRIPTOR_RANGE_TYPE_SRV,
+                resource_register_number,
+                M_Convert_Shader_Kind_To_DX12_Shader_Kind(l_now_slot.shader_kind)
+            );
+            break;
         }
 
-        // シェーダーのテクスチャデータ分繰り返す
-        for (int now_texture_num = 0; now_texture_num < texture_sum; now_texture_num++)
-        {
-            Inline_Set_Root_Parameter(in_root_param, in_range, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, shader_paramater_register_start, D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL);
-
-            shader_paramater_register_start += 1;
-        }
-
-        // サンプラー分繰り返す
-        for (int now_sampler_num = 0; now_sampler_num < sampler_sum; now_sampler_num++)
-        {
-            Inline_Set_Sampler_State(in_sampler, shader_sampler_register_start, D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL, Inline_Get_Texture_Mode(in_shader_inform.all_shader_signature.sampler_data[now_sampler_num].uv_setting));
-
-            shader_sampler_register_start += 1;
-        }
+        resource_register_number += 1;
     }
 
-
-    // ☆ シェーダー毎にディスクリプタの設定 ☆ //
-    for (int now_shader_kind = 0; now_shader_kind < (int)ASSET::SHADER::E_SHADER_KIND::e_ALL; now_shader_kind++)
+    // サンプラー分繰り返す
+    for (const ASSET::SHADER::S_Sampler_Resource_Inform & l_now_sampler : in_shader_inform.sampler_list)
     {
-        // ☆ 変数宣言 ☆ //
-        int constant_buffer_sum = (int)in_shader_inform.signature_list[now_shader_kind].constant_data.size();   // 定数バッファ数
-        int texture_sum = (int)in_shader_inform.signature_list[now_shader_kind].texture_data.size();   // テクスチャリソース数
-        int sampler_sum = (int)in_shader_inform.signature_list[now_shader_kind].sampler_data.size();   // サンプラー数
-        int set_param_register_num = shader_paramater_register_start; // 設定するレジスタ番号
-        int set_sampler_register_num = shader_sampler_register_start; // 設定するレジスタ番号
+        Inline_Set_Sampler_State
+        (
+            in_sampler, 
+            sampler_register_number, 
+            M_Convert_Shader_Kind_To_DX12_Shader_Kind(l_now_sampler.shader_kind),
+            Inline_Get_Texture_Mode(l_now_sampler.uv_setting)
+        );
 
-
-        // シェーダーの定数バッファ分繰り返す
-        for (int now_csv_num = 0; now_csv_num < constant_buffer_sum; now_csv_num++)
-        {
-            Inline_Set_Root_Parameter(in_root_param, in_range, D3D12_DESCRIPTOR_RANGE_TYPE_CBV, set_param_register_num, now_shader_kind + 1);  // D3D12_SHADER_VISIBILITYではVERTEX_BUFFERが1からなので合わせるために1加算
-
-            set_param_register_num += 1;
-        }
-
-        // シェーダーのテクスチャデータ分繰り返す
-        for (int now_texture_num = 0; now_texture_num < texture_sum; now_texture_num++)
-        {
-            Inline_Set_Root_Parameter(in_root_param, in_range, D3D12_DESCRIPTOR_RANGE_TYPE_SRV, set_param_register_num, now_shader_kind + 1);
-
-            set_param_register_num += 1;
-        }
-
-        // サンプラー分繰り返す
-        for (int now_sampler_num = 0; now_sampler_num < sampler_sum; now_sampler_num++)
-        {
-            Inline_Set_Sampler_State(in_sampler, set_sampler_register_num, now_shader_kind + 1, Inline_Get_Texture_Mode(in_shader_inform.signature_list[now_shader_kind].sampler_data[now_sampler_num].uv_setting));
-
-            set_sampler_register_num += 1;
-        }
+        sampler_register_number += 1;
     }
 
     return;
@@ -2102,7 +2170,7 @@ void C_DX12_System::M_Reset_Command(void)
 void C_DX12_System::M_Set_Shader_Resource_Signature_By_Rendering_Setting(const DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform * & in_rendering_setting)
 {
     mpr_variable->shader_resource_list.release();
-    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting->M_Get_Resource_Signature());
+    mpr_variable->shader_resource_list.reset(&in_rendering_setting->m_shader_setting->M_Get_Resource_Inform());
 
     return;
 }
@@ -2258,18 +2326,14 @@ void C_DX12_System::M_Rendering_Start(void)
     // 描画先の画面を入手する(裏画面を指定)
     mpr_variable->s_command.num_back_screen = mpr_variable->s_frame_work.swap_chain->GetCurrentBackBufferIndex();
 
-
-    // リソース同期用のバリアを描画書き込み用に変更 (変更が完了するまで待つ)
-    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_RENDER_TARGET);
-
     // ビューポートとシザーの更新
     M_Set_Scissor_And_View_Port();
 
-    // 画面クリア
+    // メインのレンダリング画面と深度ステンシルバッファをクリアしてセット
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_RENDER_TARGET);
     M_Clear_Render_Target_View(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view);
-
-    // メインをセット
-    M_Set_Main_Rendering_Screen();
+    M_Clear_Depth_Stencil_View_Buffer(mpr_variable->s_render.main_depth_stencil_buffer->m_data);
+    M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer();
 
     return;
 }
@@ -2280,7 +2344,7 @@ void C_DX12_System::M_Rendering_Start(void)
 // 引数   ：std::unique_ptr<C_Rendering_Graphics_Setting_Inform_Base> & 設定先のパイプライン情報, const C_Create_Rendering_Graphics_Setting_Inform & 生成用の情報(const)
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base>& in_pipeline_inform, const CREATE::S_Create_Rendering_Graphics_Setting_Inform& in_create_inform)
+bool C_DX12_System::M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> & in_pipeline_inform, const CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform* dx12_pipeline_inform = new DX12INSTANCE::C_DX12_Rendering_Graphics_Setting_Inform(); // DX12用の描画用情報
@@ -2354,8 +2418,8 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 
     // ☆ 描画命令の記録終了 ☆ //
 
-    // メインの画面に戻す
-    M_Set_Main_Rendering_Screen();
+    // メインのレンダリング画面と深度ステンシルバッファをセット
+    M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer();
 
     // リソース同期用のバリアを出力用に変更 (変更が完了するまで待つ)
     M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_PRESENT);
@@ -2369,13 +2433,6 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
     // ☆ 画面出力 ☆ //
     mpr_variable->s_frame_work.swap_chain->Present(1, 0);
 
-
-    // デバイスが削除されたらこれをオンにして理由を取得すること
-#if false
-    HRESULT bug_result = mpr_variable->s_frame_work.device->GetDeviceRemovedReason();
-#endif
-
-
     // 描画完了待ち
     M_Wait_For_Command_Queue();
 
@@ -2384,6 +2441,36 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 #if _DEBUG
     M_Debug_Update();
 #endif // _DEBUG
+
+
+    // ☆ 変数宣言 ☆ //
+    HRESULT bug_result = mpr_variable->s_frame_work.device->GetDeviceRemovedReason();   // 消えた理由を取得（消えてる場合）
+
+
+    // デバイス削除バグのチェック
+    if (FAILED(bug_result))
+    {
+        mpr_variable->flg_rendering_api_end = true;
+    }
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング先のレンダリング画面と深度ステンシルバッファをメインに戻す
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer(void)
+{
+    // レンダリング先にリソースバリアを設定
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+    // ビューのバインド
+    mpr_variable->s_command.list->OMSetRenderTargets(1, &mpr_variable->s_render.main_rendering_screen->m_render_target_view.buffer_list[mpr_variable->s_command.num_back_screen].handle, TRUE, &mpr_variable->s_render.main_depth_stencil_buffer->m_data.handle);
+    mpr_variable->s_render.now_screen_address_handle = &mpr_variable->s_render.main_rendering_screen->m_render_target_view.buffer_list[mpr_variable->s_command.num_back_screen];
+    mpr_variable->s_render.now_depth_stencil_address_handle = &mpr_variable->s_render.main_depth_stencil_buffer->m_data;
 
     return;
 }
@@ -2508,9 +2595,42 @@ void C_DX12_System::M_Set_Rendering_Screen_Can_Readable(int in_screen_number, st
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Set_Main_Rendering_Screen(void)
+void C_DX12_System::M_Set_Main_Rendering_Screen_To_Rendering(void)
 {
     M_Set_Render_Target_View(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインのレンダリング画面をテクスチャスロットにセットする
+// 引数   ：int 設定先のテクスチャのスロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Main_Rendering_Screen_To_Texture_Slot(int in_texture_slot_number)
+{
+    // ☆ 変数宣言 ☆ //
+    D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = mpr_variable->s_render.main_rendering_screen->m_render_target_view.heap->GetGPUDescriptorHandleForHeapStart();   // GPUでのリソースへのハンドル
+
+    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
+
+
+    // レンダーターゲットビューをシェーダーで使用する設定に変更
+    for (int l_now_screen_number = 0; l_now_screen_number < mpr_variable->s_render.main_rendering_screen->m_rendering_screen_sum; l_now_screen_number++)
+    {
+        M_Set_Resource_Barrier(l_now_screen_number, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_ALL_SHADER_RESOURCE);
+    }
+
+
+    // テクスチャ用ヒープのセット
+    mpr_variable->s_command.list->SetDescriptorHeaps(1, &mpr_variable->s_render.main_rendering_screen->m_render_target_view.heap);
+
+    // 指定されたレンダーターゲットビューまで移動
+    descriptor_handle.ptr += byte_of_handle * (UINT)mpr_variable->s_command.num_back_screen;
+
+    // ルートシグネチャに指定されたレンダーターゲットビューを紐付ける
+    mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot_number, descriptor_handle);
 
     return;
 }
@@ -2565,6 +2685,163 @@ void C_DX12_System::M_Save_Rendering_Screen_To_Texture(int in_rendering_screen_n
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング画面の削除を通知する
+// 引数   ：const C_Rendering_Screen_System_Base * 削除されたレンダリング画面のアドレス（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Notice_Rendering_Screen_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base * in_delete_rendering_screen)
+{
+    // ☆ 変数宣言 ☆ //
+    const DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<const DX12INSTANCE::C_DX12_Rendering_Screen_System * >(in_delete_rendering_screen);   // レンダリング画面情報をDX12用へキャストした結果のアドレス
+
+
+    // 全ての画面分探索し、一致するものがあればメインの画面に戻す
+    for (const RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_Buffer & l_now_render_target : dx12_rendering_screen->m_render_target_view.buffer_list)
+    {
+        if (mpr_variable->s_render.now_screen_address_handle == &l_now_render_target)
+        {
+            M_Set_Main_Rendering_Screen_To_Rendering();
+        }
+    }
+
+    return;
+}
+
+
+//-☆- 深度ステンシルバッファ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファを生成する
+// 引数   ：unique_ptr<C_Rendering_Depth_Stencil_Buffer_Base> & 生成先の深度ステンシルバッファの参照, const S_Create_Depth_Stencil_Buffer_Inform & 深度ステンシルバッファを生成するための情報の参照（const）
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_DX12_System::M_Create_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & in_depth_stencil_screen, const RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform & in_create_system)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = new DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System(); // DX12用の深度ステンシルバッファ
+
+
+    // 深度ステンシルバッファを生成する、失敗したらエラーで抜ける
+    if (M_Create_Depth_Stencil_View_Descriptor_Heap(dx12_depth_stencil_screen, in_create_system) == false)
+    {
+        return false;
+    }
+
+    // 新しい深度ステンシルバッファに入れ替える
+    in_depth_stencil_screen.reset(dx12_depth_stencil_screen);
+    return true;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファを描画用にセットする
+// 引数   ：unique_ptr<C_Rendering_Depth_Stencil_Buffer_Base> & 設定する深度ステンシルバッファの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Depth_Stencil_Buffer_To_Rendering(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & in_depth_stencil)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * >(in_depth_stencil.get()); // DX12用の深度ステンシルバッファ
+
+
+    // 深度ステンシルバッファをセットする
+    M_Set_Depth_Stencil_View(dx12_depth_stencil_screen->m_data);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをクリアする
+// 引数   ：unique_ptr<C_Rendering_Depth_Stencil_Buffer_Base> & クリアする深度ステンシルバッファの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Clear_Depth_Stencil_Buffer(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & in_clear_depth_stencil_buffer)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * >(in_clear_depth_stencil_buffer.get()); // DX12用の深度ステンシルバッファ
+
+
+    // 深度ステンシルバッファをクリアする
+    M_Clear_Depth_Stencil_View_Buffer(dx12_depth_stencil_screen->m_data);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをGPU用リソースのテクスチャスロットにセット
+// 引数   ：int 設定先のスロット番号, unique_ptr<C_Rendering_Depth_Stencil_Buffer_Base> & 設定する深度ステンシルバッファの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Depth_Stencil_Buffer_To_Texture_Slot(int in_texture_slot, std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> & in_depth_stencil)
+{
+    // ☆ 変数宣言 ☆ //
+    DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System*>(in_depth_stencil.get()); // DX12用の深度ステンシルバッファ
+
+
+    // テクスチャ用ヒープのセット
+    mpr_variable->s_command.list->SetDescriptorHeaps(1, &dx12_depth_stencil_screen->m_data.heap);
+
+    // ルートシグネチャにテクスチャを紐付ける
+    mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot, dx12_depth_stencil_screen->m_data.heap->GetGPUDescriptorHandleForHeapStart());
+    
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインの深度ステンシルバッファをセットする
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Main_Depth_Stencil_Buffer_To_Rendering(void)
+{
+    M_Set_Depth_Stencil_View(mpr_variable->s_render.main_depth_stencil_buffer->m_data);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインの深度ステンシルバッファをテクスチャスロットにセットする
+// 引数   ：int 設定先のテクスチャのスロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(int in_texture_slot)
+{
+    // テクスチャ用ヒープのセット
+    mpr_variable->s_command.list->SetDescriptorHeaps(1, &mpr_variable->s_render.main_depth_stencil_buffer->m_data.heap);
+
+    // ルートシグネチャにテクスチャを紐付ける
+    mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot, mpr_variable->s_render.main_depth_stencil_buffer->m_data.heap->GetGPUDescriptorHandleForHeapStart());
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファの削除を通知する
+// 引数   ：const C_Rendering_Depth_Stencil_Buffer_Base * 削除された深度ステンシルバッファのアドレス（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Notice_Depth_Stencil_Buffer_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base * in_deleted_depth_stencil_buffer)
+{
+    // ☆ 変数宣言 ☆ //
+    const DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System * dx12_depth_stencil_screen = reinterpret_cast<const DX12INSTANCE::C_DX12_Depth_Stencil_Buffer_System*>(in_deleted_depth_stencil_buffer); // DX12用の深度ステンシルバッファ
+
+
+    // 現在使用中の深度ステンシルバッファが削除された場合はメインに戻す
+    if (mpr_variable->s_render.now_depth_stencil_address_handle == &dx12_depth_stencil_screen->m_data)
+    {
+    	M_Set_Main_Depth_Stencil_Buffer_To_Rendering();
+    }
+
+    return;
+}
+
+
 //-☆- 頂点バッファ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -2575,7 +2852,7 @@ void C_DX12_System::M_Save_Rendering_Screen_To_Texture(int in_rendering_screen_n
 void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_set_to, const CREATE::S_Create_Vertex_Buffer_Inform& in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
-    DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = new DX12INSTANCE::C_DX12_Vertex_Setting_Inform();   // DX12用の頂点用情報
+    DX12INSTANCE::C_DX12_Vertex_Setting_Inform * dx12_vertex_inform = new DX12INSTANCE::C_DX12_Vertex_Setting_Inform();   // DX12用の頂点用情報
 
 
     // データをセット
@@ -2685,54 +2962,17 @@ void C_DX12_System::M_Rendering_Set_Constant_Buffer(INSTANCE::S_Constant_Buffer_
     bool flg_slot_exist = false;    // スロットを発見できたかどうかのフラグ
 
 
-    // 全シェーダー共通の定数バッファに書き込む
-    if (*in_constant_inform.add_attach_shader_kind == ASSET::SHADER::E_SHADER_KIND::e_ALL)
+    // 定数バッファのリソースを探索し、見つかったらスロット番号を指定
+    for (const ASSET::SHADER::S_Constant_Resource_Inform & l_constant_list : mpr_variable->shader_resource_list->constant_list)
     {
-        // ☆ 変数宣言 ☆ //
-        int constant_slot_sum = (int)mpr_variable->shader_resource_list->all_shader_signature.constant_data.size();   // 定数バッファ数
-
-
-        // 定数バッファのスロット数分繰り返す、文字列が一致したら発見できたので番号を指定してループを抜ける
-        for (int l_now_slot_number = 0; l_now_slot_number < constant_slot_sum && flg_slot_exist == false; l_now_slot_number++)
+        // シェーダーの種類とリソース名が一致したらスロット番号を取得し、発見のフラグを立てる
+        if (l_constant_list.shader_kind == in_constant_inform.add_attach_shader_kind)
         {
-            if (mpr_variable->shader_resource_list->all_shader_signature.constant_data[l_now_slot_number].signature_name == *in_constant_inform.add_signature_name)
+            if (l_constant_list.resource_name == *in_constant_inform.add_signature_name)
             {
-                slot_number = l_now_slot_number;
-
-                flg_slot_exist = true;
-            }
-        }
-    }
-
-    // 各シェーダーに用意されている定数バッファに書き込む
-    else
-    {
-        // ☆ 変数宣言 ☆ //
-        int constant_slot_sum = (int)mpr_variable->shader_resource_list->signature_list[(int)*in_constant_inform.add_attach_shader_kind].constant_data.size();   // 定数バッファのスロット数
-        int slot_skipped = 0;   // 通過したスロット数
-
-
-        // 全てのシェーダーに共通するスロットは飛ばす
-        slot_skipped = (int)mpr_variable->shader_resource_list->all_shader_signature.constant_data.size();
-        slot_skipped += (int)mpr_variable->shader_resource_list->all_shader_signature.texture_data.size();
-
-
-        // 他のシェーダー用のスロットは飛ばす
-        for (int now_shader_kind = 0; now_shader_kind < (int)*in_constant_inform.add_attach_shader_kind; now_shader_kind++)
-        {
-            slot_skipped += (int)mpr_variable->shader_resource_list->signature_list[(int)*in_constant_inform.add_attach_shader_kind].constant_data.size();
-            slot_skipped += (int)mpr_variable->shader_resource_list->signature_list[(int)*in_constant_inform.add_attach_shader_kind].texture_data.size();
-        }
-
-
-        // 定数バッファのスロット数分繰り返す、文字列が一致したら発見できたので番号を指定してループを抜ける
-        for (int l_slot_number = 0; l_slot_number < constant_slot_sum && flg_slot_exist == false; l_slot_number++)
-        {
-            if (mpr_variable->shader_resource_list->signature_list[(int)*in_constant_inform.add_attach_shader_kind].constant_data[l_slot_number].signature_name == *in_constant_inform.add_signature_name)
-            {
-                slot_number = l_slot_number + slot_skipped;
-
-                flg_slot_exist = true;
+				flg_slot_exist = true;
+                slot_number = l_constant_list.slot_number;
+				break;
             }
         }
     }
@@ -2836,63 +3076,17 @@ void C_DX12_System::M_Rendering_Set_Texture(INSTANCE::S_Texture_Buffer_Drawing_S
     bool flg_slot_exist = false;    // スロットを発見できたかどうかのフラグ
 
 
-    // 全シェーダー共通のテクスチャに書き込む
-    if (*in_texture_inform.add_attach_shader_kind == ASSET::SHADER::E_SHADER_KIND::e_ALL)
+    // テクスチャバッファのリソースを探索し、見つかったらスロット番号を指定
+    for (const ASSET::SHADER::S_Texture_Resource_Inform & l_texture_list : mpr_variable->shader_resource_list->texture_list)
     {
-        // ☆ 変数宣言 ☆ //
-        int texture_slot_sum = (int)mpr_variable->shader_resource_list->all_shader_signature.texture_data.size();   // テクスチャ数
-        int slot_skipped = 0;   // 通過したスロット数
-
-
-        // 定数バッファ用のスロットは飛ばす
-        slot_skipped = (int)mpr_variable->shader_resource_list->all_shader_signature.constant_data.size();
-
-
-        // テクスチャのスロット数分繰り返す、文字列が一致したら発見できたので番号を指定してループを抜ける
-        for (int l_slot_number = 0; l_slot_number < texture_slot_sum && flg_slot_exist == false; l_slot_number++)
+        // シェーダーの種類とリソース名が一致したらスロット番号を取得し、発見のフラグを立てる
+        if (l_texture_list.shader_kind == in_texture_inform.attach_shader_kind)
         {
-            if (mpr_variable->shader_resource_list->all_shader_signature.texture_data[l_slot_number].signature_name == *in_texture_inform.add_signature_name)
+            if (l_texture_list.resource_name == *in_texture_inform.add_signature_name)
             {
-                slot_number = l_slot_number + slot_skipped;
-
                 flg_slot_exist = true;
-            }
-        }
-    }
-
-    // 各シェーダーに用意されているテクスチャに書き込む
-    else
-    {
-        // ☆ 変数宣言 ☆ //
-        int texture_slot_sum = (int)mpr_variable->shader_resource_list->signature_list[(int)*in_texture_inform.add_attach_shader_kind].texture_data.size();   // テクスチャのスロット数
-        int slot_skipped = 0;   // 通過したスロット数
-
-
-        // 全てのシェーダーに共通するスロットは飛ばす
-        slot_skipped = (int)mpr_variable->shader_resource_list->all_shader_signature.constant_data.size();
-        slot_skipped += (int)mpr_variable->shader_resource_list->all_shader_signature.texture_data.size();
-
-
-        // 他のシェーダー用のスロットは飛ばす
-        for (int now_shader_kind = 0; now_shader_kind < (int)*in_texture_inform.add_attach_shader_kind; now_shader_kind++)
-        {
-            slot_skipped += (int)mpr_variable->shader_resource_list->signature_list[now_shader_kind].constant_data.size();
-            slot_skipped += (int)mpr_variable->shader_resource_list->signature_list[now_shader_kind].texture_data.size();
-        }
-
-
-        // 定数バッファ用のスロットは飛ばす
-        slot_skipped += (int)mpr_variable->shader_resource_list->signature_list[(int)*in_texture_inform.add_attach_shader_kind].constant_data.size();
-
-
-        // テクスチャのスロット数分繰り返す、文字列が一致したら発見できたので番号を指定してループを抜ける
-        for (int l_slot_number = 0; l_slot_number < texture_slot_sum && flg_slot_exist == false; l_slot_number++)
-        {
-            if (mpr_variable->shader_resource_list->signature_list[(int)*in_texture_inform.add_attach_shader_kind].texture_data[l_slot_number].signature_name == *in_texture_inform.add_signature_name)
-            {
-                slot_number = l_slot_number + slot_skipped;
-
-                flg_slot_exist = true;
+                slot_number = l_texture_list.slot_number;
+                break;
             }
         }
     }
@@ -3226,6 +3420,17 @@ std::string C_DX12_System::M_Get_Shader_Folder_Path(void)
 std::string C_DX12_System::M_Get_Shader_Extension(void)
 {
     return ".cso";
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリングシステムが終了しているかどうかのフラグを返す
+// 引数   ：void
+// 戻り値 ：bool レンダリングシステムが終了しているかどうかのフラグ
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_DX12_System::M_Get_End_Rendering_System(void)
+{
+    return mpr_variable->flg_rendering_api_end;
 }
 
 
