@@ -2822,6 +2822,19 @@ void C_DX12_System::M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(int in_textu
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインの深度ステンシルバッファのデータをテクスチャに移す
+// 引数   ：C_Texture_Map & 設定先のテクスチャの参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Save_Main_Depth_Stencil_Buffer_To_Texture(ASSET::TEXTURE::C_Texture_Map & out_texture)
+{
+    mpr_variable->s_render.main_depth_stencil_buffer->M_Save_Screen_For_Texture(out_texture);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：深度ステンシルバッファの削除を通知する
 // 引数   ：const C_Rendering_Depth_Stencil_Buffer_Base * 削除された深度ステンシルバッファのアドレス（const）
 // 戻り値 ：void

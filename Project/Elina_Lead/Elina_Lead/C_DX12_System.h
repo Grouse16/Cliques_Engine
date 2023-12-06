@@ -344,6 +344,9 @@ namespace RENDERING::GRAPHICS::DX12
 		// メインの深度ステンシルバッファをテクスチャスロットにセットする　引数：設定先のテクスチャのスロット番号
 		void M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(int) override;
 
+		// メインの深度ステンシルバッファのデータをテクスチャに移す　引数：設定先のテクスチャの参照
+		void M_Save_Main_Depth_Stencil_Buffer_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) override;
+
 		// 深度ステンシルバッファの削除を通知する　引数：削除された深度ステンシルバッファのアドレス（const）
 		void M_Notice_Depth_Stencil_Buffer_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base * ) override;
 

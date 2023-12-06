@@ -145,6 +145,9 @@ namespace RENDERING::GRAPHICS
 		// 深度ステンシルバッファの削除を通知する　引数：削除された深度ステンシルバッファのアドレス（const）
 		virtual void M_Notice_Depth_Stencil_Buffer_Deleted(const RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base * ) = 0;
 
+		// メインの深度ステンシルバッファのデータをテクスチャに移す　引数：設定先のテクスチャの参照
+		virtual void M_Save_Main_Depth_Stencil_Buffer_To_Texture(ASSET::TEXTURE::C_Texture_Map & ) = 0;
+
 
 		//-☆- 頂点バッファ -☆-//
 
