@@ -52,7 +52,6 @@ C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Conv
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.Name_Setting.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.Scroll_Name_Setting.resources
-C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\SharpDXSample.D3D11Panel.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Main_Form.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Properties.Resources.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.GenerateResource.cache
@@ -60,3 +59,4 @@ C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Conv
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.CopyComplete
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.exe
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.pdb
+C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\SharpDXSample.UC_DX_11_Panel.resources

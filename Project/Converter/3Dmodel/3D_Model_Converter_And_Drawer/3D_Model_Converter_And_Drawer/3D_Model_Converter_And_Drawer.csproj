@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation_Convert\CS_Animation_Convert_System.cs" />
+    <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
     <Compile Include="Name_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,16 +83,16 @@
       <DependentUpon>Scroll_Name_Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="CS_3D_Model_Convert_System.cs" />
-    <Compile Include="d3d11\D3D11Panel.cs">
+    <Compile Include="d3d11\UC_DX_11_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="d3d11\D3D11Panel.designer.cs">
-      <DependentUpon>D3D11Panel.cs</DependentUpon>
+    <Compile Include="d3d11\UC_DX_11_Panel.designer.cs">
+      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="d3d11\D3D11Renderer.cs" />
-    <Compile Include="d3d11\D3D11Shader.cs" />
-    <Compile Include="d3d11\D3D11VertexBuffer.cs" />
-    <Compile Include="d3d11\DXGISwapChain.cs" />
+    <Compile Include="d3d11\CS_DX_11_Renderer.cs" />
+    <Compile Include="d3d11\CS_DX_11_Shader.cs" />
+    <Compile Include="d3d11\CS_DX_11_Vertex_Buffer.cs" />
+    <Compile Include="d3d11\CS_DX_11_Swap_Chain.cs" />
     <Compile Include="3D_model_Convert\3D_Model_Convert_Setting_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,8 +117,8 @@
     <EmbeddedResource Include="Scroll_Name_Setting.resx">
       <DependentUpon>Scroll_Name_Setting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="d3d11\D3D11Panel.resx">
-      <DependentUpon>D3D11Panel.cs</DependentUpon>
+    <EmbeddedResource Include="d3d11\UC_DX_11_Panel.resx">
+      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

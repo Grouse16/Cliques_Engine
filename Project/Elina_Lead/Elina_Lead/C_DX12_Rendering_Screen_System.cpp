@@ -89,8 +89,8 @@ bool C_DX12_Rendering_Screen_System::M_Save_Screen_For_Texture(int in_screen_num
 	// ☆ 変数宣言 ☆ //
 	D3D12_RESOURCE_DESC render_target_view_inform = m_render_target_view.buffer_list[in_screen_number].render_buffer->GetDesc();	// レンダーターゲットビューの情報
 
-	int texture_width = render_target_view_inform.Width;	// 画像の横幅
-	int texture_height = render_target_view_inform.Height;	// 画像の縦幅
+	int texture_width = (int)render_target_view_inform.Width;	// 画像の横幅
+	int texture_height = (int)render_target_view_inform.Height;	// 画像の縦幅
 
 	void * map_data = nullptr;	// マップによって取得したデータ
 
@@ -221,6 +221,6 @@ bool C_DX12_Rendering_Screen_System::M_Save_Screen_For_Texture(int in_screen_num
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 int C_DX12_Rendering_Screen_System::M_Get_Rendering_Screen_Sum(void)
 {
-	return m_render_target_view.buffer_list.size();
+	return m_rendering_screen_sum;
 }
 

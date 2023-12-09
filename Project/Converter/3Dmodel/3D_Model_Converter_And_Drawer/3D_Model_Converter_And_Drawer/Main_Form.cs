@@ -17,67 +17,53 @@ using _3D_Model_Converter_And_Drawer.Animation_Convert;
 
 namespace _3D_Model_Converter_And_Drawer
 {
+    // ☆ クラス ☆ //
+
+    // メインフォーム
     public partial class Main_Form : Form
     {
-        string m_sourcePath;
+        // ☆ 変数宣言 ☆ //
+        private string m_shader_path;   // シェーダーファイルのパス
 
-        ShaderSource m_source;
+        private ShaderSource m_shader;  // シェーダー
 
-        BindingList<Vertex> m_vertices = new BindingList<Vertex>();
+        private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
 
+
+        // ☆ 関数 ☆ //
+
+        //-☆- 初期化 -☆-//
+
+        // コンストラクタ
         public Main_Form()
         {
+            // コンポーネントの初期化
             InitializeComponent();
 
             // シェーダーロード
-            m_sourcePath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "shader.fx");
-            m_source = new ShaderSource();
-            m_source.PropertyChanged += M_source_PropertyChanged;               
-            m_source.Source = File.ReadAllText(m_sourcePath, Encoding.UTF8);
+            m_shader_path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Asset\\shader.fx");
+            m_shader = new ShaderSource();
+            m_shader.PropertyChanged += M_source_PropertyChanged;
+            m_shader.Source = File.ReadAllText(m_shader_path, Encoding.UTF8);
 
+            // シェーダーのパスをセット
+            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.Source;
+            uC_DX_11_Panel1.mp_renderer.M_Create_Renderer(Handle);
+            
 
-            // 頂点
-            m_vertices.ListChanged += (o, e) =>
+            // 頂点リストのファイルウォッチャーの設定
+            m_vertex_list.ListChanged += (o, e) =>
               {
-                  d3D11Panel1.Buffer.SetVertices(m_vertices.ToArray());
-                  d3D11Panel1.Invalidate();
+                  uC_DX_11_Panel1.mp_buffer.M_Set_Vertex(m_vertex_list.ToArray());
+                  uC_DX_11_Panel1.Invalidate();
               };
 
-            m_vertices.Add(new Vertex(new Vector4(0.0f, 0.5f, 0.5f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-            m_vertices.Add(new Vertex(new Vector4(0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-            m_vertices.Add(new Vertex(new Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-        }
+            // 頂点リストの初期化
+            m_vertex_list.Add(new S_Vertex(new Vector4(0.0f, 0.5f, 0.5f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+            m_vertex_list.Add(new S_Vertex(new Vector4(0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+            m_vertex_list.Add(new S_Vertex(new Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
 
-        private async void Watcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            await Task.Delay(100);
-
-            if (InvokeRequired)
-            {
-                Action callback = () =>
-                {
-                    Watcher_Changed(sender, e);
-                };
-                Invoke(callback);
-                return;
-            }
-            m_source.Source=File.ReadAllText(m_sourcePath, Encoding.UTF8);
-        }
-
-        private void M_source_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                Action callback = () =>
-                {
-                    M_source_PropertyChanged(sender, e);
-                };
-                Invoke(callback);
-                return;
-            }
-
-            d3D11Panel1.Shader.Source = m_source.Source;
-            d3D11Panel1.Invalidate();
+            return;
         }
 
 
@@ -108,6 +94,63 @@ namespace _3D_Model_Converter_And_Drawer
             this.MinimumSize = this.Size;
         }
 
+
+        // ウォッチャー変更時
+        private async void Watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            // 少し待つ
+            await Task.Delay(100);
+
+            // UIスレッドでの実行でないなら、UIスレッドで実行
+            if (InvokeRequired)
+            {
+                // ☆ 変数宣言 ☆ //
+                Action call_back = () =>    // コールバック関数
+                {
+                    Watcher_Changed(sender, e);
+                };
+
+
+                // 別スレッドに投げることでUIスレッドで実行
+                Invoke(call_back);
+
+                return;
+            }
+
+            // シェーダーの再読み込み
+            m_shader.Source=File.ReadAllText(m_shader_path, Encoding.UTF8);
+
+            return;
+        }
+
+
+        // シェーダーのプロパティ変更時
+        private void M_source_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // UIスレッドでの実行でないなら、UIスレッドで実行
+            if (InvokeRequired)
+            {
+                // ☆ 変数宣言 ☆ //
+                Action call_back = () =>    // コールバック関数
+                {
+                    M_source_PropertyChanged(sender, e);
+                };
+
+
+                // 別スレッドに投げることでUIスレッドで実行
+                Invoke(call_back);
+                return;
+            }
+
+            // シェーダーのパスをセット
+            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.Source;
+            uC_DX_11_Panel1.Invalidate();
+
+            return;
+        }
+
+
+        //-☆- イベント -☆-//
 
         // ドラッグがカーソル上にあるとき
         private void B_Drag_Over_File_Checker(object sender, DragEventArgs e)

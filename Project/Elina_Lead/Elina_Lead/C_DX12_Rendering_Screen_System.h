@@ -32,7 +32,9 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	{
 		Microsoft::WRL::ComPtr<ID3D12Resource> render_buffer;	// レンダー先の画面バッファ
 
-		D3D12_CPU_DESCRIPTOR_HANDLE handle;	// テクスチャリソース識別用情報(GPUのためにリソースを分解して変換する)
+		D3D12_CPU_DESCRIPTOR_HANDLE handle = D3D12_CPU_DESCRIPTOR_HANDLE();	// テクスチャリソース識別用情報(GPUのためにリソースを分解して変換する)
+
+		D3D12_RESOURCE_STATES now_resource_barrier = D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_PRESENT;	// このリソースのバリア状態
 	};
 
 
@@ -42,8 +44,6 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		std::vector<S_DX12_Render_Target_Buffer> buffer_list;	// レンダーターゲットのバッファリスト
 
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> heap;	// デスクリプタを整理するための木構造データシステム
-
-		D3D12_RESOURCE_STATES now_resource_barrier = D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_PRESENT;	// このリソースのバリア状態
 	};
 
 
