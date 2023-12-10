@@ -1856,7 +1856,7 @@ bool C_Text_And_File_Manager::M_Rename_Select_Folder(std::string in_before_name,
 
 
 	// •ÏX‚É¬Œ÷‚µ‚½
-	 true;
+	return true;
 }
 
 

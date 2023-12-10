@@ -10,9 +10,9 @@
 // ピクセルシェーダーに入ってくる情報
 struct S_PS_IN
 {
-    float4 position : SV_POSITION;  // 位置座標
-    float4 color : COLOR0;          // 色
-    float2 uv : TEXCOORD0;     // UV座標
+	float4 position : SV_POSITION;  // 位置座標
+	float4 color : COLOR0;          // 色
+	float2 uv : TEXCOORD0;          // UV座標
 };
 
 
@@ -31,15 +31,15 @@ SamplerState samp0 : register(s0);
 // ☆ メイン関数 ☆ //
 float4 ps_main(S_PS_IN in_ps) : SV_TARGET
 {
-    // ☆ 変数宣言 ☆ //
-    float4 out_color = in_ps.color;   // 色
-    
-    
-    // テクスチャカラーを混ぜる
-    out_color *= tex_color.Sample(samp0, in_ps.uv);
+	// ☆ 変数宣言 ☆ //
+	float4 out_color = in_ps.color;   // 色
 	
-    
-    // カラーを出力
-    return out_color;
+	
+	// テクスチャカラーを混ぜる
+	out_color *= tex_color.Sample(samp0, in_ps.uv);
+	
+	
+	// カラーを出力
+	return out_color;
 }
 

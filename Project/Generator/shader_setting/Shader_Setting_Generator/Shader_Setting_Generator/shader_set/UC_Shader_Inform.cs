@@ -234,5 +234,10 @@ namespace Shader_Setting_Generator.shader_set
 
             return in_string;
         }
+
+        private void B_Reset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

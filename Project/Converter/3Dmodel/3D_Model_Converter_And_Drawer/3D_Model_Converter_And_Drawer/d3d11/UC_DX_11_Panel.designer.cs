@@ -1,6 +1,6 @@
 ﻿namespace SharpDXSample
 {
-    partial class D3D11Panel
+    partial class UC_DX_11_Panel
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // D3D11Panel
+            // UC_DX_11_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "D3D11Panel";
-            this.Size = new System.Drawing.Size(526, 336);
+            this.Name = "UC_DX_11_Panel";
+            this.Size = new System.Drawing.Size(526, 390);
             this.Load += new System.EventHandler(this.D3D11Panel_Load);
             this.ResumeLayout(false);
 

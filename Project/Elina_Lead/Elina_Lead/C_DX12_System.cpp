@@ -90,7 +90,7 @@ inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_roo
     // ☆ パラメータ設定 ☆ //
 
     // スロットの種類
-    in_root_param[set_param_number].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+    in_root_param[set_param_number].ParameterType = D3D12_ROOT_PARAMETER_TYPE::D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 
     // レンジの配列数
     in_root_param[set_param_number].DescriptorTable.NumDescriptorRanges = 1;
@@ -121,7 +121,7 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in
 
 
     // フィルタ処理のオプション
-    in_sampler_desc[set_static_number].Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+    in_sampler_desc[set_static_number].Filter = D3D12_FILTER::D3D12_FILTER_MIN_MAG_MIP_LINEAR;
 
     // U座標の処理の仕方
     in_sampler_desc[set_static_number].AddressU = in_address_mode;
@@ -139,10 +139,10 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in
     in_sampler_desc[set_static_number].MaxAnisotropy = 16;
 
     // サンプリングされたデータを既存のサンプリング データと比較する関数を選ぶ
-    in_sampler_desc[set_static_number].ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
+    in_sampler_desc[set_static_number].ComparisonFunc = D3D12_COMPARISON_FUNC::D3D12_COMPARISON_FUNC_NEVER;
 
     // D3D12_TEXTURE_ADDRESS_MODE_BORDERがAddressUVWに設定されている時の境界線の色
-    in_sampler_desc[set_static_number].BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
+    in_sampler_desc[set_static_number].BorderColor = D3D12_STATIC_BORDER_COLOR::D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
 
     // ミップマップレベルの詳細度の最低値
     in_sampler_desc[set_static_number].MinLOD = 0.0f;
@@ -287,6 +287,8 @@ D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER:
     case ASSET::SHADER::E_SHADER_KIND::e_ALL:
         return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL;
     }
+
+    return D3D12_SHADER_VISIBILITY::D3D12_SHADER_VISIBILITY_ALL;
 }
 
 
@@ -596,7 +598,7 @@ bool C_DX12_System::M_Create_Device(void)
 bool C_DX12_System::M_Create_Command_Allocator(void)
 {
     // ☆ コマンドアロケータを生成 ☆ //  // 失敗ならエラー
-    if (FAILED(mpr_variable->s_frame_work.device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(mpr_variable->s_command.allocator.GetAddressOf()))))
+    if (FAILED(mpr_variable->s_frame_work.device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(mpr_variable->s_command.allocator.GetAddressOf()))))
     {
         // ☆ デバッグ時なら初期化の失敗を表示 ☆ //
 #if _DEBUG
@@ -631,7 +633,7 @@ bool C_DX12_System::M_Create_Command_Allocator(void)
 bool C_DX12_System::M_Create_Command_List(void)
 {
     // ☆ コマンドリストの生成 ☆ //    // 失敗ならエラー
-    if (FAILED(mpr_variable->s_frame_work.device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, mpr_variable->s_command.allocator.Get(), nullptr, IID_PPV_ARGS(mpr_variable->s_command.list.GetAddressOf()))))
+    if (FAILED(mpr_variable->s_frame_work.device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT, mpr_variable->s_command.allocator.Get(), nullptr, IID_PPV_ARGS(mpr_variable->s_command.list.GetAddressOf()))))
     {
         // ☆ デバッグ時なら初期化の失敗を表示 ☆ //
 #if _DEBUG
@@ -672,13 +674,13 @@ bool C_DX12_System::M_Create_Command_Queue(void)
     ZeroMemory(&desc_command_queue, sizeof(desc_command_queue));
 
     // コマンド書き込み方法を指定
-    desc_command_queue.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
+    desc_command_queue.Type = D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT;
 
     // 優先度設定
     desc_command_queue.Priority = 0;
 
     // GPUタイムアウト設定
-    desc_command_queue.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
+    desc_command_queue.Flags = D3D12_COMMAND_QUEUE_FLAGS::D3D12_COMMAND_QUEUE_FLAG_NONE;
 
     // コマンドキューに適応するノード(GPUや物理アダプター)の数
     desc_command_queue.NodeMask = 0;
@@ -722,7 +724,7 @@ bool C_DX12_System::M_Create_Fence(void)
 
 
     // ☆ フェンスを生成 ☆ //   // 失敗ならエラー
-    if (FAILED(mpr_variable->s_frame_work.device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(mpr_variable->s_render.queue_fence.GetAddressOf()))))
+    if (FAILED(mpr_variable->s_frame_work.device->CreateFence(0, D3D12_FENCE_FLAGS::D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(mpr_variable->s_render.queue_fence.GetAddressOf()))))
     {
         // ☆ デバッグ時なら初期化の失敗を表示 ☆ //
 #if _DEBUG
@@ -778,10 +780,10 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
     desc_swap_chain.Windowed = TRUE;
 
     // 表示切替後オプション
-    desc_swap_chain.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+    desc_swap_chain.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 
     // スワップチェイン動作オプション
-    desc_swap_chain.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+    desc_swap_chain.Flags = DXGI_SWAP_CHAIN_FLAG::DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 
     // ☆ スワップチェインを生成 ☆ //      // 失敗ならエラー
@@ -864,13 +866,13 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
     ZeroMemory(&desc_descriptor_heap, sizeof(desc_descriptor_heap));
 
     // ヒープ内のデスクリプタの種類
-    desc_descriptor_heap.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
+    desc_descriptor_heap.Type = D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 
     // デスクリプタの数
     desc_descriptor_heap.NumDescriptors = in_create_rendering_screen_inform.m_screen_buffer_sum;
 
     // ヒープオプション
-    desc_descriptor_heap.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
+    desc_descriptor_heap.Flags = D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 
     // デスクリプタに適応するノード(GPUや物理アダプター)の数
     desc_descriptor_heap.NodeMask = 0;
@@ -950,6 +952,17 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
         mpr_variable->s_frame_work.device->CreateRenderTargetView(in_dx12_screen_system->m_render_target_view.buffer_list[loop_x].render_buffer.Get(), &rtv_desc, in_dx12_screen_system->m_render_target_view.buffer_list[loop_x].handle);
     }
 
+
+    // 画面数を設定
+    in_dx12_screen_system->m_rendering_screen_sum = in_create_rendering_screen_inform.m_screen_buffer_sum;
+
+    // ☆ デバッグ時なら成功を表示 ☆ //
+#if _DEBUG
+    DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+    DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "レンダリング画面の生成に成功");
+#endif // _DEBUG
+
+    // 生成に成功
     return true;
 }
 
@@ -961,6 +974,9 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::GRAPH
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_System::M_Clear_Render_Target_View(int in_rendering_screen_number, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View & in_render_target_view)
 {
+    // 画面のリソースをレンダーターゲットに設定
+    M_Set_Resource_Barrier(in_rendering_screen_number, in_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_RENDER_TARGET);
+
     // レンダーターゲットの画面情報クリア
     mpr_variable->s_command.list->ClearRenderTargetView(in_render_target_view.buffer_list[in_rendering_screen_number].handle, mpr_variable->s_frame_work.clear_color, 0, nullptr);
 
@@ -1245,13 +1261,13 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
     ZeroMemory(&heap_properties, sizeof(heap_properties));
 
     // ヒープの動作の種類
-    heap_properties.Type = D3D12_HEAP_TYPE_UPLOAD;
+    heap_properties.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_UPLOAD;
 
     // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-    heap_properties.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+    heap_properties.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 
     // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-    heap_properties.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+    heap_properties.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
 
     // ヒープメモリを生成するノード(GPUや物理アダプター)の数
     heap_properties.CreationNodeMask = 0;
@@ -1266,7 +1282,7 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
     ZeroMemory(&desc_resource, sizeof(desc_resource));
 
     // 使用されるリソースの種類
-    desc_resource.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+    desc_resource.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
 
     // 設定するリソース情報の配置番号
     desc_resource.Alignment = 0;
@@ -1284,7 +1300,7 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
     desc_resource.MipLevels = 1;
 
     // リソースがDX12側が用意した型かどうか
-    desc_resource.Format = DXGI_FORMAT_UNKNOWN;
+    desc_resource.Format = DXGI_FORMAT::DXGI_FORMAT_UNKNOWN;
 
 
     // ☆ サンプリング設定 ☆ //
@@ -1297,19 +1313,19 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
 
 
     // テクスチャレイアウトのオプション
-    desc_resource.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+    desc_resource.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
     // リソースを操作するためのオプション
-    desc_resource.Flags = D3D12_RESOURCE_FLAG_NONE;
+    desc_resource.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
 
 
     // 頂点バッファのアドレス設定を生成(失敗でエラーを出して抜ける)
     if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource
     (
         &heap_properties,
-        D3D12_HEAP_FLAG_NONE,
+        D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE,
         &desc_resource,
-        D3D12_RESOURCE_STATE_GENERIC_READ,
+        D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ,
         nullptr,
         IID_PPV_ARGS(in_dx12_vertex_inform->m_vertex_buffer_data.GetAddressOf())))
         || in_dx12_vertex_inform->m_vertex_buffer_data == nullptr
@@ -1355,13 +1371,13 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     ZeroMemory(&heap_propertie, sizeof(heap_propertie));
 
     // ヒープの動作の種類
-    heap_propertie.Type = D3D12_HEAP_TYPE_UPLOAD;
+    heap_propertie.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_UPLOAD;
 
     // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-    heap_propertie.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+    heap_propertie.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 
     // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-    heap_propertie.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+    heap_propertie.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
 
     // ヒープメモリを生成するノード(GPUや物理アダプター)の数
     heap_propertie.CreationNodeMask = 0;
@@ -1376,7 +1392,7 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     ZeroMemory(&desc_resource, sizeof(desc_resource));
 
     // 使用されるリソースの種類
-    desc_resource.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+    desc_resource.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
 
     // 設定するリソース情報の配列数
     desc_resource.Alignment = 0;
@@ -1394,7 +1410,7 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     desc_resource.MipLevels = 1;
 
     // リソースがDX12側が用意した型かどうか
-    desc_resource.Format = DXGI_FORMAT_UNKNOWN;
+    desc_resource.Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 
 
     // ☆ サンプリング設定 ☆ //
@@ -1407,19 +1423,19 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
 
 
     // テクスチャレイアウトのオプション
-    desc_resource.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+    desc_resource.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
     // リソースを操作するためのオプション
-    desc_resource.Flags = D3D12_RESOURCE_FLAG_NONE;
+    desc_resource.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
 
 
     // 頂点バッファのアドレス設定を生成(失敗でエラーを出して抜ける)
     if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource
     (
         &heap_propertie,
-        D3D12_HEAP_FLAG_NONE,
+        D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE,
         &desc_resource,
-        D3D12_RESOURCE_STATE_GENERIC_READ,
+        D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ,
         nullptr,
         IID_PPV_ARGS(in_dx12_vertex_inform->m_index_buffer_data.GetAddressOf())))
         || in_dx12_vertex_inform->m_index_buffer_data == nullptr
@@ -1436,7 +1452,7 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     in_dx12_vertex_inform->m_index_buffer_view.SizeInBytes = byte_size;
 
     // インデックスバッファのデータ形式
-    in_dx12_vertex_inform->m_index_buffer_view.Format = DXGI_FORMAT_R32_UINT;
+    in_dx12_vertex_inform->m_index_buffer_view.Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 
     return;
 }
@@ -1456,13 +1472,13 @@ void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting
 
 
     // ヒープで管理するデータの管理
-    descriptor_heap_desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+    descriptor_heap_desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 
     // データ数
     descriptor_heap_desc.NumDescriptors = in_create_inform.m_list_size;
 
     // シェーダーから編集できるかどうか
-    descriptor_heap_desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+    descriptor_heap_desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 
     // アダプターのノード数
     descriptor_heap_desc.NodeMask = 0;
@@ -1500,13 +1516,13 @@ void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Set
         // ☆ プロパティ設定 ☆ //
 
         // ヒープの動作の種類
-        constant_data_prop.Type = D3D12_HEAP_TYPE_UPLOAD;
+        constant_data_prop.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_UPLOAD;
 
         // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-        constant_data_prop.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+        constant_data_prop.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
     
         // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-        constant_data_prop.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+        constant_data_prop.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
     
         // ヒープメモリを生成するノード(GPUや物理アダプター)の数
         constant_data_prop.CreationNodeMask = 1;
@@ -1518,7 +1534,7 @@ void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Set
         // ☆ データ設定 ☆ //
 
         // 使用されるリソースの種類
-        constant_data_desc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+        constant_data_desc.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
 
         // 設定するリソース情報の配置位置を指定
         constant_data_desc.Alignment = 0;
@@ -1536,7 +1552,7 @@ void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Set
         constant_data_desc.MipLevels = 1;
 
         // リソースがDX12側が用意した型かどうか
-        constant_data_desc.Format = DXGI_FORMAT_UNKNOWN;
+        constant_data_desc.Format = DXGI_FORMAT::DXGI_FORMAT_UNKNOWN;
         
 
         // ☆ サンプリング設定 ☆ //
@@ -1548,14 +1564,14 @@ void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Set
         constant_data_desc.SampleDesc.Quality = 0;
 
         // テクスチャレイアウトのオプション
-        constant_data_desc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+        constant_data_desc.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
         // リソースを操作するためのオプション
-        constant_data_desc.Flags = D3D12_RESOURCE_FLAG_NONE;
+        constant_data_desc.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
 
 
         // 定数バッファのデータを生成
-        if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&constant_data_prop, D3D12_HEAP_FLAG_NONE, &constant_data_desc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&in_dx12_constant_setting->m_constant_buffer_data))))
+        if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&constant_data_prop, D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE, &constant_data_desc, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&in_dx12_constant_setting->m_constant_buffer_data))))
         {
             return;
         }
@@ -1599,13 +1615,13 @@ void C_DX12_System::M_Create_Texture_Resource_View_And_Heap(DX12INSTANCE::C_DX12
 
 
         // ヒープで管理するデータの管理
-        descriptor_heap_desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+        descriptor_heap_desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 
         // データ数
         descriptor_heap_desc.NumDescriptors = 1;
 
         // シェーダーから編集できるかどうか
-        descriptor_heap_desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+        descriptor_heap_desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 
         // アダプターのノード数
         descriptor_heap_desc.NodeMask = 0;
@@ -1670,13 +1686,13 @@ bool C_DX12_System::M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Tex
     // ☆ ヒープの設定 ☆ //
 
     // ヒープの動作の種類
-    heap_properties_setting.Type = D3D12_HEAP_TYPE_CUSTOM;
+    heap_properties_setting.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_CUSTOM;
 
     // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-    heap_properties_setting.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_WRITE_BACK;
+    heap_properties_setting.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_WRITE_BACK;
 
     // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-    heap_properties_setting.MemoryPoolPreference = D3D12_MEMORY_POOL_L0;
+    heap_properties_setting.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_L0;
 
     // ヒープメモリを生成するノード(GPUや物理アダプター)の数
     heap_properties_setting.CreationNodeMask = 1;
@@ -1688,7 +1704,7 @@ bool C_DX12_System::M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Tex
     // ☆ リソースの設定 ☆ //
 
     // 使用されるリソースの種類
-    resource_desc_for_tex.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+    resource_desc_for_tex.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_TEXTURE2D;
 
     // 設定するリソース情報の配置番号
     resource_desc_for_tex.Alignment = 0;
@@ -1719,14 +1735,14 @@ bool C_DX12_System::M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Tex
     resource_desc_for_tex.SampleDesc.Quality = 0;
 
     // テクスチャレイアウトのオプション
-    resource_desc_for_tex.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
+    resource_desc_for_tex.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_UNKNOWN;
 
     // リソースを操作するためのオプション
-    resource_desc_for_tex.Flags = D3D12_RESOURCE_FLAG_NONE;
+    resource_desc_for_tex.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
 
 
     // リソースを生成する    // 失敗したらエラーで抜ける
-    if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&heap_properties_setting, D3D12_HEAP_FLAG_NONE, &resource_desc_for_tex, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(in_dx12_texture_setting->m_texture_data.GetAddressOf()))))
+    if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&heap_properties_setting, D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE, &resource_desc_for_tex, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(in_dx12_texture_setting->m_texture_data.GetAddressOf()))))
     {
         return false;
     }
@@ -1749,7 +1765,7 @@ bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROO
 
 
     // ☆ ルートシグネチャ生成用情報をリソースとしてシリアライズする ☆ //		// 失敗でエラーを出す
-    if (FAILED(D3D12SerializeRootSignature(&in_root_signature_desc, D3D_ROOT_SIGNATURE_VERSION_1, &root_signature_serialized_data, nullptr)))
+    if (FAILED(D3D12SerializeRootSignature(&in_root_signature_desc, D3D_ROOT_SIGNATURE_VERSION::D3D_ROOT_SIGNATURE_VERSION_1, &root_signature_serialized_data, nullptr)))
     {
         // デバッグ時は失敗ログを出力
 #if _DEBUG
@@ -1816,7 +1832,7 @@ bool C_DX12_System::M_Create_Root_Signature(DX12INSTANCE::C_DX12_Rendering_Graph
     Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(root_signature_desc, paramater_setting_list, static_sampler_desc);
 
     // ルート署名のレイアウトオプション
-    root_signature_desc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+    root_signature_desc.Flags = D3D12_ROOT_SIGNATURE_FLAGS::D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
 
     // ☆ ルートシグネチャの生成 ☆ //
@@ -2032,7 +2048,7 @@ void C_DX12_System::M_Debug_Update(void)
 void C_DX12_System::M_Set_Resource_Barrier(int in_rendering_screen_number, RENDERING::GRAPHICS::DX12::DX12INSTANCE::S_DX12_Render_Target_View & in_render_target_view, D3D12_RESOURCE_STATES in_after)
 {
     // 設定前と設定後の使用方法が同じなら抜ける
-	if (in_render_target_view.now_resource_barrier == in_after)
+	if (in_render_target_view.buffer_list[in_rendering_screen_number].now_resource_barrier == in_after)
 	{
 		return;
 	}
@@ -2046,7 +2062,7 @@ void C_DX12_System::M_Set_Resource_Barrier(int in_rendering_screen_number, RENDE
     ZeroMemory(&desc_resource_barrier, sizeof(desc_resource_barrier));
 
     // リソースバリアの種類
-    desc_resource_barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+    desc_resource_barrier.Type = D3D12_RESOURCE_BARRIER_TYPE::D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 
     // リソースへのアドレス
     desc_resource_barrier.Transition.pResource = in_render_target_view.buffer_list[in_rendering_screen_number].render_buffer.Get();
@@ -2055,7 +2071,7 @@ void C_DX12_System::M_Set_Resource_Barrier(int in_rendering_screen_number, RENDE
     desc_resource_barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
 
     // 切り替え前の使用法セット
-    desc_resource_barrier.Transition.StateBefore = in_render_target_view.now_resource_barrier;
+    desc_resource_barrier.Transition.StateBefore = in_render_target_view.buffer_list[in_rendering_screen_number].now_resource_barrier;
 
     // 切り替え後の使用法セット
     desc_resource_barrier.Transition.StateAfter = in_after;
@@ -2063,6 +2079,9 @@ void C_DX12_System::M_Set_Resource_Barrier(int in_rendering_screen_number, RENDE
 
     // バリアのセット
     mpr_variable->s_command.list->ResourceBarrier(1, &desc_resource_barrier);
+
+    // バリアの記録
+    in_render_target_view.buffer_list[in_rendering_screen_number].now_resource_barrier = in_after;
     
     return;
 }
@@ -2330,7 +2349,7 @@ void C_DX12_System::M_Rendering_Start(void)
     M_Set_Scissor_And_View_Port();
 
     // メインのレンダリング画面と深度ステンシルバッファをクリアしてセット
-    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_RENDER_TARGET);
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_RENDER_TARGET);
     M_Clear_Render_Target_View(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view);
     M_Clear_Depth_Stencil_View_Buffer(mpr_variable->s_render.main_depth_stencil_buffer->m_data);
     M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer();
@@ -2422,7 +2441,7 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
     M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer();
 
     // リソース同期用のバリアを出力用に変更 (変更が完了するまで待つ)
-    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATE_PRESENT);
+    M_Set_Resource_Barrier(mpr_variable->s_command.num_back_screen, mpr_variable->s_render.main_rendering_screen->m_render_target_view, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_PRESENT);
 
     // コマンドリストへの記録終了(これを先に行わないと実行させることが出来ない)
     mpr_variable->s_command.list->Close();
@@ -2550,7 +2569,7 @@ void C_DX12_System::M_Set_Rendering_Screen_To_Texture_Slot(int in_rendering_scre
 
     D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = dx12_rendering_screen->m_render_target_view.heap->GetGPUDescriptorHandleForHeapStart();   // GPUでのリソースへのハンドル
 
-    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
+    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
 
 
     // レンダーターゲットビューをシェーダーで使用する設定に変更
@@ -2613,7 +2632,7 @@ void C_DX12_System::M_Set_Main_Rendering_Screen_To_Texture_Slot(int in_texture_s
     // ☆ 変数宣言 ☆ //
     D3D12_GPU_DESCRIPTOR_HANDLE descriptor_handle = mpr_variable->s_render.main_rendering_screen->m_render_target_view.heap->GetGPUDescriptorHandleForHeapStart();   // GPUでのリソースへのハンドル
 
-    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
+    UINT byte_of_handle = mpr_variable->s_frame_work.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_RTV); // ハンドル一つ分に対するバイト数(アドレス制御用)
 
 
     // レンダーターゲットビューをシェーダーで使用する設定に変更
@@ -2644,7 +2663,7 @@ void C_DX12_System::M_Set_Main_Rendering_Screen_To_Texture_Slot(int in_texture_s
 void C_DX12_System::M_Save_Main_Rendering_Screen_To_Texture(ASSET::TEXTURE::C_Texture_Map & out_texture)
 {
     // ☆ 変数宣言 ☆ //
-    D3D12_RESOURCE_STATES before_state = mpr_variable->s_render.main_rendering_screen->m_render_target_view.now_resource_barrier;   // 変更前のリソースバリアの状態を取得
+    D3D12_RESOURCE_STATES before_state = mpr_variable->s_render.main_rendering_screen->m_render_target_view.buffer_list[mpr_variable->s_command.num_back_screen].now_resource_barrier;   // 変更前のリソースバリアの状態を取得
 
 
     // レンダーターゲットビューを読み取り可能に設定
@@ -2669,7 +2688,7 @@ void C_DX12_System::M_Save_Rendering_Screen_To_Texture(int in_rendering_screen_n
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = reinterpret_cast<DX12INSTANCE::C_DX12_Rendering_Screen_System*>(in_rendering_screen.get());   // レンダリング画面情報をDX12用へキャストした結果のアドレス
 
-    D3D12_RESOURCE_STATES before_state = dx12_rendering_screen->m_render_target_view.now_resource_barrier;   // 変更前のリソースバリアの状態を取得
+    D3D12_RESOURCE_STATES before_state = dx12_rendering_screen->m_render_target_view.buffer_list[in_rendering_screen_number].now_resource_barrier;   // 変更前のリソースバリアの状態を取得
 
 
     // レンダーターゲットビューを読み取り可能に設定

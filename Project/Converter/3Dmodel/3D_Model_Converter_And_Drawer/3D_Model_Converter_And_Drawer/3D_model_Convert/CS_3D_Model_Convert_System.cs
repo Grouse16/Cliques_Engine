@@ -3,10 +3,13 @@ using Assimp.Unmanaged;
 using SharpDX;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -18,6 +21,7 @@ namespace _3D_Model_Converter_And_Drawer
         e_STATIC_MODEL,
         e_ANIMATION_MODEL,
     }
+
 
     // ☆ クラス ☆ //
 
@@ -66,118 +70,92 @@ namespace _3D_Model_Converter_And_Drawer
 
 
         // ☆ 変数宣言 ☆ //
-        static List<S_Bone_Data_Inform> m_bone_index_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
+        static private E_CONVERT_MODE m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;    // 変換モード
 
-        static public Scene m_now_scene = new Scene();  // シーンのデータ
 
-        static public E_CONVERT_MODE m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;    // 変換モード
+        // ☆ 関数 ☆ //
 
-        static List<string> m_file_write_data = new List<string>(); // 書き込むファイルのデータ
-        static List<string> m_file_mat_write_data = new List<string>(); // 書き込むマテリアルの質感用ファイルのデータ
+        //-☆- 生成 -☆-//
 
-        static int m_mat_num = 0;
-
-        // 3Dモデルを変換する　引数：シーンデータ
-        public static void M_Convert_Data_Set(ref Scene in_scene)
+        // 3Dモデルを変換用のフォームを生成する　引数：シーンデータ
+        public static void M_Create_Form_Of_Convert_Model(Scene in_scene)
         {
-            m_now_scene = in_scene;
-        }
-
-        public static void M_Model_Or_Animation_Model_Comvert_Start()
-        {
-            _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_num = m_now_scene.MaterialCount;
-            _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mesh_num = m_now_scene.MeshCount;
-
             Form_3D_Model_Convert_Setting new_form = new Form_3D_Model_Convert_Setting();
+            new_form.M_Initialize(in_scene);
             new_form.Show();
-        }
-
-        // 変換の実行
-        public static void M_Model_Covert_Execute()
-        {
-            m_file_write_data.Clear();
-            m_bone_index_list.Clear();
-            m_file_mat_write_data.Clear();
-
-            // メッシュデータの変換
-            if (M_Mesh_Convert() == false)
-            {
-                return;
-            }
-
-
-            // 静的モデルを指定されているなら静的モデル形式でセーブ
-            if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
-            {
-                M_Save_Static_Model_This_File();
-            }
-
-            // アニメーションモデルを指定されているならアニメーションモデル形式でセーブ
-            else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
-            {
-                M_Save_Animation_Model_This_File();
-            }
-
-            // マテリアルの質感情報を取り出してそのファイルを保存
-            M_Convert_Material_Inform();
 
             return;
         }
 
 
-        // メッシュデータの変換
-        private static bool M_Mesh_Convert()
+        //-☆- 変換 -☆-//
+
+        // スタティックモデルに変換する
+        public static void M_Convert_Static_Model(Scene in_scene)
         {
+            m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;
+            M_Model_Convert(in_scene);
+
+            return;
+        }
+
+
+        // アニメーションモデルに変換する
+        public static void M_Convert_Animation_Model(Scene in_scene)
+        {
+            m_convert_mode = E_CONVERT_MODE.e_ANIMATION_MODEL;
+            M_Model_Convert(in_scene);
+
+            return;
+        }
+
+
+        // 3Dモデルのコンバートを実行する
+        private static void M_Model_Convert(Scene in_scene)
+        {
+            // ☆ 変数宣言 ☆ //
+            List<string> write_file_data = new List<string>(); // 書き込むデータ
+
+            List<S_Bone_Data_Inform> bone_index_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
+
+
             // 静的モデルに変換するときは、.elsttmdlであることを証明する記述をする
             if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
             {
-                m_file_write_data.Add("This-Is-ELSTTMDL");
+                write_file_data.Add("This-Is-ELSTTMDL");
             }
             else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
             {
-                m_file_write_data.Add("This-Is-ELANMMDL");
+                write_file_data.Add("This-Is-ELANMMDL");
             }
 
             // メッシュ数を記録
-            m_file_write_data.Add("MESHSUM:" + m_now_scene.MeshCount.ToString());
+            write_file_data.Add("MESHSUM:" + in_scene.MeshCount.ToString());
 
 
             // アニメーションのあるモデルへ変換するときのみ
             if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
             {
+                // ☆ 変数宣言 ☆ //
+                int now_bone_index = 0; // 現在のボーン番号
+
+
                 // メッシュ数分ボーン名とインデックスの関連付けを行う
-                foreach (var mesh in m_now_scene.Meshes)
+                foreach (var l_now_bone in in_scene.RootNode.Children)
                 {
-                    foreach (var bone in mesh.Bones)
-                    {
-                        // ☆ 変数宣言 ☆ //
-                        bool detected = false;  // ボーンがすでに登録されていたかどうかのフラグ　trueで登録済み
-
-
-                        foreach (var bone_index in m_bone_index_list)
-                        {
-                            if (bone_index.name == bone.Name)
-                            {
-                                detected = true;
-                            }
-                        }
-
-                        // 見つからなかったら新しく登録
-                        if (detected == false)
-                        {
-                            m_bone_index_list.Add(new S_Bone_Data_Inform(bone.Name, m_bone_index_list.Count, bone.OffsetMatrix));
-                        }
-                    }
+                    bone_index_list.Add(new S_Bone_Data_Inform(l_now_bone.Name, bone_index_list.Count, l_now_bone.Transform));
                 }
 
 
-                // ボーン数とボーン名、オフセットマトリクスを記録
-                m_file_write_data.Add("BONESUM:" + m_bone_index_list.Count.ToString());
-                foreach (var bone_index in m_bone_index_list)
+                // ボーン数を記録
+                write_file_data.Add("BONESUM:" + bone_index_list.Count.ToString());
+
+                // ボーン名とオフセットマトリクスを記録
+                foreach (var bone_index in bone_index_list)
                 {
-                    m_file_write_data.Add
+                    write_file_data.Add
                         (
-                              bone_index.name + "/"
+                              Form_3D_Model_Convert_Setting.mp_born_name_list[now_bone_index] + "/"
                             + bone_index.offset_matrix.A1.ToString() + ","
                             + bone_index.offset_matrix.A2.ToString() + ","
                             + bone_index.offset_matrix.A3.ToString() + ","
@@ -201,7 +179,7 @@ namespace _3D_Model_Converter_And_Drawer
 
             // メッシュ数分繰り返す
             int mesh_num = 0;
-            foreach (var mesh in m_now_scene.Meshes)
+            foreach (var mesh in in_scene.Meshes)
             {
                 // ☆ 変数宣言 ☆ //
                 List<List<S_Vertex_Weight_Inform>> m_vertex_weight_list = new List<List<S_Vertex_Weight_Inform>>(); // 頂点ウェイト値のリスト
@@ -221,7 +199,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                     // ボーンのインデックスIDを取得
-                    foreach (var bone_index_data in m_bone_index_list)
+                    foreach (var bone_index_data in bone_index_list)
                     {
                         if (bone_index_data.name == bone.Name)
                         {
@@ -246,7 +224,7 @@ namespace _3D_Model_Converter_And_Drawer
                         else
                         {
                             //メッセージボックスを表示する
-                            DialogResult result = MessageBox.Show("5つ以上のボーンから影響(Weight)を受ける頂点がありますが、.elanmmdlで指定できるWeight数は4つまでです。このままでは5つ目以降の情報を削除することになりますが、続行しますか？" + Environment.NewLine + "ボーン名:" + bone.Name,
+                            DialogResult result = MessageBox.Show("5つ以上のボーンから影響(Weight)を受ける頂点がありますが、.elanmmdlで指定できるWeightのボーン数は4つまでです。このままでは5つ目以降の情報を削除することになりますが、続行しますか？" + Environment.NewLine + "ボーン名:" + bone.Name,
                                 "続行確認",
                                 MessageBoxButtons.YesNoCancel,
                                 MessageBoxIcon.Exclamation,
@@ -261,7 +239,7 @@ namespace _3D_Model_Converter_And_Drawer
                             // それ以外の時は終了
                             else
                             {
-                                return false;
+                                return;
                             }
                         }
                     }
@@ -317,15 +295,15 @@ namespace _3D_Model_Converter_And_Drawer
                 }
 
                 // メッシュ名を記述
-                m_file_write_data.Add("MESH:");
-                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mesh_group_name_list[mesh_num]);
+                write_file_data.Add("MESH:");
+                write_file_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mp_mesh_name_list[mesh_num]);
 
                 // マテリアル名を記述
-                m_file_write_data.Add("MATERIAL:");
-                m_file_write_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[mesh.MaterialIndex]);
+                write_file_data.Add("MATERIAL:");
+                write_file_data.Add(_3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.mp_material_name_list[mesh.MaterialIndex]);
 
                 // 頂点数を入力
-                m_file_write_data.Add("VERT:" + mesh.VertexCount.ToString());
+                write_file_data.Add("VERT:" + mesh.VertexCount.ToString());
 
                 // 頂点データを書き込む
                 for (int now_vertex = 0; now_vertex < mesh.Vertices.Count; now_vertex++)
@@ -397,34 +375,46 @@ namespace _3D_Model_Converter_And_Drawer
                     }
 
                     // 生成した頂点情報を書き込み
-                    m_file_write_data.Add(vertex_write_text);
+                    write_file_data.Add(vertex_write_text);
                 }
 
 
                 // メッシュのインデックス開始位置指定
-                m_file_write_data.Add("INDEX:" + mesh.FaceCount * 3);
+                write_file_data.Add("INDEX:" + mesh.FaceCount * 3);
 
                 // インデックスデータを書き込む
                 foreach (var face in mesh.Faces)
                 {
-                    m_file_write_data.Add(face.Indices[0].ToString());
-                    m_file_write_data.Add(face.Indices[1].ToString());
-                    m_file_write_data.Add(face.Indices[2].ToString());
+                    write_file_data.Add(face.Indices[0].ToString());
+                    write_file_data.Add(face.Indices[1].ToString());
+                    write_file_data.Add(face.Indices[2].ToString());
                 }
 
                 // 空白をあける
-                m_file_write_data.Add("");
+                write_file_data.Add("");
 
                 // 次のメッシュ番号を指定
                 mesh_num++;
             }
 
-            return true;
+            // 静的モデルのセーブ
+            if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
+            {
+                M_Save_Static_Model_This_File(write_file_data);
+            }
+
+            // アニメーションモデルのセーブ
+            else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
+            {
+                M_Save_Animation_Model_This_File(write_file_data);
+            }
+
+            return;
         }
 
 
-        // 静的モデル形式でのセーブ
-        private static void M_Save_Static_Model_This_File()
+        // 静的モデル形式でのセーブ　引数：書き込むデータ
+        private static void M_Save_Static_Model_This_File(List<string> in_write_file_data)
         {
             // ☆ 変数宣言 ☆ //
             SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
@@ -447,18 +437,20 @@ namespace _3D_Model_Converter_And_Drawer
             //ダイアログを表示する
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.WriteAllText(sfd.FileName, m_file_write_data[0] + Environment.NewLine);
+                System.IO.File.WriteAllText(sfd.FileName, in_write_file_data[0] + Environment.NewLine);
 
-                for (int now_write_raw = 1; now_write_raw < m_file_write_data.Count; now_write_raw++)
+                for (int now_write_raw = 1; now_write_raw < in_write_file_data.Count; now_write_raw++)
                 {
-                    System.IO.File.AppendAllText(sfd.FileName, m_file_write_data[now_write_raw] + Environment.NewLine);
+                    System.IO.File.AppendAllText(sfd.FileName, in_write_file_data[now_write_raw] + Environment.NewLine);
                 }
             }
+
+            return;
         }
 
 
-        // アニメーションモデル形式でのセーブ
-        private static void M_Save_Animation_Model_This_File()
+        // アニメーションモデル形式でのセーブ　引数：書き込むデータ
+        private static void M_Save_Animation_Model_This_File(List<string> in_write_file_data)
         {
             // ☆ 変数宣言 ☆ //
             SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
@@ -481,119 +473,15 @@ namespace _3D_Model_Converter_And_Drawer
             //ダイアログを表示する
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.WriteAllText(sfd.FileName, m_file_write_data[0] + Environment.NewLine);
+                System.IO.File.WriteAllText(sfd.FileName, in_write_file_data[0] + Environment.NewLine);
 
-                for (int now_write_raw = 1; now_write_raw < m_file_write_data.Count; now_write_raw++)
+                for (int now_write_raw = 1; now_write_raw < in_write_file_data.Count; now_write_raw++)
                 {
-                    System.IO.File.AppendAllText(sfd.FileName, m_file_write_data[now_write_raw] + Environment.NewLine);
+                    System.IO.File.AppendAllText(sfd.FileName, in_write_file_data[now_write_raw] + Environment.NewLine);
                 }
             }
-        }
 
-        // マテリアルの質感情報の変換
-        private static void M_Convert_Material_Inform()
-        {
-            // 質感情報であることを示す
-            m_file_mat_write_data.Add("This-Is-ELMATINFORM");
-            m_mat_num = 0;
-            for (int now_mat_num = 0; now_mat_num < m_now_scene.MaterialCount; now_mat_num++)
-            {
-                // アンビエント
-                m_file_mat_write_data.Add
-                    (
-                        "AMBIENT:"
-                         + m_now_scene.Materials[now_mat_num].ColorAmbient.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorAmbient.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorAmbient.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorAmbient.A.ToString() + ","
-                    );
-
-                // ディフューズ
-                m_file_mat_write_data.Add
-                    (
-                        "DIFFUSE:"
-                         + m_now_scene.Materials[now_mat_num].ColorDiffuse.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorDiffuse.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorDiffuse.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorDiffuse.A.ToString() + ","
-                    );
-
-                // エミッション
-                m_file_mat_write_data.Add
-                    (
-                        "EMISSION:"
-                         + m_now_scene.Materials[now_mat_num].ColorEmissive.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorEmissive.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorEmissive.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorEmissive.A.ToString() + ","
-                    );
-
-                // リフレクション
-                m_file_mat_write_data.Add
-                    (
-                        "REFLECTION:"
-                         + m_now_scene.Materials[now_mat_num].ColorReflective.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorReflective.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorReflective.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorReflective.A.ToString() + ","
-                    );
-
-                // スペキュラー
-                m_file_mat_write_data.Add
-                    (
-                        "SPECLAR:"
-                         + m_now_scene.Materials[now_mat_num].ColorSpecular.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorSpecular.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorSpecular.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorSpecular.A.ToString() + ","
-                    );
-
-                // トランスペアレント
-                m_file_mat_write_data.Add
-                    (
-                        "TRANSPARENT:"
-                         + m_now_scene.Materials[now_mat_num].ColorTransparent.R.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorTransparent.G.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorTransparent.B.ToString() + ","
-                         + m_now_scene.Materials[now_mat_num].ColorTransparent.A.ToString() + ","
-                    );
-
-                // 質感情報を保存
-                M_Save_Mat_Inform_File();
-            }
-        }
-
-        // マテリアルの質感ファイルの保存
-        private static void M_Save_Mat_Inform_File()
-        {
-            // ☆ 変数宣言 ☆ //
-            SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
-
-            string extension = "elmatinform";   // 拡張子
-
-
-            sfd.FileName = _3D_Model_Converter_And_Drawer.Form_3D_Model_Convert_Setting.material_name_list[m_mat_num] + "." + extension;
-            sfd.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            sfd.Filter = extension + "ファイル(*." + extension + ";*." + extension +")|*." + ";*." + extension +"|すべてのファイル(*.*)|*.*";
-            sfd.FilterIndex = 1;
-            sfd.Title = "マテリアルの質感情報の保存先のファイルを選択してください";
-            //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
-            sfd.RestoreDirectory = true;
-            //既に存在するファイル名を指定したとき警告する
-            sfd.OverwritePrompt = true;
-            //存在しないパスが指定されたとき警告を表示する
-            sfd.CheckPathExists = true;
-
-            //ダイアログを表示する
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.File.WriteAllText(sfd.FileName, m_file_mat_write_data[0] + Environment.NewLine);
-
-                for (int now_write_raw = 1; now_write_raw < m_file_mat_write_data.Count; now_write_raw++)
-                {
-                    System.IO.File.AppendAllText(sfd.FileName, m_file_mat_write_data[now_write_raw] + Environment.NewLine);
-                }
-            }
+            return;
         }
     }
 }
