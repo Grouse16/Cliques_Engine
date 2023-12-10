@@ -114,10 +114,15 @@ namespace SharpDXSample
         public void M_Create_Renderer(IntPtr in_handle_window)
         {
             // 既に生成済みならば処理を行わない
-            if (m_device != null)
+            if (m_device != null && m_swap_chain != null)
             {
                 return;
             }
+
+
+            // メモリを解放する
+            Dispose();
+
 
             // オブジェクト追跡の有効化
             SharpDX.Configuration.EnableObjectTracking = true;

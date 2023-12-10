@@ -25,7 +25,7 @@ namespace _3D_Model_Converter_And_Drawer
         // ☆ 変数宣言 ☆ //
         private string m_shader_path;   // シェーダーファイルのパス
 
-        private ShaderSource m_shader;  // シェーダー
+        private C_Shader_Source m_shader;  // シェーダー
 
         private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
 
@@ -42,12 +42,12 @@ namespace _3D_Model_Converter_And_Drawer
 
             // シェーダーロード
             m_shader_path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Asset\\shader.fx");
-            m_shader = new ShaderSource();
+            m_shader = new C_Shader_Source();
             m_shader.PropertyChanged += M_source_PropertyChanged;
-            m_shader.Source = File.ReadAllText(m_shader_path, Encoding.UTF8);
+            m_shader.mp_shader = File.ReadAllText(m_shader_path, Encoding.UTF8);
 
             // シェーダーのパスをセット
-            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.Source;
+            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.mp_shader;
             uC_DX_11_Panel1.mp_renderer.M_Create_Renderer(Handle);
             
 
@@ -71,11 +71,7 @@ namespace _3D_Model_Converter_And_Drawer
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox1.ReadOnly = true;
-            textBox2.ReadOnly = true;
-            textBox3.ReadOnly = true;
-            textBox4.ReadOnly = true;
             textBox5.ReadOnly = true;
-            textBox6.ReadOnly = true;
             textBox7.ReadOnly = true;
             textBox8.ReadOnly = true;
             textBox9.ReadOnly = true;
@@ -86,14 +82,15 @@ namespace _3D_Model_Converter_And_Drawer
             textBox14.ReadOnly = true;
             textBox15.ReadOnly = true;
             textBox16.ReadOnly = true;
-            textBox17.ReadOnly = true;
-            TB_after_convert_path.ReadOnly = true;
-            TB_before_convert_path.ReadOnly = true;
 
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+
+            return;
         }
 
+
+        //-☆- 更新 -☆-//
 
         // ウォッチャー変更時
         private async void Watcher_Changed(object sender, FileSystemEventArgs e)
@@ -118,7 +115,7 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             // シェーダーの再読み込み
-            m_shader.Source=File.ReadAllText(m_shader_path, Encoding.UTF8);
+            m_shader.mp_shader=File.ReadAllText(m_shader_path, Encoding.UTF8);
 
             return;
         }
@@ -143,7 +140,7 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             // シェーダーのパスをセット
-            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.Source;
+            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.mp_shader;
             uC_DX_11_Panel1.Invalidate();
 
             return;
@@ -166,6 +163,8 @@ namespace _3D_Model_Converter_And_Drawer
             {
                 e.Effect = DragDropEffects.None;
             }
+
+            return;
         }
 
 
@@ -177,18 +176,21 @@ namespace _3D_Model_Converter_And_Drawer
             {
                 return;
             }
+
+
             // ☆ 変数宣言 ☆ //
             System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
-                                                                                            // Processインスタンスを取得
-            System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
+            
+            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
 
             long before_working_memory = 0;   // ロード前の物理メモリ
             long before_virtual_memory = 0;   // ロード前の仮想メモリ
 
 
             // ロート直前の使用しているメモリ容量を物理と仮想両方取得
-            before_working_memory = proc.WorkingSet64;
-            before_virtual_memory = proc.VirtualMemorySize64;
+            now_process.Refresh();
+            before_working_memory = now_process.WorkingSet64;
+            before_virtual_memory = now_process.VirtualMemorySize64;
 
             // 生成時間を記録開始
             stop_watch.Start();
@@ -222,98 +224,28 @@ namespace _3D_Model_Converter_And_Drawer
 
             // ロード終了、ロードにかかった時間を記録
             stop_watch.Stop();
-            TB_assimp_load_time.Text = stop_watch.ElapsedMilliseconds.ToString() + "ミリ秒";
 
-            // 物理と仮想メモリの変化量をロードに必要なデータサイズとして記録
-            proc.Refresh();
-            TB_assimp_load_physics_data_size.Text = (proc.WorkingSet64 - before_working_memory).ToString() + ".byte";
-            TB_assimp_load_virtual_data_size.Text = (proc.VirtualMemorySize64 - before_virtual_memory).ToString() + ".byte";
+            // 現在のメモリサイズを取得
+            now_process.Refresh();
 
-
-            // コンバートするデータをセットし、各種設定用のフォームを生成
-            CS_3D_Model_Convert_System.m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;
-            CS_3D_Model_Convert_System.M_Convert_Data_Set(ref scene);
-            CS_3D_Model_Convert_System.M_Model_Or_Animation_Model_Comvert_Start();
-
-            // ロードしたファイルのパスを表示
-            TB_before_convert_path.ResetText();
-            TB_before_convert_path.AppendText(file_path[0]);
-        }
-
-        // 変換するアニメーション用モデルのファイルのドロップを受け取る
-        private void TB_Anim_Model_Convert_DragDrop(object sender, DragEventArgs e)
-        {
-            // ファイルドロップ時はファイルのプロパティを取得（なければスルー）
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) == false)
-            {
-                return;
-            }
-            // ☆ 変数宣言 ☆ //
-            System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
-                                                                                            // Processインスタンスを取得
-            System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
-
-            long before_working_memory = 0;   // ロード前の物理メモリ
-            long before_virtual_memory = 0;   // ロード前の仮想メモリ
-
-
-            // ロート直前の使用しているメモリ容量を物理と仮想両方取得
-            before_working_memory = proc.WorkingSet64;
-            before_virtual_memory = proc.VirtualMemorySize64;
-
-            // 生成時間を記録開始
-            stop_watch.Start();
-
-
-            // ☆ 変数宣言 ☆ //
-            string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
-
-            string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
-
-            AssimpContext importer = new AssimpContext(); // インポートシステム
-
-            Scene scene =     // 取得結果のデータ
-                importer.ImportFile
+            // ロード時間と必要なメモリサイズを表示
+            UC_load_inform_box.M_Set_Assimp_Load_Inform
                 (
-                    relative_file_path,
-                    PostProcessSteps.CalculateTangentSpace |
-                    PostProcessSteps.GenerateSmoothNormals |
-                    PostProcessSteps.JoinIdenticalVertices |
-                    PostProcessSteps.LimitBoneWeights |
-                    PostProcessSteps.RemoveRedundantMaterials |
-                    PostProcessSteps.SplitLargeMeshes |
-                    PostProcessSteps.GenerateUVCoords |
-                    PostProcessSteps.SortByPrimitiveType |
-                    PostProcessSteps.FindDegenerates |
-                    PostProcessSteps.FindInvalidData |
-                    PostProcessSteps.Triangulate |      // 全ての面を三角形に変換
-                    PostProcessSteps.FlipWindingOrder | // 時計回り
-                    PostProcessSteps.MakeLeftHanded     // 左手系
+                stop_watch.ElapsedMilliseconds,
+                now_process.WorkingSet64 - before_working_memory,
+                now_process.VirtualMemorySize64 - before_virtual_memory
                 );
 
-            // ロード終了、ロードにかかった時間を記録
-            stop_watch.Stop();
-            TB_assimp_load_time.Text = stop_watch.ElapsedMilliseconds.ToString() + "ミリ秒";
-
-            // 物理と仮想メモリの変化量をロードに必要なデータサイズとして記録
-            proc.Refresh();
-            TB_assimp_load_physics_data_size.Text = (proc.WorkingSet64 - before_working_memory).ToString() + ".byte";
-            TB_assimp_load_virtual_data_size.Text = (proc.VirtualMemorySize64 - before_virtual_memory).ToString() + ".byte";
-
 
             // コンバートするデータをセットし、各種設定用のフォームを生成
-            CS_3D_Model_Convert_System.m_convert_mode = E_CONVERT_MODE.e_ANIMATION_MODEL;
-            CS_3D_Model_Convert_System.M_Convert_Data_Set(ref scene);
-            CS_3D_Model_Convert_System.M_Model_Or_Animation_Model_Comvert_Start();
+            CS_3D_Model_Convert_System.M_Create_Form_Of_Convert_Model(scene);
 
-            // ロードしたファイルのパスを表示
-            TB_before_convert_path.ResetText();
-            TB_before_convert_path.AppendText(file_path[0]);
+            return;
         }
 
 
-        // 変換するアニメーションをファイルのドロップを受け取る
-        private void B_Animation_Converter_DragDrop(object sender, DragEventArgs e)
+        // 独自形式モデルの変換にファイルのドロップがあった時
+        private void B_Model_Importer_DragDrop(object sender, DragEventArgs e)
         {
             // ファイルドロップ時はファイルのプロパティを取得（なければスルー）
             if (e.Data.GetDataPresent(DataFormats.FileDrop) == false)
@@ -324,95 +256,74 @@ namespace _3D_Model_Converter_And_Drawer
 
             // ☆ 変数宣言 ☆ //
             System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
-                                                                                            // Processインスタンスを取得
-            System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
 
-            long before_working_memory = 0;   // ロード前の物理メモリ
-            long before_virtual_memory = 0;   // ロード前の仮想メモリ
+            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
 
 
-            // ロート直前の使用しているメモリ容量を物理と仮想両方取得
-            before_working_memory = proc.WorkingSet64;
-            before_virtual_memory = proc.VirtualMemorySize64;
-
-            // 生成時間を記録開始
-            stop_watch.Start();
-
-
-            // ☆ 変数宣言 ☆ //
-            string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
-
-            string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
-            
-            AssimpContext importer = new AssimpContext(); // インポートシステム
-            
-            Scene scene =     // 取得結果のデータ
-                importer.ImportFile
-                (
-                    relative_file_path,
-                    PostProcessSteps.CalculateTangentSpace |
-                    PostProcessSteps.GenerateSmoothNormals |
-                    PostProcessSteps.JoinIdenticalVertices |
-                    PostProcessSteps.LimitBoneWeights |
-                    PostProcessSteps.RemoveRedundantMaterials |
-                    PostProcessSteps.SplitLargeMeshes |
-                    PostProcessSteps.GenerateUVCoords |
-                    PostProcessSteps.SortByPrimitiveType |
-                    PostProcessSteps.FindDegenerates |
-                    PostProcessSteps.FindInvalidData |
-                    PostProcessSteps.Triangulate |      // 全ての面を三角形に変換
-                    PostProcessSteps.FlipWindingOrder | // 時計回り
-                    PostProcessSteps.MakeLeftHanded     // 左手系
-                );
-
-            // ロード終了、ロードにかかった時間を記録
-            stop_watch.Stop();
-            TB_assimp_load_time.Text = stop_watch.ElapsedMilliseconds.ToString() + "ミリ秒";
-
-            // 物理と仮想メモリの変化量をロードに必要なデータサイズとして記録
-            proc.Refresh();
-            TB_assimp_load_physics_data_size.Text = (proc.WorkingSet64 - before_working_memory).ToString() + ".byte";
-            TB_assimp_load_virtual_data_size.Text = (proc.VirtualMemorySize64 - before_virtual_memory).ToString() + ".byte";
-
-
-            // コンバートするデータをセットしコンバート
-            CS_Animation_Convert_System.M_Set_Convert_Animation_Scene(scene);
-            CS_Animation_Convert_System.M_Animation_Convert_Execute();
-
-
-            // ロードしたファイルのパスを表示
-            TB_before_convert_path.ResetText();
-            TB_before_convert_path.AppendText(file_path[0]);
+            return;
         }
     }
-    class ShaderSource : INotifyPropertyChanged
+
+
+    // シェーダー設定用のクラス
+    class C_Shader_Source : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        // ☆ 変数宣言 ☆ //
+        string m_shader_path;   // シェーダーファイルのパス
+
+
+        // ☆ プロパティ ☆ //
+
+        // シェーダーファイルのパス
+        public string mp_shader
+        {
+            // ゲッタ
+            get
+            {
+                return m_shader_path;
+            }
+
+            // セッタ
+            set
+            {
+                if (m_shader_path == value)
+                {
+                    return;
+                }
+
+                m_shader_path = value;
+                RaisePropertyChanged(nameof(mp_shader));
+
+                return;
+            }
+        }
+
+
+        // ☆ イベント ☆ //
+        public event PropertyChangedEventHandler PropertyChanged;   // プロパティ変更時
+
+
+        // プロパティ変更時
         void RaisePropertyChanged(string prop)
         {
-            var handler = PropertyChanged;
+            // ☆ 変数宣言 ☆ //
+            var handler = PropertyChanged;  // プロパティ変更イベントのハンドル
+
+
+            // プロパティ変更イベントが取得できたならプロパティ変更イベントを実行
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(prop));
             }
         }
-
-        string m_source;
-        public string Source
-        {
-            get { return m_source; }
-            set
-            {
-                if (m_source == value) return;
-                m_source = value;
-                RaisePropertyChanged(nameof(Source));
-            }
-        }
     }
 
-    static class ColorExtensions
+
+    // ロード情報表示用のクラス
+    static class CS_Color_Extensions
     {
-        public static System.Drawing.Color ToColor(this Color4 src)
+        // SharpDXのカラーをfloat4のカラーに変換
+        public static System.Drawing.Color M_SharpDX_Color_To_Float4_Color(this Color4 src)
         {
             return System.Drawing.Color.FromArgb(
                 (byte)(src.Alpha * 255),
@@ -422,14 +333,14 @@ namespace _3D_Model_Converter_And_Drawer
                 );
         }
 
-        const float ToF = 1.0f / 255;
-        public static Color4 ToSharpDX(this System.Drawing.Color value)
+        // float4のカラーをSharpDXのカラーに変換
+        public static Color4 M_Float4_Color_To_SharpDX_Color(this System.Drawing.Color value)
         {
             return new Color4(
-                value.R * ToF,
-                value.G * ToF,
-                value.B * ToF,
-                value.A * ToF
+                value.R / 255.0f,
+                value.G / 255.0f,
+                value.B / 255.0f,
+                value.A / 255.0f
                 );
         }
     }

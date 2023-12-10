@@ -28,60 +28,113 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scroll_material_name_setting = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.Scroll_Name_Setting();
-            this.scroll_mesh_groop_name = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.Scroll_Name_Setting();
             this.exit_button = new System.Windows.Forms.Button();
-            this.generate_button = new System.Windows.Forms.Button();
+            this.b_animative_model_generate_button = new System.Windows.Forms.Button();
+            this.B_material_inform_generate_button = new System.Windows.Forms.Button();
+            this.B_static_model_convert_button = new System.Windows.Forms.Button();
+            this.b_animation_data_convert_button = new System.Windows.Forms.Button();
+            this.uc_born_name_list = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Scroll_Name_Setting();
+            this.uc_animation_data_list = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Scroll_Name_Setting();
+            this.uc_mesh_name_list = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Scroll_Name_Setting();
+            this.uc_material_name_list = new _3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Scroll_Name_Setting();
             this.SuspendLayout();
-            // 
-            // scroll_material_name_setting
-            // 
-            this.scroll_material_name_setting.Location = new System.Drawing.Point(27, 12);
-            this.scroll_material_name_setting.Name = "scroll_material_name_setting";
-            this.scroll_material_name_setting.Size = new System.Drawing.Size(478, 104);
-            this.scroll_material_name_setting.TabIndex = 0;
-            this.scroll_material_name_setting.Load += new System.EventHandler(this.scroll_Material1_Load);
-            // 
-            // scroll_mesh_groop_name
-            // 
-            this.scroll_mesh_groop_name.Location = new System.Drawing.Point(27, 122);
-            this.scroll_mesh_groop_name.Name = "scroll_mesh_groop_name";
-            this.scroll_mesh_groop_name.Size = new System.Drawing.Size(478, 104);
-            this.scroll_mesh_groop_name.TabIndex = 0;
-            this.scroll_mesh_groop_name.Load += new System.EventHandler(this.scroll_Material1_Load);
             // 
             // exit_button
             // 
-            this.exit_button.Location = new System.Drawing.Point(12, 390);
+            this.exit_button.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.exit_button.Location = new System.Drawing.Point(12, 519);
             this.exit_button.Name = "exit_button";
-            this.exit_button.Size = new System.Drawing.Size(75, 23);
+            this.exit_button.Size = new System.Drawing.Size(232, 45);
             this.exit_button.TabIndex = 1;
-            this.exit_button.Text = "exit";
+            this.exit_button.Text = "閉じる";
             this.exit_button.UseVisualStyleBackColor = true;
-            this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
+            this.exit_button.Click += new System.EventHandler(this.Exit_button_Click);
             // 
-            // generate_button
+            // b_animative_model_generate_button
             // 
-            this.generate_button.Location = new System.Drawing.Point(430, 390);
-            this.generate_button.Name = "generate_button";
-            this.generate_button.Size = new System.Drawing.Size(75, 23);
-            this.generate_button.TabIndex = 1;
-            this.generate_button.Text = "generate";
-            this.generate_button.UseVisualStyleBackColor = true;
-            this.generate_button.Click += new System.EventHandler(this.generate_button_Click);
+            this.b_animative_model_generate_button.Location = new System.Drawing.Point(804, 444);
+            this.b_animative_model_generate_button.Name = "b_animative_model_generate_button";
+            this.b_animative_model_generate_button.Size = new System.Drawing.Size(232, 101);
+            this.b_animative_model_generate_button.TabIndex = 1;
+            this.b_animative_model_generate_button.Text = "3Dアニメーション可能モデル変換ボタン\r\nELANMモデルを生成\r\nボーンのデータありの\r\nアニメーション可能なモデルを生成";
+            this.b_animative_model_generate_button.UseVisualStyleBackColor = true;
+            this.b_animative_model_generate_button.Click += new System.EventHandler(this.b_animative_model_generate_button_Click);
             // 
-            // Form1
+            // B_material_inform_generate_button
+            // 
+            this.B_material_inform_generate_button.Location = new System.Drawing.Point(256, 205);
+            this.B_material_inform_generate_button.Name = "B_material_inform_generate_button";
+            this.B_material_inform_generate_button.Size = new System.Drawing.Size(229, 53);
+            this.B_material_inform_generate_button.TabIndex = 1;
+            this.B_material_inform_generate_button.Text = "マテリアル（質感）情報生成ボタン\r\n（ELMATではないので注意）";
+            this.B_material_inform_generate_button.UseVisualStyleBackColor = true;
+            this.B_material_inform_generate_button.Click += new System.EventHandler(this.B_material_inform_generate_button_Click);
+            // 
+            // B_static_model_convert_button
+            // 
+            this.B_static_model_convert_button.Location = new System.Drawing.Point(558, 444);
+            this.B_static_model_convert_button.Name = "B_static_model_convert_button";
+            this.B_static_model_convert_button.Size = new System.Drawing.Size(232, 101);
+            this.B_static_model_convert_button.TabIndex = 1;
+            this.B_static_model_convert_button.Text = "スタティックモデル変換ボタン\r\nELSSTモデルを生成\r\nボーンのデータなしの静的なモデルを生成";
+            this.B_static_model_convert_button.UseVisualStyleBackColor = true;
+            this.B_static_model_convert_button.Click += new System.EventHandler(this.B_static_model_convert_button_Click);
+            // 
+            // b_animation_data_convert_button
+            // 
+            this.b_animation_data_convert_button.Location = new System.Drawing.Point(256, 444);
+            this.b_animation_data_convert_button.Name = "b_animation_data_convert_button";
+            this.b_animation_data_convert_button.Size = new System.Drawing.Size(229, 45);
+            this.b_animation_data_convert_button.TabIndex = 1;
+            this.b_animation_data_convert_button.Text = "アニメーションデータ生成ボタン";
+            this.b_animation_data_convert_button.UseVisualStyleBackColor = true;
+            this.b_animation_data_convert_button.Click += new System.EventHandler(this.b_animation_data_convert_button_Click);
+            // 
+            // uc_born_name_list
+            // 
+            this.uc_born_name_list.Location = new System.Drawing.Point(560, 205);
+            this.uc_born_name_list.Name = "uc_born_name_list";
+            this.uc_born_name_list.Size = new System.Drawing.Size(478, 173);
+            this.uc_born_name_list.TabIndex = 3;
+            // 
+            // uc_animation_data_list
+            // 
+            this.uc_animation_data_list.Location = new System.Drawing.Point(12, 264);
+            this.uc_animation_data_list.Name = "uc_animation_data_list";
+            this.uc_animation_data_list.Size = new System.Drawing.Size(478, 173);
+            this.uc_animation_data_list.TabIndex = 3;
+            // 
+            // uc_mesh_name_list
+            // 
+            this.uc_mesh_name_list.Location = new System.Drawing.Point(558, 14);
+            this.uc_mesh_name_list.Name = "uc_mesh_name_list";
+            this.uc_mesh_name_list.Size = new System.Drawing.Size(478, 173);
+            this.uc_mesh_name_list.TabIndex = 3;
+            // 
+            // uc_material_name_list
+            // 
+            this.uc_material_name_list.Location = new System.Drawing.Point(12, 12);
+            this.uc_material_name_list.Name = "uc_material_name_list";
+            this.uc_material_name_list.Size = new System.Drawing.Size(478, 173);
+            this.uc_material_name_list.TabIndex = 2;
+            // 
+            // Form_3D_Model_Convert_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 425);
-            this.Controls.Add(this.generate_button);
+            this.ClientSize = new System.Drawing.Size(1050, 571);
+            this.Controls.Add(this.uc_born_name_list);
+            this.Controls.Add(this.uc_animation_data_list);
+            this.Controls.Add(this.uc_mesh_name_list);
+            this.Controls.Add(this.uc_material_name_list);
+            this.Controls.Add(this.b_animation_data_convert_button);
+            this.Controls.Add(this.B_material_inform_generate_button);
+            this.Controls.Add(this.B_static_model_convert_button);
+            this.Controls.Add(this.b_animative_model_generate_button);
             this.Controls.Add(this.exit_button);
-            this.Controls.Add(this.scroll_mesh_groop_name);
-            this.Controls.Add(this.scroll_material_name_setting);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Form_3D_Model_Convert_Setting";
             this.Text = "３Dモデル変換設定";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -89,10 +142,14 @@
         }
 
         #endregion
-
-        private _3Dmodel_Convert.Scroll_Name_Setting scroll_material_name_setting;
-        private _3Dmodel_Convert.Scroll_Name_Setting scroll_mesh_groop_name;
         private System.Windows.Forms.Button exit_button;
-        private System.Windows.Forms.Button generate_button;
+        private System.Windows.Forms.Button b_animative_model_generate_button;
+        private System.Windows.Forms.Button B_material_inform_generate_button;
+        private System.Windows.Forms.Button B_static_model_convert_button;
+        private System.Windows.Forms.Button b_animation_data_convert_button;
+        private _3Dmodel_Convert.UC_Scroll_Name_Setting uc_animation_data_list;
+        private _3Dmodel_Convert.UC_Scroll_Name_Setting uc_born_name_list;
+        private _3Dmodel_Convert.UC_Scroll_Name_Setting uc_mesh_name_list;
+        private _3Dmodel_Convert.UC_Scroll_Name_Setting uc_material_name_list;
     }
 }

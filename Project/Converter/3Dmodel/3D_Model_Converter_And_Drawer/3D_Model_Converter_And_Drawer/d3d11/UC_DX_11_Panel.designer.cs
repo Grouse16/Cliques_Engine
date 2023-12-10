@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "UC_DX_11_Panel";
-            this.Size = new System.Drawing.Size(526, 336);
+            this.Size = new System.Drawing.Size(526, 390);
             this.Load += new System.EventHandler(this.D3D11Panel_Load);
             this.ResumeLayout(false);
 
