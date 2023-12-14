@@ -72,7 +72,9 @@
     <Compile Include="3DModel\Animation\CS_Animation_Vertex_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Bone_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Bone_Weight_Data.cs" />
-    <Compile Include="3DModel\Static\CS_Static_Mesh_Vertex_Data.cs" />
+    <Compile Include="3DModel\Material\CS_Material_Data.cs" />
+    <Compile Include="3DModel\Static\CS_Static_Mesh_Data.cs" />
+    <Compile Include="3DModel\Static\CS_Static_Model_Data.cs" />
     <Compile Include="3DModel\Static\CS_Static_Vertex_Data.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Animation_Convert_System.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Material_Inform_Convert_System.cs" />
