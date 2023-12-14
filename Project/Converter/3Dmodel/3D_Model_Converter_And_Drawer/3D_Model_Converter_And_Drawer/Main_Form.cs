@@ -158,9 +158,6 @@ namespace _3D_Model_Converter_And_Drawer
 
             S_Now_File_Data_Position now_position = new S_Now_File_Data_Position(0, 0); // 現在のファイル操作中の場所
 
-            int now_line_num = 0;   // 現在の行数
-            int now_column_num = 0; // 現在の列数
-
 
             // ファイルのデータを読み取る
             {

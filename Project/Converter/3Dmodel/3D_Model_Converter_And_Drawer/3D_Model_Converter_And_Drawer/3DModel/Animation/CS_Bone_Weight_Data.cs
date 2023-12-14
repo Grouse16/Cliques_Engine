@@ -13,6 +13,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
     {
         // ☆ 変数宣言 ☆ //
         float m_weight = 0.0f;  // ウェイト値
+
         int m_index = 0;        // ボーンインデックス番号
 
 

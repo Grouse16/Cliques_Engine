@@ -69,17 +69,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="3DModel\Animation\CS_Animation_Mesh_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Animation_Vertex_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Bone_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Bone_Weight_Data.cs" />
     <Compile Include="3DModel\Static\CS_Static_Mesh_Vertex_Data.cs" />
     <Compile Include="3DModel\Static\CS_Static_Vertex_Data.cs" />
-    <Compile Include="3D_Model_Converter\CS_Animation_Convert_System.cs" />
-    <Compile Include="3D_Model_Converter\CS_Material_Inform_Convert_System.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_Animation_Convert_System.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_Material_Inform_Convert_System.cs" />
     <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.Designer.cs">
       <DependentUpon>Form_Animation_Model_Importer.cs</DependentUpon>
     </Compile>
+    <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\UC_Animation_List.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,7 +114,7 @@
     <Compile Include="3D_Model_Converter\UC_Scroll_Name_Setting.Designer.cs">
       <DependentUpon>UC_Scroll_Name_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="3D_Model_Converter\CS_3D_Model_Convert_System.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_3D_Model_Convert_System.cs" />
     <Compile Include="d3d11\UC_DX_11_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>

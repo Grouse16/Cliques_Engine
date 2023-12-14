@@ -130,6 +130,7 @@ namespace _3D_Model_Converter_And_Drawer
             {
                 write_file_data.Add("This-Is-ELSTTMDL");
             }
+            // アニメーションモデルに変換するときは、.elanmmdlであることを証明する記述をする
             else if (m_convert_mode == E_CONVERT_MODE.e_ANIMATION_MODEL)
             {
                 write_file_data.Add("This-Is-ELANMMDL");
