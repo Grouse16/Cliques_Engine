@@ -1,10 +1,4 @@
-﻿using _3D_Model_Converter_And_Drawer._3DModel.Material;
-using SharpDX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace _3D_Model_Converter_And_Drawer._3DModel
 {
@@ -58,18 +52,18 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
         }
 
         // マテリアルデータ
-        public CS_Material_Data mp_material_data
+        public string mp_material_name
         {
             // ゲッタ
             get
             {
-                return m_material_data;
+                return m_material_name;
             }
 
             // セッタ
             set
             {
-                m_material_data = value;
+                m_material_name = value;
             }
         }
 

@@ -121,7 +121,12 @@ namespace _3D_Model_Converter_And_Drawer
             // 指定された場所から一行づつ探索する
             for (int l_now_line = in_start_position.mp_now_line; l_now_line < in_searched_by.Count; l_now_line++)
             {
-                for (int l_now_column = start_loop_column; l_now_line + in_search_word.Length < in_searched_by[l_now_line].Length; l_now_line++)
+                // ☆ 変数宣言 ☆ //
+                int can_search_column = in_searched_by[l_now_line].Length - in_search_word.Length;   // 探索できる最大の列番号
+
+
+                // 探索できる範囲内で探索を行う
+                for (int l_now_column = start_loop_column; l_now_column < can_search_column; l_now_column++)
                 {
                     // ☆ 変数宣言 ☆ //
                     bool flg_found = true; // 見つかった時のみtrueになるフラグ
@@ -134,6 +139,8 @@ namespace _3D_Model_Converter_And_Drawer
                         if (in_searched_by[l_now_line][l_now_column + l_now_search_word] != in_search_word[l_now_search_word])
                         {
                             flg_found = false;
+
+                            break;
                         }
                     }
 
@@ -159,7 +166,7 @@ namespace _3D_Model_Converter_And_Drawer
         static public string M_Get_String_Until_This_Word(int in_start_point, string in_string_data, char in_word)
         {
             // ☆ 変数宣言 ☆ //
-            int index = in_string_data.IndexOf(in_word);  // 切り取る文字がある文字番号
+            int index = in_string_data.Substring(in_start_point).IndexOf(in_word);  // 切り取る文字がある文字番号
 
 
             // 指定した文字が見つかった場合は、その位置までの部分文字列を取得

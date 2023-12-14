@@ -17,6 +17,7 @@ using _3D_Model_Converter_And_Drawer.Animation_Convert;
 using _3D_Model_Converter_And_Drawer._3D_Model_Importer;
 using _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System;
 using _3D_Model_Converter_And_Drawer._3DModel.Static;
+using _3D_Model_Converter_And_Drawer._3DModel.Animation;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -31,6 +32,8 @@ namespace _3D_Model_Converter_And_Drawer
         private C_Shader_Source m_shader;  // シェーダー
 
         private CS_Static_Model_Data m_static_model = new CS_Static_Model_Data(); // 静的モデルデータ
+
+        private CS_Animation_Model_Data m_animation_model = new CS_Animation_Model_Data(); // アニメーションモデルデータ
 
         private string m_shader_path;   // シェーダーファイルのパス
 
@@ -294,8 +297,42 @@ namespace _3D_Model_Converter_And_Drawer
             // 静的モデルである時のロード
             if(file_data_a_line == con_IS_ELSSTMDL_TEXT)
             {
+                // ☆ 変数宣言 ☆ //
+                System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+
+                System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+
+                long before_working_memory = 0;   // ロード前の物理メモリ
+                long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+                // ファイルを閉じる
                 file_data.Close();
+
+                // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+                now_process.Refresh();
+                before_working_memory = now_process.WorkingSet64;
+                before_virtual_memory = now_process.VirtualMemorySize64;
+
+                // 生成時間を記録開始
+                stop_watch.Start();
+
+                // 静的モデルのロード
                 CS_Static_Model_Import_System.M_Static_Model_Load(relative_file_path, m_static_model);
+
+                // ロード終了、ロードにかかった時間を記録
+                stop_watch.Stop();
+
+                // 現在のメモリサイズを取得
+                now_process.Refresh();
+
+                // ロード時間と必要なメモリサイズを表示
+                uc_load_inform_box.M_Set_My_Model_Load_Inform
+                    (
+                    stop_watch.ElapsedMilliseconds,
+                    now_process.WorkingSet64 - before_working_memory,
+                    now_process.VirtualMemorySize64 - before_virtual_memory
+                    );
 
                 return;
             }
@@ -311,6 +348,41 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             return;
+        }
+
+        private void tb_print_animation_blend_percent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar5_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_02_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_02_time_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_01_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 
