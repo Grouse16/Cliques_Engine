@@ -69,11 +69,10 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
             // ☆ 変数宣言 ☆ //
             int mesh_sum = 0;   // メッシュ数
-            int bone_sum = 0;   // ボーン数
 
 
             // メッシュ数へ移動
-            now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MESHSUM:", 0);
+            now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MESHSUM:", new S_Now_File_Data_Position(0, 0));
 
             // メッシュ数を取得し、その数分メモリを確保
             mesh_sum = int.Parse(read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column));
@@ -87,11 +86,12 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
             foreach (var l_now_mesh_data in in_static_model.mp_mesh_data_list)
             {
                 // ☆ 変数宣言 ☆ //
-                int vertical_sum = 0;   // 頂点数
+                int vertex_sum = 0;   // 頂点数
+                int index_sum = 0;      // インデックス数
 
 
                 // メッシュの開始位置へ移動
-                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MESH:", now_position.mp_now_line);
+                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MESH:", now_position);
 
 
                 // メッシュ名がある場所に移動し、メッシュ名を取得
@@ -100,18 +100,18 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
                 // マテリアル名がある場所に移動し、マテリアル名を取得
-                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MATERIAL:", now_position.mp_now_line);
+                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MATERIAL:", now_position);
                 now_position.M_Goto_Next_Data(read_data_list);
                 l_now_mesh_data.mp_name = read_data_list[now_position.mp_now_line];
 
 
                 // 頂点の開始へ移動し、頂点数を取得
-                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "VERT:", now_position.mp_now_line);
-                vertical_sum = int.Parse(read_data_list[now_position.mp_now_line]);
+                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "VERT:", now_position);
+                vertex_sum = int.Parse(read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column));
 
 
                 // 頂点数分メモリを確保
-                for (int l_now_vertical = 0; l_now_vertical < vertical_sum; l_now_vertical++)
+                for (int l_now_vertex = 0; l_now_vertex < vertex_sum; l_now_vertex++)
                 {
                     l_now_mesh_data.mp_vertex_data_list.Add(new _3DModel.CS_Static_Vertex_Data());
                 }
@@ -131,11 +131,11 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // X座標を取得
                         position_x = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
                         
                         // Y座標を取得
                         position_y = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // Z座標を取得
                         position_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -145,7 +145,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                     }
 
                     // UVへ移動
-                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position.mp_now_line);
+                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position);
 
                     // UVをロード
                     {
@@ -156,7 +156,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // U座標を取得
                         set_u = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // V座標を取得
                         set_v = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -166,7 +166,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                     }
 
                     // 色へ移動
-                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position.mp_now_line);
+                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position);
 
                     // 色をロードする
                     {
@@ -179,15 +179,15 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // Rを取得
                         set_r = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // Gを取得
                         set_g = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // Gを取得
                         set_b = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // Aを取得
                         set_a = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -197,7 +197,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                     }
 
                     // 法線ベクトルへ移動
-                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position.mp_now_line);
+                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position);
 
                     // 法線ベクトルをロード
                     {
@@ -209,11 +209,11 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // 法線ベクトルXを取得
                         normal_x = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // 法線ベクトルYを取得
                         normal_y = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position    );
 
                         // 法線ベクトルZを取得
                         normal_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -223,7 +223,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                     }
 
                     // タンジェントベクトルへ移動
-                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position.mp_now_line);
+                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position);
 
                     // タンジェントをロード
                     {
@@ -235,11 +235,11 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // タンジェントXを取得
                         tangent_x = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // タンジェントYを取得
                         tangent_y = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // タンジェントZを取得
                         tangent_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -249,7 +249,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                     }
 
                     // 従法線ベクトルへ移動
-                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position.mp_now_line);
+                    now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ":", now_position);
 
                     // 従法線ベクトルをロード
                     {
@@ -261,11 +261,11 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                         // 従法線Xを取得
                         bi_normal_tangent_x = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // 従法線Yを取得
                         bi_normal_tangent_y = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
-                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position.mp_now_line);
+                        now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
 
                         // 従法線Zを取得
                         bi_normal_tangent_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -273,6 +273,23 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         // 従法線ベクトルをセット
                         vertex_data.mp_bi_normal_tangent = new SharpDX.Vector3(bi_normal_tangent_x, bi_normal_tangent_y, bi_normal_tangent_z);
                     }
+
+                    // 次の頂点へ移動
+                    now_position.M_Goto_Next_Data(read_data_list);
+                }
+
+
+                // インデックス数を取得
+                now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "INDEX:", now_position);
+                index_sum = int.Parse(read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column));
+
+
+                // インデックス数分だけロード
+                now_position.M_Goto_Next_Data(read_data_list);
+                for (int l_now_index = 0; l_now_index < index_sum; l_now_index++)
+                {
+                    l_now_mesh_data.mp_index_list.Add(uint.Parse(read_data_list[now_position.mp_now_line]));
+                    now_position.M_Goto_Next_Data(read_data_list);
                 }
             }
 

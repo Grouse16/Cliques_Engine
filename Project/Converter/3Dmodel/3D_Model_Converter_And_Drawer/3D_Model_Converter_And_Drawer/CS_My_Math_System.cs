@@ -112,11 +112,16 @@ namespace _3D_Model_Converter_And_Drawer
         //-☆- 文字列 -☆-//
 
         // 指定された行から文字を探索し、その右の番号を示す　引数：探索元の文字列, 探索するワード, 探索開始位置　戻り値：指定されたワードから一つ右の文字の番号、なければ(0,0)
-        static public S_Now_File_Data_Position M_Search_Word_And_Go_To_Right(List<string> in_searched_by, string in_search_word, int start_line)
+        static public S_Now_File_Data_Position M_Search_Word_And_Go_To_Right(List<string> in_searched_by, string in_search_word, S_Now_File_Data_Position in_start_position)
         {
-            for (int l_now_line = start_line; l_now_line < in_searched_by.Count; l_now_line++)
+            // ☆ 変数宣言 ☆ //
+            int start_loop_column = in_start_position.mp_now_column;  // 探索開始位置の列番号
+
+
+            // 指定された場所から一行づつ探索する
+            for (int l_now_line = in_start_position.mp_now_line; l_now_line < in_searched_by.Count; l_now_line++)
             {
-                for (int l_now_column = 0; l_now_line + in_search_word.Length < in_searched_by[l_now_line].Length; l_now_line++)
+                for (int l_now_column = start_loop_column; l_now_line + in_search_word.Length < in_searched_by[l_now_line].Length; l_now_line++)
                 {
                     // ☆ 変数宣言 ☆ //
                     bool flg_found = true; // 見つかった時のみtrueになるフラグ
@@ -139,6 +144,10 @@ namespace _3D_Model_Converter_And_Drawer
                         return new S_Now_File_Data_Position(l_now_line, l_now_column + in_search_word.Length);
                     }
                 }
+
+
+                // 二回目以降は行の先頭から探索する
+                start_loop_column = 0;
             }
 
             // 見つからなかったら初期値を返す
