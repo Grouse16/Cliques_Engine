@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="3DModel\Animation\CS_Animation_Mesh_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Animation_Model_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Animation_Vertex_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Bone_Data.cs" />
     <Compile Include="3DModel\Animation\CS_Bone_Weight_Data.cs" />

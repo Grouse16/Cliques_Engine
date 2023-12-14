@@ -18,7 +18,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
         private Vector4 m_color = new Vector4();    // 頂点カラー
         private Vector3 m_normal = new Vector3();   // 法線ベクトル
         private Vector3 m_tangent = new Vector3();  // タンジェントベクトル
-        private Vector3 m_bi_normal_tangent = new Vector3();    // 順法線ベクトル
+        private Vector3 m_bi_normal_tangent = new Vector3();    // 従法線ベクトル
 
         private List<CS_Bone_Weight_Data> m_bone_weight = new List<CS_Bone_Weight_Data>(); // ボーンウェイト行列のリスト
 
@@ -105,7 +105,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
             }
         }
 
-        // 順法線ベクトル
+        // 従法線ベクトル
         public Vector3 mp_bi_normal_tangent
         {
             // ゲッタ

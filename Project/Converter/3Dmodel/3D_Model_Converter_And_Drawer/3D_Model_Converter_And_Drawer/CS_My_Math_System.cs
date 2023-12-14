@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -69,6 +65,26 @@ namespace _3D_Model_Converter_And_Drawer
 
             return;
         }
+
+
+        //-☆- 移動 -☆-//
+
+        // 次の行へ移動する、次の行がなければfalseを返す　引数：ファイルのデータ　戻り値：次の行があるときはtrue、ないときはfalse
+        public bool M_Goto_Next_Data(in List<string> in_file_data)
+        {
+            // 次の行番号を指定
+            m_now_line += 1;
+            m_now_column = 0;
+
+            // 次の行が無ければfalseを返す
+            if (in_file_data.Count <= m_now_line)
+            {
+                return false;
+            }
+
+            // 次の行があればtrueを返す
+            return true;
+        }
     }
 
 
@@ -127,6 +143,24 @@ namespace _3D_Model_Converter_And_Drawer
 
             // 見つからなかったら初期値を返す
             return new S_Now_File_Data_Position(0, 0);
+        }
+
+
+        // 指定された文字までを切り取る　引数：切り取りの開始位置, 切り取り元の文字, 切り取る文字　戻り値：切り取った文字列
+        static public string M_Get_String_Until_This_Word(int in_start_point, string in_string_data, char in_word)
+        {
+            // ☆ 変数宣言 ☆ //
+            int index = in_string_data.IndexOf(in_word);  // 切り取る文字がある文字番号
+
+
+            // 指定した文字が見つかった場合は、その位置までの部分文字列を取得
+            if (index >= 0)
+            {
+                return in_string_data.Substring(in_start_point, index);
+            }
+
+            // 指定した文字が見つからなかった場合は、--NOT_FOUND--を返す
+            return "--NOT_FOUND--";
         }
     }
 }

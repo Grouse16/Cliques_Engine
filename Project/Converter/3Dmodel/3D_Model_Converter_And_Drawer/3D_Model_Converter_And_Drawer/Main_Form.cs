@@ -15,6 +15,8 @@ using System.Runtime.InteropServices;
 using Assimp.Unmanaged;
 using _3D_Model_Converter_And_Drawer.Animation_Convert;
 using _3D_Model_Converter_And_Drawer._3D_Model_Importer;
+using _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System;
+using _3D_Model_Converter_And_Drawer._3DModel.Static;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -24,11 +26,13 @@ namespace _3D_Model_Converter_And_Drawer
     public partial class Main_Form : Form
     {
         // ☆ 変数宣言 ☆ //
-        private string m_shader_path;   // シェーダーファイルのパス
+        private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
 
         private C_Shader_Source m_shader;  // シェーダー
 
-        private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
+        private CS_Static_Model_Data m_static_model = new CS_Static_Model_Data(); // 静的モデルデータ
+
+        private string m_shader_path;   // シェーダーファイルのパス
 
 
         // ☆ 関数 ☆ //
@@ -149,55 +153,6 @@ namespace _3D_Model_Converter_And_Drawer
 
 
         //-☆- ロード -☆-//
-
-        // 静的モデルのロード　引数：ファイルパス
-        private void M_Static_Model_Load(string in_file_path)
-        {
-            // ☆ 変数宣言 ☆ //
-            List<string> read_data_list = new List<string>();   // 読み取ったデータのリスト
-
-            S_Now_File_Data_Position now_position = new S_Now_File_Data_Position(0, 0); // 現在のファイル操作中の場所
-
-
-            // ファイルのデータを読み取る
-            {
-                // ☆　変数宣言 ☆ //
-                StreamReader file_data = new StreamReader(in_file_path); // 指定されたファイルのデータ
-
-                bool is_file_end = false;   // ファイルの終わりに来たかどうか
-                
-
-                // ファイルの終わりに来るまで読み取る
-                while (is_file_end == false)
-                {
-                    // ☆ 変数宣言 ☆ //
-                    string new_line = file_data.ReadLine();  // 新しい行のデータ
-
-
-                    // もうデータがないなら終了
-                    if (new_line == null)
-                    {
-                        is_file_end = true;
-                    }
-
-                    // データがあるなら読み取ったデータのリストに追加
-                    else
-                    {
-                        read_data_list.Add(new_line);
-                    }
-                }
-
-                // ファイルを閉じる
-                file_data.Close();
-            }
-
-
-            // メッシュ数へ移動
-            now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MESHSUM:", 0);
-
-            return;
-        }
-
 
         // アニメーションモデルのロード　引数：ファイルパス
         private void M_Animation_Model_Load(string in_file_path)
@@ -340,7 +295,7 @@ namespace _3D_Model_Converter_And_Drawer
             if(file_data_a_line == con_IS_ELSSTMDL_TEXT)
             {
                 file_data.Close();
-                M_Static_Model_Load(relative_file_path);
+                CS_Static_Model_Import_System.M_Static_Model_Load(relative_file_path, m_static_model);
 
                 return;
             }

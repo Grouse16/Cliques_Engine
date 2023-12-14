@@ -178,7 +178,7 @@ namespace _3D_Model_Converter_And_Drawer
                             + bone_index.offset_matrix.D1.ToString() + ","
                             + bone_index.offset_matrix.D2.ToString() + ","
                             + bone_index.offset_matrix.D3.ToString() + ","
-                            + bone_index.offset_matrix.D4.ToString() + ","
+                            + bone_index.offset_matrix.D4.ToString()
                         );
                 }
             }
@@ -366,7 +366,7 @@ namespace _3D_Model_Converter_And_Drawer
                         + mesh.Tangents[now_vertex].Y.ToString() + ","
                         + mesh.Tangents[now_vertex].Z.ToString() + ":"
 
-                        //==☆ バイノーマルタンジェント（順法線） ☆==//
+                        //==☆ バイノーマルタンジェント（従法線） ☆==//
                         + mesh.BiTangents[now_vertex].X.ToString() + ","
                         + mesh.BiTangents[now_vertex].Y.ToString() + ","
                         + mesh.BiTangents[now_vertex].Z.ToString() + ":";
@@ -377,7 +377,7 @@ namespace _3D_Model_Converter_And_Drawer
                     {
                         foreach (var weight_inform in m_vertex_weight_list[now_vertex])
                         {
-                            vertex_write_text += weight_inform.index.ToString() + "/" + weight_inform.value.ToString() + ",";
+                            vertex_write_text += weight_inform.index.ToString() + "/" + weight_inform.value.ToString();
                         }
 
                         // ボーンウェイト情報終了を記録

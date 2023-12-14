@@ -14,11 +14,14 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
     {
         // ☆ 変数宣言 ☆ //
         private Vector3 m_position = new Vector3(); // 位置座標
-        private Vector3 m_uv = new Vector3();       // uv座標
+
+        private Vector2 m_uv = new Vector2();       // uv座標
+
         private Vector4 m_color = new Vector4();    // 頂点カラー
+
         private Vector3 m_normal = new Vector3();   // 法線ベクトル
         private Vector3 m_tangent = new Vector3();  // タンジェントベクトル
-        private Vector3 m_bi_normal_tangent = new Vector3();    // 順法線ベクトル
+        private Vector3 m_bi_normal_tangent = new Vector3();    // 従法線ベクトル
 
 
         // ☆ プロパティ ☆ //
@@ -40,7 +43,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
         }
 
         // uv座標
-        public Vector3 mp_uv
+        public Vector2 mp_uv
         {
             // ゲッタ
             get
@@ -103,7 +106,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
             }
         }
 
-        // 順法線ベクトル
+        // 従法線ベクトル
         public Vector3 mp_bi_normal_tangent
         {
             // ゲッタ
