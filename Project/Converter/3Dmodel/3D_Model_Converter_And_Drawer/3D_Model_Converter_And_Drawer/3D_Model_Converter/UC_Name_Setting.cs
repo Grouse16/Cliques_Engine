@@ -23,7 +23,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         public UC_Name_Setting()
         {
             InitializeComponent();
-            TB_material_number.ReadOnly = true;
+            tb_print_material_number.ReadOnly = true;
         }
 
 
@@ -32,14 +32,14 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         // 番号をセットする
         public void M_Set_Number_Prate(string in_number)
         {
-            TB_material_number.Text = in_number;
+            tb_print_material_number.Text = in_number;
         }
 
 
         // 名前をセットする
         public void M_Set_Name(string in_name)
         {
-            TB_material_name.Text = in_name;
+            tb_material_name.Text = in_name;
         }
 
         
@@ -48,7 +48,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         // 番号を取得する
         public string M_Get_Name()
         {
-            return TB_material_name.Text;
+            return tb_material_name.Text;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SharpDXSample
         // ☆ プロパティ ☆ //
 
         // 画面の横幅
-        public int m_width
+        public int mp_width
         {
             // ゲッタ
             get;
@@ -33,7 +33,7 @@ namespace SharpDXSample
         }
 
         // 画面の縦幅
-        public int m_height
+        public int mp_height
         {
             // ゲッタ
             get;
@@ -43,12 +43,12 @@ namespace SharpDXSample
         }
 
         // ビューポート
-        Viewport m_view_port
+        Viewport mp_view_port
         {
             // ゲッタ
             get
             {
-                return new Viewport(0, 0, m_width, m_height, 0.0f, 1.0f);
+                return new Viewport(0, 0, mp_width, mp_height, 0.0f, 1.0f);
             }
         }
 
@@ -66,13 +66,19 @@ namespace SharpDXSample
         public SharpDX.Direct3D11.Device mp_device
         {
             // ゲッタ
-            get { return m_device; }
+            get 
+            {
+                return m_device;
+            }
         }
 
         // デバイスコンテキスト
         public DeviceContext mp_context
         {
-            get { return m_context; }
+            get 
+            { 
+                return m_context;
+            }
         }
 
 
@@ -132,7 +138,7 @@ namespace SharpDXSample
             SwapChainDescription swap_chain_desc = new SwapChainDescription()   // スワップチェインの設定
             {
                 BufferCount = 1,
-                ModeDescription = new ModeDescription(m_width, m_height,
+                ModeDescription = new ModeDescription(mp_width, mp_height,
                     new Rational(60, 1), Format.R8G8B8A8_UNorm),
                 IsWindowed = true,
                 OutputHandle = in_handle_window,
@@ -169,14 +175,14 @@ namespace SharpDXSample
         public void M_Resize(int in_width, int in_height)
         {
             // 変更後の画面サイズが変更前と同じなら設定する必要はない
-            if (in_width == m_width && in_height == m_height)
+            if (in_width == mp_width && in_height == mp_height)
             {
                 return;
             }
 
             // 画面サイズのセット
-            m_width = in_width;
-            m_height = in_height;
+            mp_width = in_width;
+            mp_height = in_height;
 
             // スワップチェインのサイズ変更
             if (m_swap_chain != null)
@@ -205,7 +211,7 @@ namespace SharpDXSample
 
             // レンダーターゲットの設定
             m_context.OutputMerger.SetTargets(rtv);
-            m_context.Rasterizer.SetViewport(m_view_port);
+            m_context.Rasterizer.SetViewport(mp_view_port);
 
             return;
         }

@@ -9,7 +9,7 @@ namespace _3D_Model_Converter_And_Drawer
     // ☆ クラス ☆ //
 
     // メイン関数実行用のクラス
-    internal static class Main_Program
+    internal static class CS_Main_Program
     {
         // メイン関数
         [STAThread] static void Main()
