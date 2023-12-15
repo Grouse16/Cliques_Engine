@@ -18,7 +18,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
 
         private List<CS_Animation_Vertex_Data> m_vertex_data_list = new List<CS_Animation_Vertex_Data>(); // 頂点データのリスト
 
-        private CS_Material_Data m_material_data = new CS_Material_Data(); // マテリアルデータ
+        private string m_material_name = ""; // マテリアル名
 
         private List<uint> m_index_data_list = new List<uint>();    // 頂点インデックス番号のリスト
             
@@ -54,6 +54,38 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
             set
             {
                 m_vertex_data_list = value;
+            }
+        }
+
+        // マテリアル
+        public string mp_material_name
+        {
+            // ゲッタ
+            get
+            {
+                return m_material_name;
+            }
+
+            // セッタ
+            set
+            {
+                m_material_name = value;
+            }
+        }
+
+        // 頂点インデックス番号のリスト
+        public List<uint> mp_index_data_list
+        {
+            // ゲッタ
+            get
+            {
+                return m_index_data_list;
+            }
+
+            // セッタ
+            set
+            {
+                m_index_data_list = value;
             }
         }
 
