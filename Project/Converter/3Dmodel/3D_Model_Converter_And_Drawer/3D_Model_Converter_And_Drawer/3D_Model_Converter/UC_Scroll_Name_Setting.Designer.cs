@@ -53,18 +53,18 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_print_this_names_kind = new System.Windows.Forms.TextBox();
             this.scroll_bar = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tb_print_this_names_kind
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(478, 19);
-            this.textBox1.TabIndex = 0;
+            this.tb_print_this_names_kind.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tb_print_this_names_kind.Location = new System.Drawing.Point(0, 0);
+            this.tb_print_this_names_kind.Name = "tb_print_this_names_kind";
+            this.tb_print_this_names_kind.ReadOnly = true;
+            this.tb_print_this_names_kind.Size = new System.Drawing.Size(478, 19);
+            this.tb_print_this_names_kind.TabIndex = 0;
             // 
             // scroll_bar
             // 
@@ -81,7 +81,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.scroll_bar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb_print_this_names_kind);
             this.Name = "UC_Scroll_Name_Setting";
             this.Size = new System.Drawing.Size(478, 173);
             this.Load += new System.EventHandler(this.UC_Scroll_Name_Setting_Load);
@@ -92,7 +92,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_print_this_names_kind;
         private System.Windows.Forms.VScrollBar scroll_bar;
     }
 }

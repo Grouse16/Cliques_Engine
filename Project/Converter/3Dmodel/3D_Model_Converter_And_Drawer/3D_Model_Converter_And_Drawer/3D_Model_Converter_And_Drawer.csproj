@@ -68,8 +68,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="3D_model_Convert\CS_Animation_Convert_System.cs" />
-    <Compile Include="3D_model_Convert\CS_Material_Inform_Convert_System.cs" />
+    <Compile Include="3DModel\Animation\CS_Animation_Mesh_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Animation_Model_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Animation_Vertex_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Bone_Data.cs" />
+    <Compile Include="3DModel\Animation\CS_Bone_Weight_Data.cs" />
+    <Compile Include="3DModel\Material\CS_Material_Data.cs" />
+    <Compile Include="3DModel\Static\CS_Static_Mesh_Data.cs" />
+    <Compile Include="3DModel\Static\CS_Static_Model_Data.cs" />
+    <Compile Include="3DModel\Static\CS_Static_Vertex_Data.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_Animation_Convert_System.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_Material_Inform_Convert_System.cs" />
+    <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.Designer.cs">
+      <DependentUpon>Form_Animation_Model_Importer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
+    <Compile Include="3D_Model_Importer\UC_Animation_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="3D_Model_Importer\UC_Animation_List.Designer.cs">
+      <DependentUpon>UC_Animation_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3D_Model_Importer\UC_Animation_Inform_Bar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="3D_Model_Importer\UC_Animation_Inform_Bar.Designer.cs">
+      <DependentUpon>UC_Animation_Inform_Bar.cs</DependentUpon>
+    </Compile>
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
     <Compile Include="FormTool\UC_Load_Inform_Box.cs">
       <SubType>UserControl</SubType>
@@ -77,19 +105,19 @@
     <Compile Include="FormTool\UC_Load_Inform_Box.Designer.cs">
       <DependentUpon>UC_Load_Inform_Box.cs</DependentUpon>
     </Compile>
-    <Compile Include="3D_model_Convert\UC_Name_Setting.cs">
+    <Compile Include="3D_Model_Converter\UC_Name_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="3D_model_Convert\UC_Name_Setting.Designer.cs">
+    <Compile Include="3D_Model_Converter\UC_Name_Setting.Designer.cs">
       <DependentUpon>UC_Name_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="3D_model_Convert\UC_Scroll_Name_Setting.cs">
+    <Compile Include="3D_Model_Converter\UC_Scroll_Name_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="3D_model_Convert\UC_Scroll_Name_Setting.Designer.cs">
+    <Compile Include="3D_Model_Converter\UC_Scroll_Name_Setting.Designer.cs">
       <DependentUpon>UC_Scroll_Name_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="3D_model_Convert\CS_3D_Model_Convert_System.cs" />
+    <Compile Include="3D_Model_Converter\Convert_System\CS_3D_Model_Convert_System.cs" />
     <Compile Include="d3d11\UC_DX_11_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,10 +128,10 @@
     <Compile Include="d3d11\CS_DX_11_Shader.cs" />
     <Compile Include="d3d11\CS_DX_11_Vertex_Buffer.cs" />
     <Compile Include="d3d11\CS_DX_11_Swap_Chain.cs" />
-    <Compile Include="3D_model_Convert\3D_Model_Convert_Setting_Form.cs">
+    <Compile Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3D_model_Convert\3D_Model_Convert_Setting_Form.Designer.cs">
+    <Compile Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.Designer.cs">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -112,19 +140,28 @@
     <Compile Include="Main_Form.Designer.cs">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main_Program.cs" />
-    <Compile Include="My_Math_System.cs" />
+    <Compile Include="CS_Main_Program.cs" />
+    <Compile Include="CS_My_Math_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="3D_model_Convert\3D_Model_Convert_Setting_Form.resx">
+    <EmbeddedResource Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3D_Model_Importer\Form_Animation_Model_Importer.resx">
+      <DependentUpon>Form_Animation_Model_Importer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3D_Model_Importer\UC_Animation_List.resx">
+      <DependentUpon>UC_Animation_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3D_Model_Importer\UC_Animation_Inform_Bar.resx">
+      <DependentUpon>UC_Animation_Inform_Bar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTool\UC_Load_Inform_Box.resx">
       <DependentUpon>UC_Load_Inform_Box.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3D_model_Convert\UC_Name_Setting.resx">
+    <EmbeddedResource Include="3D_Model_Converter\UC_Name_Setting.resx">
       <DependentUpon>UC_Name_Setting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3D_model_Convert\UC_Scroll_Name_Setting.resx">
+    <EmbeddedResource Include="3D_Model_Converter\UC_Scroll_Name_Setting.resx">
       <DependentUpon>UC_Scroll_Name_Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="d3d11\UC_DX_11_Panel.resx">
@@ -156,7 +193,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Asset\shader.fx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AssimpNet.4.1.0\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

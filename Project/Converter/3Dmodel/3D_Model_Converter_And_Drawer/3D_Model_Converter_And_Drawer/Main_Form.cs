@@ -14,6 +14,10 @@ using Assimp;
 using System.Runtime.InteropServices;
 using Assimp.Unmanaged;
 using _3D_Model_Converter_And_Drawer.Animation_Convert;
+using _3D_Model_Converter_And_Drawer._3D_Model_Importer;
+using _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System;
+using _3D_Model_Converter_And_Drawer._3DModel.Static;
+using _3D_Model_Converter_And_Drawer._3DModel.Animation;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -23,11 +27,15 @@ namespace _3D_Model_Converter_And_Drawer
     public partial class Main_Form : Form
     {
         // ☆ 変数宣言 ☆ //
-        private string m_shader_path;   // シェーダーファイルのパス
+        private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
 
         private C_Shader_Source m_shader;  // シェーダー
 
-        private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
+        private CS_Static_Model_Data m_static_model = new CS_Static_Model_Data(); // 静的モデルデータ
+
+        private CS_Animation_Model_Data m_animation_model = new CS_Animation_Model_Data(); // アニメーションモデルデータ
+
+        private string m_shader_path;   // シェーダーファイルのパス
 
 
         // ☆ 関数 ☆ //
@@ -47,15 +55,15 @@ namespace _3D_Model_Converter_And_Drawer
             m_shader.mp_shader = File.ReadAllText(m_shader_path, Encoding.UTF8);
 
             // シェーダーのパスをセット
-            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.mp_shader;
-            uC_DX_11_Panel1.mp_renderer.M_Create_Renderer(Handle);
-            
+            uc_dx_11_panel.mp_shader.mp_shader_path = m_shader.mp_shader;
+            uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
+
 
             // 頂点リストのファイルウォッチャーの設定
             m_vertex_list.ListChanged += (o, e) =>
               {
-                  uC_DX_11_Panel1.mp_buffer.M_Set_Vertex(m_vertex_list.ToArray());
-                  uC_DX_11_Panel1.Invalidate();
+                  uc_dx_11_panel.mp_buffer.M_Set_Vertex(m_vertex_list.ToArray());
+                  uc_dx_11_panel.Invalidate();
               };
 
             // 頂点リストの初期化
@@ -70,18 +78,18 @@ namespace _3D_Model_Converter_And_Drawer
         // フォーム読み込み時
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox1.ReadOnly = true;
-            textBox5.ReadOnly = true;
-            textBox7.ReadOnly = true;
-            textBox8.ReadOnly = true;
-            textBox9.ReadOnly = true;
-            textBox10.ReadOnly = true;
-            textBox11.ReadOnly = true;
-            textBox12.ReadOnly = true;
-            textBox13.ReadOnly = true;
-            textBox14.ReadOnly = true;
-            textBox15.ReadOnly = true;
-            textBox16.ReadOnly = true;
+            tb_print_model_converter.ReadOnly = true;
+            tb_print_model_importer.ReadOnly = true;
+            tb_print_model_viewer.ReadOnly = true;
+            tb_print_camera_setting.ReadOnly = true;
+            tb_print_camera_distance.ReadOnly = true;
+            tb_print_camera_position.ReadOnly = true;
+            tb_print_animation_blend.ReadOnly = true;
+            tb_print_animation_01_times.ReadOnly = true;
+            tb_print_animation_02_time.ReadOnly = true;
+            tb_print_animation_01_name.ReadOnly = true;
+            tb_print_animation_02_name.ReadOnly = true;
+            tb_print_animation_blend_percent.ReadOnly = true;
 
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
@@ -115,7 +123,7 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             // シェーダーの再読み込み
-            m_shader.mp_shader=File.ReadAllText(m_shader_path, Encoding.UTF8);
+            m_shader.mp_shader = File.ReadAllText(m_shader_path, Encoding.UTF8);
 
             return;
         }
@@ -140,8 +148,25 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             // シェーダーのパスをセット
-            uC_DX_11_Panel1.mp_shader.mp_shader_path = m_shader.mp_shader;
-            uC_DX_11_Panel1.Invalidate();
+            uc_dx_11_panel.mp_shader.mp_shader_path = m_shader.mp_shader;
+            uc_dx_11_panel.Invalidate();
+
+            return;
+        }
+
+
+        //-☆- ロード -☆-//
+
+        // アニメーションモデルのロード　引数：ファイルパス
+        private void M_Animation_Model_Load(string in_file_path)
+        {
+            // ☆ 変数宣言 ☆ //
+            Form_Animation_Model_Importer new_form = new Form_Animation_Model_Importer();   // 新しいフォームシステム
+
+
+            // フォームを初期化して画面に表示
+            new_form.M_Initialize(in_file_path, uc_dx_11_panel);
+            new_form.Show();
 
             return;
         }
@@ -199,7 +224,7 @@ namespace _3D_Model_Converter_And_Drawer
             // ☆ 変数宣言 ☆ //
             string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
 
-            string relative_file_path = My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
+            string relative_file_path = CS_My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
 
             AssimpContext importer = new AssimpContext(); // インポートシステム
 
@@ -229,7 +254,7 @@ namespace _3D_Model_Converter_And_Drawer
             now_process.Refresh();
 
             // ロード時間と必要なメモリサイズを表示
-            UC_load_inform_box.M_Set_Assimp_Load_Inform
+            uc_load_inform_box.M_Set_Assimp_Load_Inform
                 (
                 stop_watch.ElapsedMilliseconds,
                 now_process.WorkingSet64 - before_working_memory,
@@ -247,6 +272,11 @@ namespace _3D_Model_Converter_And_Drawer
         // 独自形式モデルの変換にファイルのドロップがあった時
         private void B_Model_Importer_DragDrop(object sender, DragEventArgs e)
         {
+            // ☆ 定数 ☆ //
+            const string con_IS_ELSSTMDL_TEXT = "This-Is-ELSTTMDL";   // 静的モデル、elsttmdlであることを確認するための文字列
+            const string con_IS_ELANMMDL_TEXT = "This-Is-ELANMMDT";   // 動的モデル、elanmmdlであることを確認するための文字列
+
+
             // ファイルドロップ時はファイルのプロパティを取得（なければスルー）
             if (e.Data.GetDataPresent(DataFormats.FileDrop) == false)
             {
@@ -255,12 +285,104 @@ namespace _3D_Model_Converter_And_Drawer
 
 
             // ☆ 変数宣言 ☆ //
-            System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+            string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイルまでの絶対パス
 
-            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+            string relative_file_path = CS_My_Math_System.M_Get_Relative_Path(file_path[0]);   // ファイルまでの相対パス
+            
+            StreamReader file_data = new StreamReader(relative_file_path); // ファイルデータ
 
+            string file_data_a_line = file_data.ReadLine(); // ファイルの一行分のデータ
+
+
+            // 静的モデルである時のロード
+            if(file_data_a_line == con_IS_ELSSTMDL_TEXT)
+            {
+                // ☆ 変数宣言 ☆ //
+                System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+
+                System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+
+                long before_working_memory = 0;   // ロード前の物理メモリ
+                long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+                // ファイルを閉じる
+                file_data.Close();
+
+                // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+                now_process.Refresh();
+                before_working_memory = now_process.WorkingSet64;
+                before_virtual_memory = now_process.VirtualMemorySize64;
+
+                // 生成時間を記録開始
+                stop_watch.Start();
+
+                // 静的モデルのロード
+                CS_Static_Model_Import_System.M_Static_Model_Load(relative_file_path, m_static_model);
+
+                // ロード終了、ロードにかかった時間を記録
+                stop_watch.Stop();
+
+                // 現在のメモリサイズを取得
+                now_process.Refresh();
+
+                // ロード時間と必要なメモリサイズを表示
+                uc_load_inform_box.M_Set_My_Model_Load_Inform
+                    (
+                    stop_watch.ElapsedMilliseconds,
+                    now_process.WorkingSet64 - before_working_memory,
+                    now_process.VirtualMemorySize64 - before_virtual_memory
+                    );
+
+                return;
+            }
+
+
+            // アニメーションモデルである時のロード
+            if (file_data_a_line == con_IS_ELANMMDL_TEXT)
+            {
+                file_data.Close();
+                M_Animation_Model_Load(relative_file_path);
+
+                return;
+            }
 
             return;
+        }
+
+        private void tb_print_animation_blend_percent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar5_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_02_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_02_time_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_print_animation_01_name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 

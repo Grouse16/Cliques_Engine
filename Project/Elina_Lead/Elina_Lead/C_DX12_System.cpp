@@ -53,6 +53,39 @@ using namespace RENDERING::GRAPHICS::DX12;
 
 // ☆ インライン関数 ☆ //
 
+//-☆- 初期化 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：バッファをゼロクリアする
+// 引数   ：C_Buffer * ゼロクリアするバッファの参照, int クリアするバイト数
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+template <class C_Buffer> inline void M_Buffer_Zero_Clear_System(C_Buffer * in_clear_buffer, int in_clear_data)
+{
+    // ☆ 変数宣言 ☆ //
+    void * vertex_buffer_data = nullptr;    // 頂点バッファのデータ
+
+    unsigned char * vertex_buffer_data_byte = nullptr;    // 頂点バッファのデータを１バイトとして扱う
+
+
+    // バッファのデータを取得
+    in_clear_buffer->Map(0, nullptr, &vertex_buffer_data);
+    vertex_buffer_data_byte = reinterpret_cast<unsigned char * >(vertex_buffer_data);
+
+
+    // データを全て0で初期化する
+    for (int l_now_byte = 0; l_now_byte < in_clear_data; l_now_byte++)
+    {
+        vertex_buffer_data_byte[l_now_byte] = 0;
+    }
+
+    // バッファのロックを解除
+    in_clear_buffer->Unmap(0, nullptr);
+
+    return;
+}
+
+
 //-☆- 設定 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -270,7 +303,7 @@ inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture
 // 引数   ：E_SHADER_KIND シェーダーの種類
 // 戻り値 ：D3D12_SHADER_VISIBILITY DX12のシェーダーの種類
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER::E_SHADER_KIND in_shader_kind)
+inline D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER::E_SHADER_KIND in_shader_kind)
 {
     switch (in_shader_kind)
     {
@@ -1346,6 +1379,10 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
     // 要素のバイト数
     in_dx12_vertex_inform->m_vertex_buffer_view.StrideInBytes = in_create_inform.size_of_vertex;
 
+
+    // 生成したバッファをゼロクリアする
+    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_vertex_inform->m_vertex_buffer_data.Get(), desc_resource.Width);
+
     return;
 }
 
@@ -1454,6 +1491,10 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
     // インデックスバッファのデータ形式
     in_dx12_vertex_inform->m_index_buffer_view.Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 
+
+    // 生成したバッファをゼロクリアする
+    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_vertex_inform->m_index_buffer_data.Get(), desc_resource.Width);
+
     return;
 }
 
@@ -1468,7 +1509,7 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
 void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREATE::S_Create_Constant_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
-    D3D12_DESCRIPTOR_HEAP_DESC descriptor_heap_desc{};  // テクスチャ用のヒープの生成用情報
+    D3D12_DESCRIPTOR_HEAP_DESC descriptor_heap_desc{};  // 定数バッファ用のヒープの生成用情報
 
 
     // ヒープで管理するデータの管理
@@ -1484,7 +1525,7 @@ void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting
     descriptor_heap_desc.NodeMask = 0;
 
 
-    // テクスチャヒープの生成
+    // 定数バッファヒープの生成
     if (FAILED(mpr_variable->s_frame_work.device->CreateDescriptorHeap(&descriptor_heap_desc, IID_PPV_ARGS(&in_dx12_constant_setting->m_constant_buffer_heap))))
     {
         return;
@@ -1499,101 +1540,103 @@ void C_DX12_System::M_Create_Constant_Heap(DX12INSTANCE::C_DX12_Constant_Setting
 // 引数   ：C_DX12_Constant_Setting_Inform * & 設定先の定数用のデータ, const C_Create_Constant_Buffer_Inform & 定数用データ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform * & in_dx12_constant_setting, const CREATE::S_Create_Constant_Buffer_Inform & in_create_inform)
+void C_DX12_System::M_Create_Constant_Resource(DX12INSTANCE::C_DX12_Constant_Setting_Inform*& in_dx12_constant_setting, const CREATE::S_Create_Constant_Buffer_Inform& in_create_inform)
 {
     // ☆ 定数 ☆ //
     constexpr int con_CONSTANT_BUFFER_ONE_BYTE = 256;	// 定数バッファ一つ分のバイト数
 
 
     // ☆ 定数バッファデータを生成 ☆ //
-    {
+
         // ☆ 変数宣言 ☆ //
-        D3D12_HEAP_PROPERTIES constant_data_prop;   // 定数データ生成用のプロパティ設定
-        
-        D3D12_RESOURCE_DESC constant_data_desc;     // 定数バッファのデータの設定
+    D3D12_HEAP_PROPERTIES constant_data_prop;   // 定数データ生成用のプロパティ設定
+
+    D3D12_RESOURCE_DESC constant_data_desc;     // 定数バッファのデータの設定
 
 
-        // ☆ プロパティ設定 ☆ //
+    // ☆ プロパティ設定 ☆ //
 
-        // ヒープの動作の種類
-        constant_data_prop.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_UPLOAD;
+    // ヒープの動作の種類
+    constant_data_prop.Type = D3D12_HEAP_TYPE::D3D12_HEAP_TYPE_UPLOAD;
 
-        // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
-        constant_data_prop.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
-    
-        // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
-        constant_data_prop.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
-    
-        // ヒープメモリを生成するノード(GPUや物理アダプター)の数
-        constant_data_prop.CreationNodeMask = 1;
-    
-        // リソースが存在するノードの数(GPUや物理アダプター)の数
-        constant_data_prop.VisibleNodeMask = 1;
+    // CPUのメモリがページングによって複数のメモリとして扱われている時にどのようにそのメモリにアクセスするか
+    constant_data_prop.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY::D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 
+    // メモリプール(起動時に一気にアプリで使用するデータを確保する場所)の種類を指定する
+    constant_data_prop.MemoryPoolPreference = D3D12_MEMORY_POOL::D3D12_MEMORY_POOL_UNKNOWN;
 
-        // ☆ データ設定 ☆ //
+    // ヒープメモリを生成するノード(GPUや物理アダプター)の数
+    constant_data_prop.CreationNodeMask = 1;
 
-        // 使用されるリソースの種類
-        constant_data_desc.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
-
-        // 設定するリソース情報の配置位置を指定
-        constant_data_desc.Alignment = 0;
-
-        // リソースのバイト数
-        constant_data_desc.Width = con_CONSTANT_BUFFER_ONE_BYTE; // 定数バッファサイズは256バイトでなければならない
-
-        // リソースの配列番号
-        constant_data_desc.Height = in_create_inform.m_list_size;
-
-        // リソースの深さ、または配列数
-        constant_data_desc.DepthOrArraySize = 1;
-
-        // MIPMAPレベル(この数値に応じてピクセル数が倍になる)
-        constant_data_desc.MipLevels = 1;
-
-        // リソースがDX12側が用意した型かどうか
-        constant_data_desc.Format = DXGI_FORMAT::DXGI_FORMAT_UNKNOWN;
-        
-
-        // ☆ サンプリング設定 ☆ //
-
-        // サンプリング回数
-        constant_data_desc.SampleDesc.Count = 1;
-
-        // サンプリング時のクオリティ
-        constant_data_desc.SampleDesc.Quality = 0;
-
-        // テクスチャレイアウトのオプション
-        constant_data_desc.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
-
-        // リソースを操作するためのオプション
-        constant_data_desc.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
+    // リソースが存在するノードの数(GPUや物理アダプター)の数
+    constant_data_prop.VisibleNodeMask = 1;
 
 
-        // 定数バッファのデータを生成
-        if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&constant_data_prop, D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE, &constant_data_desc, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&in_dx12_constant_setting->m_constant_buffer_data))))
-        {
-            return;
-        }
+    // ☆ データ設定 ☆ //
+
+    // 使用されるリソースの種類
+    constant_data_desc.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
+
+    // 設定するリソース情報の配置位置を指定
+    constant_data_desc.Alignment = 0;
+
+    // リソースのバイト数
+    constant_data_desc.Width = con_CONSTANT_BUFFER_ONE_BYTE; // 定数バッファサイズは256バイトでなければならない
+
+    // リソースの配列番号
+    constant_data_desc.Height = in_create_inform.m_list_size;
+
+    // リソースの深さ、または配列数
+    constant_data_desc.DepthOrArraySize = 1;
+
+    // MIPMAPレベル(この数値に応じてピクセル数が倍になる)
+    constant_data_desc.MipLevels = 1;
+
+    // リソースがDX12側が用意した型かどうか
+    constant_data_desc.Format = DXGI_FORMAT::DXGI_FORMAT_UNKNOWN;
+
+
+    // ☆ サンプリング設定 ☆ //
+
+    // サンプリング回数
+    constant_data_desc.SampleDesc.Count = 1;
+
+    // サンプリング時のクオリティ
+    constant_data_desc.SampleDesc.Quality = 0;
+
+    // テクスチャレイアウトのオプション
+    constant_data_desc.Layout = D3D12_TEXTURE_LAYOUT::D3D12_TEXTURE_LAYOUT_UNKNOWN;
+
+    // リソースを操作するためのオプション
+    constant_data_desc.Flags = D3D12_RESOURCE_FLAGS::D3D12_RESOURCE_FLAG_NONE;
+
+
+    // 定数バッファのデータを生成
+    if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&constant_data_prop, D3D12_HEAP_FLAGS::D3D12_HEAP_FLAG_NONE, &constant_data_desc, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&in_dx12_constant_setting->m_constant_buffer_data))))
+    {
+        return;
     }
-    
+
 
     // ☆ 定数バッファビューの設定 ☆ //
-    {
+
         // ☆ 変数宣言 ☆ //
-        D3D12_CONSTANT_BUFFER_VIEW_DESC constant_buffer_view_desc = {};  // 定数バッファビュー生成用情報
-        
-
-        // 定数バッファのGPUでのアドレス
-        constant_buffer_view_desc.BufferLocation = in_dx12_constant_setting->m_constant_buffer_data->GetGPUVirtualAddress();
-        
-        // バイト数
-        constant_buffer_view_desc.SizeInBytes = con_CONSTANT_BUFFER_ONE_BYTE * in_create_inform.m_list_size;
+    D3D12_CONSTANT_BUFFER_VIEW_DESC constant_buffer_view_desc = {};  // 定数バッファビュー生成用情報
 
 
-        // 定数バッファビューの生成
-        mpr_variable->s_frame_work.device->CreateConstantBufferView(&constant_buffer_view_desc, in_dx12_constant_setting->m_constant_buffer_heap->GetCPUDescriptorHandleForHeapStart());
-    }
+    // 定数バッファのGPUでのアドレス
+    constant_buffer_view_desc.BufferLocation = in_dx12_constant_setting->m_constant_buffer_data->GetGPUVirtualAddress();
+
+    // バイト数
+    constant_buffer_view_desc.SizeInBytes = con_CONSTANT_BUFFER_ONE_BYTE * in_create_inform.m_list_size;
+
+
+    // 定数バッファビューの生成
+    mpr_variable->s_frame_work.device->CreateConstantBufferView(&constant_buffer_view_desc, in_dx12_constant_setting->m_constant_buffer_heap->GetCPUDescriptorHandleForHeapStart());
+
+
+    // 生成したバッファをゼロクリアする
+    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_constant_setting->m_constant_buffer_data.Get(), constant_data_desc.Width);
 
     return;
 }
@@ -1746,6 +1789,10 @@ bool C_DX12_System::M_Create_Texture_Resource(DX12INSTANCE::C_DX12_Rendering_Tex
     {
         return false;
     }
+
+
+    // 生成したバッファをゼロクリアする
+    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_texture_setting->m_texture_data.Get(), resource_desc_for_tex.Width * resource_desc_for_tex.Height);
 
     return true;
 }

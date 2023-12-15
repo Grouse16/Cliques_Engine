@@ -34,12 +34,12 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
             // フォルダ選択ダイアログを表示
-            using (var ofd = new OpenFileDialog() { FileName = "SelectFolder", Filter = "Folder|.", CheckFileExists = false })
+            using (var open_file_data = new OpenFileDialog() { FileName = "SelectFolder", Filter = "Folder|.", CheckFileExists = false })
             {
                 // フォルダが選択された時はそこまでのパスをセット
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (open_file_data.ShowDialog() == DialogResult.OK)
                 {
-                    selected_folder_path = Path.GetDirectoryName(ofd.FileName) + "\\";
+                    selected_folder_path = Path.GetDirectoryName(open_file_data.FileName) + "\\";
                 }
 
                 // フォルダが選択されていない時は終了

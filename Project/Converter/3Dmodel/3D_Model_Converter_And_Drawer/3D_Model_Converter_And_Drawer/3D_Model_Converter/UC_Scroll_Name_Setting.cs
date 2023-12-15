@@ -36,7 +36,6 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         // ロードを行う
         private void UC_Scroll_Name_Setting_Load(object sender, System.EventArgs e)
         {
-
             return;
         }
 
@@ -102,7 +101,7 @@ namespace _3D_Model_Converter_And_Drawer._3Dmodel_Convert
         // スクロール枠名とテキストの基準名を設定
         public void M_Set_Frame_Name(string scroll_frame_name, string in_scroll_text_name)
         {
-            textBox1.Text = scroll_frame_name;
+            tb_print_this_names_kind.Text = scroll_frame_name;
             m_scroll_name = in_scroll_text_name;
 
             return;

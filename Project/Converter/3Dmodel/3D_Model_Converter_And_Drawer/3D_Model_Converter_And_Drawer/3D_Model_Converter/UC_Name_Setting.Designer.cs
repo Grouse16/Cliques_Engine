@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TB_material_number = new System.Windows.Forms.TextBox();
-            this.TB_material_name = new System.Windows.Forms.TextBox();
+            this.tb_print_material_number = new System.Windows.Forms.TextBox();
+            this.tb_material_name = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // TB_material_number
+            // tb_print_material_number
             // 
-            this.TB_material_number.Location = new System.Drawing.Point(3, 3);
-            this.TB_material_number.Name = "TB_material_number";
-            this.TB_material_number.ReadOnly = true;
-            this.TB_material_number.Size = new System.Drawing.Size(69, 19);
-            this.TB_material_number.TabIndex = 0;
+            this.tb_print_material_number.Location = new System.Drawing.Point(3, 3);
+            this.tb_print_material_number.Name = "tb_print_material_number";
+            this.tb_print_material_number.ReadOnly = true;
+            this.tb_print_material_number.Size = new System.Drawing.Size(69, 19);
+            this.tb_print_material_number.TabIndex = 0;
             // 
-            // TB_material_name
+            // tb_material_name
             // 
-            this.TB_material_name.Location = new System.Drawing.Point(78, 3);
-            this.TB_material_name.Name = "TB_material_name";
-            this.TB_material_name.Size = new System.Drawing.Size(368, 19);
-            this.TB_material_name.TabIndex = 1;
+            this.tb_material_name.Location = new System.Drawing.Point(78, 3);
+            this.tb_material_name.Name = "tb_material_name";
+            this.tb_material_name.Size = new System.Drawing.Size(368, 19);
+            this.tb_material_name.TabIndex = 1;
             // 
             // UC_Name_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.TB_material_name);
-            this.Controls.Add(this.TB_material_number);
+            this.Controls.Add(this.tb_material_name);
+            this.Controls.Add(this.tb_print_material_number);
             this.Name = "UC_Name_Setting";
             this.Size = new System.Drawing.Size(449, 23);
             this.ResumeLayout(false);
@@ -62,7 +62,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TB_material_number;
-        private System.Windows.Forms.TextBox TB_material_name;
+        private System.Windows.Forms.TextBox tb_print_material_number;
+        private System.Windows.Forms.TextBox tb_material_name;
     }
 }
