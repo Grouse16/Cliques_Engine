@@ -17,8 +17,8 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 		//-☆- インポート -☆-//
 
-		// 静的モデルのロード　引数：ファイルパス, 設定先モデルデータ
-		static public void M_Static_Model_Load(string in_file_path, CS_Static_Model_Data in_static_model)
+		// 静的モデルのロード　引数：ロードするデータのパス, 設定先モデルデータ
+		static public void M_Static_Model_Load(string in_load_file_path, CS_Static_Model_Data in_static_model)
 		{
 			// ☆ 変数宣言 ☆ //
 			List<string> read_data_list = new List<string>();   // 読み取ったデータのリスト
@@ -33,7 +33,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 			// ファイルのデータを読み取る
 			{
 				// ☆　変数宣言 ☆ //
-				StreamReader file_data = new StreamReader(in_file_path); // 指定されたファイルのデータ
+				StreamReader file_data = new StreamReader(in_load_file_path); // 指定されたファイルのデータ
 
 				bool is_file_end = false;   // ファイルの終わりに来たかどうか
 
@@ -63,7 +63,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
 				// ファイル名をセット
-				in_static_model.mp_name = Path.GetFileName(in_file_path);
+				in_static_model.mp_name = Path.GetFileName(in_load_file_path);
 			}
 
 

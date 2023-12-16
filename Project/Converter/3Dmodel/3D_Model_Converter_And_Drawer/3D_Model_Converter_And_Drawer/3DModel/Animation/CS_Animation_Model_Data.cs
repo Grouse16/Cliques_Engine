@@ -38,7 +38,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         }
 
         // メッシュデータのリスト
-        public List<CS_Animation_Mesh_Data> mp_mesh_vertex_data_list
+        public List<CS_Animation_Mesh_Data> mp_mesh_list
         {
             // ゲッタ
             get

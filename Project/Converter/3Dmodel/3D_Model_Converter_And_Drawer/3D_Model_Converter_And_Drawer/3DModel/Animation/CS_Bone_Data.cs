@@ -58,7 +58,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         //-☆- 初期化 -☆-//
 
         // コンストラクタ
-        CS_Bone_Data()
+        public CS_Bone_Data()
         {
             return;
         }

@@ -157,16 +157,123 @@ namespace _3D_Model_Converter_And_Drawer
 
         //-☆- ロード -☆-//
 
+        // 静的モデルのロード　引数：ファイルパス
+        private void M_Static_Model_Load(string in_file_path)
+        {
+            // ☆ 変数宣言 ☆ //
+            System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+
+            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+
+            long before_working_memory = 0;   // ロード前の物理メモリ
+            long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+            // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+            now_process.Refresh();
+            before_working_memory = now_process.WorkingSet64;
+            before_virtual_memory = now_process.VirtualMemorySize64;
+
+            // 生成時間を記録開始
+            stop_watch.Start();
+
+            // 静的モデルのロード
+            CS_Static_Model_Import_System.M_Static_Model_Load(in_file_path, m_static_model);
+
+            // ロード終了、ロードにかかった時間を記録
+            stop_watch.Stop();
+
+            // 現在のメモリサイズを取得
+            now_process.Refresh();
+
+            // ロード時間と必要なメモリサイズを表示
+            uc_load_inform_box.M_Set_My_Model_Load_Inform
+                (
+                stop_watch.ElapsedMilliseconds,
+                now_process.WorkingSet64 - before_working_memory,
+                now_process.VirtualMemorySize64 - before_virtual_memory
+                );
+
+            return;
+        }
+
         // アニメーションモデルのロード　引数：ファイルパス
         private void M_Animation_Model_Load(string in_file_path)
         {
             // ☆ 変数宣言 ☆ //
-            Form_Animation_Model_Importer new_form = new Form_Animation_Model_Importer();   // 新しいフォームシステム
+            System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+
+            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+
+            long before_working_memory = 0;   // ロード前の物理メモリ
+            long before_virtual_memory = 0;   // ロード前の仮想メモリ
 
 
-            // フォームを初期化して画面に表示
-            new_form.M_Initialize(in_file_path, uc_dx_11_panel);
-            new_form.Show();
+            // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+            now_process.Refresh();
+            before_working_memory = now_process.WorkingSet64;
+            before_virtual_memory = now_process.VirtualMemorySize64;
+
+            // 生成時間を記録開始
+            stop_watch.Start();
+
+            // アニメーションモデルのロード
+            CS_Animation_Model_Import_System.M_Import_Animation_Model(in_file_path, m_animation_model);
+
+            // ロード終了、ロードにかかった時間を記録
+            stop_watch.Stop();
+
+            // 現在のメモリサイズを取得
+            now_process.Refresh();
+
+            // ロード時間と必要なメモリサイズを表示
+            uc_load_inform_box.M_Set_My_Model_Load_Inform
+                (
+                stop_watch.ElapsedMilliseconds,
+                now_process.WorkingSet64 - before_working_memory,
+                now_process.VirtualMemorySize64 - before_virtual_memory
+                );
+
+            return;
+        }
+
+
+        // アニメーションデータのロード　引数：ファイルパス
+        private void M_Animation_Data_Load(string in_file_path)
+        {
+            // ☆ 変数宣言 ☆ //
+            System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+
+            System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
+
+            long before_working_memory = 0;   // ロード前の物理メモリ
+            long before_virtual_memory = 0;   // ロード前の仮想メモリ
+
+
+            // ロート直前の使用しているメモリ容量を物理と仮想両方取得
+            now_process.Refresh();
+            before_working_memory = now_process.WorkingSet64;
+            before_virtual_memory = now_process.VirtualMemorySize64;
+
+            // 生成時間を記録開始
+            stop_watch.Start();
+
+            // アニメーションデータのロード
+            CS_Animation_Data_Import_System.M_Load_Animation_Data(in_file_path);
+
+            // ロード終了、ロードにかかった時間を記録
+            stop_watch.Stop();
+
+            // 現在のメモリサイズを取得
+            now_process.Refresh();
+
+            // ロード時間と必要なメモリサイズを表示
+            uc_load_inform_box.M_Set_My_Model_Load_Inform
+                (
+                stop_watch.ElapsedMilliseconds,
+                now_process.WorkingSet64 - before_working_memory,
+                now_process.VirtualMemorySize64 - before_virtual_memory
+                );
 
             return;
         }
@@ -273,8 +380,9 @@ namespace _3D_Model_Converter_And_Drawer
         private void B_Model_Importer_DragDrop(object sender, DragEventArgs e)
         {
             // ☆ 定数 ☆ //
-            const string con_IS_ELSSTMDL_TEXT = "This-Is-ELSTTMDL";   // 静的モデル、elsttmdlであることを確認するための文字列
-            const string con_IS_ELANMMDL_TEXT = "This-Is-ELANMMDT";   // 動的モデル、elanmmdlであることを確認するための文字列
+            const string con_IS_ELSSTMDL_TEXT = "This-Is-ELSTTMDL";     // 静的モデル、elsttmdlであることを確認するための文字列
+            const string con_IS_ELANMMDL_TEXT = "This-Is-ELANMMDL";     // 動的モデル、elanmmdlであることを確認するための文字列
+            const string con_IS_ELANMDT_TEXT = "This-Is-ELANMDT";       // アニメーションデータ、elanmdtであることを確認するための文字列
 
 
             // ファイルドロップ時はファイルのプロパティを取得（なければスルー）
@@ -291,58 +399,43 @@ namespace _3D_Model_Converter_And_Drawer
             
             StreamReader file_data = new StreamReader(relative_file_path); // ファイルデータ
 
-            string file_data_a_line = file_data.ReadLine(); // ファイルの一行分のデータ
+            string data_name = file_data.ReadLine(); // ファイルの一行分のデータ
+
+
+            // ファイルを閉じる
+            file_data.Close();
 
 
             // 静的モデルである時のロード
-            if(file_data_a_line == con_IS_ELSSTMDL_TEXT)
+            if (data_name == con_IS_ELSSTMDL_TEXT)
             {
-                // ☆ 変数宣言 ☆ //
-                System.Diagnostics.Stopwatch stop_watch = new System.Diagnostics.Stopwatch();   // タイマーシステム
+                // すでに持っているモデルを削除
+                m_static_model = null;
+                m_animation_model = null;
 
-                System.Diagnostics.Process now_process = System.Diagnostics.Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
-
-                long before_working_memory = 0;   // ロード前の物理メモリ
-                long before_virtual_memory = 0;   // ロード前の仮想メモリ
-
-
-                // ファイルを閉じる
-                file_data.Close();
-
-                // ロート直前の使用しているメモリ容量を物理と仮想両方取得
-                now_process.Refresh();
-                before_working_memory = now_process.WorkingSet64;
-                before_virtual_memory = now_process.VirtualMemorySize64;
-
-                // 生成時間を記録開始
-                stop_watch.Start();
-
-                // 静的モデルのロード
-                CS_Static_Model_Import_System.M_Static_Model_Load(relative_file_path, m_static_model);
-
-                // ロード終了、ロードにかかった時間を記録
-                stop_watch.Stop();
-
-                // 現在のメモリサイズを取得
-                now_process.Refresh();
-
-                // ロード時間と必要なメモリサイズを表示
-                uc_load_inform_box.M_Set_My_Model_Load_Inform
-                    (
-                    stop_watch.ElapsedMilliseconds,
-                    now_process.WorkingSet64 - before_working_memory,
-                    now_process.VirtualMemorySize64 - before_virtual_memory
-                    );
+                M_Static_Model_Load(relative_file_path);
 
                 return;
             }
 
 
             // アニメーションモデルである時のロード
-            if (file_data_a_line == con_IS_ELANMMDL_TEXT)
+            if (data_name == con_IS_ELANMMDL_TEXT)
             {
-                file_data.Close();
+                // すでに持っているモデルを削除
+                m_static_model = null;
+                m_animation_model = null;
+
                 M_Animation_Model_Load(relative_file_path);
+
+                return;
+            }
+
+
+            // アニメーションデータである時のロード
+            if (data_name == con_IS_ELANMDT_TEXT)
+            {
+                M_Animation_Data_Load(relative_file_path);
 
                 return;
             }
@@ -381,6 +474,11 @@ namespace _3D_Model_Converter_And_Drawer
         }
 
         private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void b_model_importer_Click(object sender, EventArgs e)
         {
 
         }

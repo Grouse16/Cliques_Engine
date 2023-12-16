@@ -79,25 +79,8 @@
     <Compile Include="3DModel\Static\CS_Static_Vertex_Data.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Animation_Convert_System.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Material_Inform_Convert_System.cs" />
-    <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="3D_Model_Importer\Form_Animation_Model_Importer.Designer.cs">
-      <DependentUpon>Form_Animation_Model_Importer.cs</DependentUpon>
-    </Compile>
+    <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
-    <Compile Include="3D_Model_Importer\UC_Animation_List.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="3D_Model_Importer\UC_Animation_List.Designer.cs">
-      <DependentUpon>UC_Animation_List.cs</DependentUpon>
-    </Compile>
-    <Compile Include="3D_Model_Importer\UC_Animation_Inform_Bar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="3D_Model_Importer\UC_Animation_Inform_Bar.Designer.cs">
-      <DependentUpon>UC_Animation_Inform_Bar.cs</DependentUpon>
-    </Compile>
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
     <Compile Include="FormTool\UC_Load_Inform_Box.cs">
       <SubType>UserControl</SubType>
@@ -145,15 +128,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="3D_Model_Importer\Form_Animation_Model_Importer.resx">
-      <DependentUpon>Form_Animation_Model_Importer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="3D_Model_Importer\UC_Animation_List.resx">
-      <DependentUpon>UC_Animation_List.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="3D_Model_Importer\UC_Animation_Inform_Bar.resx">
-      <DependentUpon>UC_Animation_Inform_Bar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTool\UC_Load_Inform_Box.resx">
       <DependentUpon>UC_Load_Inform_Box.cs</DependentUpon>

@@ -377,7 +377,7 @@ namespace _3D_Model_Converter_And_Drawer
                     {
                         foreach (var weight_inform in m_vertex_weight_list[now_vertex])
                         {
-                            vertex_write_text += weight_inform.index.ToString() + "/" + weight_inform.value.ToString();
+                            vertex_write_text += weight_inform.index.ToString() + "/" + weight_inform.value.ToString() + ",";
                         }
 
                         // ボーンウェイト情報終了を記録

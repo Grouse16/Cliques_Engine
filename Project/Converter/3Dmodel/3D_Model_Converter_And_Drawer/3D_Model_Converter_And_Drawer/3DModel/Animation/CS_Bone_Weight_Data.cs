@@ -50,5 +50,19 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
                 m_index = value;
             }
         }
+
+
+        // ☆ 関数 ☆ //
+
+        //-☆- 初期化 -☆-//
+
+        // コンストラクタ　引数：ボーン番号, ボーンウェイト値
+        public CS_Bone_Weight_Data(int in_set_index, float in_set_weight)
+        {
+            m_index = in_set_index;
+            m_weight = in_set_weight;
+
+            return;
+        }
     }
 }

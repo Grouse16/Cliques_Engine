@@ -14,7 +14,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
     {
         // ☆ 変数宣言 ☆ //
         private Vector3 m_position = new Vector3(); // 位置座標
-        private Vector3 m_uv = new Vector3();       // uv座標
+        private Vector2 m_uv = new Vector2();       // uv座標
         private Vector4 m_color = new Vector4();    // 頂点カラー
         private Vector3 m_normal = new Vector3();   // 法線ベクトル
         private Vector3 m_tangent = new Vector3();  // タンジェントベクトル
@@ -42,7 +42,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
         }
 
         // uv座標
-        public Vector3 mp_uv
+        public Vector2 mp_uv
         {
             // ゲッタ
             get
@@ -118,6 +118,22 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
             set
             {
                 m_bi_normal_tangent = value;
+            }
+        }
+
+        // ボーンウェイト情報
+        public List<CS_Bone_Weight_Data> mp_bone_weight
+        {
+            // ゲッタ
+            get
+            {
+                return m_bone_weight;
+            }
+
+            // セッタ
+            set
+            {
+                m_bone_weight = value;
             }
         }
 
