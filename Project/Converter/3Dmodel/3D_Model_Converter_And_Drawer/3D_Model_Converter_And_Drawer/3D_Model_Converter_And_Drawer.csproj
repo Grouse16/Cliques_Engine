@@ -79,6 +79,7 @@
     <Compile Include="3DModel\Static\CS_Static_Vertex_Data.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Animation_Convert_System.cs" />
     <Compile Include="3D_Model_Converter\Convert_System\CS_Material_Inform_Convert_System.cs" />
+    <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Data_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />

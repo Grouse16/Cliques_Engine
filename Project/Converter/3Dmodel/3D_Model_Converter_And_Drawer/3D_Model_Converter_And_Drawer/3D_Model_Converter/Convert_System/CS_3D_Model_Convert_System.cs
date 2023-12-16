@@ -178,7 +178,7 @@ namespace _3D_Model_Converter_And_Drawer
                             + bone_index.offset_matrix.D1.ToString() + ","
                             + bone_index.offset_matrix.D2.ToString() + ","
                             + bone_index.offset_matrix.D3.ToString() + ","
-                            + bone_index.offset_matrix.D4.ToString()
+                            + bone_index.offset_matrix.D4.ToString() + ","
                         );
                 }
             }
