@@ -78,7 +78,7 @@
     <Compile Include="3DModel\Animation\Bone\CS_Model_Bone_Data.cs" />
     <Compile Include="3DModel\Animation\Bone\CS_Bone_Weight_Data.cs" />
     <Compile Include="3DModel\Animation\Key\CS_Position_Key.cs" />
-    <Compile Include="3DModel\Animation\System\CS_Animation_Data.cs" />
+    <Compile Include="3DModel\Animation\System\CS_Animation_System.cs" />
     <Compile Include="3DModel\Material\CS_Material_Data.cs" />
     <Compile Include="3DModel\Static_Model\CS_Static_Mesh_Data.cs" />
     <Compile Include="3DModel\Static_Model\CS_Static_Model_Data.cs" />
@@ -89,6 +89,10 @@
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
+    <Compile Include="d3d11\Transform\CS_Position.cs" />
+    <Compile Include="d3d11\Transform\CS_Rotation.cs" />
+    <Compile Include="d3d11\Transform\CS_Scale.cs" />
+    <Compile Include="d3d11\Transform\CS_Transform.cs" />
     <Compile Include="FormTool\UC_Load_Inform_Box.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _3D_Model_Converter_And_Drawer.d3d11.Transform;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
     public class CS_Rotation_Key
     {
         // ☆ 変数宣言 ☆ //
-        private SharpDX.Quaternion m_rotation = new SharpDX.Quaternion();  // 回転
+        private CS_Rotation m_rotation = new CS_Rotation;  // 回転
 
         private float m_time = 0.0f;    // 時間
 
@@ -20,7 +21,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
         // ☆ プロパティ ☆ //
 
         // 回転
-        public SharpDX.Quaternion mp_rotation
+        public CS_Rotation mp_rotation
         {
             // ゲッタ
             get
@@ -49,6 +50,17 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             {
                 m_time = value;
             }
+        }
+
+
+        // ☆ 関数 ☆ //
+
+        //-☆- 初期化 -☆-//
+
+        // コンストラクタ
+        public CS_Rotation_Key()
+        {
+            return;
         }
     }
 }

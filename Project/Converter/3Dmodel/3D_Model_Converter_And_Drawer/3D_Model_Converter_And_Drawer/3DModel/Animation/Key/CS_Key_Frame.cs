@@ -1,4 +1,5 @@
 ﻿using _3D_Model_Converter_And_Drawer._3DModel.Animation.System;
+using _3D_Model_Converter_And_Drawer.d3d11.Transform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,26 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             {
                 m_scale = value;
             }
+        }
+
+
+        // ☆ 関数 ☆ //
+
+        //-☆- 初期化 -☆-//
+
+        // コンストラクタ
+        public CS_Key_Frame()
+        {
+            return;
+        }
+
+
+        //-☆- マトリクス -☆-//
+
+        // 指定されたキーフレーム情報とブレンドしたマトリクスを取得する関数　引数：キーフレームクラス, ブレンド率, 時間, マトリクスの設定先
+        public void M_Blend_Key_Frame_And_Convert_To_Matrix(CS_Key_Frame in_key_frame, float in_blend_percent, ref SharpDX.Matrix out_matrix)
+        {
+            return;
         }
     }
 }
