@@ -1202,7 +1202,7 @@ S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Index(int in_index)
 // 引数   ：string 取得するテクスチャバッファ管理用データの名前
 // 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-S_Texture_Buffer_Data* C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
 {
 	// 一致する名前を探索し、あればそのアドレスを返す
 	for (S_Texture_Buffer_Data & texture_data_inform : mpr_variable.texture_data_list)

@@ -50,7 +50,7 @@ namespace ASSET::ANIMATION_SYSTEM
 		{
 			std::vector<S_Bone_Key_Inform> bone_key_list;	// ボーンのキー情報のリスト
 
-			float animation_max_time = 0.0f;	// アニメーションの最大時間
+			float animation_end_time = 0.0f;	// アニメーションの終了時間
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 

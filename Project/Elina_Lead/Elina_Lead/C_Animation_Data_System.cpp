@@ -390,7 +390,7 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 
 	// アニメーション時間を取得
 	file_data.M_Goto_Right_By_Text_In_Front_Row("ENDTIME:");
-	mpr_variable.animation_max_time = file_data.M_Get_Float_Double_Number();
+	mpr_variable.animation_end_time = file_data.M_Get_Float_Double_Number();
 
 	// アニメーションするボーン数を取得し、その数分配列を生成
 	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
@@ -570,7 +570,7 @@ void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::A
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 int C_Animation_Data_System::M_Get_Animation_Time(void) const
 {
-	return mpr_variable.animation_max_time;
+	return mpr_variable.animation_end_time;
 }
 
 

@@ -16,7 +16,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
 
         private List<CS_Animation_Mesh_Data> m_mesh_vertex_data_list = new List<CS_Animation_Mesh_Data>(); // メッシュデータのリスト
 
-        private List<CS_Bone_Data> m_bone_data_list = new List<CS_Bone_Data>(); // ボーンデータのリスト
+        private List<CS_Model_Bone_Data> m_bone_data_list = new List<CS_Model_Bone_Data>(); // ボーンデータのリスト
 
 
         // ☆ プロパティ ☆ //
@@ -54,7 +54,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         }
 
         // ボーンデータのリスト
-        public List<CS_Bone_Data> mp_bone_data_list
+        public List<CS_Model_Bone_Data> mp_bone_data_list
         {
             // ゲッタ
             get

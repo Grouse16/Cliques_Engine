@@ -10,7 +10,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
     // ☆ クラス ☆ //
 
     // ボーンのデータのクラス
-    public class CS_Bone_Data
+    public class CS_Model_Bone_Data
     {
         // ☆ 変数宣言 ☆ //
         private string m_name = ""; // ボーン名
@@ -58,7 +58,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         //-☆- 初期化 -☆-//
 
         // コンストラクタ
-        public CS_Bone_Data()
+        public CS_Model_Bone_Data()
         {
             return;
         }

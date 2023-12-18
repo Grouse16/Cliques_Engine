@@ -91,7 +91,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
             bone_sum = int.Parse(read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column));
             for (int l_now_bone_num = 0; l_now_bone_num < int.Parse(read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column)); l_now_bone_num++)
             {
-                in_animation_model.mp_bone_data_list.Add(new CS_Bone_Data());
+                in_animation_model.mp_bone_data_list.Add(new CS_Model_Bone_Data());
             }
 
 
