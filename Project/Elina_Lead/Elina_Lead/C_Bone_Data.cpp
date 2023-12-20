@@ -17,14 +17,14 @@ using namespace ASSET::ANIMATION::BONE;
 
 //==☆ パブリック ☆==//
 
-//-☆- トランスフォーム -☆-//
+//-☆- マトリクス -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：現在のボーン情報をマトリクスに変換した値を引数にセットする
 // 引数   ：XMFLOAT4X4 & 設定先のマトリクス情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Bone_Data::M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & out_matrix)
+void C_Bone_Data::M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & out_matrix) const
 {
     DirectX::XMStoreFloat4x4
     (

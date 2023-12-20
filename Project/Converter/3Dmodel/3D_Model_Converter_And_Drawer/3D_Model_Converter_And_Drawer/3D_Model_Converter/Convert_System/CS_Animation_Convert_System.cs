@@ -82,17 +82,17 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                 // ボーンごとに動作を書き込む
-                foreach (var bone_frame in now_animation.NodeAnimationChannels)
+                foreach (var l_now_bone in now_animation.NodeAnimationChannels)
                 {
                     // ボーン情報開始位置とボーン名を書き込む
-                    write_data_to_file.Add("BONE:" + bone_frame.NodeName);
-
+                    write_data_to_file.Add("BONE:" + l_now_bone.NodeName);
+                    
 
                     // 座標のキー情報の開始位置と座標キー数を書き込む
-                    write_data_to_file.Add("POS:" + bone_frame.PositionKeyCount.ToString());
+                    write_data_to_file.Add("POS:" + l_now_bone.PositionKeyCount.ToString());
 
                     // 座標のキーを全て書き込む
-                    foreach (var position_key in bone_frame.PositionKeys)
+                    foreach (var position_key in l_now_bone.PositionKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
@@ -106,10 +106,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                     // 回転のキー情報の開始位置と回転キー数を書き込む
-                    write_data_to_file.Add("ROT:" + bone_frame.RotationKeyCount.ToString());
+                    write_data_to_file.Add("ROT:" + l_now_bone.RotationKeyCount.ToString());
 
                     // 回転のキーを全て書き込む
-                    foreach (var rotation_key in bone_frame.RotationKeys)
+                    foreach (var rotation_key in l_now_bone.RotationKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
@@ -124,10 +124,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                     // スケールのキー情報の開始位置とスケールキー数を書き込む
-                    write_data_to_file.Add("SCL:" + bone_frame.ScalingKeyCount.ToString());
+                    write_data_to_file.Add("SCL:" + l_now_bone.ScalingKeyCount.ToString());
 
                     // スケールのキーを全て書き込む
-                    foreach (var scale_key in bone_frame.ScalingKeys)
+                    foreach (var scale_key in l_now_bone.ScalingKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
@@ -142,10 +142,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                 // 新しいファイルの書き込みを行う
-                System.IO.File.WriteAllText(write_file_path, write_data_to_file[0]);
+                File.WriteAllText(write_file_path, write_data_to_file[0]);
                 for (int now_write_raw = 1; now_write_raw < write_data_to_file.Count; now_write_raw++)
                 {
-                    System.IO.File.AppendAllText(write_file_path, Environment.NewLine + write_data_to_file[now_write_raw]);
+                    File.AppendAllText(write_file_path, Environment.NewLine + write_data_to_file[now_write_raw]);
                 }
 
                 // 次のアニメーションデータを指定

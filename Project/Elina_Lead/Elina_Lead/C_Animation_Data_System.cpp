@@ -386,6 +386,12 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	}
 
 
+	// ☆ 変数宣言 ☆ //
+	int bone_sum_of_base = in_bone_inform_list.size();	// ボーンの総数
+	int now_use_offset_bone_number_slot = 0;	// 現在使用するオフセット行列を設定するボーンのスロット番号
+	int before_bone_number = 0;	// 前のボーンの番号
+
+
 	// 現在持っているアニメーションデータは削除する
 	M_Release();
 
@@ -398,9 +404,17 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
 	mpr_variable.bone_key_list.resize(file_data.M_Get_Number());
 
+	// オフセット行列を設定するボーン数分配列を生成
+	mpr_variable.use_offset_bone_list.resize(bone_sum_of_base - mpr_variable.bone_key_list.size());
+
+
 	// 全てのアニメーションするボーンの情報をロードする
 	for (S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
 	{
+		// ☆ 変数宣言 ☆ //
+		int now_bone_number = 0;	// 現在のボーンの番号
+
+
 		// 次のボーン情報まで移動
 		file_data.M_Goto_Right_By_Text_In_Front_Row("BONE:");
 
@@ -412,13 +426,25 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 
 
 			// ボーン名から操作先のボーンのインデックス番号を取得
-			for (int now_bone_index = 0; now_bone_index < in_bone_inform_list.size(); now_bone_index++)
+			for (int now_bone_index = 0; now_bone_index < bone_sum_of_base; now_bone_index++)
 			{
 				if (in_bone_inform_list[now_bone_index].bone_name == now_bone_name)
 				{
 					now_bone_key.bone_index = now_bone_index;
+
+					now_bone_number = now_bone_index;
+
+					break;
 				}
 			}
+		}
+
+
+		// 前回のボーン番号と現在のボーン番号の間のボーンはオフセット行列を使用する
+		for (int l_now_use_offset_bone_number = before_bone_number + 1; l_now_use_offset_bone_number < now_bone_number; l_now_use_offset_bone_number++)
+		{
+			mpr_variable.use_offset_bone_list[now_use_offset_bone_number_slot] = l_now_use_offset_bone_number;
+			now_use_offset_bone_number_slot += 1;
 		}
 
 
@@ -498,6 +524,17 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
 			now_scale_key.key_value.z = file_data.M_Get_Float_Double_Number();
 		}
+
+		// 現在のボーン番号を前回のボーン番号として保存
+		before_bone_number = now_bone_number;
+	}
+
+
+	// 前回のボーン番号から最後のボーンまでの間にあるボーンはボーンオフセット行列を使用する
+	for (int l_now_use_offset_bone_number = before_bone_number + 1; l_now_use_offset_bone_number < bone_sum_of_base; l_now_use_offset_bone_number++)
+	{
+		mpr_variable.use_offset_bone_list[now_use_offset_bone_number_slot] = l_now_use_offset_bone_number;
+		now_use_offset_bone_number_slot += 1;
 	}
 
 
@@ -515,22 +552,30 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された時間とキーのブレンド率からそれぞれのボーンのキー情報を生成し、設定先へブレンドする
-// 引数   ：float 時間, float ブレンド率, vector<C_Bone_Data> & 設定先のボーンキーのボーンごとの配列の参照
+// 引数   ：float 時間, float ブレンド率, vector<C_Bone_Data> & 設定先のボーンキーの配列の参照, ボーンオフセット行列の参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend_percent, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_key_list) const
 {
+	// ☆ 変数宣言 ☆ //
+	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+
+
+	// ボーンのデータ分の配列を生成する
+	out_set_bone_key_list.resize(animation_bone_sum);
+
+
 	// アニメーションの影響を受けるボーンのみブレンドする
-	for (const S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
+	for (int l_now_bone = 0; l_now_bone < animation_bone_sum; l_now_bone++)
 	{
 		// ☆ 位置のブレンド ☆ //
-		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.position_key_list, out_set_bone_key_list[now_bone_key.bone_index].position);
+		M_Blend_Key_Frame(in_time, in_key_blend_percent, mpr_variable.bone_key_list[l_now_bone].key.position_key_list, out_set_bone_key_list[l_now_bone].position);
 
 		// ☆ スケールのブレンド ☆ //
-		M_Blend_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.scale_key_list, out_set_bone_key_list[now_bone_key.bone_index].scale);
+		M_Blend_Key_Frame(in_time, in_key_blend_percent, mpr_variable.bone_key_list[l_now_bone].key.scale_key_list, out_set_bone_key_list[l_now_bone].scale);
 
 		// ☆ クォータニオンのブレンド ☆ //
-		M_Blend_Quaternion_Key_Frame(in_time, in_key_blend_percent, now_bone_key.key.quaternion_key_list, out_set_bone_key_list[now_bone_key.bone_index].quaternion);
+		M_Blend_Quaternion_Key_Frame(in_time, in_key_blend_percent, mpr_variable.bone_key_list[l_now_bone].key.quaternion_key_list, out_set_bone_key_list[l_now_bone].quaternion);
 	}
 
 	return;
@@ -546,17 +591,75 @@ void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_list) const
 {
+	// ☆ 変数宣言 ☆ //
+	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+
+
+	// ボーンのデータ分の配列を生成する
+	out_set_bone_list.resize(animation_bone_sum);
+
+
 	// アニメーションの影響を受けるボーンのみセットする
-	for (const S_Bone_Key_Inform & now_bone_key : mpr_variable.bone_key_list)
+	for (int l_now_bone = 0; l_now_bone < animation_bone_sum; l_now_bone++)
 	{
-		// ☆ 位置のブレンド ☆ //
-		M_Set_Key_Frame(in_time, now_bone_key.key.position_key_list, out_set_bone_list[now_bone_key.bone_index].position);
+		// ☆ 位置のセット ☆ //
+		M_Set_Key_Frame(in_time, mpr_variable.bone_key_list[l_now_bone].key.position_key_list, out_set_bone_list[l_now_bone].position);
 
-		// ☆ スケールのブレンド ☆ //
-		M_Set_Key_Frame(in_time, now_bone_key.key.scale_key_list, out_set_bone_list[now_bone_key.bone_index].scale);
+		// ☆ スケールのセット ☆ //
+		M_Set_Key_Frame(in_time, mpr_variable.bone_key_list[l_now_bone].key.scale_key_list, out_set_bone_list[l_now_bone].scale);
 
-		// ☆ クォータニオンのブレンド ☆ //
-		M_Set_Quaternion_Key_Frame(in_time, now_bone_key.key.quaternion_key_list, out_set_bone_list[now_bone_key.bone_index].quaternion);
+		// ☆ クォータニオンのセット ☆ //
+		M_Set_Quaternion_Key_Frame(in_time, mpr_variable.bone_key_list[l_now_bone].key.quaternion_key_list, out_set_bone_list[l_now_bone].quaternion);
+	}
+
+	return;
+}
+
+
+//-☆- マトリクス -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンマトリクスの配列を生成する
+// 引数   ：void
+// 戻り値 ：vector<XMFLOAT4X4> & 設定先のボーンマトリクスの配列の参照, const vector<C_Bone_Data> & ボーンのキーフレーム情報のリストの参照(const), const vector<S_Bone_Inform> & ボーンオフセットマトリクスの配列の参照(const)
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Data_System::M_Create_Bone_Matrix_List(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix_list, const std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & in_bone_data_list, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_offset_matrix_list) const
+{
+	// ☆ 変数宣言 ☆ //
+	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+
+	int offset_bone_sum = mpr_variable.use_offset_bone_list.size();	// オフセット行列を使用するボーンの総数
+
+
+	// アニメーションの影響を受けるボーンのみマトリクスを生成する
+	for (int l_now_bone = 0; l_now_bone < animation_bone_sum; l_now_bone++)
+	{
+		// アニメーションによるマトリクスを生成
+		in_bone_data_list[l_now_bone].M_Set_Bone_Matrix_Data(out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index]);
+
+		// オフセット行列を掛ける
+		DirectX::XMStoreFloat4x4
+		(
+			// 設定先のマトリクス
+			&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index],
+
+			// 掛ける
+			DirectX::XMMatrixMultiply
+			(
+				DirectX::XMLoadFloat4x4
+				(
+					&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index]),
+					DirectX::XMLoadFloat4x4(&in_bone_offset_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index].offset_matrix
+				)
+			)
+		);
+	}
+
+
+	// オフセットマトリクスを使用するボーンにオフセットマトリクスをセットする
+	for (int l_now_bone = 0; l_now_bone < offset_bone_sum; l_now_bone++)
+	{
+		out_set_matrix_list[mpr_variable.use_offset_bone_list[l_now_bone]] = in_bone_offset_matrix_list[mpr_variable.use_offset_bone_list[l_now_bone]].offset_matrix;
 	}
 
 	return;
@@ -573,6 +676,17 @@ void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::A
 int C_Animation_Data_System::M_Get_Animation_Time(void) const
 {
 	return mpr_variable.animation_end_time;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンオフセット行列を使用するボーンのインデックス番号のリストを返す
+// 引数   ：void
+// 戻り値 ：vector<int> & ボーンオフセット行列を使用するボーンのインデックス番号のリストの参照（const）
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const std::vector<int> & C_Animation_Data_System::M_Get_Use_Offset_Bone_List(void) const
+{
+	return mpr_variable.use_offset_bone_list;
 }
 
 

@@ -157,7 +157,7 @@ namespace _3D_Model_Converter_And_Drawer
             // ☆ 変数宣言 ☆ //
             List<string> write_file_data = new List<string>(); // 書き込むデータ
 
-            List<S_Bone_Data_Inform> bone_index_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
+            List<S_Bone_Data_Inform> bone_inform_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
 
             int mesh_num = 0;   // 現在のメッシュ番号
 
@@ -185,17 +185,17 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                 // 最初のボーンの情報を設定（再帰処理でできない）
-                bone_index_list.Add(new S_Bone_Data_Inform(in_scene.RootNode.Name, bone_index_list.Count, in_scene.RootNode.Transform));
+                bone_inform_list.Add(new S_Bone_Data_Inform(in_scene.RootNode.Name, bone_inform_list.Count, in_scene.RootNode.Transform));
 
                 // メッシュ数分ボーン名とインデックスの関連付けを行う
-                M_Get_Bone_Information(ref bone_index_list, in_scene.RootNode.Children, in_scene.RootNode.Transform);
+                M_Get_Bone_Information(ref bone_inform_list, in_scene.RootNode.Children, in_scene.RootNode.Transform);
 
 
                 // ボーン数を記録
-                write_file_data.Add("BONESUM:" + bone_index_list.Count.ToString());
+                write_file_data.Add("BONESUM:" + bone_inform_list.Count.ToString());
 
                 // ボーン名とオフセットマトリクスを記録
-                foreach (var bone_index in bone_index_list)
+                foreach (var bone_index in bone_inform_list)
                 {
                     write_file_data.Add
                         (
@@ -245,7 +245,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                         // ボーンのインデックスIDを取得
-                        foreach (var bone_index_data in bone_index_list)
+                        foreach (var bone_index_data in bone_inform_list)
                         {
                             if (bone_index_data.name == bone.Name)
                             {

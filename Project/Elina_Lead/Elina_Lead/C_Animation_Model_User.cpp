@@ -219,8 +219,15 @@ void C_Animation_Model_User::M_Time_Update(float in_time_update)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animation_Model_User::M_Model_Draw_Start(const DirectX::XMMATRIX & in_world_matrix)
 {
+	// ☆ 変数宣言 ☆ //
+	const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & bone_inform_list = mpr_variable.animation_model->M_Get_Bone_Inform_List();	// ボーン情報のリストを取得する
+
+
+	// アニメーション結果を生成する
+	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(mpr_variable.bone_matrix_list, bone_inform_list);
+
+
 	// アニメーション結果をセットする
-	mpr_variable.animation_calculator->M_Create_Animation_Bone_Matrix(mpr_variable.bone_matrix_list);
 	mpr_variable.animation_model->M_Set_Bone_Matrix(mpr_variable.bone_matrix_list);
 
 	// ワールドマトリクス変換行列をセット

@@ -351,7 +351,7 @@ void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_Transfor
 	
 
 	// ワールドマトリクスを生成
-	in_transform.M_Generate_World_Matrix(in_set_wvp.world);
+	in_transform.M_Generate_Matrix(in_set_wvp.world);
 
 	// ビューマトリクスをセット
 	in_set_wvp.view = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix();

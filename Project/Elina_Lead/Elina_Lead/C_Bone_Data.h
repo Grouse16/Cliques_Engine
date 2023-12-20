@@ -35,10 +35,10 @@ namespace ASSET::ANIMATION::BONE
 
 		// ☆ 関数 ☆ //
 
-		//-☆- トランスフォーム -☆-//
+		//-☆- マトリクス -☆-//
 
 		// 現在のボーン情報をマトリクスに変換した値を引数にセットする　引数：設定先のマトリクス情報の参照
-		void M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & );
+		void M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & ) const;
 	};
 }
 

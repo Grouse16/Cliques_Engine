@@ -27,13 +27,6 @@ namespace ASSET::ANIMATION::ALGORITHM
 	// アニメーションを行わない時のモデル表示用のクラス（初期化用）
 	class C_Animation_Algorithm_No_Animation : public ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_Base
 	{
-		//==☆ プライベート ☆==//
-	private:
-
-		// ☆ 変数宣言 ☆ //
-		const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & m_bone_inform_list;	// ボーン情報のリストの参照
-
-
 		//==☆ パブリック ☆==//
 	public:
 
@@ -41,11 +34,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 
 		//-☆- 初期化と終了時 -☆-//
 
-		// コンストラクタ　何も引数に設定しないコンストラクタを無効化
-		C_Animation_Algorithm_No_Animation(void) = delete;
-
-		// コンストラクタ　引数：ボーンの初期情報の参照(const)
-		C_Animation_Algorithm_No_Animation(const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & );
+		// コンストラクタ
+		C_Animation_Algorithm_No_Animation(void);
 
 		// デストラクタ
 		~C_Animation_Algorithm_No_Animation(void) override;
@@ -56,8 +46,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 		// アニメーション時間の更新
 		void M_Animation_Time_Update(void) override;
 
-		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照
-		void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & ) override;
+		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照, ボーンのオフセットマトリクスの配列の参照(const)
+		void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & , const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & ) override;
 
 
 		//-☆- ゲッタ -☆-//

@@ -59,8 +59,8 @@ namespace ASSET::ANIMATION::ALGORITHM
 		// アニメーション時間の更新
 		void M_Animation_Time_Update(void) override;
 
-		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照
-		void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & ) override;
+		// アニメーションの更新　引数：更新をかけるボーンのマトリクスの配列の参照, ボーンのオフセットマトリクスのリストの参照（const）
+		void M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> &, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & ) override;
 
 
 		//-☆- ゲッタ -☆-//

@@ -159,7 +159,7 @@ void C_Static_Model_Component::M_Update(void)
 void C_Static_Model_Component::M_Draw_Start_World_Matrix_Set(const DirectX::XMMATRIX & in_world_matrix)
 {
 	// ワールドマトリクス変換行列を生成
-	mpr_variable.transform.M_Generate_World_Matrix(mpr_variable.world_matrix);
+	mpr_variable.transform.M_Generate_Matrix(mpr_variable.world_matrix);
 	mpr_variable.world_matrix *= in_world_matrix;
 
 	// モデルのマテリアルにWVP行列をセット

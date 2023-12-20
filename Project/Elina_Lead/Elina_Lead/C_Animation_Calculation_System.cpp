@@ -70,7 +70,7 @@ void C_Animation_Calculation_System::M_Check_Blend_End_And_Animation_Setting(voi
 C_Animation_Calculation_System::C_Animation_Calculation_System(const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_list) : mpr_variable((int)in_bone_list.size())
 {
 	// 初期状態のボーンを設定するアルゴリズムを生成
-	mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_No_Animation(in_bone_list));
+	mpr_variable.animation_algorithm.reset(new ASSET::ANIMATION::ALGORITHM::C_Animation_Algorithm_No_Animation());
 
 	// 初期状態は最初からアニメーション終了状態
 	mpr_variable.animation_status.flg_animation_end = true;
@@ -303,10 +303,10 @@ void C_Animation_Calculation_System::M_Blend_Loop_Play_Animation(const ASSET::AN
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする
-// 引数   ：vector<XMFLOAT4X4> & 設定先のボーンマトリクス配列のデータの参照
+// 引数   ：vector<XMFLOAT4X4> & 設定先のボーンマトリクス配列のデータの参照, const vector<S_Bone_Inform> & ボーンオフセット行列のリストの参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Calculation_System::M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list)
+void C_Animation_Calculation_System::M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & out_bone_matrix_list, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_offset_matrix_list)
 {
 	// ボーンデータ用の配列を確保する
 	out_bone_matrix_list.clear();
@@ -314,7 +314,7 @@ void C_Animation_Calculation_System::M_Create_Animation_Bone_Matrix(std::vector<
 	out_bone_matrix_list.resize(mpr_variable.animation_status.bone_sum);
 
 	mpr_variable.animation_algorithm->M_Animation_Time_Update();
-	mpr_variable.animation_algorithm->M_Animation_Update(out_bone_matrix_list);
+	mpr_variable.animation_algorithm->M_Animation_Update(out_bone_matrix_list, in_bone_offset_matrix_list);
 
 	// アニメーションブレンド中であれば、ブレンド完了したタイミングで通常のアニメーションに戻る（ブレンドの処理だけを抜いたバージョンに入れ替える）
 	M_Check_Blend_End_And_Animation_Setting();
