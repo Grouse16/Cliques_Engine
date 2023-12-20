@@ -22,7 +22,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11.Transform
         // ☆ プロパティ ☆ //
 
         // 位置座標
-        public CS_Position Position
+        public CS_Position mp_position
         {
             // ゲッタ
             get
@@ -38,7 +38,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11.Transform
         }
 
         // 回転角度
-        public CS_Rotation Rotation
+        public CS_Rotation mp_rotation
         {
             // ゲッタ
             get
@@ -54,7 +54,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11.Transform
         }
 
         // スケール
-        public CS_Scale Scale
+        public CS_Scale mp_scale
         {
             // ゲッタ
             get
@@ -93,9 +93,9 @@ namespace _3D_Model_Converter_And_Drawer.d3d11.Transform
             
 
             // マトリクスを生成
-            m_position.M_Convert_Matrix(ref position_matrix);
-            m_rotation.M_Convert_Matrix(ref rotation_matrix);
-            m_scale.M_Convert_Matrix(ref scale_matrix);
+            m_position.M_Convert_Matrix(out position_matrix);
+            m_rotation.M_Convert_Matrix(out rotation_matrix);
+            m_scale.M_Convert_Matrix(out scale_matrix);
 
 
             // ワールドマトリクスを計算

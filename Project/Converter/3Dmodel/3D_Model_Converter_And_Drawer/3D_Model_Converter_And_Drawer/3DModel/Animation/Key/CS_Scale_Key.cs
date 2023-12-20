@@ -13,7 +13,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
     public class CS_Scale_Key
     {
         // ☆ 変数宣言 ☆ //
-        private CS_Scale m_scale = new CS_Scale();  // スケール
+        private CS_Scale m_data = new CS_Scale();  // スケール
 
         private float m_time = 0.0f;    // 時間
 
@@ -21,18 +21,18 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
         // ☆ プロパティ ☆ //
 
         // スケール
-        public CS_Scale mp_scale
+        public CS_Scale mp_data
         {
             // ゲッタ
             get
             {
-                return m_scale;
+                return m_data;
             }
 
             // セッタ
             set
             {
-                m_scale = value;
+                m_data = value;
             }
         }
 

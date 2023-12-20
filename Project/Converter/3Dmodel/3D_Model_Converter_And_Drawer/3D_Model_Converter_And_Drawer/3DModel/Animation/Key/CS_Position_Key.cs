@@ -21,7 +21,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.System
         // ☆ プロパティ ☆ //
 
         // 位置座標
-        public CS_Position mp_position
+        public CS_Position mp_data
         {
             // ゲッタ
             get

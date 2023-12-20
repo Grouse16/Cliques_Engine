@@ -95,13 +95,13 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
 				// メッシュ名がある場所に移動し、メッシュ名を取得
-				now_position.M_Goto_Next_Data(read_data_list);
+				now_position.M_Goto_Next_Line(read_data_list);
 				l_now_mesh_data.mp_name = read_data_list[now_position.mp_now_line];
 
 
 				// マテリアル名がある場所に移動し、マテリアル名を取得
 				now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "MATERIAL:", now_position);
-				now_position.M_Goto_Next_Data(read_data_list);
+				now_position.M_Goto_Next_Line(read_data_list);
 				l_now_mesh_data.mp_name = read_data_list[now_position.mp_now_line];
 
 
@@ -118,7 +118,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
 				// 頂点分だけデータをロード
-				now_position.M_Goto_Next_Data(read_data_list);
+				now_position.M_Goto_Next_Line(read_data_list);
 				foreach (var vertex_data in l_now_mesh_data.mp_vertex_data_list)
 				{
 					// 位置座標をロード
@@ -275,7 +275,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 					}
 
 					// 次の頂点へ移動
-					now_position.M_Goto_Next_Data(read_data_list);
+					now_position.M_Goto_Next_Line(read_data_list);
 				}
 
 
@@ -285,11 +285,11 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
 				// インデックス数分だけロード
-				now_position.M_Goto_Next_Data(read_data_list);
+				now_position.M_Goto_Next_Line(read_data_list);
 				for (int l_now_index = 0; l_now_index < index_sum; l_now_index++)
 				{
 					l_now_mesh_data.mp_index_list.Add(uint.Parse(read_data_list[now_position.mp_now_line]));
-					now_position.M_Goto_Next_Data(read_data_list);
+					now_position.M_Goto_Next_Line(read_data_list);
 				}
 			}
 

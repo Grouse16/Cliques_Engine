@@ -1,4 +1,6 @@
 ﻿using _3D_Model_Converter_And_Drawer._3DModel.Animation.Key;
+using _3D_Model_Converter_And_Drawer.d3d11.Transform;
+using SharpDX;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +78,26 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Bone
         // コンストラクタ
         public CS_Animation_Bone_Data()
         {
+            return;
+        }
+
+
+        //-☆- マトリクス -☆-//
+
+        // 指定された時間のキーフレーム情報をマトリクスに変換して返す　引数：変換後のマトリクスの設定先, 時間
+        public void M_Convert_To_Matrix_By_Time(ref SharpDX.Matrix out_matrix, float in_time)
+        {
+            // ☆ 変数宣言 ☆ //
+            CS_Transform new_transform = new CS_Transform();  // 位置座標のマトリクス
+
+
+            // キーフレーム情報をトランスフォームで取得
+            m_key_frame.M_Blend_Key_Frame_And_Convert_To_Transform(out new_transform, in_time);
+
+
+            // トランスフォームをマトリクスに変換
+            new_transform.M_Convert_To_Matrix(ref out_matrix);
+
             return;
         }
     }

@@ -70,7 +70,7 @@ namespace _3D_Model_Converter_And_Drawer
         //-☆- 移動 -☆-//
 
         // 次の行へ移動する、次の行がなければfalseを返す　引数：ファイルのデータ　戻り値：次の行があるときはtrue、ないときはfalse
-        public bool M_Goto_Next_Data(in List<string> in_file_data)
+        public bool M_Goto_Next_Line(in List<string> in_file_data)
         {
             // 次の行番号を指定
             m_now_line += 1;

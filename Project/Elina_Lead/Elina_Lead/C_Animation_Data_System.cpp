@@ -111,19 +111,19 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMVECTOR result_quaternion;	// 結果となるクォータニオン値
 
-	int key_quaternion_sum = in_quaternion_key.size();	// クォータニオンのキー情報の総数
-	int start_key_slot = in_quaternion_key.size() - 1;	// 始まりのキーのスロット
+	int key_search_end_slot = in_quaternion_key.size() - 1;	// 探索範囲最後のキーのスロット番号
+	int use_key_slot = 0;	// 使用するスロット番号
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
 
 
 	// 位置のキーのうち指定された時間にあたるキーを探す（見つからなかったら最後の時間以降であるため最後のキーを指定）
-	for (int now_key_num = 0; now_key_num < start_key_slot; now_key_num++)
+	for (int now_key_num = 0; now_key_num < key_search_end_slot; now_key_num++)
 	{
 		// 今指定しているキーの時間以上、次のキーの時間以下の場合は、そこを使用するキーとする
-		if (in_quaternion_key[now_key_num].time_of_frame <= in_time && in_quaternion_key[now_key_num + 1].time_of_frame <= in_time)
+		if (in_quaternion_key[now_key_num].time_of_frame <= in_time && in_time < in_quaternion_key[now_key_num + 1].time_of_frame)
 		{
-			start_key_slot = now_key_num;
+			use_key_slot = now_key_num;
 
 			key_is_end = false;
 
@@ -134,7 +134,8 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 	// 現在のキーが配列の最後であればそれをそのまま使用する
 	if (key_is_end)
 	{
-		result_quaternion = in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector();
+		use_key_slot = key_search_end_slot;
+		result_quaternion = in_quaternion_key[use_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector();
 	}
 
 	// 現在のキーが配列の途中であれば次のキーフレームまでの時間から現在の位置を割り出す
@@ -145,13 +146,13 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 
 
 		// 現在の時間から、現在のキーと次のキーまでの時間の何パーセント分経過しているかを割り出す
-		time_percent = (in_time - in_quaternion_key[start_key_slot].time_of_frame) / (in_quaternion_key[start_key_slot + 1].time_of_frame - in_quaternion_key[start_key_slot].time_of_frame);
+		time_percent = (in_time - in_quaternion_key[use_key_slot].time_of_frame) / (in_quaternion_key[use_key_slot + 1].time_of_frame - in_quaternion_key[use_key_slot].time_of_frame);
 
 		// 遷移先までのキーのクォータニオンの補間を時間のパーセントから掛ける（球面線形補間）
 		result_quaternion = DirectX::XMQuaternionSlerp
 		(
-			in_quaternion_key[start_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector(),
-			in_quaternion_key[start_key_slot + 1].quaternion.M_Get_Quaternion_Rotation_Vector(), 
+			in_quaternion_key[use_key_slot].quaternion.M_Get_Quaternion_Rotation_Vector(),
+			in_quaternion_key[use_key_slot + 1].quaternion.M_Get_Quaternion_Rotation_Vector(), 
 			time_percent
 		);
 	}
@@ -174,19 +175,19 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key) const
 {
 	// ☆ 変数宣言 ☆ //
-	int key_value_sum = in_set_key.size();	// キー情報の総数
-	int start_key_slot = in_set_key.size() - 1;	// 始まりのキーのスロット
+	int key_search_end_slot = in_set_key.size() - 1;	// 探索範囲最後のスロットの番号
+	int use_key_slot = 0;	// 使用するキーのスロット番号
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
 
 
 	// 位置のキーのうち指定された時間にあたるキーを探す（見つからなかったら最後の時間以降であるため最後のキーを指定）
-	for (int now_key_num = 0; now_key_num < start_key_slot; now_key_num++)
+	for (int now_key_num = 0; now_key_num < key_search_end_slot; now_key_num++)
 	{
 		// 今指定しているキーの時間以上、次のキーの時間以下の場合は、そこを使用するキーとする
-		if (in_set_key[now_key_num].time_of_frame <= in_time && in_set_key[now_key_num + 1].time_of_frame <= in_time)
+		if (in_set_key[now_key_num].time_of_frame <= in_time && in_time < in_set_key[now_key_num + 1].time_of_frame)
 		{
-			start_key_slot = now_key_num;
+			use_key_slot = now_key_num;
 
 			key_is_end = false;
 
@@ -197,7 +198,8 @@ inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::v
 	// 現在のキーが配列の最後であればそれをそのまま使用する
 	if (key_is_end)
 	{
-		out_set_key = in_set_key[start_key_slot].key_value;
+		use_key_slot = key_search_end_slot;
+		out_set_key = in_set_key[use_key_slot].key_value;
 	}
 
 	// 現在のキーが配列の途中であれば次のキーフレームまでの時間から現在の位置を割り出す
@@ -208,16 +210,16 @@ inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::v
 
 
 		// 現在の時間から、現在のキーと次のキーまでの時間の何パーセント分経過しているかを割り出す
-		time_percent = (in_time - in_set_key[start_key_slot].time_of_frame) / (in_set_key[start_key_slot + 1].time_of_frame - in_set_key[start_key_slot].time_of_frame);
+		time_percent = (in_time - in_set_key[use_key_slot].time_of_frame) / (in_set_key[use_key_slot + 1].time_of_frame - in_set_key[use_key_slot].time_of_frame);
 
 		out_set_key.x =
-			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[start_key_slot].key_value.x, in_set_key[start_key_slot + 1].key_value.x, time_percent);
+			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[use_key_slot].key_value.x, in_set_key[use_key_slot + 1].key_value.x, time_percent);
 
 		out_set_key.y =
-			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[start_key_slot].key_value.y, in_set_key[start_key_slot + 1].key_value.y, time_percent);
+			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[use_key_slot].key_value.y, in_set_key[use_key_slot + 1].key_value.y, time_percent);
 
 		out_set_key.z =
-			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[start_key_slot].key_value.z, in_set_key[start_key_slot + 1].key_value.z, time_percent);
+			M_Key_To_Key_Value_Calculation_By_Time(in_set_key[use_key_slot].key_value.z, in_set_key[use_key_slot + 1].key_value.z, time_percent);
 	}
 
 	return;
