@@ -19,7 +19,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
         //-☆- インポート -☆-//
 
         // アニメーションモデルをインポートする　引数：ロードするファイルのパス, ロードしたモデルの設定先
-        public static void M_Import_Animation_Model(string in_load_file_path, CS_Animation_Model_Data in_animation_model)
+        public static void M_Import_Animation_Model(string in_load_file_path, out CS_Animation_Model_Data in_animation_model)
         {
             // ☆ 変数宣言 ☆ //
             List<string> read_data_list = new List<string>();   // 読み取ったデータのリスト
@@ -64,7 +64,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
                 // ファイル名をセット
-                in_animation_model.mp_name = Path.GetFileName(in_load_file_path);
+                in_animation_model.mp_name = Path.GetFileNameWithoutExtension(in_load_file_path);
             }
 
 

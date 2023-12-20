@@ -18,6 +18,7 @@ using _3D_Model_Converter_And_Drawer._3D_Model_Importer;
 using _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System;
 using _3D_Model_Converter_And_Drawer._3DModel.Static;
 using _3D_Model_Converter_And_Drawer._3DModel.Animation;
+using _3D_Model_Converter_And_Drawer._3DModel.Animation.System;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -31,9 +32,11 @@ namespace _3D_Model_Converter_And_Drawer
 
         private C_Shader_Source m_shader;  // シェーダー
 
-        private CS_Static_Model_Data m_static_model = new CS_Static_Model_Data(); // 静的モデルデータ
+        private CS_Static_Model_Data m_static_model = null; // 静的モデルデータ
 
-        private CS_Animation_Model_Data m_animation_model = new CS_Animation_Model_Data(); // アニメーションモデルデータ
+        private CS_Animation_Model_Data m_animation_model = null; // アニメーションモデルデータ
+
+        private CS_Animation_System m_animation_system = null; // アニメーションシステム
 
         private string m_shader_path;   // シェーダーファイルのパス
 
@@ -93,6 +96,36 @@ namespace _3D_Model_Converter_And_Drawer
 
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+
+            return;
+        }
+
+
+        //-☆- リセット -☆-//
+
+        // モデルとアニメーションのデータをリセット
+        private void M_Model_And_Animation_Data_Reset()
+        {
+            // 静的モデルを削除
+            if (m_static_model != null)
+            {
+                m_static_model.mp_mesh_data_list.Clear();
+                m_static_model = null; ;
+            }
+
+            // アニメーションモデルを削除
+            if (m_animation_model != null)
+            {
+                m_animation_model.mp_mesh_list.Clear();
+                m_animation_model = null;
+            }
+
+            // すでに持っているアニメーションデータを削除
+            if (m_animation_system != null)
+            {
+                m_animation_system.mp_bone_list.Clear();
+                m_animation_system = null;
+            }
 
             return;
         }
@@ -178,7 +211,7 @@ namespace _3D_Model_Converter_And_Drawer
             stop_watch.Start();
 
             // 静的モデルのロード
-            CS_Static_Model_Import_System.M_Static_Model_Load(in_file_path, m_static_model);
+            CS_Static_Model_Import_System.M_Static_Model_Load(in_file_path, out m_static_model);
 
             // ロード終了、ロードにかかった時間を記録
             stop_watch.Stop();
@@ -218,7 +251,7 @@ namespace _3D_Model_Converter_And_Drawer
             stop_watch.Start();
 
             // アニメーションモデルのロード
-            CS_Animation_Model_Import_System.M_Import_Animation_Model(in_file_path, m_animation_model);
+            CS_Animation_Model_Import_System.M_Import_Animation_Model(in_file_path, out m_animation_model);
 
             // ロード終了、ロードにかかった時間を記録
             stop_watch.Stop();
@@ -259,7 +292,7 @@ namespace _3D_Model_Converter_And_Drawer
             stop_watch.Start();
 
             // アニメーションデータのロード
-            CS_Animation_Data_Import_System.M_Load_Animation_Data(in_file_path);
+            CS_Animation_Data_Import_System.M_Load_Animation_Data(in_file_path, out m_animation_system, m_animation_model);
 
             // ロード終了、ロードにかかった時間を記録
             stop_watch.Stop();
@@ -409,10 +442,10 @@ namespace _3D_Model_Converter_And_Drawer
             // 静的モデルである時のロード
             if (data_name == con_IS_ELSSTMDL_TEXT)
             {
-                // すでに持っているモデルを削除
-                m_static_model = null;
-                m_animation_model = null;
+                // モデルとアニメーションのデータをリセット
+                M_Model_And_Animation_Data_Reset();
 
+                // 静的モデルのロード
                 M_Static_Model_Load(relative_file_path);
 
                 return;
@@ -422,10 +455,10 @@ namespace _3D_Model_Converter_And_Drawer
             // アニメーションモデルである時のロード
             if (data_name == con_IS_ELANMMDL_TEXT)
             {
-                // すでに持っているモデルを削除
-                m_static_model = null;
-                m_animation_model = null;
+                // モデルとアニメーションのデータをリセット
+                M_Model_And_Animation_Data_Reset();
 
+                // アニメーションモデルのロード
                 M_Animation_Model_Load(relative_file_path);
 
                 return;
@@ -435,6 +468,13 @@ namespace _3D_Model_Converter_And_Drawer
             // アニメーションデータである時のロード
             if (data_name == con_IS_ELANMDT_TEXT)
             {
+                // アニメーションモデルがないならボーン情報がなく、ロードできないので終了
+                if (m_animation_model == null)
+                {
+                    return;
+                }
+
+                // アニメーションデータのロード
                 M_Animation_Data_Load(relative_file_path);
 
                 return;

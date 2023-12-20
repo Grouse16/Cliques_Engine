@@ -13,7 +13,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
     public class CS_Rotation_Key
     {
         // ☆ 変数宣言 ☆ //
-        private CS_Rotation m_data = new CS_Rotation();  // 回転
+        private d3d11.CS_Rotation m_data = new d3d11.CS_Rotation();  // 回転
 
         private float m_time = 0.0f;    // 時間
 
@@ -21,7 +21,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
         // ☆ プロパティ ☆ //
 
         // 回転
-        public CS_Rotation mp_data
+        public d3d11.CS_Rotation mp_data
         {
             // ゲッタ
             get

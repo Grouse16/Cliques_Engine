@@ -20,12 +20,14 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 		//-☆- ロード -☆-//
 
 		// アニメーションデータをロードする　引数：ロードするファイルのパス, 設定先のアニメーション情報, 対応したアニメーションモデルのデータ
-		static public void M_Load_Animation_Data(string in_load_file_path, ref CS_Animation_System out_animation_system, in CS_Animation_Model_Data in_animation_model_data)
+		static public void M_Load_Animation_Data(string in_load_file_path, out CS_Animation_System out_animation_system, in CS_Animation_Model_Data in_animation_model_data)
 		{
 			// ☆ 変数宣言 ☆ //
 			List<string> read_data_list = new List<string>();   // 読み取ったデータのリスト
 
 			S_Now_File_Data_Position now_position = new S_Now_File_Data_Position(0, 0); // 現在のファイル操作中の場所
+			
+			int bone_sum = 0;   // ボーンの数
 
 
 			// 設定先アニメーションデータを初期化
@@ -65,12 +67,8 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 
 				// ファイル名をセット
-				out_animation_system.mp_name = Path.GetFileName(in_load_file_path);
+				out_animation_system.mp_name = Path.GetFileNameWithoutExtension(in_load_file_path);
 			}
-
-
-			// ☆ 変数宣言 ☆ //
-			int bone_sum = 0;   // ボーンの数
 
 
 			// アニメーションデータの開始位置に移動
@@ -114,6 +112,25 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
 				// ボーン名を取得
 				l_now_bone.mp_name = read_data_list[now_position.mp_now_line].Substring(now_position.mp_now_column);
+
+
+				// ボーンのインデックス番号を取得
+				l_now_bone.mp_index = -1;
+				for (int l_now_bone_number = 0; l_now_bone_number < in_animation_model_data.mp_bone_data_list.Count; l_now_bone_number++)
+				{
+					if (l_now_bone.mp_name == in_animation_model_data.mp_bone_data_list[l_now_bone_number].mp_name)
+					{
+						l_now_bone.mp_index = l_now_bone_number;
+
+						break;
+					}
+				}
+
+				// ボーンのインデックス番号が取得できなかったらエラー
+				if (l_now_bone.mp_index < 0)
+				{
+					throw new Exception("ボーンのインデックス番号が取得できませんでした。アニメーションのボーンとモデルのボーンの情報が一致していません。");
+				}
 
 
 				// 位置座標のキーフレームの数を取得
