@@ -82,17 +82,17 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                 // ボーンごとに動作を書き込む
-                foreach (var l_now_bone in now_animation.NodeAnimationChannels)
+                for (int l_now_bone_number = 0; l_now_bone_number < now_animation.NodeAnimationChannels.Count; l_now_bone_number++)
                 {
                     // ボーン情報開始位置とボーン名を書き込む
-                    write_data_to_file.Add("BONE:" + l_now_bone.NodeName);
+                    write_data_to_file.Add("BONE:" + now_animation.NodeAnimationChannels[l_now_bone_number].NodeName);
                     
 
                     // 座標のキー情報の開始位置と座標キー数を書き込む
-                    write_data_to_file.Add("POS:" + l_now_bone.PositionKeyCount.ToString());
+                    write_data_to_file.Add("POS:" + now_animation.NodeAnimationChannels[l_now_bone_number].PositionKeyCount.ToString());
 
                     // 座標のキーを全て書き込む
-                    foreach (var position_key in l_now_bone.PositionKeys)
+                    foreach (var position_key in now_animation.NodeAnimationChannels[l_now_bone_number].PositionKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
@@ -106,10 +106,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                     // 回転のキー情報の開始位置と回転キー数を書き込む
-                    write_data_to_file.Add("ROT:" + l_now_bone.RotationKeyCount.ToString());
+                    write_data_to_file.Add("ROT:" + now_animation.NodeAnimationChannels[l_now_bone_number].RotationKeyCount.ToString());
 
                     // 回転のキーを全て書き込む
-                    foreach (var rotation_key in l_now_bone.RotationKeys)
+                    foreach (var rotation_key in now_animation.NodeAnimationChannels[l_now_bone_number].RotationKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
@@ -124,10 +124,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                     // スケールのキー情報の開始位置とスケールキー数を書き込む
-                    write_data_to_file.Add("SCL:" + l_now_bone.ScalingKeyCount.ToString());
+                    write_data_to_file.Add("SCL:" + now_animation.NodeAnimationChannels[l_now_bone_number].ScalingKeyCount.ToString());
 
                     // スケールのキーを全て書き込む
-                    foreach (var scale_key in l_now_bone.ScalingKeys)
+                    foreach (var scale_key in now_animation.NodeAnimationChannels[l_now_bone_number].ScalingKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add

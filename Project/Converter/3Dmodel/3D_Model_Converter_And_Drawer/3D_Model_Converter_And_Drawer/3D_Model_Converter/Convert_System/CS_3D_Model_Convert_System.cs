@@ -31,28 +31,6 @@ namespace _3D_Model_Converter_And_Drawer
     {
         // ☆ 構造体 ☆ //
 
-        // ボーンとインデックスを管理するための構造体
-        struct S_Bone_Data_Inform
-        {
-            // ☆ 変数宣言 ☆ //
-            public string name; // ボーン名
-            
-            public int index;   // ボーンのインデックス番号
-
-            public Matrix4x4 offset_matrix;    // オフセットマトリクス行列   
-
-
-            // 初期化用コンストラクタ
-            public S_Bone_Data_Inform(string in_name, int in_index, Matrix4x4 in_offset_matrix)
-            {
-                name = in_name;
-                index = in_index;
-                offset_matrix = in_offset_matrix;
-
-                return;
-            }
-        }
-
         // 頂点ウェイト情報の構造体
         struct S_Vertex_Weight_Inform
         {
@@ -98,37 +76,6 @@ namespace _3D_Model_Converter_And_Drawer
         }
 
 
-        //-☆- ボーン -☆-//
-
-        // ボーンの情報を取得し、子ボーンを再帰的に取得する　引数：設定先のボーン情報リスト, ボーンのデータ, 親ボーンのマトリクス
-        private static void M_Get_Bone_Information(ref List<S_Bone_Data_Inform> out_bone_list, NodeCollection in_set_bone_data_list, Matrix4x4 in_parent_matrix)
-        {
-            // ボーンの数分繰り返す
-            foreach (var l_now_bone_data in in_set_bone_data_list)
-            {
-                // 親ボーンがあるなら、親ボーンのマトリクスを掛ける
-                if (in_parent_matrix != null)
-                {
-                    out_bone_list.Add(new S_Bone_Data_Inform(l_now_bone_data.Name, out_bone_list.Count, l_now_bone_data.Transform * in_parent_matrix));
-                }
-
-                // 親ボーンがないなら、今の行列を使用する
-                else
-                {
-                    out_bone_list.Add(new S_Bone_Data_Inform(l_now_bone_data.Name, out_bone_list.Count, l_now_bone_data.Transform));
-                }
-
-                // 子ボーンがあるなら、子ボーンの情報を取得する
-                if (l_now_bone_data.HasChildren)
-                {
-                    M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children, l_now_bone_data.Transform);
-                }
-            }
-
-            return;
-        }
-
-
         //-☆- 変換 -☆-//
 
         // スタティックモデルに変換する
@@ -157,8 +104,6 @@ namespace _3D_Model_Converter_And_Drawer
             // ☆ 変数宣言 ☆ //
             List<string> write_file_data = new List<string>(); // 書き込むデータ
 
-            List<S_Bone_Data_Inform> bone_inform_list = new List<S_Bone_Data_Inform>();   // ボーンとインデックスのリスト
-
             int mesh_num = 0;   // 現在のメッシュ番号
 
 
@@ -184,18 +129,11 @@ namespace _3D_Model_Converter_And_Drawer
                 int now_bone_index = 0; // 現在のボーン番号
 
 
-                // 最初のボーンの情報を設定（再帰処理でできない）
-                bone_inform_list.Add(new S_Bone_Data_Inform(in_scene.RootNode.Name, bone_inform_list.Count, in_scene.RootNode.Transform));
-
-                // メッシュ数分ボーン名とインデックスの関連付けを行う
-                M_Get_Bone_Information(ref bone_inform_list, in_scene.RootNode.Children, in_scene.RootNode.Transform);
-
-
                 // ボーン数を記録
-                write_file_data.Add("BONESUM:" + bone_inform_list.Count.ToString());
+                write_file_data.Add("BONESUM:" + Form_3D_Model_Convert_Setting.mp_bone_data_list.Count.ToString());
 
                 // ボーン名とオフセットマトリクスを記録
-                foreach (var bone_index in bone_inform_list)
+                foreach (var bone_index in Form_3D_Model_Convert_Setting.mp_bone_data_list)
                 {
                     write_file_data.Add
                         (
@@ -217,6 +155,9 @@ namespace _3D_Model_Converter_And_Drawer
                             + bone_index.offset_matrix.D3.ToString() + ","
                             + bone_index.offset_matrix.D4.ToString() + ","
                         );
+
+                    // 次のボーン番号を指定
+                    now_bone_index += 1;
                 }
             }
 
@@ -245,7 +186,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                         // ボーンのインデックスIDを取得
-                        foreach (var bone_index_data in bone_inform_list)
+                        foreach (var bone_index_data in Form_3D_Model_Convert_Setting.mp_bone_data_list)
                         {
                             if (bone_index_data.name == bone.Name)
                             {

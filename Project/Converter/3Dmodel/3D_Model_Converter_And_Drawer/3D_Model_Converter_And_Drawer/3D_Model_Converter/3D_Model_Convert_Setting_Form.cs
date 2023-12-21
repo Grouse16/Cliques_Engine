@@ -20,15 +20,27 @@ namespace _3D_Model_Converter_And_Drawer
     public partial class Form_3D_Model_Convert_Setting : Form
     {
         // ☆ 変数宣言 ☆ //
-        Scene now_scene = new Scene();  // シーン情報
+        private Scene now_scene = new Scene();  // シーン情報
+
+        static private List<S_Bone_Data_Inform> m_bone_data_list = new List<S_Bone_Data_Inform>();  // ボーン情報のリスト
 
         static private List<string> m_material_name_list = new List<string>();   // マテリアル名のリスト
-        static private List<string> m_mesh_name_list = new List<string>();       // メッシュ名のリスト
         static private List<string> m_born_name_list = new List<string>();       // ボーン名のリスト
+        static private List<string> m_mesh_name_list = new List<string>();       // メッシュ名のリスト
         static private List<string> m_animation_data_name_list = new List<string>(); // アニメーションデータ名のリスト
 
 
         // ☆ プロパティ ☆ //
+
+        // ボーン情報のリスト
+        static public List<S_Bone_Data_Inform> mp_bone_data_list
+        {
+            // ゲッタ
+            get
+            {
+                return m_bone_data_list;
+            }
+        }
 
         // マテリアル名のリスト
         static public List<string> mp_material_name_list
@@ -113,6 +125,14 @@ namespace _3D_Model_Converter_And_Drawer
             m_mesh_name_list.Clear();
             m_born_name_list.Clear();
             m_animation_data_name_list.Clear();
+            m_bone_data_list.Clear();
+
+
+            // 最初のボーンの情報を設定（再帰処理でできない）
+            m_bone_data_list.Add(new S_Bone_Data_Inform(now_scene.RootNode.Name, m_bone_data_list.Count, now_scene.RootNode.Transform));
+
+            // メッシュ数分ボーン名とインデックスの関連付けを行う
+            CS_My_Math_System.M_Get_Bone_Information(ref m_bone_data_list, now_scene.RootNode.Children, now_scene.RootNode.Transform);
 
 
             // マテリアル名の設定
@@ -128,9 +148,9 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             // ボーン名の設定
-            foreach (var now_born in in_set_scene.RootNode.Children)
+            foreach (var now_born in m_bone_data_list)
             {
-                m_born_name_list.Add(now_born.Name);
+                m_born_name_list.Add(now_born.name);
             }
 
             // アニメーションデータ名の設定
