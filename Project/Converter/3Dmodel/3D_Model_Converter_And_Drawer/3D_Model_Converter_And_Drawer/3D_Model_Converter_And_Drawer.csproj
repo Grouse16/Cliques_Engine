@@ -179,6 +179,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Static_3D_Model_Shader.fx" />
     <Content Include="Asset\shader.fx" />
   </ItemGroup>
   <ItemGroup />
