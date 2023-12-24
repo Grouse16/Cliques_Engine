@@ -307,6 +307,10 @@ namespace _3D_Model_Converter_And_Drawer
             now_scene.Clear();
 			now_scene = null;
 
+
+
+
+
             // ガーベージコレクションを実行し、ファイナライザの実行を待つ
             GC.Collect();
 			GC.WaitForPendingFinalizers();

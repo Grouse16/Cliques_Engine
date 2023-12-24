@@ -20,6 +20,7 @@ using _3D_Model_Converter_And_Drawer._3DModel.Static;
 using _3D_Model_Converter_And_Drawer._3DModel.Animation;
 using _3D_Model_Converter_And_Drawer._3DModel.Animation.System;
 using System.Diagnostics;
+using System.Runtime.Caching;
 
 namespace _3D_Model_Converter_And_Drawer
 {
@@ -114,29 +115,29 @@ namespace _3D_Model_Converter_And_Drawer
 		// ガーベージコレクションを実行し、全てのファイナライザの実行を待つ
 		private void M_Garbage_Collection_Refresh()
 		{
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
 
-            return;
-        }
+			return;
+		}
 
 
 		//-☆- 計測 -☆-//
 
 		// 時間と使用メモリの計測開始
 		private void M_Start_Save_Time_And_Memory_Click()
-        {
+		{
 			// ストップウォッチを初期化
 			m_stop_watch = new Stopwatch();
 
 
-            // ガーベージコレクションを実行
-            M_Garbage_Collection_Refresh();
+			// ガーベージコレクションを実行
+			M_Garbage_Collection_Refresh();
 
 
-            // 使用しているメモリ容量を物理と仮想の両方取得する
-            m_now_process = Process.GetCurrentProcess();
-            m_now_process.Refresh();
+			// 使用しているメモリ容量を物理と仮想の両方取得する
+			m_now_process = Process.GetCurrentProcess();
+			m_now_process.Refresh();
 			m_before_working_memory = m_now_process.WorkingSet64;
 			m_before_virtual_memory = m_now_process.VirtualMemorySize64;
 
@@ -150,11 +151,11 @@ namespace _3D_Model_Converter_And_Drawer
 		// 指定された数値を最適なバイト表記に変換して返す
 		private string M_Shrink_To_Fit_String(float in_number)
 		{
-            // ☆ 定数 ☆ //
-            const string con_BYTE = "B";		// バイト
-            const string con_KILO_BYTE = "KB";	// キロバイト
-            const string con_MEGA_BYTE = "MB";	// メガバイト
-            const string con_GIGA_BYTE = "GB";  // ギガバイト
+			// ☆ 定数 ☆ //
+			const string con_BYTE = "B";		// バイト
+			const string con_KILO_BYTE = "KB";	// キロバイト
+			const string con_MEGA_BYTE = "MB";	// メガバイト
+			const string con_GIGA_BYTE = "GB";  // ギガバイト
 
 
 			// ☆ 変数宣言 ☆ //
@@ -166,9 +167,9 @@ namespace _3D_Model_Converter_And_Drawer
 			// バイトの表記とバイトサイズを割り出す
 			while (in_number >= 1024.0f && byte_shrink_times < 3)
 			{
-                in_number /= 1024.0f;
-                byte_shrink_times += 1;
-            }
+				in_number /= 1024.0f;
+				byte_shrink_times += 1;
+			}
 
 
 			// バイト数を結果としてセット
@@ -178,36 +179,36 @@ namespace _3D_Model_Converter_And_Drawer
 			switch (byte_shrink_times)
 			{
 					// バイト表記
-                case 0:
-                    result_string += con_BYTE;
-                    break;
+				case 0:
+					result_string += con_BYTE;
+					break;
 
 					// キロバイト表記
-                case 1:
-                    result_string += con_KILO_BYTE;
-                    break;
+				case 1:
+					result_string += con_KILO_BYTE;
+					break;
 
 					// メガバイト表記
-                case 2:
-                    result_string += con_MEGA_BYTE;
-                    break;
+				case 2:
+					result_string += con_MEGA_BYTE;
+					break;
 
 					// ギガバイト表記
-                case 3:
-                    result_string += con_GIGA_BYTE;
-                    break;
-            }
+				case 3:
+					result_string += con_GIGA_BYTE;
+					break;
+			}
 
 			// 結果を返す
 			return result_string;
-        }
+		}
 
 
 		// 時間と使用メモリの計測終了し、assimpのロードにかかった時間と必要なメモリサイズに表示
 		private void M_Stop_Save_Time_And_Memory_Click_And_Set_To_Assimp()
-        {
-            // 時間の計測終了
-            m_stop_watch.Stop();
+		{
+			// 時間の計測終了
+			m_stop_watch.Stop();
 
 
 			// 使用しているメモリ容量を物理と仮想の両方取得する
@@ -216,16 +217,16 @@ namespace _3D_Model_Converter_And_Drawer
 			// ロード時間と必要なメモリサイズを表示
 			uc_load_inform_box.M_Set_Assimp_Load_Inform
 				(
-                    ((float)m_stop_watch.ElapsedMilliseconds / 1000.0f),
+					((float)m_stop_watch.ElapsedMilliseconds / 1000.0f),
 					M_Shrink_To_Fit_String(m_now_process.WorkingSet64 - m_before_working_memory),
-                    M_Shrink_To_Fit_String(m_now_process.VirtualMemorySize64 - m_before_virtual_memory)
+					M_Shrink_To_Fit_String(m_now_process.VirtualMemorySize64 - m_before_virtual_memory)
 				);
 
 
-            // ガーベージコレクションを実行
-            M_Garbage_Collection_Refresh();
+			// ガーベージコレクションを実行
+			M_Garbage_Collection_Refresh();
 
-            return;
+			return;
 		}
 
 
@@ -243,16 +244,16 @@ namespace _3D_Model_Converter_And_Drawer
 			uc_load_inform_box.M_Set_My_Model_Load_Inform
 				(
 					((float)m_stop_watch.ElapsedMilliseconds / 1000.0f),
-                    M_Shrink_To_Fit_String(m_now_process.WorkingSet64 - m_before_working_memory),
-                    M_Shrink_To_Fit_String(m_now_process.VirtualMemorySize64 - m_before_virtual_memory)
+					M_Shrink_To_Fit_String(m_now_process.WorkingSet64 - m_before_working_memory),
+					M_Shrink_To_Fit_String(m_now_process.VirtualMemorySize64 - m_before_virtual_memory)
 				);
 
 
 
-            // ガーベージコレクションを実行
-            M_Garbage_Collection_Refresh();
+			// ガーベージコレクションを実行
+			M_Garbage_Collection_Refresh();
 
-            return;
+			return;
 		}
 
 
@@ -356,46 +357,46 @@ namespace _3D_Model_Converter_And_Drawer
 			CS_Static_Model_Import_System.M_Static_Model_Load(in_file_path, out m_static_model);
 
 
-            // ロード終了、ロードにかかった時間と必要なメモリサイズを表示
+			// ロード終了、ロードにかかった時間と必要なメモリサイズを表示
 			M_Stop_Save_Time_And_Memory_Click_Set_To_Original_Format();
-            
+			
 			return;
 		}
 
 
 		// アニメーションモデルのロード　引数：ファイルパス
 		private void M_Animation_Model_Load(string in_file_path)
-        {
-            // ロード開始時点での時間と使用メモリを記録
-            M_Start_Save_Time_And_Memory_Click();
+		{
+			// ロード開始時点での時間と使用メモリを記録
+			M_Start_Save_Time_And_Memory_Click();
 
 
-            // アニメーションモデルのロード
-            CS_Animation_Model_Import_System.M_Import_Animation_Model(in_file_path, out m_animation_model);
+			// アニメーションモデルのロード
+			CS_Animation_Model_Import_System.M_Import_Animation_Model(in_file_path, out m_animation_model);
 
 
-            // ロード終了、ロードにかかった時間と必要なメモリサイズを表示
+			// ロード終了、ロードにかかった時間と必要なメモリサイズを表示
 			M_Stop_Save_Time_And_Memory_Click_Set_To_Original_Format();
 
-            return;
+			return;
 		}
 
 
 		// アニメーションデータのロード　引数：ファイルパス
 		private void M_Animation_Data_Load(string in_file_path)
-        {
-            // ロード開始時点での時間と使用メモリを記録
-            M_Start_Save_Time_And_Memory_Click();
+		{
+			// ロード開始時点での時間と使用メモリを記録
+			M_Start_Save_Time_And_Memory_Click();
 
 
 			// アニメーションデータのロード
 			CS_Animation_Data_Import_System.M_Load_Animation_Data(in_file_path, out m_animation_system, m_animation_model);
 
 
-            // ロード終了、ロードにかかった時間と必要なメモリサイズを表示
+			// ロード終了、ロードにかかった時間と必要なメモリサイズを表示
 			M_Stop_Save_Time_And_Memory_Click_Set_To_Original_Format();
 
-            return;
+			return;
 		}
 
 
@@ -430,12 +431,12 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-            // ロード開始時点での時間と使用メモリを記録
-            M_Start_Save_Time_And_Memory_Click();
+			// ロード開始時点での時間と使用メモリを記録
+			M_Start_Save_Time_And_Memory_Click();
 
 
-            // ☆ 変数宣言 ☆ //
-            string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
+			// ☆ 変数宣言 ☆ //
+			string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
 
 			string relative_file_path = CS_My_Math_System.M_Get_Relative_Path(file_path[0]);   // 相対パス
 
@@ -445,30 +446,30 @@ namespace _3D_Model_Converter_And_Drawer
 				importer.ImportFile
 				(
 					relative_file_path,
-					PostProcessSteps.CalculateTangentSpace |
-					PostProcessSteps.GenerateSmoothNormals |
-					PostProcessSteps.JoinIdenticalVertices |
-					PostProcessSteps.LimitBoneWeights |
-					PostProcessSteps.RemoveRedundantMaterials |
-					PostProcessSteps.SplitLargeMeshes |
-					PostProcessSteps.GenerateUVCoords |
-					PostProcessSteps.SortByPrimitiveType |
-					PostProcessSteps.FindDegenerates |
-					PostProcessSteps.FindInvalidData |
-					PostProcessSteps.Triangulate |      // 全ての面を三角形に変換
-					PostProcessSteps.FlipWindingOrder | // 時計回り
-					PostProcessSteps.MakeLeftHanded     // 左手系
+					PostProcessSteps.CalculateTangentSpace |	// 接空間を計算
+					PostProcessSteps.GenerateSmoothNormals |	// スムーズな法線を生成
+					PostProcessSteps.JoinIdenticalVertices |	// 同一頂点を結合
+					PostProcessSteps.LimitBoneWeights |			// ボーンウェイトを制限
+					PostProcessSteps.RemoveRedundantMaterials |	// 冗長なマテリアルを削除
+					PostProcessSteps.SplitLargeMeshes |			// 大きいメッシュを分割
+					PostProcessSteps.GenerateUVCoords |			// UV座標を生成
+					PostProcessSteps.SortByPrimitiveType |		// プリミティブタイプでソート
+					PostProcessSteps.FindDegenerates |			// 縮退面を見つける
+					PostProcessSteps.FindInvalidData |			// 無効なデータを見つける
+					PostProcessSteps.Triangulate |				// 全ての面を三角形に変換
+					PostProcessSteps.FlipWindingOrder |			// 時計回り
+					PostProcessSteps.MakeLeftHanded				// 左手系
 				);
 
 
-			// ロード終了、ロードにかかった時間と必要なメモリサイズを表示
-			M_Stop_Save_Time_And_Memory_Click_And_Set_To_Assimp();
+            // ロード終了、ロードにかかった時間と必要なメモリサイズを表示
+            M_Stop_Save_Time_And_Memory_Click_And_Set_To_Assimp();
 
 
-            // コンバートするデータをセットし、各種設定用のフォームを生成
-            CS_3D_Model_Convert_System.M_Create_Form_Of_Convert_Model(scene);
+			// コンバートするデータをセットし、各種設定用のフォームを生成
+			CS_3D_Model_Convert_System.M_Create_Form_Of_Convert_Model(scene);
 
-			return;
+            return;
 		}
 
 
