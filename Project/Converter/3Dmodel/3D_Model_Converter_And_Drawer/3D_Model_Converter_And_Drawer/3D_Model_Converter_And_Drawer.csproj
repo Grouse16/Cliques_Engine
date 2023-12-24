@@ -138,6 +138,9 @@
     <Compile Include="CS_Main_Program.cs" />
     <Compile Include="CS_My_Math_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering_Systems\Camera\CS_Camera_Manager.cs" />
+    <Compile Include="Rendering_Systems\Camera\CS_Camera_System.cs" />
+    <Compile Include="Rendering_Systems\Projection\CS_Projection.cs" />
     <EmbeddedResource Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </EmbeddedResource>
