@@ -14,8 +14,11 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
     {
         // ☆ 変数宣言 ☆ //
         private Vector3 m_position = new Vector3(); // 位置座標
+        
         private Vector2 m_uv = new Vector2();       // uv座標
+        
         private Vector4 m_color = new Vector4();    // 頂点カラー
+
         private Vector3 m_normal = new Vector3();   // 法線ベクトル
         private Vector3 m_tangent = new Vector3();  // タンジェントベクトル
         private Vector3 m_bi_normal_tangent = new Vector3();    // 従法線ベクトル

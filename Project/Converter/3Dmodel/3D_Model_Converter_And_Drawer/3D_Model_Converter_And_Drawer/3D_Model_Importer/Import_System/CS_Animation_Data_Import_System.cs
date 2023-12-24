@@ -126,10 +126,10 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 					}
 				}
 
-				// ボーンのインデックス番号が取得できなかったらエラー
+				// ボーンのインデックス番号が取得できなかったらこのボーンはないのでスルー
 				if (l_now_bone.mp_index < 0)
 				{
-					throw new Exception("ボーンのインデックス番号が取得できませんでした。アニメーションのボーンとモデルのボーンの情報が一致していません。");
+					continue;
 				}
 
 

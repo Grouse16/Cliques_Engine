@@ -141,6 +141,7 @@
             this.MinimizeBox = false;
             this.Name = "Form_3D_Model_Convert_Setting";
             this.Text = "３Dモデル変換システム";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_3D_Model_Convert_Setting_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
