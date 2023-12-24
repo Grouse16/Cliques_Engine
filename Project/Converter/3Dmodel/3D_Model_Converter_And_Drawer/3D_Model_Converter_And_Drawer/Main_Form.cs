@@ -30,11 +30,11 @@ namespace _3D_Model_Converter_And_Drawer
 	public partial class Main_Form : Form
 	{
 		// ☆ 変数宣言 ☆ //
-		private BindingList<S_Vertex> m_vertex_list = new BindingList<S_Vertex>(); // 頂点データ
+		private BindingList<S_Triangle_Vertex> m_vertex_list = new BindingList<S_Triangle_Vertex>(); // 頂点データ
 
-		private C_Shader_Source m_shader;  // シェーダー
+        private C_Shader_Source m_shader;  // シェーダー
 
-		private CS_Static_Model_Data m_static_model = null; // 静的モデルデータ
+        private CS_Static_Model_Data m_static_model = null; // 静的モデルデータ
 
 		private CS_Animation_Model_Data m_animation_model = null; // アニメーションモデルデータ
 
@@ -43,8 +43,6 @@ namespace _3D_Model_Converter_And_Drawer
 		private Stopwatch m_stop_watch = new Stopwatch();   // タイマーシステム
 
 		private Process m_now_process = Process.GetCurrentProcess();   // 現在のプロセスの状況を取得
-
-		private string m_shader_path = "";   // シェーダーファイルのパス
 
 		private long m_before_working_memory = 0;   // ロード前の物理メモリ
 		private long m_before_virtual_memory = 0;   // ロード前の仮想メモリ
@@ -57,31 +55,26 @@ namespace _3D_Model_Converter_And_Drawer
 		// コンストラクタ
 		public Main_Form()
 		{
+			// ☆ 変数宣言 ☆ //
+			List<S_Triangle_Vertex> triangle_list = new List<S_Triangle_Vertex>(); // 三角形のリスト
+
+
 			// コンポーネントの初期化
 			InitializeComponent();
 
-			// シェーダーロード
-			m_shader_path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Asset\\shader.fx");
-			m_shader = new C_Shader_Source();
-			m_shader.PropertyChanged += M_source_PropertyChanged;
-			m_shader.mp_shader = File.ReadAllText(m_shader_path, Encoding.UTF8);
 
-			// シェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_shader.mp_shader;
-			uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
+            // シェーダーロード
+            m_shader = new C_Shader_Source();
+            m_shader.PropertyChanged += M_source_PropertyChanged;
+            m_shader.mp_shader = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Asset\\shader.fx"), Encoding.UTF8);
+
+            // シェーダーのパスをセット
+            uc_dx_11_panel.mp_shader.mp_shader_path = m_shader.mp_shader;
 
 
-			// 頂点リストのファイルウォッチャーの設定
-			m_vertex_list.ListChanged += (o, e) =>
-			  {
-				  uc_dx_11_panel.mp_buffer.M_Set_Vertex(m_vertex_list.ToArray());
-				  uc_dx_11_panel.Invalidate();
-			  };
-
-			// 頂点リストの初期化
-			m_vertex_list.Add(new S_Vertex(new Vector4(0.0f, 0.5f, 0.5f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-			m_vertex_list.Add(new S_Vertex(new Vector4(0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-			m_vertex_list.Add(new S_Vertex(new Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+            // レンダラの初期化
+            uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
+            uc_dx_11_panel.M_Reset_To_Triangle();
 
 			return;
 		}
@@ -311,9 +304,6 @@ namespace _3D_Model_Converter_And_Drawer
 				return;
 			}
 
-			// シェーダーの再読み込み
-			m_shader.mp_shader = File.ReadAllText(m_shader_path, Encoding.UTF8);
-
 			return;
 		}
 
@@ -336,8 +326,6 @@ namespace _3D_Model_Converter_And_Drawer
 				return;
 			}
 
-			// シェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_shader.mp_shader;
 			uc_dx_11_panel.Invalidate();
 
 			return;

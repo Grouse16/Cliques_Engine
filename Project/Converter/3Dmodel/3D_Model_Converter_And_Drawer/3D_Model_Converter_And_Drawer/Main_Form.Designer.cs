@@ -47,8 +47,8 @@
             this.b_model_importer = new System.Windows.Forms.Button();
             this.tb_print_model_importer = new System.Windows.Forms.TextBox();
             this.tb_print_model_converter = new System.Windows.Forms.TextBox();
-            this.uc_dx_11_panel = new SharpDXSample.UC_DX_11_Panel();
             this.uc_load_inform_box = new _3D_Model_Converter_And_Drawer.FormTool.UC_Load_Inform_Box();
+            this.uc_dx_11_panel = new SharpDXSample.UC_DX_11_Panel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -260,13 +260,6 @@
             this.tb_print_model_converter.TabIndex = 1;
             this.tb_print_model_converter.Text = "モデルコンバーター";
             // 
-            // uc_dx_11_panel
-            // 
-            this.uc_dx_11_panel.Location = new System.Drawing.Point(282, 16);
-            this.uc_dx_11_panel.Name = "uc_dx_11_panel";
-            this.uc_dx_11_panel.Size = new System.Drawing.Size(526, 390);
-            this.uc_dx_11_panel.TabIndex = 13;
-            // 
             // uc_load_inform_box
             // 
             this.uc_load_inform_box.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -277,6 +270,13 @@
             this.uc_load_inform_box.Name = "uc_load_inform_box";
             this.uc_load_inform_box.Size = new System.Drawing.Size(1081, 54);
             this.uc_load_inform_box.TabIndex = 12;
+            // 
+            // uc_dx_11_panel
+            // 
+            this.uc_dx_11_panel.Location = new System.Drawing.Point(282, 18);
+            this.uc_dx_11_panel.Name = "uc_dx_11_panel";
+            this.uc_dx_11_panel.Size = new System.Drawing.Size(526, 390);
+            this.uc_dx_11_panel.TabIndex = 13;
             // 
             // Main_Form
             // 
