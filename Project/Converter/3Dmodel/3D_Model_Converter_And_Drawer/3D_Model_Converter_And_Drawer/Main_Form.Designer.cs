@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex> cS_DX_11_Vertex_Buffer_11 = new SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex>();
+            SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex> cS_DX_11_Vertex_Buffer_15 = new SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex>();
             this.tb_print_model_viewer = new System.Windows.Forms.TextBox();
             this.tb_print_camera_setting = new System.Windows.Forms.TextBox();
             this.tb_print_camera_distance = new System.Windows.Forms.TextBox();
@@ -142,7 +142,6 @@
             this.tb_print_animation_02_time.Size = new System.Drawing.Size(127, 19);
             this.tb_print_animation_02_time.TabIndex = 1;
             this.tb_print_animation_02_time.Text = "アニメーション２経過時間";
-            this.tb_print_animation_02_time.TextChanged += new System.EventHandler(this.tb_print_animation_02_time_TextChanged);
             // 
             // tb_print_animation_01_name
             // 
@@ -153,7 +152,6 @@
             this.tb_print_animation_01_name.Size = new System.Drawing.Size(178, 19);
             this.tb_print_animation_01_name.TabIndex = 1;
             this.tb_print_animation_01_name.Text = "アニメーション名";
-            this.tb_print_animation_01_name.TextChanged += new System.EventHandler(this.tb_print_animation_01_name_TextChanged);
             // 
             // tb_print_animation_02_name
             // 
@@ -164,7 +162,6 @@
             this.tb_print_animation_02_name.Size = new System.Drawing.Size(177, 19);
             this.tb_print_animation_02_name.TabIndex = 1;
             this.tb_print_animation_02_name.Text = "アニメーション名";
-            this.tb_print_animation_02_name.TextChanged += new System.EventHandler(this.tb_print_animation_02_name_TextChanged);
             // 
             // trackBar3
             // 
@@ -175,7 +172,6 @@
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(300, 45);
             this.trackBar3.TabIndex = 4;
-            this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
             // 
             // trackBar4
             // 
@@ -186,7 +182,6 @@
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(301, 45);
             this.trackBar4.TabIndex = 4;
-            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // tb_print_animation_blend_percent
             // 
@@ -197,7 +192,6 @@
             this.tb_print_animation_blend_percent.Size = new System.Drawing.Size(274, 19);
             this.tb_print_animation_blend_percent.TabIndex = 1;
             this.tb_print_animation_blend_percent.Text = "アニメーションブレンド率";
-            this.tb_print_animation_blend_percent.TextChanged += new System.EventHandler(this.tb_print_animation_blend_percent_TextChanged);
             // 
             // trackBar5
             // 
@@ -208,7 +202,6 @@
             this.trackBar5.Name = "trackBar5";
             this.trackBar5.Size = new System.Drawing.Size(274, 45);
             this.trackBar5.TabIndex = 4;
-            this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
             // 
             // b_model_converter
             // 
@@ -239,7 +232,6 @@
             this.b_model_importer.TabIndex = 0;
             this.b_model_importer.Text = "読み込むモデルファイルを\r\nドラッグアンドドロップ\r\n\r\nelsttmdl\r\nelanmmdl\r\nelanmdt";
             this.b_model_importer.UseVisualStyleBackColor = false;
-            this.b_model_importer.Click += new System.EventHandler(this.b_model_importer_Click);
             this.b_model_importer.DragDrop += new System.Windows.Forms.DragEventHandler(this.B_Model_Importer_DragDrop);
             this.b_model_importer.DragOver += new System.Windows.Forms.DragEventHandler(this.B_Drag_Over_File_Checker);
             // 
@@ -275,8 +267,8 @@
             // uc_dx_11_panel
             // 
             this.uc_dx_11_panel.Location = new System.Drawing.Point(283, 18);
-            cS_DX_11_Vertex_Buffer_11.mp_vertex_data = null;
-            this.uc_dx_11_panel.mp_vertex_buffer = cS_DX_11_Vertex_Buffer_11;
+            cS_DX_11_Vertex_Buffer_15.mp_vertex_data = null;
+            this.uc_dx_11_panel.mp_vertex_buffer = cS_DX_11_Vertex_Buffer_15;
             this.uc_dx_11_panel.Name = "uc_dx_11_panel";
             this.uc_dx_11_panel.Size = new System.Drawing.Size(526, 390);
             this.uc_dx_11_panel.TabIndex = 13;

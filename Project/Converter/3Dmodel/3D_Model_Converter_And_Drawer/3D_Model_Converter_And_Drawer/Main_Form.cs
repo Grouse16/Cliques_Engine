@@ -835,51 +835,6 @@ namespace _3D_Model_Converter_And_Drawer
 
             return;
         }
-
-        private void tb_print_animation_blend_percent_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trackBar5_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trackBar4_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tb_print_animation_02_name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tb_print_animation_02_time_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tb_print_animation_01_name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trackBar3_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void b_model_importer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void uc_dx_11_panel_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
 
