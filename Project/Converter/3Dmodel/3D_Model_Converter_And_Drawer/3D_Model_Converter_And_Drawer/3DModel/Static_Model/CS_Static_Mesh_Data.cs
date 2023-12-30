@@ -12,7 +12,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
 
         private string m_material_name = ""; // マテリアルデータ
 
-        private List<CS_Static_Vertex_Data> m_vertex_data_list = new List<CS_Static_Vertex_Data>(); // 頂点データのリスト
+        private List<S_Static_Vertex_Data> m_vertex_data_list = new List<S_Static_Vertex_Data>(); // 頂点データのリスト
 
         private List<uint> m_index_list = new List<uint>();   // 頂点インデックス番号のリスト
 
@@ -36,7 +36,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
         }
 
         // 頂点データのリスト
-        public List<CS_Static_Vertex_Data> mp_vertex_data_list
+        public List<S_Static_Vertex_Data> mp_vertex_data_list
         {
             // ゲッタ
             get

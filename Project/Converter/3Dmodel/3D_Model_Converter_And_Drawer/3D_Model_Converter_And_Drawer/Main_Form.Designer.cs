@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex> cS_DX_11_Vertex_Buffer_11 = new SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex>();
             this.tb_print_model_viewer = new System.Windows.Forms.TextBox();
             this.tb_print_camera_setting = new System.Windows.Forms.TextBox();
             this.tb_print_camera_distance = new System.Windows.Forms.TextBox();
@@ -273,7 +274,9 @@
             // 
             // uc_dx_11_panel
             // 
-            this.uc_dx_11_panel.Location = new System.Drawing.Point(282, 18);
+            this.uc_dx_11_panel.Location = new System.Drawing.Point(283, 18);
+            cS_DX_11_Vertex_Buffer_11.mp_vertex_data = null;
+            this.uc_dx_11_panel.mp_vertex_buffer = cS_DX_11_Vertex_Buffer_11;
             this.uc_dx_11_panel.Name = "uc_dx_11_panel";
             this.uc_dx_11_panel.Size = new System.Drawing.Size(526, 390);
             this.uc_dx_11_panel.TabIndex = 13;

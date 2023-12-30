@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _3D_Model_Converter_And_Drawer.Rendering_Systems.Projection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace _3D_Model_Converter_And_Drawer.Rendering_Systems.Camera
         private d3d11.CS_Rotation m_rotation = new d3d11.CS_Rotation(); // カメラの回転角度
 
         private SharpDX.Matrix m_camera_matrix = new SharpDX.Matrix(); // カメラのビュー行列
+
+        private CS_Projection m_projection = new CS_Projection(); // カメラの射影行列
 
 
         // ☆ プロパティ ☆ //
@@ -69,8 +72,38 @@ namespace _3D_Model_Converter_And_Drawer.Rendering_Systems.Camera
             }
         }
 
+        // カメラの射影行列
+        public CS_Projection mp_projection
+        {
+            // ゲッタ
+            get
+            {
+                return m_projection;
+            }
+
+            // セッタ
+            set
+            {
+                m_projection = value;
+            }
+        }
+
 
         // ☆ 関数 ☆ //
+
+        //-☆- 初期化 -☆-//
+
+        // コンストラクタ
+        public CS_Camera_System()
+        {
+            m_projection.mp_field_of_view = 90.0f;
+            m_projection.mp_aspect_ratio = 0.0f;
+            m_projection.mp_near_distance = 0.1f;
+            m_projection.mp_far_distance = 100.0f;
+
+            return;
+        }
+
 
         //-☆- マトリクス -☆-//
 
@@ -80,9 +113,8 @@ namespace _3D_Model_Converter_And_Drawer.Rendering_Systems.Camera
             // ☆ 変数宣言 ☆ //
             SharpDX.Matrix rotation_matrix = new SharpDX.Matrix(); // 回転のマトリクス
 
-            SharpDX.Vector3 up_vector = new SharpDX.Vector3(); // 上方向のベクトル
-
-            SharpDX.Vector3 target = new SharpDX.Vector3(); // カメラの注視点
+            SharpDX.Vector3 up_vector = new SharpDX.Vector3();  // 上方向のベクトル
+            SharpDX.Vector3 target = new SharpDX.Vector3();     // カメラの注視点
 
 
             // 回転のマトリクスを計算する

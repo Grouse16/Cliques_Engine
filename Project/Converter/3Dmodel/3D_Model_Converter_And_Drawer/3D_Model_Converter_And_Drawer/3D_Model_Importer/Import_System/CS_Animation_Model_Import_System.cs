@@ -105,7 +105,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                 // ボーン名のロード
                 l_now_bone_data.mp_name = CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], '/');
                 now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, "/", now_position);
-                
+
 
                 // オフセットマトリクス行列11
                 float offset_matrix_11 = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
@@ -169,6 +169,16 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                 // オフセットマトリクス行列44
                 float offset_matrix_44 = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
+
+
+                // オフセットマトリクス行列をセット
+                l_now_bone_data.mp_offset_matrix = new SharpDX.Matrix
+                    (
+                    offset_matrix_11, offset_matrix_12, offset_matrix_13, offset_matrix_14,
+                    offset_matrix_21, offset_matrix_22, offset_matrix_23, offset_matrix_24,
+                    offset_matrix_31, offset_matrix_32, offset_matrix_33, offset_matrix_34,
+                    offset_matrix_41, offset_matrix_42, offset_matrix_43, offset_matrix_44
+                    );
             }
 
 
@@ -203,14 +213,18 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                 // 頂点数分メモリを確保
                 for (int l_now_vertex = 0; l_now_vertex < vertex_sum; l_now_vertex++)
                 {
-                    l_now_mesh_data.mp_vertex_data_list.Add(new _3DModel.CS_Animation_Vertex_Data());
+                    l_now_mesh_data.mp_vertex_data_list.Add(new _3DModel.S_Animation_Vertex_Data());
                 }
 
 
                 // 頂点分だけデータをロード
                 now_position.M_Goto_Next_Line(read_data_list);
-                foreach (var vertex_data in l_now_mesh_data.mp_vertex_data_list)
+                for (int l_now_vertex_number = 0; l_now_vertex_number < l_now_mesh_data.mp_vertex_data_list.Count; l_now_vertex_number++)
                 {
+                    // ☆ 変数宣言 ☆ //
+                    _3DModel.S_Animation_Vertex_Data new_vertex_data = new _3DModel.S_Animation_Vertex_Data(); // 新しい頂点データ
+
+
                     // 位置座標をロード
                     {
                         // ☆ 変数宣言 ☆ //
@@ -231,7 +245,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         position_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // 位置座標をセット
-                        vertex_data.mp_position = new SharpDX.Vector3(position_x, position_y, position_z);
+                        new_vertex_data.mp_position = new SharpDX.Vector3(position_x, position_y, position_z);
                     }
 
                     // UVへ移動
@@ -252,7 +266,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         set_v = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // UV座標をセット
-                        vertex_data.mp_uv = new SharpDX.Vector2(set_u, set_v);
+                        new_vertex_data.mp_uv = new SharpDX.Vector2(set_u, set_v);
                     }
 
                     // 色へ移動
@@ -283,7 +297,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         set_a = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // 色をセット
-                        vertex_data.mp_color = new SharpDX.Vector4(set_a, set_g, set_b, set_a);
+                        new_vertex_data.mp_color = new SharpDX.Vector4(set_a, set_g, set_b, set_a);
                     }
 
                     // 法線ベクトルへ移動
@@ -309,7 +323,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         normal_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // 法線ベクトルをセット
-                        vertex_data.mp_normal = new SharpDX.Vector3(normal_x, normal_y, normal_z);
+                        new_vertex_data.mp_normal = new SharpDX.Vector3(normal_x, normal_y, normal_z);
                     }
 
                     // タンジェントベクトルへ移動
@@ -335,7 +349,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         tangent_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // タンジェントベクトルをセット
-                        vertex_data.mp_tangent = new SharpDX.Vector3(tangent_x, tangent_y, tangent_z);
+                        new_vertex_data.mp_tangent = new SharpDX.Vector3(tangent_x, tangent_y, tangent_z);
                     }
 
                     // 従法線ベクトルへ移動
@@ -361,7 +375,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                         bi_normal_tangent_z = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ':'));
 
                         // 従法線ベクトルをセット
-                        vertex_data.mp_bi_normal_tangent = new SharpDX.Vector3(bi_normal_tangent_x, bi_normal_tangent_y, bi_normal_tangent_z);
+                        new_vertex_data.mp_bi_normal_tangent = new SharpDX.Vector3(bi_normal_tangent_x, bi_normal_tangent_y, bi_normal_tangent_z);
                     }
 
                     // ボーンウェイト情報へ移動
@@ -389,7 +403,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                             bone_weight = float.Parse(CS_My_Math_System.M_Get_String_Until_This_Word(now_position.mp_now_column, read_data_list[now_position.mp_now_line], ','));
 
                             // ボーンウェイト情報をセット
-                            vertex_data.mp_bone_weight.Add(new _3DModel.CS_Bone_Weight_Data(bone_index, bone_weight));
+                            new_vertex_data.mp_bone_weight.Add(new _3DModel.CS_Bone_Weight_Data(bone_index, bone_weight));
 
                             // ボーンデータの終了位置に到達したかどうかを判定する
                             now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(read_data_list, ",", now_position);
@@ -399,6 +413,10 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
 
                     // 次の頂点へ移動
                     now_position.M_Goto_Next_Line(read_data_list);
+
+
+                    // 新しい頂点データをセット
+                    l_now_mesh_data.mp_vertex_data_list[l_now_vertex_number] = new_vertex_data;
                 }
 
 

@@ -90,7 +90,7 @@
     <Compile Include="3DModel\Animation\Key\CS_Scale_Key.cs" />
     <Compile Include="3DModel\Animation\Model\CS_Animation_Mesh_Data.cs" />
     <Compile Include="3DModel\Animation\Model\CS_Animation_Model_Data.cs" />
-    <Compile Include="3DModel\Animation\Model\CS_Animation_Vertex_Data.cs" />
+    <Compile Include="3DModel\Animation\Model\C_Animation_Vertex_Data.cs" />
     <Compile Include="3DModel\Animation\Bone\CS_Model_Bone_Data.cs" />
     <Compile Include="3DModel\Animation\Bone\CS_Bone_Weight_Data.cs" />
     <Compile Include="3DModel\Animation\Key\CS_Position_Key.cs" />
@@ -104,6 +104,9 @@
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Data_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
+    <Compile Include="Constant_Data\S_WVP.cs" />
+    <Compile Include="d3d11\CS_DX11_Constant_Buffer.cs" />
+    <Compile Include="d3d11\CS_DX11_Texture.cs" />
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
     <Compile Include="d3d11\Transform\CS_Position.cs" />
     <Compile Include="d3d11\Transform\CS_Rotation.cs" />

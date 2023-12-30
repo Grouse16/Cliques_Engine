@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace _3D_Model_Converter_And_Drawer._3DModel
 {
-    // ☆ クラス ☆ //
+    // ☆ 構造体 ☆ //
 
-    // 静的な頂点データのクラス
-    public class CS_Static_Vertex_Data
+    // 静的な頂点データの構造体
+    public struct S_Static_Vertex_Data
     {
         // ☆ 変数宣言 ☆ //
-        private Vector3 m_position = new Vector3(); // 位置座標
+        private Vector3 m_position; // 位置座標
 
-        private Vector2 m_uv = new Vector2();       // uv座標
+        private Vector2 m_uv;       // uv座標
 
-        private Vector4 m_color = new Vector4();    // 頂点カラー
+        private Vector4 m_color;    // 頂点カラー
 
-        private Vector3 m_normal = new Vector3();   // 法線ベクトル
-        private Vector3 m_tangent = new Vector3();  // タンジェントベクトル
-        private Vector3 m_bi_normal_tangent = new Vector3();    // 従法線ベクトル
+        private Vector3 m_normal;   // 法線ベクトル
+        private Vector3 m_tangent;  // タンジェントベクトル
+        private Vector3 m_bi_normal_tangent;    // 従法線ベクトル
 
 
         // ☆ プロパティ ☆ //
@@ -34,7 +34,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
             {
                 return m_position;
             }
-            
+
             // セッタ
             set
             {
@@ -125,11 +125,18 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
 
         // ☆ 関数 ☆ //
 
-        //-☆- コンストラクタ -☆-//
+        //-☆- 初期化 -☆-//
 
-        // コンストラクタ
-        public CS_Static_Vertex_Data()
+        // コンストラクタ　引数：位置座標, uv座標, 頂点カラー, 法線ベクトル, タンジェントベクトル, 従法線ベクトル
+        public S_Static_Vertex_Data(Vector3 in_position, Vector2 in_uv, Vector4 in_color, Vector3 in_normal, Vector3 in_tangent, Vector3 in_bi_normal_tangent)
         {
+            m_position = in_position;
+            m_uv = in_uv;
+            m_color = in_color;
+            m_normal = in_normal;
+            m_tangent = in_tangent;
+            m_bi_normal_tangent = in_bi_normal_tangent;
+
             return;
         }
     }

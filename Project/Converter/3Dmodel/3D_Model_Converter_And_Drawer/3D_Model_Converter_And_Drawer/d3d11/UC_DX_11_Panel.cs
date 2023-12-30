@@ -54,6 +54,12 @@ namespace SharpDXSample
 			{
 				return m_vertex_buffer;
 			}
+
+			// セッタ
+			set
+			{
+                m_vertex_buffer = value;
+            }
 		}
 
 		// インデックスバッファ
@@ -121,16 +127,16 @@ namespace SharpDXSample
 		}
 
 
-		//-☆- 描画 -☆-//
+        //-☆- 描画 -☆-//
 
-		// 描画の実行
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			// レンダリングの開始
-			m_renderer.M_Begin_Rendering(Handle);
+        // 描画の処理
+        public void M_Draw()
+        {
+            // レンダリングの開始
+            m_renderer.M_Begin_Rendering(Handle);
 
-			// シェーダーの設定
-			m_shader.M_Set_Shader(m_renderer.mp_device, m_renderer.mp_context);
+            // シェーダーの設定
+            m_shader.M_Set_Shader(m_renderer.mp_device, m_renderer.mp_context);
 
             // 頂点バッファの設定
             m_vertex_buffer.M_Set_Vertex_Buffer(m_renderer.mp_device, m_renderer.mp_context);
@@ -138,26 +144,25 @@ namespace SharpDXSample
             // インデックスバッファの設定
             m_index_buffer.M_Set_Index_Buffer(m_renderer.mp_device, m_renderer.mp_context);
 
-            // リソースが生成されていないなら三角形を描画する
-            if (m_vertex_buffer.M_Get_Vertex_Buffer() == null || m_index_buffer.mp_index_buffer == null)
-			{
-				M_Reset_To_Triangle();
-
-
-                // 頂点バッファの設定
-                m_vertex_buffer.M_Set_Vertex_Buffer(m_renderer.mp_device, m_renderer.mp_context);
-
-                // インデックスバッファの設定
-                m_index_buffer.M_Set_Index_Buffer(m_renderer.mp_device, m_renderer.mp_context);
+            // 描画
+            if (m_vertex_buffer.M_Get_Vertex_Buffer() != null && m_index_buffer.mp_index_buffer != null)
+            {
+                m_renderer.mp_context.DrawIndexed(m_index_buffer.mp_index_data.Count, 0, 0);
             }
-
-			// 描画の実行
-            m_renderer.mp_context.DrawIndexed(m_index_buffer.mp_index_data.Count, 0, 0);
 
             // レンダリングの終了
             m_renderer.M_End_Rendering();
 
-			return;
+            return;
+        }
+
+
+        // 描画の実行
+        protected override void OnPaint(PaintEventArgs e)
+		{
+			M_Draw();
+
+            return;
 		}
 
 
@@ -167,17 +172,12 @@ namespace SharpDXSample
 			// ☆ 変数宣言 ☆ //
 			CS_DX_11_Vertex_Buffer<S_Triangle_Vertex> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Triangle_Vertex>();  // 頂点バッファ
 
-			List<S_Triangle_Vertex> triangle_vertex_list = new List<S_Triangle_Vertex>();   // 三角形の頂点データ
-
 
             // 三角形の頂点データを設定
-            triangle_vertex_list.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.0f, 0.5f, 0.5f, 1.0f), new SharpDX.Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-			triangle_vertex_list.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 1.0f, 0.0f, 1.0f)));
-            triangle_vertex_list.Add(new S_Triangle_Vertex(new SharpDX.Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 0.0f, 1.0f, 1.0f)));
-
-			// 頂点データを設定
-			new_vertex_buffer.M_Set_Vertex(triangle_vertex_list);
-
+            new_vertex_buffer.mp_vertex_data = new List<S_Triangle_Vertex>();
+            new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.0f, 0.5f, 0.5f, 1.0f), new SharpDX.Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+			new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 1.0f, 0.0f, 1.0f)));
+            new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 0.0f, 1.0f, 1.0f)));
 
 			// 頂点バッファを設定
 			m_vertex_buffer = new_vertex_buffer;
@@ -187,7 +187,12 @@ namespace SharpDXSample
 			m_index_buffer.Dispose();
             m_index_buffer = new CS_DX_11_Index_Buffer_Class();
 
-			return;
+            // インデックスバッファを設定
+            m_index_buffer.mp_index_data.Add(0);
+            m_index_buffer.mp_index_data.Add(1);
+            m_index_buffer.mp_index_data.Add(2);
+
+            return;
 		}
 
 

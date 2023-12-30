@@ -34,7 +34,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             }
 
             // セッタ
-            set 
+            set
             {
                 m_position = value;
             }
@@ -106,7 +106,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             return m_position.Count - 1;
         }
 
-        
+
         // 指定された時間の回転角度の番号を取得する　引数：時間　戻り値：キー番号
         private int M_Get_Rotation_Key_By_Time(float in_time)
         {
@@ -213,6 +213,42 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
         }
 
 
+        // 回転角度のキーの補間をブレンドして返す　引数：時間, ブレンド率, ブレンドするの回転角度, 補間後の回転角度
+        public void M_SLerp_Rotation_Key_And_Blend(float in_time, float in_blend_percent, CS_Rotation in_blend_rotation, ref CS_Rotation out_rotation)
+        {
+            // ☆ 変数宣言 ☆ //
+            CS_Rotation key_frame_rotation = new CS_Rotation(); // キーフレームの回転角度
+
+            int now_key_number = M_Get_Rotation_Key_By_Time(in_time); // 現在のキーフレーム番号
+
+
+            // 現在のキーフレーム番号が最後のキーフレーム番号なら最後のキーの回転角度を返す
+            if (m_rotation.Count == now_key_number)
+            {
+                key_frame_rotation = m_rotation[now_key_number].mp_data;
+                return;
+            }
+
+            // 現在のキーフレーム番号が最後のキーフレーム番号でないなら補間を行う
+            else
+            {
+                // ☆ 変数宣言 ☆ //
+                float now_key_time = m_rotation[now_key_number].mp_time; // 現在のキーの時間
+                float next_key_time = m_rotation[now_key_number + 1].mp_time; // 次のキーの時間
+                float blend_percent = (in_time - now_key_time) / (next_key_time - now_key_time); // ブレンド率
+
+
+                // 現在のキーと次のキーの補間を行う
+                CS_Rotation.M_Blend(ref key_frame_rotation, m_rotation[now_key_number].mp_data, m_rotation[now_key_number + 1].mp_data, blend_percent);
+            }
+
+            // ブレンドする回転角度と補間後の回転角度をブレンドする
+            CS_Rotation.M_Blend(ref out_rotation, key_frame_rotation, in_blend_rotation, in_blend_percent);
+
+            return;
+        }
+
+
         // 指定された時間からスケールの前後のキーとの補間を行う　引数：時間, 補間後のスケール
         public void M_Lerp_Scale_Key(float in_time, ref CS_Scale out_scale)
         {
@@ -248,7 +284,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
         //-☆- 生成 -☆-//
 
         // トランスフォームを生成して返す　引数：トランスフォームの設定先, 時間
-        public void M_Blend_Key_Frame_And_Convert_To_Transform(out CS_Transform out_transform, float in_time)
+        public void M_Convert_To_Transform(out CS_Transform out_transform, float in_time)
         {
             // ☆ 変数宣言 ☆ //
             CS_Position new_position = new CS_Position(); // 位置座標
@@ -256,8 +292,8 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             CS_Rotation new_rotation = new CS_Rotation(); // 回転角度
 
             CS_Scale new_scale = new CS_Scale(); // スケール
-            
-            
+
+
             // 新しいトランスフォームを生成する
             out_transform = new CS_Transform();
 
@@ -276,6 +312,40 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
             out_transform.mp_position = new_position;
             out_transform.mp_rotation = new_rotation;
             out_transform.mp_scale = new_scale;
+
+            return;
+        }
+
+
+        // 渡されたトランスフォームとキーフレーム情報をブレンドして返す　引数：トランスフォームの設定先, ブレンド先のトランスフォーム, 時間, ブレンド率
+        public void M_Convert_To_Transform_And_Blend(out CS_Transform out_transform, CS_Transform in_blend_to_transform, float in_time, float in_blend_percent)
+        {
+            // ☆ 変数宣言 ☆ //
+            CS_Position new_position = new CS_Position(); // 位置座標
+
+            CS_Rotation new_rotation = new CS_Rotation(); // 回転角度
+
+            CS_Scale new_scale = new CS_Scale(); // スケール
+
+
+            // 新しいトランスフォームを生成する
+            out_transform = new CS_Transform();
+
+
+            // 位置座標の補間を行う
+            M_Lerp_Position_Key(in_time, ref new_position);
+
+            // 回転角度の補間を行う
+            M_SLerp_Rotation_Key_And_Blend(in_time, in_blend_percent, in_blend_to_transform.mp_rotation, ref new_rotation);
+
+            // スケールの補間を行う
+            M_Lerp_Scale_Key(in_time, ref new_scale);
+
+
+            // ブレンドしてトランスフォームに設定する
+            out_transform.mp_position.mp_pos = new_position.mp_pos * (1.0f - in_blend_percent) + in_blend_to_transform.mp_position.mp_pos * in_blend_percent;
+            out_transform.mp_rotation = new_rotation;
+            out_transform.mp_scale.mp_scale = new_scale.mp_scale * (1.0f - in_blend_percent) + in_blend_to_transform.mp_scale.mp_scale * in_blend_percent;
 
             return;
         }

@@ -15,7 +15,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         // ☆ 変数宣言 ☆ //
         private string m_name = ""; // ボーン名
 
-        Matrix4x4 m_offset_matrix; // オフセットマトリクス行列
+        SharpDX.Matrix m_offset_matrix = new SharpDX.Matrix(); // オフセットマトリクス行列
 
 
         // ☆ プロパティ ☆ //
@@ -37,7 +37,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         }
 
         // オフセットマトリクス行列
-        public Matrix4x4 mp_offset_matrix
+        public SharpDX.Matrix mp_offset_matrix
         {
             // ゲッタ
             get
