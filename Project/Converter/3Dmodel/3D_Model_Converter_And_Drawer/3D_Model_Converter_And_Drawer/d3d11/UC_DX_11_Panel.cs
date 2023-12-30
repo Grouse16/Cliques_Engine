@@ -19,9 +19,7 @@ namespace SharpDXSample
 
 		private CS_DX_11_Shader m_shader = new CS_DX_11_Shader();   // シェーダー
 
-		private CS_DX_11_Vertex_Buffer_Handler m_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Triangle_Vertex>();  // 頂点バッファ
-
-		private CS_DX_11_Index_Buffer_Class m_index_buffer = new CS_DX_11_Index_Buffer_Class(); // インデックスバッファ
+		private CS_DX11_Draw_Call_System m_triangle_draw_call_system = new CS_DX11_Draw_Call_System();   // 四角形描画実行用のシステム
 		
 
 		// ☆ プロパティ ☆ //
@@ -46,32 +44,6 @@ namespace SharpDXSample
 			}
 		}
 
-		// 頂点バッファ
-		public CS_DX_11_Vertex_Buffer_Handler mp_vertex_buffer
-		{
-			// ゲッタ
-			get
-			{
-				return m_vertex_buffer;
-			}
-
-			// セッタ
-			set
-			{
-                m_vertex_buffer = value;
-            }
-		}
-
-		// インデックスバッファ
-		public CS_DX_11_Index_Buffer_Class mp_index_buffer
-		{
-			// ゲッタ
-			get
-			{
-				return m_index_buffer;
-			}
-		}
-
 
 		// ☆ 関数 ☆ //
 
@@ -86,7 +58,7 @@ namespace SharpDXSample
 			// レンダリングシステムの初期化
 			m_renderer.mp_clear_color = new SharpDX.Mathematics.Interop.RawColor4(0, 0, 0.5f, 1.0f);
 
-            return;
+			return;
 		}
 
 
@@ -95,20 +67,6 @@ namespace SharpDXSample
 		// メモリの解放を行う
 		public void Close()
 		{
-			// 頂点バッファの解放
-			if (m_vertex_buffer != null)
-			{
-				m_vertex_buffer.Dispose();
-				m_vertex_buffer = null;
-			}
-
-			// インデックスバッファの解放
-			if (m_index_buffer != null)
-			{
-				m_index_buffer.Dispose();
-				m_index_buffer = null;
-			}
-
 			// シェーダーの解放
 			if (m_shader != null)
 			{
@@ -127,73 +85,187 @@ namespace SharpDXSample
 		}
 
 
-        //-☆- 描画 -☆-//
+		//-☆- 描画 -☆-//
 
-        // 描画の処理
-        public void M_Draw()
-        {
-            // レンダリングの開始
-            m_renderer.M_Begin_Rendering(Handle);
-
-            // シェーダーの設定
-            m_shader.M_Set_Shader(m_renderer.mp_device, m_renderer.mp_context);
-
-            // 頂点バッファの設定
-            m_vertex_buffer.M_Set_Vertex_Buffer(m_renderer.mp_device, m_renderer.mp_context);
-
-            // インデックスバッファの設定
-            m_index_buffer.M_Set_Index_Buffer(m_renderer.mp_device, m_renderer.mp_context);
-
-            // 描画
-            if (m_vertex_buffer.M_Get_Vertex_Buffer() != null && m_index_buffer.mp_index_buffer != null)
-            {
-                m_renderer.mp_context.DrawIndexed(m_index_buffer.mp_index_data.Count, 0, 0);
-            }
-
-            // レンダリングの終了
-            m_renderer.M_End_Rendering();
-
-            return;
-        }
-
-
-        // 描画の実行
-        protected override void OnPaint(PaintEventArgs e)
+		// 描画の処理
+		public void M_Draw(CS_DX11_Draw_Call_System in_draw_call)
 		{
-			M_Draw();
+			// レンダリングの開始
+			m_renderer.M_Begin_Rendering(Handle);
 
-            return;
+			// シェーダーの設定
+			m_shader.M_Set_Shader(m_renderer.mp_device, m_renderer.mp_context);
+
+			// 頂点バッファの設定
+			in_draw_call.mp_vertex_buffer.M_Set_Vertex_Buffer(m_renderer.mp_device, m_renderer.mp_context);
+
+
+			// 頂点バッファがあるときのみ描画を実行
+			if (in_draw_call.mp_vertex_buffer.M_Get_Vertex_Buffer() != null)
+			{
+				// メッシュごとの描画を実行
+				foreach (var l_now_mesh_data in in_draw_call.mp_mesh_data_list)
+                {
+					// インデックスのデータがなければ次のメッシュの描画へ
+					if (l_now_mesh_data.mp_vertex_index == null)
+					{
+						continue;
+                    }
+
+
+                    // 頂点インデックスバッファの設定
+                    l_now_mesh_data.mp_vertex_index.M_Set_Index_Buffer(m_renderer.mp_device, m_renderer.mp_context);
+
+
+					// インデックスバッファがなければ次のメッシュの描画へ
+					if (l_now_mesh_data.mp_vertex_index.mp_index_buffer == null)
+					{
+						continue;
+					}
+
+
+					// 定数バッファの設定
+					foreach (var l_now_constant_buffer_setting in l_now_mesh_data.mp_constant_buffer_set_list)
+					{
+						M_Set_Constant_Buffer(l_now_constant_buffer_setting);
+					}
+
+					// テクスチャの設定
+					foreach (var l_now_texture_setting in l_now_mesh_data.mp_texture_set_list)
+					{
+						M_Set_Texture(l_now_texture_setting);
+					}
+
+					// 描画を実行
+					m_renderer.mp_context.DrawIndexed(l_now_mesh_data.mp_vertex_index.mp_index_data.Count, 0, 0);
+				}
+			}
+
+			// レンダリングの終了
+			m_renderer.M_End_Rendering();
+
+			return;
+		}
+
+
+		// 描画の実行
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			M_Draw(m_triangle_draw_call_system);
+
+			return;
 		}
 
 
 		// リソースを初期設定に戻し、三角形の描画に戻す
-		public void M_Reset_To_Triangle()
+		public void M_Draw_Triangle()
 		{
-			// ☆ 変数宣言 ☆ //
-			CS_DX_11_Vertex_Buffer<S_Triangle_Vertex> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Triangle_Vertex>();  // 頂点バッファ
+			// 三角形用の描画システムがまだ生成されていなければ生成
+			if (m_triangle_draw_call_system.mp_vertex_buffer == null)
+			{
+				// ☆ 変数宣言 ☆ //
+				CS_DX_11_Vertex_Buffer<S_Triangle_Vertex> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Triangle_Vertex>();    // 新しい頂点バッファ
 
 
-            // 三角形の頂点データを設定
-            new_vertex_buffer.mp_vertex_data = new List<S_Triangle_Vertex>();
-            new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.0f, 0.5f, 0.5f, 1.0f), new SharpDX.Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
-			new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 1.0f, 0.0f, 1.0f)));
-            new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 0.0f, 1.0f, 1.0f)));
-
-			// 頂点バッファを設定
-			m_vertex_buffer = new_vertex_buffer;
+				// 三角形用の描画システムを生成
+                m_triangle_draw_call_system = new CS_DX11_Draw_Call_System();
 
 
-			// インデックスデータを設定
-			m_index_buffer.Dispose();
-            m_index_buffer = new CS_DX_11_Index_Buffer_Class();
+				// 三角形データを設定
+				new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.0f, 0.5f, 0.5f, 1.0f), new SharpDX.Vector4(1.0f, 0.0f, 0.0f, 1.0f)));
+				new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 1.0f, 0.0f, 1.0f)));
+				new_vertex_buffer.mp_vertex_data.Add(new S_Triangle_Vertex(new SharpDX.Vector4(-0.5f, -0.5f, 0.5f, 1.0f), new SharpDX.Vector4(0.0f, 0.0f, 1.0f, 1.0f)));
 
-            // インデックスバッファを設定
-            m_index_buffer.mp_index_data.Add(0);
-            m_index_buffer.mp_index_data.Add(1);
-            m_index_buffer.mp_index_data.Add(2);
+				// 頂点バッファを設定
+				m_triangle_draw_call_system.mp_vertex_buffer = new_vertex_buffer;
+
+
+				// インデックスバッファを設定
+				m_triangle_draw_call_system.mp_mesh_data_list.Add(new CS_DX11_Mesh_Data());
+				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index = new CS_DX_11_Index_Buffer_Class();
+				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(0);
+				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(1);
+				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(2);
+            }
+
+
+			// 描画を実行
+			M_Draw(m_triangle_draw_call_system);
+
+			return;
+		}
+
+
+		// 定数バッファをセットする　引数：定数バッファの設定
+		public void M_Set_Constant_Buffer(S_DX11_Constant_Buffer_Draw_Setting in_constant_buffer_setting)
+		{
+			// シェーダーの種類で設定先を分岐
+			switch (in_constant_buffer_setting.mp_attach_shader_type)
+			{
+				// 頂点シェーダー
+				case E_DX11_SHADER_TYPE.e_VERTEX_SHADER:
+					m_renderer.mp_context.VertexShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
+					break;
+
+                // ハルシェーダー
+                case E_DX11_SHADER_TYPE.e_HULL_SHADER:
+                    m_renderer.mp_context.HullShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
+                    break;
+
+                // ドメインシェーダー
+                case E_DX11_SHADER_TYPE.e_DOMAIN_SHADER:
+                    m_renderer.mp_context.DomainShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
+                    break;
+
+                // ジオメトリシェーダー
+                case E_DX11_SHADER_TYPE.e_GEOMETRY_SHADER:
+                    m_renderer.mp_context.GeometryShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
+                    break;
+
+                // ピクセルシェーダー
+                case E_DX11_SHADER_TYPE.e_PIXEL_SHADER:
+					m_renderer.mp_context.PixelShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
+					break;
+			}
+
+			return;
+		}
+
+
+		// テクスチャをセットする　引数：テクスチャの設定
+		public void M_Set_Texture(S_DX11_Texture_Draw_Setting in_texture_setting)
+		{
+            // シェーダーの種類で設定先を分岐
+            switch (in_texture_setting.mp_attach_shader_type)
+			{
+                // 頂点シェーダー
+                case E_DX11_SHADER_TYPE.e_VERTEX_SHADER:
+                    m_renderer.mp_context.VertexShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
+                    break;
+
+                // ハルシェーダー
+                case E_DX11_SHADER_TYPE.e_HULL_SHADER:
+                    m_renderer.mp_context.HullShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
+                    break;
+
+                // ドメインシェーダー
+                case E_DX11_SHADER_TYPE.e_DOMAIN_SHADER:
+                    m_renderer.mp_context.DomainShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
+                    break;
+
+                // ジオメトリシェーダー
+                case E_DX11_SHADER_TYPE.e_GEOMETRY_SHADER:
+                    m_renderer.mp_context.GeometryShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
+                    break;
+
+                // ピクセルシェーダー
+                case E_DX11_SHADER_TYPE.e_PIXEL_SHADER:
+                    m_renderer.mp_context.PixelShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
+                    break;
+            }
 
             return;
-		}
+        }
 
 
 		//-☆- サイズ変更 -☆-//

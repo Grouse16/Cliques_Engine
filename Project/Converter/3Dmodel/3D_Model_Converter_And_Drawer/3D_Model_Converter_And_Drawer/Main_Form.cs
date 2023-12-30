@@ -93,7 +93,7 @@ namespace _3D_Model_Converter_And_Drawer
 
             // レンダラの初期化
             uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
-            uc_dx_11_panel.M_Reset_To_Triangle();
+            uc_dx_11_panel.M_Draw_Triangle();
 
             // プロジェクションのアスペクト比を設定
             CS_Camera_Manager.mp_camera_system.mp_projection.mp_aspect_ratio = (float)uc_dx_11_panel.Width / (float)uc_dx_11_panel.Height;
@@ -280,8 +280,6 @@ namespace _3D_Model_Converter_And_Drawer
                     M_Shrink_To_Fit_String(m_now_process.VirtualMemorySize64 - m_before_virtual_memory)
                 );
 
-
-
             // ガーベージコレクションを実行
             M_Garbage_Collection_Refresh();
 
@@ -295,7 +293,7 @@ namespace _3D_Model_Converter_And_Drawer
         private void M_Model_And_Animation_Data_Reset()
         {
             // 三角形の描画に戻す
-            uc_dx_11_panel.M_Reset_To_Triangle();
+            uc_dx_11_panel.M_Draw_Triangle();
 
 
             // 静的モデルを削除
@@ -801,6 +799,9 @@ namespace _3D_Model_Converter_And_Drawer
                 // 静的モデルのロード
                 M_Static_Model_Load(relative_file_path);
 
+                // 静的モデルを描画
+                M_Draw_Static_Model();
+
                 return;
             }
 
@@ -813,6 +814,9 @@ namespace _3D_Model_Converter_And_Drawer
 
                 // アニメーションモデルのロード
                 M_Animation_Model_Load(relative_file_path);
+
+                // アニメーションモデルを描画
+                M_Draw_Animation_Model();
 
                 return;
             }
