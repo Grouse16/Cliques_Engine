@@ -114,6 +114,12 @@
     <Compile Include="d3d11\Transform\CS_Rotation.cs" />
     <Compile Include="d3d11\Transform\CS_Scale.cs" />
     <Compile Include="d3d11\Transform\CS_Transform.cs" />
+    <Compile Include="d3d11\UC_DX_11_Panel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="d3d11\UC_DX_11_Panel.Designer.cs">
+      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTool\UC_Load_Inform_Box.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,12 +139,6 @@
       <DependentUpon>UC_Scroll_Name_Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="3D_Model_Converter\Convert_System\CS_3D_Model_Convert_System.cs" />
-    <Compile Include="d3d11\UC_DX_11_Panel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="d3d11\UC_DX_11_Panel.designer.cs">
-      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
-    </Compile>
     <Compile Include="d3d11\CS_DX_11_Renderer.cs" />
     <Compile Include="d3d11\CS_DX_11_Shader.cs" />
     <Compile Include="d3d11\CS_DX_11_Vertex_Buffer.cs" />
@@ -164,6 +164,9 @@
     <EmbeddedResource Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="d3d11\UC_DX_11_Panel.resx">
+      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTool\UC_Load_Inform_Box.resx">
       <DependentUpon>UC_Load_Inform_Box.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,9 +175,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="3D_Model_Converter\UC_Scroll_Name_Setting.resx">
       <DependentUpon>UC_Scroll_Name_Setting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="d3d11\UC_DX_11_Panel.resx">
-      <DependentUpon>UC_DX_11_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex> cS_DX_11_Vertex_Buffer_11 = new SharpDXSample.CS_DX_11_Vertex_Buffer<SharpDXSample.S_Triangle_Vertex>();
             this.tb_print_model_viewer = new System.Windows.Forms.TextBox();
             this.tb_print_camera_setting = new System.Windows.Forms.TextBox();
             this.tb_print_camera_distance = new System.Windows.Forms.TextBox();
@@ -49,7 +48,7 @@
             this.tb_print_model_importer = new System.Windows.Forms.TextBox();
             this.tb_print_model_converter = new System.Windows.Forms.TextBox();
             this.uc_load_inform_box = new _3D_Model_Converter_And_Drawer.FormTool.UC_Load_Inform_Box();
-            this.uc_dx_11_panel = new SharpDXSample.UC_DX_11_Panel();
+            this.uc_dx_11_panel = new _3D_Model_Converter_And_Drawer.d3d11.UC_DX_11_Panel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -266,11 +265,9 @@
             // 
             // uc_dx_11_panel
             // 
-            this.uc_dx_11_panel.Location = new System.Drawing.Point(283, 18);
-            cS_DX_11_Vertex_Buffer_11.mp_vertex_data = null;
-            this.uc_dx_11_panel.mp_vertex_buffer = cS_DX_11_Vertex_Buffer_11;
+            this.uc_dx_11_panel.Location = new System.Drawing.Point(283, 17);
             this.uc_dx_11_panel.Name = "uc_dx_11_panel";
-            this.uc_dx_11_panel.Size = new System.Drawing.Size(526, 390);
+            this.uc_dx_11_panel.Size = new System.Drawing.Size(524, 392);
             this.uc_dx_11_panel.TabIndex = 13;
             // 
             // Main_Form
@@ -334,7 +331,7 @@
         private System.Windows.Forms.Button b_model_importer;
         private System.Windows.Forms.TextBox tb_print_model_importer;
         private System.Windows.Forms.TextBox tb_print_model_converter;
-        private SharpDXSample.UC_DX_11_Panel uc_dx_11_panel;
+        private d3d11.UC_DX_11_Panel uc_dx_11_panel;
     }
 }
 
