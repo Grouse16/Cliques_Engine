@@ -19,6 +19,8 @@ namespace SharpDXSample
 
 		private CS_DX_11_Shader m_shader = new CS_DX_11_Shader();   // シェーダー
 
+		private CS_DX_11_Vertex_Buffer<S_Triangle_Vertex> m_triangle_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Triangle_Vertex>();    // 三角形描画用の頂点バッファ
+
 		private CS_DX11_Draw_Call_System m_triangle_draw_call_system = new CS_DX11_Draw_Call_System();   // 四角形描画実行用のシステム
 		
 
@@ -43,6 +45,22 @@ namespace SharpDXSample
 				return m_shader;
 			}
 		}
+
+		// 三角形描画用の頂点バッファ
+		public CS_DX_11_Vertex_Buffer<S_Triangle_Vertex> mp_vertex_buffer
+		{
+            // ゲッタ
+            get
+			{
+                return m_triangle_vertex_buffer;
+            }
+
+			// セッタ
+			set
+			{
+				m_triangle_vertex_buffer = value;
+			}
+        }
 
 
 		// ☆ 関数 ☆ //
@@ -181,7 +199,8 @@ namespace SharpDXSample
 
 
 				// インデックスバッファを設定
-				m_triangle_draw_call_system.mp_mesh_data_list.Add(new CS_DX11_Mesh_Data());
+				m_triangle_draw_call_system.mp_mesh_data_list.Clear();
+                m_triangle_draw_call_system.mp_mesh_data_list.Add(new CS_DX11_Mesh_Data());
 				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index = new CS_DX_11_Index_Buffer_Class();
 				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(0);
 				m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(1);
