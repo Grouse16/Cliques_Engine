@@ -31,20 +31,10 @@ namespace _3D_Model_Converter_And_Drawer._3D_model_Convert
             int now_material_num = 0;   // 現在のマテリアル番号
 
 
-            // フォルダ選択ダイアログを表示
-            using (var file_dialog_system = new OpenFileDialog() { FileName = "SelectFolder", Filter = "Folder|.", CheckFileExists = false })
+            // フォルダ選択ダイアログを表示して、選択されたフォルダのパスを取得、取得できなかったら終了
+            if (CS_File_Write_System.M_Get_Folder_Path(out selected_folder_path) == false)
             {
-                // フォルダが選択された時はそこまでのパスをセット
-                if (file_dialog_system.ShowDialog() == DialogResult.OK)
-                {
-                    selected_folder_path = Path.GetDirectoryName(file_dialog_system.FileName) + "\\";
-                }
-
-                // フォルダが選択されていない時は終了
-                else
-                {
-                    return;
-                }
+                return;
             }
 
 

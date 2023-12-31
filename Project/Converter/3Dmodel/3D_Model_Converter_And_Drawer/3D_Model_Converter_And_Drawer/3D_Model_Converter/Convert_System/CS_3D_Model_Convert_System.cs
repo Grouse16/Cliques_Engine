@@ -160,32 +160,13 @@ namespace _3D_Model_Converter_And_Drawer
         private static void M_Save_Static_Model_This_File(List<string> in_write_file_data)
         {
             // ☆ 変数宣言 ☆ //
-            SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
-
-            string extension = "elsttmdl";  // 拡張子
+            string file_path = "";  // ファイルパス
 
 
-            sfd.FileName = "new_model." + extension;
-            sfd.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            sfd.Filter = extension + "ファイル(*." + extension + ";*." + extension + ")| *." + extension + "; *." + extension + "| すべてのファイル(*.*)|*.*";
-            sfd.FilterIndex = 1;
-            sfd.Title = "スタティックモデルデータの保存先のファイルを選択してください";
-            //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
-            sfd.RestoreDirectory = true;
-            //既に存在するファイル名を指定したとき警告する
-            sfd.OverwritePrompt = true;
-            //存在しないパスが指定されたとき警告を表示する
-            sfd.CheckPathExists = true;
-
-            //ダイアログを表示する
-            if (sfd.ShowDialog() == DialogResult.OK)
+            // 保存先設定のダイアログを表示し、保存先を取得、OKが押されている時のみ保存を行う
+            if (CS_File_Write_System.M_Get_File_Path(out file_path, "スタティックモデルデータの保存先のファイルを選択してください", "new_model", "elsttmdl"))
             {
-                System.IO.File.WriteAllText(sfd.FileName, in_write_file_data[0] + Environment.NewLine);
-
-                for (int now_write_raw = 1; now_write_raw < in_write_file_data.Count; now_write_raw++)
-                {
-                    System.IO.File.AppendAllText(sfd.FileName, in_write_file_data[now_write_raw] + Environment.NewLine);
-                }
+                CS_File_Write_System.M_Write_Data_To_File(file_path, in_write_file_data);
             }
 
             return;
@@ -196,32 +177,13 @@ namespace _3D_Model_Converter_And_Drawer
         private static void M_Save_Animation_Model_This_File(List<string> in_write_file_data)
         {
             // ☆ 変数宣言 ☆ //
-            SaveFileDialog sfd = new SaveFileDialog();  // ファイルセーブ用システム
-
-            string extension = "elanmmdl";  // 拡張子
+            string file_path = "";  // ファイルパス
 
 
-            sfd.FileName = "new_model." + extension;
-            sfd.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            sfd.Filter = extension + "ファイル(*." + extension + ";*." + extension + ")| *." + extension + "; *." + extension + "| すべてのファイル(*.*)|*.*";
-            sfd.FilterIndex = 1;
-            sfd.Title = "アニメーションモデルデータの保存先のファイルを選択してください";
-            //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
-            sfd.RestoreDirectory = true;
-            //既に存在するファイル名を指定したとき警告する
-            sfd.OverwritePrompt = true;
-            //存在しないパスが指定されたとき警告を表示する
-            sfd.CheckPathExists = true;
-
-            //ダイアログを表示する
-            if (sfd.ShowDialog() == DialogResult.OK)
+            // 保存先設定のダイアログを表示し、保存先を取得、OKが押されている時のみ保存を行う
+            if (CS_File_Write_System.M_Get_File_Path(out file_path, "アニメーションモデルデータの保存先のファイルを選択してください", "new_model", "elanmmdl"))
             {
-                System.IO.File.WriteAllText(sfd.FileName, in_write_file_data[0] + Environment.NewLine);
-
-                for (int now_write_raw = 1; now_write_raw < in_write_file_data.Count; now_write_raw++)
-                {
-                    System.IO.File.AppendAllText(sfd.FileName, in_write_file_data[now_write_raw] + Environment.NewLine);
-                }
+                CS_File_Write_System.M_Write_Data_To_File(file_path, in_write_file_data);
             }
 
             return;
