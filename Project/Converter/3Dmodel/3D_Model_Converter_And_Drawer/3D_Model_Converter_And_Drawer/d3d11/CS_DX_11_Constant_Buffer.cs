@@ -11,7 +11,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     // ☆ クラス ☆ //
 
     // DirectX11の定数バッファを使用するための抽象レイヤーのクラス
-    public abstract class CS_DX11_Constant_Buffer_Handle : System.IDisposable
+    public abstract class CS_DX_11_Constant_Buffer_Handle : System.IDisposable
     {
         // ☆ 関数 ☆ //
 
@@ -44,7 +44,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
 
 
     // DirectX11の定数バッファのクラス
-    public class CS_DX11_Constant_Buffer<S_Constant_Data_Format> : CS_DX11_Constant_Buffer_Handle where S_Constant_Data_Format : struct
+    public class CS_DX_11_Constant_Buffer<S_Constant_Data_Format> : CS_DX_11_Constant_Buffer_Handle where S_Constant_Data_Format : struct
     {
         // ☆ 定数 ☆ //
         public const int con_CONSTANT_BUFFER_BYTE_SUM = 256;  // 定数バッファのバイト数
@@ -96,14 +96,14 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         //-☆- 初期化と解放 -☆-//
 
         // コンストラクタ
-        public CS_DX11_Constant_Buffer()
+        public CS_DX_11_Constant_Buffer()
         {
             return;
         }
 
 
         // デストラクタ
-        ~CS_DX11_Constant_Buffer()
+        ~CS_DX_11_Constant_Buffer()
         {
             Dispose();
 
@@ -159,10 +159,10 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         {
             m_buffer = new SharpDX.Direct3D11.Buffer(in_device, new BufferDescription()
             {
-                Usage = ResourceUsage.Default,
+                Usage = ResourceUsage.Dynamic,
                 SizeInBytes = in_buffer_array_sum * con_CONSTANT_BUFFER_BYTE_SUM,
                 BindFlags = BindFlags.ConstantBuffer,
-                CpuAccessFlags = CpuAccessFlags.None,
+                CpuAccessFlags = CpuAccessFlags.Write,
                 OptionFlags = ResourceOptionFlags.None,
                 StructureByteStride = sizeof(S_Constant_Data_Format)
             });
@@ -196,9 +196,13 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
 
             // 定数バッファのデータを取得
             in_device_context.MapSubresource(m_buffer, MapMode.WriteDiscard, SharpDX.Direct3D11.MapFlags.None, out data_stream);
-
+            
             // 定数バッファにデータを書き込む
             data_stream.WriteRange(m_constant_data_list.ToArray());
+
+            // 定数バッファのデータを解放
+            in_device_context.UnmapSubresource(m_buffer, 0);
+            data_stream = null;
 
             return;
         }

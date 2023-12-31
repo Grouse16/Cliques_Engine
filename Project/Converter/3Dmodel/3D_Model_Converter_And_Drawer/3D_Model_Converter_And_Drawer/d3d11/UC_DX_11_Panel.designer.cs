@@ -42,12 +42,12 @@
             this.b_draw_position_viewer.Text = "DX11描画範囲";
             this.b_draw_position_viewer.UseVisualStyleBackColor = false;
             // 
-            // UC_New_DX_11_Panel
+            // UC_DX_11_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.b_draw_position_viewer);
-            this.Name = "UC_New_DX_11_Panel";
+            this.Name = "UC_DX_11_Panel";
             this.Size = new System.Drawing.Size(524, 392);
             this.Load += new System.EventHandler(this.UC_New_DX_11_Panel_Load);
             this.ResumeLayout(false);

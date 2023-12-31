@@ -13,7 +13,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     // ☆ クラス ☆ //
 
     // DirectX11のテクスチャのクラス
-    public class CS_DX11_Texture : System.IDisposable
+    public class CS_DX_11_Texture : System.IDisposable
     {
         // ☆ 変数宣言 ☆ //
         private ShaderResourceView m_texture_view = null; // テクスチャビュー
@@ -61,7 +61,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         //-☆- 初期化と終了時 -☆-//
 
         // コンストラクタ
-        public CS_DX11_Texture()
+        public CS_DX_11_Texture()
         {
             return;
         }

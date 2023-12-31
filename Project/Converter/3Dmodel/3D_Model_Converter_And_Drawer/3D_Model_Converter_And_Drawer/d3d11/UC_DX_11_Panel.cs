@@ -21,7 +21,9 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
 
         private CS_DX_11_Shader m_shader = new CS_DX_11_Shader();   // シェーダー
 
-        private CS_DX11_Draw_Call_System m_triangle_draw_call_system = new CS_DX11_Draw_Call_System();   // 四角形描画実行用のシステム
+        private CS_DX_11_Draw_Call_System m_triangle_draw_call_system = new CS_DX_11_Draw_Call_System();   // 四角形描画実行用のシステム
+
+        private CS_DX_11_Draw_Call_System m_now_draw_setting = null;   // 現在の描画設定
 
 
         // ☆ プロパティ ☆ //
@@ -43,6 +45,22 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
             get
             {
                 return m_shader;
+            }
+        }
+
+        // 現在の描画設定
+        public CS_DX_11_Draw_Call_System mp_now_draw_setting
+        {
+            // ゲッタ
+            get
+            {
+                return m_now_draw_setting;
+            }
+
+            // セッタ
+            set
+            {
+                m_now_draw_setting = value;
             }
         }
 
@@ -90,10 +108,10 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         //-☆- 描画 -☆-//
 
         // 描画の処理
-        public void M_Draw(CS_DX11_Draw_Call_System in_draw_call)
+        private void M_Draw(CS_DX_11_Draw_Call_System in_draw_call)
         {
-            // 頂点データがないなら描画しない
-            if (in_draw_call.mp_vertex_buffer == null)
+            // 頂点とメッシュデータがないなら描画しない
+            if (in_draw_call.mp_vertex_buffer == null || in_draw_call.mp_mesh_data_list.Count <= 0)
             {
                 return;
             }
@@ -112,9 +130,6 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
             // 頂点バッファがなければ描画しない
             if (in_draw_call.mp_vertex_buffer.M_Get_Vertex_Buffer() == null)
             {
-                // レンダリングの終了
-                m_renderer.M_End_Rendering();
-
                 return;
             }
 
@@ -138,7 +153,6 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
                 {
                     continue;
                 }
-
 
                 // 定数バッファの設定
                 foreach (var l_now_constant_buffer_setting in l_now_mesh_data.mp_constant_buffer_set_list)
@@ -166,14 +180,30 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         // 描画の実行
         protected override void OnPaint(PaintEventArgs e)
         {
-            M_Draw(m_triangle_draw_call_system);
+            // 現在の描画設定がなければ描画しない
+            if (m_now_draw_setting == null)
+            {
+                return;
+            }
+
+            // 描画を実行
+            M_Draw(m_now_draw_setting);
+
+            return;
+        }
+
+
+        // Paintイベントを発生させる
+        public void M_Re_Paint()
+        {
+            Invalidate();
 
             return;
         }
 
 
         // リソースを初期設定に戻し、三角形の描画に戻す
-        public void M_Draw_Triangle()
+        public void M_Reset_To_Triangle()
         {
             // ボタンを削除
             if (b_draw_position_viewer.IsDisposed == false)
@@ -189,7 +219,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
 
 
                 // 三角形用の描画システムを生成
-                m_triangle_draw_call_system = new CS_DX11_Draw_Call_System();
+                m_triangle_draw_call_system = new CS_DX_11_Draw_Call_System();
 
 
                 // 三角形データを設定
@@ -211,42 +241,41 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
                 m_triangle_draw_call_system.mp_mesh_data_list[0].mp_vertex_index.mp_index_data.Add(2);
             }
 
-
-            // 描画を実行
-            M_Draw(m_triangle_draw_call_system);
+            // 描画設定を三角形用の描画システムに変更
+            m_now_draw_setting = m_triangle_draw_call_system;
 
             return;
         }
 
 
         // 定数バッファをセットする　引数：定数バッファの設定
-        public void M_Set_Constant_Buffer(S_DX11_Constant_Buffer_Draw_Setting in_constant_buffer_setting)
+        public void M_Set_Constant_Buffer(S_DX_11_Constant_Buffer_Draw_Setting in_constant_buffer_setting)
         {
             // シェーダーの種類で設定先を分岐
             switch (in_constant_buffer_setting.mp_attach_shader_type)
             {
                 // 頂点シェーダー
-                case E_DX11_SHADER_TYPE.e_VERTEX_SHADER:
+                case E_DX_11_SHADER_TYPE.e_VERTEX_SHADER:
                     m_renderer.mp_context.VertexShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
                     break;
 
                 // ハルシェーダー
-                case E_DX11_SHADER_TYPE.e_HULL_SHADER:
+                case E_DX_11_SHADER_TYPE.e_HULL_SHADER:
                     m_renderer.mp_context.HullShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
                     break;
 
                 // ドメインシェーダー
-                case E_DX11_SHADER_TYPE.e_DOMAIN_SHADER:
+                case E_DX_11_SHADER_TYPE.e_DOMAIN_SHADER:
                     m_renderer.mp_context.DomainShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
                     break;
 
                 // ジオメトリシェーダー
-                case E_DX11_SHADER_TYPE.e_GEOMETRY_SHADER:
+                case E_DX_11_SHADER_TYPE.e_GEOMETRY_SHADER:
                     m_renderer.mp_context.GeometryShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
                     break;
 
                 // ピクセルシェーダー
-                case E_DX11_SHADER_TYPE.e_PIXEL_SHADER:
+                case E_DX_11_SHADER_TYPE.e_PIXEL_SHADER:
                     m_renderer.mp_context.PixelShader.SetConstantBuffer(in_constant_buffer_setting.mp_set_slot, in_constant_buffer_setting.mp_constant_buffer_handle.M_Get_Constant_Buffer());
                     break;
             }
@@ -262,27 +291,27 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
             switch (in_texture_setting.mp_attach_shader_type)
             {
                 // 頂点シェーダー
-                case E_DX11_SHADER_TYPE.e_VERTEX_SHADER:
+                case E_DX_11_SHADER_TYPE.e_VERTEX_SHADER:
                     m_renderer.mp_context.VertexShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
                     break;
 
                 // ハルシェーダー
-                case E_DX11_SHADER_TYPE.e_HULL_SHADER:
+                case E_DX_11_SHADER_TYPE.e_HULL_SHADER:
                     m_renderer.mp_context.HullShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
                     break;
 
                 // ドメインシェーダー
-                case E_DX11_SHADER_TYPE.e_DOMAIN_SHADER:
+                case E_DX_11_SHADER_TYPE.e_DOMAIN_SHADER:
                     m_renderer.mp_context.DomainShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
                     break;
 
                 // ジオメトリシェーダー
-                case E_DX11_SHADER_TYPE.e_GEOMETRY_SHADER:
+                case E_DX_11_SHADER_TYPE.e_GEOMETRY_SHADER:
                     m_renderer.mp_context.GeometryShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
                     break;
 
                 // ピクセルシェーダー
-                case E_DX11_SHADER_TYPE.e_PIXEL_SHADER:
+                case E_DX_11_SHADER_TYPE.e_PIXEL_SHADER:
                     m_renderer.mp_context.PixelShader.SetShaderResource(in_texture_setting.mp_set_slot, in_texture_setting.mp_texture.mp_texture_view);
                     break;
             }

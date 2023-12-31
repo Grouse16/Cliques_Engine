@@ -10,12 +10,12 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     // ☆ 構造体 ☆ //
 
     // 定数バッファの描画設定用の情報の構造体
-    public struct S_DX11_Constant_Buffer_Draw_Setting
+    public struct S_DX_11_Constant_Buffer_Draw_Setting
     {
         // ☆ 変数宣言 ☆ //
-        private CS_DX11_Constant_Buffer_Handle constant_buffer_handle;  // 設定する定数バッファのハンドル
+        private CS_DX_11_Constant_Buffer_Handle constant_buffer_handle;  // 設定する定数バッファのハンドル
 
-        private E_DX11_SHADER_TYPE attach_shader_type;  // 設定先のシェーダーの種類
+        private E_DX_11_SHADER_TYPE attach_shader_type;  // 設定先のシェーダーの種類
 
         private int shader_slot;  // バッファのスロット番号
 
@@ -23,7 +23,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         // ☆ プロパティ ☆ //
 
         // 設定する定数バッファのハンドル
-        public CS_DX11_Constant_Buffer_Handle mp_constant_buffer_handle
+        public CS_DX_11_Constant_Buffer_Handle mp_constant_buffer_handle
         {
             // ゲッタ
             get
@@ -39,7 +39,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         }
 
         // 設定先のシェーダーの種類
-        public E_DX11_SHADER_TYPE mp_attach_shader_type
+        public E_DX_11_SHADER_TYPE mp_attach_shader_type
         {
             // ゲッタ
             get
@@ -76,7 +76,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         //-☆- 初期化 -☆-//
 
         // コンストラクタ　引数：設定する定数バッファ, 設定先のシェーダーの種類, 設定先のスロット番号
-        public S_DX11_Constant_Buffer_Draw_Setting(CS_DX11_Constant_Buffer_Handle in_set_constant_buffer, E_DX11_SHADER_TYPE in_set_shader_type, int in_set_shader_slot)
+        public S_DX_11_Constant_Buffer_Draw_Setting(CS_DX_11_Constant_Buffer_Handle in_set_constant_buffer, E_DX_11_SHADER_TYPE in_set_shader_type, int in_set_shader_slot)
         {
             constant_buffer_handle = in_set_constant_buffer;
 
@@ -94,9 +94,9 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     public struct S_DX11_Texture_Draw_Setting
     {
         // ☆ 変数宣言 ☆ //
-        private CS_DX11_Texture use_texture;  // 設定するテクスチャ
+        private CS_DX_11_Texture use_texture;  // 設定するテクスチャ
 
-        private E_DX11_SHADER_TYPE attach_shader_type;  // 設定先のシェーダーの種類
+        private E_DX_11_SHADER_TYPE attach_shader_type;  // 設定先のシェーダーの種類
 
         private int shader_slot;  // バッファのスロット番号
 
@@ -104,7 +104,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         // ☆ プロパティ ☆ //
 
         // 設定するテクスチャ
-        public CS_DX11_Texture mp_texture
+        public CS_DX_11_Texture mp_texture
         {
             // ゲッタ
             get
@@ -120,7 +120,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         }
 
         // 設定先のシェーダーの種類
-        public E_DX11_SHADER_TYPE mp_attach_shader_type
+        public E_DX_11_SHADER_TYPE mp_attach_shader_type
         {
             // ゲッタ
             get
@@ -157,7 +157,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         //-☆- 初期化 -☆-//
 
         // コンストラクタ　引数：設定するテクスチャ, 設定先のシェーダーの種類, 設定先のスロット番号
-        public S_DX11_Texture_Draw_Setting(CS_DX11_Texture in_set_texture, E_DX11_SHADER_TYPE in_set_shader_type, int in_set_shader_slot)
+        public S_DX11_Texture_Draw_Setting(CS_DX_11_Texture in_set_texture, E_DX_11_SHADER_TYPE in_set_shader_type, int in_set_shader_slot)
         {
             use_texture = in_set_texture;
 
@@ -173,7 +173,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     // ☆ クラス ☆ //
 
     // 描画実行用のシステムのクラス
-    public class CS_DX11_Draw_Call_System
+    public class CS_DX_11_Draw_Call_System
     {
         // ☆ 変数宣言 ☆ //
         private CS_DX_11_Vertex_Buffer_Handler m_vertex_buffer = null;  // 頂点バッファ
@@ -223,7 +223,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         // ☆ 変数宣言 ☆ //
         private CS_DX_11_Index_Buffer_Class m_index_data = new CS_DX_11_Index_Buffer_Class();  // 頂点インデックスバッファ
 
-        private List<S_DX11_Constant_Buffer_Draw_Setting> m_constant_buffer_set_list = new List<S_DX11_Constant_Buffer_Draw_Setting>();   // 定数バッファの描画設定のリスト
+        private List<S_DX_11_Constant_Buffer_Draw_Setting> m_constant_buffer_set_list = new List<S_DX_11_Constant_Buffer_Draw_Setting>();   // 定数バッファの描画設定のリスト
 
         private List<S_DX11_Texture_Draw_Setting> m_texture_set_list = new List<S_DX11_Texture_Draw_Setting>(); // テクスチャの描画設定のリスト
 
@@ -247,7 +247,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
         }
 
         // 定数バッファの描画設定のリスト
-        public List<S_DX11_Constant_Buffer_Draw_Setting> mp_constant_buffer_set_list
+        public List<S_DX_11_Constant_Buffer_Draw_Setting> mp_constant_buffer_set_list
         {
             // ゲッタ
             get

@@ -79,13 +79,13 @@ namespace _3D_Model_Converter_And_Drawer.Rendering_Systems.Camera
             // カメラの目標へのベクトルを設定
             to_target_vector = m_target_position - m_camera_system.mp_position.mp_pos;
 
-            // yaw基準でのカメラの座標からカメラの目標への角度を設定
-            yaw_angle_in_radians = (float)Math.Atan2(to_target_vector.Z, to_target_vector.X);
+            // yaw基準でのカメラの座標から目標への角度を設定
+            yaw_angle_in_radians = (float)Math.Atan2(to_target_vector.X, to_target_vector.Z);
 
-            // pitch基準でのカメラの座標からカメラの目標への角度を設定
+            // pitch基準でのカメラの座標から目標への角度を設定
             pitch_angle_in_radians = (float)Math.Atan2(to_target_vector.Y, Math.Sqrt(to_target_vector.X * to_target_vector.X + to_target_vector.Z * to_target_vector.Z));
 
-            // roll基準でのカメラの座標からカメラの目標への角度を設定
+            // roll基準でのカメラの座標から目標への角度を設定
             roll_angle_in_radians = 0.0f;
 
 

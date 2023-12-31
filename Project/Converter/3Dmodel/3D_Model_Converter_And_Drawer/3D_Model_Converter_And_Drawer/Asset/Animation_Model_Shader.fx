@@ -3,26 +3,26 @@
 // ボーンウェイトの情報の構造体
 struct S_Bone_Weight
 {
-	float weight = 0.0f;	// ボーンウェイト値
+	float weight : WEIGHT;	// ボーンウェイト値
 	
-	int index = 0;	// ボーンのインデックス番号
+	int index : INDEX;	// ボーンのインデックス番号
 };
 
 
 // 頂点シェーダーに渡される情報の構造体
 struct S_VS_IN
 {
-	float4 position : POSITION;	// 位置座標
+	float3 position : POSITION;	// 位置座標
 
-	float2 uv : TEXCOORD0;		// uv座標
+	float2 uv : TEXCOORD;	// uv座標
 
-	float4 color : COLOR;		// 頂点カラー
+	float4 color : COLOR;	// 頂点カラー
 	
-	float3 normal : NORMAL;		// 法線ベクトル
-	float3 tangent : TANGENT;	// タンジェントベクトル
+    float3 normal : NORMAL;			// 法線ベクトル
+	float3 tangent : TANGENT;		// タンジェントベクトル
 	float3 bi_normal : BINORMAL;	// 従法線ベクトル
 	
-	S_Bone_Weight bone_weight[4] : BONEWEIGHT;	// ボーンウェイト情報
+	S_Bone_Weight bone_weight[4];	// ボーンウェイト情報
 };
 
 
@@ -92,10 +92,11 @@ S_PS_IN VS(S_VS_IN vs_input)
     }
 	
 	// ボーンの移動による頂点の移動を行う
-    vs_input.position = mul(bone_weight_result, vs_input.position);
+    vs_output.position = float4(vs_input.position.x, vs_input.position.y, vs_input.position.z, 1.0f);
+    vs_input.position = mul(bone_weight_result, vs_output.position);
 	
 	// ワールド行列、ビュー行列、射影行列を掛け合わせる
-	vs_output.position = mul(cb_wvp.world_matrix, vs_input.position);
+    vs_output.position = mul(cb_wvp.world_matrix, vs_output.position);
 	vs_output.position = mul(cb_wvp.view_matrix, vs_output.position);
 	vs_output.position = mul(cb_wvp.projection_matrix, vs_output.position);
 	

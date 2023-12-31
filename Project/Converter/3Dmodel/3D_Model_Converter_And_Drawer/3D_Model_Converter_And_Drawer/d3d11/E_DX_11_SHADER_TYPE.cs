@@ -9,7 +9,7 @@ namespace _3D_Model_Converter_And_Drawer.d3d11
     // ☆ 列挙 ☆ //
 
     // シェーダーの種類を指定する列挙
-    public enum E_DX11_SHADER_TYPE
+    public enum E_DX_11_SHADER_TYPE
     {
         e_VERTEX_SHADER,    // 頂点シェーダー
         e_HULL_SHADER,      // ハルシェーダー

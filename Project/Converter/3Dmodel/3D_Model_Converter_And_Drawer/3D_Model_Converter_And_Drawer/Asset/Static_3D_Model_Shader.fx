@@ -3,14 +3,14 @@
 // 頂点シェーダーに渡される情報の構造体
 struct S_VS_IN
 {
-	float4 position : POSITION;	// 位置座標
+	float3 position : POSITION;	// 位置座標
 
-	float2 uv : TEXCOORD0;		// uv座標
+	float2 uv : TEXCOORD;	// uv座標
 
-	float4 color : COLOR;		// 頂点カラー
+	float4 color : COLOR;	// 頂点カラー
 	
-	float3 normal : NORMAL;		// 法線ベクトル
-	float3 tangent : TANGENT;	// タンジェントベクトル
+	float3 normal : NORMAL;			// 法線ベクトル
+	float3 tangent : TANGENT;		// タンジェントベクトル
 	float3 bi_normal : BINORMAL;	// 従法線ベクトル
 };
 
@@ -20,12 +20,12 @@ struct S_PS_IN
 {
 	float4 position : SV_POSITION;	// 位置座標
 	
-	float2 uv : TEXCOORD0;		// uv座標
+    float2 uv : TEXCOORD0;	// uv座標
 	
 	float4 color : COLOR0;	// 頂点カラー
 	
-	float3 normal : NORMAL;		// 法線ベクトル
-	float3 tangent : TANGENT;	// タンジェントベクトル
+    float3 normal : NORMAL; // 法線ベクトル
+    float3 tangent : TANGENT; // タンジェントベクトル
 	float3 bi_normal : BINORMAL;	// 従法線ベクトル
 };
 
@@ -66,7 +66,8 @@ S_PS_IN VS(S_VS_IN vs_input)
 	
 	
 	// ワールド行列、ビュー行列、射影行列を掛け合わせる
-    vs_output.position = mul(cb_wvp.world_matrix, vs_input.position);
+    vs_output.position = float4(vs_input.position.x, vs_input.position.y, vs_input.position.z, 1.0f);
+    vs_output.position = mul(cb_wvp.world_matrix, vs_output.position);
     vs_output.position = mul(cb_wvp.view_matrix, vs_output.position);
     vs_output.position = mul(cb_wvp.projection_matrix, vs_output.position);
 	
@@ -94,5 +95,9 @@ S_PS_IN VS(S_VS_IN vs_input)
 // ピクセルシェーダー
 float4 PS(S_PS_IN ps_input) : SV_Target
 {
-    return ps_input.color * main_color_texture.Sample(main_color_texture_sampler, ps_input.uv);
+	// ☆ 変数宣言 ☆ //
+    float4 result_color = float4(0.0f, 0.0f, 0.0f, 1.0f); // 結果の色
+	
+	
+    return result_color;
 }

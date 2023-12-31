@@ -105,11 +105,11 @@
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
     <Compile Include="Constant_Data\S_WVP.cs" />
-    <Compile Include="d3d11\CS_DX11_Constant_Buffer.cs" />
-    <Compile Include="d3d11\CS_DX11_Draw_Call_System.cs" />
-    <Compile Include="d3d11\CS_DX11_Texture.cs" />
+    <Compile Include="d3d11\CS_DX_11_Constant_Buffer.cs" />
+    <Compile Include="d3d11\CS_DX_11_Draw_Call_System.cs" />
+    <Compile Include="d3d11\CS_DX_11_Texture.cs" />
     <Compile Include="d3d11\CS_DX_11_Index_Buffer_Class.cs" />
-    <Compile Include="d3d11\E_DX11_SHADER_TYPE.cs" />
+    <Compile Include="d3d11\E_DX_11_SHADER_TYPE.cs" />
     <Compile Include="d3d11\Transform\CS_Position.cs" />
     <Compile Include="d3d11\Transform\CS_Rotation.cs" />
     <Compile Include="d3d11\Transform\CS_Scale.cs" />
@@ -205,7 +205,7 @@
   <ItemGroup>
     <Content Include="Asset\Animation_Model_Shader.fx" />
     <Content Include="Asset\Static_3D_Model_Shader.fx" />
-    <Content Include="Asset\shader.fx" />
+    <Content Include="Asset\Triangle_Shader.fx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
