@@ -139,5 +139,94 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
 
             return;
         }
+
+
+        //-☆- 演算子 -☆-//
+
+        // イコール演算子
+        public static bool operator==(S_Static_Vertex_Data in_left, S_Static_Vertex_Data in_right)
+        {
+            // 位置座標が異なる時はfalseを返す
+            if (in_left.m_position != in_right.m_position)
+            {
+                return false;
+            }
+
+            // uv座標が異なる時はfalseを返す
+            if (in_left.m_uv != in_right.m_uv)
+            {
+                return false;
+            }
+
+            // 頂点カラーが異なる時はfalseを返す
+            if (in_left.m_color != in_right.m_color)
+            {
+                return false;
+            }
+
+            // 法線ベクトルが異なる時はfalseを返す
+            if (in_left.m_normal != in_right.m_normal)
+            {
+                return false;
+            }
+
+            // タンジェントベクトルが異なる時はfalseを返す
+            if (in_left.m_tangent != in_right.m_tangent)
+            {
+                return false;
+            }
+
+            // 従法線ベクトルが異なる時はfalseを返す
+            if (in_left.m_bi_normal_tangent != in_right.m_bi_normal_tangent)
+            {
+                return false;
+            }
+
+            // 全て重なっているならtrueを返す
+            return true;
+        }
+
+        // ノットイコール演算子
+        public static bool operator!=(S_Static_Vertex_Data in_left, S_Static_Vertex_Data in_right)
+        {
+            // 位置座標が異なる時はtrueを返す
+            if (in_left.m_position != in_right.m_position)
+            {
+                return true;
+            }
+
+            // uv座標が異なる時はtrueを返す
+            if (in_left.m_uv != in_right.m_uv)
+            {
+                return true;
+            }
+
+            // 頂点カラーが異なる時はtrueを返す
+            if (in_left.m_color != in_right.m_color)
+            {
+                return true;
+            }
+
+            // 法線ベクトルが異なる時はtrueを返す
+            if (in_left.m_normal != in_right.m_normal)
+            {
+                return true;
+            }
+
+            // タンジェントベクトルが異なる時はtrueを返す
+            if (in_left.m_tangent != in_right.m_tangent)
+            {
+                return true;
+            }
+
+            // 従法線ベクトルが異なる時はtrueを返す
+            if (in_left.m_bi_normal_tangent != in_right.m_bi_normal_tangent)
+            {
+                return true;
+            }
+
+            // 全て重なっているならfalseを返す
+            return false;
+        }
     }
 }

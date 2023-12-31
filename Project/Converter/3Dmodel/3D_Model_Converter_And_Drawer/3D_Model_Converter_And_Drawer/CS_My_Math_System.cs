@@ -96,6 +96,7 @@ namespace _3D_Model_Converter_And_Drawer
         public string name; // ボーン名
 
         public int index;   // ボーンのインデックス番号
+        public int parent_index;  // 親ボーンの番号
 
         public Matrix4x4 offset_matrix;    // オフセットマトリクス行列   
 
@@ -104,11 +105,12 @@ namespace _3D_Model_Converter_And_Drawer
 
         //-☆- コンストラクタ -☆-//
 
-        // 初期化用コンストラクタ
-        public S_Bone_Data_Inform(string in_name, int in_index, Matrix4x4 in_offset_matrix)
+        // 初期化用コンストラクタ　引数：ボーン名, 親ボーンの番号, ボーンのインデックス番号, オフセットマトリクス行列
+        public S_Bone_Data_Inform(string in_name, int in_parent_index, int in_index, Matrix4x4 in_offset_matrix)
         {
             name = in_name;
             index = in_index;
+            parent_index = in_parent_index;
             offset_matrix = in_offset_matrix;
 
             return;
@@ -219,13 +221,31 @@ namespace _3D_Model_Converter_And_Drawer
                 // 親ボーンがあるなら、親ボーンのマトリクスを掛ける
                 if (in_parent_matrix != null)
                 {
-                    out_bone_list.Add(new S_Bone_Data_Inform(l_now_bone_data.Name, out_bone_list.Count, l_now_bone_data.Transform * in_parent_matrix));
+                    out_bone_list.Add
+                    (
+                        new S_Bone_Data_Inform
+                        (
+                            l_now_bone_data.Name,
+                            M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
+                            out_bone_list.Count,
+                            l_now_bone_data.Transform * in_parent_matrix
+                        )
+                    );
                 }
 
-                // 親ボーンがないなら、今の行列を使用する
+                // 親ボーンがないなら、今の行列を使用する（ルートノード）
                 else
                 {
-                    out_bone_list.Add(new S_Bone_Data_Inform(l_now_bone_data.Name, out_bone_list.Count, l_now_bone_data.Transform));
+                    out_bone_list.Add
+                    (
+                        new S_Bone_Data_Inform
+                        (
+                            l_now_bone_data.Name,
+                            M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
+                            out_bone_list.Count,
+                            l_now_bone_data.Transform
+                        )
+                    );
                 }
 
                 // 子ボーンがあるなら、子ボーンの情報を取得する
@@ -236,6 +256,24 @@ namespace _3D_Model_Converter_And_Drawer
             }
 
             return;
+        }
+
+        
+        // ボーン名からボーンのインデックスを取得する　引数：ボーン名, ボーン情報リスト　戻り値：ボーンのインデックス番号
+        public static int M_Get_Bone_Index_From_Name(string in_bone_name, List<S_Bone_Data_Inform> in_bone_data_list)
+        {
+            // ボーンの数分繰り返す
+            for (int l_now_bone_index = 0; l_now_bone_index < in_bone_data_list.Count; l_now_bone_index++)
+            {
+                // ボーン名が一致したらそのインデックスを返す
+                if (in_bone_data_list[l_now_bone_index].name == in_bone_name)
+                {
+                    return l_now_bone_index;
+                }
+            }
+
+            // 見つからなかったら-1を返す
+            return -1;
         }
     }
 }

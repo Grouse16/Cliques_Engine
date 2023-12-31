@@ -162,5 +162,105 @@ namespace _3D_Model_Converter_And_Drawer._3DModel
 
             return;
         }
+
+
+        //-☆- 演算子 -☆-//
+
+        // イコール演算子
+        public static bool operator ==(S_Animation_Vertex_Data in_left, S_Animation_Vertex_Data in_right)
+        {
+            // 位置座標
+            if (in_left.m_position != in_right.m_position)
+            {
+                return false;
+            }
+
+            // uv座標
+            if (in_left.m_uv != in_right.m_uv)
+            {
+                return false;
+            }
+
+            // 頂点カラー
+            if (in_left.m_color != in_right.m_color)
+            {
+                return false;
+            }
+
+            // 法線ベクトル
+            if (in_left.m_normal != in_right.m_normal)
+            {
+                return false;
+            }
+
+            // タンジェントベクトル
+            if (in_left.m_tangent != in_right.m_tangent)
+            {
+                return false;
+            }
+
+            // 従法線ベクトル
+            if (in_left.m_bi_normal_tangent != in_right.m_bi_normal_tangent)
+            {
+                return false;
+            }
+
+            // ボーンウェイト情報
+            if (in_left.m_bone_weight != in_right.m_bone_weight)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        // ノットイコール演算子
+        public static bool operator !=(S_Animation_Vertex_Data in_left, S_Animation_Vertex_Data in_right)
+        {
+            // 位置座標
+            if (in_left.m_position == in_right.m_position)
+            {
+                return false;
+            }
+
+            // uv座標
+            if (in_left.m_uv == in_right.m_uv)
+            {
+                return false;
+            }
+
+            // 頂点カラー
+            if (in_left.m_color == in_right.m_color)
+            {
+                return false;
+            }
+
+            // 法線ベクトル
+            if (in_left.m_normal == in_right.m_normal)
+            {
+                return false;
+            }
+
+            // タンジェントベクトル
+            if (in_left.m_tangent == in_right.m_tangent)
+            {
+                return false;
+            }
+
+            // 従法線ベクトル
+            if (in_left.m_bi_normal_tangent == in_right.m_bi_normal_tangent)
+            {
+                return false;
+            }
+
+            // ボーンウェイト情報
+            if (in_left.m_bone_weight == in_right.m_bone_weight)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

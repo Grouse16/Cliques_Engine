@@ -143,7 +143,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
 			// 最初のボーンの情報を設定（再帰処理でできない）
-			m_bone_data_list.Add(new S_Bone_Data_Inform(now_scene.RootNode.Name, m_bone_data_list.Count, now_scene.RootNode.Transform));
+			m_bone_data_list.Add(new S_Bone_Data_Inform(now_scene.RootNode.Name, -1, m_bone_data_list.Count, now_scene.RootNode.Transform));
 
 			// メッシュ数分ボーン名とインデックスの関連付けを行う
 			CS_My_Math_System.M_Get_Bone_Information(ref m_bone_data_list, now_scene.RootNode.Children, now_scene.RootNode.Transform);
@@ -306,10 +306,6 @@ namespace _3D_Model_Converter_And_Drawer
 
             now_scene.Clear();
 			now_scene = null;
-
-
-
-
 
             // ガーベージコレクションを実行し、ファイナライザの実行を待つ
             GC.Collect();
