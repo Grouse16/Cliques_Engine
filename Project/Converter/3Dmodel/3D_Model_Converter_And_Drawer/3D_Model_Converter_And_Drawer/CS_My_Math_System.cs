@@ -213,51 +213,28 @@ namespace _3D_Model_Converter_And_Drawer
         //-☆- ボーン -☆-//
 
         // ボーンの情報を取得し、子ボーンを再帰的に取得する　引数：設定先のボーン情報リスト, ボーンのデータ, 親ボーンのマトリクス
-        public static void M_Get_Bone_Information(ref List<S_Bone_Data_Inform> out_bone_list, NodeCollection in_set_bone_data_list, Matrix4x4 in_parent_matrix)
+        public static void M_Get_Bone_Information(ref List<S_Bone_Data_Inform> out_bone_list, NodeCollection in_set_bone_data_list)
         {
             // ボーンの数分繰り返す
             foreach (var l_now_bone_data in in_set_bone_data_list)
             {
-                // ☆ 変数宣言 ☆　//
-                Matrix4x4 result_offset_matrix = new Matrix4x4(); // オフセットマトリクス行列
-
-
-                // 親ボーンがあるなら、親ボーンのマトリクスを掛ける
-                if (in_parent_matrix != null)
-                {
-                    result_offset_matrix = l_now_bone_data.Transform * in_parent_matrix;
-                    out_bone_list.Add
+                // ボーンの情報を設定
+                out_bone_list.Add
+                (
+                    new S_Bone_Data_Inform
                     (
-                        new S_Bone_Data_Inform
-                        (
-                            l_now_bone_data.Name,
-                            M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
-                            out_bone_list.Count,
-                            result_offset_matrix
-                        )
-                    );
-                }
+                        l_now_bone_data.Name,
+                        M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
+                        out_bone_list.Count,
+                        l_now_bone_data.Transform
+                    )
+                );
 
-                // 親ボーンがないなら、今の行列を使用する（ルートノード）
-                else
-                {
-                    result_offset_matrix = l_now_bone_data.Transform;
-                    out_bone_list.Add
-                    (
-                        new S_Bone_Data_Inform
-                        (
-                            l_now_bone_data.Name,
-                            M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
-                            out_bone_list.Count,
-                            result_offset_matrix
-                        )
-                    );
-                }
 
                 // 子ボーンがあるなら、子ボーンの情報を取得する
                 if (l_now_bone_data.HasChildren)
                 {
-                    M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children, result_offset_matrix);
+                    M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children);
                 }
             }
 
