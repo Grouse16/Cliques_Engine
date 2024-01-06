@@ -218,9 +218,14 @@ namespace _3D_Model_Converter_And_Drawer
             // ボーンの数分繰り返す
             foreach (var l_now_bone_data in in_set_bone_data_list)
             {
+                // ☆ 変数宣言 ☆　//
+                Matrix4x4 result_offset_matrix = new Matrix4x4(); // オフセットマトリクス行列
+
+
                 // 親ボーンがあるなら、親ボーンのマトリクスを掛ける
                 if (in_parent_matrix != null)
                 {
+                    result_offset_matrix = l_now_bone_data.Transform * in_parent_matrix;
                     out_bone_list.Add
                     (
                         new S_Bone_Data_Inform
@@ -228,7 +233,7 @@ namespace _3D_Model_Converter_And_Drawer
                             l_now_bone_data.Name,
                             M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
                             out_bone_list.Count,
-                            l_now_bone_data.Transform * in_parent_matrix
+                            result_offset_matrix
                         )
                     );
                 }
@@ -236,6 +241,7 @@ namespace _3D_Model_Converter_And_Drawer
                 // 親ボーンがないなら、今の行列を使用する（ルートノード）
                 else
                 {
+                    result_offset_matrix = l_now_bone_data.Transform;
                     out_bone_list.Add
                     (
                         new S_Bone_Data_Inform
@@ -243,7 +249,7 @@ namespace _3D_Model_Converter_And_Drawer
                             l_now_bone_data.Name,
                             M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
                             out_bone_list.Count,
-                            l_now_bone_data.Transform
+                            result_offset_matrix
                         )
                     );
                 }
@@ -251,7 +257,7 @@ namespace _3D_Model_Converter_And_Drawer
                 // 子ボーンがあるなら、子ボーンの情報を取得する
                 if (l_now_bone_data.HasChildren)
                 {
-                    M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children, l_now_bone_data.Transform);
+                    M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children, result_offset_matrix);
                 }
             }
 
