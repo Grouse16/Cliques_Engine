@@ -517,22 +517,22 @@ namespace _3D_Model_Converter_And_Drawer
 
 		// ボーンマトリクスの定数バッファを更新する　引数：セットする定数バッファのインデックス番号, ブレンドの割合
 		private void M_Update_Bone_Matrix_Constant_Buffer(int in_set_index)
-		{
+        {
+            // ☆ 変数宣言 ☆ //
+            List<SharpDX.Matrix> animation_matrix_list = new List<Matrix>(); // ボーンマトリクス計算用のリスト
+
+
 			// ボーンマトリクスの定数バッファを生成
-			m_bone_matrix_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, m_animation_model.mp_bone_data_list.Count);
+            m_bone_matrix_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, m_animation_model.mp_bone_data_list.Count);
 
 
 			// アニメーションがある時はアニメーションの計算を行う
 			if (m_animation_system_list.Count > 0)
 			{
-				// ☆ 変数宣言 ☆ //
-				List<SharpDX.Matrix> new_bone_matrix_list = new List<Matrix>(); // ボーンマトリクス計算用のリスト
-
-
 				// ボーンマトリクスのリストを生成
 				for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_animation_model.mp_bone_data_list.Count; l_now_bone_matrix_num++)
 				{
-                    new_bone_matrix_list.Add(new Matrix());
+                    animation_matrix_list.Add(new Matrix());
                 }
 
 
@@ -545,28 +545,28 @@ namespace _3D_Model_Converter_And_Drawer
 				// ブレンド先がない時はブレンド元のアニメーション結果をボーンオフセットマトリクスとブレンドする
 				else if (m_animation_to_index < 0)
 				{
-					m_animation_system_list[m_animation_by_index].M_Update_Animation_By_Time(ref new_bone_matrix_list, m_animation_by_time);
+					m_animation_system_list[m_animation_by_index].M_Update_Animation_By_Time(ref animation_matrix_list, m_animation_by_time);
 
 
 					// ボーンオフセットマトリクスとブレンド
 					for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_bone_matrix_constant_buffer.mp_constant_data_list.Count; l_now_bone_matrix_num++)
 					{
-						new_bone_matrix_list[l_now_bone_matrix_num] =
-							m_animation_model.mp_bone_data_list[l_now_bone_matrix_num].mp_offset_matrix * m_animation_blend_percent + new_bone_matrix_list[l_now_bone_matrix_num] * (1.0f - m_animation_blend_percent);
+						animation_matrix_list[l_now_bone_matrix_num] =
+							m_animation_model.mp_bone_data_list[l_now_bone_matrix_num].mp_offset_matrix * m_animation_blend_percent + animation_matrix_list[l_now_bone_matrix_num] * (1.0f - m_animation_blend_percent);
 					}
 				}
 
 				// ブレンド元がない時はブレンド先のアニメーション結果をボーンオフセットマトリクスとブレンドする
 				else if (m_animation_by_index < 0)
 				{
-					m_animation_system_list[m_animation_to_index].M_Update_Animation_By_Time(ref new_bone_matrix_list, m_animation_to_time);
+					m_animation_system_list[m_animation_to_index].M_Update_Animation_By_Time(ref animation_matrix_list, m_animation_to_time);
 
 
 					// ボーンオフセットマトリクスとブレンド
 					for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_bone_matrix_constant_buffer.mp_constant_data_list.Count; l_now_bone_matrix_num++)
 					{
-						new_bone_matrix_list[l_now_bone_matrix_num] =
-							m_animation_model.mp_bone_data_list[l_now_bone_matrix_num].mp_offset_matrix * (1.0f - m_animation_blend_percent) + new_bone_matrix_list[l_now_bone_matrix_num] * m_animation_blend_percent;
+						animation_matrix_list[l_now_bone_matrix_num] =
+							m_animation_model.mp_bone_data_list[l_now_bone_matrix_num].mp_offset_matrix * (1.0f - m_animation_blend_percent) + animation_matrix_list[l_now_bone_matrix_num] * m_animation_blend_percent;
 					}
 				}
 
@@ -575,13 +575,23 @@ namespace _3D_Model_Converter_And_Drawer
 				{
 					m_animation_system_list[m_animation_by_index].M_Update_Animation_By_Time_And_Blend_Rate
 						(
-							ref new_bone_matrix_list,
+							ref animation_matrix_list,
 							m_animation_system_list[m_animation_to_index],
 							m_animation_by_time,
 							m_animation_to_time,
 							m_animation_blend_percent
 						);
 				}
+			}
+
+
+            // アニメーションの結果にボーンの親子関係による更新を掛ける
+            M_Update_Bone_Animation_By_Parent_Child_Relation(ref animation_matrix_list, 0);
+
+			// アニメーションの結果とボーンオフセットマトリクスを掛ける
+			for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_bone_matrix_constant_buffer.mp_constant_data_list.Count; l_now_bone_matrix_num++)
+			{
+				animation_matrix_list[l_now_bone_matrix_num] *= m_animation_model.mp_bone_data_list[l_now_bone_matrix_num].mp_offset_matrix;
 			}
 
 
@@ -598,7 +608,27 @@ namespace _3D_Model_Converter_And_Drawer
 		}
 
 
-		// ボーンマトリクス
+		// ボーンのアニメーション結果にボーンの親子関係による更新を掛ける　引数：ボーンのアニメーション結果のリスト, 現在のボーン番号
+		private void M_Update_Bone_Animation_By_Parent_Child_Relation(ref List<SharpDX.Matrix> in_animation_matrix_list, int in_now_bone_number)
+		{
+			// ボーンの親がいないときは、子の更新のみかける
+			if (m_animation_model.mp_bone_data_list[in_now_bone_number].mp_parent_index < 0)
+			{
+				M_Update_Bone_Animation_By_Parent_Child_Relation(ref in_animation_matrix_list, in_now_bone_number);
+            }
+
+			// ボーンの親がいるときは、親の更新を掛けてから子の更新を掛ける
+            else
+			{
+				// アニメーションのデータと親のボーンオフセットマトリクスを掛ける
+				in_animation_matrix_list[in_now_bone_number] *= in_animation_matrix_list[m_animation_model.mp_bone_data_list[in_now_bone_number].mp_parent_index];
+
+                // 子の更新をかける
+                M_Update_Bone_Animation_By_Parent_Child_Relation(ref in_animation_matrix_list, in_now_bone_number);
+            }
+
+			return;
+		}
 
 
 		//-☆- 描画 -☆-//
