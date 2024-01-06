@@ -192,10 +192,10 @@ void C_Animation_Model_Component::M_Update(void)
 // 引数   ：const XMMATRIX & 設定するワールドマトリクス変換行列の参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Model_Component::M_Draw_Start_World_Matrix_Set(const DirectX::XMMATRIX & in_world_matrix)
+void C_Animation_Model_Component::M_Draw_Start_And_World_Matrix_Set(const DirectX::XMMATRIX & in_world_matrix)
 {
 	// ワールドマトリクス変換行列を生成
-	mpr_variable.transform.M_Generate_World_Matrix(mpr_variable.world_matrix);
+	mpr_variable.transform.M_Generate_Matrix(mpr_variable.world_matrix);
 	mpr_variable.world_matrix *= in_world_matrix;
 
 	// モデルの描画を開始する

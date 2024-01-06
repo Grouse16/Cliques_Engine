@@ -339,19 +339,19 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 	// ☆ 変数宣言 ☆ //
 	std::string load_path = "project/asset/animation/" + in_animation_data_name + ".elanmdt";	// アニメーションデータまでのパス
 
-	int new_animation_data = (int)mpr_variable.animation_data_list.size();	// 新しいアニメーションデータの配列番号
+	int new_animation_data_number = (int)mpr_variable.animation_data_list.size();	// 新しいアニメーションデータの配列番号
 
 
 	// アニメーションデータをロードする　失敗でfalseを返して抜ける
-	mpr_variable.animation_data_list.resize(new_animation_data + 1);
-	mpr_variable.animation_data_list[new_animation_data].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
-	if (mpr_variable.animation_data_list[new_animation_data].animation_data->M_Load_Animation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
+	mpr_variable.animation_data_list.resize(new_animation_data_number + 1);
+	mpr_variable.animation_data_list[new_animation_data_number].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
+	if (mpr_variable.animation_data_list[new_animation_data_number].animation_data->M_Load_Animation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
 	{
 		return false;
 	}
 
 	// アニメーションデータ名を設定
-	mpr_variable.animation_data_list[new_animation_data].name = in_animation_data_name;
+	mpr_variable.animation_data_list[new_animation_data_number].name = in_animation_data_name;
 
 	// ロードに成功
 	return true;
@@ -518,7 +518,7 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std:
 // 引数   ：const vector<XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>& in_bone_matrix_list)
+void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
 {
 	// ☆ 変数宣言 ☆ //
 	int bone_sum = (int)mpr_variable.bone_list.size();	// ボーン数
@@ -552,7 +552,7 @@ void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera_B
 
 
 	// ワールドマトリクスを生成
-	in_transform.M_Generate_World_Matrix(in_set_wvp.world);
+	in_transform.M_Generate_Matrix(in_set_wvp.world);
 
 	// ビューマトリクスをセット
 	in_set_wvp.view = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix();

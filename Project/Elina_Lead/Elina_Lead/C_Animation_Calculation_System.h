@@ -152,8 +152,8 @@ namespace ASSET::ANIMATION::CALCULATOR
 		// 渡されたアニメーションをブレンド後、ループ再生する　引数：再生するアニメーションデータのアドレス（ブレンド先）(const)
 		void M_Blend_Loop_Play_Animation(const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * );
 
-		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照
-		void M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & );
+		// 指定された配列にアニメーション結果のボーンマトリクス配列のデータをセットする　引数：設定先のボーンマトリクス配列のデータの参照, ボーンオフセットマトリクスのリストの参照(const)
+		void M_Create_Animation_Bone_Matrix(std::vector<DirectX::XMFLOAT4X4> & , const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & );
 	};
 }
 

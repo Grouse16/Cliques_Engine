@@ -88,29 +88,21 @@ void C_Animation_Algorithm_Blend_And_Loop::M_Animation_Time_Update(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションの更新
-// 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照
+// 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照,  const vector<S_Bone_Inform> & ボーンのオフセットマトリクスのリストの参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_Blend_And_Loop::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix)
+void C_Animation_Algorithm_Blend_And_Loop::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_offset_matrix_list)
 {
 	// ☆ 変数宣言 ☆ //
 	std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> bone_data_list;	// ボーンのデータのリスト
-
-
-	// ボーン数分配列を生成
-	bone_data_list.resize(m_animation_status.bone_sum);
 
 
 	// ブレンドしてアニメーションを再生する
 	m_from_animation->M_Set_Bone_Key(animation_from_time, bone_data_list);
 	m_to_animation->M_Blend_Bone_Key(m_animation_status.animation_time, m_animation_status.animation_blend_percent, bone_data_list);
 
-
 	// ボーンデータをマトリクスに変換してセットする
-	for (int l_now_bone_num = 0; l_now_bone_num < m_animation_status.bone_sum; l_now_bone_num++)
-	{
-		bone_data_list[l_now_bone_num].M_Set_Bone_Matrix_Data(out_set_matrix[l_now_bone_num]);
-	}
+	m_to_animation->M_Create_Bone_Matrix_List(out_set_matrix, bone_data_list, in_offset_matrix_list);
 
 	return;
 }

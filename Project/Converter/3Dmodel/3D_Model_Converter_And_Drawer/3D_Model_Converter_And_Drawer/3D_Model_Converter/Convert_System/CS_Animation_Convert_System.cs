@@ -33,20 +33,10 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
             int now_animation_data_num = 0;   // 現在のアニメーションデータ番号
 
 
-            // フォルダ選択ダイアログを表示
-            using (var open_file_data = new OpenFileDialog() { FileName = "SelectFolder", Filter = "Folder|.", CheckFileExists = false })
+            // フォルダ選択ダイアログを表示して、選択されたフォルダのパスを取得、取得できなかったら終了
+            if (CS_File_Write_Load_System.M_Get_Folder_Path(out selected_folder_path) == false)
             {
-                // フォルダが選択された時はそこまでのパスをセット
-                if (open_file_data.ShowDialog() == DialogResult.OK)
-                {
-                    selected_folder_path = Path.GetDirectoryName(open_file_data.FileName) + "\\";
-                }
-
-                // フォルダが選択されていない時は終了
-                else
-                {
-                    return;
-                }
+                return;
             }
 
 
@@ -82,70 +72,70 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
                 // ボーンごとに動作を書き込む
-                foreach (var bone_frame in now_animation.NodeAnimationChannels)
+                for (int l_now_bone_number = 0; l_now_bone_number < now_animation.NodeAnimationChannels.Count; l_now_bone_number++)
                 {
                     // ボーン情報開始位置とボーン名を書き込む
-                    write_data_to_file.Add("BONE:" + bone_frame.NodeName);
-
+                    write_data_to_file.Add("BONE:" + now_animation.NodeAnimationChannels[l_now_bone_number].NodeName);
+                    
 
                     // 座標のキー情報の開始位置と座標キー数を書き込む
-                    write_data_to_file.Add("POS:" + bone_frame.PositionKeyCount.ToString());
+                    write_data_to_file.Add("POS:" + now_animation.NodeAnimationChannels[l_now_bone_number].PositionKeyCount.ToString());
 
                     // 座標のキーを全て書き込む
-                    foreach (var position_key in bone_frame.PositionKeys)
+                    foreach (var position_key in now_animation.NodeAnimationChannels[l_now_bone_number].PositionKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (position_key.Time * one_frame_time).ToString() + ","
-                                + position_key.Value.X.ToString() + ","
-                                + position_key.Value.Y.ToString() + ","
-                                + position_key.Value.Z.ToString()
-                            );
+                        (
+                              (position_key.Time * one_frame_time).ToString() + ","
+                            + position_key.Value.X.ToString() + ","
+                            + position_key.Value.Y.ToString() + ","
+                            + position_key.Value.Z.ToString()
+                        );
                     }
 
 
                     // 回転のキー情報の開始位置と回転キー数を書き込む
-                    write_data_to_file.Add("ROT:" + bone_frame.RotationKeyCount.ToString());
+                    write_data_to_file.Add("ROT:" + now_animation.NodeAnimationChannels[l_now_bone_number].RotationKeyCount.ToString());
 
                     // 回転のキーを全て書き込む
-                    foreach (var rotation_key in bone_frame.RotationKeys)
+                    foreach (var rotation_key in now_animation.NodeAnimationChannels[l_now_bone_number].RotationKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (rotation_key.Time * one_frame_time).ToString() + ","
-                                + rotation_key.Value.X.ToString() + ","
-                                + rotation_key.Value.Y.ToString() + ","
-                                + rotation_key.Value.Z.ToString() + ","
-                                + rotation_key.Value.W.ToString()
-                            );
+                        (
+                              (rotation_key.Time * one_frame_time).ToString() + ","
+                            + rotation_key.Value.X.ToString() + ","
+                            + rotation_key.Value.Y.ToString() + ","
+                            + rotation_key.Value.Z.ToString() + ","
+                            + rotation_key.Value.W.ToString()
+                        );
                     }
 
 
                     // スケールのキー情報の開始位置とスケールキー数を書き込む
-                    write_data_to_file.Add("SCL:" + bone_frame.ScalingKeyCount.ToString());
+                    write_data_to_file.Add("SCL:" + now_animation.NodeAnimationChannels[l_now_bone_number].ScalingKeyCount.ToString());
 
                     // スケールのキーを全て書き込む
-                    foreach (var scale_key in bone_frame.ScalingKeys)
+                    foreach (var scale_key in now_animation.NodeAnimationChannels[l_now_bone_number].ScalingKeys)
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (scale_key.Time * one_frame_time).ToString() + ","
-                                + scale_key.Value.X.ToString() + ","
-                                + scale_key.Value.Y.ToString() + ","
-                                + scale_key.Value.Z.ToString()
-                            );
+                        (
+                              (scale_key.Time * one_frame_time).ToString() + ","
+                            + scale_key.Value.X.ToString() + ","
+                            + scale_key.Value.Y.ToString() + ","
+                            + scale_key.Value.Z.ToString()
+                        );
                     }
                 }
 
 
                 // 新しいファイルの書き込みを行う
-                System.IO.File.WriteAllText(write_file_path, write_data_to_file[0]);
+                File.WriteAllText(write_file_path, write_data_to_file[0]);
                 for (int now_write_raw = 1; now_write_raw < write_data_to_file.Count; now_write_raw++)
                 {
-                    System.IO.File.AppendAllText(write_file_path, Environment.NewLine + write_data_to_file[now_write_raw]);
+                    File.AppendAllText(write_file_path, Environment.NewLine + write_data_to_file[now_write_raw]);
                 }
 
                 // 次のアニメーションデータを指定

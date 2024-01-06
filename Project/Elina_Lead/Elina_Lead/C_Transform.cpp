@@ -57,11 +57,11 @@ void C_Transform::M_Move(DirectX::XMFLOAT3 in_move_value)
 //-☆- 行列変換 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ワールド変換行列に変換して返す
+// 詳細   ：マトリクス変換行列に変換して返す
 // 引数   ：XMMATRIX & 変換データの設定先の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Transform::M_Generate_World_Matrix(DirectX::XMMATRIX & put_set_matrix) const
+void C_Transform::M_Generate_Matrix(DirectX::XMMATRIX & put_set_matrix) const
 {
 	// 変換行列を生成してセットする
 	put_set_matrix =

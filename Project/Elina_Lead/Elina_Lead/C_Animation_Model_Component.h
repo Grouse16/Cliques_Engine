@@ -104,7 +104,7 @@ namespace GAME::COMPONENT::MODEL_COMPONENT
 		//-☆- 描画 -☆-//
 
 		// 描画位置となるワールドマトリクスを設定する、描画の開始時に実行する　引数：設定するワールドマトリクス変換行列の参照（const）
-		void M_Draw_Start_World_Matrix_Set(const DirectX::XMMATRIX & );
+		void M_Draw_Start_And_World_Matrix_Set(const DirectX::XMMATRIX & );
 
 		// モデルの描画を行う　引数：描画する時の描画設定の番号
 		void M_Model_Draw(int);

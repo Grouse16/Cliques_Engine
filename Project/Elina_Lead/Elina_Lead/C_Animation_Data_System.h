@@ -50,7 +50,9 @@ namespace ASSET::ANIMATION_SYSTEM
 		{
 			std::vector<S_Bone_Key_Inform> bone_key_list;	// ボーンのキー情報のリスト
 
-			float animation_max_time = 0.0f;	// アニメーションの最大時間
+			std::vector<int> use_offset_bone_list;	// オフセットマトリクスを使用するボーンのインデックス番号のリスト
+
+			float animation_end_time = 0.0f;	// アニメーションの終了時間
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -113,10 +115,19 @@ namespace ASSET::ANIMATION_SYSTEM
 		void M_Set_Bone_Key(float, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &) const;
 
 
+		//-☆- マトリクス -☆-//
+
+		// ボーンマトリクスの配列を生成する　引数：設定先のボーンマトリクスの配列の参照, ボーンのキーフレーム情報のリストの参照(const), ボーンオフセットマトリクスの配列の参照(const)
+		void M_Create_Bone_Matrix_List(std::vector<DirectX::XMFLOAT4X4> &, const std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> &, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> &) const;
+
+
 		//-☆- ゲッタ -☆-//
 
 		// アニメーション開始から終了までの時間　戻り値：アニメーション開始から終了までの時間
 		int M_Get_Animation_Time(void) const;
+
+		// ボーンオフセット行列を使用するボーンのインデックス番号のリストを返す　戻り値 ：vector<int> & ボーンオフセット行列を使用するボーンのインデックス番号のリストの参照（const）
+		const std::vector<int> & M_Get_Use_Offset_Bone_List(void) const;
 	};
 }
 

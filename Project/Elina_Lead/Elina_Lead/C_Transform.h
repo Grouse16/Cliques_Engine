@@ -56,8 +56,8 @@ namespace MATH
 
 		//-☆- 行列変換 -☆-//
 
-		// ワールド変換行列に変換して返す　引数：変換データの設定先の参照
-		void M_Generate_World_Matrix(DirectX::XMMATRIX & ) const;
+		// マトリクス変換行列に変換して返す　引数：変換データの設定先の参照
+		void M_Generate_Matrix(DirectX::XMMATRIX & ) const;
 	};
 }
 

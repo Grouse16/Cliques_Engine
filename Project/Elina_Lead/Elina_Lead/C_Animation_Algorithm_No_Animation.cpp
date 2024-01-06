@@ -19,7 +19,7 @@ using namespace ASSET::ANIMATION::ALGORITHM;
 // 引数   ：const vector<S_Bone_Inform> * ボーンの初期情報のアドレス(const)
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Animation_Algorithm_No_Animation::C_Animation_Algorithm_No_Animation(const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_set_bone_inform_list) : m_bone_inform_list(in_set_bone_inform_list)
+C_Animation_Algorithm_No_Animation::C_Animation_Algorithm_No_Animation()
 {
 	return;
 }
@@ -51,15 +51,15 @@ void C_Animation_Algorithm_No_Animation::M_Animation_Time_Update(void)
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションの更新
-// 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照
+// 引数   ：vector<XMFLOAT4X4> & 更新をかけるボーンのマトリクスの配列の参照, const vector<S_Bone_Inform> & ボーンのオフセットマトリクスの配列の参照(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animation_Algorithm_No_Animation::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
+void C_Animation_Algorithm_No_Animation::M_Animation_Update(std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_offset_matrix_list)
 {
 	// 初期のオフセットマトリクスをセットする
 	for (int l_bone_num = 0; l_bone_num < in_bone_matrix_list.size(); l_bone_num++)
 	{
-		in_bone_matrix_list[l_bone_num] = m_bone_inform_list[l_bone_num].offset_matrix;
+		in_bone_matrix_list[l_bone_num] = in_bone_offset_matrix_list[l_bone_num].offset_matrix;
 	}
 
 	return;

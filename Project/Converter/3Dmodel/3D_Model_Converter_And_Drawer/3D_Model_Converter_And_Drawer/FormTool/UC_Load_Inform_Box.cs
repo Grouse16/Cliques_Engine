@@ -38,22 +38,22 @@ namespace _3D_Model_Converter_And_Drawer.FormTool
         //-☆- セッタ -☆-//
         
         // assimpによるモデルのロードの情報をセットする　引数：ロード時間, 物理メモリサイズ, 仮想メモリサイズ
-        public void M_Set_Assimp_Load_Inform(long in_load_time, long in_physic_memory_size, long in_virtual_memory_size)
+        public void M_Set_Assimp_Load_Inform(float in_load_time, string in_physic_memory_size, string in_virtual_memory_size)
         {
-            TB_assimp_sstmdl_load_time.Text = in_load_time.ToString() + ".ms";
-            TB_assimp_sstmdl_load_physics_data_size.Text = in_physic_memory_size.ToString() + ".byte";
-            TB_assimp_sstmdl_load_virtual_data_size.Text = in_virtual_memory_size.ToString() + ".byte";
+            TB_assimp_sstmdl_load_time.Text = in_load_time.ToString() + "second";
+            TB_assimp_sstmdl_load_physics_data_size.Text = in_physic_memory_size;
+            TB_assimp_sstmdl_load_virtual_data_size.Text = in_virtual_memory_size;
 
             return;
         }
 
 
         // 変換後モデルのロードの情報をセットする　引数：ロード時間, 物理メモリサイズ, 仮想メモリサイズ
-        public void M_Set_My_Model_Load_Inform(long in_load_time, long in_physic_memory_size, long in_virtual_memory_size)
+        public void M_Set_My_Model_Load_Inform(float in_load_time, string in_physic_memory_size, string in_virtual_memory_size)
         {
-            TB_my_format_mdl_load_time.Text = in_load_time.ToString() + ".ms";
-            TB_my_format_mdl_load_physics_data_size.Text = in_physic_memory_size.ToString() + ".byte";
-            TB_my_format_mdl_load_virtual_data_size.Text = in_virtual_memory_size.ToString() + ".byte";
+            TB_my_format_mdl_load_time.Text = in_load_time.ToString() + "second";
+            TB_my_format_mdl_load_physics_data_size.Text = in_physic_memory_size;
+            TB_my_format_mdl_load_virtual_data_size.Text = in_virtual_memory_size;
 
             return;
         }

@@ -23,6 +23,62 @@ namespace SharpDXSample
 
         // ☆ プロパティ ☆ //
 
+        // 入力レイアウト
+        public InputLayout mp_layout
+        {
+            // ゲッタ
+            get
+            {
+                return m_layout;
+            }
+
+            // セッタ
+            set
+            {
+                m_layout = value;
+            }
+        }
+
+        // 頂点シェーダーのコンパイル済みコード
+        public CompilationResult mp_compiled_vertex_shader_code
+        {
+            // ゲッタ
+            get
+            {
+                return m_compiled_vertex_shader_code;
+            }
+        }
+
+        // ピクセルシェーダーのコンパイル済みコード
+        public CompilationResult mp_compiled_pixel_shader_code
+        {
+            // ゲッタ
+            get
+            {
+                return m_compiled_pixel_shader_code;
+            }
+        }
+
+        // 頂点シェーダー
+        public VertexShader mp_vertex_shader
+        {
+            // ゲッタ
+            get
+            {
+                return m_vertex_shader;
+            }
+        }
+
+        // ピクセルシェーダー
+        public PixelShader mp_pixel_shader
+        {
+            // ゲッタ
+            get
+            {
+                return m_pixel_shader;
+            }
+        }
+
         // シェーダーのパス
         public string mp_shader_path
         {
@@ -119,24 +175,6 @@ namespace SharpDXSample
                 }
             }
 
-            // 入力レイアウトの生成
-            if (m_layout == null)
-            {
-                if (m_compiled_vertex_shader_code != null)
-                {
-                    m_layout = new InputLayout
-                    (
-                        in_device,
-                        ShaderSignature.GetInputSignature(m_compiled_vertex_shader_code),
-                        new[]
-                        {
-                            new InputElement("POSITION", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 0, 0),
-                            new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 16, 0)
-                        }
-                    );
-                }
-            }
-
             // ピクセルシェーダーの生成
             if (m_pixel_shader == null)
             {
@@ -153,17 +191,27 @@ namespace SharpDXSample
         //-☆- セッタ -☆-//
 
         // シェーダーをコンテキストに設定する　引数：デバイス、コンテキスト
-        public void M_Set_Shader(Device device, DeviceContext context)
+        public void M_Set_Shader(Device in_device, DeviceContext in_context)
         {
             // シェーダー未生成の場合は生成する
-            M_Create_Shader(device);
+            M_Create_Shader(in_device);
 
-            // シェーダーの設定
+            // 頂点シェーダーの設定
             if (m_vertex_shader != null)
             {
-                context.VertexShader.Set(m_vertex_shader);
-                context.PixelShader.Set(m_pixel_shader);
-                context.InputAssembler.InputLayout = m_layout;
+                in_context.VertexShader.Set(m_vertex_shader);
+            }
+
+            // ピクセルシェーダーの設定
+            if (m_pixel_shader != null)
+            {
+                in_context.PixelShader.Set(m_pixel_shader);
+            }
+
+            // 入力レイアウトの設定
+            if (m_layout != null)
+            {
+                in_context.InputAssembler.InputLayout = m_layout;
             }
 
             return;

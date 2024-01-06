@@ -1,54 +1,54 @@
-﻿using Assimp;
+﻿using _3D_Model_Converter_And_Drawer.d3d11.Transform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
+namespace _3D_Model_Converter_And_Drawer._3DModel.Animation.Key
 {
     // ☆ クラス ☆ //
 
-    // ボーンのデータのクラス
-    public class CS_Bone_Data
+    // スケールのキー情報のクラス
+    public class CS_Scale_Key
     {
         // ☆ 変数宣言 ☆ //
-        private string m_name = ""; // ボーン名
+        private d3d11.CS_Scale m_data = new d3d11.CS_Scale();  // スケール
 
-        Matrix4x4 m_offset_matrix; // オフセットマトリクス行列
+        private float m_time = 0.0f;    // 時間
 
 
         // ☆ プロパティ ☆ //
 
-        // ボーン名
-        public string mp_name
+        // スケール
+        public d3d11.CS_Scale mp_data
         {
             // ゲッタ
             get
             {
-                return m_name;
+                return m_data;
             }
-            
+
             // セッタ
             set
             {
-                m_name = value;
+                m_data = value;
             }
         }
 
-        // オフセットマトリクス行列
-        public Matrix4x4 mp_offset_matrix
+        // 時間
+        public float mp_time
         {
             // ゲッタ
             get
             {
-                return m_offset_matrix;
+                return m_time;
             }
 
             // セッタ
             set
             {
-                m_offset_matrix = value;
+                m_time = value;
             }
         }
 
@@ -58,7 +58,7 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         //-☆- 初期化 -☆-//
 
         // コンストラクタ
-        CS_Bone_Data()
+        public CS_Scale_Key()
         {
             return;
         }
