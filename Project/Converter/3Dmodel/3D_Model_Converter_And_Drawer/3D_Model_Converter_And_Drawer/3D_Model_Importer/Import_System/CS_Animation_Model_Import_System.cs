@@ -271,14 +271,25 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                 in_now_position.M_Goto_Next_Line(in_load_data);
 
 
-                // 親ボーンの番号を取得
-                l_now_bone_data.mp_parent_bone_index = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<int>(in_load_data, ref in_now_position, '/');
-
                 // ボーン名のロード
                 l_now_bone_data.mp_name = CS_My_Math_System.M_Get_String_Until_This_Word(in_now_position.mp_now_column, in_load_data[in_now_position.mp_now_line], '/');
                 in_now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(in_load_data, "/", in_now_position);
 
 
+                // ボーンの親番号をロード
+                l_now_bone_data.mp_parent_index = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<int>(in_load_data, ref in_now_position, '/');
+
+
+                // 子のボーン番号をロード
+                while (in_load_data[in_now_position.mp_now_line][in_now_position.mp_now_column] != '/')
+                {
+                    l_now_bone_data.mp_child_index_list.Add(CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<int>(in_load_data, ref in_now_position, ','));
+                }
+
+
+                // オフセットマトリクス行列の開始位置へ移動
+                in_now_position = new S_Now_File_Data_Position(in_now_position.mp_now_line, in_now_position.mp_now_column + 1);
+                
                 // オフセットマトリクス行列をロード
                 offset_matrix_11 = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<float>(in_load_data, ref in_now_position, ',');
                 offset_matrix_12 = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<float>(in_load_data, ref in_now_position, ',');
@@ -297,15 +308,14 @@ namespace _3D_Model_Converter_And_Drawer._3D_Model_Importer.Import_System
                 offset_matrix_43 = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<float>(in_load_data, ref in_now_position, ',');
                 offset_matrix_44 = CS_File_Write_Load_System.M_Convert_String_To_Select_Type_And_Go_To_Right<float>(in_load_data, ref in_now_position, '/');
 
-
                 // オフセットマトリクス行列をセット
                 l_now_bone_data.mp_offset_matrix = new SharpDX.Matrix
-                    (
+                (
                     offset_matrix_11, offset_matrix_12, offset_matrix_13, offset_matrix_14,
                     offset_matrix_21, offset_matrix_22, offset_matrix_23, offset_matrix_24,
                     offset_matrix_31, offset_matrix_32, offset_matrix_33, offset_matrix_34,
                     offset_matrix_41, offset_matrix_42, offset_matrix_43, offset_matrix_44
-                    );
+                );
             }
 
             return;

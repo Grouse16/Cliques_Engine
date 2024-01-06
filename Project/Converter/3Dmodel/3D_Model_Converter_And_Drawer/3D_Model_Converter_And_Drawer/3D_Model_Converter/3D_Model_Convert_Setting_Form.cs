@@ -22,7 +22,7 @@ namespace _3D_Model_Converter_And_Drawer
 		// ☆ 変数宣言 ☆ //
 		private Scene now_scene = new Scene();  // シーン情報
 
-		static private List<S_Bone_Data_Inform> m_bone_data_list = new List<S_Bone_Data_Inform>();  // ボーン情報のリスト
+		static private List<S_Write_Bone_Data_Inform> m_bone_data_list = new List<S_Write_Bone_Data_Inform>();  // ボーン情報のリスト
 
 		static private List<string> m_material_name_list = new List<string>();   // マテリアル名のリスト
 		static private List<string> m_born_name_list = new List<string>();       // ボーン名のリスト
@@ -35,7 +35,7 @@ namespace _3D_Model_Converter_And_Drawer
 		// ☆ プロパティ ☆ //
 
 		// ボーン情報のリスト
-		static public List<S_Bone_Data_Inform> mp_bone_data_list
+		static public List<S_Write_Bone_Data_Inform> mp_bone_data_list
 		{
 			// ゲッタ
 			get
@@ -128,7 +128,7 @@ namespace _3D_Model_Converter_And_Drawer
 		}
 
 
-		// 初期化を行う
+		// 初期化を行う　引数：モデルの情報
 		public void M_Initialize(Scene in_set_scene)
 		{
 			// シーンをセット
@@ -145,17 +145,41 @@ namespace _3D_Model_Converter_And_Drawer
 			// 最初のボーンの情報を設定（再帰処理でできない）
 			m_bone_data_list.Add
 			(
-				new S_Bone_Data_Inform
+				new S_Write_Bone_Data_Inform
 				(
 					now_scene.RootNode.Name,
-					-1,
 					m_bone_data_list.Count,
+					-1,
+					new List<int>(),
 					now_scene.RootNode.Transform
 				)
 			);
 
 			// メッシュ数分ボーン名とインデックスの関連付けを行う
 			CS_My_Math_System.M_Get_Bone_Information(ref m_bone_data_list, now_scene.RootNode.Children);
+
+			// ルートボーンの子ボーンの情報を設定
+			{
+				// ☆ 変数宣言 ☆ //
+				List<int> children_list = new List<int>();   // 子ボーンの番号リスト
+
+
+				// 子ボーンの番号リストを生成する
+				foreach (var l_now_child_bone in now_scene.RootNode.Children)
+				{
+                    children_list.Add(CS_My_Math_System.M_Get_Bone_Index_From_Name(l_now_child_bone.Name, m_bone_data_list));
+                }
+
+				// 子ボーンの番号リストを設定する
+				m_bone_data_list[0] = new S_Write_Bone_Data_Inform
+                (
+					m_bone_data_list[0].name,
+					m_bone_data_list[0].index,
+					m_bone_data_list[0].parent_index,
+					children_list,
+					m_bone_data_list[0].offset_matrix
+				);
+			}
 
 
 			// マテリアル名の設定
@@ -309,7 +333,7 @@ namespace _3D_Model_Converter_And_Drawer
 			m_animation_data_name_list.Clear();
 			m_animation_data_name_list = new List<string>();
 			m_bone_data_list.Clear();
-			m_bone_data_list = new List<S_Bone_Data_Inform>();
+			m_bone_data_list = new List<S_Write_Bone_Data_Inform>();
 			m_material_name_list.Clear();
 			m_material_name_list = new List<string>();
 

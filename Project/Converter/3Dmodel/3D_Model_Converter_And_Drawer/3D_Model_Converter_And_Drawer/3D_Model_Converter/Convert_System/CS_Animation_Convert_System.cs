@@ -86,12 +86,12 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (position_key.Time * one_frame_time).ToString() + ","
-                                + position_key.Value.X.ToString() + ","
-                                + position_key.Value.Y.ToString() + ","
-                                + position_key.Value.Z.ToString()
-                            );
+                        (
+                              (position_key.Time * one_frame_time).ToString() + ","
+                            + position_key.Value.X.ToString() + ","
+                            + position_key.Value.Y.ToString() + ","
+                            + position_key.Value.Z.ToString()
+                        );
                     }
 
 
@@ -103,13 +103,13 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (rotation_key.Time * one_frame_time).ToString() + ","
-                                + rotation_key.Value.X.ToString() + ","
-                                + rotation_key.Value.Y.ToString() + ","
-                                + rotation_key.Value.Z.ToString() + ","
-                                + rotation_key.Value.W.ToString()
-                            );
+                        (
+                              (rotation_key.Time * one_frame_time).ToString() + ","
+                            + rotation_key.Value.X.ToString() + ","
+                            + rotation_key.Value.Y.ToString() + ","
+                            + rotation_key.Value.Z.ToString() + ","
+                            + rotation_key.Value.W.ToString()
+                        );
                     }
 
 
@@ -121,12 +121,12 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
                     {
                         // このキーになる時間と座標情報を書き込む
                         write_data_to_file.Add
-                            (
-                                  (scale_key.Time * one_frame_time).ToString() + ","
-                                + scale_key.Value.X.ToString() + ","
-                                + scale_key.Value.Y.ToString() + ","
-                                + scale_key.Value.Z.ToString()
-                            );
+                        (
+                              (scale_key.Time * one_frame_time).ToString() + ","
+                            + scale_key.Value.X.ToString() + ","
+                            + scale_key.Value.Y.ToString() + ","
+                            + scale_key.Value.Z.ToString()
+                        );
                     }
                 }
 

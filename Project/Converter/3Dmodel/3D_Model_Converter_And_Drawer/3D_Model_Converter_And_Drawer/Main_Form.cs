@@ -522,18 +522,18 @@ namespace _3D_Model_Converter_And_Drawer
 			m_bone_matrix_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, m_animation_model.mp_bone_data_list.Count);
 
 
-			// ボーンオフセットマトリクスの行列をボーンマトリクスとしてセット
-			foreach (var l_now_bone_offset_matrix in m_animation_model.mp_bone_data_list)
-			{
-				m_bone_matrix_constant_buffer.mp_constant_data_list.Add(l_now_bone_offset_matrix.mp_offset_matrix);
-			}
-
-
 			// アニメーションがある時はアニメーションの計算を行う
 			if (m_animation_system_list.Count > 0)
 			{
 				// ☆ 変数宣言 ☆ //
-				List<SharpDX.Matrix> new_bone_matrix_list = m_bone_matrix_constant_buffer.mp_constant_data_list; // ボーンマトリクス計算用のリスト
+				List<SharpDX.Matrix> new_bone_matrix_list = new List<Matrix>(); // ボーンマトリクス計算用のリスト
+
+
+				// ボーンマトリクスのリストを生成
+				for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_animation_model.mp_bone_data_list.Count; l_now_bone_matrix_num++)
+				{
+                    new_bone_matrix_list.Add(new Matrix());
+                }
 
 
 				// ブレンド先とブレンド元のアニメーションがない時は何もしない
@@ -584,17 +584,21 @@ namespace _3D_Model_Converter_And_Drawer
 				}
 			}
 
-			// ボーンマトリクスの定数バッファにデータを書き込む
-			m_bone_matrix_constant_buffer.M_Write_Data_To_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_context);
 
-			// 定数バッファをセット
-			foreach (var l_now_mesh in m_draw_setting.mp_mesh_data_list)
+            // ボーンマトリクスの定数バッファにデータを書き込む
+            m_bone_matrix_constant_buffer.M_Write_Data_To_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_context);
+
+            // 定数バッファをセット
+            foreach (var l_now_mesh in m_draw_setting.mp_mesh_data_list)
 			{
 				l_now_mesh.mp_constant_buffer_set_list.Add(new S_DX_11_Constant_Buffer_Draw_Setting(m_bone_matrix_constant_buffer, E_DX_11_SHADER_TYPE.e_VERTEX_SHADER, in_set_index));
 			}
 
 			return;
 		}
+
+
+		// ボーンマトリクス
 
 
 		//-☆- 描画 -☆-//

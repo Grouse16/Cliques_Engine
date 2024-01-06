@@ -15,7 +15,9 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
         // ☆ 変数宣言 ☆ //
         SharpDX.Matrix m_offset_matrix = new SharpDX.Matrix(); // オフセットマトリクス行列
 
-        private int m_parent_bone_index = -1; // 親ボーンのインデックス
+        private int m_parent_index = 0; // 親ボーンのインデックス番号
+
+        private List<int> m_child_index_list = new List<int>(); // 子ボーンのインデックスリスト
 
         private string m_name = ""; // ボーン名
 
@@ -38,19 +40,35 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
             }
         }
 
-        // 親ボーンのインデックス
-        public int mp_parent_bone_index
+        // 親ボーンのインデックス番号
+        public int mp_parent_index
         {
             // ゲッタ
             get
             {
-                return m_parent_bone_index;
+                return m_parent_index;
             }
 
             // セッタ
             set
             {
-                m_parent_bone_index = value;
+                m_parent_index = value;
+            }
+        }
+
+        // 子ボーンのインデックスリスト
+        public List<int> mp_child_index_list
+        {
+            // ゲッタ
+            get
+            {
+                return m_child_index_list;
+            }
+
+            // セッタ
+            set
+            {
+                m_child_index_list = value;
             }
         }
 

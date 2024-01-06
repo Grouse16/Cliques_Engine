@@ -698,40 +698,52 @@ namespace _3D_Model_Converter_And_Drawer
         // ボーン情報を書き込む　引数：書き込むデータの参照
         private static void M_Write_Bone_Data(ref List<string> in_write_file_data)
         {
-            // ☆ 変数宣言 ☆ //
-            int now_bone_index = 0; // 現在のボーン番号
-
-
             // ボーン数を記録
             in_write_file_data.Add("BONESUM:" + Form_3D_Model_Convert_Setting.mp_bone_data_list.Count.ToString());
 
             // ボーン名とオフセットマトリクスを記録
             foreach (var bone_index in Form_3D_Model_Convert_Setting.mp_bone_data_list)
             {
-                in_write_file_data.Add
-                    (
-                          bone_index.parent_index.ToString() + "/"
-                        + Form_3D_Model_Convert_Setting.mp_born_name_list[now_bone_index] + "/"
-                        + bone_index.offset_matrix.A1.ToString() + ","
-                        + bone_index.offset_matrix.A2.ToString() + ","
-                        + bone_index.offset_matrix.A3.ToString() + ","
-                        + bone_index.offset_matrix.A4.ToString() + ","
-                        + bone_index.offset_matrix.B1.ToString() + ","
-                        + bone_index.offset_matrix.B2.ToString() + ","
-                        + bone_index.offset_matrix.B3.ToString() + ","
-                        + bone_index.offset_matrix.B4.ToString() + ","
-                        + bone_index.offset_matrix.C1.ToString() + ","
-                        + bone_index.offset_matrix.C2.ToString() + ","
-                        + bone_index.offset_matrix.C3.ToString() + ","
-                        + bone_index.offset_matrix.C4.ToString() + ","
-                        + bone_index.offset_matrix.D1.ToString() + ","
-                        + bone_index.offset_matrix.D2.ToString() + ","
-                        + bone_index.offset_matrix.D3.ToString() + ","
-                        + bone_index.offset_matrix.D4.ToString() + "/"
-                    );
+                // ☆ 変数宣言 ☆ //
+                string bone_write_text; // ボーン情報として書き込むデータ
 
-                // 次のボーン番号を指定
-                now_bone_index += 1;
+
+                // ボーン名を記載
+                bone_write_text = bone_index.name + "/";
+
+                // 親ボーン番号を記載
+                bone_write_text += bone_index.parent_index.ToString() + "/";
+
+                // 子ボーンの番号を記載
+                foreach (var child_bone_index in bone_index.child_index_list)
+                {
+                    bone_write_text += child_bone_index.ToString() + ",";
+                }
+
+                // 子ボーンの番号終了を記載
+                bone_write_text += "/";
+
+                // オフセットマトリクスを記載
+                bone_write_text += bone_index.offset_matrix.A1.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.A2.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.A3.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.A4.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.B1.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.B2.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.B3.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.B4.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.C1.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.C2.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.C3.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.C4.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.D1.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.D2.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.D3.ToString() + ",";
+                bone_write_text += bone_index.offset_matrix.D4.ToString() + "/";
+
+
+                // 生成したボーン情報を書き込む
+                in_write_file_data.Add(bone_write_text);
             }
 
             return;

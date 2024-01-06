@@ -89,14 +89,16 @@ namespace _3D_Model_Converter_And_Drawer
     }
 
 
-    // ボーンとインデックスを管理するための構造体
-    public struct S_Bone_Data_Inform
+    // 書き込むボーンとインデックスを管理するための構造体
+    public struct S_Write_Bone_Data_Inform
     {
         // ☆ 変数宣言 ☆ //
         public string name; // ボーン名
 
         public int index;   // ボーンのインデックス番号
         public int parent_index;  // 親ボーンの番号
+
+        public List<int> child_index_list;   // 子ボーンの番号リスト
 
         public Matrix4x4 offset_matrix;    // オフセットマトリクス行列   
 
@@ -105,12 +107,13 @@ namespace _3D_Model_Converter_And_Drawer
 
         //-☆- コンストラクタ -☆-//
 
-        // 初期化用コンストラクタ　引数：ボーン名, 親ボーンの番号, ボーンのインデックス番号, オフセットマトリクス行列
-        public S_Bone_Data_Inform(string in_name, int in_parent_index, int in_index, Matrix4x4 in_offset_matrix)
+        // 初期化用コンストラクタ　引数：ボーン名, ボーンのインデックス番号, 親ボーンの番号, オフセットマトリクス行列
+        public S_Write_Bone_Data_Inform(string in_name, int in_index, int in_parent_index, List<int> in_child_index_list, Matrix4x4 in_offset_matrix)
         {
             name = in_name;
             index = in_index;
             parent_index = in_parent_index;
+            child_index_list = in_child_index_list;
             offset_matrix = in_offset_matrix;
 
             return;
@@ -213,19 +216,24 @@ namespace _3D_Model_Converter_And_Drawer
         //-☆- ボーン -☆-//
 
         // ボーンの情報を取得し、子ボーンを再帰的に取得する　引数：設定先のボーン情報リスト, ボーンのデータ, 親ボーンのマトリクス
-        public static void M_Get_Bone_Information(ref List<S_Bone_Data_Inform> out_bone_list, NodeCollection in_set_bone_data_list)
+        public static void M_Get_Bone_Information(ref List<S_Write_Bone_Data_Inform> out_bone_list, NodeCollection in_set_bone_data_list)
         {
-            // ボーンの数分繰り返す
+            // ボーンの数分基本的な情報の設定を行う
             foreach (var l_now_bone_data in in_set_bone_data_list)
             {
+                // ☆ 変数宣言 ☆ //
+                int now_bone_index = out_bone_list.Count;   // 現在のボーンのインデックス番号
+
+
                 // ボーンの情報を設定
                 out_bone_list.Add
                 (
-                    new S_Bone_Data_Inform
+                    new S_Write_Bone_Data_Inform
                     (
                         l_now_bone_data.Name,
+                        now_bone_index,
                         M_Get_Bone_Index_From_Name(l_now_bone_data.Parent.Name, out_bone_list),
-                        out_bone_list.Count,
+                        new List<int>(),
                         l_now_bone_data.Transform
                     )
                 );
@@ -234,7 +242,28 @@ namespace _3D_Model_Converter_And_Drawer
                 // 子ボーンがあるなら、子ボーンの情報を取得する
                 if (l_now_bone_data.HasChildren)
                 {
+                    // ☆ 変数宣言 ☆ //
+                    List<int> children_list = new List<int>();   // 子ボーンの番号リスト
+
+
+                    // 子ボーンの情報を設定する
                     M_Get_Bone_Information(ref out_bone_list, l_now_bone_data.Children);
+
+                    // 子ボーンの番号を設定する
+                    foreach (var l_now_child_bone in l_now_bone_data.Children)
+                    {
+                        children_list.Add(M_Get_Bone_Index_From_Name(l_now_child_bone.Name, out_bone_list));
+                    }
+
+                    // 子ボーンの番号リストを設定する
+                    out_bone_list[now_bone_index] = new S_Write_Bone_Data_Inform
+                    (
+                        out_bone_list[now_bone_index].name,
+                        out_bone_list[now_bone_index].index,
+                        out_bone_list[now_bone_index].parent_index,
+                        children_list,
+                        out_bone_list[now_bone_index].offset_matrix
+                    );
                 }
             }
 
@@ -243,7 +272,7 @@ namespace _3D_Model_Converter_And_Drawer
 
         
         // ボーン名からボーンのインデックスを取得する　引数：ボーン名, ボーン情報リスト　戻り値：ボーンのインデックス番号
-        public static int M_Get_Bone_Index_From_Name(string in_bone_name, List<S_Bone_Data_Inform> in_bone_data_list)
+        public static int M_Get_Bone_Index_From_Name(string in_bone_name, List<S_Write_Bone_Data_Inform> in_bone_data_list)
         {
             // ボーンの数分繰り返す
             for (int l_now_bone_index = 0; l_now_bone_index < in_bone_data_list.Count; l_now_bone_index++)
