@@ -156,7 +156,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
                 // 探索できる範囲内で探索を行う
-                for (int l_now_column = start_loop_column; l_now_column < can_search_column; l_now_column++)
+                for (int l_now_column = start_loop_column; l_now_column <= can_search_column; l_now_column++)
                 {
                     // ☆ 変数宣言 ☆ //
                     bool flg_found = true; // 見つかった時のみtrueになるフラグ

@@ -13,26 +13,28 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Static
     public class CS_Static_Model_Data
     {
         // ☆ 変数宣言 ☆ //
-        string m_name = "";  // モデル名
+        private List<S_Static_Vertex_Data> m_vertex_data_list = new List<S_Static_Vertex_Data>(); // 頂点データのリスト
 
         private List<CS_Static_Mesh_Data> m_mesh_data_list = new List<CS_Static_Mesh_Data>(); // メッシュデータのリスト
+
+        string m_name = "";  // モデル名
 
 
         //-☆- プロパティ -☆-//
 
-        // モデル名
-        public string mp_name
+        // 頂点データのリスト
+        public List<S_Static_Vertex_Data> mp_vertex_data_list
         {
             // ゲッタ
             get
             {
-                return m_name;
+                return m_vertex_data_list;
             }
 
             // セッタ
             set
             {
-                m_name = value;
+                m_vertex_data_list = value;
             }
         }
 
@@ -49,6 +51,22 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Static
             set
             {
                 m_mesh_data_list = value;
+            }
+        }
+
+        // モデル名
+        public string mp_name
+        {
+            // ゲッタ
+            get
+            {
+                return m_name;
+            }
+
+            // セッタ
+            set
+            {
+                m_name = value;
             }
         }
 

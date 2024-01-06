@@ -164,9 +164,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 
             // 保存先設定のダイアログを表示し、保存先を取得、OKが押されている時のみ保存を行う
-            if (CS_File_Write_System.M_Get_File_Path(out file_path, "スタティックモデルデータの保存先のファイルを選択してください", "new_model", "elsttmdl"))
+            if (CS_File_Write_Load_System.M_Get_File_Path(out file_path, "スタティックモデルデータの保存先のファイルを選択してください", "new_model", "elsttmdl"))
             {
-                CS_File_Write_System.M_Write_Data_To_File(file_path, in_write_file_data);
+                CS_File_Write_Load_System.M_Write_Data_To_File(file_path, in_write_file_data);
             }
 
             return;
@@ -181,9 +181,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 
             // 保存先設定のダイアログを表示し、保存先を取得、OKが押されている時のみ保存を行う
-            if (CS_File_Write_System.M_Get_File_Path(out file_path, "アニメーションモデルデータの保存先のファイルを選択してください", "new_model", "elanmmdl"))
+            if (CS_File_Write_Load_System.M_Get_File_Path(out file_path, "アニメーションモデルデータの保存先のファイルを選択してください", "new_model", "elanmmdl"))
             {
-                CS_File_Write_System.M_Write_Data_To_File(file_path, in_write_file_data);
+                CS_File_Write_Load_System.M_Write_Data_To_File(file_path, in_write_file_data);
             }
 
             return;
@@ -767,9 +767,10 @@ namespace _3D_Model_Converter_And_Drawer
                 // インデックスデータを書き込む
                 foreach (var face in mesh.Faces)
                 {
-                    in_write_file_data.Add(vertex_to_shrunk_vertex_number_list[(face.Indices[0] + now_vertex_slot_offset)].ToString());
-                    in_write_file_data.Add(vertex_to_shrunk_vertex_number_list[(face.Indices[1] + now_vertex_slot_offset)].ToString());
-                    in_write_file_data.Add(vertex_to_shrunk_vertex_number_list[(face.Indices[2] + now_vertex_slot_offset)].ToString());
+                    foreach (var index in face.Indices)
+                    {
+                        in_write_file_data.Add(vertex_to_shrunk_vertex_number_list[(index + now_vertex_slot_offset)].ToString());
+                    }
                 }
 
                 // 空白をあける

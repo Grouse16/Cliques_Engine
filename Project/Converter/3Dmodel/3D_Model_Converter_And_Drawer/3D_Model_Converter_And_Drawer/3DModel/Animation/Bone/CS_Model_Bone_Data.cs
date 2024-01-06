@@ -13,28 +13,14 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
     public class CS_Model_Bone_Data
     {
         // ☆ 変数宣言 ☆ //
-        private string m_name = ""; // ボーン名
-
         SharpDX.Matrix m_offset_matrix = new SharpDX.Matrix(); // オフセットマトリクス行列
+
+        private int m_parent_bone_index = -1; // 親ボーンのインデックス
+
+        private string m_name = ""; // ボーン名
 
 
         // ☆ プロパティ ☆ //
-
-        // ボーン名
-        public string mp_name
-        {
-            // ゲッタ
-            get
-            {
-                return m_name;
-            }
-            
-            // セッタ
-            set
-            {
-                m_name = value;
-            }
-        }
 
         // オフセットマトリクス行列
         public SharpDX.Matrix mp_offset_matrix
@@ -49,6 +35,38 @@ namespace _3D_Model_Converter_And_Drawer._3DModel.Animation
             set
             {
                 m_offset_matrix = value;
+            }
+        }
+
+        // 親ボーンのインデックス
+        public int mp_parent_bone_index
+        {
+            // ゲッタ
+            get
+            {
+                return m_parent_bone_index;
+            }
+
+            // セッタ
+            set
+            {
+                m_parent_bone_index = value;
+            }
+        }
+
+        // ボーン名
+        public string mp_name
+        {
+            // ゲッタ
+            get
+            {
+                return m_name;
+            }
+
+            // セッタ
+            set
+            {
+                m_name = value;
             }
         }
 

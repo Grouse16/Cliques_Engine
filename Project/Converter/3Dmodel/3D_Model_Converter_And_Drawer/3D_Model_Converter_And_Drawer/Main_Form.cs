@@ -622,14 +622,8 @@ namespace _3D_Model_Converter_And_Drawer
 
 
             // 頂点バッファのデータを設定
-            new_vertex_buffer.mp_vertex_data = new List<S_Static_Vertex_Data>();
-            foreach (var l_now_mesh in m_static_model.mp_mesh_data_list)
-			{
-				foreach (var l_now_vertex in l_now_mesh.mp_vertex_data_list)
-				{
-					new_vertex_buffer.mp_vertex_data.Add(l_now_vertex);
-				}
-			}
+            new_vertex_buffer.mp_vertex_data = m_static_model.mp_vertex_data_list;
+            
 
 			// 頂点バッファを生成
 			new_vertex_buffer.M_Create_Vertex_Buffer(uc_dx_11_panel.mp_renderer.mp_device);
@@ -703,14 +697,7 @@ namespace _3D_Model_Converter_And_Drawer
 
 
             // 頂点バッファのデータを設定
-            new_vertex_buffer.mp_vertex_data = new List<S_Animation_Vertex_Data>();
-            foreach (var l_now_mesh in m_animation_model.mp_mesh_list)
-			{
-				foreach (var l_now_vertex in l_now_mesh.mp_vertex_data_list)
-				{
-					new_vertex_buffer.mp_vertex_data.Add(l_now_vertex);
-				}
-			}
+            new_vertex_buffer.mp_vertex_data = m_animation_model.mp_vertex_list;
 
 			// 頂点バッファを生成
 			new_vertex_buffer.M_Create_Vertex_Buffer(uc_dx_11_panel.mp_renderer.mp_device);

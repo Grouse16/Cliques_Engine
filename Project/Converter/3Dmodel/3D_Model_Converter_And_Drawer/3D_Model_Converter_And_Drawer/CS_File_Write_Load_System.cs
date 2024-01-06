@@ -11,7 +11,7 @@ namespace _3D_Model_Converter_And_Drawer
     // ☆ クラス ☆ //
 
     // ファイル書き込みシステム
-    public class CS_File_Write_System
+    public class CS_File_Write_Load_System
     {
         // ☆ 関数 ☆ //
 
@@ -33,6 +33,48 @@ namespace _3D_Model_Converter_And_Drawer
             {
                 System.IO.File.AppendAllText(in_file_path, in_write_data[now_write_raw] + Environment.NewLine);
             }
+
+            return;
+        }
+
+
+        //-☆- 読み込み -☆-//
+
+        // ファイルからデータを読み込む　引数：読み込むファイルのパス, 読み込んだデータ　戻り値：読み込みに成功したらtrue
+        static public void M_Read_Data_From_File(string in_file_path, out List<string> out_read_data)
+        {
+            // ☆　変数宣言 ☆ //
+            StreamReader file_data = new StreamReader(in_file_path); // 指定されたファイルのデータ
+
+            bool is_file_end = false;   // ファイルの終わりに来たかどうか
+
+
+            // 読み込んだデータを初期化
+            out_read_data = new List<string>();
+
+
+            // ファイルの終わりに来るまで読み取る
+            while (is_file_end == false)
+            {
+                // ☆ 変数宣言 ☆ //
+                string new_line = file_data.ReadLine();  // 新しい行のデータ
+
+
+                // もうデータがないなら終了
+                if (new_line == null)
+                {
+                    is_file_end = true;
+                }
+
+                // データがあるなら読み取ったデータのリストに追加
+                else
+                {
+                    out_read_data.Add(new_line);
+                }
+            }
+
+            // ファイルを閉じる
+            file_data.Close();
 
             return;
         }
@@ -111,6 +153,23 @@ namespace _3D_Model_Converter_And_Drawer
                     return false;
                 }
             }
+        }
+
+
+        //-☆- 読み取り -☆-//
+
+        // 指定された文字までの文字列を数値に変換して返し、指定された文字の次まで移動する　引数：変換する文字列, 現在のファイルデータの位置, 読み取り終了までの文字　戻り値：変換した数値
+        static public TYPE_Selected M_Convert_String_To_Select_Type_And_Go_To_Right<TYPE_Selected>(List<string> in_text, ref S_Now_File_Data_Position out_now_position, char in_stop_word) where TYPE_Selected : IComparable, IConvertible, IFormattable
+        {
+            // ☆ 変数宣言 ☆ //
+            TYPE_Selected result = default(TYPE_Selected); // 変換した数値
+
+
+            // 変換した数値を返し、その末尾まで移動する
+            result = (TYPE_Selected)Convert.ChangeType(CS_My_Math_System.M_Get_String_Until_This_Word(out_now_position.mp_now_column, in_text[out_now_position.mp_now_line], in_stop_word), typeof(TYPE_Selected));
+            out_now_position = CS_My_Math_System.M_Search_Word_And_Go_To_Right(in_text, in_stop_word.ToString(), out_now_position);
+
+            return result;
         }
     }
 }

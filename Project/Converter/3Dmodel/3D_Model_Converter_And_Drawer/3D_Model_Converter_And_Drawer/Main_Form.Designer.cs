@@ -266,6 +266,7 @@
             // uc_dx_11_panel
             // 
             this.uc_dx_11_panel.Location = new System.Drawing.Point(283, 17);
+            this.uc_dx_11_panel.mp_now_draw_setting = null;
             this.uc_dx_11_panel.Name = "uc_dx_11_panel";
             this.uc_dx_11_panel.Size = new System.Drawing.Size(524, 392);
             this.uc_dx_11_panel.TabIndex = 13;

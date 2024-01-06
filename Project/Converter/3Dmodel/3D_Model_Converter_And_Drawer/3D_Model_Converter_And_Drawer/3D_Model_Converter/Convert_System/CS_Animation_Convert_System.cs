@@ -34,7 +34,7 @@ namespace _3D_Model_Converter_And_Drawer.Animation_Convert
 
 
             // フォルダ選択ダイアログを表示して、選択されたフォルダのパスを取得、取得できなかったら終了
-            if (CS_File_Write_System.M_Get_Folder_Path(out selected_folder_path) == false)
+            if (CS_File_Write_Load_System.M_Get_Folder_Path(out selected_folder_path) == false)
             {
                 return;
             }
