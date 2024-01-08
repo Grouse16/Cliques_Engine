@@ -92,7 +92,7 @@ void C_Mesh_Data::M_Create_Index_List(int in_creat_index_sum)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Mesh_Data::M_Create_Vertex_Buffer_And_Index_Buffer(void)
 {
-	mpr_variable.vertex_setting.M_Create_Vertex_And_Index_Buffer_By_Now_Parameter();
+	mpr_variable.vertex_setting.M_Create_Vertex_Buffer_By_Now_Parameter();
 
 	return;
 }
@@ -118,7 +118,7 @@ void C_Mesh_Data::M_Attach_Index_Data_To_Buffer(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Mesh_Data::M_Attach_Vertex_Data_To_Buffer(void)
 {
-	mpr_variable.vertex_setting.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_setting.M_Set_Vertex_Data_To_Buffer();
 
 	return;
 }
@@ -209,7 +209,7 @@ void C_Mesh_Data::M_Draw_Mesh(void)
 	mpr_variable.material.M_Material_Attach_To_Draw();
 
 	// 頂点を描画する（頂点インデックスバッファのリスト全てを描画する）
-	mpr_variable.vertex_setting.M_Draw_All_Vertex();
+	mpr_variable.vertex_setting.M_Set_Vertex_Buffer_To_Redering();
 
 	return;
 }
@@ -222,7 +222,7 @@ void C_Mesh_Data::M_Draw_Mesh(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Mesh_Data::m_Draw_Mesh_Do_Not_Set_Material(void)
 {
-	mpr_variable.vertex_setting.M_Draw_All_Vertex();
+	mpr_variable.vertex_setting.M_Set_Vertex_Buffer_To_Redering();
 
 	return;
 }

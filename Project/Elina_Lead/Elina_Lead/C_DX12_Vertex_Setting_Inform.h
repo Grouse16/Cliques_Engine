@@ -33,12 +33,9 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		// ☆ 変数宣言 ☆ //
 		D3D12_VERTEX_BUFFER_VIEW m_vertex_buffer_view;	// 頂点バッファビューのアドレス
 
-		D3D12_INDEX_BUFFER_VIEW m_index_buffer_view;	// インデックスバッファビューのアドレス
-
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_vertex_buffer_data;	// 頂点バッファのデータ
-		Microsoft::WRL::ComPtr<ID3D12Resource> m_index_buffer_data;	// インデックスバッファのデータ
 
-		int m_draw_index_sum = 0;	// 描画する回数（インデックス数）
+		int m_vertex_sum = 0;	// 頂点数のサイズ
 
 
 		// ☆ 関数 ☆ //
@@ -55,10 +52,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- セッタ -☆-//
 
 		// 頂点データをセットする　引数：頂点データのアドレス
-		void M_Set_Vertex_Setting(void*) override;
-
-		// インデックスデータをセットする　引数：インデックスデータ
-		void M_Set_Index_Setting(void*) override;
+		void M_Set_Vertex_Setting(void * ) override;
 	};
 }
 

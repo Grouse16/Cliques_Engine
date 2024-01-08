@@ -35,7 +35,7 @@ C_UIC_Text_Box::C_UIC_Text_Box(void)
 	mpr_variable.material.M_Load_Material("UI_Material");
 
 	// 頂点データの生成
-	mpr_variable.vertex_system.M_Create_Vertex_And_Index_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_SUM, (int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
+	mpr_variable.vertex_system.M_Create_Vertex_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_SUM, (int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
 
 
 	// インデックスデータをセットする
@@ -55,7 +55,7 @@ C_UIC_Text_Box::C_UIC_Text_Box(void)
 
 
 	// 頂点バッファにセット
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
 	return;
 }
 
@@ -115,7 +115,7 @@ void C_UIC_Text_Box::M_Draw(void)
 	mpr_variable.material.M_Material_Attach_To_Draw();
 
 	// 頂点を描画する
-	mpr_variable.vertex_system.M_Draw_All_Vertex();
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Redering();
 
 	return;
 }
@@ -151,7 +151,7 @@ void C_UIC_Text_Box::M_Set_UI_Position(DATA::RECTSETTING::S_Rect in_set_rect)
 	vertex_list[(int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_RIGHT_BOTTOM].position.y = in_set_rect.bottom_y / 2.0f;
 
 	// 頂点バッファにセット
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
 
 	return;
 }
@@ -175,7 +175,7 @@ void C_UIC_Text_Box::M_Set_Color(DATA::COLOR::C_Color in_set_color)
 	{
 		now_vertex.color = in_set_color;
 	}
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
 
 	return;
 }

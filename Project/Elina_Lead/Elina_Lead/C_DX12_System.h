@@ -25,6 +25,7 @@
 #include <wrl/client.h>
 
 #include "C_DX12_Vertex_Setting_Inform.h"
+#include "C_DX12_Index_Setting_Inform.h"
 #include "C_DX12_Constant_Setting_Inform.h"
 #include "C_DX12_Rendering_Texture_Setting_Inform.h"
 #include "C_DX12_Rendering_Graphics_Setting_Inform.h"
@@ -179,8 +180,11 @@ namespace RENDERING::GRAPHICS::DX12
 		// 頂点バッファを生成する　引数：設定先の頂点情報, 生成用の情報(const)
 		void M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREATE::S_Create_Vertex_Buffer_Inform & );
 
+
+		//-☆- 頂点インデックス -☆-//
+
 		// インデックスバッファを生成する　引数：設定先の頂点情報, 生成用の情報(const)
-		void M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * &, const CREATE::S_Create_Vertex_Buffer_Inform & );
+		void M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Index_Setting_Inform * &, const CREATE::S_Create_Index_Buffer_Inform & );
 
 
 		//-☆- 定数バッファ -☆-//
@@ -356,11 +360,23 @@ namespace RENDERING::GRAPHICS::DX12
 		// 指定された情報を元に頂点データを生成する　引数：設定先の頂点情報, 生成用の情報(const)
 		void M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> &, const CREATE::S_Create_Vertex_Buffer_Inform &) override;
 
-		// 今の描画を実行する　引数：頂点データ設定用情報(const)
-		void M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> &) override;
+		// 頂点バッファをセットする　引数：セットする頂点データ(const)
+		void M_Set_Vertex_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> &) override;
 
-		// 描画するインデックス番号を指定したうえで今の描画を実行する　引数：頂点データ設定用情報(const), 描画するインデックスの描画の開始番号, 描画するインデックスの終了番号
-		void M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> &, int, int) override;
+		// 頂点バッファを元に描画を実行する　引数：描画する頂点データ(const)
+		void M_Draw_Command_By_Vertex_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> &) override;
+
+
+		//-☆- 頂点インデックス -☆-//
+
+		// 指定された情報を元にインデックスデータを生成する　引数：設定先のインデックス情報, 生成用の情報(const)
+		void M_Create_Index_Inform(std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> &, const CREATE::S_Create_Index_Buffer_Inform &) override;
+
+		// インデックスバッファを元に描画を行う　引数：インデックスデータ設定用情報(const)
+		void M_Draw_Command_By_Index_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & ) override;
+
+		// インデックスバッファを元に指定されたインデックス間の描画を行う　引数：インデックスデータ設定用情報(const), 描画を開始するインデックス番号, 描画終了のインデックス番号
+		void M_Draw_Command_By_Index_Buffer_By_Range(const std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & , int, int) override;
 
 
 		//-☆- 定数バッファ -☆-//

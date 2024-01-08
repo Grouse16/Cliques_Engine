@@ -26,7 +26,6 @@ namespace RENDERING::GRAPHICS::CREATE
 	{
 		int size_of_vertex = 0;	// 頂点一つ分のサイズ
 		int vertex_sum = 0;		// 頂点数
-		int index_sum = 0;		// インデックス数
 	};
 }
 

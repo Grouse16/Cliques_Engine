@@ -5,7 +5,7 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
-// ☆ 多重インクルード ☆ //
+// ☆ 多重インクルードガード ☆ //
 #ifndef D_INCLUDE_GUARD_S_ANIMATION_MODEL_LOAD_INFORM_H_FILE
 #define D_INCLUDE_GUARD_S_ANIMATION_MODEL_LOAD_INFORM_H_FILE
 

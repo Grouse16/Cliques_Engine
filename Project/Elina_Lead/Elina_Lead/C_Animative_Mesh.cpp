@@ -58,20 +58,7 @@ void C_Animative_Mesh::M_Release(void)
 }
 
 
-//-☆- 設定 -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点を指定された数分生成
-// 引数   ：int 生成する頂点数
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animative_Mesh::M_Create_Vertex_List(int in_creat_vertex_sum)
-{
-	mpr_variable.vertex_setting.M_Create_Vertex_Data_By_Number(in_creat_vertex_sum);
-
-	return;
-}
-
+//-☆- 頂点インデックス -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：頂点インデックスを指定された数分生成
@@ -80,20 +67,7 @@ void C_Animative_Mesh::M_Create_Vertex_List(int in_creat_vertex_sum)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animative_Mesh::M_Create_Index_List(int in_creat_index_sum)
 {
-	mpr_variable.vertex_setting.M_Create_Index_Data_By_Number(in_creat_index_sum);
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点バッファと頂点インデックスバッファを生成し　＊頂点データと頂点インデックスを必要な数だけ生成してから実行すること
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animative_Mesh::M_Create_Vertex_Buffer_And_Index_Buffer(void)
-{
-	mpr_variable.vertex_setting.M_Create_Vertex_And_Index_Buffer_By_Now_Parameter();
+	mpr_variable.m_vertex_index_system.M_Create_Index_Buffer(in_creat_index_sum);
 
 	return;
 }
@@ -106,33 +80,7 @@ void C_Animative_Mesh::M_Create_Vertex_Buffer_And_Index_Buffer(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animative_Mesh::M_Attach_Index_Data_To_Buffer(void)
 {
-	mpr_variable.vertex_setting.M_Index_Data_To_Buffer();
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点データを頂点バッファに設定する
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animative_Mesh::M_Attach_Vertex_Data_To_Buffer(void)
-{
-	mpr_variable.vertex_setting.M_Vertex_Data_To_Buffer();
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点データのみを削除する（頂点バッファに設定後、編集しないなら持っておく必要がない）
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Animative_Mesh::M_Delete_Vertex_Data(void)
-{
-	mpr_variable.vertex_setting.M_Delete_Vertex_Data();
+	mpr_variable.m_vertex_index_system.M_Set_Index_Data_To_Buffer();
 
 	return;
 }
@@ -145,7 +93,7 @@ void C_Animative_Mesh::M_Delete_Vertex_Data(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animative_Mesh::M_Delete_Index_Data(void)
 {
-	mpr_variable.vertex_setting.M_Delete_Index_Data();
+	mpr_variable.m_vertex_index_system.M_Release();
 
 	return;
 }
@@ -165,24 +113,13 @@ bool C_Animative_Mesh::M_Load_Material_By_Name(std::string in_load_material_name
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点データのリストの参照を返す
-// 引数   ：void
-// 戻り値 ：vector<S_3D_Animation_Model_Vertex> & 頂点データのリストを返す
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<DATA::VERTEX::S_3D_Animation_Model_Vertex> & C_Animative_Mesh::M_Get_Vertex_Data_List(void)
-{
-	return mpr_variable.vertex_setting.M_Get_Vertex_Data();
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：頂点インデックスデータのリストの参照を返す
 // 引数   ：void
 // 戻り値 ：vector<unsigned __int32> & 頂点インデックスデータのリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 std::vector<unsigned __int32> & C_Animative_Mesh::M_Get_Index_Data_List(void)
 {
-	return mpr_variable.vertex_setting.M_Get_Index_Data();
+	return mpr_variable.m_vertex_index_system.M_Get_Index_Data();
 }
 
 
@@ -210,7 +147,7 @@ void C_Animative_Mesh::M_Draw_Mesh(void)
 	mpr_variable.material.M_Material_Attach_To_Draw();
 
 	// 頂点を描画する（頂点インデックスバッファのリスト全てを描画する）
-	mpr_variable.vertex_setting.M_Draw_All_Vertex();
+	mpr_variable.m_vertex_index_system.M_Draw_Index_Data();
 
 	return;
 }
@@ -223,7 +160,7 @@ void C_Animative_Mesh::M_Draw_Mesh(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Animative_Mesh::m_Draw_Mesh_Do_Not_Set_Material(void)
 {
-	mpr_variable.vertex_setting.M_Draw_All_Vertex();
+	mpr_variable.m_vertex_index_system.M_Draw_Index_Data();
 
 	return;
 }
