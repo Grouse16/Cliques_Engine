@@ -124,6 +124,22 @@ void C_Vertex_Index_System::M_Create_Index_Buffer_By_Now_Index_Data(void)
 }
 
 
+//-☆- 削除 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：頂点インデックスデータのみを削除する　＊頂点インデックスバッファは削除しない
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Vertex_Index_System::M_Delete_Index_Data(void)
+{
+	mpr_variable.m_index_data.clear();
+	mpr_variable.m_index_data.shrink_to_fit();
+
+	return;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

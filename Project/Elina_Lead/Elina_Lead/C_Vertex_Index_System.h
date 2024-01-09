@@ -71,6 +71,12 @@ namespace RENDERING::CAPSULE
 		void M_Create_Index_Buffer_By_Now_Index_Data(void);
 
 
+		//-☆- 削除 -☆-//
+
+		// 頂点インデックスデータのみを削除する　＊頂点インデックスバッファは削除しない
+		void M_Delete_Index_Buffer(void);
+
+
 		//-☆- ゲッタ -☆-//
 
 		// 頂点インデックスデータの参照を返す　戻り値：頂点インデックスデータの参照

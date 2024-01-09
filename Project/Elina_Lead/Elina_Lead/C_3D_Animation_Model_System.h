@@ -113,7 +113,7 @@ namespace ASSET::ANIMATION_MODEL
 		//-☆- 定数バッファ -☆-//
 
 		// ボーンのマトリクスをマテリアルにセットする　引数：セットするボーンマトリクス配列の参照(const)
-		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4>&);
+		void M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & );
 
 		// ワールド ビュー プロジェクションをメインカメラを元に定数バッファにセットする　引数：トランスフォームの参照（const）
 		void M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & );
