@@ -43,13 +43,13 @@ const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_Animation_Model_User:
 		// ☆ 変数宣言 ☆ //
 		std::string print_log = "モデル名：" + mpr_variable.model_name + "\n指定された名前のアニメーションデータが見つかりませんでした：" + in_animation_name + "\n現在ののアニメーション一覧：";	// 出力するログ
 
-		const std::vector<ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System::S_Animation_Data_Inform>& animation_list = mpr_variable.animation_model->M_Get_Animation_Inform_List();	// アニメーションデータのリスト
+		const std::vector<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> & animation_list = mpr_variable.animation_model->M_Get_Animation_Inform_List();	// アニメーションデータのリスト
 
 
 		// アニメーション名を記録
-		for (const ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System::S_Animation_Data_Inform& now_animation : animation_list)
+		for (const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System & now_animation : animation_list)
 		{
-			print_log += "\n" + now_animation.name;
+			print_log += "\n" + now_animation.M_Get_Name();
 		}
 
 		// ログを出力し全ての実行を停止する

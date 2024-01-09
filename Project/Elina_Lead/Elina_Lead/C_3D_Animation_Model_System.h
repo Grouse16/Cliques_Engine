@@ -15,6 +15,8 @@
 #include "S_Bone_Inform.h"
 #include "C_Animation_Data_System.h"
 #include "C_Transform.h"
+#include "C_Object_Vertex_System.h"
+#include "S_3D_Animation_Model_Vertex.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -27,28 +29,6 @@ namespace ASSET::ANIMATION_MODEL
 	// アニメーションモデルのシステム
 	class C_3D_Animation_Model_System
 	{
-		//==☆ パブリック ☆==//
-	public:
-
-		// ☆ 構造体 ☆ //
-
-		// メッシュを管理するためのデータの構造体
-		struct S_Animative_Mesh_Data_Inform
-		{
-			std::unique_ptr<ASSET::ANIMATION::MESH::C_Animative_Mesh> mesh_data = nullptr;	// メッシュデータ
-
-			std::string name = "default";	// メッシュ名
-		};
-
-		// アニメーションを管理するためのデータの構造体
-		struct S_Animation_Data_Inform
-		{
-			std::unique_ptr<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> animation_data = nullptr;	// アニメーションデータ
-
-			std::string name = "default";	// アニメーションデータ名
-		};
-
-
 		//==☆ プライベート ☆==//
 	private:
 
@@ -57,11 +37,13 @@ namespace ASSET::ANIMATION_MODEL
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::vector<S_Animative_Mesh_Data_Inform> mesh_inform_list;	// メッシュの管理用情報リスト
+			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Animation_Model_Vertex> vertex_system;	// 頂点データを管理するクラス
+
+			std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> mesh_list;	// メッシュデータ
 
 			std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> bone_list;	// ボーン情報のリスト
 
-			std::vector<S_Animation_Data_Inform> animation_data_list;	// アニメーションデータのリスト
+			std::vector<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> animation_data_list;	// アニメーションデータのリスト
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -98,13 +80,16 @@ namespace ASSET::ANIMATION_MODEL
 		ASSET::ANIMATION::MESH::C_Animative_Mesh * M_Get_Mesh_Data_By_Name(std::string);
 
 		// メッシュ情報のリストの参照を返す　戻り値：メッシュ情報のリストの参照
-		std::vector<S_Animative_Mesh_Data_Inform> & M_Get_Mesh_Inform_List(void);
+		std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> & M_Get_Mesh_Inform_List(void);
 
 		// 指定された名前のアニメーションデータ情報のアドレスを返す　引数：探すアニメーションデータの名前　戻り値：名前が一致したアニメーションのアドレス、一致しなかったらnullptrを返す
 		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Animation_Data_By_Name(std::string);
 
-		// アニメーション情報のリストの参照を返す　戻り値：アニメーション情報のリストの参照
-		const std::vector<S_Animation_Data_Inform> & M_Get_Animation_Inform_List(void);
+		// アニメーションシステムのリストの参照を返す　戻り値：アニメーションシステムのリストの参照
+		const std::vector<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> & M_Get_Animation_Inform_List(void);
+
+		// 指定された名前のボーン情報のアドレスを返す　引数：探すボーンの名前　戻り値：名前が一致したボーンのアドレス、一致しなかったらnullptrを返す
+		const ASSET::ANIMATION::BONE::S_Bone_Inform* M_Get_Bone_Inform_By_Name(std::string);
 
 		// ボーン情報のリストを返す　戻り値：ボーン情報のリストの参照(const)
 		const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & M_Get_Bone_Inform_List(void);

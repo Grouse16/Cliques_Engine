@@ -8,6 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_3D_Animation_Model_System.h"
 #include "C_Main_Camera.h"
+#include "C_Animation_Model_Loader.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -55,12 +56,16 @@ C_3D_Animation_Model_System::~C_3D_Animation_Model_System(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_3D_Animation_Model_System::M_Release(void)
 {
-	for (S_Animative_Mesh_Data_Inform & mesh_data : mpr_variable.mesh_inform_list)
-	{
-		mesh_data.mesh_data.reset();
-	}
-	mpr_variable.mesh_inform_list.clear();
-	mpr_variable.mesh_inform_list.shrink_to_fit();
+	mpr_variable.mesh_list.clear();
+	mpr_variable.mesh_list.shrink_to_fit();
+
+	mpr_variable.bone_list.clear();
+	mpr_variable.bone_list.shrink_to_fit();
+
+	mpr_variable.vertex_system.M_Release();
+
+	mpr_variable.animation_data_list.clear();
+	mpr_variable.animation_data_list.shrink_to_fit();
 
 	return;
 }
@@ -76,243 +81,47 @@ void C_3D_Animation_Model_System::M_Release(void)
 bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string in_3d_animation_model_path)
 {
 	// ☆ 変数宣言 ☆ //
-	SYSTEM::TEXT::C_Text_And_File_Manager file_data;	// ファイルのデータを読み取るシステム
-
-
-	// 指定されたファイルをロード　ロードに失敗時はエラーを出して抜ける
-	if (file_data.M_Load_Select_File(in_3d_animation_model_path) == false)
-	{
-#ifdef _DEBUG
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "ファイルの取得に失敗しました：" + in_3d_animation_model_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
-
-		return false;
-	}
-
-	// 認証名を探索する
-	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELANMMDL") == false)
-	{
-#ifdef _DEBUG
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmmdl形式ではありません：" + in_3d_animation_model_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
-
-		return false;
-	}
+	SYSTEM::TEXT::C_Text_And_File_Manager load_file;	// ファイルをロードするためのクラス
 
 
 	// 現在持っているアニメーションモデルデータは削除する
 	M_Release();
 
 
-	// メッシュデータ数を取得
-	file_data.M_Goto_Right_By_Text_In_Front_Row("MESHSUM:");
-	mpr_variable.mesh_inform_list.resize(file_data.M_Get_Number());
-
-
-	// ボーン数を取得しその数分ボーンを生成
-	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
-	mpr_variable.bone_list.resize(file_data.M_Get_Number());
-
-
-	// ボーンデータ分読み取る
-	for (ASSET::ANIMATION::BONE::S_Bone_Inform & bone_inform : mpr_variable.bone_list)
+	// アニメーションモデルをロードする、失敗したらエラーで抜ける
+	if (ASSET::ANIMATION_MODEL::LOADER::C_Animation_Model_Loader::M_Load_Animation_Model_File(in_3d_animation_model_path, load_file) == false)
 	{
-		// 現在のボーンのデータまで移動
-		file_data.M_Move_Next_Raw();
-
-		// ボーン名を取得
-		bone_inform.bone_name = file_data.M_Get_Data_By_Text("/");
-
-		// オフセットマトリクスA１をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._11 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスA２をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._12 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスA３をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._13 = (float)file_data.M_Get_Float_Double_Number();
-		
-		// オフセットマトリクスA４をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._14 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスB１をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._21 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスB２をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._22 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスB３をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._23 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスB４をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._24 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスC１をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._31 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスC２をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._32 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスC３をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._33 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスC４をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._34 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスD１をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._41 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスD２をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._42 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスD３をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._43 = (float)file_data.M_Get_Float_Double_Number();
-
-		// オフセットマトリクスD４をロード
-		file_data.M_Goto_Right_By_Text_In_Front_Sentence(":");
-		bone_inform.offset_matrix._44 = (float)file_data.M_Get_Float_Double_Number();
+		return false;
 	}
 
-
-	// メッシュデータ分読み取る
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	// 頂点データをロードする、失敗したらエラーで抜ける
+	if (ASSET::ANIMATION_MODEL::LOADER::C_Animation_Model_Loader::M_Load_Animation_Model_Vertex(load_file, mpr_variable.vertex_system) == false)
 	{
-		// メッシュの位置へ移動
-		file_data.M_Goto_Right_By_Text_In_Front_Row("MESH:");
-
-		// メッシュ名を取得
-		file_data.M_Move_Next_Raw();
-		now_mesh_inform.name = file_data.M_Get_Data_Now_Row();
-
-		// メッシュデータを生成
-		now_mesh_inform.mesh_data.reset(new ASSET::ANIMATION::MESH::C_Animative_Mesh());
-
-		// メッシュのマテリアルをロード　ロード失敗でエラーを出して抜ける
-		file_data.M_Move_Raw_By_Number(2);
-		file_data.M_Goto_Column_By_Set_Number(0);
-		if (now_mesh_inform.mesh_data->M_Load_Material_By_Name(file_data.M_Get_Data_Now_Row()) == false)
-		{
-#ifdef _DEBUG
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "マテリアルのロードに失敗しました。アニメーション用モデル：" + in_3d_animation_model_path);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
-
-			return false;
-		}
-
-		// 頂点数を取得し、頂点データを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("VERT:");
-		now_mesh_inform.mesh_data->M_Create_Vertex_List((int)file_data.M_Get_Number());
-
-		// 頂点データをロード
-		for (DATA::VERTEX::S_3D_Animation_Model_Vertex & now_vertex_data : now_mesh_inform.mesh_data->M_Get_Vertex_Data_List())
-		{
-			// 現在の頂点データまで移動
-			file_data.M_Move_Next_Raw();
-
-			// 頂点座標のロード
-			now_vertex_data.vertex.x = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.y = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.vertex.z = (float)file_data.M_Get_Float_Double_Number();
-
-			// UV座標のロード
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.uv.u = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.uv.v = (float)file_data.M_Get_Float_Double_Number();
-
-			// 色のロード
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.color.m_r = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_g = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_b = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.color.m_a = (float)file_data.M_Get_Float_Double_Number();
-
-			// 法線ベクトルのロード
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.normal.x = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.y = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.normal.z = (float)file_data.M_Get_Float_Double_Number();
-
-			// タンジェントベクトルのロード
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.tangent.x = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.y = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.tangent.z = (float)file_data.M_Get_Float_Double_Number();
-
-			// バイノーマルタンジェントベクトル（従法線ベクトル）のロード
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-			now_vertex_data.binormal_tangent.x = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.y = (float)file_data.M_Get_Float_Double_Number();
-			file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			now_vertex_data.binormal_tangent.z = (float)file_data.M_Get_Float_Double_Number();
-
-			// ボーンウェイト（ボーン影響値）情報の位置へ移動
-			file_data.M_Goto_Right_By_Text_In_Front_Column(":");
-
-			// ボーンウェイト情報の終了の記号がくるか、４回繰り返すまで、ボーンウェイト情報をロードし続ける
-			for (int loop_cnt = 0; loop_cnt < DATA::VERTEX::con_BONE_WEIGHT_INDEX_SUM || file_data.M_Get_Text_Of_Now_Position() != ':'; loop_cnt++)
-			{
-				now_vertex_data.bone_weight[loop_cnt].bone_index = (int)file_data.M_Get_Number();
-				file_data.M_Goto_Right_By_Text_In_Front_Column("/");
-				now_vertex_data.bone_weight[loop_cnt].weight = (float)file_data.M_Get_Float_Double_Number();
-				file_data.M_Goto_Right_By_Text_In_Front_Column(",");
-			}
-		}
-
-		// 頂点インデックス数を取得して、頂点インデックスデータを生成
-		file_data.M_Goto_Right_By_Text_In_Front_Row("INDEX:");
-		now_mesh_inform.mesh_data->M_Create_Index_List((int)file_data.M_Get_Number());
-
-		// 頂点インデックスデータをロード
-		for (unsigned __int32 & now_index_data : now_mesh_inform.mesh_data->M_Get_Index_Data_List())
-		{
-			file_data.M_Move_Next_Raw();
-			now_index_data = (unsigned int)file_data.M_Get_Number();
-		}
-
-		// 頂点と頂点インデックス情報分のバッファを生成し、データをバッファにセット、その後データは使用しないので削除（バッファは残る）
-		now_mesh_inform.mesh_data->M_Create_Vertex_Buffer_And_Index_Buffer();
-		now_mesh_inform.mesh_data->M_Attach_Vertex_Data_To_Buffer();
-		now_mesh_inform.mesh_data->M_Attach_Index_Data_To_Buffer();
-		now_mesh_inform.mesh_data->M_Delete_Vertex_Data();
-		now_mesh_inform.mesh_data->M_Delete_Index_Data();
+		return false;
 	}
+
+	// ボーンデータをロードする、失敗したらエラーで抜ける
+	if (ASSET::ANIMATION_MODEL::LOADER::C_Animation_Model_Loader::M_Load_Animation_Model_Bone(load_file, mpr_variable.bone_list) == false)
+	{
+		return false;
+	}
+
+	// メッシュデータをロードする、失敗したらエラーで抜ける
+	if (ASSET::ANIMATION_MODEL::LOADER::C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(load_file, mpr_variable.mesh_list) == false)
+	{
+		return false;
+	}
+
 
 	// ロードに成功、デバッグ時は成功ログを表示
 #ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "アニメーション用モデルのロードに成功しました：" + in_3d_animation_model_path);
+	DEBUGGER::LOG::C_Log_System::M_Print_Log
+	(
+		DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
+		DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT,
+		"アニメーション用モデルのロードに成功しました：" + in_3d_animation_model_path
+	);
 #endif // _DEBUG
 
 	return true;
@@ -327,9 +136,9 @@ bool C_3D_Animation_Model_System::M_Load_3D_Animation_Model_By_Path(std::string 
 bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_animation_data_name)
 {
 	// すでにロードされているなら何もしない
-	for (S_Animation_Data_Inform & now_animation_data : mpr_variable.animation_data_list)
+	for (ASSET::ANIMATION_SYSTEM::C_Animation_Data_System & now_animation_data : mpr_variable.animation_data_list)
 	{
-		if (now_animation_data.name == in_animation_data_name)
+		if (now_animation_data.M_Get_Name() == in_animation_data_name)
 		{
 			return true;
 		}
@@ -344,14 +153,13 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 
 	// アニメーションデータをロードする　失敗でfalseを返して抜ける
 	mpr_variable.animation_data_list.resize(new_animation_data_number + 1);
-	mpr_variable.animation_data_list[new_animation_data_number].animation_data.reset(new ASSET::ANIMATION_SYSTEM::C_Animation_Data_System());
-	if (mpr_variable.animation_data_list[new_animation_data_number].animation_data->M_Load_Animation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
+	if (mpr_variable.animation_data_list[new_animation_data_number].M_Load_Animation_Data_By_Path(load_path, mpr_variable.bone_list) == false)
 	{
 		return false;
 	}
 
 	// アニメーションデータ名を設定
-	mpr_variable.animation_data_list[new_animation_data_number].name = in_animation_data_name;
+	mpr_variable.animation_data_list[new_animation_data_number].M_Set_Name(in_animation_data_name);
 
 	// ロードに成功
 	return true;
@@ -368,11 +176,11 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 ASSET::ANIMATION::MESH::C_Animative_Mesh * C_3D_Animation_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
 {
 	// 一致するメッシュ名を探し、あればそのアドレスを返す
-	for (S_Animative_Mesh_Data_Inform & now_mesh_data : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_data : mpr_variable.mesh_list)
 	{
-		if (now_mesh_data.name == in_mesh_name)
+		if (now_mesh_data.M_Get_Name() == in_mesh_name)
 		{
-			return now_mesh_data.mesh_data.get();
+			return &now_mesh_data;
 		}
 	}
 
@@ -384,11 +192,11 @@ ASSET::ANIMATION::MESH::C_Animative_Mesh * C_3D_Animation_Model_System::M_Get_Me
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：メッシュ情報のリストの参照を返す
 // 引数   ：void
-// 戻り値 ：vector<C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform> & メッシュ情報のリストの参照
+// 戻り値 ：vector<C_Animative_Mesh> & メッシュ情報のリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform> &  C_3D_Animation_Model_System::M_Get_Mesh_Inform_List(void)
+std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> &  C_3D_Animation_Model_System::M_Get_Mesh_Inform_List(void)
 {
-	return mpr_variable.mesh_inform_list;
+	return mpr_variable.mesh_list;
 }
 
 
@@ -400,11 +208,11 @@ std::vector<C_3D_Animation_Model_System::S_Animative_Mesh_Data_Inform> &  C_3D_A
 const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_3D_Animation_Model_System::M_Get_Animation_Data_By_Name(std::string in_animation_data)
 {
 	// 一致するアニメーションデータ名を探し、あればそのアドレスを返す
-	for (S_Animation_Data_Inform & now_animation_data : mpr_variable.animation_data_list)
+	for (ASSET::ANIMATION_SYSTEM::C_Animation_Data_System & now_animation_data : mpr_variable.animation_data_list)
 	{
-		if (now_animation_data.name == in_animation_data)
+		if (now_animation_data.M_Get_Name() == in_animation_data)
 		{
-			return now_animation_data.animation_data.get();
+			return &now_animation_data;
 		}
 	}
 
@@ -414,13 +222,34 @@ const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * C_3D_Animation_Model_Sy
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：アニメーションデータの情報のリストの参照を返す
+// 詳細   ：アニメーションシステムのリストの参照を返す
 // 引数   ：void
-// 戻り値 ：const vector<C_3D_Animation_Model_System::S_Animation_Data_Inform> & アニメーションデータの情報のリストの参照
+// 戻り値 ：const vector<C_Animation_Data_System> & アニメーションシステムのリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const std::vector<C_3D_Animation_Model_System::S_Animation_Data_Inform> & C_3D_Animation_Model_System::M_Get_Animation_Inform_List(void)
+const std::vector<ASSET::ANIMATION_SYSTEM::C_Animation_Data_System> & C_3D_Animation_Model_System::M_Get_Animation_Inform_List(void)
 {
 	return mpr_variable.animation_data_list;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のボーンを返す
+// 引数   ：void
+// 戻り値 ：string ボーン名
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+const ASSET::ANIMATION::BONE::S_Bone_Inform * C_3D_Animation_Model_System::M_Get_Bone_Inform_By_Name(std::string in_bone_name)
+{
+	// 一致するボーン名を探し、あればそのアドレスを返す
+	for (ASSET::ANIMATION::BONE::S_Bone_Inform & now_bone_inform : mpr_variable.bone_list)
+	{
+		if (now_bone_inform.bone_name == in_bone_name)
+		{
+			return &now_bone_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
 }
 
 
@@ -444,10 +273,13 @@ const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & C_3D_Animation_Model_
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_3D_Animation_Model_System::M_Draw_3D_Model(void)
 {
+	// 頂点をセット
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
+
 	// 全てのメッシュを描画
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		now_mesh_inform.mesh_data->M_Draw_Mesh();
+		now_mesh_inform.M_Draw_Mesh();
 	}
 
 	return;
@@ -461,12 +293,15 @@ void C_3D_Animation_Model_System::M_Draw_3D_Model(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
 {
+	// 頂点をセット
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
+
 	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		if (now_mesh_inform.name == in_draw_mesh_name)
+		if (now_mesh_inform.M_Get_Name() == in_draw_mesh_name)
 		{
-			now_mesh_inform.mesh_data->M_Draw_Mesh();
+			now_mesh_inform.M_Draw_Mesh();
 		}
 	}
 
@@ -481,10 +316,13 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_3D_Animation_Model_System::M_Draw_3D_Model_Do_Not_Use_Material(void)
 {
+	// 頂点をセット
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
+
 	// 全てのメッシュを描画
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
+		now_mesh_inform.M_Draw_Mesh_Do_Not_Set_Material();
 	}
 
 	return;
@@ -498,12 +336,15 @@ void C_3D_Animation_Model_System::M_Draw_3D_Model_Do_Not_Use_Material(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in_draw_mesh_name)
 {
+	// 頂点をセット
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
+
 	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
-	for (S_Animative_Mesh_Data_Inform & now_mesh_inform : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		if (now_mesh_inform.name == in_draw_mesh_name)
+		if (now_mesh_inform.M_Get_Name() == in_draw_mesh_name)
 		{
-			now_mesh_inform.mesh_data->m_Draw_Mesh_Do_Not_Set_Material();
+			now_mesh_inform.M_Draw_Mesh_Do_Not_Set_Material();
 		}
 	}
 
@@ -531,9 +372,9 @@ void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::X
 	}
 
 	// 全てのメッシュにボーンをセットする
-	for (S_Animative_Mesh_Data_Inform& now_mesh_inform : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		now_mesh_inform.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_Bone_Matrix(in_bone_matrix_list);
+		now_mesh_inform.M_Get_Material_User().M_Get_Material_Address()->M_Set_Bone_Matrix(in_bone_matrix_list);
 	}
 
 	return;
@@ -561,9 +402,9 @@ void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera_B
 	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
 
 	// 全てのメッシュのマテリアルにトランスフォームをセット
-	for (S_Animative_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh : mpr_variable.mesh_list)
 	{
-		now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
+		now_mesh.M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}
 
 	return;
@@ -591,9 +432,9 @@ void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera_B
 	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
 
 	// 全てのメッシュのマテリアルにトランスフォームをセット
-	for (S_Animative_Mesh_Data_Inform & now_mesh : mpr_variable.mesh_inform_list)
+	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh : mpr_variable.mesh_list)
 	{
-		now_mesh.mesh_data->M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
+		now_mesh.M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}
 
 	return;

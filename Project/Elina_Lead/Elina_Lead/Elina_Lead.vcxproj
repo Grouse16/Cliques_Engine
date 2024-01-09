@@ -171,7 +171,6 @@
     <ClInclude Include="E_DX12_PARAMATOR.h" />
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
-    <ClInclude Include="S_Animation_Model_Load_Information.h" />
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Index_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Render_Screen_Inform.h" />

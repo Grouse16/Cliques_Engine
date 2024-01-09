@@ -337,6 +337,34 @@ void C_Animation_Data_System::M_Release(void)
 }
 
 
+//-☆- セット -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションデータの名前を設定する
+// 引数   ：string アニメーションデータの名前
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Animation_Data_System::M_Set_Name(std::string in_set_name)
+{
+	mpr_variable.name = in_set_name;
+
+	return;
+}
+
+
+//-☆- ゲット -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：アニメーションデータの名前を返す
+// 引数   ：void
+// 戻り値 ：string アニメーションデータの名前
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+std::string C_Animation_Data_System::M_Get_Name(void) const
+{
+	return mpr_variable.name;
+}
+
+
 //-☆- ロード -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -430,7 +458,7 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			{
 				if (in_bone_inform_list[now_bone_index].bone_name == now_bone_name)
 				{
-					now_bone_key.bone_index = now_bone_index;
+					now_bone_key.attach_bone_index = now_bone_index;
 
 					now_bone_number = now_bone_index;
 
@@ -635,21 +663,21 @@ void C_Animation_Data_System::M_Create_Bone_Matrix_List(std::vector<DirectX::XMF
 	for (int l_now_bone = 0; l_now_bone < animation_bone_sum; l_now_bone++)
 	{
 		// アニメーションによるマトリクスを生成
-		in_bone_data_list[l_now_bone].M_Set_Bone_Matrix_Data(out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index]);
+		in_bone_data_list[l_now_bone].M_Convert_Bone_Data_To_Matrix(out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].attach_bone_index]);
 
 		// オフセット行列を掛ける
 		DirectX::XMStoreFloat4x4
 		(
 			// 設定先のマトリクス
-			&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index],
+			&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].attach_bone_index],
 
 			// 掛ける
 			DirectX::XMMatrixMultiply
 			(
 				DirectX::XMLoadFloat4x4
 				(
-					&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index]),
-					DirectX::XMLoadFloat4x4(&in_bone_offset_matrix_list[mpr_variable.bone_key_list[l_now_bone].bone_index].offset_matrix
+					&out_set_matrix_list[mpr_variable.bone_key_list[l_now_bone].attach_bone_index]),
+					DirectX::XMLoadFloat4x4(&in_bone_offset_matrix_list[mpr_variable.bone_key_list[l_now_bone].attach_bone_index].offset_matrix
 				)
 			)
 		);

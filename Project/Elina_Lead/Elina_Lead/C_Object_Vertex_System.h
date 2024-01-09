@@ -97,7 +97,7 @@ namespace RENDERING::CAPSULE
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		// 詳細   ：頂点情報を生成する
-		// 引数   ：int 生成する頂点数, int 生成するインデックス情報数
+		// 引数   ：int 生成する頂点数
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		void M_Create_Vertex_Data_And_Buffer(int in_creat_vertex_sum)
@@ -117,14 +117,14 @@ namespace RENDERING::CAPSULE
 
 
 			// ☆ レンダリング用頂点情報の生成 ☆ //
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
+			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_vertex_buffer, creat_vertex_inform);
 
 			return;
 		}
 
 
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-		// 詳細   ：現在の頂点とインデックスの数に合わせてバッファを生成する
+		// 詳細   ：現在の頂点の数に合わせてバッファを生成する
 		// 引数   ：void
 		// 戻り値 ：void
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

@@ -11,6 +11,8 @@
 
 
 // ☆ ファイルひらき ☆ //
+#include <string>
+
 #include "C_Vertex_Index_System.h"
 #include "C_Material_User.h"
 
@@ -33,9 +35,11 @@ namespace ASSET::ANIMATION::MESH
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			RENDERING::CAPSULE::C_Vertex_Index_System m_vertex_index_system;	// 頂点インデックスシステム
+			RENDERING::CAPSULE::C_Vertex_Index_System vertex_index_system;	// 頂点インデックスシステム
 
 			ASSET::MATERIAL::C_Material_User material;	// マテリアルデータ
+
+			std::string name = "default";	// メッシュ名
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -75,6 +79,12 @@ namespace ASSET::ANIMATION::MESH
 		bool M_Load_Material_By_Name(std::string);
 
 
+		//-☆- セッタ -☆-//
+
+		// メッシュ名を設定する　引数：メッシュ名
+		void M_Set_Name(std::string);
+
+
 		//-☆- ゲッタ -☆-//
 
 		// 頂点インデックスデータのリストの参照を返す　戻り値：頂点インデックスデータのリストの参照
@@ -83,6 +93,9 @@ namespace ASSET::ANIMATION::MESH
 		// 現在のマテリアルユーザーの参照を返す　戻り値：マテリアルユーザーの参照を返す
 		ASSET::MATERIAL::C_Material_User & M_Get_Material_User(void);
 
+		// メッシュ名を返す　戻り値：メッシュ名
+		std::string M_Get_Name(void);
+
 
 		//-☆- 描画 -☆-//
 
@@ -90,7 +103,7 @@ namespace ASSET::ANIMATION::MESH
 		void M_Draw_Mesh(void);
 
 		// マテリアルの設定をせずに面の描画のみ行う（外部でマテリアルを設定してから描画するとき用）
-		void m_Draw_Mesh_Do_Not_Set_Material(void);
+		void M_Draw_Mesh_Do_Not_Set_Material(void);
 	};
 }
 

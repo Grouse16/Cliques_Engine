@@ -33,6 +33,23 @@ C_Vertex_Index_System::C_Vertex_Index_System(void)
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：コピーコンストラクタ
+// 引数   ：const C_Vertex_Index_System & コピーするデータの参照(const)
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Vertex_Index_System::C_Vertex_Index_System(const C_Vertex_Index_System & in_copy_data)
+{
+	// 頂点インデックスバッファをコピーする
+	mpr_variable.m_index_buffer.reset(in_copy_data.mpr_variable.m_index_buffer.get());
+
+	// 頂点インデックスデータをコピーする
+	mpr_variable.m_index_data = in_copy_data.mpr_variable.m_index_data;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：デストラクタ
 // 引数   ：void
 // 戻り値 ：なし
@@ -79,7 +96,7 @@ void C_Vertex_Index_System::M_Create_Index_Buffer(int in_index_sum)
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Index_Inform(mpr_variable.m_index_buffer, creat_index_inform);
 
 	
-	// 頂点データを生成する
+	// 頂点インデックスデータを生成する
 	mpr_variable.m_index_data.resize(in_index_sum);
 
 	return;
@@ -129,7 +146,7 @@ std::vector<unsigned int> & C_Vertex_Index_System::M_Get_Index_Data(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Vertex_Index_System::M_Set_Index_Data_To_Buffer(void)
 {
-	mpr_variable.m_index_buffer->M_Set_Index_Setting(&mpr_variable.m_index_data[0]);
+	mpr_variable.m_index_buffer->M_Set_Index_Setting(mpr_variable.m_index_data);
 
 	return;
 }
@@ -140,7 +157,7 @@ void C_Vertex_Index_System::M_Set_Index_Data_To_Buffer(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Vertex_Index_System::M_Draw_Index_Data(void)
+void C_Vertex_Index_System::M_Draw_Execute_By_Index_Data(void)
 {
 	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Draw_Command_By_Index_Buffer(mpr_variable.m_index_buffer);
 

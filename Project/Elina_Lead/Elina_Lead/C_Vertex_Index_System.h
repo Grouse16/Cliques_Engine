@@ -35,7 +35,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> m_index_buffer;	// 頂点インデックスバッファ設定用情報
+			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> m_index_buffer = nullptr;	// 頂点インデックスバッファ設定用情報
 
 			std::vector<unsigned int> m_index_data;	// 頂点インデックスデータ
 
@@ -51,6 +51,9 @@ namespace RENDERING::CAPSULE
 
 		// コンストラクタ
 		C_Vertex_Index_System(void);
+
+		// コピーコンストラクタ　引数：コピーするデータの参照(const)
+		C_Vertex_Index_System(const C_Vertex_Index_System & );
 
 		// デストラクタ
 		~C_Vertex_Index_System(void);
@@ -80,7 +83,7 @@ namespace RENDERING::CAPSULE
 		void M_Set_Index_Data_To_Buffer(void);
 
 		// 頂点インデックスデータを使用して描画する
-		void M_Draw_Index_Data(void);
+		void M_Draw_Execute_By_Index_Data(void);
 
 		// 頂点インデックスデータを使用して描画するインデックスデータの範囲を指定して描画する　引数：描画するインデックスデータの開始位置、描画するインデックスデータの終了位置
 		void M_Draw_Index_Data_By_Index_Data_Range(int, int);

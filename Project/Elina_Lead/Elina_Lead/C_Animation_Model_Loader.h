@@ -11,7 +11,13 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "S_Animation_Model_Load_Information.h"
+#include <string>
+
+#include "C_Object_Vertex_System.h"
+#include "C_Text_And_File_Manager.h"
+#include "S_3D_Animation_Model_Vertex.h"
+#include "S_Bone_Inform.h"
+#include "C_Animative_Mesh.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -42,8 +48,17 @@ namespace ASSET::ANIMATION_MODEL::LOADER
 
 		//-☆- ロード -☆-//
 
-		// アニメーションモデルをロードする　引数：ロードするための情報の参照　戻り値：成功時のみtrue
-		static bool M_Load_Animation_Model(S_Animation_Model_Load_System &);
+		// 指定されたパスのファイルをロードし、アニメーションモデルのデータであるかどうかを判定する　引数：ファイルのパス, ロードした文字データの取得先の参照　戻り値：ロードに成功、かつアニメーションモデルのデータである場合のみtrue
+		static bool M_Load_Animation_Model_File(std::string, SYSTEM::TEXT::C_Text_And_File_Manager & );
+
+		// アニメーションモデルの頂点データをロードする　引数：モデルファイルのデータ, ロード先の頂点データの参照　戻り値：成功時のみtrue
+		static bool M_Load_Animation_Model_Vertex(SYSTEM::TEXT::C_Text_And_File_Manager & , RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Animation_Model_Vertex> & );
+
+		// アニメーションモデルのボーンデータをロードする　引数：モデルファイルのデータ, ロード先のボーンデータの参照　戻り値：成功時のみtrue
+		static bool M_Load_Animation_Model_Bone(SYSTEM::TEXT::C_Text_And_File_Manager & , std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & );
+
+		// アニメーションモデルのメッシュデータをロードする　引数：モデルファイルのデータ, ロード先のメッシュデータの参照　戻り値：成功時のみtrue
+		static bool M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_And_File_Manager & , std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> & );
 	};
 }
 

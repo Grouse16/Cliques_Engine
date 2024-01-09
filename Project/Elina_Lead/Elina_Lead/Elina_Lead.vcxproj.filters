@@ -1197,9 +1197,6 @@
     <ClInclude Include="C_Animation_Model_Loader.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ロードシステム</Filter>
     </ClInclude>
-    <ClInclude Include="S_Animation_Model_Load_Information.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ロードシステム</Filter>
-    </ClInclude>
     <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\定数バッファ</Filter>
     </ClInclude>

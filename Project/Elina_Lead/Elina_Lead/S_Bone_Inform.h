@@ -23,13 +23,14 @@ namespace ASSET::ANIMATION::BONE
 	// ボーンの情報の構造体
 	struct S_Bone_Inform
 	{
-		//==☆ パブリック ☆==//
-	public:
-
 		// ☆ 変数宣言 ☆ //
+		DirectX::XMFLOAT4X4 offset_matrix = DirectX::XMFLOAT4X4();	// オフセットマトリクス行列
+
 		std::string bone_name = "default";	// ボーン名
 
-		DirectX::XMFLOAT4X4 offset_matrix = DirectX::XMFLOAT4X4();	// オフセットマトリクス行列
+		std::vector<int> children_bone_index_list;	// 子ボーンのインデックスのリスト
+
+		int parent_bone_index = -1;	// 親ボーンのインデックス
 	};
 }
 

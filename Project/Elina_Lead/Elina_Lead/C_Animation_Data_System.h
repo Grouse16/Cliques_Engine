@@ -39,7 +39,7 @@ namespace ASSET::ANIMATION_SYSTEM
 		{
 			ASSET::ANIMATION::BONE::S_Bone_Key_Frame_List key;	// ボーンのキー情報のリスト
 
-			int bone_index = 0;	// ボーンのインデックス番号
+			int attach_bone_index = 0;	// 設定先のボーンのインデックス番号
 		};
 
 
@@ -51,6 +51,8 @@ namespace ASSET::ANIMATION_SYSTEM
 			std::vector<S_Bone_Key_Inform> bone_key_list;	// ボーンのキー情報のリスト
 
 			std::vector<int> use_offset_bone_list;	// オフセットマトリクスを使用するボーンのインデックス番号のリスト
+
+			std::string name = "default";	// アニメーションデータ名
 
 			float animation_end_time = 0.0f;	// アニメーションの終了時間
 
@@ -95,6 +97,18 @@ namespace ASSET::ANIMATION_SYSTEM
 
 		// メモリの解放を行う
 		void M_Release(void);
+
+
+		//-☆- セッタ -☆-//
+
+		// アニメーションデータ名を設定する　引数：アニメーションデータ名
+		void M_Set_Name(std::string);
+
+
+		//-☆- ゲッタ -☆-//
+
+		// アニメーションデータ名を返す　戻り値：アニメーションデータ名
+		std::string M_Get_Name(void) const;
 
 		
 		//-☆- ロード -☆-//

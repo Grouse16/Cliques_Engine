@@ -2551,7 +2551,7 @@ void C_DX12_System::M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer(void)
 // 引数   ：unique_ptr<C_Rendering_Screen_System_Base> & 設定先のレンダリング画面の参照, S_Create_Render_Screen_Inform & レンダリング画面を生成するための情報の参照（const）
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Create_Rendering_Screen(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>& in_set_rendering_screen, const RENDERING::GRAPHICS::CREATE::S_Create_Render_Screen_Inform& in_create_screen)
+bool C_DX12_System::M_Create_Rendering_Screen(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_set_rendering_screen, const RENDERING::GRAPHICS::CREATE::S_Create_Render_Screen_Inform & in_create_screen)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = new DX12INSTANCE::C_DX12_Rendering_Screen_System(); // DX12用のレンダリング画面
