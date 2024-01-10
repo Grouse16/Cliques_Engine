@@ -24,7 +24,7 @@ using namespace ASSET::ANIMATION::BONE;
 // 引数   ：XMFLOAT4X4 & 設定先のマトリクス情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Bone_Data::M_Set_Bone_Matrix_Data(DirectX::XMFLOAT4X4 & out_matrix) const
+void C_Bone_Data::M_Convert_Bone_Data_To_Matrix(DirectX::XMFLOAT4X4 & out_matrix) const
 {
     DirectX::XMStoreFloat4x4
     (

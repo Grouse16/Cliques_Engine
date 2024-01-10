@@ -38,9 +38,6 @@ namespace RENDERING::GRAPHICS::INSTANCE
 
 		// 頂点データをセットする　引数：頂点のアドレス
 		virtual void M_Set_Vertex_Setting(void * ) = 0;
-
-		// インデックスデータをセットする　引数：インデックスのアドレス
-		virtual void M_Set_Index_Setting(void * ) = 0;
 	};
 }
 

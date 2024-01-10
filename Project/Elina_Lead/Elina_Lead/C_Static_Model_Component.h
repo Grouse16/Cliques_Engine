@@ -15,7 +15,7 @@
 #include <string>
 
 #include "C_Component_Base.h"
-#include "C_3D_Model_User.h"
+#include "C_Static_Model_User.h"
 #include "C_Transform.h"
 #include "C_Material_User.h"
 #include "S_Model_Draw_Command.h"
@@ -39,7 +39,7 @@ namespace GAME::COMPONENT::MODEL_COMPONENT
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			ASSET::MODEL::C_3D_Model_User model_system;	// 3Dモデルシステム
+			ASSET::MODEL::C_Static_Model_User model_system;	// 3Dモデルシステム
 			
 			MATH::C_Transform transform;	// モデルの設置位置（ローカル座標）
 
@@ -82,7 +82,7 @@ namespace GAME::COMPONENT::MODEL_COMPONENT
 		MATH::C_Transform & M_Get_Transform(void);
 
 		// モデルシステムの参照を返す　戻り値：モデルシステムの参照
-		ASSET::MODEL::C_3D_Model_User & M_Get_Model_Address(void);
+		ASSET::MODEL::C_Static_Model_User & M_Get_Model_Address(void);
 
 
 		//-☆- 更新 -☆-//

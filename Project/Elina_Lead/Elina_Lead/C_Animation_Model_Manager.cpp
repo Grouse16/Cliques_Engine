@@ -6,7 +6,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_3D_Animation_Model_Manager.h"
+#include "C_Animation_Model_Manager.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -14,7 +14,7 @@ using namespace ASSET::ANIMATION_MODEL::MANAGER;
 
 
 // ☆ スタティック変数 ☆ //
-C_3D_Animation_Model_Manager C_3D_Animation_Model_Manager::m_this;
+C_Animation_Model_Manager C_Animation_Model_Manager::m_this;
 
 
 // ☆ 関数 ☆ //
@@ -28,7 +28,7 @@ C_3D_Animation_Model_Manager C_3D_Animation_Model_Manager::m_this;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Animation_Model_Manager::C_3D_Animation_Model_Manager(void)
+C_Animation_Model_Manager::C_Animation_Model_Manager(void)
 {
 	return;
 }
@@ -43,7 +43,7 @@ C_3D_Animation_Model_Manager::C_3D_Animation_Model_Manager(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Animation_Model_Manager::~C_3D_Animation_Model_Manager(void)
+C_Animation_Model_Manager::~C_Animation_Model_Manager(void)
 {
 	M_Release();
 
@@ -56,9 +56,9 @@ C_3D_Animation_Model_Manager::~C_3D_Animation_Model_Manager(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Animation_Model_Manager::M_Release(void)
+void C_Animation_Model_Manager::M_Release(void)
 {
-	for (S_3D_Animation_Model_Manage_Inform & in_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
+	for (S_Animation_Model_Inform & in_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
 	{
 		in_animation_model_inform.animation_model->M_Release();
 		in_animation_model_inform.animation_model.reset();
@@ -76,12 +76,12 @@ void C_3D_Animation_Model_Manager::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたアニメーションモデルを返す
 // 引数   ：string 探すアニメーションモデルの名前
-// 戻り値 ：C_3D_Animation_Model_System * 指定されたアニメーションモデルへのアドレス、なければnullptrを返す
+// 戻り値 ：C_Animation_Model_System * 指定されたアニメーションモデルへのアドレス、なければnullptrを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manager::M_Get_Animation_Model_By_Name(std::string in_search_animation_model_name)
+ASSET::ANIMATION_MODEL::C_Animation_Model_System * C_Animation_Model_Manager::M_Get_Animation_Model_By_Name(std::string in_search_animation_model_name)
 {
 	// 指定されたアニメーションモデル名と一致するアニメーションモデルのアドレスを返す
-	for (S_3D_Animation_Model_Manage_Inform & now_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
+	for (S_Animation_Model_Inform & now_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
 	{
 		if (now_animation_model_inform.name == in_search_animation_model_name)
 		{
@@ -100,9 +100,9 @@ ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manag
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションモデル名からアニメーションモデルをロードする
 // 引数   ：string ロードするアニメーションモデル名
-// 戻り値 ：C_3D_Animation_Model_System * 生成したアニメーションモデルへのアドレス
+// 戻り値 ：C_Animation_Model_System * 生成したアニメーションモデルへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manager::M_Load_Animation_Model_By_Name(std::string in_load_animation_model_name)
+ASSET::ANIMATION_MODEL::C_Animation_Model_System * C_Animation_Model_Manager::M_Load_Animation_Model_By_Name(std::string in_load_animation_model_name)
 {
 	// ☆ 変数宣言 ☆ //
 	std::string model_3d_inform_path = "project/asset/animation_model/" + in_load_animation_model_name + ".elanmmdl";	// アニメーションモデル情報へのパス
@@ -112,7 +112,7 @@ ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manag
 
 	// 新しいアニメーションモデル設定用のスロットを生成
 	m_this.mpr_variable.animation_model_inform_list.resize(animation_model_slot_num + 1);
-	m_this.mpr_variable.animation_model_inform_list[animation_model_slot_num].animation_model.reset(new ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System());
+	m_this.mpr_variable.animation_model_inform_list[animation_model_slot_num].animation_model.reset(new ASSET::ANIMATION_MODEL::C_Animation_Model_System());
 
 	// アニメーションモデル情報からアニメーションモデルをロードする、できなければfalseを返す
 	if (m_this.mpr_variable.animation_model_inform_list[animation_model_slot_num].animation_model->M_Load_3D_Animation_Model_By_Path(model_3d_inform_path) == false)
@@ -133,13 +133,13 @@ ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_3D_Animation_Model_Manag
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定されたアニメーションモデルの所有権を放棄することを通知する
-// 引数   ：C_3D_Animation_Model_System * & 所有権を放棄するアニメーションモデルのアドレスの参照
+// 引数   ：C_Animation_Model_System * & 所有権を放棄するアニメーションモデルのアドレスの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Animation_Model_Manager::M_Release_Animation_Model(ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * & in_animation_model)
+void C_Animation_Model_Manager::M_Release_Animation_Model(ASSET::ANIMATION_MODEL::C_Animation_Model_System * & in_animation_model)
 {
 	// アニメーションモデル設定名から指定された3Dモデル設定を探して、見つかったら所有されている数のカウントを減らして参照できなくする
-	for (S_3D_Animation_Model_Manage_Inform & now_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
+	for (S_Animation_Model_Inform & now_animation_model_inform : m_this.mpr_variable.animation_model_inform_list)
 	{
 		if (now_animation_model_inform.animation_model.get() == in_animation_model)
 		{
@@ -156,7 +156,7 @@ void C_3D_Animation_Model_Manager::M_Release_Animation_Model(ASSET::ANIMATION_MO
 					m_this.mpr_variable.animation_model_inform_list.end(),
 
 					// 残りの数が0になると削除するラムダ式
-					[](S_3D_Animation_Model_Manage_Inform & in_animation_model_setting)->bool
+					[](S_Animation_Model_Inform & in_animation_model_setting)->bool
 					{
 						if (in_animation_model_setting.user_sum < 1)
 						{

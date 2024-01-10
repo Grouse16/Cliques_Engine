@@ -16,6 +16,7 @@
 #include "C_UI_Component_Base.h"
 #include "C_Material_User.h"
 #include "C_Object_Vertex_System.h"
+#include "C_Vertex_Index_System.h"
 #include "S_UI_Vertex.h"
 #include "S_Rect.h"
 
@@ -41,6 +42,8 @@ namespace GAME::UI_COMPONENT
 			ASSET::MATERIAL::C_Material_User material;	// マテリアル
 
 			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_UI_Vertex> vertex_system;	// UIの頂点用のシステム
+
+			RENDERING::CAPSULE::C_Vertex_Index_System index_system;	// 頂点インデックスシステム
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 

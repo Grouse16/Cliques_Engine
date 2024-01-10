@@ -6,7 +6,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_3D_Model_Manager.h"
+#include "C_Static_Model_Manager.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -14,7 +14,7 @@ using namespace ASSET::MODEL::MANAGER;
 
 
 // ☆ スタティック変数 ☆ //
-C_3D_Model_Manager C_3D_Model_Manager::m_this;
+C_Static_Model_Manager C_Static_Model_Manager::m_this;
 
 
 // ☆ 関数 ☆ //
@@ -28,7 +28,7 @@ C_3D_Model_Manager C_3D_Model_Manager::m_this;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_Manager::C_3D_Model_Manager(void)
+C_Static_Model_Manager::C_Static_Model_Manager(void)
 {
 	return;
 }
@@ -43,7 +43,7 @@ C_3D_Model_Manager::C_3D_Model_Manager(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_Manager::~C_3D_Model_Manager(void)
+C_Static_Model_Manager::~C_Static_Model_Manager(void)
 {
 	M_Release();
 
@@ -56,9 +56,9 @@ C_3D_Model_Manager::~C_3D_Model_Manager(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_Manager::M_Release(void)
+void C_Static_Model_Manager::M_Release(void)
 {
-	for (S_3D_Model_Inform & now_3d_model : m_this.mpr_variable.model_list)
+	for (S_Static_Model_Inform & now_3d_model : m_this.mpr_variable.model_list)
 	{
 		now_3d_model.model_data.reset();
 	}
@@ -75,12 +75,12 @@ void C_3D_Model_Manager::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された3Dモデルを返す
 // 引数   ：string 3Dモデルの名前
-// 戻り値 ：C_3D_Model_System * 指定された3Dモデルデータへのアドレス、なければnullptrを返す
+// 戻り値 ：C_Static_Model_System * 指定された3Dモデルデータへのアドレス、なければnullptrを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Get_3D_Model_By_Name(std::string in_3D_model_name)
+ASSET::MODEL::C_Static_Model_System * C_Static_Model_Manager::M_Get_3D_Model_By_Name(std::string in_3D_model_name)
 {
 	// 指定された名前の3Dモデルを探す
-	for (S_3D_Model_Inform & model_inform : m_this.mpr_variable.model_list)
+	for (S_Static_Model_Inform & model_inform : m_this.mpr_variable.model_list)
 	{
 		if (model_inform.name == in_3D_model_name)
 		{
@@ -101,7 +101,7 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Get_3D_Model_By_Name(std
 // 引数   ：string 3Dモデル名
 // 戻り値 ：C_Material * 生成した3Dモデルデータへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(std::string in_3D_model_name)
+ASSET::MODEL::C_Static_Model_System * C_Static_Model_Manager::M_Load_3D_Model_By_Name(std::string in_3D_model_name)
 {
 	// ☆ 変数宣言 ☆ //
 	std::string model_3d_inform_path = "project/asset/model/" + in_3D_model_name + ".elsttmdl";	// 3Dモデル情報へのパス
@@ -111,7 +111,7 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(st
 
 	// 新しい3Dモデル設定用のスロットを生成
 	m_this.mpr_variable.model_list.resize(model_slot_num + 1);
-	m_this.mpr_variable.model_list[model_slot_num].model_data.reset(new ASSET::MODEL::C_3D_Model_System());
+	m_this.mpr_variable.model_list[model_slot_num].model_data.reset(new ASSET::MODEL::C_Static_Model_System());
 
 	// 3Dモデル情報から3Dモデルをロードする、できなければfalseを返す
 	if (m_this.mpr_variable.model_list[model_slot_num].model_data->M_Load_3D_Model_By_Path(model_3d_inform_path) == false)
@@ -135,10 +135,10 @@ ASSET::MODEL::C_3D_Model_System * C_3D_Model_Manager::M_Load_3D_Model_By_Name(st
 // 引数   ：string 3Dモデル名
 // 戻り値 ：C_Material * 生成した3Dモデルデータへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_Manager::M_Release_3D_Model(ASSET::MODEL::C_3D_Model_System * & in_delete_model)
+void C_Static_Model_Manager::M_Release_3D_Model(ASSET::MODEL::C_Static_Model_System * & in_delete_model)
 {
 	// 3Dモデル設定名から指定された3Dモデル設定を探して、見つかったら所有されている数のカウントを減らして参照できなくする
-	for (S_3D_Model_Inform & now_3d_model_inform : m_this.mpr_variable.model_list)
+	for (S_Static_Model_Inform & now_3d_model_inform : m_this.mpr_variable.model_list)
 	{
 		if (now_3d_model_inform.model_data.get() == in_delete_model)
 		{
@@ -155,7 +155,7 @@ void C_3D_Model_Manager::M_Release_3D_Model(ASSET::MODEL::C_3D_Model_System * & 
 					m_this.mpr_variable.model_list.end(),
 
 					// 残りの数が0になると削除するラムダ式
-					[](S_3D_Model_Inform & in_3d_model_setting)->bool
+					[](S_Static_Model_Inform & in_3d_model_setting)->bool
 					{
 						if (in_3d_model_setting.user_sum < 1)
 						{

@@ -28,14 +28,17 @@ C_UIC_Text_Box::C_UIC_Text_Box(void)
 	// ☆ 変数宣言　☆ //
 	std::vector<DATA::VERTEX::S_UI_Vertex> & vertex_list = mpr_variable.vertex_system.M_Get_Vertex_Data();	// 頂点データのリスト
 
-	std::vector<unsigned int> & index_list = mpr_variable.vertex_system.M_Get_Index_Data();	// インデックスデータのリスト
+	std::vector<unsigned int> & index_list = mpr_variable.index_system.M_Get_Index_Data();	// インデックスデータのリスト
 
 
 	// マテリアルのロード
 	mpr_variable.material.M_Load_Material("UI_Material");
 
 	// 頂点データの生成
-	mpr_variable.vertex_system.M_Create_Vertex_And_Index_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_SUM, (int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
+	mpr_variable.vertex_system.M_Create_Vertex_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_SUM);
+
+	// 頂点インデックスバッファの生成
+	mpr_variable.index_system.M_Create_Index_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
 
 
 	// インデックスデータをセットする
@@ -55,7 +58,12 @@ C_UIC_Text_Box::C_UIC_Text_Box(void)
 
 
 	// 頂点バッファにセット
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
+
+	// 頂点インデックスバッファにデータをセットし、頂点インデックスデータのみ削除
+	mpr_variable.index_system.M_Set_Index_Data_To_Buffer();
+	mpr_variable.index_system.M_Delete_Index_Data();
+
 	return;
 }
 
@@ -114,8 +122,11 @@ void C_UIC_Text_Box::M_Draw(void)
 	// マテリアルを描画に適用
 	mpr_variable.material.M_Material_Attach_To_Draw();
 
-	// 頂点を描画する
-	mpr_variable.vertex_system.M_Draw_All_Vertex();
+	// 頂点をセットする
+	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
+
+	// 頂点インデックスを描画する
+	mpr_variable.index_system.M_Draw_Execute_By_Index_Data();
 
 	return;
 }
@@ -151,7 +162,7 @@ void C_UIC_Text_Box::M_Set_UI_Position(DATA::RECTSETTING::S_Rect in_set_rect)
 	vertex_list[(int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_RIGHT_BOTTOM].position.y = in_set_rect.bottom_y / 2.0f;
 
 	// 頂点バッファにセット
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
 
 	return;
 }
@@ -175,7 +186,7 @@ void C_UIC_Text_Box::M_Set_Color(DATA::COLOR::C_Color in_set_color)
 	{
 		now_vertex.color = in_set_color;
 	}
-	mpr_variable.vertex_system.M_Vertex_Data_To_Buffer();
+	mpr_variable.vertex_system.M_Set_Vertex_Data_To_Buffer();
 
 	return;
 }

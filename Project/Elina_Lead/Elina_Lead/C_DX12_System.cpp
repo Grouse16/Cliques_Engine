@@ -1387,12 +1387,14 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_I
 }
 
 
+//-☆- 頂点インデックス -☆-//
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：インデックスバッファを生成する
-// 引数   ：C_DX12_Vertex_Setting_Inform * & セット先の頂点データ, const C_Create_Vertex_Buffer_Inform & 頂点データ生成用情報(const)
+// 詳細   ：頂点インデックスバッファを生成する
+// 引数   ：C_DX12_Index_Setting_Inform * & セット先の頂点インデックスデータ, const S_Create_Index_Buffer_Inform & 頂点インデックスデータ生成用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_Inform * & in_dx12_vertex_inform, const CREATE::S_Create_Vertex_Buffer_Inform & in_create_inform)
+void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Index_Setting_Inform * & in_dx12_index_inform, const CREATE::S_Create_Index_Buffer_Inform & in_create_inform)
 {
     // ☆ 変数宣言 ☆ //
     D3D12_HEAP_PROPERTIES heap_propertie;   // ヒープメモリの設定
@@ -1474,8 +1476,8 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
         &desc_resource,
         D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_GENERIC_READ,
         nullptr,
-        IID_PPV_ARGS(in_dx12_vertex_inform->m_index_buffer_data.GetAddressOf())))
-        || in_dx12_vertex_inform->m_index_buffer_data == nullptr
+        IID_PPV_ARGS(in_dx12_index_inform->m_index_buffer_data.GetAddressOf())))
+        || in_dx12_index_inform->m_index_buffer_data == nullptr
     )
     {
         return;
@@ -1483,17 +1485,17 @@ void C_DX12_System::M_Create_Index_Buffer(DX12INSTANCE::C_DX12_Vertex_Setting_In
 
 
     // GPUでのアドレスを入手
-    in_dx12_vertex_inform->m_index_buffer_view.BufferLocation = in_dx12_vertex_inform->m_index_buffer_data->GetGPUVirtualAddress();
+    in_dx12_index_inform->m_index_buffer_view.BufferLocation = in_dx12_index_inform->m_index_buffer_data->GetGPUVirtualAddress();
 
     // インデックスバッファのバイト数
-    in_dx12_vertex_inform->m_index_buffer_view.SizeInBytes = byte_size;
+    in_dx12_index_inform->m_index_buffer_view.SizeInBytes = byte_size;
 
     // インデックスバッファのデータ形式
-    in_dx12_vertex_inform->m_index_buffer_view.Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
+    in_dx12_index_inform->m_index_buffer_view.Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 
 
     // 生成したバッファをゼロクリアする
-    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_vertex_inform->m_index_buffer_data.Get(), desc_resource.Width);
+    M_Buffer_Zero_Clear_System<ID3D12Resource>(in_dx12_index_inform->m_index_buffer_data.Get(), desc_resource.Width);
 
     return;
 }
@@ -2549,7 +2551,7 @@ void C_DX12_System::M_Set_Main_Rendering_Screen_And_Depth_Stencil_Buffer(void)
 // 引数   ：unique_ptr<C_Rendering_Screen_System_Base> & 設定先のレンダリング画面の参照, S_Create_Render_Screen_Inform & レンダリング画面を生成するための情報の参照（const）
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_DX12_System::M_Create_Rendering_Screen(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base>& in_set_rendering_screen, const RENDERING::GRAPHICS::CREATE::S_Create_Render_Screen_Inform& in_create_screen)
+bool C_DX12_System::M_Create_Rendering_Screen(std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> & in_set_rendering_screen, const RENDERING::GRAPHICS::CREATE::S_Create_Render_Screen_Inform & in_create_screen)
 {
     // ☆ 変数宣言 ☆ //
     DX12INSTANCE::C_DX12_Rendering_Screen_System * dx12_rendering_screen = new DX12INSTANCE::C_DX12_Rendering_Screen_System(); // DX12用のレンダリング画面
@@ -2941,59 +2943,103 @@ void C_DX12_System::M_Create_Vertex_Inform(std::unique_ptr<INSTANCE::C_Rendering
     // 頂点バッファを生成
     M_Create_Vertex_Buffer(dx12_vertex_inform, in_create_inform);
 
-    // インデックスバッファの生成
-    M_Create_Index_Buffer(dx12_vertex_inform, in_create_inform);
+    return;
+}
 
-    // 描画回数をインデックスバッファ分セット
-    dx12_vertex_inform->m_draw_index_sum = in_create_inform.index_sum;
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：頂点バッファをセットする
+// 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セットする頂点データ(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Vertex_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform)
+{
+    // ☆ 変数宣言 ☆ //
+    const DX12INSTANCE::C_DX12_Vertex_Setting_Inform * dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_vertex_inform.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
+
+
+    // 頂点バッファをセットする
+    mpr_variable->s_command.list->IASetVertexBuffers(0, 1, &dx12_vertex_inform->m_vertex_buffer_view);
 
     return;
 }
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：今の描画を実行する
-// 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セットする頂点データ情報(const)
+// 詳細   ：頂点バッファを元に描画を実行する
+// 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & 描画する頂点データ(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Draw_All_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform)
+void C_DX12_System::M_Draw_Command_By_Vertex_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> & in_draw_vertex)
 {
     // ☆ 変数宣言 ☆ //
-    const DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_vertex_inform.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
+    const DX12INSTANCE::C_DX12_Vertex_Setting_Inform * dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_draw_vertex.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
 
 
-    // 頂点バッファをセットする
+    // 描画を実行する
     mpr_variable->s_command.list->IASetVertexBuffers(0, 1, &dx12_vertex_inform->m_vertex_buffer_view);
+    mpr_variable->s_command.list->DrawInstanced(dx12_vertex_inform->m_vertex_sum, 1, 0, 0);
+    
+    return;
+}
 
-    // インデックスバッファをセットする    
-    mpr_variable->s_command.list->IASetIndexBuffer(&dx12_vertex_inform->m_index_buffer_view);
 
-    // 描画を実行する（インデックスバッファ分）
-    mpr_variable->s_command.list->DrawIndexedInstanced(dx12_vertex_inform->m_draw_index_sum, 1, 0, 0, 0);
+//-☆- 頂点インデックス -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された情報を元にインデックスデータを生成する
+// 引数   ：unique_ptr<C_Rendering_Index_Buffer_Setting_Inform_Base> & 設定先のインデックス情報, const S_Create_Index_Buffer_Inform & 生成用の情報(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Create_Index_Inform(std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & in_index_data, const CREATE::S_Create_Index_Buffer_Inform & in_create_inform)
+{
+    // ☆ 変数宣言 ☆ //
+	DX12INSTANCE::C_DX12_Index_Setting_Inform * dx12_index_inform = new DX12INSTANCE::C_DX12_Index_Setting_Inform();   // DX12用のインデックス用情報
+
+
+    // 頂点インデックスバッファを生成
+    M_Create_Index_Buffer(dx12_index_inform, in_create_inform);
+
+    // データをセット
+	in_index_data.reset(dx12_index_inform);
 
     return;
 }
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：今の描画を実行する
-// 引数   ：const unique_ptr<C_Vertex_Buffer_Setting_Inform_Base> & セットする頂点データ情報(const), int 描画するインデックスの描画の開始番号, int 描画するインデックスの終了番号
+// 詳細   ：インデックスバッファを元に描画を行う
+// 引数   ：unique_ptr<C_Rendering_Index_Buffer_Setting_Inform_Base> & インデックスデータ設定用情報(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_System::M_Draw_Select_Vertex_By_Index(const std::unique_ptr<INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base>& in_vertex_inform, int start_point, int end_point)
+void C_DX12_System::M_Draw_Command_By_Index_Buffer(const std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & in_draw_index)
+{
+	// ☆ 変数宣言 ☆ //
+	const DX12INSTANCE::C_DX12_Index_Setting_Inform * dx12_index_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Index_Setting_Inform * >(in_draw_index.get());   // インデックス用情報をDX12用へキャストした結果のアドレス
+
+
+    // 描画を実行する
+    mpr_variable->s_command.list->IASetIndexBuffer(&dx12_index_inform->m_index_buffer_view);
+    mpr_variable->s_command.list->DrawIndexedInstanced(dx12_index_inform->m_index_sum, 1, 0, 0, 0);
+
+    return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：インデックスバッファを元に指定されたインデックス間の描画を行う
+// 引数   ：unique_ptr<C_Rendering_Index_Buffer_Setting_Inform_Base> & インデックスデータ設定用情報(const), int 描画を開始するインデックス番号, int 描画終了のインデックス番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Draw_Command_By_Index_Buffer_By_Range(const std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & in_index_data, int in_index_draw_start, int in_index_draw_end)
 {
     // ☆ 変数宣言 ☆ //
-    const DX12INSTANCE::C_DX12_Vertex_Setting_Inform* dx12_vertex_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Vertex_Setting_Inform*> (in_vertex_inform.get());   // 頂点用情報をDX12用へキャストした結果のアドレス
+	const DX12INSTANCE::C_DX12_Index_Setting_Inform * dx12_index_inform = reinterpret_cast<const DX12INSTANCE::C_DX12_Index_Setting_Inform * >(in_index_data.get());   // インデックス用情報をDX12用へキャストした結果のアドレス
 
 
-    // 頂点バッファをセットする
-    mpr_variable->s_command.list->IASetVertexBuffers(0, 1, &dx12_vertex_inform->m_vertex_buffer_view);
-
-    // インデックスバッファをセットする    
-    mpr_variable->s_command.list->IASetIndexBuffer(&dx12_vertex_inform->m_index_buffer_view);
-
-    // 描画を実行する（インデックスバッファ分）
-    mpr_variable->s_command.list->DrawIndexedInstanced(end_point - start_point, 1, start_point, 0, 0);
+    // 描画を実行する
+    mpr_variable->s_command.list->IASetIndexBuffer(&dx12_index_inform->m_index_buffer_view);
+    mpr_variable->s_command.list->DrawIndexedInstanced(in_index_draw_end - in_index_draw_start, 1, in_index_draw_start, 0, 0);
 
     return;
 }

@@ -6,12 +6,12 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_3D_MODEL_USER_H_FILE
-#define D_INCLUDE_GUARD_C_3D_MODEL_USER_H_FILE
+#ifndef D_INCLUDE_GUARD_C_STATIC_MODEL_USER_H_FILE
+#define D_INCLUDE_GUARD_C_STATIC_MODEL_USER_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_3D_Model_System.h"
+#include "C_Static_Model_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -22,7 +22,7 @@ namespace ASSET::MODEL
 	// ☆ クラス ☆ //
 
 	// 3Dモデルを使用するためのシステム
-	class C_3D_Model_User
+	class C_Static_Model_User
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -32,7 +32,7 @@ namespace ASSET::MODEL
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			ASSET::MODEL::C_3D_Model_System * use_model_address = nullptr;	// 使用するモデルまでのアドレス
+			ASSET::MODEL::C_Static_Model_System * use_model_address = nullptr;	// 使用するモデルまでのアドレス
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -45,10 +45,10 @@ namespace ASSET::MODEL
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_3D_Model_User(void);
+		C_Static_Model_User(void);
 
 		// デストラクタ
-		~C_3D_Model_User(void);
+		~C_Static_Model_User(void);
 
 		// マテリアルを解放する
 		void M_Release(void);
@@ -78,9 +78,9 @@ namespace ASSET::MODEL
 		//-☆- ゲッタ -☆-//
 
 		// 現在の3Dモデルを返す　戻り値：現在の3Dモデルへのアドレス
-		C_3D_Model_System * M_Get_3D_Model_Address(void);
+		C_Static_Model_System * M_Get_3D_Model_Address(void);
 	};
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_3D_MODEL_USER_H_FILE
+#endif // !D_INCLUDE_GUARD_C_STATIC_MODEL_USER_H_FILE

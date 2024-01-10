@@ -132,12 +132,11 @@
     <ClInclude Include="2D_Position_Data.h" />
     <ClInclude Include="All_Figure_Data.h" />
     <ClInclude Include="Challenge_Mode_Macro.h" />
+    <ClInclude Include="C_Animation_Model_Loader.h" />
     <ClInclude Include="C_Color.h" />
-    <ClInclude Include="C_3D_Animation_Model_Manager.h" />
-    <ClInclude Include="C_3D_Animation_Model_System.h" />
-    <ClInclude Include="C_3D_Model_Manager.h" />
-    <ClInclude Include="C_3D_Model_System.h" />
-    <ClInclude Include="C_3D_Model_User.h" />
+    <ClInclude Include="C_Animation_Model_Manager.h" />
+    <ClInclude Include="C_Animation_Model_System.h" />
+    <ClInclude Include="C_Static_Model_Manager.h" />
     <ClInclude Include="C_Actor_Base.h" />
     <ClInclude Include="C_Actor_Draw_Manager.h" />
     <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h" />
@@ -150,7 +149,6 @@
     <ClInclude Include="C_Animation_Data_System.h" />
     <ClInclude Include="C_Animation_Model_Component.h" />
     <ClInclude Include="C_Animation_Model_User.h" />
-    <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
     <ClInclude Include="C_Bone_Data.h" />
@@ -159,15 +157,22 @@
     <ClInclude Include="C_Component_Base.h" />
     <ClInclude Include="C_Depth_Stencil_Buffer_System.h" />
     <ClInclude Include="C_DX12_Depth_Stencil_Buffer_System.h" />
+    <ClInclude Include="C_DX12_Index_Setting_Inform.h" />
     <ClInclude Include="C_DX12_Rendering_Screen_System.h" />
     <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h" />
+    <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Screen_System.h" />
+    <ClInclude Include="C_Static_Model_Loader.h" />
+    <ClInclude Include="C_Static_Model_System.h" />
+    <ClInclude Include="C_Static_Model_User.h" />
+    <ClInclude Include="C_Vertex_Index_System.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
     <ClInclude Include="E_DX12_PARAMATOR.h" />
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
+    <ClInclude Include="S_Create_Index_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Render_Screen_Inform.h" />
     <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
     <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
@@ -296,11 +301,11 @@
     <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C_3D_Animation_Model_Manager.cpp" />
-    <ClCompile Include="C_3D_Animation_Model_System.cpp" />
-    <ClCompile Include="C_3D_Model_Manager.cpp" />
-    <ClCompile Include="C_3D_Model_System.cpp" />
-    <ClCompile Include="C_3D_Model_User.cpp" />
+    <ClCompile Include="C_Animation_Model_Manager.cpp" />
+    <ClCompile Include="C_Animation_Model_System.cpp" />
+    <ClCompile Include="C_Static_Model_Manager.cpp" />
+    <ClCompile Include="C_Static_Model_System.cpp" />
+    <ClCompile Include="C_Static_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
     <ClCompile Include="C_Actor_Draw_Manager.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp" />
@@ -312,8 +317,8 @@
     <ClCompile Include="C_Animation_Algorithm_Base.cpp" />
     <ClCompile Include="C_Animation_Data_System.cpp" />
     <ClCompile Include="C_Animation_Model_Component.cpp" />
+    <ClCompile Include="C_Animation_Model_Loader.cpp" />
     <ClCompile Include="C_Animation_Model_User.cpp" />
-    <ClCompile Include="C_Animative_Mesh.cpp" />
     <ClCompile Include="C_Bone_Data.cpp" />
     <ClCompile Include="C_Camera_System.cpp" />
     <ClCompile Include="C_Color.cpp" />
@@ -321,6 +326,7 @@
     <ClCompile Include="C_Component_Base.cpp" />
     <ClCompile Include="C_Depth_Stencil_Buffer_System.cpp" />
     <ClCompile Include="C_DX12_Depth_Stencil_Buffer_System.cpp" />
+    <ClCompile Include="C_DX12_Index_Setting_Inform.cpp" />
     <ClCompile Include="C_DX12_Rendering_Screen_System.cpp" />
     <ClCompile Include="C_Float_2.cpp" />
     <ClCompile Include="C_Float_3.cpp" />
@@ -339,6 +345,7 @@
     <ClCompile Include="C_Projection_System.cpp" />
     <ClCompile Include="C_Quaternion.cpp" />
     <ClCompile Include="C_Rendering_Depth_Stencil_Buffer_Base.cpp" />
+    <ClCompile Include="C_Rendering_Index_Buffer_Setting_Inform_Base.cpp" />
     <ClCompile Include="C_Rendering_Screen_System.cpp" />
     <ClCompile Include="C_Rendering_Screen_System_Base.cpp" />
     <ClCompile Include="C_Scale.cpp" />
@@ -352,12 +359,14 @@
     <ClCompile Include="C_Sound_Base.cpp" />
     <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Static_Model_Component.cpp" />
+    <ClCompile Include="C_Static_Model_Loader.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
     <ClCompile Include="C_1_Byte_Color.cpp" />
     <ClCompile Include="C_UIC_Graph_Box.cpp" />
     <ClCompile Include="C_UI_Component_Base.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />
+    <ClCompile Include="C_Vertex_Index_System.cpp" />
     <ClCompile Include="Elina_Lead_main.cpp" />
     <ClCompile Include="C_API_Initialize_And_Release_Manager.cpp" />
     <ClCompile Include="C_APK_Manager.cpp" />

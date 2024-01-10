@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <memory>
 
-#include "C_3D_Animation_Model_System.h"
+#include "C_Animation_Model_System.h"
 #include "C_Animation_Calculation_System.h"
 #include "C_Transform.h"
 
@@ -38,7 +38,7 @@ namespace ASSET::ANIMATION_MODEL
 		{
 			std::vector<DirectX::XMFLOAT4X4> bone_matrix_list;	// ボーンマトリクスの配列
 
-			ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * animation_model = nullptr;	// 使用するアニメーションモデルまでのアドレス
+			ASSET::ANIMATION_MODEL::C_Animation_Model_System * animation_model = nullptr;	// 使用するアニメーションモデルまでのアドレス
 
 			std::unique_ptr<ASSET::ANIMATION::CALCULATOR::C_Animation_Calculation_System> animation_calculator = nullptr;	// アニメーションの計算システム
 
@@ -141,7 +141,7 @@ namespace ASSET::ANIMATION_MODEL
 		//-☆- ゲッタ -☆-//
 
 		// 現在のアニメーションモデルを返す　戻り値：現在のアニメーションモデルへのアドレス
-		ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * M_Get_Animation_Model_Address(void);
+		ASSET::ANIMATION_MODEL::C_Animation_Model_System * M_Get_Animation_Model_Address(void);
 	};
 }
 
