@@ -6,8 +6,8 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_3D_Model_User.h"
-#include "C_3D_Model_Manager.h"
+#include "C_Static_Model_User.h"
+#include "C_Static_Model_Manager.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -25,7 +25,7 @@ using namespace ASSET::MODEL;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_User::C_3D_Model_User(void)
+C_Static_Model_User::C_Static_Model_User(void)
 {
 	return;
 }
@@ -36,7 +36,7 @@ C_3D_Model_User::C_3D_Model_User(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_User::~C_3D_Model_User(void)
+C_Static_Model_User::~C_Static_Model_User(void)
 {
 	M_Release();
 
@@ -49,7 +49,7 @@ C_3D_Model_User::~C_3D_Model_User(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Release(void)
+void C_Static_Model_User::M_Release(void)
 {
 	// 3Dモデルを持っていないなら実行しない
 	if (mpr_variable.use_model_address == nullptr)
@@ -59,7 +59,7 @@ void C_3D_Model_User::M_Release(void)
 
 
 	// 現在所持している3Dモデルの所有権を放棄する
-	ASSET::MODEL::MANAGER::C_3D_Model_Manager::M_Release_3D_Model(mpr_variable.use_model_address);
+	ASSET::MODEL::MANAGER::C_Static_Model_Manager::M_Release_3D_Model(mpr_variable.use_model_address);
 
 	return;
 }
@@ -72,19 +72,19 @@ void C_3D_Model_User::M_Release(void)
 // 引数   ：string ロードする3Dモデル名
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
+bool C_Static_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
 {
 	// ☆ 変数宣言 ☆ //
-	ASSET::MODEL::C_3D_Model_System * new_3D_model_address = nullptr;	// 新しい3Dモデルのアドレス
+	ASSET::MODEL::C_Static_Model_System * new_3D_model_address = nullptr;	// 新しい3Dモデルのアドレス
 
 
 	// 3Dモデル名前から探索して取得
-	new_3D_model_address = ASSET::MODEL::MANAGER::C_3D_Model_Manager::M_Get_3D_Model_By_Name(in_load_3d_model_name);
+	new_3D_model_address = ASSET::MODEL::MANAGER::C_Static_Model_Manager::M_Get_3D_Model_By_Name(in_load_3d_model_name);
 
 	// 指定した3Dモデルがまだないなら生成する
 	if (new_3D_model_address == nullptr)
 	{
-		new_3D_model_address = ASSET::MODEL::MANAGER::C_3D_Model_Manager::M_Load_3D_Model_By_Name(in_load_3d_model_name);
+		new_3D_model_address = ASSET::MODEL::MANAGER::C_Static_Model_Manager::M_Load_3D_Model_By_Name(in_load_3d_model_name);
 
 		// 生成に失敗したら抜ける
 		if (new_3D_model_address == nullptr)
@@ -109,7 +109,7 @@ bool C_3D_Model_User::M_Load_3D_Model(std::string in_load_3d_model_name)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Draw_3D_Model(void)
+void C_Static_Model_User::M_Draw_3D_Model(void)
 {
 	// モデルを持っていないなら描画はしない
 	if (mpr_variable.use_model_address == nullptr)
@@ -128,7 +128,7 @@ void C_3D_Model_User::M_Draw_3D_Model(void)
 // 引数   ：string 描画するメッシュ名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Mesh_Name(std::string in_mesh_name)
+void C_Static_Model_User::M_Draw_3D_Model_Meshes_By_Mesh_Name(std::string in_mesh_name)
 {
 	// モデルを持っていないなら描画はしない
 	if (mpr_variable.use_model_address == nullptr)
@@ -147,7 +147,7 @@ void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Mesh_Name(std::string in_mesh_na
 // 引数   ：C_Material_User & 使用するマテリアルの参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
+void C_Static_Model_User::M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material)
 {
 	// モデルを持っていないなら描画はしない
 	if (mpr_variable.use_model_address == nullptr)
@@ -171,7 +171,7 @@ void C_3D_Model_User::M_Draw_3D_Model_And_Set_Material(ASSET::MATERIAL::C_Materi
 // 引数   ：C_Material_User & 使用するマテリアルの参照, string 描画するメッシュ名（複数判定する）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
+void C_Static_Model_User::M_Draw_3D_Model_Meshes_By_Name_And_Set_Material(ASSET::MATERIAL::C_Material_User & in_use_material, std::string in_mesh_name)
 {
 	// モデルを持っていないなら描画はしない
 	if (mpr_variable.use_model_address == nullptr)
@@ -195,9 +195,9 @@ void C_3D_Model_User::M_Draw_3D_Model_Meshes_By_Name_And_Set_Material(ASSET::MAT
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：現在の3Dモデルを返す
 // 引数   ：string 描画するメッシュ名
-// 戻り値 ：C_3D_Model_System * 現在の3Dモデルへのアドレス
+// 戻り値 ：C_Static_Model_System * 現在の3Dモデルへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_System * C_3D_Model_User::M_Get_3D_Model_Address(void)
+C_Static_Model_System * C_Static_Model_User::M_Get_3D_Model_Address(void)
 {
 	return mpr_variable.use_model_address;
 }

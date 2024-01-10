@@ -6,7 +6,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_3D_Model_System.h"
+#include "C_Static_Model_System.h"
 #include "C_Text_And_File_Manager.h"
 #include "C_Main_Camera.h"
 #include "C_Static_Model_Loader.h"
@@ -31,7 +31,7 @@ using namespace ASSET::MODEL;
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_System::C_3D_Model_System(void)
+C_Static_Model_System::C_Static_Model_System(void)
 {
 	return;
 }
@@ -42,7 +42,7 @@ C_3D_Model_System::C_3D_Model_System(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_3D_Model_System::~C_3D_Model_System(void)
+C_Static_Model_System::~C_Static_Model_System(void)
 {
 	M_Release();
 
@@ -55,7 +55,7 @@ C_3D_Model_System::~C_3D_Model_System(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Release(void)
+void C_Static_Model_System::M_Release(void)
 {
 	for (ASSET::MESH::C_Mesh_Data & mesh_data : mpr_variable.mesh_list)
 	{
@@ -75,7 +75,7 @@ void C_3D_Model_System::M_Release(void)
 // 引数   ：string 3Dモデルまでのパス
 // 戻り値 ：bool 成功時のみture
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
+bool C_Static_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 {
 	// ☆ 変数宣言 ☆ //
 	SYSTEM::TEXT::C_Text_And_File_Manager file_data;	// ファイルのデータを読み取るシステム
@@ -126,7 +126,7 @@ bool C_3D_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path)
 // 引数   ：string 探すメッシュの名前
 // 戻り値 ：C_Mesh_Data * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::MESH::C_Mesh_Data * C_3D_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
+ASSET::MESH::C_Mesh_Data * C_Static_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
 {
 	// 一致するメッシュ名を探し、あればそのアドレスを返す
 	for (ASSET::MESH::C_Mesh_Data & now_mesh_data : mpr_variable.mesh_list)
@@ -147,7 +147,7 @@ ASSET::MESH::C_Mesh_Data * C_3D_Model_System::M_Get_Mesh_Data_By_Name(std::strin
 // 引数   ：void
 // 戻り値 ：vector<C_Mesh_Data> & メッシュ情報のリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<ASSET::MESH::C_Mesh_Data> & C_3D_Model_System::M_Get_Mesh_Inform_List(void)
+std::vector<ASSET::MESH::C_Mesh_Data> & C_Static_Model_System::M_Get_Mesh_Inform_List(void)
 {
 	return mpr_variable.mesh_list;
 }
@@ -160,7 +160,7 @@ std::vector<ASSET::MESH::C_Mesh_Data> & C_3D_Model_System::M_Get_Mesh_Inform_Lis
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_Model(void)
+void C_Static_Model_System::M_Draw_Model(void)
 {
 	// 頂点シェーダーをセット
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
@@ -180,7 +180,7 @@ void C_3D_Model_System::M_Draw_Model(void)
 // 引数   ：string 描画するメッシュ名（複数判定する）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
+void C_Static_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
 {
 	// 頂点シェーダーをセット
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
@@ -203,7 +203,7 @@ void C_3D_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh_name)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_Model_Do_Not_Use_Material(void)
+void C_Static_Model_System::M_Draw_Model_Do_Not_Use_Material(void)
 {
 	// 頂点シェーダーをセット
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
@@ -223,7 +223,7 @@ void C_3D_Model_System::M_Draw_Model_Do_Not_Use_Material(void)
 // 引数   ：string 描画するメッシュ名（複数判定する）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in_draw_mesh_name)
+void C_Static_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in_draw_mesh_name)
 {
 	// 頂点シェーダーをセット
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
@@ -248,7 +248,7 @@ void C_3D_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std::string in
 // 引数   ：const C_Transform & トランスフォームの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & in_transform)
+void C_Static_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_Transform(const MATH::C_Transform & in_transform)
 {
 	// ☆ 変数宣言 ☆ //
 	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方
@@ -278,7 +278,7 @@ void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_Transfor
 // 引数   ：const C_Transform & ワールドマトリクスの参照（const）
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_3D_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(const DirectX::XMMATRIX & in_world_matrix)
+void C_Static_Model_System::M_Set_World_View_Projection_With_Main_Camera_By_World_Matrix(const DirectX::XMMATRIX & in_world_matrix)
 {
 	// ☆ 変数宣言 ☆ //
 	MATH::WVP::S_World_View_Projection_Data in_set_wvp;	// ワールド ビュー プロジェクションのマトリクス上方

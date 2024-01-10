@@ -6,8 +6,8 @@
 
 
 // ☆ 多重インクルードガード ☆ //
-#ifndef D_INCLUDE_GUARD_C_3D_MODEL_SYSTEM_H_FILE
-#define D_INCLUDE_GUARD_C_3D_MODEL_SYSTEM_H_FILE
+#ifndef D_INCLUDE_GUARD_C_STATIC_MODEL_SYSTEM_H_FILE
+#define D_INCLUDE_GUARD_C_STATIC_MODEL_SYSTEM_H_FILE
 
 
 // ☆ ファイルひらき ☆ //
@@ -30,7 +30,7 @@ namespace ASSET::MODEL
 	// ☆ クラス ☆ //
 
 	// 3Dモデルのクラス
-	class C_3D_Model_System
+	class C_Static_Model_System
 	{
 		//==☆ プライベート ☆==//
 	private:
@@ -55,10 +55,10 @@ namespace ASSET::MODEL
 		//-☆- 初期化と終了時 -☆-//
 
 		// コンストラクタ
-		C_3D_Model_System(void);
+		C_Static_Model_System(void);
 
 		//デストラクタ
-		~C_3D_Model_System(void);
+		~C_Static_Model_System(void);
 
 		// メモリの解放を行う
 		void M_Release(void);
@@ -105,7 +105,7 @@ namespace ASSET::MODEL
 }
 
 
-#endif // !D_INCLUDE_GUARD_C_3D_MODEL_SYSTEM_H_FILE
+#endif // !D_INCLUDE_GUARD_C_STATIC_MODEL_SYSTEM_H_FILE
 
 
 

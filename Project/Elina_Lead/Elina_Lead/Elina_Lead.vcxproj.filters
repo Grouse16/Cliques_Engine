@@ -319,12 +319,6 @@
     <Filter Include="ソース ファイル\アセット\フォント">
       <UniqueIdentifier>{367e46d7-c7bc-4f59-ac98-8c6f1ba3f086}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\モデル">
-      <UniqueIdentifier>{c48bc00d-0d1e-4532-805b-4dbf7cddaa3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\モデル">
-      <UniqueIdentifier>{1ad600ab-b77a-478e-a37f-46d4353502f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\アセット\シェーダー">
       <UniqueIdentifier>{e6671ff8-faf5-463a-af7d-1c08356625aa}</UniqueIdentifier>
     </Filter>
@@ -349,23 +343,11 @@
     <Filter Include="ソース ファイル\アセット\フォント\制御">
       <UniqueIdentifier>{bf861af4-7e27-4080-aa41-a3b69bc32954}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\モデル\システム">
-      <UniqueIdentifier>{088888b0-f7d0-4087-a50a-b07b5750fa6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\モデル\制御">
-      <UniqueIdentifier>{53b61e73-0f3a-4f2f-8e6f-e9f808265374}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\アセット\サウンド\システム">
       <UniqueIdentifier>{9e8c343c-6094-41e1-a5de-6eeaf7fdb029}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\アセット\サウンド\制御">
       <UniqueIdentifier>{db65fca8-fc94-494d-b7b1-d9d202bd5bf9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\モデル\制御">
-      <UniqueIdentifier>{a705cd21-5c1f-4566-8bf4-9fe8334f5fbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\モデル\システム">
-      <UniqueIdentifier>{de14c8fa-607b-4960-9a3b-68688a1a5b89}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\アセット\サウンド\制御">
       <UniqueIdentifier>{031cba2b-59f2-4a0b-88ae-03c72a739c79}</UniqueIdentifier>
@@ -432,42 +414,6 @@
     </Filter>
     <Filter Include="ソース ファイル\システム\数式">
       <UniqueIdentifier>{fb7be7f6-b9f5-4f9d-8ee3-65b14acf54a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル">
-      <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション">
-      <UniqueIdentifier>{7b4e3381-f083-484b-9442-7d34d7761e97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル">
-      <UniqueIdentifier>{181b730f-cc7b-4b68-9811-b0e2484c987a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル\システム">
-      <UniqueIdentifier>{ce707303-d51c-4aae-8516-1578ed733cd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\モデル\制御">
-      <UniqueIdentifier>{7ee97cab-8139-460f-9ebc-9894092c2e2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル">
-      <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション">
-      <UniqueIdentifier>{9cbf043a-156d-42da-adde-86d941e91040}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル">
-      <UniqueIdentifier>{bf08b997-48c7-40ad-8511-758c1ce02465}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル\制御">
-      <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム">
-      <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム">
-      <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム">
-      <UniqueIdentifier>{9d71c7fd-f85d-476d-abf2-643c5309ad29}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\ゲーム\シーンシステム">
       <UniqueIdentifier>{c0a168ad-1c9d-4a82-8860-c3668a22e2a2}</UniqueIdentifier>
@@ -625,33 +571,6 @@
     <Filter Include="ヘッダー ファイル\アセット\シェーダー\定義">
       <UniqueIdentifier>{86b02d3f-4153-4b87-8f25-ea77c4163850}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\ロードシステム">
-      <UniqueIdentifier>{d4724c6c-caac-4f47-89b3-1453ac3f5d06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\ロードシステム">
-      <UniqueIdentifier>{3e7f1c47-47b7-4262-8e9f-b1b5a25a501e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム">
-      <UniqueIdentifier>{a87a2337-746d-4807-a2ab-ba5eea817e53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\定義">
-      <UniqueIdentifier>{6ad84226-1d4f-4e04-a637-9b7dd9b8dad4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム">
-      <UniqueIdentifier>{be01e5d8-3742-47bf-9afa-5b0096894a37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム\基底">
-      <UniqueIdentifier>{9dbbd374-d2e4-4844-96a1-637327ea932a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム">
-      <UniqueIdentifier>{455381ed-47af-4f93-ad3d-85d31de87dac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム">
-      <UniqueIdentifier>{46c4584b-20a5-4b04-97e1-260b258850b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム\基底">
-      <UniqueIdentifier>{ce56824e-c08d-4314-8075-41e22d7d970d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\定数バッファ">
       <UniqueIdentifier>{62484657-6049-4d9c-83f5-3428968d2ebc}</UniqueIdentifier>
     </Filter>
@@ -742,11 +661,104 @@
     <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム">
       <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\モデル\ロード">
+    <Filter Include="ソース ファイル\アセット\3Dモデル">
+      <UniqueIdentifier>{c48bc00d-0d1e-4532-805b-4dbf7cddaa3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル">
+      <UniqueIdentifier>{8442029c-143b-40f6-a999-353b6c34e9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\制御">
+      <UniqueIdentifier>{53b61e73-0f3a-4f2f-8e6f-e9f808265374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\システム">
+      <UniqueIdentifier>{088888b0-f7d0-4087-a50a-b07b5750fa6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\ロード">
+      <UniqueIdentifier>{0e4fb182-a9d4-4fda-88db-0c9860db69cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル">
+      <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル">
+      <UniqueIdentifier>{181b730f-cc7b-4b68-9811-b0e2484c987a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム">
+      <UniqueIdentifier>{ce707303-d51c-4aae-8516-1578ed733cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御">
+      <UniqueIdentifier>{7ee97cab-8139-460f-9ebc-9894092c2e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム">
+      <UniqueIdentifier>{9d71c7fd-f85d-476d-abf2-643c5309ad29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム">
+      <UniqueIdentifier>{d4724c6c-caac-4f47-89b3-1453ac3f5d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム">
+      <UniqueIdentifier>{7b4e3381-f083-484b-9442-7d34d7761e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム">
+      <UniqueIdentifier>{455381ed-47af-4f93-ad3d-85d31de87dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム">
+      <UniqueIdentifier>{46c4584b-20a5-4b04-97e1-260b258850b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム\基底">
+      <UniqueIdentifier>{ce56824e-c08d-4314-8075-41e22d7d970d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル">
+      <UniqueIdentifier>{1ad600ab-b77a-478e-a37f-46d4353502f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル">
+      <UniqueIdentifier>{4390349d-3e1f-42c8-82c1-8cb7d787d337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\制御">
+      <UniqueIdentifier>{a705cd21-5c1f-4566-8bf4-9fe8334f5fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム">
+      <UniqueIdentifier>{de14c8fa-607b-4960-9a3b-68688a1a5b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\ロード">
       <UniqueIdentifier>{cebd5433-2e81-4e9a-9059-479ed5067f6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\アセット\モデル\ロード">
-      <UniqueIdentifier>{0e4fb182-a9d4-4fda-88db-0c9860db69cc}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル">
+      <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル">
+      <UniqueIdentifier>{bf08b997-48c7-40ad-8511-758c1ce02465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御">
+      <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム">
+      <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム">
+      <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム">
+      <UniqueIdentifier>{3e7f1c47-47b7-4262-8e9f-b1b5a25a501e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム">
+      <UniqueIdentifier>{9cbf043a-156d-42da-adde-86d941e91040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム">
+      <UniqueIdentifier>{a87a2337-746d-4807-a2ab-ba5eea817e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\定義">
+      <UniqueIdentifier>{6ad84226-1d4f-4e04-a637-9b7dd9b8dad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム">
+      <UniqueIdentifier>{be01e5d8-3742-47bf-9afa-5b0096894a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム\基底">
+      <UniqueIdentifier>{9dbbd374-d2e4-4844-96a1-637327ea932a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\メッシュ">
+      <UniqueIdentifier>{4f411657-6a3d-460f-9625-fff6450cabfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\メッシュ">
+      <UniqueIdentifier>{6a57ab82-3c89-452b-8405-47b975919832}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -975,12 +987,6 @@
     <ClInclude Include="C_Texture_Data_User.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\システム</Filter>
     </ClInclude>
-    <ClInclude Include="C_3D_Model_System.h">
-      <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Mesh_Data.h">
-      <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
-    </ClInclude>
     <ClInclude Include="C_Float_4.h">
       <Filter>ヘッダー ファイル\システム\数式</Filter>
     </ClInclude>
@@ -990,62 +996,59 @@
     <ClInclude Include="C_Float_2.h">
       <Filter>ヘッダー ファイル\システム\数式</Filter>
     </ClInclude>
-    <ClInclude Include="C_3D_Model_Manager.h">
-      <Filter>ヘッダー ファイル\アセット\モデル\制御</Filter>
+    <ClInclude Include="C_Static_Model_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\制御</Filter>
     </ClInclude>
-    <ClInclude Include="C_3D_Model_User.h">
-      <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
-    </ClInclude>
-    <ClInclude Include="C_3D_Animation_Model_System.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    <ClInclude Include="C_Animation_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
     <ClInclude Include="S_Key_Frame.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
     <ClInclude Include="S_Bone_Key_Frame_List.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
     <ClInclude Include="S_Bone_Inform.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
     <ClInclude Include="S_Bone_Weight.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Data_System.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム</Filter>
     </ClInclude>
     <ClInclude Include="C_Bone_Data.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClInclude>
-    <ClInclude Include="C_3D_Animation_Model_Manager.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\制御</Filter>
+    <ClInclude Include="C_Animation_Model_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Model_User.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Calculation_System.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム</Filter>
     </ClInclude>
     <ClInclude Include="S_Animation_Status.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\定義</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_Base.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム\基底</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム\基底</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_No_Animation.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_Play.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_Loop_Play.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_Blend_Play.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\アニメーション\計算システム\アルゴリズム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
     </ClInclude>
     <ClInclude Include="C_Scene_Base.h">
       <Filter>ヘッダー ファイル\ゲーム\シーンシステム\基底</Filter>
@@ -1198,7 +1201,7 @@
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Model_Loader.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\ロードシステム</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\定数バッファ</Filter>
@@ -1258,7 +1261,16 @@
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Static_Model_Loader.h">
-      <Filter>ヘッダー ファイル\アセット\モデル\ロード</Filter>
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\ロード</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Mesh_Data.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\メッシュ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_User.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1418,11 +1430,8 @@
     <ClCompile Include="C_Shader_Setting_User.cpp">
       <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
     </ClCompile>
-    <ClCompile Include="C_3D_Model_System.cpp">
-      <Filter>ソース ファイル\アセット\モデル\システム</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Mesh_Data.cpp">
-      <Filter>ソース ファイル\アセット\モデル\システム</Filter>
+    <ClCompile Include="C_Static_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Float_3.cpp">
       <Filter>ソース ファイル\システム\数式</Filter>
@@ -1430,47 +1439,47 @@
     <ClCompile Include="C_Float_2.cpp">
       <Filter>ソース ファイル\システム\数式</Filter>
     </ClCompile>
-    <ClCompile Include="C_3D_Model_Manager.cpp">
-      <Filter>ソース ファイル\アセット\モデル\制御</Filter>
+    <ClCompile Include="C_Static_Model_Manager.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\制御</Filter>
     </ClCompile>
-    <ClCompile Include="C_3D_Model_User.cpp">
-      <Filter>ソース ファイル\アセット\モデル\システム</Filter>
+    <ClCompile Include="C_Static_Model_User.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
     </ClCompile>
-    <ClCompile Include="C_3D_Animation_Model_System.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+    <ClCompile Include="C_Animation_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Data_System.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム</Filter>
     </ClCompile>
     <ClCompile Include="C_Bone_Data.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\ボーンマトリクスシステム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
     </ClCompile>
-    <ClCompile Include="C_3D_Animation_Model_Manager.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\制御</Filter>
+    <ClCompile Include="C_Animation_Model_Manager.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Model_User.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Calculation_System.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Base.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム\基底</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム\基底</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Play.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\アニメーション\計算システム\計算アルゴリズム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
     </ClCompile>
     <ClCompile Include="C_Scene_Base.cpp">
       <Filter>ソース ファイル\ゲーム\シーンシステム\基底</Filter>
@@ -1554,7 +1563,7 @@
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Model_Loader.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\ロードシステム</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.cpp">
       <Filter>ソース ファイル\レンダリング\インスタンス基底\頂点データ</Filter>
@@ -1611,10 +1620,13 @@
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
     </ClCompile>
     <ClCompile Include="C_Static_Model_Loader.cpp">
-      <Filter>ソース ファイル\アセット\モデル\ロード</Filter>
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\ロード</Filter>
     </ClCompile>
     <ClCompile Include="C_Animation_Model_Component.cpp">
       <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Mesh_Data.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\メッシュ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -128,9 +128,9 @@ ASSET::MATERIAL::C_Material_User * C_Static_Model_Component::M_Set_Model_Draw_Li
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：モデルシステムのアドレスを返す
 // 引数   ：void
-// 戻り値 ：C_3D_Model_User & モデルシステムのアドレス
+// 戻り値 ：C_Static_Model_User & モデルシステムのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::MODEL::C_3D_Model_User & C_Static_Model_Component::M_Get_Model_Address(void)
+ASSET::MODEL::C_Static_Model_User & C_Static_Model_Component::M_Get_Model_Address(void)
 {
 	return mpr_variable.model_system;
 }

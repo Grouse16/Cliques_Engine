@@ -134,11 +134,9 @@
     <ClInclude Include="Challenge_Mode_Macro.h" />
     <ClInclude Include="C_Animation_Model_Loader.h" />
     <ClInclude Include="C_Color.h" />
-    <ClInclude Include="C_3D_Animation_Model_Manager.h" />
-    <ClInclude Include="C_3D_Animation_Model_System.h" />
-    <ClInclude Include="C_3D_Model_Manager.h" />
-    <ClInclude Include="C_3D_Model_System.h" />
-    <ClInclude Include="C_3D_Model_User.h" />
+    <ClInclude Include="C_Animation_Model_Manager.h" />
+    <ClInclude Include="C_Animation_Model_System.h" />
+    <ClInclude Include="C_Static_Model_Manager.h" />
     <ClInclude Include="C_Actor_Base.h" />
     <ClInclude Include="C_Actor_Draw_Manager.h" />
     <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h" />
@@ -165,6 +163,8 @@
     <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Screen_System.h" />
     <ClInclude Include="C_Static_Model_Loader.h" />
+    <ClInclude Include="C_Static_Model_System.h" />
+    <ClInclude Include="C_Static_Model_User.h" />
     <ClInclude Include="C_Vertex_Index_System.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
@@ -301,11 +301,11 @@
     <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C_3D_Animation_Model_Manager.cpp" />
-    <ClCompile Include="C_3D_Animation_Model_System.cpp" />
-    <ClCompile Include="C_3D_Model_Manager.cpp" />
-    <ClCompile Include="C_3D_Model_System.cpp" />
-    <ClCompile Include="C_3D_Model_User.cpp" />
+    <ClCompile Include="C_Animation_Model_Manager.cpp" />
+    <ClCompile Include="C_Animation_Model_System.cpp" />
+    <ClCompile Include="C_Static_Model_Manager.cpp" />
+    <ClCompile Include="C_Static_Model_System.cpp" />
+    <ClCompile Include="C_Static_Model_User.cpp" />
     <ClCompile Include="C_Actor_Base.cpp" />
     <ClCompile Include="C_Actor_Draw_Manager.cpp" />
     <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp" />

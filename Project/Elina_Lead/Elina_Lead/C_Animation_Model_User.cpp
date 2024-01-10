@@ -7,7 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Animation_Model_User.h"
-#include "C_3D_Animation_Model_Manager.h"
+#include "C_Animation_Model_Manager.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -106,7 +106,7 @@ void C_Animation_Model_User::M_Release(void)
 	}
 
 	// 制御システムにこのアニメーションモデルの使用放棄を通知する
-	ASSET::ANIMATION_MODEL::MANAGER::C_3D_Animation_Model_Manager::M_Release_Animation_Model(mpr_variable.animation_model);
+	ASSET::ANIMATION_MODEL::MANAGER::C_Animation_Model_Manager::M_Release_Animation_Model(mpr_variable.animation_model);
 
 	// アニメーションの計算システムを初期化する
 	mpr_variable.animation_calculator.reset();
@@ -125,16 +125,16 @@ void C_Animation_Model_User::M_Release(void)
 bool C_Animation_Model_User::M_Load_Animation_Model(std::string in_load_animation_model_name)
 {
 	// ☆ 変数宣言 ☆ //
-	ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * new_animation_model_address = nullptr;	// 新しいアニメーションモデルのアドレス
+	ASSET::ANIMATION_MODEL::C_Animation_Model_System * new_animation_model_address = nullptr;	// 新しいアニメーションモデルのアドレス
 
 
 	// アニメーションモデルの名前から探索して取得
-	new_animation_model_address = ASSET::ANIMATION_MODEL::MANAGER::C_3D_Animation_Model_Manager::M_Get_Animation_Model_By_Name(in_load_animation_model_name);
+	new_animation_model_address = ASSET::ANIMATION_MODEL::MANAGER::C_Animation_Model_Manager::M_Get_Animation_Model_By_Name(in_load_animation_model_name);
 
 	// 指定したアニメーションモデルがまだないなら生成する
 	if (new_animation_model_address == nullptr)
 	{
-		new_animation_model_address = ASSET::ANIMATION_MODEL::MANAGER::C_3D_Animation_Model_Manager::M_Load_Animation_Model_By_Name(in_load_animation_model_name);
+		new_animation_model_address = ASSET::ANIMATION_MODEL::MANAGER::C_Animation_Model_Manager::M_Load_Animation_Model_By_Name(in_load_animation_model_name);
 
 		// 生成に失敗したら抜ける
 		if (new_animation_model_address == nullptr)
@@ -557,9 +557,9 @@ void C_Animation_Model_User::M_Set_Animation_Speed(float in_set_animation_speed)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：現在のアニメーションモデルを返す
 // 引数   ：void
-// 戻り値 ：C_3D_Animation_Model_System * 現在のアニメーションモデルへのアドレス
+// 戻り値 ：C_Animation_Model_System * 現在のアニメーションモデルへのアドレス
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::ANIMATION_MODEL::C_3D_Animation_Model_System * C_Animation_Model_User::M_Get_Animation_Model_Address(void)
+ASSET::ANIMATION_MODEL::C_Animation_Model_System * C_Animation_Model_User::M_Get_Animation_Model_Address(void)
 {
 	return mpr_variable.animation_model;
 }
