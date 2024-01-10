@@ -17,7 +17,7 @@
 #include "C_Text_And_File_Manager.h"
 #include "S_3D_Animation_Model_Vertex.h"
 #include "S_Bone_Inform.h"
-#include "C_Animative_Mesh.h"
+#include "C_Mesh_Data.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -58,7 +58,7 @@ namespace ASSET::ANIMATION_MODEL::LOADER
 		static bool M_Load_Animation_Model_Bone(SYSTEM::TEXT::C_Text_And_File_Manager & , std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & );
 
 		// アニメーションモデルのメッシュデータをロードする　引数：モデルファイルのデータ, ロード先のメッシュデータの参照　戻り値：成功時のみtrue
-		static bool M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_And_File_Manager & , std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> & );
+		static bool M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_And_File_Manager & , std::vector<ASSET::MESH::C_Mesh_Data> & );
 	};
 }
 

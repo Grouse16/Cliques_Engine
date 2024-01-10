@@ -1436,9 +1436,6 @@
     <ClCompile Include="C_3D_Model_User.cpp">
       <Filter>ソース ファイル\アセット\モデル\システム</Filter>
     </ClCompile>
-    <ClCompile Include="C_Animative_Mesh.cpp">
-      <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
-    </ClCompile>
     <ClCompile Include="C_3D_Animation_Model_System.cpp">
       <Filter>ソース ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClCompile>
@@ -1535,9 +1532,6 @@
     <ClCompile Include="C_Texture_Data_User.cpp">
       <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
     </ClCompile>
-    <ClCompile Include="C_Animation_Model_Component.cpp">
-      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
-    </ClCompile>
     <ClCompile Include="C_Static_Model_Component.cpp">
       <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClCompile>
@@ -1618,6 +1612,9 @@
     </ClCompile>
     <ClCompile Include="C_Static_Model_Loader.cpp">
       <Filter>ソース ファイル\アセット\モデル\ロード</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

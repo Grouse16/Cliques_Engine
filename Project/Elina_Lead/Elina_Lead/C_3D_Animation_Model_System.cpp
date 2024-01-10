@@ -171,16 +171,16 @@ bool C_3D_Animation_Model_System::M_Load_Animation_Data_By_Name(std::string in_a
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：指定された名前のメッシュを返す
 // 引数   ：string 探すメッシュの名前
-// 戻り値 ：C_Animative_Mesh * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
+// 戻り値 ：C_Mesh_Data * 名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-ASSET::ANIMATION::MESH::C_Animative_Mesh * C_3D_Animation_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
+ASSET::MESH::C_Mesh_Data * C_3D_Animation_Model_System::M_Get_Mesh_Data_By_Name(std::string in_mesh_name)
 {
 	// 一致するメッシュ名を探し、あればそのアドレスを返す
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_data : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & l_now_mesh_data : mpr_variable.mesh_list)
 	{
-		if (now_mesh_data.M_Get_Name() == in_mesh_name)
+		if (l_now_mesh_data.M_Get_Mesh_Name() == in_mesh_name)
 		{
-			return &now_mesh_data;
+			return &l_now_mesh_data;
 		}
 	}
 
@@ -192,9 +192,9 @@ ASSET::ANIMATION::MESH::C_Animative_Mesh * C_3D_Animation_Model_System::M_Get_Me
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：メッシュ情報のリストの参照を返す
 // 引数   ：void
-// 戻り値 ：vector<C_Animative_Mesh> & メッシュ情報のリストの参照
+// 戻り値 ：vector<C_Mesh_Data> & メッシュ情報のリストの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> &  C_3D_Animation_Model_System::M_Get_Mesh_Inform_List(void)
+std::vector<ASSET::MESH::C_Mesh_Data> &  C_3D_Animation_Model_System::M_Get_Mesh_Inform_List(void)
 {
 	return mpr_variable.mesh_list;
 }
@@ -277,7 +277,7 @@ void C_3D_Animation_Model_System::M_Draw_3D_Model(void)
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
 
 	// 全てのメッシュを描画
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh_inform : mpr_variable.mesh_list)
 	{
 		now_mesh_inform.M_Draw_Mesh();
 	}
@@ -297,9 +297,9 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name(std::string in_draw_mesh
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
 
 	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		if (now_mesh_inform.M_Get_Name() == in_draw_mesh_name)
+		if (now_mesh_inform.M_Get_Mesh_Name() == in_draw_mesh_name)
 		{
 			now_mesh_inform.M_Draw_Mesh();
 		}
@@ -320,7 +320,7 @@ void C_3D_Animation_Model_System::M_Draw_3D_Model_Do_Not_Use_Material(void)
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
 
 	// 全てのメッシュを描画
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh_inform : mpr_variable.mesh_list)
 	{
 		now_mesh_inform.M_Draw_Mesh_Do_Not_Set_Material();
 	}
@@ -340,9 +340,9 @@ void C_3D_Animation_Model_System::M_Draw_Meshes_By_Name_Do_Not_Use_Material(std:
 	mpr_variable.vertex_system.M_Set_Vertex_Buffer_To_Rendering();
 
 	// 全てのメッシュから描画するメッシュ名と同じメッシュのみ描画
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh_inform : mpr_variable.mesh_list)
 	{
-		if (now_mesh_inform.M_Get_Name() == in_draw_mesh_name)
+		if (now_mesh_inform.M_Get_Mesh_Name() == in_draw_mesh_name)
 		{
 			now_mesh_inform.M_Draw_Mesh_Do_Not_Set_Material();
 		}
@@ -372,7 +372,7 @@ void C_3D_Animation_Model_System::M_Set_Bone_Matrix(const std::vector<DirectX::X
 	}
 
 	// 全てのメッシュにボーンをセットする
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh_inform : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh_inform : mpr_variable.mesh_list)
 	{
 		now_mesh_inform.M_Get_Material_User().M_Get_Material_Address()->M_Set_Bone_Matrix(in_bone_matrix_list);
 	}
@@ -402,7 +402,7 @@ void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera_B
 	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
 
 	// 全てのメッシュのマテリアルにトランスフォームをセット
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh : mpr_variable.mesh_list)
 	{
 		now_mesh.M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}
@@ -432,7 +432,7 @@ void C_3D_Animation_Model_System::M_Set_World_View_Projection_With_Main_Camera_B
 	in_set_wvp.projection = GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix();
 
 	// 全てのメッシュのマテリアルにトランスフォームをセット
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & now_mesh : mpr_variable.mesh_list)
+	for (ASSET::MESH::C_Mesh_Data & now_mesh : mpr_variable.mesh_list)
 	{
 		now_mesh.M_Get_Material_User().M_Get_Material_Address()->M_Set_WVP_Matrix(in_set_wvp);
 	}

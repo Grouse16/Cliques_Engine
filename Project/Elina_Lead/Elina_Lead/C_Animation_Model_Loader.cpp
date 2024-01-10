@@ -295,10 +295,10 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Bone(SYSTEM::TEXT::C_Text_
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーションモデルのメッシュを読み込まれたデータを元にロードする
-// 引数   ：C_Text_And_File_Manager & ロードしたモデルのファイルデータの参照, vector<C_Animative_Mesh> &  設定先のボーンデータの参照
+// 引数   ：C_Text_And_File_Manager & ロードしたモデルのファイルデータの参照, vector<C_Mesh_Data> &  設定先のボーンデータの参照
 // 戻り値 ：bool 成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_And_File_Manager & in_model_file_data, std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> & in_mesh_system)
+bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_And_File_Manager & in_model_file_data, std::vector<ASSET::MESH::C_Mesh_Data> & in_mesh_system)
 {
 	// メッシュ数の位置へ移動、なければエラーを返して終了
 	if (in_model_file_data.M_Goto_Right_By_Text_In_Front_Row("MESHSUM:") == false)
@@ -323,7 +323,7 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_
 
 
 	// メッシュデータをロード
-	for (ASSET::ANIMATION::MESH::C_Animative_Mesh & l_now_mesh : in_mesh_system)
+	for (ASSET::MESH::C_Mesh_Data & l_now_mesh : in_mesh_system)
 	{
 		// ☆ 変数宣言 ☆ //
 		std::vector<unsigned int> & index_list = l_now_mesh.M_Get_Index_Data_List();	// メッシュが使用する頂点インデックスのリストの参照
@@ -335,7 +335,7 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_
 
 		// メッシュ名を取得
 		in_model_file_data.M_Move_Next_Raw();
-		l_now_mesh.M_Set_Name(in_model_file_data.M_Get_Data_Now_Row());
+		l_now_mesh.M_Set_Mesh_Name(in_model_file_data.M_Get_Data_Now_Row());
 
 
 		// メッシュのマテリアルをロード　ロード失敗でエラーを出して抜ける

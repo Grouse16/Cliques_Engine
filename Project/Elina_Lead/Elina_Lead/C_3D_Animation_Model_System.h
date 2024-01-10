@@ -11,7 +11,7 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include "C_Animative_Mesh.h"
+#include "C_Mesh_Data.h"
 #include "S_Bone_Inform.h"
 #include "C_Animation_Data_System.h"
 #include "C_Transform.h"
@@ -39,7 +39,7 @@ namespace ASSET::ANIMATION_MODEL
 		{
 			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Animation_Model_Vertex> vertex_system;	// 頂点データを管理するクラス
 
-			std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> mesh_list;	// メッシュデータ
+			std::vector<ASSET::MESH::C_Mesh_Data> mesh_list;	// メッシュデータ
 
 			std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> bone_list;	// ボーン情報のリスト
 
@@ -77,10 +77,10 @@ namespace ASSET::ANIMATION_MODEL
 		//-☆- ゲッタ -☆-//
 
 		// 指定された名前のメッシュデータ情報のアドレスを返す　引数：探すメッシュの名前　戻り値：名前が一致したメッシュのアドレス、一致しなかったらnullptrを返す
-		ASSET::ANIMATION::MESH::C_Animative_Mesh * M_Get_Mesh_Data_By_Name(std::string);
+		ASSET::MESH::C_Mesh_Data * M_Get_Mesh_Data_By_Name(std::string);
 
 		// メッシュ情報のリストの参照を返す　戻り値：メッシュ情報のリストの参照
-		std::vector<ASSET::ANIMATION::MESH::C_Animative_Mesh> & M_Get_Mesh_Inform_List(void);
+		std::vector<ASSET::MESH::C_Mesh_Data> & M_Get_Mesh_Inform_List(void);
 
 		// 指定された名前のアニメーションデータ情報のアドレスを返す　引数：探すアニメーションデータの名前　戻り値：名前が一致したアニメーションのアドレス、一致しなかったらnullptrを返す
 		const ASSET::ANIMATION_SYSTEM::C_Animation_Data_System * M_Get_Animation_Data_By_Name(std::string);
