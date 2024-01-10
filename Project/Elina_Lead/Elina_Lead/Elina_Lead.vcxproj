@@ -151,7 +151,6 @@
     <ClInclude Include="C_Animation_Data_System.h" />
     <ClInclude Include="C_Animation_Model_Component.h" />
     <ClInclude Include="C_Animation_Model_User.h" />
-    <ClInclude Include="C_Animative_Mesh.h" />
     <ClInclude Include="C_API_Initialize_And_Release_Manager.h" />
     <ClInclude Include="C_APK_Manager.h" />
     <ClInclude Include="C_Bone_Data.h" />
@@ -165,6 +164,7 @@
     <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h" />
     <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h" />
     <ClInclude Include="C_Rendering_Screen_System.h" />
+    <ClInclude Include="C_Static_Model_Loader.h" />
     <ClInclude Include="C_Vertex_Index_System.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
@@ -360,6 +360,7 @@
     <ClCompile Include="C_Sound_Base.cpp" />
     <ClCompile Include="C_Game_System_Base.cpp" />
     <ClCompile Include="C_Static_Model_Component.cpp" />
+    <ClCompile Include="C_Static_Model_Loader.cpp" />
     <ClCompile Include="C_Texture_Data_User.cpp" />
     <ClCompile Include="C_Texture_Manager.cpp" />
     <ClCompile Include="C_1_Byte_Color.cpp" />

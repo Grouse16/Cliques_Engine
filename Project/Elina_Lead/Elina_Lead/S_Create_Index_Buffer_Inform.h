@@ -5,7 +5,7 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
-// ☆ 多重インクルード ☆ //
+// ☆ 多重インクルードガード ☆ //
 #ifndef D_INCLUDE_GUARD_S_CREATE_INDEX_BUFFER_INFORM_H_FILE
 #define D_INCLUDE_GUARD_S_CREATE_INDEX_BUFFER_INFORM_H_FILE
 

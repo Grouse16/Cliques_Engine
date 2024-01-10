@@ -64,8 +64,8 @@ namespace RENDERING::CAPSULE
 
 		//-☆- 生成 -☆-//
 
-		// 頂点インデックスバッファを生成する　引数：生成するインデックス数
-		void M_Create_Index_Buffer(int);
+		// 頂点インデックスのデータとバッファを生成する　引数：生成するインデックス数
+		void M_Create_Index_Data_And_Buffer(int);
 
 		// 頂点インデックスバッファを現在のインデックスデータに合わせて生成する
 		void M_Create_Index_Buffer_By_Now_Index_Data(void);
@@ -74,7 +74,7 @@ namespace RENDERING::CAPSULE
 		//-☆- 削除 -☆-//
 
 		// 頂点インデックスデータのみを削除する　＊頂点インデックスバッファは削除しない
-		void M_Delete_Index_Buffer(void);
+		void M_Delete_Index_Data(void);
 
 
 		//-☆- ゲッタ -☆-//

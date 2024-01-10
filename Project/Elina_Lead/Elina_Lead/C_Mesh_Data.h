@@ -16,6 +16,7 @@
 #include "C_Object_Vertex_System.h"
 #include "S_3D_Model_Vertex.h"
 #include "C_Material_User.h"
+#include "C_Vertex_Index_System.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -36,9 +37,11 @@ namespace ASSET::MESH
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			RENDERING::CAPSULE::C_Object_Vertex_System<DATA::VERTEX::S_3D_Model_Vertex> vertex_setting;	// 頂点用システム
+			RENDERING::CAPSULE::C_Vertex_Index_System vertex_index_system;	// 頂点インデックスシステム
 			
 			ASSET::MATERIAL::C_Material_User material;	// マテリアルデータ
+
+			std::string name = "default";	// メッシュ名
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -62,23 +65,11 @@ namespace ASSET::MESH
 
 		//-☆- 設定 -☆-//
 
-		// 頂点を指定された数分生成　引数：生成する頂点数
-		void M_Create_Vertex_List(int);
-
 		// 頂点インデックスを指定された数分生成　引数：生成する頂点インデックス数
 		void M_Create_Index_List(int);
 
-		// 頂点バッファと頂点インデックスバッファを生成する　＊頂点データと頂点インデックスを必要な数だけ生成してから実行すること
-		void M_Create_Vertex_Buffer_And_Index_Buffer(void);
-
 		// 頂点インデックスデータを頂点インデックスバッファに設定する
 		void M_Attach_Index_Data_To_Buffer(void);
-
-		// 頂点データを頂点バッファに設定する
-		void M_Attach_Vertex_Data_To_Buffer(void);
-
-		// 頂点データのみを削除する（頂点バッファに設定後、編集しないなら持っておく必要がない）
-		void M_Delete_Vertex_Data(void);
 
 		// 頂点インデックスデータのみを削除する（頂点インデックスバッファに設定後、編集しないなら持っておく必要がない）
 		void M_Delete_Index_Data(void);
@@ -87,16 +78,22 @@ namespace ASSET::MESH
 		bool M_Load_Material_By_Name(std::string);
 
 
+		//-☆- セッタ -☆-//
+
+		// メッシュ名を設定する　引数：設定するメッシュ名
+		void M_Set_Mesh_Name(std::string);
+
+
 		//-☆- ゲッタ -☆-//
 
-		// 頂点データのリストの参照を返す　戻り値：頂点データのリストの参照
-		std::vector<DATA::VERTEX::S_3D_Model_Vertex> & M_Get_Vertex_Data_List(void);
-
 		// 頂点インデックスデータのリストの参照を返す　戻り値：頂点インデックスデータのリストの参照
-		std::vector<unsigned __int32> & M_Get_Index_Data_List(void);
+		std::vector<unsigned int> & M_Get_Index_Data_List(void);
 
 		// 現在のマテリアルユーザーの参照を返す　戻り値：マテリアルユーザーの参照を返す
 		ASSET::MATERIAL::C_Material_User & M_Get_Material_User(void);
+
+		// メッシュ名を返す　戻り値：メッシュ名
+		std::string M_Get_Mesh_Name(void);
 
 
 		//-☆- 描画 -☆-//
@@ -105,7 +102,7 @@ namespace ASSET::MESH
 		void M_Draw_Mesh(void);
 
 		// マテリアルの設定をせずに面の描画のみ行う（外部でマテリアルを設定してから描画するとき用）
-		void m_Draw_Mesh_Do_Not_Set_Material(void);
+		void M_Draw_Mesh_Do_Not_Set_Material(void);
 	};
 }
 

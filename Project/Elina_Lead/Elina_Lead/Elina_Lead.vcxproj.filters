@@ -595,12 +595,6 @@
     <Filter Include="ソース ファイル\システム\計算システム">
       <UniqueIdentifier>{9b1db0f8-a581-470e-8592-8eb147288f76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\アセット\モデル用システム">
-      <UniqueIdentifier>{abde107a-f882-4d09-b716-8dac413ca63a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\アセット\モデル用システム">
-      <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル">
       <UniqueIdentifier>{84008d83-bedc-49e4-bca0-18e4b582ab13}</UniqueIdentifier>
     </Filter>
@@ -741,6 +735,18 @@
     </Filter>
     <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\テクスチャ">
       <UniqueIdentifier>{9857dd9c-23c2-4ee9-92ba-3f74d499fbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム">
+      <UniqueIdentifier>{abde107a-f882-4d09-b716-8dac413ca63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム">
+      <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\モデル\ロード">
+      <UniqueIdentifier>{cebd5433-2e81-4e9a-9059-479ed5067f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\モデル\ロード">
+      <UniqueIdentifier>{0e4fb182-a9d4-4fda-88db-0c9860db69cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -990,9 +996,6 @@
     <ClInclude Include="C_3D_Model_User.h">
       <Filter>ヘッダー ファイル\アセット\モデル\システム</Filter>
     </ClInclude>
-    <ClInclude Include="C_Animative_Mesh.h">
-      <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
-    </ClInclude>
     <ClInclude Include="C_3D_Animation_Model_System.h">
       <Filter>ヘッダー ファイル\アセット\アニメーションモデル\モデル\システム</Filter>
     </ClInclude>
@@ -1117,7 +1120,7 @@
       <Filter>ヘッダー ファイル\システム\計算システム</Filter>
     </ClInclude>
     <ClInclude Include="S_Model_Draw_Command.h">
-      <Filter>ヘッダー ファイル\アセット\モデル用システム</Filter>
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム</Filter>
     </ClInclude>
     <ClInclude Include="C_Static_Model_Component.h">
       <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
@@ -1253,6 +1256,9 @@
     </ClInclude>
     <ClInclude Include="C_Vertex_Index_System.h">
       <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Loader.h">
+      <Filter>ヘッダー ファイル\アセット\モデル\ロード</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1609,6 +1615,9 @@
     </ClCompile>
     <ClCompile Include="C_Vertex_Index_System.cpp">
       <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_Loader.cpp">
+      <Filter>ソース ファイル\アセット\モデル\ロード</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

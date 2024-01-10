@@ -38,7 +38,7 @@ C_UIC_Text_Box::C_UIC_Text_Box(void)
 	mpr_variable.vertex_system.M_Create_Vertex_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_VERTEX_SETTING::e_SUM);
 
 	// 頂点インデックスバッファの生成
-	mpr_variable.index_system.M_Create_Index_Buffer((int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
+	mpr_variable.index_system.M_Create_Index_Data_And_Buffer((int)DATA::VERTEX::SETTING::E_BOX_INDEX_SETTING::e_SUM);
 
 
 	// インデックスデータをセットする

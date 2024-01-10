@@ -79,11 +79,11 @@ void C_Vertex_Index_System::M_Release(void)
 //-☆- 生成 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：頂点インデックスバッファを生成する
+// 詳細   ：頂点インデックスのデータとバッファを生成する
 // 引数   ：int 生成するインデックス数
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Vertex_Index_System::M_Create_Index_Buffer(int in_index_sum)
+void C_Vertex_Index_System::M_Create_Index_Data_And_Buffer(int in_index_sum)
 {
 	// ☆ 変数宣言 ☆ //
 	RENDERING::GRAPHICS::CREATE::S_Create_Index_Buffer_Inform creat_index_inform;	// 頂点インデックスバッファ生成用の情報

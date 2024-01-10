@@ -67,7 +67,7 @@ void C_Animative_Mesh::M_Release(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 void C_Animative_Mesh::M_Create_Index_List(int in_creat_index_sum)
 {
-	mpr_variable.vertex_index_system.M_Create_Index_Buffer(in_creat_index_sum);
+	mpr_variable.vertex_index_system.M_Create_Index_Data_And_Buffer(in_creat_index_sum);
 
 	return;
 }

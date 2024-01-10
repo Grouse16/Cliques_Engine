@@ -160,7 +160,7 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Vertex(SYSTEM::TEXT::C_Tex
 		}
 	}
 
-	// 頂点バッファにデータを設定し頂点データのみ削除
+	// 頂点バッファにデータを設定し頂点データのみ削除、頂点バッファは残る
 	in_vertex_system.M_Set_Vertex_Data_To_Buffer();
 	in_vertex_system.M_Delete_Vertex_Data();
 
@@ -349,7 +349,7 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_
 			(
 				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
 				DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
-				"マテリアルのロードに失敗しました。アニメーション用モデル：" + in_model_file_data.M_Get_File_Path_Refer()
+				"マテリアルのロードに失敗しました。アニメーション用モデル：" + in_model_file_data.M_Get_File_Path_Refer() + "　マテリアル：" + in_model_file_data.M_Get_Data_Now_Row()
 			);
 			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 #endif // _DEBUG
