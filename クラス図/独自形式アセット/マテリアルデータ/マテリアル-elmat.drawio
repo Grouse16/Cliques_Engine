@@ -1,0 +1,331 @@
+<mxfile host="Electron" modified="2024-01-19T03:25:40.350Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="2QjdfxHKcq4ddPEYq62C" version="22.1.16" type="device">
+  <diagram name="ページ1" id="F_xgiDYA5KZkH7zyrJZr">
+    <mxGraphModel dx="703" dy="1533" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cBP3mdUdwcwwjYfgzpu0-2" value="マテリアルデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="130" y="80" width="550" height="6700" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-2" value="各データ解説" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="cBP3mdUdwcwwjYfgzpu0-2">
+          <mxGeometry x="20" y="40" width="510" height="6640" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-4" value="マテリアル名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="30" width="470" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-5" value="拡張子を抜いたファイル名がマテリアル名となる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-4">
+          <mxGeometry x="20" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-6" value="material_name.elmat の内、file_nameが名前" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-4">
+          <mxGeometry x="20" y="70" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-7" value="識別名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="170" width="470" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-8" value="マテリアルの形式であることを証明する名前、必ず先頭にある" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-7">
+          <mxGeometry x="20" y="29" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-9" value="This-Is-ELMATという文字列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-7">
+          <mxGeometry x="20" y="69" width="430" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-10" value="シェーダー設定名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="320" width="470" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-11" value="使用するシェーダーを指定するには、&lt;br&gt;シェーダー設定.elsstという独自形式のファイルを使うので、&lt;br&gt;使用するファイルの名前を入力" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-10">
+          <mxGeometry x="20" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-12" value="SHADERSETTINGNAME:(改行)&lt;br&gt;(string)シェーダー設定名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-10">
+          <mxGeometry x="20" y="90" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-26" value="ブレンド設定数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="500" width="470" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-27" value="ブレンド設定の数を示す、&lt;br&gt;8つまで登録できるので、最大値は8" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-26">
+          <mxGeometry x="20" y="40" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-28" value="BLENDSUM:(int)ブレンド数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-26">
+          <mxGeometry x="20" y="90" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-13" value="ブレンド設定、ブレンド設定数分繰り返す" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="680" width="470" height="1550" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-29" value="ブレンド設定情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-13">
+          <mxGeometry x="10" y="40" width="450" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-30" value="ブレンド設定の情報の開始位置を記載、&lt;br&gt;このブレンド設定が何番であるかも示す&lt;br&gt;複数のブレンド設定を使用する際は、&lt;br&gt;ピクセルシェーダーの描画先レンダリング画面が複数あるとき" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-29">
+          <mxGeometry x="10" y="30" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-31" value="BLEND(int)番号:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-29">
+          <mxGeometry x="10" y="100" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-33" value="ブレンドモード" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-13">
+          <mxGeometry x="10" y="200" width="450" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-34" value="ピクセルシェーダーからの出力値の受け取り方を設定する&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-33">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-35" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-33">
+          <mxGeometry x="10" y="240" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-36" value="NORMAL：RGBAをそのまま使う&lt;br&gt;&lt;br&gt;NORMAL_NOT＿ALPHA：RGBのみ使い、Aは1.0fで固定する&lt;br&gt;&lt;br&gt;INVERT：1-ピクセルシェーダーの出力色(RGBA)を使う&lt;br&gt;&lt;br&gt;INVERT_NOT_ALPHA：1-ピクセルシェーダーの出力色(RGBA)を使うが、&lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;　　　　　　　　　　　 Aのみ1.0fで固定する&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-33">
+          <mxGeometry x="10" y="80" width="430" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-37" value="混ぜ方" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-13">
+          <mxGeometry x="10" y="520" width="450" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-38" value="ピクセルシェーダーからの出力色を、&lt;br&gt;描画先のレンダリング画面とどう混ぜるかを指定する&lt;br&gt;混ぜた結果の色がレンダリング画面に描きこまれる&lt;br&gt;（結果の色をレンダリング画面に上書きする）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-37">
+          <mxGeometry x="10" y="30" width="430" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-39" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-37">
+          <mxGeometry x="10" y="340" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-40" value="ADD：ピクセルシェーダーの出力色を、&lt;br&gt;　　　 レンダリング画面の色に加算した結果を描きこむ&lt;br&gt;&lt;br&gt;SUB：ピクセルシェーダーの出力色で、&lt;br&gt;　　　 レンダリング画面の色を減算した結果を描きこむ&lt;br&gt;&lt;br&gt;SUB_PIX：ピクセルシェーダーの出力色を、&lt;br&gt;　　　　　 レンダリング画面の色で減算した結果を描きこむ&lt;br&gt;&lt;br&gt;MAX：ピクセルシェーダーの出力色をレンダリング画面の色と比べ、&lt;br&gt;　　　 高い方の色を描きこむ&lt;br&gt;&lt;br&gt;MIN：ピクセルシェーダーの出力色をレンダリング画面の色と比べ、&lt;br&gt;　　　高い方の色を描きこむ" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-37">
+          <mxGeometry x="10" y="110" width="430" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-42" value="バイト型" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-13">
+          <mxGeometry x="10" y="940" width="450" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-43" value="ピクセルシェーダーの出力色のバイト型&lt;br&gt;広くサポートされているのは4バイトの少数ありの型(float4など)&lt;br&gt;少数ありの方を単精度浮動小数型と呼ぶ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-42">
+          <mxGeometry x="10" y="30" width="430" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-44" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-42">
+          <mxGeometry x="10" y="280" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-45" value="BYTE_1_UINT：１バイトの符号なし整数型　(unsigned shortと同じ)&lt;br&gt;&lt;br&gt;BYTE_2_UINT：２バイトの符号なし整数型　(unsigned shortと同じ)&lt;br&gt;&lt;br&gt;BYTE_4_UINT：４バイトの符号なし整数型　(unsigned shortと同じ)&lt;br&gt;&lt;br&gt;BYTE_2_FLOAT：２バイトの単精度浮動小数型　(halfまたはhalf floatと同じ)&lt;br&gt;&lt;br&gt;BYTE_4_FLOAT：４バイトの単精度浮動小数型　(floatと同じ)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-42">
+          <mxGeometry x="10" y="110" width="430" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-46" value="色数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-13">
+          <mxGeometry x="10" y="1310" width="450" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-47" value="ピクセルシェーダーの出力色の内、使用する色を指定する" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-46">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-48" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-46">
+          <mxGeometry x="10" y="170" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-49" value="R：赤のみ&lt;br&gt;&lt;br&gt;RG：赤と緑&lt;br&gt;&lt;br&gt;RGBA：赤と緑と青とα値" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-46">
+          <mxGeometry x="10" y="70" width="430" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-50" value="深度ステンシル（奥行き情報）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="2280" width="470" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-51" value="深度ステンシル設定情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-50">
+          <mxGeometry x="10" y="40" width="450" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-52" value="深度ステンシル設定の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-51">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-53" value="DEPTH:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-51">
+          <mxGeometry x="10" y="80" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-54" value="深度モード" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-50">
+          <mxGeometry x="10" y="200" width="450" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-55" value="深度値の書き込みを設定する&lt;br&gt;奥行きを判定するための数値、高い方が遠い" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-54">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-56" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-54">
+          <mxGeometry x="10" y="180" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-57" value="NO：深度値を描きこまない&lt;br&gt;&lt;br&gt;ZERO：まだ描きこまれていないところにのみ書き込む&lt;br&gt;&lt;br&gt;ONE：常に書き込む" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-54">
+          <mxGeometry x="10" y="80" width="430" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-58" value="深度オプション" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-50">
+          <mxGeometry x="10" y="460" width="450" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-59" value="深度値を描きこむかどうかの判定を設定する" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-58">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-60" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-58">
+          <mxGeometry x="10" y="290" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-61" value="DONT：書き込まない&lt;br&gt;&lt;br&gt;ALWAYS：常に書き込む&lt;br&gt;&lt;br&gt;EQUAL：同じ値の時のみ書き込む&lt;br&gt;&lt;br&gt;GREATER：比較元を超える時のみ書き込む&lt;br&gt;&lt;br&gt;GREATER_EQUAL：比較元以上の時のみ書き込む&lt;br&gt;&lt;br&gt;LESS：比較元より小さい場合のみ書き込む&lt;br&gt;&lt;br&gt;LESS_EQUAL：比較元以下の場合のみ書き込む" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-58">
+          <mxGeometry x="10" y="80" width="430" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-62" value="ステンシル設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-50">
+          <mxGeometry x="10" y="830" width="450" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-63" value="ステンシルを使用するかどうかを指定する&lt;br&gt;深度を描きこむときにもっと詳細な情報を描きこんだバッファで、&lt;br&gt;奥行きの判定を補助してくれる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-62">
+          <mxGeometry x="10" y="30" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-64" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-62">
+          <mxGeometry x="10" y="170" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-65" value="NO_ACTIVE：ステンシルは無効&lt;br&gt;&lt;br&gt;ACTIVE：ステンシルは有効" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-62">
+          <mxGeometry x="10" y="100" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-72" value="ラスタライザ設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="3410" width="470" height="1510" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-73" value="ラスタライザ設定情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="40" width="450" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-74" value="ラスタライザ設定の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-73">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-75" value="RASTERIZER:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-73">
+          <mxGeometry x="10" y="80" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-76" value="表示モード" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="200" width="450" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-77" value="モデル描画時にワイヤーフレームで描画するかどうかを設定できる&lt;br&gt;ワイヤーフレームは面を消して辺のみを描画するということ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-76">
+          <mxGeometry x="10" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-78" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-76">
+          <mxGeometry x="10" y="160" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-79" value="NORMAL：通常通りの描画（面で描画する）&lt;br&gt;&lt;br&gt;WIRE_FRAME：ワイヤーフレームで描画する" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-76">
+          <mxGeometry x="10" y="90" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-80" value="面の表示基準" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="460" width="450" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-81" value="カメラに向かって表面かどうかで面を残すかどうかを指定できる&lt;br&gt;裏面のみを描画したり、表面のみを描画するカリングを行うことができる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-80">
+          <mxGeometry x="10" y="30" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-82" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-80">
+          <mxGeometry x="10" y="210" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-83" value="ALWAYS：すべての面を描画する&lt;br&gt;&lt;br&gt;FRONT：表面のみ描画する&lt;br&gt;&lt;br&gt;BACK：裏面のみ描画する" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-80">
+          <mxGeometry x="10" y="100" width="430" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-84" value="表面の基準" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="750" width="450" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-85" value="カメラから見て表面が時計回りの面か、反時計回りの面かを指定する" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-84">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-86" value="(string)使用するオプション" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-84">
+          <mxGeometry x="10" y="170" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-87" value="CLOCK_WISE：時計回りが表面&lt;br&gt;&lt;br&gt;ANTI_CLOCK_WISE：反時計回りが表面" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-84">
+          <mxGeometry x="10" y="90" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-88" value="奥行き値" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="1010" width="450" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-89" value="奥行き（深度値）を本来の奥行きからさらに盛ることができ、その時の盛る量&lt;br&gt;正確には深度バイアスという" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-88">
+          <mxGeometry x="10" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-91" value="(int)奥行き値" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-88">
+          <mxGeometry x="10" y="100" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-92" value="奥行き最大値" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="1190" width="450" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-93" value="盛る奥行き値（深度バイアス値）の上限値&lt;br&gt;奥行きの影響度が遠くになるほど強くなるので、&lt;br&gt;一定より遠くは強く影響が出ないように調整できる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-92">
+          <mxGeometry x="10" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-94" value="(float)奥行き最大値" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-92">
+          <mxGeometry x="10" y="100" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-95" value="奥行き傾斜値" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-72">
+          <mxGeometry x="10" y="1370" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-96" value="斜めの面を描画するときに盛る奥行き値（深度バイアス）への補正を掛ける値" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-95">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-97" value="(float)奥行き傾斜値" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-95">
+          <mxGeometry x="10" y="80" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-98" value="サンプリング設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="4940" width="470" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-99" value="サンプリング設定開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-98">
+          <mxGeometry x="10" y="40" width="450" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-100" value="サンプリング設定の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-99">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-101" value="SAMPLING:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-99">
+          <mxGeometry x="10" y="90" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-102" value="サンプリング回数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-98">
+          <mxGeometry x="10" y="210" width="450" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-103" value="描画時の一部書き込みの回数&lt;br&gt;複数回にわたり書き込むことで詳細な情報を求めることができる&lt;br&gt;（アンチエイリアシング、影情報、奥行き情報などの書き込み回数が増える）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-102">
+          <mxGeometry x="10" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-104" value="(int)サンプリング回数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-102">
+          <mxGeometry x="10" y="100" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-123" value="サンプリング品質" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-98">
+          <mxGeometry x="10" y="390" width="450" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-124" value="描画時の一部書き込みの詳細度&lt;br&gt;一度の書き込みの品質を上げることができる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-123">
+          <mxGeometry x="10" y="30" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-125" value="(int)サンプリング品質レベル" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-123">
+          <mxGeometry x="10" y="90" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-126" value="質感情報" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-2">
+          <mxGeometry x="20" y="5540" width="470" height="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-127" value="質感情報の開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="40" width="450" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-128" value="質感設定の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-127">
+          <mxGeometry x="10" y="30" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-129" value="MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-127">
+          <mxGeometry x="10" y="80" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-130" value="アンビエント（基本の明るさ）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="200" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-131" value="加算する色値" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-130">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-132" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-130">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-136" value="ディフューズ（色の減衰）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="350" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-137" value="光を反射せずに散乱させる値（反射の影響を制限する）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-136">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-138" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-136">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-139" value="エミッション（輝き）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="500" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-140" value="メッシュを発行させる値" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-139">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-141" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-139">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-143" value="リフレクション（反射）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="650" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-144" value="光の影響による反射の値" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-143">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-145" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-143">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-146" value="スペキュラー（滑らかさ、ハイライト）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="800" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-147" value="光による鏡面反射の明るさの影響量" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-146">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-148" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-146">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-149" value="トランスペアレント（透明度）" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-126">
+          <mxGeometry x="10" y="950" width="450" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-150" value="全体の透明度、RGBに関しては影響度となる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-149">
+          <mxGeometry x="10" y="30" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bV-nZe_him1r6Ht0tL01-151" value="(float)Red,(float)Green,(float)Blue,(float)Alpha" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="bV-nZe_him1r6Ht0tL01-149">
+          <mxGeometry x="10" y="70" width="430" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
