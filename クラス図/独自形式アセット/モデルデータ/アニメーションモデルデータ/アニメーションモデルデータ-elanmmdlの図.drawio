@@ -1,0 +1,1522 @@
+<mxfile host="Electron" modified="2024-01-22T04:58:42.713Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="FEaW0XrMIITpLH68Tze6" version="22.1.21" type="device" pages="4">
+  <diagram name="アニメーションモデルデータ ver.1.0.0" id="F_xgiDYA5KZkH7zyrJZr">
+    <mxGraphModel dx="1877" dy="2959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-1" value="アニメーションモデルシステム ver.1.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="-1120" width="330" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-2" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-1" vertex="1">
+          <mxGeometry x="35" y="40" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-3" value="モデル用メッシュリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-2" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-111" value="ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-2" vertex="1">
+          <mxGeometry x="20" y="110" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-4" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-1" vertex="1">
+          <mxGeometry x="35" y="220" width="260" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-5" value="モデルデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-4" vertex="1">
+          <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-6" value="モデルの描画&lt;br&gt;特定のメッシュのみを指定したモデル描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-4" vertex="1">
+          <mxGeometry x="10" y="90" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-7" value="指定されたメッシュの参照を返す" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-4" vertex="1">
+          <mxGeometry x="10" y="160" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-8" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-4" vertex="1">
+          <mxGeometry x="10" y="220" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-9" value="頂点システム＜アニメーションモデル用頂点＞" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="460" y="-2070" width="300" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-10" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-9" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-11" value="アニメーションモデル用頂点のリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-10" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-12" value="頂点バッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-10" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-13" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-9" vertex="1">
+          <mxGeometry x="20" y="210" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-14" value="頂点バッファと頂点リスト生成処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-13" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-15" value="頂点バッファ描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-13" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-16" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-13" vertex="1">
+          <mxGeometry x="20" y="170" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-17" value="アニメーションモデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="830" y="-2070" width="300" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-18" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-19" value="UV座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-20" value="法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="225" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-21" value="カラー" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="165" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-22" value="タンジェントベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="285" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-23" value="従法線ベクトル&lt;br&gt;（副法線ベクトル）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="50" y="350" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-125" value="ボーンウェイト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-17" vertex="1">
+          <mxGeometry x="20" y="420" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-126" value="ボーン番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-125" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-127" value="ウェイト値" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-125" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-24" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-25" target="_S2fAraIQjbG2IBY-Vns-3" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-670" y="-1240" as="sourcePoint" />
+            <mxPoint x="-510" y="-1205" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-150" y="-1300" />
+              <mxPoint x="-150" y="-1020" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-25" value="モデル用メッシュシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-60" y="-1630" width="300" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-26" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-25" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-27" value="頂点インデックスシステム" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-26" vertex="1">
+          <mxGeometry x="30" y="150" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-28" value="メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-26" vertex="1">
+          <mxGeometry x="30" y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-29" value="マテリアルデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-26" vertex="1">
+          <mxGeometry x="30" y="110" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-30" value="頂点データリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-26" vertex="1">
+          <mxGeometry x="30" y="70" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-31" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-25" vertex="1">
+          <mxGeometry x="20" y="240" width="260" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-32" value="メッシュ名のセッタ・ゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-33" value="マテリアルのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-34" value="頂点インデックスデータの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-35" value="マテリアルのセット&lt;br&gt;頂点の描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-36" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="340" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-37" value="頂点データの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-31" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-38" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-39" target="_S2fAraIQjbG2IBY-Vns-27" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-116" y="-910" as="sourcePoint" />
+            <mxPoint x="-116" y="-1420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="294" y="-1155" />
+              <mxPoint x="294" y="-1425" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-39" value="頂点インデックスシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="354" y="-1380" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-40" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-39" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-41" value="頂点インデックスリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-40" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-42" value="頂点インデックスバッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-40" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-43" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-39" vertex="1">
+          <mxGeometry x="30" y="210" width="250" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-44" value="頂点インデックスバッファとリストの生成" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-43" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-45" value="頂点インデックスバッファを使用した描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-43" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-46" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-43" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-47" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-48" target="_S2fAraIQjbG2IBY-Vns-29" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="380" y="-1460" as="sourcePoint" />
+            <mxPoint x="-56" y="-1457.5" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-48" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
+          <mxGeometry x="430" y="-1505" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-52" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-17" target="_S2fAraIQjbG2IBY-Vns-11" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="580" y="-1690" as="sourcePoint" />
+            <mxPoint x="720" y="-1710" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="790" y="-1765" />
+              <mxPoint x="790" y="-1971" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-53" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-54" target="_S2fAraIQjbG2IBY-Vns-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-40" y="-720" as="sourcePoint" />
+            <mxPoint x="-160" y="-1320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-120" y="-145" />
+              <mxPoint x="-120" y="-840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-54" value="アニメーションモデルデータロードシステム" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="-290" width="302" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-55" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-54" vertex="1">
+          <mxGeometry x="22" y="40" width="260" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-57" value="メッシュデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-55" vertex="1">
+          <mxGeometry x="10" y="100" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-58" value="ファイルデータのロードと認証文字の確認" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-55" vertex="1">
+          <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6OkUKRzDkRhUZszHs800-1" value="ボーンデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-55" vertex="1">
+          <mxGeometry x="10" y="170" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-59" value="アニメーションモデルデータ" style="swimlane;whiteSpace=wrap;html=1;strokeColor=default;fillStyle=auto;fillColor=default;gradientColor=none;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="400" y="-220" width="1390" height="2150" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-60" value="内部データの詳細" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-59" vertex="1">
+          <mxGeometry x="240" y="35" width="910" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-61" value="データ認証文字、アニメーションモデルデータであることを証明する文字列&lt;br&gt;This-Is-ELANMMDL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=middle;labelPosition=center;verticalLabelPosition=middle;align=center;" parent="_S2fAraIQjbG2IBY-Vns-60" vertex="1">
+          <mxGeometry x="120" y="30" width="660" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-63" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-60" vertex="1">
+          <mxGeometry x="120" y="105" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-66" value="メッシュデータ、メッシュ数分データがある" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-60" vertex="1">
+          <mxGeometry x="40" y="345" width="820" height="585" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-67" value="メッシュ情報開始位置&lt;br&gt;MESH:" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-68" value="メッシュ名&lt;br&gt;(string)メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="90" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-69" value="マテリアル情報位置&lt;br&gt;MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="140" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-70" value="マテリアル名&lt;br&gt;(string)マテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="190" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-71" value="頂点インデックス開始位置と頂点インデックス数&lt;br&gt;INDEX:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="420" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-72" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="470" width="660" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-73" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-72" vertex="1">
+          <mxGeometry x="60" y="40" width="560" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-64" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="70" y="310" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-65" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-64" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-62" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-66" vertex="1">
+          <mxGeometry x="80" y="250" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-138" value="ボーン情報、ボーン数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-60" vertex="1">
+          <mxGeometry x="110" y="225" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-139" value="ボーン名、オフセットマトリクス行列&lt;br&gt;(string)ボーン名/(float4x4)オフセットマトリクス行列/" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-138" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-141" value="ボーン数&lt;br&gt;BONESUM:(int)ボーン数" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-60" vertex="1">
+          <mxGeometry x="120" y="165" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-74" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-59" vertex="1">
+          <mxGeometry x="20" y="1025" width="1350" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-75" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;BONESUM:5&lt;/div&gt;&lt;div&gt;RootNode/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Hips/1,0,0,-3.473997E-06,0,1,0,104.2259,0,0,1,-1.554229,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Translation/1,0,0,0,0,1,0,10.18159,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_PreRotation/1,0,0,0,0,0.9964178,-0.08456711,0,0,0.08456711,0.9964178,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Rotation/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:16/1,:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:16/1,:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:16/1,:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:16/1,:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:16/1,:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:16/1,:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:16/1,:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:16/1,:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:16/1,:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:16/1,:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="_S2fAraIQjbG2IBY-Vns-74" vertex="1">
+          <mxGeometry x="20" y="50" width="1310" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-76" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-59" target="_S2fAraIQjbG2IBY-Vns-54" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="-670" as="sourcePoint" />
+            <mxPoint x="620" y="-720" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="319" y="855" />
+              <mxPoint x="320" y="-145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-77" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-9" target="_S2fAraIQjbG2IBY-Vns-30" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-710" y="-1520" as="sourcePoint" />
+            <mxPoint x="-450" y="-1410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="350" y="-1840" />
+              <mxPoint x="350" y="-1505" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-79" value="fbxデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="1320" y="-2210" width="430" height="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-80" value="シーン" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-79" vertex="1">
+          <mxGeometry x="30" y="40" width="370" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-81" value="分類：メッシュ&lt;br&gt;モデルデータ（ポリゴン）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="30" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-82" value="分類：LODグループ&lt;br&gt;全体の詳細レベル" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="80" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-83" value="分類：カメラ&lt;br&gt;カメラの動きや、配置、数を記録" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="130" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-84" value="分類：ライト&lt;br&gt;証明の配置や種類、数を記録" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="180" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-85" value="分類：ゴボ&lt;br&gt;ライト用のマスク画像、型抜き用画像" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="230" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-86" value="分類：ナーブス&lt;br&gt;メッシュを曲面に変形させるためのデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="280" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-87" value="分類：テクスチャ&lt;br&gt;メッシュに貼る画像データ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="330" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-88" value="分類：マテリアル&lt;br&gt;物質の質感情報" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="377.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-89" value="分類：コンストレイント&lt;br&gt;オブジェがターゲットを追跡する設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="427.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-90" value="分類：デフォーマー&lt;br&gt;メッシュを変形させるときの基準点&lt;br&gt;（スキニングとは別である）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="481.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-91" value="分類：グローバルデータ&lt;br&gt;シーンのメタデータ&lt;br&gt;（被写界深度やアンビエントオクルージョンなど）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="537.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-92" value="分類：アクシスシステム&lt;br&gt;右手系なのか左手系なのか" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="590" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-93" value="分類：ノード&lt;br&gt;ボーンのデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="640" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-94" value="分類：マーカー&lt;br&gt;モーションキャプチャー用の測定基準点" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="687.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-95" value="分類：ライン&lt;br&gt;オブジェクトの移動線のデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="740" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-96" value="分類：スケルトン&lt;br&gt;骨格定義データ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="790" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-97" value="分類：アニメーションカーブ&lt;br&gt;時間変化するパラメータのデータ&lt;br&gt;（スケルトンアニメーションのデータもここ）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="840" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-98" value="分類：ポーズ&lt;br&gt;姿勢、アニメーションの開始位置などに使われる" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-80" vertex="1">
+          <mxGeometry x="40" y="900" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-99" value="モデルに不要なfbx内のデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="1850" y="-1995" width="348" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-100" value="分類：カメラ&lt;br&gt;カメラの動きや、配置、数を記録" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="43.75" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-101" value="分類：ライト&lt;br&gt;証明の配置や種類、数を記録" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="93.75" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-102" value="分類：ゴボ&lt;br&gt;ライト用のマスク画像、型抜き用画像" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="143.75" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-103" value="分類：ナーブス&lt;br&gt;メッシュを曲面に変形させるためのデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="193.75" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-104" value="分類：コンストレイント&lt;br&gt;オブジェがターゲットを追跡する設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="250" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-105" value="分類：デフォーマー&lt;br&gt;メッシュを変形させるときの基準点&lt;br&gt;（スキニングとは別である）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="304" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-106" value="分類：グローバルデータ&lt;br&gt;シーンのメタデータ&lt;br&gt;（被写界深度やアンビエントオクルージョンなど）" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="360" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-107" value="分類：アクシスシステム（場合による）&lt;br&gt;右手系なのか左手系なのか" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="412.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-108" value="分類：マーカー&lt;br&gt;モーションキャプチャー用の測定基準点" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="470" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-109" value="分類：ライン&lt;br&gt;オブジェクトの移動線のデータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-99" vertex="1">
+          <mxGeometry x="28" y="522.5" width="290" height="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-110" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-79" target="_S2fAraIQjbG2IBY-Vns-99" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="1790" y="-1820" as="sourcePoint" />
+            <mxPoint x="1890" y="-1820" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-128" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_S2fAraIQjbG2IBY-Vns-129" target="_S2fAraIQjbG2IBY-Vns-111" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-10" y="-630" as="sourcePoint" />
+            <mxPoint x="30" y="-690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="-685" />
+              <mxPoint x="-80" y="-950" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-129" value="ボーンシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="-880" width="300" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-130" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-129" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-131" value="ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-130" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-132" value="オフセットマトリクス行列" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-130" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-133" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_S2fAraIQjbG2IBY-Vns-129" vertex="1">
+          <mxGeometry x="30" y="200" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-134" value="ボーン名のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-133" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_S2fAraIQjbG2IBY-Vns-135" value="オフセットマトリクス行列の&lt;br&gt;セッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="_S2fAraIQjbG2IBY-Vns-133" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="loht3D57_BG6_7GaVDDL-1" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-2030" width="360" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="loht3D57_BG6_7GaVDDL-2" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．マテリアルが別で必要になるので、&lt;br&gt;モデルの描画がデータ内部で完結しない" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="loht3D57_BG6_7GaVDDL-1" vertex="1">
+          <mxGeometry y="30" width="360" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="nvA7vrt_EdUa-mu22F-6-1" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;strokeWidth=5;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="loht3D57_BG6_7GaVDDL-2" target="_S2fAraIQjbG2IBY-Vns-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-380" y="-1340" as="sourcePoint" />
+            <mxPoint x="-360" y="-1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="CADHnZVZFWkgylE2uwnZ" name="アニメーションモデルデータ ver.2.0.0">
+    <mxGraphModel dx="2227" dy="3166" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-1" value="アニメーションモデルシステム ver.2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="-720" width="330" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-2" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-1" vertex="1">
+          <mxGeometry x="20" y="40" width="290" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-3" value="モデル用メッシュリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-2" vertex="1">
+          <mxGeometry x="35" y="110" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-4" value="ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-2" vertex="1">
+          <mxGeometry x="35" y="180" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-34" value="頂点データリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-2" vertex="1">
+          <mxGeometry x="35" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-5" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-1" vertex="1">
+          <mxGeometry x="20" y="280" width="290" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-6" value="モデルデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-5" vertex="1">
+          <mxGeometry x="25" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-7" value="モデルの描画&lt;br&gt;特定のメッシュのみを指定したモデル描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-5" vertex="1">
+          <mxGeometry x="25" y="90" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-8" value="指定されたメッシュの参照を返す" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-5" vertex="1">
+          <mxGeometry x="25" y="160" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-9" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-5" vertex="1">
+          <mxGeometry x="25" y="220" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-41" value="頂点データの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-5" vertex="1">
+          <mxGeometry x="25" y="280" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-10" value="頂点システム＜アニメーションモデル用頂点＞" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-1540" width="300" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-11" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-10" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-12" value="アニメーションモデル用頂点のリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-11" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-13" value="頂点バッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-11" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-14" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-10" vertex="1">
+          <mxGeometry x="20" y="210" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-15" value="頂点バッファと頂点リスト生成処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-14" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-16" value="頂点バッファ描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-14" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-17" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-14" vertex="1">
+          <mxGeometry x="20" y="170" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-18" value="アニメーションモデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="350" y="-1630" width="300" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-19" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-20" value="UV座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-21" value="法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="225" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-22" value="カラー" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="165" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-23" value="タンジェントベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="285" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-24" value="従法線ベクトル&lt;br&gt;（副法線ベクトル）" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="50" y="350" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-25" value="ボーンウェイト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-18" vertex="1">
+          <mxGeometry x="20" y="420" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-26" value="ボーン番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-25" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-27" value="ウェイト値" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-25" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-28" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-29" target="iGUSWLY001wF3EJ4PGcU-3" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-670" y="-840" as="sourcePoint" />
+            <mxPoint x="-510" y="-805" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-50" y="-680" />
+              <mxPoint x="-50" y="-550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-29" value="モデル用メッシュシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-980" width="300" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-30" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-29" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-31" value="頂点インデックスシステム" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-30" vertex="1">
+          <mxGeometry x="30" y="150" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-32" value="メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-30" vertex="1">
+          <mxGeometry x="30" y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-33" value="使用するマテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-30" vertex="1">
+          <mxGeometry x="30" y="85" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-35" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-29" vertex="1">
+          <mxGeometry x="20" y="240" width="260" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-36" value="メッシュ名のセッタ・ゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-35" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-37" value="マテリアルのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-35" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-38" value="頂点インデックスデータの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-35" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-39" value="マテリアルのセット&lt;br&gt;頂点インデックスによる描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-35" vertex="1">
+          <mxGeometry x="30" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-40" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-35" vertex="1">
+          <mxGeometry x="30" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-42" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-43" target="iGUSWLY001wF3EJ4PGcU-31" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-116" y="-510" as="sourcePoint" />
+            <mxPoint x="-116" y="-1020" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="-495" />
+              <mxPoint x="330" y="-775" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-43" value="頂点インデックスシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="380" y="-720" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-44" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-43" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-45" value="頂点インデックスリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-44" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-46" value="頂点インデックスバッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-44" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-47" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-43" vertex="1">
+          <mxGeometry x="30" y="210" width="250" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-48" value="頂点インデックスバッファとリストの生成" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-47" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-49" value="頂点インデックスバッファを使用した描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-47" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-50" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-47" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-53" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-18" target="iGUSWLY001wF3EJ4PGcU-12" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="100" y="-1250" as="sourcePoint" />
+            <mxPoint x="240" y="-1270" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="-1325" />
+              <mxPoint x="310" y="-1440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-54" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-55" target="iGUSWLY001wF3EJ4PGcU-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-40" y="-320" as="sourcePoint" />
+            <mxPoint x="-160" y="-920" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-120" y="485" />
+              <mxPoint x="-120" y="-380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-55" value="アニメーションモデルデータロードシステム" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="300" width="302" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-56" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-55" vertex="1">
+          <mxGeometry x="22" y="40" width="260" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-57" value="頂点データのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-56" vertex="1">
+          <mxGeometry x="10" y="110" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-58" value="メッシュデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-56" vertex="1">
+          <mxGeometry x="10" y="180" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-59" value="ファイルデータのロードと認証文字の確認" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-56" vertex="1">
+          <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uQobZRHRCLj1fXICG_aX-1" value="ボーンデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-56" vertex="1">
+          <mxGeometry x="10" y="240" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-60" value="アニメーションモデルデータ" style="swimlane;whiteSpace=wrap;html=1;strokeColor=default;fillStyle=auto;fillColor=default;gradientColor=none;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="420" y="180" width="1390" height="2150" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-61" value="内部データの詳細" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-60" vertex="1">
+          <mxGeometry x="240" y="35" width="910" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-62" value="データ認証文字、アニメーションモデルデータであることを証明する文字列&lt;br&gt;This-Is-ELANMMDL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=middle;labelPosition=center;verticalLabelPosition=middle;align=center;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="120" y="30" width="660" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-63" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="120" y="110" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-64" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="120" y="280" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-65" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="110" y="170" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-66" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-65" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-67" value="メッシュデータ、メッシュ数分データがある" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="110" y="520" width="680" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-68" value="メッシュ情報開始位置&lt;br&gt;MESH:" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-69" value="メッシュ名&lt;br&gt;(string)メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="90" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-70" value="マテリアル情報位置&lt;br&gt;MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="140" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-71" value="マテリアル名&lt;br&gt;(string)マテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="190" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-72" value="頂点インデックス開始位置と頂点インデックス数&lt;br&gt;INDEX:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="250" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-73" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-67" vertex="1">
+          <mxGeometry x="10" y="300" width="660" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-74" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-73" vertex="1">
+          <mxGeometry x="60" y="40" width="560" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-75" value="ボーン情報、ボーン数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="110" y="400" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-76" value="ボーン名、親ボーン番号、オフセットマトリクス行列&lt;br&gt;(string)ボーン名/(int)親ボーン番号/(float4x4)オフセットマトリクス行列/" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-75" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-77" value="ボーン数&lt;br&gt;BONESUM:(int)ボーン数" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-61" vertex="1">
+          <mxGeometry x="120" y="340" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-78" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-60" vertex="1">
+          <mxGeometry x="20" y="1025" width="1350" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-79" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:16/1,:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:16/1,:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:16/1,:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:16/1,:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:16/1,:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:16/1,:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:16/1,:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:16/1,:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:16/1,:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:16/1,:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;BONESUM:5&lt;/div&gt;&lt;div&gt;RootNode/-1/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Hips/0/1,0,0,-3.473997E-06,0,1,0,104.2259,0,0,1,-1.554229,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Translation/1/1,0,0,0,0,1,0,10.18159,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_PreRotation/1/1,0,0,0,0,0.9964178,-0.08456711,0,0,0.08456711,0.9964178,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Rotation/1/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="iGUSWLY001wF3EJ4PGcU-78" vertex="1">
+          <mxGeometry x="20" y="50" width="1310" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-80" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-60" target="iGUSWLY001wF3EJ4PGcU-55" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="-270" as="sourcePoint" />
+            <mxPoint x="620" y="-320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="319" y="1255" />
+              <mxPoint x="320" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-81" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-10" target="iGUSWLY001wF3EJ4PGcU-34" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-710" y="-1120" as="sourcePoint" />
+            <mxPoint x="-450" y="-1010" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-110" y="-1310" />
+              <mxPoint x="-110" y="-620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-82" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeWidth=5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="P-casOKTkH8RVFJqOnj5-2" target="iGUSWLY001wF3EJ4PGcU-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-405" y="-1190" as="sourcePoint" />
+            <mxPoint x="-405" y="-1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-115" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iGUSWLY001wF3EJ4PGcU-116" target="iGUSWLY001wF3EJ4PGcU-4" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-10" y="-230" as="sourcePoint" />
+            <mxPoint x="30" y="-290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="-45" />
+              <mxPoint x="-80" y="-480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-116" value="ボーンシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="-320" width="300" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-117" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-116" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-118" value="ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-117" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fBZuk8ivlUBGfQ3_KD5--1" value="親ボーンの番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-117" vertex="1">
+          <mxGeometry x="30" y="110" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-119" value="オフセットマトリクス行列" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-117" vertex="1">
+          <mxGeometry x="30" y="180" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-120" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="iGUSWLY001wF3EJ4PGcU-116" vertex="1">
+          <mxGeometry x="30" y="290" width="250" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-121" value="ボーン名のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-120" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iGUSWLY001wF3EJ4PGcU-122" value="オフセットマトリクスの&lt;br&gt;セッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-120" vertex="1">
+          <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fBZuk8ivlUBGfQ3_KD5--2" value="親ボーンの番号のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="iGUSWLY001wF3EJ4PGcU-120" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="P-casOKTkH8RVFJqOnj5-1" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-1680" width="360" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="P-casOKTkH8RVFJqOnj5-2" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;３．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．モデルが頂点データを持ち、&lt;br&gt;メッシュがインデックスを指定して描画する&lt;br&gt;&lt;br&gt;３．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファをセットする必要がなくなり、&lt;br&gt;描画の開始時にセットしていればよくなった&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しない&lt;br&gt;&lt;br&gt;３．どの頂点インデックスデータがどのメッシュのものかを&lt;br&gt;探索するのが困難になり、パラメータの把握に時間がかかる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="P-casOKTkH8RVFJqOnj5-1" vertex="1">
+          <mxGeometry y="30" width="360" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="6gw1yRxDzRgl7g1zp0v6-1" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="6gw1yRxDzRgl7g1zp0v6-2" target="iGUSWLY001wF3EJ4PGcU-33" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="486" y="-860" as="sourcePoint" />
+            <mxPoint x="300" y="-840" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6gw1yRxDzRgl7g1zp0v6-2" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="-880" width="160" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="6nKeCeBPMrZtVDDHuPGH" name="アニメーションモデルデータ ver.3.0.0">
+    <mxGraphModel dx="1877" dy="2959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TayZ2XKyJABk53SRNXod-1" value="アニメーションモデルシステム ver.3.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="-1060" width="330" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-2" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-1" vertex="1">
+          <mxGeometry x="20" y="40" width="290" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-3" value="モデル用メッシュリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-2" vertex="1">
+          <mxGeometry x="35" y="110" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-4" value="ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-2" vertex="1">
+          <mxGeometry x="35" y="180" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-5" value="頂点データリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-2" vertex="1">
+          <mxGeometry x="35" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-6" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-1" vertex="1">
+          <mxGeometry x="20" y="280" width="290" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-7" value="モデルデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-6" vertex="1">
+          <mxGeometry x="25" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-8" value="モデルの描画&lt;br&gt;特定のメッシュのみを指定したモデル描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-6" vertex="1">
+          <mxGeometry x="25" y="90" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-9" value="指定されたメッシュの参照を返す" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-6" vertex="1">
+          <mxGeometry x="25" y="160" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-10" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-6" vertex="1">
+          <mxGeometry x="25" y="220" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-11" value="頂点データの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-6" vertex="1">
+          <mxGeometry x="25" y="280" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-12" value="頂点システム＜アニメーションモデル用頂点＞" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-1880" width="300" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-13" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-12" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-14" value="アニメーションモデル用頂点のリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-13" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-15" value="頂点バッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-13" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-16" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-12" vertex="1">
+          <mxGeometry x="20" y="210" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-17" value="頂点バッファと頂点リスト生成処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-16" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-18" value="頂点バッファ描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-16" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-19" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-16" vertex="1">
+          <mxGeometry x="20" y="170" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-20" value="アニメーションモデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="350" y="-1970" width="300" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-21" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-22" value="UV座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-23" value="法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="225" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-24" value="カラー" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="165" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-25" value="タンジェントベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="285" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-26" value="従法線ベクトル&lt;br&gt;（副法線ベクトル）" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="50" y="350" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-27" value="ボーンウェイト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-20" vertex="1">
+          <mxGeometry x="20" y="420" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-28" value="ボーン番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-27" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-29" value="ウェイト値" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-27" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-30" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-31" target="TayZ2XKyJABk53SRNXod-3" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-670" y="-1180" as="sourcePoint" />
+            <mxPoint x="-510" y="-1145" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-50" y="-1020" />
+              <mxPoint x="-50" y="-890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-31" value="モデル用メッシュシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-1320" width="300" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-32" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-31" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-33" value="頂点インデックスシステム" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-32" vertex="1">
+          <mxGeometry x="30" y="150" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-34" value="メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-32" vertex="1">
+          <mxGeometry x="30" y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-35" value="使用するマテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-32" vertex="1">
+          <mxGeometry x="30" y="85" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-36" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-31" vertex="1">
+          <mxGeometry x="20" y="240" width="260" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-37" value="メッシュ名のセッタ・ゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-36" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-38" value="マテリアルのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-36" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-39" value="頂点インデックスデータの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-36" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-40" value="マテリアルのセット&lt;br&gt;頂点インデックスによる描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-36" vertex="1">
+          <mxGeometry x="30" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-41" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-36" vertex="1">
+          <mxGeometry x="30" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-42" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-43" target="TayZ2XKyJABk53SRNXod-33" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-116" y="-850" as="sourcePoint" />
+            <mxPoint x="-116" y="-1360" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="-835" />
+              <mxPoint x="330" y="-1115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-43" value="頂点インデックスシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="380" y="-1060" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-44" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-43" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-45" value="頂点インデックスリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-44" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-46" value="頂点インデックスバッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-44" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-47" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-43" vertex="1">
+          <mxGeometry x="30" y="210" width="250" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-48" value="頂点インデックスバッファとリストの生成" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-47" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-49" value="頂点インデックスバッファを使用した描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-47" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-50" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-47" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-51" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-20" target="TayZ2XKyJABk53SRNXod-14" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="100" y="-1590" as="sourcePoint" />
+            <mxPoint x="240" y="-1610" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="-1665" />
+              <mxPoint x="310" y="-1780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-52" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-53" target="TayZ2XKyJABk53SRNXod-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-40" y="-660" as="sourcePoint" />
+            <mxPoint x="-160" y="-1260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-120" y="415" />
+              <mxPoint x="-120" y="-720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-53" value="アニメーションモデルデータロードシステム" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="230" width="302" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-54" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-53" vertex="1">
+          <mxGeometry x="22" y="40" width="260" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-55" value="頂点データのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-54" vertex="1">
+          <mxGeometry x="10" y="110" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-56" value="メッシュデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-54" vertex="1">
+          <mxGeometry x="10" y="180" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-57" value="ファイルデータのロードと認証文字の確認" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-54" vertex="1">
+          <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-58" value="ボーンデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-54" vertex="1">
+          <mxGeometry x="10" y="240" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-59" value="アニメーションモデルデータ" style="swimlane;whiteSpace=wrap;html=1;strokeColor=default;fillStyle=auto;fillColor=default;gradientColor=none;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="400" y="-160" width="1390" height="2150" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-60" value="内部データの詳細" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-59" vertex="1">
+          <mxGeometry x="240" y="35" width="910" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-61" value="データ認証文字、アニメーションモデルデータであることを証明する文字列&lt;br&gt;This-Is-ELANMMDL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=middle;labelPosition=center;verticalLabelPosition=middle;align=center;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="120" y="30" width="660" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-62" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="120" y="110" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-63" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="120" y="280" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-64" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="110" y="170" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-65" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-64" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-66" value="メッシュデータ、メッシュ数分データがある" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="110" y="520" width="680" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-67" value="メッシュ情報開始位置&lt;br&gt;MESH:" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-68" value="メッシュ名&lt;br&gt;(string)メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="90" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-69" value="マテリアル情報位置&lt;br&gt;MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="140" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-70" value="マテリアル名&lt;br&gt;(string)マテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="190" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-71" value="頂点インデックス開始位置と頂点インデックス数&lt;br&gt;INDEX:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="250" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-72" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-66" vertex="1">
+          <mxGeometry x="10" y="300" width="660" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-73" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-72" vertex="1">
+          <mxGeometry x="60" y="40" width="560" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-74" value="ボーン情報、ボーン数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="110" y="400" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-75" value="ボーン名、親ボーン番号、子ボーン番号リスト、オフセットマトリクス行列&lt;br&gt;(string)ボーン名/(int)親ボーン番号/(int)子ボーン(複数あるときは「,」で区切る)/(float4x4)オフセットマトリクス行列/" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-74" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-76" value="ボーン数&lt;br&gt;BONESUM:(int)ボーン数" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-60" vertex="1">
+          <mxGeometry x="120" y="340" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-77" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-59" vertex="1">
+          <mxGeometry x="20" y="1025" width="1350" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-78" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:16/1,:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:16/1,:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:16/1,:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:16/1,:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:16/1,:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:16/1,:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:16/1,:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:16/1,:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:16/1,:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:16/1,:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;BONESUM:5&lt;/div&gt;&lt;div&gt;RootNode/-1/1/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Hips/0/2/1,0,0,-3.473997E-06,0,1,0,104.2259,0,0,1,-1.554229,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Translation/1//1,0,0,0,0,1,0,10.18159,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_PreRotation/1//1,0,0,0,0,0.9964178,-0.08456711,0,0,0.08456711,0.9964178,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Rotation/1//1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="TayZ2XKyJABk53SRNXod-77" vertex="1">
+          <mxGeometry x="20" y="50" width="1310" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-79" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-59" target="TayZ2XKyJABk53SRNXod-53" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="-610" as="sourcePoint" />
+            <mxPoint x="620" y="-660" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="319" y="915" />
+              <mxPoint x="320" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-80" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-12" target="TayZ2XKyJABk53SRNXod-5" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-710" y="-1460" as="sourcePoint" />
+            <mxPoint x="-450" y="-1350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-110" y="-1650" />
+              <mxPoint x="-110" y="-960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-81" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeWidth=5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-93" target="TayZ2XKyJABk53SRNXod-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-405" y="-1530" as="sourcePoint" />
+            <mxPoint x="-405" y="-1940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-82" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-83" target="TayZ2XKyJABk53SRNXod-4" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-10" y="-570" as="sourcePoint" />
+            <mxPoint x="30" y="-630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="-265" />
+              <mxPoint x="-80" y="-820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-83" value="ボーンシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="-660" width="300" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-84" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-83" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-85" value="ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-84" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-86" value="親ボーンの番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-84" vertex="1">
+          <mxGeometry x="30" y="110" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-96" value="子ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-84" vertex="1">
+          <mxGeometry x="30" y="180" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-87" value="オフセットマトリクス行列" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-84" vertex="1">
+          <mxGeometry x="30" y="250" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-88" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="TayZ2XKyJABk53SRNXod-83" vertex="1">
+          <mxGeometry x="30" y="380" width="250" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-89" value="ボーン名のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-88" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-90" value="オフセットマトリクスの&lt;br&gt;セッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-88" vertex="1">
+          <mxGeometry x="30" y="240" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-91" value="親ボーンの番号のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-88" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-97" value="子ボーンリストのセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-88" vertex="1">
+          <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-98" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="TayZ2XKyJABk53SRNXod-88" vertex="1">
+          <mxGeometry x="30" y="310" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-92" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-2020" width="360" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-93" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;３．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．モデルが頂点データを持ち、&lt;br&gt;メッシュがインデックスを指定して描画する&lt;br&gt;&lt;br&gt;３．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファをセットする必要がなくなり、&lt;br&gt;描画の開始時にセットしていればよくなった&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しない&lt;br&gt;&lt;br&gt;３．どの頂点インデックスデータがどのメッシュのものかを&lt;br&gt;探索するのが困難になり、パラメータの把握に時間がかかる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="TayZ2XKyJABk53SRNXod-92" vertex="1">
+          <mxGeometry y="30" width="360" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-94" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="TayZ2XKyJABk53SRNXod-95" target="TayZ2XKyJABk53SRNXod-35" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="486" y="-1200" as="sourcePoint" />
+            <mxPoint x="300" y="-1180" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TayZ2XKyJABk53SRNXod-95" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
+          <mxGeometry x="380" y="-1220" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6xYzYg7GTxsgrDjauVkE-1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="TayZ2XKyJABk53SRNXod-1" target="6xYzYg7GTxsgrDjauVkE-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-405" y="-330" as="sourcePoint" />
+            <mxPoint x="-100" y="-830" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6xYzYg7GTxsgrDjauVkE-2" value="思案中の新しい構想 ver4.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-620" y="-10" width="430" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="6xYzYg7GTxsgrDjauVkE-3" value="構想での変更内容：&lt;br&gt;１．メッシュは頂点インデックスの配列データの使用範囲を指定&lt;br&gt;（描画に使用するインデックスデータの開始位置と終了位置）&lt;br&gt;&lt;br&gt;２．モデルが頂点インデックスリストを持つ&lt;br&gt;&lt;br&gt;&lt;br&gt;描画時の処理の変化：&lt;br&gt;モデルはメッシュを描画するときに、&lt;br&gt;描画するメッシュから頂点インデックスリストのどの範囲を描画するのか&lt;br&gt;を受け取り、モデルが持つ頂点インデックスリストを指定して描画する&lt;br&gt;&lt;br&gt;&lt;br&gt;利点：&lt;br&gt;１．メッシュごとに頂点インデックスデータをセットせず、&lt;br&gt;モデルの描画時に頂点インデックスデータをセットし、&lt;br&gt;メッシュから取得した番号でドローコールを出せるので、&lt;br&gt;描画時のCPU負荷を減らすことができる&lt;br&gt;&lt;br&gt;２．探索時の頂点インデックスデータ（INDEX:）の探索回数が一回になり、文字列探索が１－メッシュ回分短縮される&lt;br&gt;（頂点インデックスの開始と終了の位置は可変ではないので改行で区切る書き込みでロード可能）&lt;br&gt;&lt;br&gt;&lt;br&gt;欠点：&lt;br&gt;１．デバッグなどでの頂点インデックスデータの内訳の不明確化、&lt;br&gt;どこからどこまでがどのメッシュのインデックスかが分かりにくい" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="6xYzYg7GTxsgrDjauVkE-2" vertex="1">
+          <mxGeometry y="30" width="430" height="420" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="mzwpGZNhcrjzTp4Gp1Db" name="アニメーションモデルデータ ver.4.0.0">
+    <mxGraphModel dx="2442" dy="3293" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-1" value="アニメーションモデルシステム ver.3.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="-1060" width="330" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-2" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-1" vertex="1">
+          <mxGeometry x="20" y="40" width="290" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-3" value="モデル用メッシュリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-2" vertex="1">
+          <mxGeometry x="35" y="170" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-4" value="ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-2" vertex="1">
+          <mxGeometry x="35" y="240" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-5" value="頂点データリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-2" vertex="1">
+          <mxGeometry x="35" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-33" value="頂点インデックスシステム" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-2" vertex="1">
+          <mxGeometry x="35" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-6" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-1" vertex="1">
+          <mxGeometry x="20" y="350" width="290" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-7" value="モデルデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-8" value="モデルの描画&lt;br&gt;特定のメッシュのみを指定したモデル描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="90" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-9" value="指定されたメッシュの参照を返す" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="160" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-10" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="220" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-11" value="頂点データの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="280" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k2TbOWcQjc4wBpJa1ghd-1" value="頂点インデックスデータの設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-6" vertex="1">
+          <mxGeometry x="25" y="340" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-12" value="頂点システム＜アニメーションモデル用頂点＞" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-2110" width="300" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-13" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-12" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-14" value="アニメーションモデル用頂点のリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-13" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-15" value="頂点バッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-13" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-16" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-12" vertex="1">
+          <mxGeometry x="20" y="210" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-17" value="頂点バッファと頂点リスト生成処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-16" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-18" value="頂点バッファ描画処理" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-16" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-19" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-16" vertex="1">
+          <mxGeometry x="20" y="170" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-20" value="アニメーションモデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="350" y="-2260" width="300" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-21" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-22" value="UV座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-23" value="法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="225" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-24" value="カラー" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="165" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-25" value="タンジェントベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="285" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-26" value="従法線ベクトル&lt;br&gt;（副法線ベクトル）" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="50" y="350" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-27" value="ボーンウェイト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-20" vertex="1">
+          <mxGeometry x="20" y="420" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-28" value="ボーン番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-27" vertex="1">
+          <mxGeometry x="20" y="40" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-29" value="ウェイト値" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-27" vertex="1">
+          <mxGeometry x="20" y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-30" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-31" target="2Ao6REOcji2IhR7zMzD8-3" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-670" y="-1180" as="sourcePoint" />
+            <mxPoint x="-510" y="-1145" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-31" value="モデル用メッシュシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-1130" width="300" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-32" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-31" vertex="1">
+          <mxGeometry x="20" y="40" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-34" value="メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-32" vertex="1">
+          <mxGeometry x="30" y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-35" value="使用するマテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-32" vertex="1">
+          <mxGeometry x="30" y="80" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k2TbOWcQjc4wBpJa1ghd-2" value="描画する頂点インデックスの&lt;br&gt;開始番号と終了番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-32" vertex="1">
+          <mxGeometry x="30" y="130" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-36" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-31" vertex="1">
+          <mxGeometry x="20" y="240" width="260" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-37" value="メッシュ名のセッタ・ゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-36" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-38" value="マテリアルのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-36" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-39" value="描画する頂点インデックスの&lt;br&gt;開始番号と終了番号の&lt;br&gt;ゲッタ・セッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-36" vertex="1">
+          <mxGeometry x="30" y="150" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-40" value="マテリアルをセット&lt;br&gt;頂点インデックスの開始番号と&lt;br&gt;終了番号を指定して描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-36" vertex="1">
+          <mxGeometry x="30" y="210" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-41" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-36" vertex="1">
+          <mxGeometry x="30" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-42" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-43" target="2Ao6REOcji2IhR7zMzD8-33" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-116" y="-730" as="sourcePoint" />
+            <mxPoint x="-116" y="-1240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-70" y="-1375" />
+              <mxPoint x="-70" y="-900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-43" value="頂点インデックスシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="-1600" width="310" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-44" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-43" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-45" value="頂点インデックスリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-44" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-46" value="頂点インデックスバッファ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-44" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-47" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-43" vertex="1">
+          <mxGeometry x="30" y="200" width="250" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-48" value="頂点インデックスバッファとリストの生成" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-47" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-49" value="頂点インデックスバッファを使用した描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-47" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-50" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-47" vertex="1">
+          <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-51" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-20" target="2Ao6REOcji2IhR7zMzD8-14" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="100" y="-1820" as="sourcePoint" />
+            <mxPoint x="240" y="-1840" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="-1955" />
+              <mxPoint x="310" y="-2010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-52" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-53" target="2Ao6REOcji2IhR7zMzD8-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-40" y="-660" as="sourcePoint" />
+            <mxPoint x="-160" y="-1260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-120" y="595" />
+              <mxPoint x="-120" y="-650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-53" value="アニメーションモデルデータロードシステム" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="410" width="302" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-54" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-53" vertex="1">
+          <mxGeometry x="22" y="40" width="260" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-55" value="頂点データのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-54" vertex="1">
+          <mxGeometry x="10" y="110" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-56" value="メッシュデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-54" vertex="1">
+          <mxGeometry x="10" y="180" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-57" value="ファイルデータのロードと認証文字の確認" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-54" vertex="1">
+          <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-58" value="ボーンデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-54" vertex="1">
+          <mxGeometry x="10" y="240" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-59" value="アニメーションモデルデータ" style="swimlane;whiteSpace=wrap;html=1;strokeColor=default;fillStyle=auto;fillColor=default;gradientColor=none;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="400" y="20" width="1390" height="2150" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-60" value="内部データの詳細" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-59" vertex="1">
+          <mxGeometry x="240" y="35" width="910" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-61" value="データ認証文字、アニメーションモデルデータであることを証明する文字列&lt;br&gt;This-Is-ELANMMDL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=middle;labelPosition=center;verticalLabelPosition=middle;align=center;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="30" width="680" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-62" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="110" width="680" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-63" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="445" width="680" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-64" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="170" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-65" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-64" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-66" value="メッシュデータ、メッシュ数分データがある" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="680" width="680" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-67" value="メッシュ情報開始位置&lt;br&gt;MESH:" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-66" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-68" value="メッシュ名&lt;br&gt;(string)メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-66" vertex="1">
+          <mxGeometry x="10" y="90" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-69" value="マテリアル情報位置&lt;br&gt;MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-66" vertex="1">
+          <mxGeometry x="10" y="140" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-70" value="マテリアル名&lt;br&gt;(string)マテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-66" vertex="1">
+          <mxGeometry x="10" y="190" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-74" value="ボーン情報、ボーン数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="565" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-75" value="ボーン名、親ボーン番号、子ボーン番号リスト、オフセットマトリクス行列&lt;br&gt;(string)ボーン名/(int)親ボーン番号/(int)子ボーン(複数あるときは「,」で区切る)/(float4x4)オフセットマトリクス行列/" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-74" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-76" value="ボーン数&lt;br&gt;BONESUM:(int)ボーン数" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="505" width="680" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-71" value="頂点インデックス開始位置と頂点インデックス数&lt;br&gt;INDEX:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="275" width="680" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-72" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-60" vertex="1">
+          <mxGeometry x="110" y="330" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-73" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-72" vertex="1">
+          <mxGeometry x="65" y="45" width="560" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-77" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-59" vertex="1">
+          <mxGeometry x="20" y="1025" width="1350" height="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-78" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:16/1,:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:16/1,:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:16/1,:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:16/1,:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:16/1,:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:16/1,:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:16/1,:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:16/1,:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:16/1,:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:16/1,:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;INDEXSUM:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;BONESUM:5&lt;/div&gt;&lt;div&gt;RootNode/-1/1/1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Hips/0/2/1,0,0,-3.473997E-06,0,1,0,104.2259,0,0,1,-1.554229,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Translation/1//1,0,0,0,0,1,0,10.18159,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_PreRotation/1//1,0,0,0,0,0.9964178,-0.08456711,0,0,0.08456711,0.9964178,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;Spine_Rotation/1//1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1/&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;/div&gt;&lt;div&gt;14&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="2Ao6REOcji2IhR7zMzD8-77" vertex="1">
+          <mxGeometry x="20" y="50" width="1310" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-79" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-59" target="2Ao6REOcji2IhR7zMzD8-53" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="-430" as="sourcePoint" />
+            <mxPoint x="620" y="-480" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="319" y="1095" />
+              <mxPoint x="320" y="595" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-80" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-12" target="2Ao6REOcji2IhR7zMzD8-5" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-710" y="-1460" as="sourcePoint" />
+            <mxPoint x="-450" y="-1350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-110" y="-1880" />
+              <mxPoint x="-110" y="-960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-81" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeWidth=5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-96" target="2Ao6REOcji2IhR7zMzD8-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-405" y="-1530" as="sourcePoint" />
+            <mxPoint x="-405" y="-1940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-82" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-83" target="2Ao6REOcji2IhR7zMzD8-4" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="-10" y="-570" as="sourcePoint" />
+            <mxPoint x="30" y="-630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="-85" />
+              <mxPoint x="-80" y="-760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-83" value="ボーンシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-30" y="-480" width="300" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-84" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-83" vertex="1">
+          <mxGeometry x="30" y="40" width="250" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-85" value="ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-84" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-86" value="親ボーンの番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-84" vertex="1">
+          <mxGeometry x="30" y="110" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-87" value="子ボーンリスト" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-84" vertex="1">
+          <mxGeometry x="30" y="180" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-88" value="オフセットマトリクス行列" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-84" vertex="1">
+          <mxGeometry x="30" y="250" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-89" value="関数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="2Ao6REOcji2IhR7zMzD8-83" vertex="1">
+          <mxGeometry x="30" y="380" width="250" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-90" value="ボーン名のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-89" vertex="1">
+          <mxGeometry x="30" y="40" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-91" value="オフセットマトリクスの&lt;br&gt;セッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-89" vertex="1">
+          <mxGeometry x="30" y="240" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-92" value="親ボーンの番号のセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-89" vertex="1">
+          <mxGeometry x="30" y="100" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-93" value="子ボーンリストのセッタとゲッタ" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-89" vertex="1">
+          <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-94" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="2Ao6REOcji2IhR7zMzD8-89" vertex="1">
+          <mxGeometry x="30" y="310" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-95" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-2020" width="360" height="820" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-96" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;３．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;４．メッシュ内に頂点インデックスデータを持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．モデルが頂点データと頂点インデックスデータを持ち、&lt;br&gt;メッシュが使用するインデックスデータの範囲を指定して&lt;br&gt;描画する&lt;br&gt;&lt;br&gt;３．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファと頂点インデックスバッファ&lt;br&gt;をセットする必要がなくなり、&lt;br&gt;描画の開始時に一度セットするのみでよくなった&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しない&lt;br&gt;&lt;br&gt;３．どの頂点インデックスデータがどのメッシュのものかを&lt;br&gt;探索するのが困難になり、パラメータの把握に時間がかかる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="2Ao6REOcji2IhR7zMzD8-95" vertex="1">
+          <mxGeometry y="30" width="360" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-97" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2Ao6REOcji2IhR7zMzD8-98" target="2Ao6REOcji2IhR7zMzD8-35" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="486" y="-1110" as="sourcePoint" />
+            <mxPoint x="300" y="-1090" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Ao6REOcji2IhR7zMzD8-98" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="-1035" width="160" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
