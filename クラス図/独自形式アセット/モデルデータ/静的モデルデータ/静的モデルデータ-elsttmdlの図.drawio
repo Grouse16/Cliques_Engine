@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-01-18T01:30:48.828Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="F_qgTHe-NhhmRunM9F91" version="22.1.16" type="device" pages="3">
-  <diagram id="wlyOHssA-iPCLbl1LQ-Z" name="静的モデルデータ ver 1.0.0">
-    <mxGraphModel dx="3827" dy="4112" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<mxfile host="Electron" modified="2024-01-26T03:27:44.563Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="WUaspEfqI7X_Jqy6o6A4" version="22.1.21" type="device" pages="3">
+  <diagram id="wlyOHssA-iPCLbl1LQ-Z" name="静的モデルデータ ver.1.0.0">
+    <mxGraphModel dx="1877" dy="2959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -52,7 +52,7 @@
         <mxCell id="eMsbDkN65JzPOWeGEoS4-18" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-15" vertex="1">
           <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-19" value="静的モデル用頂点頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-19" value="静的モデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
           <mxGeometry x="830" y="-2070" width="300" height="435" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-20" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-19" vertex="1">
@@ -166,18 +166,6 @@
         <mxCell id="eMsbDkN65JzPOWeGEoS4-48" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
           <mxGeometry x="354" y="-1465" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-49" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="eMsbDkN65JzPOWeGEoS4-1" target="eMsbDkN65JzPOWeGEoS4-50" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-570" y="-1340" as="sourcePoint" />
-            <mxPoint x="-110" y="-1400" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-50" value="思案中の新しい構想 ver3.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-620" y="-580" width="430" height="450" as="geometry" />
-        </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-51" value="構想での変更内容：&lt;br&gt;１．メッシュは頂点インデックスの配列データの使用範囲を指定&lt;br&gt;（描画に使用するインデックスデータの開始位置と終了位置）&lt;br&gt;&lt;br&gt;２．モデルが頂点インデックスリストを持つ&lt;br&gt;&lt;br&gt;&lt;br&gt;描画時の処理の変化：&lt;br&gt;モデルはメッシュを描画するときに、&lt;br&gt;描画するメッシュから頂点インデックスリストのどの範囲を描画するのか&lt;br&gt;を受け取り、モデルが持つ頂点インデックスリストを指定して描画する&lt;br&gt;&lt;br&gt;&lt;br&gt;利点：&lt;br&gt;１．メッシュごとに頂点インデックスデータをセットせず、&lt;br&gt;モデルの描画時に頂点インデックスデータをセットし、&lt;br&gt;メッシュから取得した番号でドローコールを出せるので、&lt;br&gt;描画時のCPU負荷を減らすことができる&lt;br&gt;&lt;br&gt;２．探索時の頂点インデックスデータ（INDEX:）の探索回数が一回になり、文字列探索が１－メッシュ回分短縮される&lt;br&gt;（頂点インデックスの開始と終了の位置は可変ではないので改行で区切る書き込みでロード可能）&lt;br&gt;&lt;br&gt;&lt;br&gt;欠点：&lt;br&gt;１．デバッグなどでの頂点インデックスデータの内訳の不明確化、&lt;br&gt;どこからどこまでがどのメッシュのインデックスかが分かりにくい" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="eMsbDkN65JzPOWeGEoS4-50" vertex="1">
-          <mxGeometry y="30" width="430" height="420" as="geometry" />
-        </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-52" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="eMsbDkN65JzPOWeGEoS4-19" target="eMsbDkN65JzPOWeGEoS4-13" edge="1">
           <mxGeometry width="100" relative="1" as="geometry">
             <mxPoint x="580" y="-1690" as="sourcePoint" />
@@ -222,46 +210,46 @@
         <mxCell id="eMsbDkN65JzPOWeGEoS4-61" value="データ認証文字、静的モデルデータであることを証明する文字列&lt;br&gt;This-Is-ELSTTMDL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=middle;labelPosition=center;verticalLabelPosition=middle;align=center;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
           <mxGeometry x="120" y="30" width="660" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-62" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-63" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
           <mxGeometry x="120" y="110" width="660" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-63" value="モデル用メッシュ数&lt;br&gt;MESHSUM:(int)メッシュ数" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
-          <mxGeometry x="120" y="260" width="660" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-64" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
-          <mxGeometry x="110" y="160" width="680" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-65" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-64" vertex="1">
-          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
-        </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-66" value="メッシュデータ、メッシュ数分データがある" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="eMsbDkN65JzPOWeGEoS4-60" vertex="1">
-          <mxGeometry x="110" y="320" width="680" height="410" as="geometry" />
+          <mxGeometry x="100" y="170" width="700" height="560" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-67" value="メッシュ情報開始位置&lt;br&gt;MESH:" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+          <mxGeometry x="20" y="40" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-68" value="メッシュ名&lt;br&gt;(string)メッシュ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="90" width="660" height="40" as="geometry" />
+          <mxGeometry x="20" y="90" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-69" value="マテリアル情報位置&lt;br&gt;MATERIAL:" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="140" width="660" height="40" as="geometry" />
+          <mxGeometry x="20" y="140" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-70" value="マテリアル名&lt;br&gt;(string)マテリアル名" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="190" width="660" height="40" as="geometry" />
+          <mxGeometry x="20" y="190" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-71" value="頂点インデックス開始位置と頂点インデックス数&lt;br&gt;INDEX:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="250" width="660" height="40" as="geometry" />
+          <mxGeometry x="20" y="400" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-72" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
-          <mxGeometry x="10" y="300" width="660" height="100" as="geometry" />
+          <mxGeometry x="20" y="450" width="660" height="100" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-73" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-72" vertex="1">
           <mxGeometry x="60" y="40" width="560" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-62" value="頂点データ開始位置と頂点数&lt;br&gt;VERTSUM:(int)頂点数" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
+          <mxGeometry x="20" y="250" width="660" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-64" value="頂点データ、頂点数分データがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="eMsbDkN65JzPOWeGEoS4-66" vertex="1">
+          <mxGeometry x="10" y="300" width="680" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-65" value="頂点座標、UV座標、カラー、法線ベクトル、タンジェントベクトル、従法線ベクトル&lt;br&gt;(float3)頂点座標:(float2)UV座標:(float3)カラー:(float3)法線ベクトル:(float3)タンジェントベクトル:(float3)従法線ベクトル" style="rounded=0;whiteSpace=wrap;html=1;" parent="eMsbDkN65JzPOWeGEoS4-64" vertex="1">
+          <mxGeometry x="10" y="40" width="660" height="40" as="geometry" />
+        </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-74" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="eMsbDkN65JzPOWeGEoS4-59" vertex="1">
           <mxGeometry x="20" y="810" width="1290" height="910" as="geometry" />
         </mxCell>
-        <mxCell id="eMsbDkN65JzPOWeGEoS4-75" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="eMsbDkN65JzPOWeGEoS4-74" vertex="1">
+        <mxCell id="eMsbDkN65JzPOWeGEoS4-75" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="eMsbDkN65JzPOWeGEoS4-74" vertex="1">
           <mxGeometry x="20" y="50" width="1250" height="840" as="geometry" />
         </mxCell>
         <mxCell id="eMsbDkN65JzPOWeGEoS4-79" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="eMsbDkN65JzPOWeGEoS4-59" target="eMsbDkN65JzPOWeGEoS4-54" edge="1">
@@ -284,14 +272,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="yweFiVFQoVH1nVxoskjD-2" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeWidth=5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="yweFiVFQoVH1nVxoskjD-3" target="eMsbDkN65JzPOWeGEoS4-1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-360" y="-1630" as="sourcePoint" />
-            <mxPoint x="-405" y="-1600" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="yweFiVFQoVH1nVxoskjD-3" value="fbxデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-620" y="-2210" width="430" height="1020" as="geometry" />
+          <mxGeometry x="1360" y="-2270" width="430" height="1020" as="geometry" />
         </mxCell>
         <mxCell id="yweFiVFQoVH1nVxoskjD-12" value="シーン" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="yweFiVFQoVH1nVxoskjD-3" vertex="1">
           <mxGeometry x="30" y="40" width="370" height="960" as="geometry" />
@@ -351,7 +333,7 @@
           <mxGeometry x="40" y="900" width="290" height="42.5" as="geometry" />
         </mxCell>
         <mxCell id="zUWsp33VvRNPc8dQOL4x-33" value="モデルに不要なfbx内のデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;glass=0;" parent="1" vertex="1">
-          <mxGeometry x="-78" y="-2210" width="348" height="590" as="geometry" />
+          <mxGeometry x="1870" y="-2055" width="348" height="590" as="geometry" />
         </mxCell>
         <mxCell id="zUWsp33VvRNPc8dQOL4x-34" value="分類：カメラ&lt;br&gt;カメラの動きや、配置、数を記録" style="rounded=0;whiteSpace=wrap;html=1;" parent="zUWsp33VvRNPc8dQOL4x-33" vertex="1">
           <mxGeometry x="28" y="43.75" width="290" height="40" as="geometry" />
@@ -385,24 +367,33 @@
         </mxCell>
         <mxCell id="zUWsp33VvRNPc8dQOL4x-44" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="yweFiVFQoVH1nVxoskjD-3" target="zUWsp33VvRNPc8dQOL4x-33" edge="1">
           <mxGeometry width="100" relative="1" as="geometry">
-            <mxPoint x="-150" y="-1820" as="sourcePoint" />
-            <mxPoint x="-50" y="-1820" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-130" y="-1700" />
-              <mxPoint x="-130" y="-1915" />
-            </Array>
+            <mxPoint x="1830" y="-1880" as="sourcePoint" />
+            <mxPoint x="1930" y="-1880" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Jr4DhWDGPjt3AzH55FQL-1" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-1840" width="360" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="Jr4DhWDGPjt3AzH55FQL-2" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．使用するマテリアルを名前で指定するようにした&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しません" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="Jr4DhWDGPjt3AzH55FQL-1" vertex="1">
+          <mxGeometry y="30" width="360" height="530" as="geometry" />
+        </mxCell>
+        <mxCell id="Jr4DhWDGPjt3AzH55FQL-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;strokeWidth=5;" parent="1" source="Jr4DhWDGPjt3AzH55FQL-2" target="eMsbDkN65JzPOWeGEoS4-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-430" y="-1353.5" as="sourcePoint" />
+            <mxPoint x="-405" y="-1283.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="静的モデルデータ ver2.0.0" id="F_xgiDYA5KZkH7zyrJZr">
-    <mxGraphModel dx="7827" dy="6478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram name="静的モデルデータ ver.2.0.0" id="F_xgiDYA5KZkH7zyrJZr">
+    <mxGraphModel dx="1877" dy="2959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="cBP3mdUdwcwwjYfgzpu0-2" value="静的モデルシステム ver.2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-560" y="-1640" width="330" height="520" as="geometry" />
+          <mxGeometry x="-560" y="-1500" width="330" height="520" as="geometry" />
         </mxCell>
         <mxCell id="FRdr0k-SWnPDiLgRI8Ps-26" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="cBP3mdUdwcwwjYfgzpu0-2" vertex="1">
           <mxGeometry x="30" y="40" width="260" height="180" as="geometry" />
@@ -434,7 +425,7 @@
             <mxPoint x="-440" y="-1540" as="targetPoint" />
             <Array as="points">
               <mxPoint x="-120" y="-1970" />
-              <mxPoint x="-120" y="-1544" />
+              <mxPoint x="-120" y="-1404" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -462,7 +453,7 @@
         <mxCell id="_tpiAsZNU3n1uyuFCCZJ-14" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="_tpiAsZNU3n1uyuFCCZJ-11" vertex="1">
           <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="_tpiAsZNU3n1uyuFCCZJ-15" value="静的モデル用頂点頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+        <mxCell id="_tpiAsZNU3n1uyuFCCZJ-15" value="静的モデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="1" vertex="1">
           <mxGeometry x="320" y="-2200" width="300" height="435" as="geometry" />
         </mxCell>
         <mxCell id="_tpiAsZNU3n1uyuFCCZJ-16" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="_tpiAsZNU3n1uyuFCCZJ-15" vertex="1">
@@ -489,7 +480,7 @@
             <mxPoint x="-500" y="-1245" as="targetPoint" />
             <Array as="points">
               <mxPoint x="-120" y="-1390" />
-              <mxPoint x="-120" y="-1470" />
+              <mxPoint x="-120" y="-1330" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -588,7 +579,7 @@
             <mxPoint x="-150" y="-1360" as="targetPoint" />
             <Array as="points">
               <mxPoint x="-110" y="-880" />
-              <mxPoint x="-110" y="-1360" />
+              <mxPoint x="-110" y="-1220" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -658,11 +649,11 @@
         <mxCell id="jAMH0Cw40x4ihP33njGc-56" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;INDEX:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="jAMH0Cw40x4ihP33njGc-53" vertex="1">
           <mxGeometry x="20" y="50" width="1250" height="840" as="geometry" />
         </mxCell>
-        <mxCell id="jAMH0Cw40x4ihP33njGc-45" value="初期の静的モデルデータ ver.1.0.0 の状態" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-575" y="-2240" width="360" height="560" as="geometry" />
+        <mxCell id="jAMH0Cw40x4ihP33njGc-45" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-575" y="-2330" width="360" height="690" as="geometry" />
         </mxCell>
-        <mxCell id="jAMH0Cw40x4ihP33njGc-46" value="現在との違い：&lt;br&gt;１．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;２．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．モデルが頂点データを持ち、&lt;br&gt;メッシュがインデックスを指定して描画する&lt;br&gt;&lt;br&gt;２．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファをセットする必要がなくなり、&lt;br&gt;描画の開始時にセットしていればよくなった&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しません" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="jAMH0Cw40x4ihP33njGc-45" vertex="1">
-          <mxGeometry y="30" width="360" height="530" as="geometry" />
+        <mxCell id="jAMH0Cw40x4ihP33njGc-46" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;３．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．モデルが頂点データを持ち、&lt;br&gt;メッシュがインデックスを指定して描画する&lt;br&gt;&lt;br&gt;３．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファをセットする必要がなくなり、&lt;br&gt;描画の開始時にセットしていればよくなった&lt;br&gt;&lt;br&gt;３．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;４．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．マテリアルが別で必要になるので、&lt;br&gt;モデルの描画がデータ内部で完結しない" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="jAMH0Cw40x4ihP33njGc-45" vertex="1">
+          <mxGeometry y="30" width="360" height="660" as="geometry" />
         </mxCell>
         <mxCell id="jAMH0Cw40x4ihP33njGc-48" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;strokeWidth=5;" parent="1" source="jAMH0Cw40x4ihP33njGc-46" target="cBP3mdUdwcwwjYfgzpu0-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -693,13 +684,13 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="Ui_8EFG164aBF3coLRjk" name="静的モデルデータ ver3.0.0">
-    <mxGraphModel dx="5027" dy="4822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="Ui_8EFG164aBF3coLRjk" name="静的モデルデータ ver.3.0.0">
+    <mxGraphModel dx="1877" dy="2959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="nz93DpalH-gAaqQCNOPr-1" value="静的モデルシステム ver.2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-585" y="-1520" width="330" height="660" as="geometry" />
+        <mxCell id="nz93DpalH-gAaqQCNOPr-1" value="静的モデルシステム ver.3.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-585" y="-1400" width="330" height="660" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-2" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-1" vertex="1">
           <mxGeometry x="30" y="40" width="260" height="240" as="geometry" />
@@ -733,13 +724,13 @@
             <mxPoint x="-725" y="-1530" as="sourcePoint" />
             <mxPoint x="-465" y="-1420" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="-145" y="-1850" />
-              <mxPoint x="-145" y="-1424" />
+              <mxPoint x="-144" y="-1720" />
+              <mxPoint x="-145" y="-1304" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-11" value="頂点システム＜静的モデル用頂点＞" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-75" y="-2080" width="300" height="460" as="geometry" />
+          <mxGeometry x="-75" y="-1950" width="300" height="460" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-12" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-11" vertex="1">
           <mxGeometry x="20" y="40" width="260" height="170" as="geometry" />
@@ -762,8 +753,8 @@
         <mxCell id="nz93DpalH-gAaqQCNOPr-18" value="データリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-15" vertex="1">
           <mxGeometry x="30" y="170" width="200" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="nz93DpalH-gAaqQCNOPr-19" value="静的モデル用頂点頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="295" y="-2080" width="300" height="435" as="geometry" />
+        <mxCell id="nz93DpalH-gAaqQCNOPr-19" value="静的モデル用頂点のリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="295" y="-1950" width="300" height="435" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-20" value="頂点座標" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-19" vertex="1">
           <mxGeometry x="50" y="40" width="200" height="40" as="geometry" />
@@ -788,13 +779,13 @@
             <mxPoint x="-685" y="-1160" as="sourcePoint" />
             <mxPoint x="-525" y="-1125" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="-145" y="-740" />
-              <mxPoint x="-145" y="-1280" />
+              <mxPoint x="-145" y="-670" />
+              <mxPoint x="-144" y="-1160" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-27" value="モデル用メッシュシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-71" y="-1060" width="300" height="640" as="geometry" />
+          <mxGeometry x="-71" y="-990" width="300" height="640" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-28" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-27" vertex="1">
           <mxGeometry x="20" y="40" width="260" height="230" as="geometry" />
@@ -834,7 +825,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-39" value="頂点インデックスシステム" style="swimlane;whiteSpace=wrap;html=1;fontSize=12;spacing=2;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-71" y="-1575" width="300" height="450" as="geometry" />
+          <mxGeometry x="-71" y="-1455" width="300" height="450" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-40" value="変数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-39" vertex="1">
           <mxGeometry x="30" y="40" width="250" height="160" as="geometry" />
@@ -857,13 +848,16 @@
         <mxCell id="nz93DpalH-gAaqQCNOPr-46" value="データのリセット" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-43" vertex="1">
           <mxGeometry x="30" y="160" width="200" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="VYEVRqHRR1ycGfmU3Ot9-1" value="Text" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="nz93DpalH-gAaqQCNOPr-39" vertex="1">
+          <mxGeometry x="111" y="2" width="50" height="30" as="geometry" />
+        </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-50" value="" style="shape=link;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="nz93DpalH-gAaqQCNOPr-19" target="nz93DpalH-gAaqQCNOPr-13" edge="1">
           <mxGeometry width="100" relative="1" as="geometry">
-            <mxPoint x="565" y="-1700" as="sourcePoint" />
-            <mxPoint x="705" y="-1720" as="targetPoint" />
+            <mxPoint x="565" y="-1570" as="sourcePoint" />
+            <mxPoint x="705" y="-1590" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="265" y="-1862" />
-              <mxPoint x="265" y="-1980" />
+              <mxPoint x="265" y="-1732" />
+              <mxPoint x="265" y="-1850" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -872,8 +866,8 @@
             <mxPoint x="-55" y="-640" as="sourcePoint" />
             <mxPoint x="-175" y="-1240" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="-225" y="10" />
-              <mxPoint x="-215" y="-1121" />
+              <mxPoint x="-215" y="15" />
+              <mxPoint x="-215" y="-1000" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -887,12 +881,12 @@
           <mxGeometry x="10" y="110" width="240" height="40" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-55" value="メッシュデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-53" vertex="1">
-          <mxGeometry x="10" y="240" width="240" height="40" as="geometry" />
+          <mxGeometry x="10" y="250" width="240" height="40" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-56" value="ファイルデータのロードと認証文字の確認" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-53" vertex="1">
           <mxGeometry x="10" y="40" width="240" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Kzi_kSgNmDerqH07PnFv-11" value="頂点インデックスデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nz93DpalH-gAaqQCNOPr-53">
+        <mxCell id="Kzi_kSgNmDerqH07PnFv-11" value="頂点インデックスデータのロード" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-53" vertex="1">
           <mxGeometry x="10" y="180" width="240" height="40" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-57" value="静的モデルデータ" style="swimlane;whiteSpace=wrap;html=1;strokeColor=default;fillStyle=auto;fillColor=default;gradientColor=none;swimlaneFillColor=default;" parent="1" vertex="1">
@@ -934,7 +928,7 @@
         <mxCell id="nz93DpalH-gAaqQCNOPr-69" value="描画に使う頂点インデックスデータの開始番号&lt;br&gt;(int)頂点インデックスデータ開始位置" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-64" vertex="1">
           <mxGeometry x="10" y="250" width="660" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Kzi_kSgNmDerqH07PnFv-10" value="描画に使う頂点インデックスデータの終了番号&lt;br&gt;(int)頂点インデックスデータ終了位置" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nz93DpalH-gAaqQCNOPr-64">
+        <mxCell id="Kzi_kSgNmDerqH07PnFv-10" value="描画に使う頂点インデックスデータの終了番号&lt;br&gt;(int)頂点インデックスデータ終了位置" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-64" vertex="1">
           <mxGeometry x="10" y="310" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-70" value="頂点インデックスデータ、頂点インデックス数のデータがある、各データごとに改行して配置される" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-58" vertex="1">
@@ -943,7 +937,7 @@
         <mxCell id="nz93DpalH-gAaqQCNOPr-71" value="頂点インデックス値&lt;br&gt;(int)" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-70" vertex="1">
           <mxGeometry x="60" y="40" width="560" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Kzi_kSgNmDerqH07PnFv-9" value="頂点インデックスデータ開始位置と頂点インデックス数&lt;br&gt;INDEXSUM:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nz93DpalH-gAaqQCNOPr-58">
+        <mxCell id="Kzi_kSgNmDerqH07PnFv-9" value="頂点インデックスデータ開始位置と頂点インデックス数&lt;br&gt;INDEXSUM:(int)頂点インデックス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="nz93DpalH-gAaqQCNOPr-58" vertex="1">
           <mxGeometry x="120" y="230" width="660" height="40" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-72" value="書き込まれているデータの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="nz93DpalH-gAaqQCNOPr-57" vertex="1">
@@ -952,11 +946,11 @@
         <mxCell id="nz93DpalH-gAaqQCNOPr-73" value="&lt;div&gt;This-Is-ELSTTMDL&lt;/div&gt;&lt;div&gt;VERTSUM:9&lt;/div&gt;&lt;div&gt;&lt;div&gt;3.079325,166.5681,-6.093503:0.5269665,0.7722561:0,0,0,0:0.04942949,0.1753941,0.9832566:-0.998615,0.02644253,0.04548474:-0.005219978,-0.9844012,0.1758606:&lt;/div&gt;&lt;div&gt;3.042965,166.6422,-6.107563:0.5273954,0.7731166:0,0,0,0:0.02216177,0.2309417,0.9727151:-0.9994768,0.0280452,0.01611301:-0.005423724,-0.972912,0.231112:&lt;/div&gt;&lt;div&gt;3.262235,166.7864,-6.156164:0.5248475,0.7749719:0,0,0,0:0.1353088,0.3042895,0.9429206:-0.9907,0.05530506,0.1243177:-0.009142012,-0.9512489,0.308289:&lt;/div&gt;&lt;div&gt;3.333865,166.6405,-6.128474:0.5239716,0.7732354:0,0,0,0:0.1806581,0.2119297,0.9604418:-0.9834502,0.0525516,0.17339:-0.006798587,-0.9762169,0.2166894:&lt;/div&gt;&lt;div&gt;2.985375,166.7009,-6.122905:0.5280647,0.7737988:0,0,0,0:-0.02093682,0.2749422,0.9612327:-0.9993099,0.02375054,-0.02855957:-0.009459968,-0.9614549,0.2747997:&lt;/div&gt;&lt;div&gt;3.148783,166.9022,-6.186384:0.5262145,0.7763544:0,0,0,0:0.06349592,0.3775373,0.9238149:-0.9977197,0.04524157,0.0500866:-0.02062782,-0.9249886,0.3794348:&lt;/div&gt;&lt;div&gt;2.912195,166.7387,-6.138015:0.5289149,0.7742432:0,0,0,0:-0.0757499,0.3032494,0.9498957:-0.9965912,0.008198599,-0.08209102:-0.02127711,-0.9529073,0.3025141:&lt;/div&gt;&lt;div&gt;3.004633,166.9766,-6.216194:0.5279432,0.7772458:0,0,0,0:-0.02768303,0.4245875,0.9049635:-0.9989328,0.02173404,-0.04075468:-0.03982326,-0.9050602,0.4234147:&lt;/div&gt;&lt;div&gt;2.830594,166.7517,-6.151453:0.5298606,0.774406:0,0,0,0:-0.1368735,0.3129651,0.9398502:-0.9900317,-0.0114101,-0.1403821:-0.03422305,-0.9497073,0.3112634:&lt;/div&gt;&lt;div&gt;2.843884,167.0022,-6.242615:0.5298632,0.7775611:0,0,0,0:-0.1293573,0.4408129,0.8882289:-0.9900821,-0.00790607,-0.140267:-0.06018673,-0.8975939,0.4366953:&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;INDEXSUM:15&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;7&lt;/div&gt;&lt;div&gt;8&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;div&gt;9&lt;/div&gt;&lt;/div&gt;&lt;div&gt;MESHSUM:1&lt;/div&gt;&lt;div&gt;MESH:&lt;/div&gt;&lt;div&gt;Eyes_Mesh&lt;/div&gt;&lt;div&gt;MATERIAL:&lt;/div&gt;&lt;div&gt;Eye_MAT&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;/div&gt;&lt;div&gt;14&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;align=left;" parent="nz93DpalH-gAaqQCNOPr-72" vertex="1">
           <mxGeometry x="25" y="30" width="1250" height="880" as="geometry" />
         </mxCell>
-        <mxCell id="nz93DpalH-gAaqQCNOPr-74" value="初期の静的モデルデータ ver.1.0.0 の状態" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-600" y="-2260" width="360" height="640" as="geometry" />
+        <mxCell id="nz93DpalH-gAaqQCNOPr-74" value="通常のモデルデータとの違い" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-600" y="-2290" width="360" height="820" as="geometry" />
         </mxCell>
-        <mxCell id="nz93DpalH-gAaqQCNOPr-75" value="現在との違い：&lt;br&gt;１．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;２．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;３．メッシュ内に頂点インデックスデータを持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．モデルが頂点データと頂点インデックスデータを持ち、&lt;br&gt;メッシュが使用するインデックスデータの範囲を指定して&lt;br&gt;描画する&lt;br&gt;&lt;br&gt;２．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファと頂点インデックスバッファ&lt;br&gt;をセットする必要がなくなり、&lt;br&gt;描画の開始時に一度セットするのみでよくなった&lt;br&gt;&lt;br&gt;２．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;３．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．モデルデータがこのデータ内部で完結しない&lt;br&gt;マテリアルが別で必要になるので、データ内部で完結しない&lt;br&gt;&lt;br&gt;３．どの頂点インデックスデータがどのメッシュのものかを&lt;br&gt;探索するのが困難になり、パラメータの把握に時間がかかる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="nz93DpalH-gAaqQCNOPr-74" vertex="1">
-          <mxGeometry y="30" width="360" height="610" as="geometry" />
+        <mxCell id="nz93DpalH-gAaqQCNOPr-75" value="現在との違い：&lt;br&gt;１．モデルに必要のない情報をすべて切り捨てた&lt;br&gt;&lt;br&gt;２．メッシュ内に頂点データを持っていた&lt;br&gt;&lt;br&gt;３．マテリアルの実体を持っていた&lt;br&gt;&lt;br&gt;４．メッシュ内に頂点インデックスデータを持っていた&lt;br&gt;&lt;br&gt;&lt;br&gt;現在ではどうなっているのか：&lt;br&gt;１．ライトやカメラ、ゴボなどの情報が入っている形式も&lt;br&gt;あるのでそういったデータをすべて取り除いた&lt;br&gt;モデルのデータのみとして扱うことができる&lt;br&gt;&lt;br&gt;２．モデルが頂点データと頂点インデックスデータを持ち、&lt;br&gt;メッシュが使用するインデックスデータの範囲を指定して&lt;br&gt;描画する&lt;br&gt;&lt;br&gt;３．使用するマテリアルを文字列で管理することで、&lt;br&gt;そのマテリアルがすでにロードされている場合に、&lt;br&gt;重複ロードされずに使える、&lt;br&gt;マテリアルの変更によってモデルデータが変化しないので、&lt;br&gt;モデルとマテリアルを別々で実装できる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による利点：&lt;br&gt;１．モデルのデータのみが含まれることを保証できる&lt;br&gt;&lt;br&gt;２．頂点を描画する際に、&lt;br&gt;メッシュごとに頂点バッファと頂点インデックスバッファ&lt;br&gt;をセットする必要がなくなり、&lt;br&gt;描画の開始時に一度セットするのみでよくなった&lt;br&gt;&lt;br&gt;３．マテリアルの多重ロードを防ぐことでメモリに、&lt;br&gt;読み込まれるデータ量やロード時間の短縮になる&lt;br&gt;&lt;br&gt;４．マテリアルのデータと分けて管理することで、&lt;br&gt;モデルデータの開発・挙動とマテリアルデータの開発・挙動を&lt;br&gt;分離でき、モデルとマテリアルの柔軟性を向上させられる&lt;br&gt;&lt;br&gt;&lt;br&gt;変化による欠点：&lt;br&gt;１．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;２．どの頂点がどのメッシュのものかを探索するのが困難に&lt;br&gt;デバッグ時のパラメータの明晰化に時間がかかる&lt;br&gt;&lt;br&gt;３．マテリアルが別で必要になるので、&lt;br&gt;モデルの描画がデータ内部で完結しない&lt;br&gt;&lt;br&gt;４．どの頂点インデックスデータがどのメッシュのものかを&lt;br&gt;探索するのが困難になり、パラメータの把握に時間がかかる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="nz93DpalH-gAaqQCNOPr-74" vertex="1">
+          <mxGeometry y="30" width="360" height="790" as="geometry" />
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-76" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;strokeWidth=5;" parent="1" source="nz93DpalH-gAaqQCNOPr-74" target="nz93DpalH-gAaqQCNOPr-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -982,7 +976,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nz93DpalH-gAaqQCNOPr-79" value="マテリアルデータ&lt;br&gt;（形式は問わない）" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
-          <mxGeometry x="265" y="-940" width="160" height="80" as="geometry" />
+          <mxGeometry x="265" y="-870" width="160" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

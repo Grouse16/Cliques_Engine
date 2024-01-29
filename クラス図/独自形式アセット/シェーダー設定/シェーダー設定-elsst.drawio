@@ -1,0 +1,229 @@
+<mxfile host="Electron" modified="2024-01-20T06:39:28.343Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="JDHtH5my2dx6d7BdyTmX" version="22.1.16" type="device">
+  <diagram name="ページ1" id="F_xgiDYA5KZkH7zyrJZr">
+    <mxGraphModel dx="3585" dy="2090" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cBP3mdUdwcwwjYfgzpu0-2" value="シェーダー設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="600" height="5620" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-150" value="内部データの説明" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="cBP3mdUdwcwwjYfgzpu0-2">
+          <mxGeometry x="25" y="40" width="550" height="4890" as="geometry" />
+        </mxCell>
+        <mxCell id="Wc7h6Qe7BlBcWywlRNqe-1" value="識別名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="O3pXEK7kBCe5aYIL7-0U-150" vertex="1">
+          <mxGeometry x="30" y="40" width="490" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Wc7h6Qe7BlBcWywlRNqe-5" value="ELSSTファイルであることを証明する文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="Wc7h6Qe7BlBcWywlRNqe-1" vertex="1">
+          <mxGeometry x="10" y="40" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="Wc7h6Qe7BlBcWywlRNqe-6" value="This-Is-ELSST" style="rounded=0;whiteSpace=wrap;html=1;" parent="Wc7h6Qe7BlBcWywlRNqe-1" vertex="1">
+          <mxGeometry x="10" y="100" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="Wc7h6Qe7BlBcWywlRNqe-7" value="頂点レイアウト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="O3pXEK7kBCe5aYIL7-0U-150" vertex="1">
+          <mxGeometry x="30" y="230" width="490" height="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-3" value="頂点レイアウト開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="Wc7h6Qe7BlBcWywlRNqe-7">
+          <mxGeometry x="10" y="120" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-5" value="頂点レイアウト情報の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-3">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-6" value="VERTEXLAYOUT:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-3">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-7" value="頂点内のインスタンス数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="Wc7h6Qe7BlBcWywlRNqe-7">
+          <mxGeometry x="10" y="320" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-8" value="頂点のデータに変数がいくつあるかの定義" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-7">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-9" value="(int)インスタンス数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-7">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-10" value="インスタンスの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="Wc7h6Qe7BlBcWywlRNqe-7">
+          <mxGeometry x="10" y="520" width="470" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-16" value="変数の型やバイト数の定義" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-10">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-17" value="バイト数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-10">
+          <mxGeometry x="10" y="110" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-18" value="値一つ分のバイト数&lt;br&gt;１バイト - char　２バイト - short, half　４バイト - float" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-17">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-19" value="(int)１か２か４" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-17">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-20" value="型" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-10">
+          <mxGeometry x="10" y="300" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-21" value="データの型" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-20">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-22" value="(string)INTかUINTかFLOAT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-20">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-23" value="要素数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-10">
+          <mxGeometry x="10" y="490" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-24" value="変数が持つ要素の数&lt;br&gt;float2, float3, float4などのような型の要素(xyzw)の数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-23">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-25" value="(int)１～４の数値" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-23">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-13" value="頂点シェーダーに送る頂点データの定義" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="Wc7h6Qe7BlBcWywlRNqe-7">
+          <mxGeometry x="10" y="50" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-45" value="シェーダーリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-150">
+          <mxGeometry x="30" y="1470" width="490" height="3400" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-63" value="シェーダーごとの定数バッファやテクスチャリソースの数などの定義&lt;br&gt;シェーダーの種類ごとに書き込まれる&lt;br&gt;以下がシェーダーを示す記号となる&lt;br&gt;AS：全シェーダー共通リソース&lt;br&gt;VS：頂点シェーダー&lt;br&gt;HS：ハルシェーダー&lt;br&gt;DS：ドメインシェーダー&lt;br&gt;GS：ジオメトリシェーダー&lt;br&gt;PS：ピクセルシェーダー&lt;br&gt;複数の種類のシェーダーを示すときは&amp;lt;xx&amp;gt;で表す" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="30" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-68" value="&amp;lt;xx&amp;gt;シェーダの開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="210" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-69" value="各シェーダーごとに情報の開始位置を示す文字がある" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-68">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-70" value="&amp;lt;xx&amp;gt;START:(string)シェーダー名(AS時はシェーダー名なし)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-68">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-71" value="定数リソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="400" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-72" value="定数リソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-71">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-73" value="(int)定数リソースの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-71">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-74" value="テクスチャリソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="590" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-75" value="テクスチャ用のリソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-74">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-76" value="(int)テクスチャリソースの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-74">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-77" value="サンプラーの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="780" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-78" value="サンプラーがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-77">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-79" value="(int)サンプラーの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-77">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-82" value="定数リソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="980" width="470" height="890" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-83" value="定数リソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-82">
+          <mxGeometry x="10" y="40" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-85" value="定数リソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-82">
+          <mxGeometry x="20" y="300" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-86" value="定数リソースを識別するための名前" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-85">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-87" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-85">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-88" value="配列数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-82">
+          <mxGeometry x="20" y="490" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-89" value="定数リソースの配列数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-88">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-90" value="(int)配列数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-88">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-91" value="定数データを生成するかどうかのフラグ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-82">
+          <mxGeometry x="20" y="680" width="430" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-92" value="定数バッファとデータを同期させることができるインスタンスを&lt;br&gt;生成するかどうかのフラグ&lt;br&gt;TRUEで生成する、FALSEで生成しない" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-91">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-93" value="(string)TRUEかFALSE" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-91">
+          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-119" value="定数リソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-82">
+          <mxGeometry x="20" y="110" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-120" value="各シェーダーごとの定数リソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-119">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-121" value="&amp;lt;xx&amp;gt;CON:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-119">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-94" value="テクスチャリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="1910" width="470" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-95" value="テクスチャリソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-94">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-96" value="テクスチャリソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-94">
+          <mxGeometry x="20" y="310" width="430" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-97" value="テクスチャリソースを識別するための名前&lt;br&gt;&lt;br&gt;先頭をRSCにすることでスクリーン画面を画像として使用できる&lt;br&gt;先頭をDSBにすることで深度ステンシルバッファを画像として使用できる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-96">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-98" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-96">
+          <mxGeometry x="10" y="120" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-105" value="初期ロードするテクスチャ名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-94">
+          <mxGeometry x="20" y="520" width="430" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-106" value="マテリアルがロードされた時点でロードするテクスチャの名前&lt;br&gt;&lt;br&gt;ORIGINALでゲーム内で生成した画像を使用するための設定を自動で行う&lt;br&gt;何も書かない、もしくはNOTSHINGで画像をロードしない" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-105">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-107" value="(string)初期ロードするテクスチャ名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-105">
+          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-136" value="テクスチャリソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-94">
+          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-137" value="各シェーダーごとのテクスチャリソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-136">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-138" value="&amp;lt;xx&amp;gt;TEX:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-136">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-139" value="サンプラーの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-45">
+          <mxGeometry x="10" y="2670" width="470" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-140" value="サンプラーの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-139">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-141" value="サンプリング設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-139">
+          <mxGeometry x="20" y="310" width="430" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-142" value="サンプリング時のテクスチャのUV座標による、&lt;br&gt;ピクセル値取り出しのオプションを指定する文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-141">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-143" value="(string)サンプリング設定名&lt;br&gt;&lt;br&gt;WARP：UVが０～１を超えるたびにテクスチャをループする&lt;br&gt;&lt;br&gt;MIRROR：UVが０～１を超えるたびにテクスチャをループするが&lt;br&gt;　　　　　超えるたびにミラーリングした画像のピクセル値となる&lt;br&gt;&lt;br&gt;CLAMP：UVが０～１を超えるとUVを０か１として使用する&lt;br&gt;　　　　 （マイナス方向に超えたら０，プラス方向に超えたら１）&lt;br&gt;&lt;br&gt;BORDER：UVが０～１を超えたら黒色をピクセル値として返す&lt;br&gt;&lt;br&gt;MIRROR_ONCE：UVが０～１を超えたら、&lt;br&gt;　　　　　　　　&amp;nbsp; 一度だけ反転したテクスチャを返す" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-141">
+          <mxGeometry x="10" y="140" width="410" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-147" value="サンプラーの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-139">
+          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-148" value="各シェーダーごとのサンプラーの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-147">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-149" value="&amp;lt;xx&amp;gt;SAM:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-147">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-153" value="内部データの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="cBP3mdUdwcwwjYfgzpu0-2">
+          <mxGeometry x="25" y="4950" width="550" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="O3pXEK7kBCe5aYIL7-0U-223" value="&lt;div&gt;This-Is-ELSST&lt;/div&gt;&lt;div&gt;VERTEXLAYOUT:&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;4,FLOAT,4,&lt;/div&gt;&lt;div&gt;4,FLOAT,4,&lt;/div&gt;&lt;div&gt;4,FLOAT,4,&lt;/div&gt;&lt;div&gt;ASSTART:&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;0&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;ASCON:&lt;/div&gt;&lt;div&gt;CB_AREA_LIGHT,3,FALSE,&lt;/div&gt;&lt;div&gt;ASTEX:&lt;/div&gt;&lt;div&gt;ASSAM:&lt;/div&gt;&lt;div&gt;MIRROR,&lt;/div&gt;&lt;div&gt;VSSTART:Default&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;VSCON:&lt;/div&gt;&lt;div&gt;CB_BONE,500,FALSE,&lt;/div&gt;&lt;div&gt;CB_WBP,1,FALSE,&lt;/div&gt;&lt;div&gt;VSTEX:&lt;/div&gt;&lt;div&gt;default,ORIGINAL,&lt;/div&gt;&lt;div&gt;VSSAM:&lt;/div&gt;&lt;div&gt;CLAMP,&lt;/div&gt;&lt;div&gt;MIRROR,&lt;/div&gt;&lt;div&gt;WARP,&lt;/div&gt;&lt;div&gt;PSSTART:Default&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;PSCON:&lt;/div&gt;&lt;div&gt;CB_DIRECTIONAL_LIGHT,1,FALSE,&lt;/div&gt;&lt;div&gt;CB_POINT_LIGHT,30,FALSE,&lt;/div&gt;&lt;div&gt;PSTEX:&lt;/div&gt;&lt;div&gt;default,MAIN_COLOR,&lt;/div&gt;&lt;div&gt;PSSAM:&lt;/div&gt;&lt;div&gt;WARP,&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="O3pXEK7kBCe5aYIL7-0U-153">
+          <mxGeometry x="25" y="40" width="505" height="580" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
