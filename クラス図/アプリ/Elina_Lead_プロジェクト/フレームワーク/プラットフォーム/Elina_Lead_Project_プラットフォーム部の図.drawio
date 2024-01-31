@@ -1,0 +1,306 @@
+<mxfile host="Electron" modified="2024-01-31T13:16:03.694Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="QPyGfkuAZr3rTHThX_Os" version="23.0.2" type="device">
+  <diagram name="ver.1.0.0" id="rUNOVL-YZ9ixlKsIOIGU">
+    <mxGraphModel dx="2206" dy="1286" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-1" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Template Of Class Box&lt;br&gt;クラスの箱の定型の形&lt;/font&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="30" y="40" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-14" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-1" vertex="1">
+          <mxGeometry x="10" y="30" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-16" value="パラメータ１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-14" vertex="1">
+          <mxGeometry y="25" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-19" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-1" vertex="1">
+          <mxGeometry x="10" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-20" value="メゾッド１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-19" vertex="1">
+          <mxGeometry y="25" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-7" value="上位層&lt;br style=&quot;font-size: 36px;&quot;&gt;レンダリング層やアセット層など" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="2310" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-9" value="プラットフォーム層　ネームスペース：OS" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="350" width="3510" height="3000" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-21" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;OS制御システムの基底クラス　C_OS_System_Base&lt;br&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="BZFop_Z_mp7bM7QsDtb2-9" vertex="1">
+          <mxGeometry x="1923" y="1880" width="560" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-22" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-21" vertex="1">
+          <mxGeometry x="10" y="30" width="540" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-23" value="ー　ウィンドウのサイズ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-22" vertex="1">
+          <mxGeometry y="25" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-26" value="ー　ウィンドウの位置座標" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-22" vertex="1">
+          <mxGeometry y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-28" value="ー　マウスの入力情報" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-22" vertex="1">
+          <mxGeometry y="85" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-29" value="＝　シングルトン化用の自クラスポインタ　＜静的変数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-22" vertex="1">
+          <mxGeometry y="115" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-30" value="＝　OSがアクティブであるかどうかのフラグ　＜静的変数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-22" vertex="1">
+          <mxGeometry y="145" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-24" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-21" vertex="1">
+          <mxGeometry x="10" y="210" width="540" height="715" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-25" value="＋　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="25" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-32" value="＋　OSの初期化　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-33" value="＋　メモリの解放処理　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="85" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-34" value="＋　OSシステムの削除　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="115" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-35" value="＋　デストラクタ　＜仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="145" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-36" value="＋　OSの更新処理　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="175" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-37" value="＋　ウィンドウサイズの更新処理　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="205" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-38" value="＋　マウス座標のセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="235" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-39" value="＋　ウィンドウサイズのセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="265" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-41" value="＋　ウィンドウ座標のセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="295" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-42" value="＋　マウス左クリックフラグのセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="325" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-43" value="＋　マウス右クリックフラグのセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="355" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-44" value="＋　マウス中クリックフラグのセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="385" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-45" value="＋　自クラスのシングルトンインスタンスのアドレスのゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="415" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-46" value="＋　OSがアクティブであるかどうかのフラグのゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="445" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-47" value="＋　ウィンドウのサイズのゲッタ　：const関数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="475" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-48" value="＋　ウィンドウのアスペクト比のゲッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="505" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-49" value="＋　ウィンドウの座標のゲッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="535" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-50" value="＋　マウスの状態のゲッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="565" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-51" value="＋　現在の年月日時分秒のゲッタ　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="595" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-52" value="＋　現在のexe起動からのミリ秒単位での経過時間のゲッタ　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="625" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-54" value="＋　ウィンドウタイトルの変更　＜純粋化層関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="655" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-53" value="＋　メッセージボックスの表示　＜純粋化層関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-24" vertex="1">
+          <mxGeometry y="685" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-55" value="現在の設計評価　：修正点あり" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="BZFop_Z_mp7bM7QsDtb2-9" vertex="1">
+          <mxGeometry x="2563" y="2160" width="460" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-62" value="１．時間など一部がインスタンスとして取得されておらず、&lt;br&gt;　　関数が呼ばれたタイミングで取得されている、&lt;br&gt;　　フレームが開始された時点の時間を取得しておかなければ、&lt;br&gt;　　関数実行のタイミングで同じフレーム間でデータがずれる&lt;br&gt;&lt;br&gt;２．const関数にしても問題のないものはすべてconst関数にするべき、&lt;br&gt;　　const関数は内部でデータが書き換えられないことを保証することができ、&lt;br&gt;　　プログラマによるミスをコンパイルの段階でエラーを出力し、&lt;br&gt;　　発見することができる。今後の開発への保険になる&lt;br&gt;&lt;br&gt;３．ウィンドウタイトルのゲッタとインスタンスを作るべき、&lt;br&gt;　　ウィンドウタイトルがゲットできなければ変更が必要かどうかも判断できない&lt;br&gt;&lt;br&gt;４．OS制御用システムであってOSのシステムではないので、&lt;br&gt;　　C_OS_Management_System_Baseなどが命名として適切である&lt;br&gt;&lt;br&gt;５．通常のシステムが使用しなくてもよい関数がパブリックに含まれているので、&lt;br&gt;　　通常のシステムからOSを利用するときの抽象化レイヤーを実装するべき" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="BZFop_Z_mp7bM7QsDtb2-55" vertex="1">
+          <mxGeometry y="30" width="460" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-63" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BZFop_Z_mp7bM7QsDtb2-9" source="BZFop_Z_mp7bM7QsDtb2-21" target="BZFop_Z_mp7bM7QsDtb2-62" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="2508" y="2280" as="sourcePoint" />
+            <mxPoint x="2608" y="2280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-65" value="ウィンドウズOS層　ネームスペース：OS::WINDOWS" style="swimlane;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-9" vertex="1">
+          <mxGeometry x="130" y="100" width="2460" height="1490" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-66" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;ウィンドウズOS制御用システム　C_Windows_System　基底クラス&amp;lt;C_OS_System_Base&amp;gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="90" y="55" width="620" height="655" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-67" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-66" vertex="1">
+          <mxGeometry x="10" y="30" width="600" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-68" value="ー　自ウィンドウのハンドル" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-67" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-73" value="ー　ウィンドウの処理を取得するためのメッセージパラメータ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-67" vertex="1">
+          <mxGeometry y="55" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-74" value="ー　ウィンドウ操作用のコマンド番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-67" vertex="1">
+          <mxGeometry y="85" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-69" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-66" vertex="1">
+          <mxGeometry x="10" y="155" width="600" height="475" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-70" value="ー　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-75" value="ー　ウィンドウ生成処理" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="55" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-76" value="ー　マウス入力の更新処理" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="85" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-77" value="＋　ウィンドウズ制御用システム生成処理（シングルトンインスタンス生成）　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="115" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-79" value="＋　ウィンドウズ機能の初期化処理　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="145" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-78" value="＋　デストラクタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="175" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-80" value="＋　メモリの解放処理　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="205" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-81" value="＋　ウィンドウの更新処理　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="235" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-82" value="＋　ウィンドウのサイズの更新処理　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="265" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-83" value="＋　ウィンドウ操作用のコマンド番号のセッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="295" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-85" value="＋　自ウィンドウのハンドルのゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="325" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-87" value="＋　現在の年月日時分秒のゲッタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="355" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-88" value="＋　現在のexe起動からのミリ秒単位での経過時間のゲッタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="385" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-90" value="＋　ウィンドウタイトルの変更　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="415" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-89" value="＋　メッセージボックスの表示　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-69" vertex="1">
+          <mxGeometry y="445" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-112" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;ウィンドウプロシージャ関数制御システム　C_Wnd_Proc_Manager&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="490" y="1150" width="620" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-113" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-112" vertex="1">
+          <mxGeometry x="10" y="30" width="600" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-114" value="ー　ゲーム用のウィンドウプロシージャのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-113" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-117" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-112" vertex="1">
+          <mxGeometry x="10" y="110" width="600" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-118" value="＋　ゲーム用のウィンドウプロシージャのセッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-117" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-119" value="＋　ゲーム用のウィンドウプロシージャのゲッタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="BZFop_Z_mp7bM7QsDtb2-117" vertex="1">
+          <mxGeometry y="55" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-133" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;" parent="BZFop_Z_mp7bM7QsDtb2-65" source="BZFop_Z_mp7bM7QsDtb2-66" target="BZFop_Z_mp7bM7QsDtb2-112" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="930" as="sourcePoint" />
+            <mxPoint x="600" y="880" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="930" />
+              <mxPoint x="645" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-1" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;ゲーム用ウィンドウプロシージャ管理クラス　C_Wnd_Proc_For_Game_APK&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="1290" y="240" width="620" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-2" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="0NV3zA2O5QVEWmTr_D8a-1" vertex="1">
+          <mxGeometry x="10" y="30" width="600" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-3" value="ー　シングルトン化用の自クラスのインスタンス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="0NV3zA2O5QVEWmTr_D8a-2" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-4" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="0NV3zA2O5QVEWmTr_D8a-1" vertex="1">
+          <mxGeometry x="10" y="110" width="600" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-5" value="ー　コンストラクタ、ウィンドウプロシージャ関数を制御システムにセットする" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="0NV3zA2O5QVEWmTr_D8a-4" vertex="1">
+          <mxGeometry y="25" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-6" value="＋　ゲーム用のウィンドウプロシージャ関数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="0NV3zA2O5QVEWmTr_D8a-4" vertex="1">
+          <mxGeometry y="55" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-8" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="1990" y="310" width="460" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-9" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="0NV3zA2O5QVEWmTr_D8a-8" vertex="1">
+          <mxGeometry y="30" width="460" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-10" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BZFop_Z_mp7bM7QsDtb2-65" source="0NV3zA2O5QVEWmTr_D8a-1" target="0NV3zA2O5QVEWmTr_D8a-9" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="1690" y="330" as="sourcePoint" />
+            <mxPoint x="1665" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-11" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="1260" y="1235" width="460" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-12" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="0NV3zA2O5QVEWmTr_D8a-11" vertex="1">
+          <mxGeometry y="30" width="460" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-13" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BZFop_Z_mp7bM7QsDtb2-65" source="BZFop_Z_mp7bM7QsDtb2-112" target="0NV3zA2O5QVEWmTr_D8a-11" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="1160" y="1259.17" as="sourcePoint" />
+            <mxPoint x="1240" y="1259.17" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-16" value="現在の設計評価　：修正点あり" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="BZFop_Z_mp7bM7QsDtb2-65" vertex="1">
+          <mxGeometry x="762" y="192" width="460" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-17" value="１．基底クラスの修正に伴う変更に対応すること&lt;br&gt;&lt;br&gt;２．WindowsOS制御用システムであってOSのシステムではないので、&lt;br&gt;　　C_Windows_OS_Management_Systemなどが命名として適切である" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="0NV3zA2O5QVEWmTr_D8a-16" vertex="1">
+          <mxGeometry y="30" width="460" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="0NV3zA2O5QVEWmTr_D8a-18" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BZFop_Z_mp7bM7QsDtb2-65" source="BZFop_Z_mp7bM7QsDtb2-66" target="0NV3zA2O5QVEWmTr_D8a-17" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="397.5" as="sourcePoint" />
+            <mxPoint x="845" y="327.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-72" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endFill=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="BZFop_Z_mp7bM7QsDtb2-9" source="BZFop_Z_mp7bM7QsDtb2-66" target="BZFop_Z_mp7bM7QsDtb2-21" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1403" y="-90" as="sourcePoint" />
+            <mxPoint x="2103" y="-70" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="1700" />
+              <mxPoint x="2063" y="1711" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-31" value="ーはプライベート&#xa;＝はプロテクト&#xa;＋はパブリック" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="314" y="80" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-64" value="全てのクラスに設計評価を付ける&#xa;評価段階は以下&#xa;&#xa;１．正常&#xa;・現状の設計は十分に稼働する&#xa;&#xa;２．修正点あり&#xa;・動作自体に問題はないが、&#xa;バグを生み出しやすい設計であったり&#xa;整合性に問題のある設計であったりと&#xa;ミスリードを作り出しかねない設計&#xa;&#xa;３．問題あり&#xa;・実行時の動作に問題がある&#xa;上位層に依存しているなど&#xa;設計上でバグが存在したり、&#xa;バグの発見が難しい環境である状態&#xa;&#xa;４．上位層へ依存&#xa;・上位の層へ依存しており、&#xa;上位層との循環依存関係&#xa;が生まれてしまっている状態" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="35" y="280" width="425" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="BZFop_Z_mp7bM7QsDtb2-71" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=none;startFill=0;endFill=1;" parent="1" source="BZFop_Z_mp7bM7QsDtb2-7" target="BZFop_Z_mp7bM7QsDtb2-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1610" y="260" as="sourcePoint" />
+            <mxPoint x="1580" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
