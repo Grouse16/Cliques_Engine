@@ -19,9 +19,6 @@
     <Filter Include="ソース ファイル\プラットフォーム">
       <UniqueIdentifier>{8e932571-39a8-477e-b165-ce258cc69dcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\プラットフォーム\独立">
-      <UniqueIdentifier>{e3550606-0349-4cef-8b4e-157583c7a4d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\プラットフォーム\OS">
       <UniqueIdentifier>{063382f2-84ae-4a20-a472-8ec0ed45daf3}</UniqueIdentifier>
     </Filter>
@@ -111,9 +108,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\プラットフォーム">
       <UniqueIdentifier>{ccee9e48-d87e-4164-815d-5d0280596645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\プラットフォーム\独立">
-      <UniqueIdentifier>{22090de1-51b2-485c-84ec-1f78d736406c}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\プラットフォーム\OS">
       <UniqueIdentifier>{7ae714cd-892b-457e-84b9-d28a31bc1f4c}</UniqueIdentifier>
@@ -760,15 +754,27 @@
     <Filter Include="ソース ファイル\アセット\3Dモデル\メッシュ">
       <UniqueIdentifier>{6a57ab82-3c89-452b-8405-47b975919832}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム独立部">
+      <UniqueIdentifier>{57099042-d3e6-49b3-bd8f-f95c63e52e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム独立部">
+      <UniqueIdentifier>{5b78d4dc-4139-466a-a52d-c7586690da6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底\定義">
+      <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム独立部\定義">
+      <UniqueIdentifier>{b4a91e7e-91f4-41c9-9ac8-f50afc3c12b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS\レイヤー">
+      <UniqueIdentifier>{db1c61f9-8681-4213-85a3-f0275d948f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\レイヤー">
+      <UniqueIdentifier>{35d38b71-9b4a-49fc-b2bf-3764d99a516d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Undefine_Platform_Detector_Macro.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
-    </ClInclude>
-    <ClInclude Include="C_API_Initialize_And_Release_Manager.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Windows_System.h">
+    <ClInclude Include="C_Windows_OS_Management_System.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows</Filter>
     </ClInclude>
     <ClInclude Include="C_Wnd_Proc_For_Game_APK.h">
@@ -777,11 +783,8 @@
     <ClInclude Include="C_Wnd_Proc_Manager.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClInclude>
-    <ClInclude Include="C_OS_System_Base.h">
+    <ClInclude Include="C_OS_Management_System_Base.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\基底</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Platform_Detection_System.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Vertex_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
@@ -819,9 +822,6 @@
     <ClInclude Include="C_DX12_Streaming_Output_Buffer_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
     </ClInclude>
-    <ClInclude Include="Platform_Detector_Macro.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
-    </ClInclude>
     <ClInclude Include="C_Rendering_Graphics_API_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\API\基底</Filter>
     </ClInclude>
@@ -854,9 +854,6 @@
     </ClInclude>
     <ClInclude Include="All_Figure_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
-    </ClInclude>
-    <ClInclude Include="Challenge_Mode_Macro.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\独立</Filter>
     </ClInclude>
     <ClInclude Include="UI_Figure_Data.h">
       <Filter>ヘッダー ファイル\システム\図形</Filter>
@@ -1272,24 +1269,57 @@
     <ClInclude Include="C_Static_Model_User.h">
       <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
     </ClInclude>
+    <ClInclude Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Platform_Detection_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部</Filter>
+    </ClInclude>
+    <ClInclude Include="E_MOUSE_CLICK_STATE.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Size_Data.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Mouse_State.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Position.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Day_And_Time_Inform.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Undefine_Platform_Detector_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Challenge_Mode_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform_Detector_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_RENDERING_API_KIND.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_OS_KIND.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_OS_User_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\レイヤー</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C_Platform_Detection_System.cpp">
-      <Filter>ソース ファイル\プラットフォーム\独立</Filter>
-    </ClCompile>
-    <ClCompile Include="C_API_Initialize_And_Release_Manager.cpp">
-      <Filter>ソース ファイル\プラットフォーム\独立</Filter>
-    </ClCompile>
-    <ClCompile Include="C_OS_System_Base.cpp">
+    <ClCompile Include="C_OS_Management_System_Base.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\基底</Filter>
     </ClCompile>
-    <ClCompile Include="C_Windows_System.cpp">
+    <ClCompile Include="C_Windows_OS_Management_System.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows</Filter>
     </ClCompile>
     <ClCompile Include="C_Wnd_Proc_Manager.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClCompile>
-    <ClCompile Include="C_Wnd_Proc_For_Engine_APK.cpp">
+    <ClCompile Include="C_Wnd_Proc_For_Game_APK.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Graphics_API_Base.cpp">
@@ -1627,6 +1657,15 @@
     </ClCompile>
     <ClCompile Include="C_Mesh_Data.cpp">
       <Filter>ソース ファイル\アセット\3Dモデル\メッシュ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム独立部</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Platform_Detection_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム独立部</Filter>
+    </ClCompile>
+    <ClCompile Include="C_OS_User_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\レイヤー</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <time.h>
 
-#include "C_Windows_System.h"
+#include "C_Windows_OS_Management_System.h"
 #include "C_Wnd_Proc_Manager.h"
 
 #ifdef _DEBUG
@@ -41,7 +41,7 @@ using namespace OS::WINDOWS;
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Windows_System::C_Windows_System(void)
+C_Windows_OS_Management_System::C_Windows_OS_Management_System(void)
 {
 	return;
 }
@@ -51,28 +51,12 @@ C_Windows_System::C_Windows_System(void)
 // 引数   ：void
 // 戻り値 ：成功したかどうか 成功してたらtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Windows_System::M_Create_Window(void)
+bool C_Windows_OS_Management_System::M_Create_Window(void)
 {
 	// ☆ 変数宣言 ☆ //
 	WNDCLASSEX w_wc;	// WNDCLASSEX構造体の中身の準備
 
-	std::wstring device_name_in_wstr;	// ワイド文字列でのウィンドウ名
-
-
-	// ウィンドウをワイド文字列に変換
-	{
-		// ☆ 変数宣言 ☆ //
-		int text_size = (int)con_DEVICE_NAME.size();	// 文字数
-
-
-		device_name_in_wstr.resize(text_size + 1);
-		device_name_in_wstr[text_size] = '\0';
-
-		for (int l_now_text = 0; l_now_text < text_size; l_now_text++)
-		{
-			device_name_in_wstr[l_now_text] = con_DEVICE_NAME[l_now_text];
-		}
-	}
+	std::wstring device_name = M_Get_Window_Title_Name();	// ワイド文字列でのウィンドウ名
 
 
 	// この構造体のサイズ
@@ -106,7 +90,7 @@ bool C_Windows_System::M_Create_Window(void)
 	w_wc.lpszMenuName = NULL;
 
 	// ウィンドウのクラスの名前
-	w_wc.lpszClassName = device_name_in_wstr.data();
+	w_wc.lpszClassName = device_name.data();
 
 	// タイトルバーのアイコンの見ため
 	w_wc.hIconSm = LoadIcon(w_wc.hInstance, D_ICON_ADDRESS);
@@ -129,7 +113,7 @@ bool C_Windows_System::M_Create_Window(void)
 		w_wc.lpszClassName,
 
 		// ウィンドウの名前
-		device_name_in_wstr.data(),
+		device_name.data(),
 
 		// ウィンドウスタイル
 		WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SIZEBOX | WS_CAPTION,
@@ -173,7 +157,7 @@ bool C_Windows_System::M_Create_Window(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Mouse_Input_Update(void)
+void C_Windows_OS_Management_System::M_Mouse_Input_Update(void)
 {
 	// ☆ 変数宣言 ☆ //
 	POINT mouse_point;	// マウス座標
@@ -182,6 +166,47 @@ void C_Windows_System::M_Mouse_Input_Update(void)
 	// マウス座標を取得する
 	GetCursorPos(&mouse_point);
 	M_Set_Mouse_Position_Variable(mouse_point.x, mouse_point.y);
+
+	return;
+}
+
+
+//-☆- 更新 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：時間の更新
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Windows_OS_Management_System::M_Time_Update(void)
+{
+	// ☆ 変数宣言 ☆ //
+	time_t get_time = time(nullptr);	// 時間情報
+
+	tm time_data;	// 時間情報を解析したデータ
+
+	S_Day_And_Time_Inform now_time;	// 現在の時間
+
+
+	// 時間情報をデータに変換
+	localtime_s(&time_data, &get_time);
+
+	// 日付を設定
+	now_time.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
+	now_time.month = time_data.tm_mon + 1;		// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
+	now_time.day = time_data.tm_mday;			// 日
+
+	// 時刻を設定
+	now_time.hour = time_data.tm_hour;	// 時
+	now_time.minute = time_data.tm_min;	// 分
+	now_time.second = time_data.tm_sec;	// 秒
+
+	// 現在の日時をセット
+	M_Set_Now_Day_And_Time(now_time);
+
+
+	// 現在の経過時間をセット
+	M_Set_Now_Time_By_Start_In_Milli_Second(GetTickCount64());
 
 	return;
 }
@@ -196,9 +221,9 @@ void C_Windows_System::M_Mouse_Input_Update(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Create_Windows_System(void)
+void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 {
-	m_this_instance.reset(new C_Windows_System());
+	m_this_instance.reset(new C_Windows_OS_Management_System());
 
 	// デバッグシステム初期化
 #ifdef _DEBUG
@@ -214,7 +239,7 @@ void C_Windows_System::M_Create_Windows_System(void)
 // 引数   ：HINSTANCE& インスタンスハンドル, int& コマンド番号
 // 戻り値 ：成功時のみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Windows_System::M_Set_Up(void)
+bool C_Windows_OS_Management_System::M_Set_Up(void)
 {
 	// ☆ デバッグ時のみセットアップ開始を通知 ☆ //
 #if _DEBUG
@@ -249,7 +274,7 @@ bool C_Windows_System::M_Set_Up(void)
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-C_Windows_System::~C_Windows_System()
+C_Windows_OS_Management_System::~C_Windows_OS_Management_System()
 {
 	M_Release();
 
@@ -262,7 +287,7 @@ C_Windows_System::~C_Windows_System()
 // 引数   ：void
 // 戻り値 ：なし
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Release(void)
+void C_Windows_OS_Management_System::M_Release(void)
 {
 	mpr_variable.m_cmd_show = 0;
 	mpr_variable.s_wnd.h_my_wind = NULL;
@@ -279,7 +304,7 @@ void C_Windows_System::M_Release(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Update(void)
+void C_Windows_OS_Management_System::M_Update(void)
 {
 	// ☆ ウィンドウの処理 ☆ //
 
@@ -316,7 +341,7 @@ void C_Windows_System::M_Update(void)
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Window_Size_Update(void)
+void C_Windows_OS_Management_System::M_Window_Size_Update(void)
 {
 	// ☆ 変数宣言 ☆ //
 	RECT client_rect;	// クライアント領域のピクセル座標
@@ -345,10 +370,10 @@ void C_Windows_System::M_Window_Size_Update(void)
 // 引数   ：int コマンド番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Set_Cmd_Show(int in_command_show)
+void C_Windows_OS_Management_System::M_Set_Cmd_Show(int in_command_show)
 {
 	// ☆ 変数宣言 ☆ //
-	C_Windows_System * wind_os_system = static_cast<C_Windows_System*>(m_this_instance.get());	// ウィンドウズOS用のシステム
+	C_Windows_OS_Management_System * wind_os_system = static_cast<C_Windows_OS_Management_System*>(m_this_instance.get());	// ウィンドウズOS用のシステム
 
 
 	wind_os_system->mpr_variable.m_cmd_show = in_command_show;
@@ -364,53 +389,9 @@ void C_Windows_System::M_Set_Cmd_Show(int in_command_show)
 // 引数   ：void
 // 戻り値 ：HWND 自ウィンドウのハンドル
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-HWND C_Windows_System::M_Get_Window_Handle(void)
+HWND C_Windows_OS_Management_System::M_Get_Window_Handle(void)
 {
-	return static_cast<C_Windows_System*>(m_this_instance.get())->mpr_variable.s_wnd.h_my_wind;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：現在の時間を引数の参照先に渡す
-// 引数   ：S_Time_Inform & 時間の設定先
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Get_Now_Time(OS::S_Time_Inform & in_set_time_inform)
-{
-	// ☆ 変数宣言 ☆ //
-	time_t get_time = time(nullptr);	// 時間情報
-
-	tm time_data;	// 時間情報を解析したデータ
-
-
-	// 時間情報をデータに変換
-	localtime_s(&time_data, &get_time);
-
-
-	// 日付を設定
-	in_set_time_inform.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
-	in_set_time_inform.month = time_data.tm_mon + 1;	// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
-	in_set_time_inform.day = time_data.tm_mday;			// 日
-
-	// 時刻を設定
-	in_set_time_inform.hour = time_data.tm_hour;
-	in_set_time_inform.minute = time_data.tm_min;
-	in_set_time_inform.second = time_data.tm_sec;
-
-	return;
-}
-
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：経過時間をミリ秒単位で取得する
-// 引数   ：unsigned __int64 & 取得先の時間変数の参照
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Get_Now_Milli_Second(unsigned __int64 & in_plz_set_this_timer)
-{// * GetTickCount64が1.26ナノ秒で最速なので使用している
-	in_plz_set_this_timer = GetTickCount64();
-
-	return;
+	return static_cast<C_Windows_OS_Management_System*>(m_this_instance.get())->mpr_variable.s_wnd.h_my_wind;
 }
 
 
@@ -421,20 +402,21 @@ void C_Windows_System::M_Get_Now_Milli_Second(unsigned __int64 & in_plz_set_this
 // 引数   ：const wstring & セットするタイトル名
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_System::M_Set_Window_Title(const std::wstring & in_set_title_name)
+void C_Windows_OS_Management_System::M_Change_Window_Title(const std::wstring & in_set_title_name)
 {
 	// ウィンドウタイトルをセット
 	SetWindowText(mpr_variable.s_wnd.h_my_wind, in_set_title_name.c_str());
+	M_Set_Window_Title_Name(in_set_title_name);
 
 	return;
 }
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：メッセージボックスを表示する(ウィンドウハンドルを必要とするため)
-// 引数   ：const wstring & タイトル, const wstring & 表示内容, const unsigned int メッセージボックスの種類
+// 引数   ：const wstring & タイトル, const wstring & 表示内容, unsigned int メッセージボックスの種類
 // 戻り値 ：int ウィンドウ入力の結果
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Windows_System::M_Create_Massage_Box(const std::wstring & in_title, const std::wstring & in_text, const unsigned int in_type)
+int C_Windows_OS_Management_System::M_Create_Massage_Box(const std::wstring & in_title, const std::wstring & in_text, unsigned int in_type)
 {
 	return MessageBox(mpr_variable.s_wnd.h_my_wind, in_text.c_str(), in_title.c_str(), in_type);
 }

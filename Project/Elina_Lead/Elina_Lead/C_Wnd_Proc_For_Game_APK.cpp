@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Wnd_Proc_For_Game_APK.h"
 #include "C_Wnd_Proc_Manager.h"
-#include "C_OS_System_Base.h"
+#include "C_OS_Management_System_Base.h"
 #include "C_Game_Manager.h"
 
 #include <windowsx.h>
@@ -99,55 +99,55 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 
 		// 左クリック
 	case WM_LBUTTONDOWN:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
 
 		break;
 
 		// 左クリック終了
 	case WM_LBUTTONUP:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
 
 		break;
 
 		// 左ダブルクリック
 	case WM_LBUTTONDBLCLK:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Left_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
 
 		break;
 
 		// 右クリック
 	case WM_RBUTTONDOWN:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
 
 		break;
 
 		// 右クリック終了
 	case WM_RBUTTONUP:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
 
 		break;
 
 		// 右ダブルクリック
 	case WM_RBUTTONDBLCLK:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Right_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
 
 		break;
 
 		// 中クリック
 	case WM_MBUTTONDOWN:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_CLICK);
 
 		break;
 
 		// 中クリック終了
 	case WM_MBUTTONUP:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_NON);
 
 		break;
 
 		// 中ダブルクリック
 	case WM_MBUTTONDBLCLK:
-		OS::C_OS_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Set_Center_Click_State(OS::E_MOUSE_CLICK_STATE::e_DOUBLE_CLICK);
 
 		break;
 
@@ -156,7 +156,7 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 	case WM_SIZING:
 
 		// ウィンドウサイズを更新してもう一度処理を実行
-		OS::C_OS_System_Base::M_Get_Instance()->M_Window_Size_Update();
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Window_Size_Update();
 		GAME::C_Game_Manager::M_Executes_Process();
 
 		break;
@@ -166,7 +166,7 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 	case WM_MOVE:
 
 		// ウィンドウサイズを更新してもう一度処理を実行
-		OS::C_OS_System_Base::M_Get_Instance()->M_Window_Size_Update();
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Window_Size_Update();
 		GAME::C_Game_Manager::M_Executes_Process();
 
 		break;
@@ -182,7 +182,7 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 		case SIZE_RESTORED:
 
 			// ウィンドウサイズを更新してもう一度処理を実行
-			OS::C_OS_System_Base::M_Get_Instance()->M_Window_Size_Update();
+			OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Window_Size_Update();
 			GAME::C_Game_Manager::M_Executes_Process();
 
 			break;
@@ -192,7 +192,7 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 		case SIZE_MAXIMIZED:
 
 			// ウィンドウサイズを更新してもう一度処理を実行
-			OS::C_OS_System_Base::M_Get_Instance()->M_Window_Size_Update();
+			OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Window_Size_Update();
 			GAME::C_Game_Manager::M_Executes_Process();
 
 			break;
@@ -209,7 +209,7 @@ LRESULT CALLBACK C_Wnd_Proc_For_Game_APK::Wnd_Proc(HWND in_h_wnd, UINT in_msg, W
 	case WM_WINDOWPOSCHANGED:
 
 		// ウィンドウサイズを更新してもう一度処理を実行
-		OS::C_OS_System_Base::M_Get_Instance()->M_Window_Size_Update();
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Window_Size_Update();
 		GAME::C_Game_Manager::M_Executes_Process();
 
 		break;

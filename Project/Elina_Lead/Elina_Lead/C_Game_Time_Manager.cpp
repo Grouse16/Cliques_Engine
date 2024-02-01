@@ -7,10 +7,11 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Game_Time_Manager.h"
+#include "C_OS_User_System.h"
 
-#include "C_OS_System_Base.h"
-
+#ifdef _DEBUG
 #include "C_Log_System.h"
+#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -41,7 +42,7 @@ C_Game_Time_Manager::C_Game_Time_Manager(void)
 #endif // _DEBUG
 
 	// 初期時間を記録
-	OS::C_OS_System_Base::M_Get_Instance()->M_Get_Now_Milli_Second(mpr_variable.now_timer);
+	mpr_variable.now_timer = OS::C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Application();
 	mpr_variable.time_of_seconds_start = mpr_variable.now_timer;
 	mpr_variable.then_timer = mpr_variable.now_timer;
 
@@ -123,7 +124,7 @@ void C_Game_Time_Manager::M_Reset_Time_Line(void)
 void C_Game_Time_Manager::M_Time_Update(void)
 {
 	// 最新の時間を取得する
-	OS::C_OS_System_Base::M_Get_Instance()->M_Get_Now_Milli_Second(m_this->mpr_variable.now_timer);
+	m_this->mpr_variable.now_timer = OS::C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Application();
 
 
 	//経過時間を更新
@@ -167,7 +168,7 @@ void C_Game_Time_Manager::M_Frame_End_Update(void)
 	{
 		while (M_Get_FPS_Request_Time_Passed() == false)
 		{
-			OS::C_OS_System_Base::M_Get_Instance()->M_Get_Now_Milli_Second(m_this->mpr_variable.now_timer);
+			m_this->mpr_variable.now_timer = OS::C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Application();
 		}
 	}
 

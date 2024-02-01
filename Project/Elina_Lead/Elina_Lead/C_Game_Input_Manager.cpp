@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include <algorithm>
 
-#include "C_OS_System_Base.h"
+#include "C_OS_User_System.h"
 #include "C_Game_Input_Manager.h"
 
 #include "C_Log_System.h"
@@ -55,7 +55,7 @@ C_Game_Input_Manager::C_Game_Input_Manager(void)
 void C_Game_Input_Manager::M_Update_Mouse_Input(void)
 {
 	// ☆ 変数宣言 ☆ //
-	const OS::S_Mouse_State & now_mouse_state = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Mouse_State();	// 現在のマウスの状態の参照
+	const OS::S_Mouse_State & now_mouse_state = OS::C_OS_User_System::M_Get_Mouse_State();	// 現在のマウスの状態の参照
 	
 
 	// マウスの座標を取得

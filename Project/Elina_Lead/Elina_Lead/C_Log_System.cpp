@@ -18,7 +18,7 @@
 
 #include "C_Log_System.h"
 #include "C_Text_And_File_Manager.h"
-#include "C_OS_System_Base.h"
+#include "C_OS_User_System.h"
 
 
 // デバッグ時はメモリリーク検出
@@ -141,14 +141,14 @@ void C_Log_System::M_Print_Log(E_LOG_TAGS in_tag, std::string in_file_name, std:
 	// ☆ 変数宣言 ☆ //
 	SYSTEM::TEXT::C_Text_And_File_Manager file_user_system;	// ファイル操作用システム
 
-	OS::S_Time_Inform now_time_and_day;	// 時間と日付
+	OS::S_Day_And_Time_Inform now_time_and_day;	// 時間と日付
 
 	std::string log_title;	// 出力するログタイトル
 	std::string print_log;	// 出力するログ
 
-
-	// 時間情報をデータに変換
-	OS::C_OS_System_Base::M_Get_Instance()->M_Get_Now_Time(now_time_and_day);
+	
+	// 現在の時間情報を取得
+	now_time_and_day = OS::C_OS_User_System::M_Get_Now_Day_And_Time();
 
 
 	// 出力するログの日付を設定
