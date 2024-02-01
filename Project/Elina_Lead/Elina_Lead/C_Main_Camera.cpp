@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Main_Camera.h"
 #include "C_Projection_System.h"
-#include "C_OS_System_Base.h"
+#include "C_OS_User_System.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -55,7 +55,7 @@ void C_Main_Camera::M_Reset(void)
 	m_this.mpr_variable.view = DirectX::XMMATRIX();
 
 	// プロジェクションのマトリクスを初期化する
-	projection_init.aspect_ratio = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Aspect_Size();
+	projection_init.aspect_ratio = OS::C_OS_User_System::M_Get_Window_Aspect_Ratio();
 	projection_init.M_Get_Projection(m_this.mpr_variable.projection);
 
 	return;

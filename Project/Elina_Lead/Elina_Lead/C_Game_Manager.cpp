@@ -9,7 +9,7 @@
 #include <algorithm>
 
 #include "C_Game_Manager.h"
-#include "C_OS_System_Base.h"
+#include "C_OS_Management_System_Base.h"
 #include "C_Rendering_Graphics_API_Base.h"
 #include "C_Game_Function_Manager.h"
 #include "C_Game_State_Manager.h"
@@ -121,12 +121,12 @@ void C_Game_Manager::M_Window_Title_Update(void)
 	std::wstring new_title;	// 新しいタイトルの文字列
 
 
-	new_title = OS::con_DEVICE_NAME + L"    fps : "
+	new_title = OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Get_Window_Title_Name() + L"    fps : "
 		+ 
 		std::to_wstring(TIME::C_Game_Time_Manager::M_Get_FPS()) + L"/" + std::to_wstring(TIME::C_Game_Time_Manager::M_Get_Frame_Rate())
 		+
 		L"　speed:" + std::to_wstring(TIME::C_Game_Time_Manager::M_Get_Delta_Second());
-	OS::C_OS_System_Base::M_Get_Instance()->M_Set_Window_Title(new_title);
+	OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Change_Window_Title(new_title);
 
 #endif	// _DEBUG
 
@@ -317,10 +317,10 @@ void C_Game_Manager::M_Executes_Process(void)
 	if (mpr_variable.flg_OS_active_now == false)
 	{
 		mpr_variable.flg_OS_active_now = true;
-		OS::C_OS_System_Base::M_Get_Instance()->M_Update();
+		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Update();
 
 		// OSが終了していたらゲームを終了する
-		if (OS::C_OS_System_Base::M_Get_OS_Active() == false)
+		if (OS::BASE::C_OS_Management_System_Base::M_Get_OS_Active() == false)
 		{
 			M_Set_Game_Exist_Flg(false);
 

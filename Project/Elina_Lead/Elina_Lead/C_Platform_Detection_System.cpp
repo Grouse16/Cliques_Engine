@@ -33,7 +33,7 @@ C_Platform_Detection_System::C_Platform_Detection_System(void)
 {
 	// ウィンドウズでの実行時
 #ifdef D_OS_IS_WINDOWS
-	m_platform_num = E_PLATFORM_NUMBER::e_WINDOWS;
+	m_platform_num = E_OS_KIND::e_WINDOWS;
 
 	// マックでの実行時
 #elif D_OS_IS_MAC
@@ -65,7 +65,7 @@ C_Platform_Detection_System::C_Platform_Detection_System(void)
 // 引数   ：void
 // 戻り値 ：const E_PLATFORM_NUMBER & プラットフォーム識別用番号の参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const E_PLATFORM_NUMBER & C_Platform_Detection_System::M_Get_Platform_Number(void)
+const PLATFORM::E_OS_KIND & C_Platform_Detection_System::M_Get_Platform_Number(void)
 {
 	return m_this_instance.m_platform_num;
 }
@@ -76,7 +76,7 @@ const E_PLATFORM_NUMBER & C_Platform_Detection_System::M_Get_Platform_Number(voi
 // 引数   ：void
 // 戻り値 ：const E_RENDERING_API_NUMBER & レンダリングAPI番号
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const E_RENDERING_API_NUMBER & C_Platform_Detection_System::M_Get_Rendering_API_Number(void)
+const PLATFORM::E_RENDERING_API_KIND & C_Platform_Detection_System::M_Get_Rendering_API_Number(void)
 {
 	return m_this_instance.m_rendering_api_num;
 }
@@ -89,7 +89,7 @@ const E_RENDERING_API_NUMBER & C_Platform_Detection_System::M_Get_Rendering_API_
 // 引数   ：E_RENDERING_API_NUMBER 設定するレンダリングAPI番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Platform_Detection_System::M_Set_Rendering_API_Number(E_RENDERING_API_NUMBER in_rendering_api_num)
+void C_Platform_Detection_System::M_Set_Rendering_API_Number(E_RENDERING_API_KIND in_rendering_api_num)
 {
 	m_this_instance.m_rendering_api_num = in_rendering_api_num;
 

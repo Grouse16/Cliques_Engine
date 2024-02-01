@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Camera_System.h"
 #include "E_MATRIX_DIRECTION.h"
-#include "C_OS_System_Base.h"
+#include "C_OS_User_System.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -83,7 +83,7 @@ void C_Camera_System::M_Update_Matrix(void)
 
 
 	// アスペクト比を更新
-	mpr_variable.projection_system.aspect_ratio = OS::C_OS_System_Base::M_Get_Instance()->M_Get_Aspect_Size();
+	mpr_variable.projection_system.aspect_ratio = OS::C_OS_User_System::M_Get_Window_Aspect_Ratio();
 
 	// プロジェクション変換行列を生成する
 	mpr_variable.projection_system.M_Get_Projection(mpr_variable.projection_matrix);

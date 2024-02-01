@@ -13,28 +13,18 @@
 // ☆ ファイルひらき ☆ //
 #include <memory>
 
+#include "E_RENDERING_API_KIND.h"
+
 
 // ☆ ネームスペース ☆ //
 
 // プラットフォームで分岐する初期化と解放を制御するクラスを呼び出すための名前
 namespace PLATFORM
 {
-	// ☆ 定数 ☆ //
-
-	// レンダリング用APIの種類を指定する列挙
-	enum class E_RENDERING_API_KIND
-	{
-		e_DX11,		// ダイレクトエックス１１
-		e_DX12,		// ダイレクトエックス１２
-		e_OPENGL,	// オープンGL
-		e_VULKAN,	// バルカン
-	};
-
-
 	// ☆ クラス ☆ //
 	
 	// プラットフォームで分岐する初期化と解放を制御するクラス
-	class C_API_Initialize_And_Release_Manager
+	class C_OS_Manager_And_Rendering_API_Initialize_And_Release_System
 	{
 	//==☆ プライベート ☆==//
 	private:
@@ -44,7 +34,16 @@ namespace PLATFORM
 		//-☆- 初期化 -☆-//
 
 		// コンストラクタ	生成できなくする
-		C_API_Initialize_And_Release_Manager(void);
+		C_OS_Manager_And_Rendering_API_Initialize_And_Release_System(void);
+
+
+		//-☆- 生成 -☆-//
+
+		// OS制御システムの初期化を行う　戻り値：成功時のみtrue
+		static bool M_Init_OS(void);
+
+		// レンダリングAPIの初期化を行う　戻り値：bool 成功時のみtrue
+		static bool M_Init_Rendering_API(void);
 
 
 	//==☆ パブリック ☆==//
@@ -52,28 +51,25 @@ namespace PLATFORM
 
 		// ☆ 関数 ☆ //
 
-		//-☆- 初期化 -☆-//
+		//-☆- セッタ -☆-//
 
-		// OSの初期化を行う　※先に生成すること　戻り値：成功時のみtrue
-		static bool M_Init_OS(void);
+		// ウィンドウズOS制御システムのときのみ必要なコマンド番号を指定する、これがないとウィンドウを生成できない　引数：コマンド番号
+		static void M_Set_CMD_Number(int);
 
-		// OSの生成を行う　引数：使用するAPIの種類　戻り値：成功時のみtrue
+
+		//-☆- 生成 -☆-//
+
+		// OS制御システムの生成を行う　引数：使用するAPIの種類への参照　戻り値：bool 成功時のみtrue
 		static bool M_Create_OS(E_RENDERING_API_KIND);
 
-		// APIの初期化を行う　引数：void　戻り値：成功時のみtrue
-		static bool M_Init_API(void);
-
-		// ウィンドウズOSのときのみ必要なコマンド番号を指定する、これがないとウィンドウを生成できない　引数：コマンド番号
-		static void M_Set_CMD_Number(int);
+		// OS制御システムを初期化してレンダリングAPIを生成する　引数：使用するAPIの種類への参照　戻り値：成功時のみtrue
+		static bool M_Init_OS_Management_System_And_Create_Rendering_API(void);
 
 
 		//-☆- 終了時 -☆-//
 
-		// デストラクタ
-		~C_API_Initialize_And_Release_Manager(void);
-
-		// APIを解放する
-		static void M_Relese_Graphics_API(void);
+		// OS制御システムとレンダリングAPIを解放する
+		static void M_Release_OS_Management_System_And_Rendering_API(void);
 	};
 }
 

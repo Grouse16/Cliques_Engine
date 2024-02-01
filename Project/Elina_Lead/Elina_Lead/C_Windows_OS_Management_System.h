@@ -20,7 +20,7 @@
 #include <memory>
 #include <string>
 
-#include "C_OS_System_Base.h"
+#include "C_OS_Management_System_Base.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -30,8 +30,8 @@ namespace OS::WINDOWS
 {
 	// ☆ クラス ☆ //
 
-	// ウィンドウズの機能を使うためのクラス
-	class C_Windows_System : public OS::C_OS_System_Base
+	// ウィンドウズOS制御システムのクラス
+	class C_Windows_OS_Management_System : public OS::BASE::C_OS_Management_System_Base
 	{
 		//==☆  プライベート  ☆==//
 	private:
@@ -51,11 +51,8 @@ namespace OS::WINDOWS
 			} s_wnd;	// ウィンドウ
 
 			int m_cmd_show = 0;	// 画面にウィンドウを表示するための値
-		};
 
-
-		// ☆ 変数宣言 ☆ //
-		SPr_Variable mpr_variable;	// このクラスの変数を呼び出すための名前
+		} mpr_variable;	// このクラスの変数を呼び出すための名前
 
 
 		// ☆ 関数 ☆ //
@@ -63,7 +60,7 @@ namespace OS::WINDOWS
 		//-☆- 初期化 -☆-//
 
 		// コンストラクタ、通常の方法でインスタンス化出来なくする
-		C_Windows_System(void);
+		C_Windows_OS_Management_System(void);
 
 		// ウィンドウを生成する処理
 		bool M_Create_Window(void);
@@ -73,6 +70,12 @@ namespace OS::WINDOWS
 
 		// マウス入力の更新
 		void M_Mouse_Input_Update(void);
+
+
+		//-☆- 更新 -☆-//
+
+		// 時間の更新
+		void M_Time_Update(void);
 
 
 		//==☆  パブリック  ☆==//
@@ -89,7 +92,7 @@ namespace OS::WINDOWS
 		bool M_Set_Up(void) override;
 
 		// デストラクタ
-		~C_Windows_System(void);
+		~C_Windows_OS_Management_System(void);
 
 		// メモリ解放
 		void M_Release(void) override;
@@ -115,20 +118,14 @@ namespace OS::WINDOWS
 		// 自ウィンドウのハンドルを返す
 		static HWND M_Get_Window_Handle(void);
 
-		// 現在の時間を引数の参照先に渡す
-		void M_Get_Now_Time(OS::S_Time_Inform & ) override;
-
-		// 経過時間をミリ秒単位で取得する　引数：取得先の時間変数の参照
-		void M_Get_Now_Milli_Second(unsigned __int64 & ) override;
-
 
 		//-☆- ウィンドウ機能 -☆-//
 
-		// ウィンドウのタイトルを編集する　引数：const std::wstring & セットするタイトル名
-		void M_Set_Window_Title(const std::wstring &) override;
+		// ウィンドウのタイトルを編集する　引数：セットするタイトル名(const)
+		void M_Change_Window_Title(const std::wstring &) override;
 
-		// メッセージボックスを表示する(ウィンドウハンドルを必要とするため)　引数：const std::wstring & タイトル, const std::wstring & 表示内容, const unsigned int メッセージボックスの種類
-		int M_Create_Massage_Box(const std::wstring &, const std::wstring &, const unsigned int) override;
+		// メッセージボックスを表示する　引数：タイトル(const), 表示内容(const), メッセージボックスの種類
+		int M_Create_Massage_Box(const std::wstring &, const std::wstring &, unsigned int) override;
 	};
 }
 

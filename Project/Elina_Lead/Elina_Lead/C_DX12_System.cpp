@@ -13,7 +13,7 @@
 #include "Platform_Detector_Macro.h"
 #ifdef D_OS_IS_WINDOWS
 
-#include "C_Windows_System.h"
+#include "C_Windows_OS_Management_System.h"
 
 #include "C_DX12_System.h"
 #include "C_DX12_Input_Layout_Setting_System.h"
@@ -807,7 +807,7 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
     desc_swap_chain.BufferCount = (int)E_DX12_PARAMATOR::e_RENDER_TARGET_BUFFER_SUM;
 
     // ウィンドウへのハンドル
-    desc_swap_chain.OutputWindow = OS::WINDOWS::C_Windows_System::M_Get_Window_Handle();
+    desc_swap_chain.OutputWindow = OS::WINDOWS::C_Windows_OS_Management_System::M_Get_Window_Handle();
 
     // ウィンドウモードであるかどうか
     desc_swap_chain.Windowed = TRUE;
@@ -2179,11 +2179,15 @@ void C_DX12_System::M_Wait_For_Command_Queue(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_DX12_System::M_Set_Scissor_And_View_Port(void)
 {
+    // ☆ 変数宣言 ☆ //
+    const OS::S_Window_Size_Data & window_size = OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Get_Window_Size();  // ウィンドウサイズ
+
+
     // ☆ ビューポート設定 ☆ //
 
     // 画面サイズ
-    mpr_variable->s_frame_work.view_port.Width = (FLOAT)OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().width;
-    mpr_variable->s_frame_work.view_port.Height = (FLOAT)OS::C_OS_System_Base::M_Get_Instance()->M_Get_Window_Size().height;
+    mpr_variable->s_frame_work.view_port.Width = (FLOAT)window_size.width;
+    mpr_variable->s_frame_work.view_port.Height = (FLOAT)window_size.height;
 
     // 画面の左上座標
     mpr_variable->s_frame_work.view_port.TopLeftX = 0.0f;

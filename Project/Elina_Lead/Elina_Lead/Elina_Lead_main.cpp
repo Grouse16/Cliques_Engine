@@ -20,7 +20,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Game_Manager.h"
-#include "C_API_Initialize_And_Release_Manager.h"
+#include "C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h"
 
 
 // ☆ 関数 ☆ //
@@ -53,7 +53,7 @@ void M_Print_Log_Of_Succeeded_Init(void);
 
 // ウィンドウズ時はWinmain関数を使うがこのマクロの有効範囲外では値を使用しないこと(他プラットフォームのために)	// ウィンドウズのサブシステムを指定すること
 #ifdef D_OS_IS_WINDOWS
-#include "C_Windows_System.h"
+#include "C_Windows_OS_Management_System.h"
 int APIENTRY WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE /* もう使用される事はない、常に０ */, _In_ LPSTR, _In_ int in_cmd_show)
 {
 // その他の時 OpenGL系はint main(void)関数から始める
@@ -70,9 +70,8 @@ int main(void)
 
 // ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
 #ifdef D_OS_IS_WINDOWS
-	PLATFORM::C_API_Initialize_And_Release_Manager::M_Set_CMD_Number(in_cmd_show);
+	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
 #endif
-
 
 	// レンダリングAPIの生成
 	M_Rendering_API_Init();
@@ -116,7 +115,7 @@ int main(void)
 void M_OS_Create_System(void)
 {
 	// OSを生成する　失敗で終了
-	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Create_OS(PLATFORM::E_RENDERING_API_KIND::e_DX12))
+	if (!PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Create_OS(PLATFORM::E_RENDERING_API_KIND::e_DX12))
 	{
 		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}
@@ -132,15 +131,8 @@ void M_OS_Create_System(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void M_Rendering_API_Init(void)
 {
-	// OSの初期化を行う　失敗で終了
-	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Init_OS())
-	{
-		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
-	}
-
-
-	// レンダリングAPIを生成する　失敗で終了
-	if (!PLATFORM::C_API_Initialize_And_Release_Manager::M_Init_API())
+	// OS制御システムを初期化してレンダリングAPIを生成する　失敗で終了
+	if (!PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Init_OS_Management_System_And_Create_Rendering_API())
 	{
 		GAME::C_Game_Manager::M_Set_Game_Exist_Flg(false);
 	}
@@ -187,7 +179,7 @@ void M_Game_End(void)
 	GAME::C_Game_Manager::M_Release();
 
 	// レンダリング用のアプリケーションを終了する
-	PLATFORM::C_API_Initialize_And_Release_Manager::M_Relese_Graphics_API();
+	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Release_OS_Management_System_And_Rendering_API();
 
 	return;
 }
