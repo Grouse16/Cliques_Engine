@@ -7,21 +7,21 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h"
+#include "C_OS_Management_System_Base.h"
 #include "Platform_Detector_Macro.h"
 #include "C_Platform_Detection_System.h"
-
-
-// ☆ ウィンドウズOSの時のみDirextXを有効化 ☆ //
-#ifdef D_OS_IS_WINDOWS
-#include "C_Windows_OS_Management_System.h"
-#include "C_DX12_System.h"
-#endif // D_OS_IS_WINDOWS
+#include "C_Rendering_API_Interface_Initialize_And_Release.h"
 
 
 // ☆ マクロ ☆ //
 #if _DEBUG
 #include "C_Log_System.h"
 #endif // _DEBUG
+
+// ☆ ウィンドウズOSの時のみDirectXを有効化 ☆ //
+#ifdef D_OS_IS_WINDOWS
+#include "C_Windows_OS_Management_System.h"
+#endif // D_OS_IS_WINDOWS
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -79,22 +79,13 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Init_Render
 		//  DX12  //
 	case PLATFORM::E_RENDERING_API_KIND::e_DX12:
 
-		// DX12の初期化
-		RENDERING::GRAPHICS::DX12::C_DX12_System::M_Create_DirectX12();
-		return RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Up();
+		// DX12の生成
+		RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Initialize_And_Release::M_Create_DX12();
 
-		break;
+		// レンダリングAPIの初期化
+		return RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Initialize_And_Release::M_Initialize_Rendering_API();
 
 #endif // D_OS_IS_WINDOWS
-
-		//  OpenGL  //
-	case PLATFORM::E_RENDERING_API_KIND::e_OPENGL:
-
-
-		// レンダリングAPIがOpenGLであることを示す
-		PLATFORM::DETECTION::C_Platform_Detection_System::M_Set_Rendering_API_Number(PLATFORM::E_RENDERING_API_KIND::e_OPENGL);
-
-		break;
 
 
 		//  Vulkan  //
@@ -103,14 +94,19 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Init_Render
 
 		break;
 
-		//  なにも生成できなかったのでエラーを出して終了  //
+		//  指定がない時はOpenGLで起動  //
+		//  OpenGL  //
+	case PLATFORM::E_RENDERING_API_KIND::e_OPENGL:
 	default:
-		return false;
+
+		// レンダリングAPIがOpenGLであることを示す
+		PLATFORM::DETECTION::C_Platform_Detection_System::M_Set_Rendering_API_Number(PLATFORM::E_RENDERING_API_KIND::e_OPENGL);
+
 		break;
 	}
 
-	// 初期化に成功
-	return true;
+	// 初期化と生成に失敗
+	return false;
 }
 
 
@@ -160,15 +156,14 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Create_OS(E
 	// ☆ 初期化するAPIによって分岐 ☆ //
 	switch (in_use_api_kind)
 	{
-		// ☆ ウィンドウズOSの時のみDirextXを有効化 ☆ //
+		// ☆ ウィンドウズOSの時のみDirectXを有効化 ☆ //
 #ifdef D_OS_IS_WINDOWS
 
 	//  DX11  //
 	case E_RENDERING_API_KIND::e_DX11:
 
-		// ウィンドウズの生成
+		// ウィンドウズ用システムの生成
 		OS::WINDOWS::C_Windows_OS_Management_System::M_Create_Windows_System();
-
 
 		// レンダリングAPIがDX11であることを示す
 		PLATFORM::DETECTION::C_Platform_Detection_System::M_Set_Rendering_API_Number(PLATFORM::E_RENDERING_API_KIND::e_DX11);
@@ -178,9 +173,8 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Create_OS(E
 		//  DX12  //
 	case E_RENDERING_API_KIND::e_DX12:
 
-		// ウィンドウズの生成
+		// ウィンドウズ用システムの生成
 		OS::WINDOWS::C_Windows_OS_Management_System::M_Create_Windows_System();
-
 
 		// レンダリングAPIがDX12であることを示す
 		PLATFORM::DETECTION::C_Platform_Detection_System::M_Set_Rendering_API_Number(PLATFORM::E_RENDERING_API_KIND::e_DX12);
@@ -249,12 +243,10 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Init_OS_Man
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Release_OS_Management_System_And_Rendering_API(void)
 {
-	if (RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance() != nullptr)
-	{
-		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Release();
-		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Delete_API();
-	}
-
+	// レンダリングAPIの解放
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Initialize_And_Release::M_Release_Rendering_API();
+	
+	// OSの解放
 	if (OS::BASE::C_OS_Management_System_Base::M_Get_Instance() != nullptr)
 	{
 		OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Release();

@@ -19,7 +19,7 @@
 #include "C_Texture_Data_User.h"
 #include "C_Constant_Data_System.h"
 #include "C_Text_And_File_Manager.h"
-#include "C_Rendering_Screen_System_Base.h"
+#include "C_Rendering_Screen_Data_Base.h"
 #include "C_Shader_Setting_User.h"
 #include "C_Rendering_Screen_System.h"
 #include "S_Material_Detail.h"
@@ -157,16 +157,16 @@ namespace ASSET::MATERIAL
 		//-☆- ロード -☆-//
 
 		// ブレンドの設定をマテリアル情報からロードする　引数：ブレンドの設定先, 読み込んだファイルの情報
-		void M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Blend_Setting(std::vector<RENDERING::API::CREATE::S_Blend_Setting_Create_Data> &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// 深度ステンシルをマテリアル情報からロードする　引数：深度ステンシルの設定先, 読み込んだファイルの情報
-		void M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Depth_Stencil_Setting(RENDERING::API::CREATE::S_Depth_Stencil_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// ラスタライザをマテリアル情報からロードする　引数：ラスタライザの設定先, 読み込んだファイルの情報
-		void M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Rasterizer_Setting(RENDERING::API::CREATE::S_Rasterizer_Create_Data &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 		// その他設定をロードする　引数：設定先のレンダリング設定生成用情報, 読み込んだファイルの情報
-		void M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
+		void M_Load_Another_Setting(RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform &, SYSTEM::TEXT::C_Text_And_File_Manager &);
 
 
 		//-☆- 生成 -☆-//

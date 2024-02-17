@@ -19,7 +19,7 @@
 // ☆ ネームスペース ☆ //
 
 // 深度ステンシル設定用システムの定義を呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_TOOL
 {
 	// ☆ クラス ☆ //
 
@@ -44,7 +44,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- 設定 -☆-//
 
 		// 深度ステンシルを生成用情報をもとに設定する　引数：パイプライン設定用情報, レンダリング生成用情報(const)
-		static void M_Depth_Stencil_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform &);
+		static void M_Depth_Stencil_Setting(D3D12_GRAPHICS_PIPELINE_STATE_DESC &, const RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform &);
 
 
 		//-☆- テスト設定 -☆-//

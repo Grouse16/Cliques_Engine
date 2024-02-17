@@ -17,7 +17,7 @@
 // ☆ ネームスペース ☆ //
 
 // レンダリングAPIに使用するシステムを生成するための情報
-namespace RENDERING::GRAPHICS::CREATE
+namespace RENDERING::API::CREATE
 {
 	// ☆ 構造体 ☆ //
 

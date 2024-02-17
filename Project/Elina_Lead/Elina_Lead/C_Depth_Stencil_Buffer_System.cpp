@@ -7,8 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Depth_Stencil_Buffer_System.h"
-#include "S_Create_Depth_Stencil_Buffer_Inform.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Interface_Depth_Stencil.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -54,7 +53,7 @@ void C_Depth_Stencil_Buffer_System::M_Release(void)
 	}
 
 
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Notice_Depth_Stencil_Buffer_Deleted(mpr_variable.depth_stencil_buffer.get());
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Notice_Depth_Stencil_Buffer_Deleted(mpr_variable.depth_stencil_buffer.get());
 	mpr_variable.depth_stencil_buffer.reset();
 	
 	return;
@@ -71,7 +70,7 @@ void C_Depth_Stencil_Buffer_System::M_Release(void)
 bool C_Depth_Stencil_Buffer_System::M_Load_Depth_Stencil_Buffer(RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT in_byte_format)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Depth_Stencil_Buffer_Inform create_depth_stencil_inform;	// 深度ステンシルバッファの生成用情報
+	RENDERING::API::CREATE::S_Create_Depth_Stencil_Buffer_Inform create_depth_stencil_inform;	// 深度ステンシルバッファの生成用情報
 
 
 
@@ -79,7 +78,7 @@ bool C_Depth_Stencil_Buffer_System::M_Load_Depth_Stencil_Buffer(RENDERING::INFOR
 	create_depth_stencil_inform.m_byte_format = in_byte_format;
 
 	// 生成して結果を返す
-	return RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Depth_Stencil_Buffer(mpr_variable.depth_stencil_buffer, create_depth_stencil_inform);
+	return RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Create_Depth_Stencil_Buffer(mpr_variable.depth_stencil_buffer, create_depth_stencil_inform);
 }
 
 
@@ -92,7 +91,7 @@ bool C_Depth_Stencil_Buffer_System::M_Load_Depth_Stencil_Buffer(RENDERING::INFOR
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Depth_Stencil_Buffer_System::M_Clear_Depth_Stencil_Buffer(void)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Depth_Stencil_Buffer_To_Rendering(mpr_variable.depth_stencil_buffer);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Set_Depth_Stencil_Buffer_To_Rendering(mpr_variable.depth_stencil_buffer);
 
 	return;
 }
@@ -105,7 +104,7 @@ void C_Depth_Stencil_Buffer_System::M_Clear_Depth_Stencil_Buffer(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Depth_Stencil_Buffer_System::M_Set_Depth_Stencil_Buffer_To_Texture_Slot(int in_texture_slot)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Depth_Stencil_Buffer_To_Texture_Slot(in_texture_slot, mpr_variable.depth_stencil_buffer);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Set_Depth_Stencil_Buffer_To_Texture_Slot(in_texture_slot, mpr_variable.depth_stencil_buffer);
 
 	return;
 }
@@ -118,7 +117,7 @@ void C_Depth_Stencil_Buffer_System::M_Set_Depth_Stencil_Buffer_To_Texture_Slot(i
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Depth_Stencil_Buffer_System::M_Set_Depth_Stencil_Buffer_To_Render_Target(void)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Depth_Stencil_Buffer_To_Rendering(mpr_variable.depth_stencil_buffer);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Set_Depth_Stencil_Buffer_To_Rendering(mpr_variable.depth_stencil_buffer);
 
 	return;
 }
@@ -142,9 +141,9 @@ void C_Depth_Stencil_Buffer_System::M_Save_Depth_Stencil_Buffer_To_Texture(ASSET
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Depth_Stencil_Buffer_System::M_Set_Main_Depth_Stencil_Buffer(void)
+void C_Depth_Stencil_Buffer_System::M_Reset_Draw_Depth_Stencil_Buffer(void)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Main_Depth_Stencil_Buffer_To_Rendering();
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Reset_Draw_Depth_Stencil_Buffer();
 
 	return;
 }

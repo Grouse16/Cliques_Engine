@@ -39,7 +39,7 @@ namespace DATA::FONT
 		{
 			RENDERING::CAPSULE::C_Texture_Data_System texture_data;	// 画像データ管理用システム
 
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Font_Inform_Base> font_data;	// フォントのデータ管理用システム
+			std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Font_Inform_Base> font_data;	// フォントのデータ管理用システム
 
 			std::wstring now_draw_text = L"\0";	// 描画するテキスト
 

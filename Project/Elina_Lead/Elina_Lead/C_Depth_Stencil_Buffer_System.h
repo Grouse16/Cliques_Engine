@@ -35,7 +35,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた変数
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> depth_stencil_buffer;	// 深度ステンシルバッファシステム
+			std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base> depth_stencil_buffer;	// 深度ステンシルバッファシステム
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -78,7 +78,7 @@ namespace RENDERING::CAPSULE
 		void M_Save_Depth_Stencil_Buffer_To_Texture(ASSET::TEXTURE::C_Texture_Map & );
 
 		// 深度ステンシルバッファをメインの深度ステンシルバッファに戻す
-		void M_Set_Main_Depth_Stencil_Buffer(void);
+		void M_Reset_Draw_Depth_Stencil_Buffer(void);
 	};
 }
 

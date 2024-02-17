@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <memory>
 
-#include "C_Rendering_Screen_System_Base.h"
+#include "C_Rendering_Screen_Data_Base.h"
 #include "E_RENDERING_SCREEN_FORMAT.h"
 #include "E_SCREEN_TEXTURE_SETTING.h"
 
@@ -36,7 +36,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base> rendering_screen;	// レンダリング画面
+			std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Screen_Data_Base> rendering_screen;	// レンダリング画面
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -61,7 +61,7 @@ namespace RENDERING::CAPSULE
 		//-☆- 生成 -☆-//
 
 		// レンダリング画面を生成する　引数：画面数, 画面のバイト数, 画面のテクスチャ設定　戻り値：成功時のみtrue
-		bool M_Create_Rendering_Screen(int, RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT, RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING);
+		bool M_Create_Rendering_Screen(int, RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT, RENDERING::API::CREATE::E_SCREEN_TEXTURE_SETTING);
 
 
 		//-☆- テクスチャ -☆-//
@@ -73,7 +73,7 @@ namespace RENDERING::CAPSULE
 		//-☆- 描画 -☆-//
 
 		// レンダリング画像をレンダリング先として設定する　引数：レンダリング先とするレンダリング画像番号
-		void M_Set_Render_Target(int);
+		void M_Set_Render_Target(void);
 
 		// 画面をクリアする
 		void M_Clear_Screen(void);

@@ -15,7 +15,7 @@
 #include <wrl.h>
 #include <vector>
 
-#include "C_Rendering_Screen_System_Base.h"
+#include "C_Rendering_Screen_Data_Base.h"
 #include "E_RENDERING_SCREEN_FORMAT.h"
 #include "E_SCREEN_TEXTURE_SETTING.h"
 
@@ -23,7 +23,7 @@
 // ☆ ネームスペース ☆ //
 
 // DX12用のシステムを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_INSTANCE
 {
     // ☆ 構造体 ☆ //
 
@@ -50,7 +50,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
     // ☆ クラス ☆ //
 
     // DX12のレンダリングスクリーンのクラス
-	class C_DX12_Rendering_Screen_System : public RENDERING::GRAPHICS::INSTANCE::C_Rendering_Screen_System_Base
+	class C_DX12_Rendering_Screen_System : public RENDERING::API::INSTANCE::C_Rendering_Screen_Data_Base
     {
         //==☆ パブリック ☆==//
     public:

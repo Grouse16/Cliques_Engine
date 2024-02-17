@@ -34,9 +34,6 @@
     <Filter Include="ソース ファイル\レンダリング">
       <UniqueIdentifier>{a26a1fe4-48d2-4b1a-ba73-648bf20efe77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底">
-      <UniqueIdentifier>{6a56f9d0-946f-435c-9199-37409fc3d21d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\レンダリング\カプセル">
       <UniqueIdentifier>{80ad9c45-0eb6-4636-9f55-30aa414fb422}</UniqueIdentifier>
     </Filter>
@@ -52,14 +49,8 @@
     <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス">
       <UniqueIdentifier>{e74a90be-6b1d-4955-8ad9-7f70b9ab4e6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\レンダリング\API\DX12\Tools">
-      <UniqueIdentifier>{032e20db-caf5-45e7-a538-723d80f08519}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング">
       <UniqueIdentifier>{2f8dafe4-d8e4-481d-85f1-859b99e41d62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\生成定義">
-      <UniqueIdentifier>{309701ea-ecae-4414-b935-36a1d4d89cbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\API">
       <UniqueIdentifier>{df1f0b61-5c27-4e58-8f32-486aeac61def}</UniqueIdentifier>
@@ -78,9 +69,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\カプセル">
       <UniqueIdentifier>{2c049d5c-645f-4f3a-975b-9659af4951a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底">
-      <UniqueIdentifier>{7336edd4-a477-41ed-b662-110216298db2}</UniqueIdentifier>
     </Filter>
     <Filter Include="リソース ファイル\package">
       <UniqueIdentifier>{b1674e18-b0a5-44f3-bdd6-576b68cd45f8}</UniqueIdentifier>
@@ -541,9 +529,6 @@
     <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル">
       <UniqueIdentifier>{63adf544-d1fa-425c-9be6-00ab51b5b828}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\宣言">
-      <UniqueIdentifier>{7b5bb22f-4de2-4563-a2a9-0003f1de9ef5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\システム\型\カラー">
       <UniqueIdentifier>{b9c714e9-6385-46fd-9d52-9f4d62052e93}</UniqueIdentifier>
     </Filter>
@@ -559,53 +544,8 @@
     <Filter Include="ヘッダー ファイル\システム\型\頂点データ">
       <UniqueIdentifier>{fd573df8-d55f-4f14-a58c-0867c65f7c60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\生成定義\定義">
-      <UniqueIdentifier>{3db88dda-ad84-427b-a7f5-368ed8ad0726}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\アセット\シェーダー\定義">
       <UniqueIdentifier>{86b02d3f-4153-4b87-8f25-ea77c4163850}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\定数バッファ">
-      <UniqueIdentifier>{62484657-6049-4d9c-83f5-3428968d2ebc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\頂点データ">
-      <UniqueIdentifier>{81b8201f-f52a-484f-860a-3abc6c514331}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\スクリーン">
-      <UniqueIdentifier>{6722178e-0df8-4198-9ff9-cbe6c5986c8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\画像">
-      <UniqueIdentifier>{c20c97a5-c3ce-4f63-9526-c75982b6f92d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\画像\フォント">
-      <UniqueIdentifier>{44b88d02-257a-4498-a2c5-7e789935b534}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\スクリーン">
-      <UniqueIdentifier>{3b27e506-c8c2-41b6-ac37-fae69d1514f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\画像">
-      <UniqueIdentifier>{dd51ebbc-5f3e-425c-bd90-d148661272f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\画像\フォント">
-      <UniqueIdentifier>{8425608a-3b2e-4bb7-844f-b25e8e4ca6e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\レンダリング設定">
-      <UniqueIdentifier>{598a0e6b-9a09-4827-89ac-acba59d4dc1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\レンダリング設定">
-      <UniqueIdentifier>{40c8f93c-34d6-4a20-b085-674e86e3ad66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\定数バッファ">
-      <UniqueIdentifier>{8e0fb3b8-af8a-48db-87c0-a9aa166dd373}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\レンダリング\インスタンス基底\頂点インデックス">
-      <UniqueIdentifier>{1512dff7-2a07-4024-9b94-554c01796329}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\頂点インデックス">
-      <UniqueIdentifier>{e73d3cc7-6ef9-46ec-8fa4-1b81b2afc02a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\レンダリング\インスタンス基底\頂点データ">
-      <UniqueIdentifier>{9ddd0032-6969-4b2e-9b58-29a783ea8b32}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス">
       <UniqueIdentifier>{e24f0c34-a4c7-44df-bc81-4d61ff798f88}</UniqueIdentifier>
@@ -772,6 +712,153 @@
     <Filter Include="ヘッダー ファイル\プラットフォーム\OS\レイヤー">
       <UniqueIdentifier>{35d38b71-9b4a-49fc-b2bf-3764d99a516d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\定数バッファ">
+      <UniqueIdentifier>{290b9e16-8d13-4c5c-8bac-6aaab5d57220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\頂点バッファ">
+      <UniqueIdentifier>{89d1c6be-cc42-463d-acc2-5fa5c9672799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\頂点インデックス">
+      <UniqueIdentifier>{0d3079ee-91c4-40d6-a104-6a79398bd54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\テクスチャ">
+      <UniqueIdentifier>{f91f4d22-587d-4399-ac7c-f95569bc4bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\テクスチャ\フォント">
+      <UniqueIdentifier>{61e46a94-bf91-41bf-a9b3-1470f4f047b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\レンダリング設定">
+      <UniqueIdentifier>{b900f050-cade-46be-9ab0-c9737ddc46ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\スクリーン">
+      <UniqueIdentifier>{76341862-99b0-4fd3-99eb-a7fd47292cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底">
+      <UniqueIdentifier>{7336edd4-a477-41ed-b662-110216298db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\定数バッファ">
+      <UniqueIdentifier>{62484657-6049-4d9c-83f5-3428968d2ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点データ">
+      <UniqueIdentifier>{81b8201f-f52a-484f-860a-3abc6c514331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン">
+      <UniqueIdentifier>{6722178e-0df8-4198-9ff9-cbe6c5986c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\画像">
+      <UniqueIdentifier>{c20c97a5-c3ce-4f63-9526-c75982b6f92d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\画像\フォント">
+      <UniqueIdentifier>{44b88d02-257a-4498-a2c5-7e789935b534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\レンダリング設定">
+      <UniqueIdentifier>{598a0e6b-9a09-4827-89ac-acba59d4dc1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点インデックス">
+      <UniqueIdentifier>{1512dff7-2a07-4024-9b94-554c01796329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底">
+      <UniqueIdentifier>{6a56f9d0-946f-435c-9199-37409fc3d21d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\スクリーン">
+      <UniqueIdentifier>{3b27e506-c8c2-41b6-ac37-fae69d1514f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\画像">
+      <UniqueIdentifier>{dd51ebbc-5f3e-425c-bd90-d148661272f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\画像\フォント">
+      <UniqueIdentifier>{8425608a-3b2e-4bb7-844f-b25e8e4ca6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\レンダリング設定">
+      <UniqueIdentifier>{40c8f93c-34d6-4a20-b085-674e86e3ad66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\定数バッファ">
+      <UniqueIdentifier>{8e0fb3b8-af8a-48db-87c0-a9aa166dd373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\頂点インデックス">
+      <UniqueIdentifier>{e73d3cc7-6ef9-46ec-8fa4-1b81b2afc02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\頂点データ">
+      <UniqueIdentifier>{9ddd0032-6969-4b2e-9b58-29a783ea8b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース">
+      <UniqueIdentifier>{40b9a619-f9d4-44f6-9bff-69b711f57cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース">
+      <UniqueIdentifier>{8b29aab2-6d40-4a4a-b34b-b97f6b31f61f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\生成用データ定義">
+      <UniqueIdentifier>{309701ea-ecae-4414-b935-36a1d4d89cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義">
+      <UniqueIdentifier>{3db88dda-ad84-427b-a7f5-368ed8ad0726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\DX12用定義">
+      <UniqueIdentifier>{7b5bb22f-4de2-4563-a2a9-0003f1de9ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\Tool">
+      <UniqueIdentifier>{032e20db-caf5-45e7-a538-723d80f08519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\生成と解放">
+      <UniqueIdentifier>{5c3cce64-aae1-4776-9c0a-7162ed1036d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\生成と解放">
+      <UniqueIdentifier>{b1e32a96-6b85-485f-9668-04fb4148a42f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\基本動作">
+      <UniqueIdentifier>{875b28d9-9b49-43b2-bc00-c6c46d39d16c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\基本動作">
+      <UniqueIdentifier>{f9e1006b-dd3b-4a62-88ff-fba4694fba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\レンダリング設定">
+      <UniqueIdentifier>{5e8a6414-8d0b-42df-9a2c-ea33bbe1ff41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング設定">
+      <UniqueIdentifier>{66d54ef0-42da-4a9d-9382-cfb3c1e42173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\頂点データ">
+      <UniqueIdentifier>{793bf6e3-a682-4719-ac6c-1e1968867e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\頂点データ">
+      <UniqueIdentifier>{b2674572-1e6d-442e-a48f-c1f856f292c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\頂点インデックス">
+      <UniqueIdentifier>{d135a3a1-3655-4f64-aa47-2a3c2c71bfec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\頂点インデックス">
+      <UniqueIdentifier>{fafe06ce-6b2c-49c6-9ff7-3101974b4978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\定数バッファ">
+      <UniqueIdentifier>{1b488113-7ef0-4d6c-9ab6-ae83f94574e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\定数バッファ">
+      <UniqueIdentifier>{fb703892-051c-4f46-a68d-420aaf24f596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\テスクチャ">
+      <UniqueIdentifier>{45c3ecf9-b3eb-40a8-8fc1-ee0fefcde3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\テスクチャ">
+      <UniqueIdentifier>{c7d8b632-9f7e-4d07-9c81-4192bd85581c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\フォント">
+      <UniqueIdentifier>{e1e405e3-7882-46b5-b269-4852225db8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\フォント">
+      <UniqueIdentifier>{d9b9cabe-a8d8-435a-a888-c4c3bccea1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\レンダリング画面">
+      <UniqueIdentifier>{579270c2-75bf-406b-8842-5d7e917816f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング画面">
+      <UniqueIdentifier>{9c8d79a3-4254-4a66-b7de-4ec5b2c67db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\深度ステンシル">
+      <UniqueIdentifier>{ee17cac4-52d5-4390-a4d4-83d4e8781f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル">
+      <UniqueIdentifier>{7e830338-e051-4d34-9e01-766017542fdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -787,19 +874,19 @@
       <Filter>ヘッダー ファイル\プラットフォーム\OS\基底</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Vertex_Buffer_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Constant_Buffer_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Font_Data_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Rendering_Graphics_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Texture_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="C_DX12_System.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12</Filter>
@@ -822,23 +909,8 @@
     <ClInclude Include="C_DX12_Streaming_Output_Buffer_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
     </ClInclude>
-    <ClInclude Include="C_Rendering_Graphics_API_Base.h">
+    <ClInclude Include="C_Rendering_API_Base.h">
       <Filter>ヘッダー ファイル\レンダリング\API\基底</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Constant_Data_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Object_Vertex_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Font_Draw_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Texture_Data_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Rendering_Setting_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Code.h">
       <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
@@ -1129,10 +1201,10 @@
       <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Render_Screen_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="E_DX12_PARAMATOR.h">
-      <Filter>ヘッダー ファイル\レンダリング\API\DX12\宣言</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\DX12用定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Half_Color.h">
       <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
@@ -1171,61 +1243,55 @@
       <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
     </ClInclude>
     <ClInclude Include="Input_Layout_Data.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
     </ClInclude>
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
     </ClInclude>
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義\定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Unique_Buffer_Slot.h">
       <Filter>ヘッダー ファイル\アセット\シェーダー\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Rendering_Screen_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Depth_Stencil_Buffer_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Model_Loader.h">
       <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\定数バッファ</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\定数バッファ</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\頂点データ</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点データ</Filter>
     </ClInclude>
-    <ClInclude Include="C_Rendering_Screen_System_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\スクリーン</Filter>
+    <ClInclude Include="C_Rendering_Screen_Data_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\スクリーン</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Font_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\画像\フォント</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\画像\フォント</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\画像</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\画像</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\レンダリング設定</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\レンダリング設定</Filter>
     </ClInclude>
     <ClInclude Include="S_Create_Index_Buffer_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\生成定義</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h">
-      <Filter>ヘッダー ファイル\レンダリング\インスタンス基底\頂点インデックス</Filter>
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点インデックス</Filter>
     </ClInclude>
     <ClInclude Include="C_DX12_Index_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス</Filter>
@@ -1253,9 +1319,6 @@
     </ClInclude>
     <ClInclude Include="C_DX12_Rendering_Texture_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\テクスチャ</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Vertex_Index_System.h">
-      <Filter>ヘッダー ファイル\レンダリング\カプセル</Filter>
     </ClInclude>
     <ClInclude Include="C_Static_Model_Loader.h">
       <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\ロード</Filter>
@@ -1308,6 +1371,60 @@
     <ClInclude Include="C_OS_User_System.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\レイヤー</Filter>
     </ClInclude>
+    <ClInclude Include="C_Constant_Data_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Object_Vertex_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\頂点バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Vertex_Index_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Depth_Stencil_Buffer_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Screen_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Data_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\テクスチャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Font_Draw_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\テクスチャ\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Initialize_And_Release.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\生成と解放</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_User.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\基本動作</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Setting.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Buffer.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Index_Buffer.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Constant_Resource.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Texture_Resource.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\テスクチャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Font.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Screen.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング画面</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Depth_Stencil.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_OS_Management_System_Base.cpp">
@@ -1322,7 +1439,7 @@
     <ClCompile Include="C_Wnd_Proc_For_Game_APK.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
     </ClCompile>
-    <ClCompile Include="C_Rendering_Graphics_API_Base.cpp">
+    <ClCompile Include="C_Rendering_API_Base.cpp">
       <Filter>ソース ファイル\レンダリング\API\基底</Filter>
     </ClCompile>
     <ClCompile Include="C_Texture_Data_System.cpp">
@@ -1344,22 +1461,22 @@
       <Filter>ソース ファイル\レンダリング\API\DX12</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Blend_State_Setting_System.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Cached_PSO_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Streaming_Output_Buffer_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Stencil_State_Setting_System.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Sampling_Setting_System.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Rasterrizer_State_Setting_System.cpp">
-      <Filter>ソース ファイル\レンダリング\API\DX12\Tools</Filter>
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
     </ClCompile>
     <ClCompile Include="C_Shader_Code.cpp">
       <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
@@ -1596,28 +1713,28 @@
       <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\頂点データ</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\頂点データ</Filter>
     </ClCompile>
-    <ClCompile Include="C_Rendering_Screen_System_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\スクリーン</Filter>
+    <ClCompile Include="C_Rendering_Screen_Data_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Texture_Setting_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\画像</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\画像</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Font_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\画像\フォント</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\画像\フォント</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Depth_Stencil_Buffer_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\スクリーン</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Graphics_Setting_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\レンダリング設定</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\レンダリング設定</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\定数バッファ</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\定数バッファ</Filter>
     </ClCompile>
     <ClCompile Include="C_Rendering_Index_Buffer_Setting_Inform_Base.cpp">
-      <Filter>ソース ファイル\レンダリング\インスタンス基底\頂点インデックス</Filter>
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\頂点インデックス</Filter>
     </ClCompile>
     <ClCompile Include="C_DX12_Index_Setting_Inform.cpp">
       <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス</Filter>
@@ -1666,6 +1783,36 @@
     </ClCompile>
     <ClCompile Include="C_OS_User_System.cpp">
       <Filter>ソース ファイル\プラットフォーム\OS\レイヤー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Initialize_And_Release.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\生成と解放</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_User.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\基本動作</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Setting.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\レンダリング設定</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Buffer.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\頂点データ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Index_Buffer.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\頂点インデックス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Constant_Resource.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\定数バッファ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Texture_Resource.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\テスクチャ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Font.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\フォント</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Screen.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\レンダリング画面</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

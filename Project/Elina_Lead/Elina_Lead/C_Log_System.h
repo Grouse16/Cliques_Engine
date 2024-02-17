@@ -97,6 +97,8 @@ namespace DEBUGGER::LOG
 		{
 			constexpr char con_SET_UP_SUCCEEDED[] = "DX12_Set_Up_Succeeded";	// ウィンドウズのセットアップ成功時のログタイトル
 			constexpr char con_SET_UP_FAILED[] = "DX12_Set_Up_Failed";		// ウィンドウズのセットアップ失敗時のログタイトル
+
+			constexpr char con_DEVICE_DELETED[] = "DX12_Device_Deleted";	// デバイスが削除された時のログタイトル
 		};
 	};
 

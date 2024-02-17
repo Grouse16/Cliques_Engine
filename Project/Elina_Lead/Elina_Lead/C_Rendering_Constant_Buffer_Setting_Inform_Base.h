@@ -20,7 +20,7 @@
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::INSTANCE
+namespace RENDERING::API::INSTANCE
 {
 	// ☆ クラス ☆ //
 

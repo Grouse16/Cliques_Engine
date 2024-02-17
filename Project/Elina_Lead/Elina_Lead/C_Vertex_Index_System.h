@@ -35,7 +35,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> m_index_buffer = nullptr;	// 頂点インデックスバッファ設定用情報
+			std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> m_index_buffer = nullptr;	// 頂点インデックスバッファ設定用情報
 
 			std::vector<unsigned int> m_index_data;	// 頂点インデックスデータ
 

@@ -17,7 +17,7 @@
 // ☆ ネームスペース ☆ //
 
 // ストリーミング出力用バッファを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_TOOL
 {
 	// ☆ クラス ☆ //
 

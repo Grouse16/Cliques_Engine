@@ -20,7 +20,7 @@
 // ☆ ネームスペース ☆ //
 
 // DX12用のシステムを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_INSTANCE
 {
 	// ☆ 構造体 ☆ //
 
@@ -38,7 +38,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 	// ☆ クラス ☆ //
 
 	// DX12の深度ステンシルバッファのクラス
-	class C_DX12_Depth_Stencil_Buffer_System : public RENDERING::GRAPHICS::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base
+	class C_DX12_Depth_Stencil_Buffer_System : public RENDERING::API::INSTANCE::C_Rendering_Depth_Stencil_Buffer_Base
 	{
 		//==☆ パブリック ☆==//
 	public:

@@ -7,6 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Constant_Data_System.h"
+#include "C_Rendering_API_Interface_Constant_Resource.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -74,7 +75,7 @@ void C_Constant_Buffer_Data_System::M_Release(void)
 void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buffer_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+	RENDERING::API::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
 
 
 	// 現在持っているデータを解放する
@@ -82,7 +83,7 @@ void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buf
 
 	// 生成用のデータを設定して生成を行う
 	creat_constant_inform.m_list_size = in_buffer_sum + ((in_buffer_sum <= 0) * 1);	// 定数バッファの配列数、０にならないようにしている
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Constant_Resource::M_Create_Constant_Resource(mpr_variable.constant_buffer_inform, creat_constant_inform);
 
 
 	// ☆ 定数データの生成 ☆ //
@@ -103,7 +104,7 @@ void C_Constant_Buffer_Data_System::M_Create_Constant_Buffer_And_Data(int in_buf
 void C_Constant_Buffer_Data_System::M_Create_Only_Constant_Buffer(int in_buffer_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
+	RENDERING::API::CREATE::S_Create_Constant_Buffer_Inform creat_constant_inform;	// 定数バッファ生成用情報
 
 
 	// 現在持っているデータを解放する
@@ -111,7 +112,7 @@ void C_Constant_Buffer_Data_System::M_Create_Only_Constant_Buffer(int in_buffer_
 
 	// 生成用のデータを設定して生成を行う
 	creat_constant_inform.m_list_size = in_buffer_sum + ((in_buffer_sum <= 0) * 1);	// 定数バッファの配列数、０にならないようにしている
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Constant_Inform(mpr_variable.constant_buffer_inform, creat_constant_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Constant_Resource::M_Create_Constant_Resource(mpr_variable.constant_buffer_inform, creat_constant_inform);
 
 
 	// ☆ 定数データの生成 ☆ //
@@ -223,14 +224,14 @@ void C_Constant_Buffer_Data_System::M_Set_Constant_Data_To_Buffer(void)
 void C_Constant_Buffer_Data_System::M_Set_Constant_Buffer_To_GPU(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::INSTANCE::S_Constant_Buffer_Drawing_Setting drawing_setting;	// 描画用に渡す情報
+	RENDERING::API::INSTANCE::S_Constant_Buffer_Drawing_Setting drawing_setting;	// 描画用に渡す情報
 
 
 	// 描画情報を設定してGPUに渡す
 	drawing_setting.add_constant_buffer = mpr_variable.constant_buffer_inform.get();
 	drawing_setting.add_attach_shader_kind = mpr_variable.attach_shader_kind;
 	drawing_setting.add_signature_name = &mpr_variable.data_signature_name;
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Constant_Buffer(drawing_setting);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Constant_Resource::M_Set_Constant_Resource_To_Draw(drawing_setting);
 
 	return;
 }
@@ -243,7 +244,7 @@ void C_Constant_Buffer_Data_System::M_Set_Constant_Buffer_To_GPU(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Constant_Buffer_Data_System::M_Set_Constant_Buffer_To_GPU_By_Index(int in_slot_num)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Constant_Buffer_By_Index(mpr_variable.constant_buffer_inform, in_slot_num);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Constant_Resource::M_Set_Constant_Resource_To_Draw_By_Slot_Index(mpr_variable.constant_buffer_inform, in_slot_num);
 
 	return;
 }

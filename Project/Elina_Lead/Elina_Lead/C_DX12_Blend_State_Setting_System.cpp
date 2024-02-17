@@ -10,7 +10,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
+using namespace RENDERING::API::DX12::DX12_TOOL;
 
 
 // ☆ 関数 ☆//
@@ -168,7 +168,7 @@ void C_DX12_Blend_State_Setting_System::M_Attach_Invert_And_One_Alpha_Blend_Sett
 // 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data & ブレンド設定の生成用データ(const)
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-DXGI_FORMAT RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_System::M_Get_Write_Rendering_Graph_Format_By_Create_Inform(const RENDERING::GRAPHICS::CREATE::S_Blend_Setting_Create_Data & in_blend_setting)
+DXGI_FORMAT C_DX12_Blend_State_Setting_System::M_Get_Write_Rendering_Graph_Format_By_Create_Inform(const RENDERING::API::CREATE::S_Blend_Setting_Create_Data & in_blend_setting)
 {
 	//-☆- 書き込む時の色数によって分岐 -☆-//
 	switch (in_blend_setting.draw_color)
@@ -278,7 +278,7 @@ DXGI_FORMAT RENDERING::GRAPHICS::DX12::DX12INSTANCE::C_DX12_Blend_State_Setting_
 // 引数   ：D3D12_GRAPHICS_PIPELINE_STATE_DESC & 設定先のパイプラインステート情報, const C_Create_Rendering_Graphics_Setting_Inform & レンダリング設定生成用の情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
+void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & in_pipeline_state_desc, const RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_create_inform)
 {
 	// ☆ 定数 ☆ //
 	constexpr char con_RENDER_TARGET_SUM = 8;	// 設定可能なレンダーターゲット数

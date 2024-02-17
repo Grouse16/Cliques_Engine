@@ -7,8 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Font_Draw_System.h"
-#include "C_Rendering_Graphics_API_Base.h"
-#include "S_Make_Font_To_Graph_Pakage.h"
+#include "C_Rendering_API_Interface_Font.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -77,7 +76,7 @@ void C_Font_Draw_System::M_Create_Texture_On_Now_Text(void)
 		{
 			make_font_setting.text_code = mpr_variable.now_draw_text[l_text_elem];
 
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Font_To_Texture_Map(make_font_setting);
+			RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Font::M_Set_Font_Map(make_font_setting);
 
 			make_font_setting.draw_rect.left_x += mpr_variable.font_size + mpr_variable.span_size;
 			make_font_setting.draw_rect.right_x += mpr_variable.font_size + mpr_variable.span_size;
@@ -150,7 +149,7 @@ void C_Font_Draw_System::M_Reset(void)
 bool C_Font_Draw_System::M_Load_Font_By_Font_Name(std::wstring in_load_font_name, int in_font_pixel_size)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Font_Data_Inform creat_setting;	// 生成用情報
+	RENDERING::API::CREATE::S_Create_Font_Data_Inform creat_setting;	// 生成用情報
 
 
 	// 今持っているデータは削除する
@@ -164,7 +163,7 @@ bool C_Font_Draw_System::M_Load_Font_By_Font_Name(std::wstring in_load_font_name
 
 
 	// フォントをロードする
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Font_Data(mpr_variable.font_data, creat_setting);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Font::M_Load_Font(mpr_variable.font_data, creat_setting);
 
 	return true;
 }

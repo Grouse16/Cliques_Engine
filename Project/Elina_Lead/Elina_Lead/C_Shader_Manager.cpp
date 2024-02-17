@@ -7,7 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Shader_Manager.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Interface_User.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -116,9 +116,9 @@ ASSET::SHADER::C_Shader_Code * C_Shader_Manager::M_Load_Shader_By_Name(E_SHADER_
 {
 	// ☆ 変数宣言 ☆ //
 	std::string shader_inform_path = 	// シェーダー情報へのパス
-		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Folder_Path() + 
+		RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_User::M_Get_Shader_Folder_Path() +
 		in_shader_name +
-		RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_Shader_Extension();
+		RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_User::M_Get_Shader_Extension();
 
 	int shader_slot_num = (int)m_this.mpr_variable.shader_inform_list[(int)in_shader_kind].size();	// 操作するシェーダーの番号
 

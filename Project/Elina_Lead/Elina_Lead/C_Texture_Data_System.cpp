@@ -7,7 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Texture_Data_System.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Interface_Texture_Resource.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -109,13 +109,13 @@ void C_Texture_Data_System::M_Create_Texture_Data(int in_tex_width, int in_tex_h
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::API::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
 	create_inform.pixel_width = in_tex_width;
 	create_inform.pixel_height = in_tex_height;
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Create_Texture_Resource(mpr_variable.texture_setting_inform, create_inform);
 
 
 	// マップを指定されたピクセル数分生成する
@@ -133,13 +133,13 @@ void C_Texture_Data_System::M_Create_Texture_Data(int in_tex_width, int in_tex_h
 void C_Texture_Data_System::M_Create_Texture_Resource_By_Texture_Map(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::API::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
 	create_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
 	create_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Create_Texture_Resource(mpr_variable.texture_setting_inform, create_inform);
 	M_Texture_Map_To_Texture_Resource_Data();
 
 	return;
@@ -154,20 +154,20 @@ void C_Texture_Data_System::M_Create_Texture_Resource_By_Texture_Map(void)
 bool C_Texture_Data_System::M_Create_Texture_By_Load_Texture_File(std::string in_tex_file_path)
 {
 	// テクスチャをロードしてテクスチャマップを作る　エラーで抜ける
-	if (RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Load_Texture(in_tex_file_path, mpr_variable.texture_map) == false)
+	if (RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Load_Texture(in_tex_file_path, mpr_variable.texture_map) == false)
 	{
 		return false;
 	}
 
 
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
+	RENDERING::API::CREATE::S_Create_Texture_Setting_Inform create_inform;	// 生成用情報
 
 
 	// 生成用の情報を設定して、生成する
 	create_inform.pixel_width = mpr_variable.texture_map.M_Get_Width_Size();
 	create_inform.pixel_height = mpr_variable.texture_map.M_Get_Height_Size();
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Texture_Inform(mpr_variable.texture_setting_inform, create_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Create_Texture_Resource(mpr_variable.texture_setting_inform, create_inform);
 
 
 	// 生成したテクスチャ用のバッファにテクスチャマップを適用する
@@ -265,14 +265,14 @@ void C_Texture_Data_System::M_Texture_Map_To_Texture_Resource_Data(void)
 void C_Texture_Data_System::M_Attach_To_Shader(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::INSTANCE::S_Texture_Buffer_Drawing_Setting drawing_setting;	// 描画用設定
+	RENDERING::API::INSTANCE::S_Texture_Buffer_Drawing_Setting drawing_setting;	// 描画用設定
 
 
 	// 描画用情報を設定して描画する
 	drawing_setting.add_texture_data = mpr_variable.texture_setting_inform.get();
 	drawing_setting.attach_shader_kind = mpr_variable.attach_shader;
 	drawing_setting.add_signature_name = &mpr_variable.data_signature_name;
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Texture(drawing_setting);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Set_Texture_Resource_To_Draw(drawing_setting);
 
 	return;
 }
@@ -285,7 +285,7 @@ void C_Texture_Data_System::M_Attach_To_Shader(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Texture_Data_System::M_Attach_To_Shader_By_Index(int in_index)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Set_Texture_By_Index(mpr_variable.texture_setting_inform, in_index);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Texture_Resource::M_Set_Texture_Resource_To_Draw_By_Slot_Index(mpr_variable.texture_setting_inform, in_index);
 
 	return;
 }

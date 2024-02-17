@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-02-08T02:18:21.008Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="q9l8vjbpTjPBn87J5xZZ" version="23.0.2" type="device">
+<mxfile host="Electron" modified="2024-02-15T02:19:17.967Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="YXWn4WH1Nn0hYmcvhoHr" version="23.0.2" type="device">
   <diagram name="仕様リスト" id="-qLrR7ELoWjXT5G0vG4u">
-    <mxGraphModel dx="1295" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1615" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -63,29 +63,47 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-1" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;用語リスト&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="140" width="560" height="860" as="geometry" />
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-1" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;用語リスト&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="140" width="560" height="1050" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-6" value="＜静的関数＞&#xa;staticなど、&#xa;実体を持たず（インスタンス化なし）に動作する関数" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-6" value="＜静的関数＞&#xa;staticなど、&#xa;実体を持たず（インスタンス化なし）に動作する関数" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="34" width="520" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-7" value="＜const関数＞&#xa;実体の部分を書き換えない関数&#xa;（自身の変数などを書き替えない）" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-7" value="＜const関数＞&#xa;実体の部分を書き換えない関数&#xa;（自身の変数などを書き替えない）" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="130" width="520" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-8" value="＜仮想関数＞&#xa;この関数を呼び出した際に、&#xa;インスタンス化された派生クラスからの呼び出しであった場合、&#xa;実行される関数を変更できる関数、&#xa;変更時は＜継承関数＞というタグをつける" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-8" value="＜仮想関数＞&#xa;この関数を呼び出した際に、&#xa;インスタンス化された派生クラスからの呼び出しであった場合、&#xa;実行される関数を変更できる関数、&#xa;変更時は＜継承関数＞というタグをつける" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="230" width="520" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-9" value="＜継承関数＞&#xa;基底クラスの＜仮想関数＞の呼び出し時、&#xa;自インスタンスからの実行時に、&#xa;呼び出される関数を自インスタンスのものに変更することを指す" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-9" value="＜継承関数＞&#xa;基底クラスの＜仮想関数＞の呼び出し時、&#xa;自インスタンスからの実行時に、&#xa;呼び出される関数を自インスタンスのものに変更することを指す" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="370" width="520" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-10" value="＜純粋仮想関数＞&#xa;関数の宣言のみがされている状態を指す&#xa;派生クラスに定義を必ず作らなくてはならないことを指し、&#xa;この関数があるクラスは生成できない" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-10" value="＜純粋仮想関数＞&#xa;関数の宣言のみがされている状態を指す&#xa;派生クラスに定義を必ず作らなくてはならないことを指し、&#xa;この関数があるクラスは生成できない" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="500" width="520" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-11" value="＜テンプレート＞&#xa;一部のインスタンスの型を変更できる" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-11" value="＜テンプレート＞&#xa;一部のインスタンスの型を変更できる" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="650" width="520" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="bb5lSr_9JjfSxzTluUoF-12" value="＜静的変数＞&#xa;インスタンス化されたクラス内には生成されず&#xa;クラスのスコープ内でインスタンス化される変数" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" vertex="1" parent="bb5lSr_9JjfSxzTluUoF-1">
+        <mxCell id="bb5lSr_9JjfSxzTluUoF-12" value="＜静的変数＞&#xa;インスタンス化されたクラス内には生成されず&#xa;クラスのスコープ内でインスタンス化される変数" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="730" width="520" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="8VopN5NPwHb7rfLFwlSK-1" value="＜delete＞&#xa;削除された関数&#xa;その関数を使用できなくする" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
+          <mxGeometry x="20" y="870" width="520" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="-UjHsnJ8wEKdRqjG0j_--1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="-UjHsnJ8wEKdRqjG0j_--2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="740" y="1407" as="sourcePoint" />
+            <mxPoint x="530" y="1357.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-UjHsnJ8wEKdRqjG0j_--2" value="思案中の新しい構想 ver.x.x.x" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="60" y="1280" width="430" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="-UjHsnJ8wEKdRqjG0j_--3" value="構想での変更内容：&lt;br&gt;１．&lt;br&gt;&lt;br&gt;&lt;br&gt;メリット：&lt;br&gt;１．&lt;br&gt;&lt;br&gt;&lt;br&gt;デメリット：&lt;br&gt;１．" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="-UjHsnJ8wEKdRqjG0j_--2" vertex="1">
+          <mxGeometry x="10" y="30" width="410" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="CH2RhDooVL0Sbm7diKhD-1" value="X - X　ネームスペース＜X::X＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;align=center;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1650" width="730" height="540" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
