@@ -35,7 +35,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr <RENDERING::GRAPHICS::INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> rendering_setting_inform = nullptr;	// レンダリング設定用情報
+			std::unique_ptr <RENDERING::API::INSTANCE::C_Rendering_Graphics_Setting_Inform_Base> rendering_setting_inform = nullptr;	// レンダリング設定用情報
 
 		} mpr_variable;	// プライベート変数を呼び出すための名前
 
@@ -60,7 +60,7 @@ namespace RENDERING::CAPSULE
 		//-☆- 生成 -☆-//
 
 		// 生成用の情報を元に生成する　引数：レンダリング設定生成用情報(const)
-		bool M_Create_Pipeline_Setting(const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & );
+		bool M_Create_Pipeline_Setting(const RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform & );
 
 
 		//-☆- 描画 -☆-//

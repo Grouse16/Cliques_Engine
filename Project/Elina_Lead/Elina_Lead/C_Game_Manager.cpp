@@ -10,13 +10,13 @@
 
 #include "C_Game_Manager.h"
 #include "C_OS_Management_System_Base.h"
-#include "C_Rendering_Graphics_API_Base.h"
 #include "C_Game_Function_Manager.h"
 #include "C_Game_State_Manager.h"
 #include "C_APK_Manager.h"
 #include "C_Game_Input_Manager.h"
 #include "C_Game_Input_Collision_Manager.h"
 #include "C_Game_Time_Manager.h"
+#include "C_Rendering_API_Interface_User.h"
 
 #ifdef _DEBUG
 #include "C_Log_System.h"
@@ -306,7 +306,7 @@ void C_Game_Manager::M_Executes_Process(void)
 	//======☆ スタート ☆======//
 
 	// レンダリングAPIが削除されているならゲームを終了
-	if (RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Get_End_Rendering_System())
+	if (RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_User::M_Rendering_API_Safe_Check() == false)
 	{
 		M_Set_Game_Exist_Flg(false);
 
@@ -363,7 +363,7 @@ void C_Game_Manager::M_Executes_Process(void)
 	//======☆ 描画 ☆======//
 
 	//  レンダリングシステムの描画準備  //
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_Start();
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_User::M_Rendering_Start();
 
 	// ゲームの描画
 	GAME::APPLICATION::C_APK_Manager::M_APK_Draw();
@@ -372,7 +372,7 @@ void C_Game_Manager::M_Executes_Process(void)
 	GAME::FUNCTION::C_Game_Function_Manager::M_After_Scene_Draw_Update();
 
 	//  レンダリング終了と画面出力  //
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Rendering_End_And_Swap_Screen();
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_User::M_Rendering_End_And_Swap_Screen();
 
 
 
@@ -386,7 +386,7 @@ void C_Game_Manager::M_Executes_Process(void)
 
 	// 必要な機能の生成
 	GAME::FUNCTION::C_Game_Function_Manager::M_Execute_Create_Function_By_List();
-
+	
 	// ゲームの共有データの更新
 	M_Data_Update();
 

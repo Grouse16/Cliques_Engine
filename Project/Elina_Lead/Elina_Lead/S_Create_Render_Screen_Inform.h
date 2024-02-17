@@ -18,7 +18,7 @@
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::CREATE
+namespace RENDERING::API::CREATE
 {
 	// ☆ 構造体 ☆ //
 
@@ -27,7 +27,7 @@ namespace RENDERING::GRAPHICS::CREATE
 	{
 		RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT m_rendering_screen_format = RENDERING::INFORM::RENDERING_SCREEN::E_RENDERING_SCREEN_FORMAT::e_2_BYTE;	// レンダリング画像の画素の型
 
-		RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING m_screen_texture_setting = RENDERING::GRAPHICS::CREATE::E_SCREEN_TEXTURE_SETTING::e_TEXTURE_2D;	// レンダリング画像のテクスチャの設定
+		RENDERING::API::CREATE::E_SCREEN_TEXTURE_SETTING m_screen_texture_setting = RENDERING::API::CREATE::E_SCREEN_TEXTURE_SETTING::e_TEXTURE_2D;	// レンダリング画像のテクスチャの設定
 
 		int m_screen_buffer_sum = 1;		// 生成するスクリーンバッファ数
 	};

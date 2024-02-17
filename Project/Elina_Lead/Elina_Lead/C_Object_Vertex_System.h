@@ -14,8 +14,7 @@
 #include <memory>
 #include <vector>
 
-#include "C_Rendering_Vertex_Buffer_Setting_Inform_Base.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Interface_Vertex_Buffer.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -36,7 +35,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> m_vertex_buffer;	// 頂点バッファ設定用情報
+			std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Vertex_Buffer_Setting_Inform_Base> m_vertex_buffer;	// 頂点バッファ設定用情報
 
 			std::vector <_My_Vertex_Type> m_vertex_data;	// 頂点データ
 
@@ -103,7 +102,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_Data_And_Buffer(int in_creat_vertex_sum)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::API::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// 初期化して、必要な分だけ配列を生成しなおす
@@ -117,7 +116,7 @@ namespace RENDERING::CAPSULE
 
 
 			// ☆ レンダリング用頂点情報の生成 ☆ //
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_vertex_buffer, creat_vertex_inform);
+			RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Buffer::M_Create_Vertex_Buffer(mpr_variable.m_vertex_buffer, creat_vertex_inform);
 
 			return;
 		}
@@ -131,7 +130,7 @@ namespace RENDERING::CAPSULE
 		void M_Create_Vertex_Buffer_By_Now_Parameter(void)
 		{
 			// ☆ 変数宣言 ☆ //
-			RENDERING::GRAPHICS::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
+			RENDERING::API::CREATE::S_Create_Vertex_Buffer_Inform creat_vertex_inform;	// 頂点情報生成用情報
 
 
 			// ☆ 頂点生成用情報の設定 ☆ //
@@ -141,7 +140,7 @@ namespace RENDERING::CAPSULE
 
 			// ☆ レンダリング用頂点情報の生成 ☆ //
 			mpr_variable.m_vertex_buffer.reset();
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Vertex_Inform(mpr_variable.m_setting_inform, creat_vertex_inform);
+			RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Buffer::M_Create_Vertex_Buffer(mpr_variable.m_setting_inform, creat_vertex_inform);
 
 			return;
 		}
@@ -212,7 +211,7 @@ namespace RENDERING::CAPSULE
 		//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 		void M_Set_Vertex_Buffer_To_Rendering(void)
 		{
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Vertex_Buffer(mpr_variable.m_vertex_buffer);
+			RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Buffer::M_Set_Vertex_Buffer_To_Draw(mpr_variable.m_vertex_buffer);
 
 			return;
 		}

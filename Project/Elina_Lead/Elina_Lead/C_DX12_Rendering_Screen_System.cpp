@@ -19,7 +19,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE;
+using namespace RENDERING::API::DX12::DX12_INSTANCE;
 
 
 // ☆ 関数 ☆ //

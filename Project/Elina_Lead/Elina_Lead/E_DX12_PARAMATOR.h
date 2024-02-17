@@ -13,7 +13,7 @@
 // ☆ ネームスペース ☆ //
 
 // DX12システムを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12
+namespace RENDERING::API::DX12
 {
 	// ☆ 定数 ☆ //
 

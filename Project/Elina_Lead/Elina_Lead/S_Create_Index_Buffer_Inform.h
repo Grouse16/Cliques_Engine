@@ -13,7 +13,7 @@
 // ☆ ネームスペース ☆ //
 
 // グラフィックを制御するシステムの情報を生成するための情報を呼び出すための名前
-namespace RENDERING::GRAPHICS::CREATE
+namespace RENDERING::API::CREATE
 {
 	// ☆ 構造体 ☆ //
 

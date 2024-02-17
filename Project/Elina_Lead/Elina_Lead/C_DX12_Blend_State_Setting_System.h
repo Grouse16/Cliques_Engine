@@ -19,7 +19,7 @@
 // ☆ ネームスペース ☆ //
 
 // ブレンドステート設定用システムを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_TOOL
 {
 	// ☆ クラス ☆ //
 	class C_DX12_Blend_State_Setting_System
@@ -47,7 +47,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- ゲッタ -☆-//
 
 		// レンダーターゲットに書き込む時のフォーマットを生成用の情報から割り出して返す　引数：ブレンド設定の生成用データ(const)
-		static DXGI_FORMAT M_Get_Write_Rendering_Graph_Format_By_Create_Inform(const RENDERING::GRAPHICS::CREATE::S_Blend_Setting_Create_Data & );
+		static DXGI_FORMAT M_Get_Write_Rendering_Graph_Format_By_Create_Inform(const RENDERING::API::CREATE::S_Blend_Setting_Create_Data & );
 
 
 		//==☆ パブリック ☆==//
@@ -58,7 +58,7 @@ namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
 		//-☆- 設定 -☆-//
 
 		// 指定された情報をもとにブレンドの設定を行う　引数：設定先のパイプラインステート情報, レンダリング設定生成用の情報(const)
-		static void M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & , const RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & );
+		static void M_Set_Blend_State_By_Inform(D3D12_GRAPHICS_PIPELINE_STATE_DESC & , const RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform & );
 	};
 }
 

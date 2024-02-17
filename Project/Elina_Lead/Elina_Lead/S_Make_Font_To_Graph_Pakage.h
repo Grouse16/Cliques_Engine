@@ -40,7 +40,7 @@ namespace PAKAGE::FONT
 	// フォントデータを画像に変換する時に必要なデータをまとめたパッケージ構造体
 	struct S_Make_Font_To_Graph_Package
 	{
-		std::unique_ptr<RENDERING::GRAPHICS::INSTANCE::C_Rendering_Font_Inform_Base> * attach_font_data = nullptr;	// 設定するフォントのデータ
+		std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Font_Inform_Base> * attach_font_data = nullptr;	// 設定するフォントのデータ
 
 		ASSET::TEXTURE::C_Texture_Map * tex_map_data = nullptr;	// テクスチャのデータ
 

@@ -7,7 +7,7 @@
 
 // ☆ ファイルひらき ☆ //
 #include "C_Material.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Base.h"
 #include "C_Main_Camera.h"
 
 
@@ -379,7 +379,7 @@ RENDERING::INFORM::RASTERIZER::E_ANTIALIASING C_Material::M_Get_Antialiasing_By_
 // 引数   ：vector<C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & ブレンドの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::API::CREATE::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// ☆ 定数 ☆ //
 	constexpr int con_BLEND_SETTING_MAX = 8;	// ブレンド設定を生成できる上限値
@@ -440,7 +440,7 @@ void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::GRAPHICS::CREATE::S
 // 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data & 深度ステンシルの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::S_Depth_Stencil_Create_Data & in_depth_stencil_inform, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::API::CREATE::S_Depth_Stencil_Create_Data & in_depth_stencil_inform, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// 深度ステンシルの位置へ移動、なければ初期値のまま
 	in_file_data.M_Goto_Sentence_Start();
@@ -471,7 +471,7 @@ void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::GRAPHICS::CREATE::S_Dep
 // 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data & ラスタライザの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::S_Rasterizer_Create_Data & in_rasterizer_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+void C_Material::M_Load_Rasterizer_Setting(RENDERING::API::CREATE::S_Rasterizer_Create_Data & in_rasterizer_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// ラスタライザ情報の位置に行く、なければ初期値のまま
 	in_file_data.M_Goto_Start_Row();
@@ -522,7 +522,7 @@ void C_Material::M_Load_Rasterizer_Setting(RENDERING::GRAPHICS::CREATE::S_Raster
 // 引数   ：C_Create_Rendering_Graphics_Setting_Inform & 設定先のレンダリング設定生成用情報, C_Text_And_File_Manager & 読み込んだファイルの情報
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Material::M_Load_Another_Setting(RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_creat_rendering_graphics_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+void C_Material::M_Load_Another_Setting(RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_creat_rendering_graphics_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
 {
 	// サンプリング設定まで移動する、なければ初期値のまま
 	in_file_data.M_Goto_Start_Row();
@@ -696,7 +696,7 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Re
 bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Rendering_Graphics_Setting_Inform create_rendering_setting_inform;	// レンダリング設定の生成用の情報
+	RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform create_rendering_setting_inform;	// レンダリング設定の生成用の情報
 
 
 	// シェーダー設定をセット
@@ -920,7 +920,7 @@ void C_Material::M_Attach_To_GPU(void)
 		// データがセットされていない場合はメインのレンダリング画面をテクスチャとして適用する
 		else
 		{
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Main_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.slot_index);
+			RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Set_Main_Back_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.slot_index);
 		}
 	}
 
@@ -936,7 +936,7 @@ void C_Material::M_Attach_To_GPU(void)
 		// データがセットされていない場合はメインの深度ステンシルバッファをテクスチャとして適用する
 		else
 		{
-			RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(now_depth_stencil_buffer.slot_index);
+			RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Set_Main_Depth_Stencil_Buffer_To_Texture_Slot(now_depth_stencil_buffer.slot_index);
 		}
 	}
 

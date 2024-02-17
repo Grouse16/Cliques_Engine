@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Vertex_Index_System.h"
 #include "S_Create_Index_Buffer_Inform.h"
-#include "C_Rendering_Graphics_API_Base.h"
+#include "C_Rendering_API_Interface_Vertex_Index_Buffer.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -86,14 +86,14 @@ void C_Vertex_Index_System::M_Release(void)
 void C_Vertex_Index_System::M_Create_Index_Data_And_Buffer(int in_index_sum)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Index_Buffer_Inform creat_index_inform;	// 頂点インデックスバッファ生成用の情報
+	RENDERING::API::CREATE::S_Create_Index_Buffer_Inform creat_index_inform;	// 頂点インデックスバッファ生成用の情報
 
 
 	// 頂点インデックス数を設定する
 	creat_index_inform.index_sum = in_index_sum;
 
 	// 頂点インデックスバッファを生成する
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Index_Inform(mpr_variable.m_index_buffer, creat_index_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Index_Buffer::M_Create_Index_Buffer(mpr_variable.m_index_buffer, creat_index_inform);
 
 	
 	// 頂点インデックスデータを生成する
@@ -111,14 +111,14 @@ void C_Vertex_Index_System::M_Create_Index_Data_And_Buffer(int in_index_sum)
 void C_Vertex_Index_System::M_Create_Index_Buffer_By_Now_Index_Data(void)
 {
 	// ☆ 変数宣言 ☆ //
-	RENDERING::GRAPHICS::CREATE::S_Create_Index_Buffer_Inform creat_index_inform;	// 頂点インデックスバッファ生成用の情報
+	RENDERING::API::CREATE::S_Create_Index_Buffer_Inform creat_index_inform;	// 頂点インデックスバッファ生成用の情報
 
 
 	// 頂点インデックス数を設定する
 	creat_index_inform.index_sum = (int)mpr_variable.m_index_data.size();
 
 	// 頂点インデックスバッファを生成する
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Create_Index_Inform(mpr_variable.m_index_buffer, creat_index_inform);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Index_Buffer::M_Create_Index_Buffer(mpr_variable.m_index_buffer, creat_index_inform);
 
 	return;
 }
@@ -175,7 +175,7 @@ void C_Vertex_Index_System::M_Set_Index_Data_To_Buffer(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Vertex_Index_System::M_Draw_Execute_By_Index_Data(void)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Draw_Command_By_Index_Buffer(mpr_variable.m_index_buffer);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Index_Buffer::M_Draw_By_Index_Buffer(mpr_variable.m_index_buffer);
 
 	return;
 }
@@ -188,7 +188,7 @@ void C_Vertex_Index_System::M_Draw_Execute_By_Index_Data(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Vertex_Index_System::M_Draw_Index_Data_By_Index_Data_Range(int in_draw_start_index, int in_draw_end_index)
 {
-	RENDERING::GRAPHICS::C_Rendering_Graphics_API_Base::M_Get_Instance()->M_Draw_Command_By_Index_Buffer_By_Range(mpr_variable.m_index_buffer, in_draw_start_index, in_draw_end_index);
+	RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Vertex_Index_Buffer::M_Draw_By_Index_Buffer_By_Range(mpr_variable.m_index_buffer, in_draw_start_index, in_draw_end_index);
 
 	return;
 }

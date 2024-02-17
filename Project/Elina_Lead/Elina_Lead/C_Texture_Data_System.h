@@ -36,7 +36,7 @@ namespace RENDERING::CAPSULE
 		// プライベート変数をまとめた構造体
 		struct SPr_Variable
 		{
-			std::unique_ptr < RENDERING::GRAPHICS::INSTANCE::C_Rendering_Texture_Setting_Inform_Base > texture_setting_inform;	// テクスチャ設定用の情報
+			std::unique_ptr < RENDERING::API::INSTANCE::C_Rendering_Texture_Setting_Inform_Base > texture_setting_inform;	// テクスチャ設定用の情報
 
 			ASSET::TEXTURE::C_Texture_Map texture_map;	// テクスチャ用のマップ
 

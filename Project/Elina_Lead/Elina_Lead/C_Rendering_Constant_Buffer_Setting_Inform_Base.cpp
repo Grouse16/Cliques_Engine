@@ -10,7 +10,7 @@
 
 
 // ☆ ネームスペースの省略 ☆ //
-using namespace RENDERING::GRAPHICS::INSTANCE;
+using namespace RENDERING::API::INSTANCE;
 
 
 // ☆ 関数 ☆ //

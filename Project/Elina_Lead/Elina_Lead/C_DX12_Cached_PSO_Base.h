@@ -17,7 +17,7 @@
 // ☆ ネームスペース ☆ //
 
 // パイプラインステートの状態を受け取るためのキャッシュ用のシステムを呼び出すための名前
-namespace RENDERING::GRAPHICS::DX12::DX12INSTANCE
+namespace RENDERING::API::DX12::DX12_TOOL
 {
 	// ☆ クラス ☆ //
 
