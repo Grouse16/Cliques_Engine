@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-02-17T04:25:28.146Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="ZkIheJmk7BMtMLmPqsFC" version="23.0.2" type="device" pages="3">
+<mxfile host="Electron" modified="2024-02-17T05:46:50.807Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="5jDs6slX-AcWYdlvlVyu" version="23.0.2" type="device" pages="3">
   <diagram name="ver.1.0.0" id="F_xgiDYA5KZkH7zyrJZr">
-    <mxGraphModel dx="5822" dy="2153" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4607" dy="1989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4251,7 +4251,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="faWojlpvNjzWwmj06y0f" name="ver.2.1.0">
-    <mxGraphModel dx="4861" dy="3610" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4861" dy="3600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4599,7 +4599,7 @@
           <mxGeometry x="6121" y="90" width="660" height="3100" as="geometry" />
         </mxCell>
         <mxCell id="eJGF1MytWVUjUiFNgJbj-125" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="eJGF1MytWVUjUiFNgJbj-105" vertex="1">
-          <mxGeometry x="10" y="670" width="640" height="2395" as="geometry" />
+          <mxGeometry x="10" y="700" width="640" height="2395" as="geometry" />
         </mxCell>
         <mxCell id="eJGF1MytWVUjUiFNgJbj-126" value="ー　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="eJGF1MytWVUjUiFNgJbj-125" vertex="1">
           <mxGeometry y="25" width="640" height="30" as="geometry" />
@@ -4838,68 +4838,71 @@
         <mxCell id="eJGF1MytWVUjUiFNgJbj-203" value="＋　テクスチャをロードする　＜継承関数＞　＜const関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="eJGF1MytWVUjUiFNgJbj-125" vertex="1">
           <mxGeometry y="2365" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-1" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="eJGF1MytWVUjUiFNgJbj-105">
-          <mxGeometry x="10" y="35" width="640" height="625" as="geometry" />
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-1" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="eJGF1MytWVUjUiFNgJbj-105" vertex="1">
+          <mxGeometry x="10" y="35" width="640" height="655" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-2" value="ー　デバイス（仮想アダプター）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-2" value="ー　デバイス（仮想アダプター）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="25" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-3" value="ー　画面スワップ（画面バッファ切り替え用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-3" value="ー　画面スワップ（画面バッファ切り替え用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="55" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-4" value="ー　ファクトリ（全画面表示の切り替え用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-4" value="ー　ファクトリ（全画面表示の切り替え用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="85" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-5" value="ー　ビューポートパラメータ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-5" value="ー　ビューポートパラメータ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="115" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-6" value="ー　シザーレクト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-6" value="ー　シザーレクト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="145" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-7" value="ー　画面塗りつぶし色" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-7" value="ー　画面塗りつぶし色" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="175" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-8" value="ー　描画実行システム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-8" value="ー　描画実行システム" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="205" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-9" value="ー　描画命令制御用システム（GPU処理命令のストレージ割り当てシステム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-9" value="ー　描画命令制御用システム（GPU処理命令のストレージ割り当てシステム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="235" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-10" value="ー　描画命令のリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-10" value="ー　描画命令のリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="265" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-11" value="ー　フェンスのフレームインクリメントを判定するための値" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-11" value="ー　フェンスのフレームインクリメントを判定するための値" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="295" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-12" value="ー　前側（表示中）の画面の番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-12" value="ー　前側（表示中）の画面の番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="325" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-13" value="ー　後側（描画書き込み中）の画面の番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-13" value="ー　後側（描画書き込み中）の画面の番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="355" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-14" value="ー　フェンスイベント（描画同期時のイベント）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="lyk1j1lDQRAHIxtrXJYk-3" value="ー　現在セットされている頂点インデックスバッファの頂点インデックスの総数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
           <mxGeometry y="385" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-15" value="ー　フェンス（描画同期用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-14" value="ー　フェンスイベント（描画同期時のイベント）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="415" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-16" value="ー　レンダリング画面の情報" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-15" value="ー　フェンス（描画同期用システム）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="445" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-17" value="ー　今のスクリーンシステムへのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-16" value="ー　レンダリング画面の情報" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="475" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-18" value="ー　今の深度ステンシルバッファへのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-17" value="ー　今のスクリーンシステムへのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="505" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-19" value="ー　今のレンダリング画面の総数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-18" value="ー　今の深度ステンシルバッファへのアドレス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="535" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-20" value="ー　現在適用されているシェーダーのリソース識別名のリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-19" value="ー　今のレンダリング画面の総数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="565" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="VT1F9MZx3LOOqlzpo6nx-21" value="ー　レンダリングAPIが終了しているときのみtrueとなるフラグ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="VT1F9MZx3LOOqlzpo6nx-1">
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-20" value="ー　現在適用されているシェーダーのリソース識別名のリスト" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
           <mxGeometry y="595" width="640" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VT1F9MZx3LOOqlzpo6nx-21" value="ー　レンダリングAPIが終了しているときのみtrueとなるフラグ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="VT1F9MZx3LOOqlzpo6nx-1" vertex="1">
+          <mxGeometry y="625" width="640" height="30" as="geometry" />
         </mxCell>
         <mxCell id="eJGF1MytWVUjUiFNgJbj-204" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="eJGF1MytWVUjUiFNgJbj-4" source="eJGF1MytWVUjUiFNgJbj-105" target="eJGF1MytWVUjUiFNgJbj-5" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">

@@ -59,3 +59,42 @@ void C_Rendering_API_Interface_Vertex_Index_Buffer::M_Draw_By_Index_Buffer(std::
 
 	return;
 }
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：頂点インデックスバッファをセットする
+// 引数   ：unique_ptr<C_Rendering_Index_Buffer_Setting_Inform_Base> & 頂点インデックスデータ設定用情報の参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Rendering_API_Interface_Vertex_Index_Buffer::M_Set_Index_Buffer(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & in_set_index_inform)
+{
+	RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Set_Index_Buffer(in_set_index_inform);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：セットされた頂点インデックスバッファを元に描画を行う
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Rendering_API_Interface_Vertex_Index_Buffer::M_Draw_Command_By_Set_Index_Buffer(void)
+{
+	RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Draw_Command_By_Set_Index_Buffer();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：セットされた頂点インデックスバッファを元に指定されたインデックス間の描画を行う
+// 引数   ：int 描画を開始するインデックス番号, int 描画終了のインデックス番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Rendering_API_Interface_Vertex_Index_Buffer::M_Draw_Command_By_Set_Index_Buffer_By_Range(int in_start_index_number, int in_end_index_number)
+{
+	RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Draw_Command_By_Set_Index_Buffer_By_Range(in_start_index_number, in_end_index_number);
+
+	return;
+}

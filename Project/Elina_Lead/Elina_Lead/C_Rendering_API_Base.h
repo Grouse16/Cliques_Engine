@@ -165,15 +165,24 @@ namespace RENDERING::API::BASE
 
 		//-☆- インデックスバッファ -☆-//
 
-		// インデックスデータ用の情報を生成する　引数：設定先のインデックス情報, 生成用の情報(const)
+		// 頂点インデックスデータ用の情報を生成する　引数：設定先の頂点インデックス情報, 生成用の情報(const)
 		virtual void M_Create_Index_Inform(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & , const RENDERING::API::CREATE::S_Create_Index_Buffer_Inform & ) const = 0;
 
-		// インデックスバッファを元に描画を行う　引数：インデックスデータ設定用情報(const)
+		// 頂点インデックスバッファを元に描画を行う　引数：頂点インデックスデータ設定用情報(const)
 		virtual void M_Draw_Command_By_Index_Buffer(const std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & ) = 0;
 
-		// インデックスバッファを元に指定されたインデックス間の描画を行う　引数：インデックスデータ設定用情報(const), 描画を開始するインデックス番号, 描画終了のインデックス番号
+		// 頂点インデックスバッファを元に指定されたインデックス間の描画を行う　引数：頂点インデックスデータ設定用情報(const), 描画を開始するインデックス番号, 描画終了のインデックス番号
 		virtual void M_Draw_Command_By_Index_Buffer_By_Range(const std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & , int, int) = 0;
 
+		// 頂点インデックスバッファをセットする　引数：頂点インデックスデータ設定用情報の参照
+		virtual void M_Set_Index_Buffer(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & ) = 0;
+
+		// セットされた頂点インデックスバッファを元に描画を行う
+		virtual void M_Draw_Command_By_Set_Index_Buffer(void) = 0;
+
+		// セットされた頂点インデックスバッファを元に指定されたインデックス間の描画を行う　引数：描画を開始するインデックス番号, 描画終了のインデックス番号
+		virtual void M_Draw_Command_By_Set_Index_Buffer_By_Range(int, int) = 0;
+		
 
 		//-☆- 定数バッファ -☆-//
 

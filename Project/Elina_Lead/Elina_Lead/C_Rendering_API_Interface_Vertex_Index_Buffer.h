@@ -56,6 +56,15 @@ namespace RENDERING::API::RENDER_INTERFACE
 
 		// 頂点インデックスバッファを元に描画を行う　引数：描画する頂点インデックスバッファの参照
 		static void M_Draw_By_Index_Buffer(std::unique_ptr < RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & );
+
+		// 頂点インデックスバッファをセットする　引数：頂点インデックスデータ設定用情報の参照
+		static void M_Set_Index_Buffer(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & );
+
+		// セットされた頂点インデックスバッファを元に描画を行う
+		static void M_Draw_Command_By_Set_Index_Buffer(void);
+
+		// セットされた頂点インデックスバッファを元に指定されたインデックス間の描画を行う　引数：描画を開始するインデックス番号, 描画終了のインデックス番号
+		static void M_Draw_Command_By_Set_Index_Buffer_By_Range(int, int);
 	};
 }
 

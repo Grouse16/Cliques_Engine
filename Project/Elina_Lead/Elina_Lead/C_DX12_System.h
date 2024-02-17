@@ -86,6 +86,8 @@ namespace RENDERING::API::DX12
 				int num_front_screen = 0;	// 前側（表示中）の画面の番号
 				int num_back_screen = 0;	// 後側（描画書き込み中）の画面の番号
 
+				int was_setting_vertex_index_sum = 0;	// セットされた頂点インデックスバッファのインデックスの総数
+
 			} s_command;	// 描画コマンド用パラメータ
 
 
@@ -380,6 +382,15 @@ namespace RENDERING::API::DX12
 
 		// インデックスバッファを元に指定されたインデックス間の描画を行う　引数：インデックスデータ設定用情報(const), 描画を開始するインデックス番号, 描画終了のインデックス番号
 		void M_Draw_Command_By_Index_Buffer_By_Range(const std::unique_ptr<INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & , int, int) override;
+
+		// 頂点インデックスバッファをセットする　引数：頂点インデックスデータ設定用情報の参照
+		void M_Set_Index_Buffer(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & ) override;
+
+		// セットされた頂点インデックスバッファを元に描画を行う
+		void M_Draw_Command_By_Set_Index_Buffer(void) override;
+
+		// セットされた頂点インデックスバッファを元に指定されたインデックス間の描画を行う　引数：描画を開始するインデックス番号, 描画終了のインデックス番号
+		void M_Draw_Command_By_Set_Index_Buffer_By_Range(int, int) override;
 
 
 		//-☆- 定数バッファ -☆-//

@@ -3067,6 +3067,51 @@ void C_DX12_System::M_Draw_Command_By_Index_Buffer_By_Range(const std::unique_pt
 }
 
 
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：頂点インデックスバッファをセットする
+// 引数   ：unique_ptr<C_Rendering_Index_Buffer_Setting_Inform_Base> & 頂点インデックスデータ設定用情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Set_Index_Buffer(std::unique_ptr<RENDERING::API::INSTANCE::C_Rendering_Index_Buffer_Setting_Inform_Base> & in_set_index_inform)
+{
+	// ☆ 変数宣言 ☆ //
+	const DX12_INSTANCE::C_DX12_Index_Setting_Inform * dx12_index_inform = reinterpret_cast<const DX12_INSTANCE::C_DX12_Index_Setting_Inform * >(in_set_index_inform.get());   // インデックス用情報をDX12用へキャストした結果のアドレス
+
+
+	// インデックスバッファをセットする
+	mpr_variable->s_command.list->IASetIndexBuffer(&dx12_index_inform->m_index_buffer_view);
+	mpr_variable->s_command.was_setting_vertex_index_sum = dx12_index_inform->m_index_sum;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：セットされた頂点インデックスバッファを元に描画を行う
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Draw_Command_By_Set_Index_Buffer(void)
+{
+	mpr_variable->s_command.list->DrawIndexedInstanced(mpr_variable->s_command.was_setting_vertex_index_sum, 1, 0, 0, 0);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：セットされた頂点インデックスバッファを元に指定されたインデックス間の描画を行う
+// 引数   ：int 描画を開始するインデックス番号, int 描画終了のインデックス番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_DX12_System::M_Draw_Command_By_Set_Index_Buffer_By_Range(int in_start_index_number, int in_end_index_number)
+{
+	mpr_variable->s_command.list->DrawIndexedInstanced(in_end_index_number - in_start_index_number, 1, in_start_index_number, 0, 0);
+
+	return;
+}
+
+
 //-☆- 定数バッファ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
