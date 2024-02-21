@@ -83,12 +83,6 @@ namespace ELMaterial_Generator.Blend_Setting_UI
             List<UC_Blend_Setting> new_blend_setting_list = new List<UC_Blend_Setting>();   // 新しく確保したブレンド設定情報のリスト
 
 
-            // 今まで持っていた情報を画面から排除
-            foreach (var now_vertex_list in m_blend_setting_list)
-            {
-                this.Controls.Remove(now_vertex_list);
-            }
-
             // 指定されたブレンド設定数分要素を確保
             for (int l_num = 0; l_num < in_set_sum; l_num++)
             {
@@ -99,7 +93,7 @@ namespace ELMaterial_Generator.Blend_Setting_UI
                     this.Controls.Add(new_blend_setting_list[l_num]);
                 }
 
-                // 新しい定数バッファ情報であれば、生成して追加する
+                // 新しいブレンド設定であれば、生成して追加する
                 else
                 {
                     new_blend_setting_list.Add(new UC_Blend_Setting());
@@ -107,6 +101,14 @@ namespace ELMaterial_Generator.Blend_Setting_UI
                     this.Controls.Add(new_blend_setting_list[l_num]);
                 }
             }
+
+
+			// 余分なブレンド設定情報を削除
+			for (int l_num = in_set_sum; l_num < m_now_blend_setting_sum; l_num++)
+			{
+				this.Controls.Remove(m_blend_setting_list[l_num]);
+			}
+
 
             // 新しく生成したリストに入れ替える
             m_blend_setting_list = new_blend_setting_list;
@@ -122,7 +124,6 @@ namespace ELMaterial_Generator.Blend_Setting_UI
         }
 
 
-
 		//-☆- スクロール -☆-//
 
 		// スクロールバーの位置を再設定する
@@ -132,7 +133,7 @@ namespace ELMaterial_Generator.Blend_Setting_UI
 			if (con_BLEND_SETTING_IN_WINDOW_SUM < (int)NUM_blend_sum_setting.Value)
 			{
 				SB_scroll.Maximum
-					= con_BLEND_SETTING_LIST_VERTICAL_DISTANCE * ((int)NUM_blend_sum_setting.Value - (1 + con_BLEND_SETTING_IN_WINDOW_SUM)) +
+					= con_BLEND_SETTING_LIST_VERTICAL_DISTANCE * ((int)NUM_blend_sum_setting.Value - con_BLEND_SETTING_IN_WINDOW_SUM) +
 					con_BLEND_SETTING_LIST_VERTICAL_DISTANCE / 2;
 			}
 			// ブレンド設定数が表示できる数を超えなかったらスクロールを不可能にする
