@@ -74,6 +74,7 @@
     <Compile Include="Material_Setting_UI\UC_Material_Setting_Frame.Designer.cs">
       <DependentUpon>UC_Material_Setting_Frame.cs</DependentUpon>
     </Compile>
+    <Compile Include="S_Mesh_Material_Data.cs" />
     <EmbeddedResource Include="Blend_Setting_UI\UC_Blend_Setting.resx">
       <DependentUpon>UC_Blend_Setting.cs</DependentUpon>
     </EmbeddedResource>
