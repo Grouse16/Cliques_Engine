@@ -33,10 +33,10 @@ namespace ELMaterial_Generator
 	// 面の表示設定の列挙
 	public enum E_CULL_MODE
 	{
-        e_CULL_FRONT,	// 表面表示
-        e_CULL_BACK,	// 裏面表示
-        e_CULL_ALWAYS,	// 両面表示
-    }
+		e_CULL_FRONT,	// 表面表示
+		e_CULL_BACK,	// 裏面表示
+		e_CULL_ALWAYS,	// 両面表示
+	}
 
 
 	// アンチエイリアシング設定の列挙
@@ -45,7 +45,7 @@ namespace ELMaterial_Generator
 		e_ALPHA,	// アルファ
 		e_COLOR,	// カラー
 		e_LINE,		// ライン
-    }
+	}
 
 
 	// ☆ クラス ☆ //
@@ -83,7 +83,7 @@ namespace ELMaterial_Generator
 			UC_emission_data.M_Change_Maximum_Track_Value(10.0f);
 
 			// 情報の初期化
-            M_Reset();
+			M_Reset();
 
 			return;
 		}
@@ -191,69 +191,69 @@ namespace ELMaterial_Generator
 		// 表示モードへの設定を文字列に変換　引数：表示モード　戻り値：表示モードの文字列
 		private string M_Convert_Draw_Mode_To_String(E_DRAW_MODE in_draw_mode)
 		{
-            switch (in_draw_mode)
+			switch (in_draw_mode)
 			{
-                // 通常
-                case E_DRAW_MODE.e_NORMAL:
-                    return "NORMAL";
+				// 通常
+				case E_DRAW_MODE.e_NORMAL:
+					return "NORMAL";
 
-                // ワイヤーフレーム
-                case E_DRAW_MODE.e_WIREFRAME:
-                    return "WIRE_FRAME";
+				// ワイヤーフレーム
+				case E_DRAW_MODE.e_WIREFRAME:
+					return "WIRE_FRAME";
 
-                // その他
-                default:
-                    return "NORMAL";
-            }
-        }
+				// その他
+				default:
+					return "NORMAL";
+			}
+		}
 
 
 		// 面の表示設定への設定を文字列に変換　引数：面の表示設定　戻り値：面の表示設定の文字列
 		private string M_Convert_Cull_Mode_To_String(E_CULL_MODE in_cull_mode)
 		{
-            switch (in_cull_mode)
+			switch (in_cull_mode)
 			{
-                // 表面表示
-                case E_CULL_MODE.e_CULL_FRONT:
-                    return "FRONT";
+				// 表面表示
+				case E_CULL_MODE.e_CULL_FRONT:
+					return "FRONT";
 
-                // 裏面表示
-                case E_CULL_MODE.e_CULL_BACK:
-                    return "BACK";
+				// 裏面表示
+				case E_CULL_MODE.e_CULL_BACK:
+					return "BACK";
 
-                // 両面表示
-                case E_CULL_MODE.e_CULL_ALWAYS:
-                    return "ALWAYS";
+				// 両面表示
+				case E_CULL_MODE.e_CULL_ALWAYS:
+					return "ALWAYS";
 
-                // その他
-                default:
-                    return "ALWAYS";
-            }
-        }
+				// その他
+				default:
+					return "ALWAYS";
+			}
+		}
 
 
 		// アンチエイリアシングへの設定を文字列に変換　引数：アンチエイリアシング設定　戻り値：アンチエイリアシング設定の文字列
 		private string M_Convert_Anti_Aliasing_To_String(E_ANTI_ALIASING_MODE in_anti_aliasing_mode)
 		{
-            switch (in_anti_aliasing_mode)
+			switch (in_anti_aliasing_mode)
 			{
-                // アルファ
-                case E_ANTI_ALIASING_MODE.e_ALPHA:
-                    return "ALPHA";
+				// アルファ
+				case E_ANTI_ALIASING_MODE.e_ALPHA:
+					return "ALPHA";
 
-                // カラー
-                case E_ANTI_ALIASING_MODE.e_COLOR:
-                    return "PIXEL";
+				// カラー
+				case E_ANTI_ALIASING_MODE.e_COLOR:
+					return "PIXEL";
 
-                // ライン
-                case E_ANTI_ALIASING_MODE.e_LINE:
-                    return "LINE";
+				// ライン
+				case E_ANTI_ALIASING_MODE.e_LINE:
+					return "LINE";
 
-                // その他
-                default:
-                    return "ALPHA";
-            }
-        }
+				// その他
+				default:
+					return "ALPHA";
+			}
+		}
 
 
 		//-☆- イベント -☆-//
@@ -371,9 +371,9 @@ namespace ELMaterial_Generator
 			// 質感の開始位置を書き込む
 			write_text.Add("MATERIAL:");
 
-            // アンビエント値を書き込む
-            color_data = UC_ambient_data.M_Get_RGBA_Data();
-            write_text.Add(color_data.mp_red.ToString() + "," + color_data.mp_green.ToString() + "," + color_data.mp_blue.ToString() + "," + color_data.mp_alpha.ToString() + ",");
+			// アンビエント値を書き込む
+			color_data = UC_ambient_data.M_Get_RGBA_Data();
+			write_text.Add(color_data.mp_red.ToString() + "," + color_data.mp_green.ToString() + "," + color_data.mp_blue.ToString() + "," + color_data.mp_alpha.ToString() + ",");
 
 			// ディフューズ値を書き込む
 			color_data = UC_diffuse_data.M_Get_RGBA_Data();
@@ -444,109 +444,146 @@ namespace ELMaterial_Generator
 		}
 
 
-        //-☆- ロード -☆-//
+		//-☆- ロード -☆-//
 
-        // 渡された絶対パスを、自ファイルからの相対パスに変換する
-        static public string M_Get_Relative_Path(string in_path)
-        {
-            // ☆ 変数宣言 ☆ //
-            Uri uri_base_path = new Uri(System.Reflection.Assembly.GetExecutingAssembly().Location);    // 基本となる相対元のパス
-            Uri uri_relative_check_path = new Uri(in_path);                                             // 相対パスに変換したいシステムのパス
-            Uri uri_relative_path = uri_base_path.MakeRelativeUri(uri_relative_check_path);             // 絶対Uriから相対Uriを取得する
+		// 渡された絶対パスを、自ファイルからの相対パスに変換する
+		static public string M_Get_Relative_Path(string in_path)
+		{
+			// ☆ 変数宣言 ☆ //
+			Uri uri_base_path = new Uri(System.Reflection.Assembly.GetExecutingAssembly().Location);    // 基本となる相対元のパス
+			Uri uri_relative_check_path = new Uri(in_path);                                             // 相対パスに変換したいシステムのパス
+			Uri uri_relative_path = uri_base_path.MakeRelativeUri(uri_relative_check_path);             // 絶対Uriから相対Uriを取得する
 
-            return uri_relative_path.ToString();   // 相対パス
-        }
+			return uri_relative_path.ToString();   // 相対パス
+		}
+
+		
+		// 独自形式マテリアルの情報をロードしデータをセットする　引数：相対パス
+		private void M_Load_Data_By_ELMaterial(string in_relative_file_path)
+		{
+			// ☆ 変数宣言 ☆ //
+			S_Load_Material_Inform material_inform = new S_Load_Material_Inform();  // ロードしたマテリアル情報
 
 
-        //-☆- イベント -☆-//
+			// マテリアル情報のロード
+			material_inform = CS_Load_Material_Inform_System.M_Load_Material_Inform(in_relative_file_path);
 
-        // ドラッグ中のカーソルがボタンの上にあるとき
-        private void B_export_block_DragOver(object sender, DragEventArgs e)
-        {
-            // ファイルドロップ時はカーソルをコピーに変更
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
 
-            // それ以外の時はなにもしない
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
+			// マテリアル名をセット
+			TB_material_name.Text = material_inform.mp_material_name;
+
+			// シェーダー名をセット
+			TB_Shader_Setting_Name.Text = material_inform.mp_shader_name;
+
+			// ブレンド設定数をセット
+			UC_blend_setting_frame.M_Change_Blend_Setting_Sum(material_inform.mp_blend_sum);
+
+			// ブレンド設定の情報をセット
+			for (int now_blend_setting = 0; now_blend_setting < material_inform.mp_blend_sum; now_blend_setting++)
+			{
+				UC_blend_setting_frame.mp_blend_setting_list[now_blend_setting].M_Set_Write_Setting(material_inform.mp_write_setting_list[now_blend_setting]);
+			}
+
+			// 深度モードをセット
+			CB_depth_mode.SelectedIndex = (int)material_inform.mp_depth_mode;
+
+			// ラスタライザの表示モードをセット
+			CB_rasterize_draw_mode.SelectedIndex = (int)material_inform.mp_draw_mode;
+
+			// ラスタライザの面の表示設定をセット
+			CB_rasterizer_mesh_setting.SelectedIndex = (int)material_inform.mp_cull_mode;
+
+			// ラスタライザのアンチエイリアシング設定をセット
+			CB_rasterizer_anti_aliasing.SelectedIndex = (int)material_inform.mp_anti_aliasing_mode;
+
+			// サンプリングの設定をセット
+			NB_sampling_level.Value = material_inform.mp_sampling_level;
+
+			// 質感の設定をセット
+			UC_ambient_data.M_Set_RGBA_Data(material_inform.mp_ambient_data);
+			UC_diffuse_data.M_Set_RGBA_Data(material_inform.mp_diffuse_data);
+			UC_emission_data.M_Set_RGBA_Data(material_inform.mp_emission_data);
+			UC_reflection_data.M_Set_RGBA_Data(material_inform.mp_reflection_data);
+			UC_specular_data.M_Set_RGBA_Data(material_inform.mp_specular_data);
+			UC_transparent_data.M_Set_RGBA_Data(material_inform.mp_transparent_data);
+
+			return;
+		}
+
+
+		// マテリアル質感情報ファイルの情報をロードしデータをセットする　引数：相対パス
+		private void M_Load_Data_By_ELMaterialInform(string in_relative_file_path)
+		{
+			// ☆ 変数宣言 ☆ //
+			S_Mesh_Material_Data mesh_material = new S_Mesh_Material_Data();	// マテリアル質感情報
+
+
+			// マテリアル質感情報のロード
+			mesh_material = CS_Load_Material_Inform_System.M_Load_Mesh_Material_Inform(in_relative_file_path);
+
+
+            // マテリアル名をセット
+            TB_material_name.Text = Path.GetFileName(in_relative_file_path);
+            TB_material_name.Text = Path.ChangeExtension(TB_material_name.Text, null);
+
+
+            // マテリアル質感情報をセット
+            UC_ambient_data.M_Set_RGBA_Data(mesh_material.mp_ambient_data);
+			UC_diffuse_data.M_Set_RGBA_Data(mesh_material.mp_diffuse_data);
+			UC_emission_data.M_Set_RGBA_Data(mesh_material.mp_emission_data);
+			UC_reflection_data.M_Set_RGBA_Data(mesh_material.mp_reflection_data);
+			UC_specular_data.M_Set_RGBA_Data(mesh_material.mp_specular_data);
+			UC_transparent_data.M_Set_RGBA_Data(mesh_material.mp_transparent_data);
 
             return;
-        }
+		}
+
+
+		//-☆- イベント -☆-//
+
+		// ドラッグ中のカーソルがボタンの上にあるとき
+		private void B_export_block_DragOver(object sender, DragEventArgs e)
+		{
+			// ファイルドロップ時はカーソルをコピーに変更
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+			{
+				e.Effect = DragDropEffects.Copy;
+			}
+
+			// それ以外の時はなにもしない
+			else
+			{
+				e.Effect = DragDropEffects.None;
+			}
+
+			return;
+		}
 
 
 		// ドラッグ＆ドロップされたとき
-        private void B_export_block_DragDrop(object sender, DragEventArgs e)
-        {
-            // ファイルドロップ時はファイルのプロパティを取得（なければスルー）
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) == false)
-            {
-                return;
-            }
+		private void B_export_block_DragDrop(object sender, DragEventArgs e)
+		{
+			// ファイルドロップ時はファイルのプロパティを取得（なければスルー）
+			if (e.Data.GetDataPresent(DataFormats.FileDrop) == false)
+			{
+				return;
+			}
 
 
-            // ☆ 変数宣言 ☆ //
-            string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
+			// ☆ 変数宣言 ☆ //
+			string[] file_path = (string[])e.Data.GetData(DataFormats.FileDrop, false); // ファイル名（絶対パス）
 
-            string relative_file_path = M_Get_Relative_Path(file_path[0]);   // 相対パス
+			string relative_file_path = M_Get_Relative_Path(file_path[0]);   // 相対パス
 
-            StreamReader file_data = new StreamReader(relative_file_path); // ファイルデータ
+			StreamReader file_data = new StreamReader(relative_file_path); // ファイルデータ
 
-            string file_data_a_line = file_data.ReadLine(); // ファイルの一行分のデータ
+			string file_data_a_line = file_data.ReadLine(); // ファイルの一行分のデータ
 
 
 			// マテリアルのファイルの場合のロード
 			if (file_data_a_line == "This-Is-ELMAT")
 			{
-				// ☆ 変数宣言 ☆ //
-				S_Load_Material_Inform material_inform = new S_Load_Material_Inform();  // ロードしたマテリアル情報
-
-
-                // マテリアル情報のロード
-                material_inform = CS_Load_Material_Inform_System.M_Load_Material_Inform(relative_file_path);
-
-
-				// マテリアル名をセット
-				TB_material_name.Text = material_inform.mp_material_name;
-
-				// シェーダー名をセット
-				TB_Shader_Setting_Name.Text = material_inform.mp_shader_name;
-
-				// ブレンド設定数をセット
-				UC_blend_setting_frame.M_Change_Blend_Setting_Sum(material_inform.mp_blend_sum);
-
-				// ブレンド設定の情報をセット
-				for (int now_blend_setting = 0; now_blend_setting < material_inform.mp_blend_sum; now_blend_setting++)
-				{
-					UC_blend_setting_frame.mp_blend_setting_list[now_blend_setting].M_Set_Write_Setting(material_inform.mp_write_setting_list[now_blend_setting]);
-                }
-
-				// 深度モードをセット
-				CB_depth_mode.SelectedIndex = (int)material_inform.mp_depth_mode;
-
-				// ラスタライザの表示モードをセット
-				CB_rasterize_draw_mode.SelectedIndex = (int)material_inform.mp_draw_mode;
-
-				// ラスタライザの面の表示設定をセット
-				CB_rasterizer_mesh_setting.SelectedIndex = (int)material_inform.mp_cull_mode;
-
-				// ラスタライザのアンチエイリアシング設定をセット
-				CB_rasterizer_anti_aliasing.SelectedIndex = (int)material_inform.mp_anti_aliasing_mode;
-
-				// サンプリングの設定をセット
-				NB_sampling_level.Value = material_inform.mp_sampling_level;
-
-				// 質感の設定をセット
-				UC_ambient_data.M_Set_RGBA_Data(material_inform.mp_ambient_data);
-				UC_diffuse_data.M_Set_RGBA_Data(material_inform.mp_diffuse_data);
-				UC_emission_data.M_Set_RGBA_Data(material_inform.mp_emission_data);
-				UC_reflection_data.M_Set_RGBA_Data(material_inform.mp_reflection_data);
-				UC_specular_data.M_Set_RGBA_Data(material_inform.mp_specular_data);
-				UC_transparent_data.M_Set_RGBA_Data(material_inform.mp_transparent_data);
+				M_Load_Data_By_ELMaterial(relative_file_path);
 
 				return;
 			}
@@ -555,9 +592,12 @@ namespace ELMaterial_Generator
 			// マテリアル質感情報ファイルの場合のロード
 			if (file_data_a_line == "This-Is-ELMATINFORM")
 			{
+				M_Load_Data_By_ELMaterialInform(relative_file_path);
 
 				return;
 			}
-        }
-    }
+
+			return;
+		}
+	}
 }

@@ -3,7 +3,8 @@
 # visual studioで生成されるファイルをスルー
 .vs
 
-# visual studioでのビルド時に生成される中間ファイル
+
+# visual studioでのビルド時に生成される中間ファイルをスルー
 Debug
 Release
 x64
@@ -11,19 +12,25 @@ x86
 obj
 bin
 
+
 # ☆ クラス図 ☆
 # クラス図を制作する時に生成される中間ファイルをスルー
 *.bkp
+
 
 # ☆ エクセル ☆
 # 中間ファイル
 ~$*.xlsx
 
+
+# ==☆ acknowledge（ファイルを有効に） ☆==
+
+# ☆ C# .NET ☆
+# .NETで必要なファイルのみ指定して残す
+!obj/**/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
+!obj/**/*.exe
+!bin/**/Asset/
+
 # ☆ モデルコンバーター ☆
 # シェーダーファイル
 !*.fx
-
-
-# ==☆ acknowledge（ファイルを有効に） ☆==
-!/3D_Model_Converter_And_Drawer/bin/
-
