@@ -54,10 +54,10 @@ C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Conv
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.Properties.Resources.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.GenerateResource.cache
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.CoreCompileInputs.cache
-C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.csproj.CopyComplete
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.exe
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model_Converter_And_Drawer.pdb
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.FormTool.UC_Load_Inform_Box.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Name_Setting.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer._3Dmodel_Convert.UC_Scroll_Name_Setting.resources
 C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\_3D_Model_Converter_And_Drawer.d3d11.UC_DX_11_Panel.resources
+C:\Users\ryuse\Desktop\create\Elina_Lead\Project\Converter\3Dmodel\3D_Model_Converter_And_Drawer\3D_Model_Converter_And_Drawer\obj\Debug\3D_Model.22B1311C.Up2Date

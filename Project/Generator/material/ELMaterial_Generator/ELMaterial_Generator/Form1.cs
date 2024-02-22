@@ -514,7 +514,28 @@ namespace ELMaterial_Generator
 		// マテリアル質感情報ファイルの情報をロードしデータをセットする　引数：相対パス
 		private void M_Load_Data_By_ELMaterialInform(string in_relative_file_path)
 		{
-			return;
+			// ☆ 変数宣言 ☆ //
+			S_Mesh_Material_Data mesh_material = new S_Mesh_Material_Data();	// マテリアル質感情報
+
+
+			// マテリアル質感情報のロード
+			mesh_material = CS_Load_Material_Inform_System.M_Load_Mesh_Material_Inform(in_relative_file_path);
+
+
+            // マテリアル名をセット
+            TB_material_name.Text = Path.GetFileName(in_relative_file_path);
+            TB_material_name.Text = Path.ChangeExtension(TB_material_name.Text, null);
+
+
+            // マテリアル質感情報をセット
+            UC_ambient_data.M_Set_RGBA_Data(mesh_material.mp_ambient_data);
+			UC_diffuse_data.M_Set_RGBA_Data(mesh_material.mp_diffuse_data);
+			UC_emission_data.M_Set_RGBA_Data(mesh_material.mp_emission_data);
+			UC_reflection_data.M_Set_RGBA_Data(mesh_material.mp_reflection_data);
+			UC_specular_data.M_Set_RGBA_Data(mesh_material.mp_specular_data);
+			UC_transparent_data.M_Set_RGBA_Data(mesh_material.mp_transparent_data);
+
+            return;
 		}
 
 
@@ -571,9 +592,12 @@ namespace ELMaterial_Generator
 			// マテリアル質感情報ファイルの場合のロード
 			if (file_data_a_line == "This-Is-ELMATINFORM")
 			{
+				M_Load_Data_By_ELMaterialInform(relative_file_path);
 
 				return;
 			}
+
+			return;
 		}
 	}
 }

@@ -338,7 +338,8 @@ namespace ELMaterial_Generator.Load_System
 
 				// ファイル名をセット
 				result_material.mp_material_name = Path.GetFileName(in_file_path);
-			}
+				Path.ChangeExtension(result_material.mp_material_name, null);
+            }
 
 
 			// シェーダー名へ移動
@@ -549,7 +550,7 @@ namespace ELMaterial_Generator.Load_System
 
 
 		// 質感情報をロードしてセットする　引数：ファイルパス（相対）　戻り値：マテリアル情報
-		static public S_Mesh_Material_Data M_Load_Material_Inform_And_Set(string in_file_path, ref S_Load_Material_Inform out_material)
+		static public S_Mesh_Material_Data M_Load_Mesh_Material_Inform(string in_file_path)
 		{
 			// ☆ 変数宣言 ☆ //
 			List<string> read_data_list = new List<string>();   // 読み取ったデータのリスト
