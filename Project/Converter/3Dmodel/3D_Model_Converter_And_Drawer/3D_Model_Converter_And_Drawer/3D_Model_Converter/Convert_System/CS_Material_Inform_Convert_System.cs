@@ -94,7 +94,7 @@ namespace _3D_Model_Converter_And_Drawer._3D_model_Convert
                 // スペキュラー
                 file_mat_write_data.Add
                     (
-                        "SPECLAR:"
+                        "SPECULAR:"
                          + now_material_data.ColorSpecular.R.ToString() + ","
                          + now_material_data.ColorSpecular.G.ToString() + ","
                          + now_material_data.ColorSpecular.B.ToString() + ","
