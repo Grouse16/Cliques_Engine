@@ -4,7 +4,7 @@
 .vs
 
 
-# visual studioでのビルド時に生成される中間ファイル
+# visual studioでのビルド時に生成される中間ファイルをスルー
 Debug
 Release
 x64
@@ -24,10 +24,13 @@ bin
 
 
 # ☆ C# .NET ☆
+# .NETで必要なファイルのみ指定して残す
 !obj/Debug/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
 !obj/Debug/*.exe
 !obj/Release/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
 !obj/Release/*.exe
+!bin/Debug/Asset/
+!bin/Release/Asset/
 
 
 # ☆ モデルコンバーター ☆
