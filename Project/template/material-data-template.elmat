@@ -1,0 +1,44 @@
+SHADERSETTINGNAME:
+シェーダー設定名を記入
+
+BLENDSUM:(int)ブレンド数（1~8の数字で設定）
+BLEND(int)ブレンド設定番号（1から連番で必要な分を設定できるが８が最大数）:
+１．ブレンドモード　　　　NORMAL　NORMAL_NOT_ALPHA　INVERT　INVERT_NOT_ALPHA
+２．ブレンドオプション　　ADD　SUB　SUB_PIX　MAX　MIN
+３．ブレンドフォーマット　BYTE_1_UINT　BYTE_2_UINT　BYTE_4_UINT　BYTE_2_FLOAT　BYTE_4_FLOAT
+４．ブレンドカラー　　　　R　RG　RGBA
+
+DEPTH:
+１．深度モード　　　　NO　ZERO　ONE
+２．深度オプション　　DONT　ALWAYS　EQUAL　GREATER　GREATERE_EQUAL　LESS　LESS_EQUAL
+３．ステンシルフラグ　NO_ACTIVE　ACTIVE
+
+RASTERIZER:
+１．描画モード　　　　　　　　NORMAL　WIRE_FRAME
+２．残すメッシュの向き　　　　ALWAYS　FRONT　BACK
+３．メッシュの表面設定　　　　ANTI_CLOCK_WISE　CLOCK_WISE
+４．奥行きバイアス　　　　　　(int)
+５．奥行きバイアス最大値　　　(float)
+６．奥行き調整値　　　　　　　(float)
+７．アンチエイリアシング設定　DONT　ALPHA　PIXEL　LINE
+８．保守的なラスタライズ　　　　　(bool)　trueで有効、falseで無効
+
+SAMPLING:
+１．サンプリング回数　　(int)
+２．サンプリングの品質　(int)
+
+MATERIAL:
+１．(float4)アンビエント（基本の明るさ）
+２．(float4)ディフューズ（色の減衰）
+３．(float4)エミッション（輝き）
+４．(float4)リフレクション（反射）
+５．(float4)スペキュラー（滑らかさ、ハイライト）
+６．(float4)トランスペアレント（透明度）
+
+
+日本語や全角は全て削除する、連番通りに設定を置く
+空白ごとに置く値の候補を区切っている
+float4のデータを書き込むときは 1.0f,1,0f,1.0f,1.0fのように、
+ , で区切って書き込む
+
+ 
