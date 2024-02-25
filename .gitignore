@@ -29,7 +29,7 @@ bin
 # .NETで必要なファイルのみ指定して残す
 !obj/**/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
 !obj/**/*.exe
-!bin/**/Asset/
+!bin/**/Asset/*
 
 # ☆ モデルコンバーター ☆
 # シェーダーファイル
