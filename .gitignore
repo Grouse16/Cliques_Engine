@@ -28,14 +28,14 @@
 
 # ☆ プロジェクト ☆
 # パッケージファイルは追跡
-!packages/*
-!packages/**
+!**/packages/*
+!**/packages/**
 
 # ☆ C# .NET ☆
 # .NETで必要なファイルのみ指定して残す
-!obj/**/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
-!obj/**/*.exe
-!bin/**/Asset/
+!**/obj/*/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
+!**/obj/*/*.exe
+!**/bin/*/Asset/
 
 # ☆ モデルコンバーター ☆
 # シェーダーファイル
