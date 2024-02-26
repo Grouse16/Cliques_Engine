@@ -1,22 +1,23 @@
 # ==☆ ignore（ファイルを無視） ☆==
 # ☆ Project系列 ☆ 
 # visual studioで生成されるファイルをスルー
-.vs
-
+**/.vs/*
 
 # visual studioでのビルド時に生成される中間ファイルをスルー
-Debug
-Release
-x64
-x86
-obj
-bin
-
+**/bin/*/*.*
+**/bin/*/*
+**/x86/*/*.*
+**/x64/*/*.*
+**/obj/*/*.resources
+**/obj/*/*.pdb
+**/obj/*/*.txt
+**/obj/*/*.cache
+**/obj/*/*.Up2Date
+**/runtimes/
 
 # ☆ クラス図 ☆
 # クラス図を制作する時に生成される中間ファイルをスルー
 *.bkp
-
 
 # ☆ エクセル ☆
 # 中間ファイル
@@ -25,11 +26,16 @@ bin
 
 # ==☆ acknowledge（ファイルを有効に） ☆==
 
+# ☆ プロジェクト ☆
+# パッケージファイルは追跡
+!**/packages/*
+!**/packages/**
+
 # ☆ C# .NET ☆
 # .NETで必要なファイルのみ指定して残す
-!obj/**/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
-!obj/**/*.exe
-!bin/**/Asset/
+!**/obj/*/.NETFramework,Version=v4.8.1.AssemblyAttributes.cs
+!**/obj/*/*.exe
+!**/bin/*/Asset/
 
 # ☆ モデルコンバーター ☆
 # シェーダーファイル
