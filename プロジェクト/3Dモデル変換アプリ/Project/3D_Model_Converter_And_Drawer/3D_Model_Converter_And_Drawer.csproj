@@ -162,6 +162,12 @@
     <Compile Include="Rendering_Systems\Camera\CS_Camera_Manager.cs" />
     <Compile Include="Rendering_Systems\Camera\CS_Camera_System.cs" />
     <Compile Include="Rendering_Systems\Projection\CS_Projection.cs" />
+    <Compile Include="UI\UC_Announce_Bord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UC_Announce_Bord.Designer.cs">
+      <DependentUpon>UC_Announce_Bord.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="3D_Model_Converter\3D_Model_Convert_Setting_Form.resx">
       <DependentUpon>3D_Model_Convert_Setting_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +195,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\UC_Announce_Bord.resx">
+      <DependentUpon>UC_Announce_Bord.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
