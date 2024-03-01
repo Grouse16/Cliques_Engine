@@ -1,4 +1,5 @@
 ﻿using _3D_Model_Converter_And_Drawer._3DModel;
+using _3D_Model_Converter_And_Drawer.UI.Announce_Bord;
 using Assimp;
 using Assimp.Unmanaged;
 using SharpDX;
@@ -85,30 +86,30 @@ namespace _3D_Model_Converter_And_Drawer
 		}
 
 
-		//-☆- 変換 -☆-//
+        //-☆- 変換 -☆-//
 
-		// スタティックモデルに変換する
-		public static void M_Convert_Static_Model(Scene in_scene)
+        // スタティックモデルに変換する　引数：ロードしたモデルのデータ, 告知用のボードのフォーム
+        public static void M_Convert_Static_Model(Scene in_scene, ref Form_Announce_Bord in_form_announce_bord)
 		{
 			m_convert_mode = E_CONVERT_MODE.e_STATIC_MODEL;
-			M_Model_Convert(in_scene);
+			M_Model_Convert(in_scene, ref in_form_announce_bord);
 
 			return;
 		}
 
 
-		// アニメーションモデルに変換する
-		public static void M_Convert_Animation_Model(Scene in_scene)
+        // アニメーションモデルに変換する　引数：ロードしたモデルのデータ, 告知用のボードのフォーム
+        public static void M_Convert_Animation_Model(Scene in_scene, ref Form_Announce_Bord in_form_announce_bord)
 		{
 			m_convert_mode = E_CONVERT_MODE.e_ANIMATION_MODEL;
-			M_Model_Convert(in_scene);
+			M_Model_Convert(in_scene, ref in_form_announce_bord);
 
 			return;
 		}
 
 
-		// 3Dモデルのコンバートを実行する
-		private static void M_Model_Convert(Scene in_scene)
+		// 3Dモデルのコンバートを実行する　引数：ロードしたモデルのデータ, 告知用のボードのフォーム
+		private static void M_Model_Convert(Scene in_scene, ref Form_Announce_Bord in_form_announce_bord)
 		{
 			// ☆ 変数宣言 ☆ //
 			List<string> write_file_data = new List<string>(); // 書き込むデータ
@@ -145,8 +146,12 @@ namespace _3D_Model_Converter_And_Drawer
 			M_Write_Mesh_Data(in_scene, ref write_file_data, vertex_to_shrunk_vertex_number_list);
 
 
-			// 静的モデルのセーブ
-			if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
+            // ファイルの書き込みを告知する
+            in_form_announce_bord.M_Set_Announce_Text("ファイル書き込み中です");
+
+
+            // 静的モデルのセーブ
+            if (m_convert_mode == E_CONVERT_MODE.e_STATIC_MODEL)
 			{
 				M_Save_Static_Model_This_File(write_file_data);
 			}
@@ -157,7 +162,11 @@ namespace _3D_Model_Converter_And_Drawer
 				M_Save_Animation_Model_This_File(write_file_data);
 			}
 
-			return;
+
+            // ファイルの書き込みを告知する
+            in_form_announce_bord.M_Set_Announce_Text("書き込み終了しました");
+
+            return;
 		}
 
 

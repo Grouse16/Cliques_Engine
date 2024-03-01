@@ -36,9 +36,9 @@ namespace _3D_Model_Converter_And_Drawer
 	public partial class Main_Form : Form
 	{
 		// ☆ 定数 ☆ //
-		const int con_WVP_CONSTANT_BUFFER_SLOT_NUMBER = 0;     // WVP行列の定数バッファのスロット番号
-		const int con_BONE_MATRIX_CONSTANT_BUFFER_SLOT_NUMBER = 1;     // ボーンマトリクスの定数バッファのスロット番号
-		const int con_MAIN_TEXTURE_SLOT_NUMBER = 0; // メインテクスチャのスロット番号
+		const int con_WVP_CONSTANT_BUFFER_SLOT_NUMBER = 0;			// WVP行列の定数バッファのスロット番号
+		const int con_BONE_MATRIX_CONSTANT_BUFFER_SLOT_NUMBER = 1;	// ボーンマトリクスの定数バッファのスロット番号
+		const int con_MAIN_TEXTURE_SLOT_NUMBER = 0;					// メインテクスチャのスロット番号
 
 
 		// ☆ 変数宣言 ☆ //
@@ -60,7 +60,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private C_Shader_Source m_static_model_shader = new C_Shader_Source();		// 静的モデル用のシェーダー設定用のシステム
 		private C_Shader_Source m_animation_model_shader = new C_Shader_Source();	// アニメーションモデル用のシェーダー設定用のシステム
 
-        private List<CS_Animation_System> m_animation_system_list = new List<CS_Animation_System>();	// アニメーションシステムのリスト
+		private List<CS_Animation_System> m_animation_system_list = new List<CS_Animation_System>();	// アニメーションシステムのリスト
 
 		private CS_DX_11_Draw_Call_System m_draw_setting = new CS_DX_11_Draw_Call_System();	// 描画設定用のシステム
 
@@ -70,11 +70,11 @@ namespace _3D_Model_Converter_And_Drawer
 		private int m_animation_by_index = 0; // ブレンド元のアニメーションのインデックス番号
 		private int m_animation_to_index = 0; // ブレンド先のアニメーションのインデックス番号
 
-		private float m_animation_by_time = 0.0f; // ブレンド元のアニメーションの時間
-		private float m_animation_to_time = 0.0f; // ブレンド先のアニメーションの時間
+		private float m_animation_by_time = 0.0f;		// ブレンド元のアニメーションの時間
+		private float m_animation_to_time = 0.0f;		// ブレンド先のアニメーションの時間
 		private float m_animation_blend_percent = 0.0f; // アニメーションブレンドの割合
-		private float m_camera_distance = 10.0f;	// カメラの距離
-		private float m_camera_angle = 0.0f;		// カメラの角度
+		private float m_camera_distance = 10.0f;		// カメラの距離
+		private float m_camera_angle = 0.0f;			// カメラの角度
 
 
 		// ☆ 関数 ☆ //
@@ -94,13 +94,13 @@ namespace _3D_Model_Converter_And_Drawer
 			M_Load_Shader_By_Path(out m_animation_model_shader, "Asset\\Animation_Model_Shader.fx");
 
 
-            // レンダラの初期化
-            uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
+			// レンダラの初期化
+			uc_dx_11_panel.mp_renderer.M_Create_Renderer(Handle);
 
 
 			// 三角形を描画
 			M_Set_Triangle_Shader();
-            uc_dx_11_panel.M_Reset_To_Triangle();
+			uc_dx_11_panel.M_Reset_To_Triangle();
 			uc_dx_11_panel.M_Re_Paint();
 
 
@@ -111,8 +111,8 @@ namespace _3D_Model_Converter_And_Drawer
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_far_distance = 1000.0f;
 
 
-            // WVPマトリクス用の定数バッファを生成
-            m_wvp_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, 1);
+			// WVPマトリクス用の定数バッファを生成
+			m_wvp_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, 1);
 
 			return;
 		}
@@ -120,32 +120,32 @@ namespace _3D_Model_Converter_And_Drawer
 
 		// 三角形用のシェーダーのセット
 		private void M_Set_Triangle_Shader()
-        {
-            // 三角形のシェーダーのパスをセット
-            uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader;
+		{
+			// 三角形のシェーダーのパスをセット
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader;
 
 
-            // 三角形の頂点レイアウトの生成
-            uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
-            (
-                uc_dx_11_panel.mp_renderer.mp_device,
-                ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
-                new[]
-                {
-                    new InputElement("POSITION", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 0, 0),
-                    new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 16, 0)
-                }
-            );
+			// 三角形の頂点レイアウトの生成
+			uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
+			(
+				uc_dx_11_panel.mp_renderer.mp_device,
+				ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
+				new[]
+				{
+					new InputElement("POSITION", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 0, 0),
+					new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 16, 0)
+				}
+			);
 
-            return;
+			return;
 		}
 
 
 		// 静的モデル用のシェーダーのセット
 		private void M_Set_Static_Model_Shader()
 		{
-            // 静的モデルのシェーダーのパスをセット
-            uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader;
+			// 静的モデルのシェーダーのパスをセット
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader;
 
 
 			// 静的モデルの頂点レイアウトの生成
@@ -164,30 +164,30 @@ namespace _3D_Model_Converter_And_Drawer
 				}
 			);
 
-            return;
+			return;
 		}
 
 
 		// アニメーションモデル用のシェーダーのセット
 		private void M_Set_Animation_Model_Shader()
 		{
-            // アニメーションモデルのシェーダーのパスをセット
-            uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader;
+			// アニメーションモデルのシェーダーのパスをセット
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader;
 
 
 			// アニメーションモデルの頂点レイアウトの生成
 			uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
-            (
+			(
 				uc_dx_11_panel.mp_renderer.mp_device,
 				ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
 				new[]
 				{
-                   new InputElement("POSITION", 0, SharpDX.DXGI.Format.R32G32B32_Float, 0, 0),
-                   new InputElement("TEXCOORD", 0, SharpDX.DXGI.Format.R32G32_Float, 12, 0),
-                   new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 20, 0),
-                   new InputElement("NORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 36, 0),
-                   new InputElement("TANGENT", 0, SharpDX.DXGI.Format.R32G32B32_Float, 48, 0),
-                   new InputElement("BINORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 60, 0),
+				   new InputElement("POSITION", 0, SharpDX.DXGI.Format.R32G32B32_Float, 0, 0),
+				   new InputElement("TEXCOORD", 0, SharpDX.DXGI.Format.R32G32_Float, 12, 0),
+				   new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 20, 0),
+				   new InputElement("NORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 36, 0),
+				   new InputElement("TANGENT", 0, SharpDX.DXGI.Format.R32G32B32_Float, 48, 0),
+				   new InputElement("BINORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 60, 0),
 				   new InputElement("WEIGHT", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 72, 0),
 				   new InputElement("INDEX", 0, SharpDX.DXGI.Format.R32G32B32A32_UInt, 88, 0),
 				   new InputElement("WEIGHT", 1, SharpDX.DXGI.Format.R32G32B32A32_Float, 104, 0),
@@ -196,10 +196,10 @@ namespace _3D_Model_Converter_And_Drawer
 				   new InputElement("INDEX", 2, SharpDX.DXGI.Format.R32G32B32A32_UInt, 152, 0),
 				   new InputElement("WEIGHT", 3, SharpDX.DXGI.Format.R32G32B32A32_Float, 168, 0),
 				   new InputElement("INDEX", 3, SharpDX.DXGI.Format.R32G32B32A32_UInt, 184, 0)
-                }
+				}
 			);
 
-            return;
+			return;
 		}
 
 
@@ -517,13 +517,13 @@ namespace _3D_Model_Converter_And_Drawer
 
 		// ボーンマトリクスの定数バッファを更新する　引数：セットする定数バッファのインデックス番号, ブレンドの割合
 		private void M_Update_Bone_Matrix_Constant_Buffer(int in_set_index)
-        {
-            // ☆ 変数宣言 ☆ //
-            List<SharpDX.Matrix> animation_matrix_list = new List<Matrix>(); // ボーンマトリクス計算用のリスト
+		{
+			// ☆ 変数宣言 ☆ //
+			List<SharpDX.Matrix> animation_matrix_list = new List<Matrix>(); // ボーンマトリクス計算用のリスト
 
 
 			// ボーンマトリクスの定数バッファを生成
-            m_bone_matrix_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, m_animation_model.mp_bone_data_list.Count);
+			m_bone_matrix_constant_buffer.M_Create_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_device, m_animation_model.mp_bone_data_list.Count);
 
 
 			// アニメーションがある時はアニメーションの計算を行う
@@ -532,8 +532,8 @@ namespace _3D_Model_Converter_And_Drawer
 				// ボーンマトリクスのリストを生成
 				for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_animation_model.mp_bone_data_list.Count; l_now_bone_matrix_num++)
 				{
-                    animation_matrix_list.Add(new Matrix());
-                }
+					animation_matrix_list.Add(new Matrix());
+				}
 
 
 				// ブレンド先とブレンド元のアニメーションがない時は何もしない
@@ -585,8 +585,8 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-            // アニメーションの結果にボーンの親子関係による更新を掛ける
-            M_Update_Bone_Animation_By_Parent_Child_Relation(ref animation_matrix_list, 0);
+			// アニメーションの結果にボーンの親子関係による更新を掛ける
+			M_Update_Bone_Animation_By_Parent_Child_Relation(ref animation_matrix_list, 0);
 
 			// アニメーションの結果とボーンオフセットマトリクスを掛ける
 			for (int l_now_bone_matrix_num = 0; l_now_bone_matrix_num < m_bone_matrix_constant_buffer.mp_constant_data_list.Count; l_now_bone_matrix_num++)
@@ -595,11 +595,11 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-            // ボーンマトリクスの定数バッファにデータを書き込む
-            m_bone_matrix_constant_buffer.M_Write_Data_To_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_context);
+			// ボーンマトリクスの定数バッファにデータを書き込む
+			m_bone_matrix_constant_buffer.M_Write_Data_To_Constant_Buffer(uc_dx_11_panel.mp_renderer.mp_context);
 
-            // 定数バッファをセット
-            foreach (var l_now_mesh in m_draw_setting.mp_mesh_data_list)
+			// 定数バッファをセット
+			foreach (var l_now_mesh in m_draw_setting.mp_mesh_data_list)
 			{
 				l_now_mesh.mp_constant_buffer_set_list.Add(new S_DX_11_Constant_Buffer_Draw_Setting(m_bone_matrix_constant_buffer, E_DX_11_SHADER_TYPE.e_VERTEX_SHADER, in_set_index));
 			}
@@ -615,17 +615,17 @@ namespace _3D_Model_Converter_And_Drawer
 			if (m_animation_model.mp_bone_data_list[in_now_bone_number].mp_parent_index < 0)
 			{
 				M_Update_Bone_Animation_By_Parent_Child_Relation(ref in_animation_matrix_list, in_now_bone_number);
-            }
+			}
 
 			// ボーンの親がいるときは、親の更新を掛けてから子の更新を掛ける
-            else
+			else
 			{
 				// アニメーションのデータと親のボーンオフセットマトリクスを掛ける
 				in_animation_matrix_list[in_now_bone_number] *= in_animation_matrix_list[m_animation_model.mp_bone_data_list[in_now_bone_number].mp_parent_index];
 
-                // 子の更新をかける
-                M_Update_Bone_Animation_By_Parent_Child_Relation(ref in_animation_matrix_list, in_now_bone_number);
-            }
+				// 子の更新をかける
+				M_Update_Bone_Animation_By_Parent_Child_Relation(ref in_animation_matrix_list, in_now_bone_number);
+			}
 
 			return;
 		}
@@ -643,21 +643,21 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-            // 描画用の設定を初期化する
-            m_draw_setting = new CS_DX_11_Draw_Call_System();
+			// 描画用の設定を初期化する
+			m_draw_setting = new CS_DX_11_Draw_Call_System();
 
 
-            // ☆ 変数宣言 ☆ //
-            CS_DX_11_Vertex_Buffer<S_Static_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Static_Vertex_Data>(); // 頂点バッファ
+			// ☆ 変数宣言 ☆ //
+			CS_DX_11_Vertex_Buffer<S_Static_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Static_Vertex_Data>(); // 頂点バッファ
 
 
 			// 静的モデル用のシェーダーをセット
 			M_Set_Static_Model_Shader();
 
 
-            // 頂点バッファのデータを設定
-            new_vertex_buffer.mp_vertex_data = m_static_model.mp_vertex_data_list;
-            
+			// 頂点バッファのデータを設定
+			new_vertex_buffer.mp_vertex_data = m_static_model.mp_vertex_data_list;
+			
 
 			// 頂点バッファを生成
 			new_vertex_buffer.M_Create_Vertex_Buffer(uc_dx_11_panel.mp_renderer.mp_device);
@@ -670,14 +670,14 @@ namespace _3D_Model_Converter_And_Drawer
 			m_draw_setting.mp_mesh_data_list.Clear();
 
 
-            // 頂点インデックスデータを設定
-            for (int l_now_mesh_data_number = 0; l_now_mesh_data_number < m_static_model.mp_mesh_data_list.Count; l_now_mesh_data_number++)
+			// 頂点インデックスデータを設定
+			for (int l_now_mesh_data_number = 0; l_now_mesh_data_number < m_static_model.mp_mesh_data_list.Count; l_now_mesh_data_number++)
 			{
 				// メッシュデータを追加
-                m_draw_setting.mp_mesh_data_list.Add(new CS_DX11_Mesh_Data());
+				m_draw_setting.mp_mesh_data_list.Add(new CS_DX11_Mesh_Data());
 
 				// インデックスデータを追加
-                foreach (var l_now_index in m_static_model.mp_mesh_data_list[l_now_mesh_data_number].mp_index_list)
+				foreach (var l_now_index in m_static_model.mp_mesh_data_list[l_now_mesh_data_number].mp_index_list)
 				{
 					m_draw_setting.mp_mesh_data_list[l_now_mesh_data_number].mp_vertex_index.mp_index_data.Add(l_now_index);
 				}
@@ -697,8 +697,8 @@ namespace _3D_Model_Converter_And_Drawer
 			CS_Camera_Manager.M_Update_Camera_Position_And_Angle_By_Target();
 
 
-            // WVPマトリクスを定数バッファにセット
-            M_Update_WVP_Constant_Buffer(con_WVP_CONSTANT_BUFFER_SLOT_NUMBER);
+			// WVPマトリクスを定数バッファにセット
+			M_Update_WVP_Constant_Buffer(con_WVP_CONSTANT_BUFFER_SLOT_NUMBER);
 
 
 			// 描画を実行
@@ -718,20 +718,20 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-            // 描画用の設定を初期化する
-            m_draw_setting = new CS_DX_11_Draw_Call_System();
+			// 描画用の設定を初期化する
+			m_draw_setting = new CS_DX_11_Draw_Call_System();
 
 
-            // ☆ 変数宣言 ☆ //
-            CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data>(); // 頂点バッファ
+			// ☆ 変数宣言 ☆ //
+			CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data>(); // 頂点バッファ
 
 
 			// アニメーションモデル用のシェーダーをセット
 			M_Set_Animation_Model_Shader();
 
 
-            // 頂点バッファのデータを設定
-            new_vertex_buffer.mp_vertex_data = m_animation_model.mp_vertex_list;
+			// 頂点バッファのデータを設定
+			new_vertex_buffer.mp_vertex_data = m_animation_model.mp_vertex_list;
 
 			// 頂点バッファを生成
 			new_vertex_buffer.M_Create_Vertex_Buffer(uc_dx_11_panel.mp_renderer.mp_device);
@@ -770,7 +770,7 @@ namespace _3D_Model_Converter_And_Drawer
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
 
-            return;
+			return;
 		}
 
 
@@ -952,9 +952,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// 静的モデルを描画
 				M_Draw_Static_Model();
-                uc_dx_11_panel.M_Re_Paint();
+				uc_dx_11_panel.M_Re_Paint();
 
-                return;
+				return;
 			}
 
 
@@ -969,9 +969,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// アニメーションモデルを描画
 				M_Draw_Animation_Model();
-                uc_dx_11_panel.M_Re_Paint();
+				uc_dx_11_panel.M_Re_Paint();
 
-                return;
+				return;
 			}
 
 
