@@ -1,6 +1,8 @@
 ﻿using _3D_Model_Converter_And_Drawer._3D_model_Convert;
 using _3D_Model_Converter_And_Drawer._3Dmodel_Convert;
 using _3D_Model_Converter_And_Drawer.Animation_Convert;
+using _3D_Model_Converter_And_Drawer.UI;
+using _3D_Model_Converter_And_Drawer.UI.Announce_Bord;
 using Assimp;
 using System;
 using System.Collections.Generic;
@@ -167,12 +169,12 @@ namespace _3D_Model_Converter_And_Drawer
 				// 子ボーンの番号リストを生成する
 				foreach (var l_now_child_bone in now_scene.RootNode.Children)
 				{
-                    children_list.Add(CS_My_Math_System.M_Get_Bone_Index_From_Name(l_now_child_bone.Name, m_bone_data_list));
-                }
+					children_list.Add(CS_My_Math_System.M_Get_Bone_Index_From_Name(l_now_child_bone.Name, m_bone_data_list));
+				}
 
 				// 子ボーンの番号リストを設定する
 				m_bone_data_list[0] = new S_Write_Bone_Data_Inform
-                (
+				(
 					m_bone_data_list[0].name,
 					m_bone_data_list[0].index,
 					m_bone_data_list[0].parent_index,
@@ -217,10 +219,10 @@ namespace _3D_Model_Converter_And_Drawer
 		}
 
 
-        //-☆- イベント -☆-//
+		//-☆- イベント -☆-//
 
-        // 終了ボタンが押されたときはフォームを閉じる
-        private void Exit_button_Click(object sender, EventArgs e)
+		// 終了ボタンが押されたときはフォームを閉じる
+		private void Exit_button_Click(object sender, EventArgs e)
 		{
 			this.Close();
 
@@ -232,6 +234,8 @@ namespace _3D_Model_Converter_And_Drawer
 		private void B_material_inform_generate_button_Click(object sender, EventArgs e)
 		{
 			// ☆ 変数宣言 ☆ //
+			Form_Announce_Bord form_announce = new Form_Announce_Bord();	// 告知するボード用のフォーム
+
 			string now_doubling_material = uc_material_name_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
 
 
@@ -243,18 +247,32 @@ namespace _3D_Model_Converter_And_Drawer
 			}
 
 
-			// マテリアル情報を生成
-			CS_Material_Inform_Convert_System.M_Convert_Material_Inform(now_scene);
+            // 書き込み中を示すボードを表示
+            form_announce.M_Set_Announce_Text("マテリアルデータ生成中");
 
-			return;
+            // ボードを画面の真ん中に表示する
+			form_announce.StartPosition = FormStartPosition.CenterScreen;
+            form_announce.Show();
+
+
+            // マテリアル情報を生成
+            CS_Material_Inform_Convert_System.M_Convert_Material_Inform(now_scene, ref form_announce);
+
+
+			// 書き込み中を示すボードを削除
+			form_announce.Dispose();
+
+            return;
 		}
 
 
 		// アニメーションデータ生成ボタンが押されたとき
 		private void b_animation_data_convert_button_Click(object sender, EventArgs e)
 		{
-			// ☆ 変数宣言 ☆ //
-			string now_doubling_animation = uc_animation_data_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
+            // ☆ 変数宣言 ☆ //
+            Form_Announce_Bord form_announce = new Form_Announce_Bord();    // 告知するボード用のフォーム
+
+            string now_doubling_animation = uc_animation_data_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
 
 
 			// アニメーション名に被りがあるなら実行しない
@@ -262,20 +280,35 @@ namespace _3D_Model_Converter_And_Drawer
 			{
 				MessageBox.Show("アニメーションデータ名に被りがあります。被ったアニメーションデータ名：" + now_doubling_animation);
 				return;
-			}
+            }
 
-			// アニメーションデータを生成
-			CS_Animation_Convert_System.M_Convert_Animation_Data(now_scene);
 
-			return;
+            // 書き込み中を示すボードを表示
+            form_announce.M_Set_Announce_Text("アニメーションデータ生成中");
+
+            // ボードを画面の真ん中に表示する
+            form_announce.StartPosition = FormStartPosition.CenterScreen;
+            form_announce.Show();
+
+
+            // アニメーションデータを生成
+            CS_Animation_Convert_System.M_Convert_Animation_Data(now_scene, ref form_announce);
+
+
+            // 書き込み中を示すボードを削除
+            form_announce.Dispose();
+
+            return;
 		}
 
 
 		// 静的なモデルに変換するボタンが押されたとき
 		private void B_static_model_convert_button_Click(object sender, EventArgs e)
 		{
-			// ☆ 変数宣言 ☆ //
-			string now_doubling_material = uc_material_name_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
+            // ☆ 変数宣言 ☆ //
+            Form_Announce_Bord form_announce = new Form_Announce_Bord();    // 告知するボード用のフォーム
+
+            string now_doubling_material = uc_material_name_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
 
 
 			// マテリアル名に被りがあるなら実行しない
@@ -283,19 +316,36 @@ namespace _3D_Model_Converter_And_Drawer
 			{
 				MessageBox.Show("マテリアル名に被りがあります。被ったマテリアル名：" + now_doubling_material);
 				return;
-			}
+            }
 
-			// 静的なモデルを生成
-			CS_3D_Model_Convert_System.M_Convert_Static_Model(now_scene);
 
-			return;
+            // 書き込み中を示すボードを表示
+            form_announce.M_Set_Announce_Text("静的モデルデータ生成中");
+
+
+            // ボードを画面の真ん中に表示する
+            form_announce.StartPosition = FormStartPosition.CenterScreen;
+            form_announce.Show();
+
+
+            // 静的なモデルを生成
+            CS_3D_Model_Convert_System.M_Convert_Static_Model(now_scene, ref form_announce);
+
+
+            // 書き込み中を示すボードを削除
+            form_announce.Dispose();
+
+            return;
 		}
+
 
 		// 動的なモデルに変換するボタンが押されたとき
 		private void b_animative_model_generate_button_Click(object sender, EventArgs e)
 		{
-			// ☆ 変数宣言 ☆ //
-			string now_doubling_material = uc_material_name_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
+            // ☆ 変数宣言 ☆ //
+            Form_Announce_Bord form_announce = new Form_Announce_Bord();    // 告知するボード用のフォーム
+
+            string now_doubling_material = uc_material_name_list.M_Check_Name_Doubling();  // 被りがあるマテリアルの名前
 
 			string now_doubling_born = uc_born_name_list.M_Check_Name_Doubling();  // 被りがあるボーンの名前
 
@@ -312,19 +362,32 @@ namespace _3D_Model_Converter_And_Drawer
 			{
 				MessageBox.Show("ボーン名に被りがあります。被ったボーン名：" + now_doubling_born);
 				return;
-			}
+            }
 
-			// アニメーション可能なモデルを生成
-			CS_3D_Model_Convert_System.M_Convert_Animation_Model(now_scene);
 
-			return;
+            // 書き込み中を示すボードを表示
+            form_announce.M_Set_Announce_Text("アニメーションモデルデータ生成中");
+
+            // ボードを画面の真ん中に表示する
+            form_announce.StartPosition = FormStartPosition.CenterScreen;
+            form_announce.Show();
+
+
+            // アニメーション可能なモデルを生成
+            CS_3D_Model_Convert_System.M_Convert_Animation_Model(now_scene, ref form_announce);
+
+
+            // 書き込み中を示すボードを削除
+            form_announce.Dispose();
+
+            return;
 		}
 
 
 		// フォームが閉じられたとき
 		private void Form_3D_Model_Convert_Setting_FormClosed(object sender, FormClosedEventArgs e)
 		{
-            m_is_active = false;
+			m_is_active = false;
 
 			m_mesh_name_list.Clear();
 			m_mesh_name_list = new List<string>();
@@ -337,11 +400,11 @@ namespace _3D_Model_Converter_And_Drawer
 			m_material_name_list.Clear();
 			m_material_name_list = new List<string>();
 
-            now_scene.Clear();
+			now_scene.Clear();
 			now_scene = null;
 
-            // ガーベージコレクションを実行し、ファイナライザの実行を待つ
-            GC.Collect();
+			// ガーベージコレクションを実行し、ファイナライザの実行を待つ
+			GC.Collect();
 			GC.WaitForPendingFinalizers();
 
 			return;

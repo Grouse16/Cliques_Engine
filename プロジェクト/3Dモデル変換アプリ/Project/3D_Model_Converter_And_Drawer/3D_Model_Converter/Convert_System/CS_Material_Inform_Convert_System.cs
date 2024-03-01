@@ -1,4 +1,6 @@
-﻿using Assimp;
+﻿using _3D_Model_Converter_And_Drawer.UI;
+using _3D_Model_Converter_And_Drawer.UI.Announce_Bord;
+using Assimp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,18 +16,83 @@ namespace _3D_Model_Converter_And_Drawer._3D_model_Convert
     // マテリアル情報変換システム
     public class CS_Material_Inform_Convert_System
     {
+        // ☆ 構造体 ☆ //
+
+        // マテリアルとして書き込むファイルのデータの構造体
+        struct S_Write_Material_File_Data
+        {
+            // ☆ 変数宣言 ☆ //
+            public string m_file_name;   // ファイル名
+
+            public List<string> m_write_data; // 書き込むデータ
+
+
+            // ☆ プロパティ ☆ //
+
+            // ファイル名のプロパティ
+            public string mp_file_name
+            {
+                // ゲッタ
+                get
+                {
+                    return m_file_name;
+                }
+
+                // セッタ
+                set
+                {
+                    m_file_name = value;
+
+                    return;
+                }
+            }
+
+            // 書き込むデータのプロパティ
+            public List<string> mp_write_data
+            {
+                // ゲッタ
+                get
+                {
+                    return m_write_data;
+                }
+
+                // セッタ
+                set
+                {
+                    m_write_data = value;
+
+                    return;
+                }
+            }
+
+
+            //-☆- 関数 -☆-//
+
+            // コンストラクタ
+            public S_Write_Material_File_Data(string in_file_name, List<string> in_write_data)
+            {
+                m_file_name = in_file_name;
+                m_write_data = in_write_data;
+
+                return;
+            }
+        }
+
+
         // ☆ 関数 ☆ //
 
         //-☆- 変換 -☆-//
 
-        // マテリアルの質感情報の変換　引数：シーンデータ
-        public static void M_Convert_Material_Inform(Scene in_scene)
+        // マテリアルの質感情報の変換　引数：シーンデータ, 書き込み中を示すボードの参照
+        public static void M_Convert_Material_Inform(Scene in_scene, ref Form_Announce_Bord in_present_writing_anounce_bord)
         {
             // ☆ 定数 ☆ //
             const string con_EXTENSION = ".elmatinform";   // 拡張子
 
 
             // ☆ 変数宣言 ☆ //
+            List<S_Write_Material_File_Data> write_file_list = new List<S_Write_Material_File_Data>();   // 書き込むファイルのリスト
+
             string selected_folder_path = "";   // 選択されたフォルダのパス
 
             int now_material_num = 0;   // 現在のマテリアル番号
@@ -112,16 +179,31 @@ namespace _3D_Model_Converter_And_Drawer._3D_model_Convert
                     );
 
 
-                // 新しいファイルの書き込みを行う
-                System.IO.File.WriteAllText(write_file_name, file_mat_write_data[0]);
-                for (int now_write_raw = 1; now_write_raw < file_mat_write_data.Count; now_write_raw++)
-                {
-                    System.IO.File.AppendAllText(write_file_name, Environment.NewLine + file_mat_write_data[now_write_raw]);
-                }
+                // 書き込むファイルのデータをリストに追加
+                write_file_list.Add(new S_Write_Material_File_Data(write_file_name, file_mat_write_data));
 
                 // 次のマテリアル番号を指定
                 now_material_num += 1;
             }
+
+
+            // ファイルの書き込みを告知する
+            in_present_writing_anounce_bord.M_Set_Announce_Text("ファイル書き込み中です");
+
+
+            // 新しいファイルの書き込みを行う
+            foreach (S_Write_Material_File_Data l_now_write_file_data in write_file_list)
+            {
+                System.IO.File.WriteAllText(l_now_write_file_data.mp_file_name, l_now_write_file_data.mp_write_data[0]);
+                foreach (string l_now_write_data in l_now_write_file_data.m_write_data)
+                {
+                    System.IO.File.AppendAllText(l_now_write_file_data.mp_file_name, Environment.NewLine + l_now_write_data);
+                }
+            }
+
+
+            // ファイルの書き込みを告知する
+            in_present_writing_anounce_bord.M_Set_Announce_Text("書き込み終了しました");
 
             return;
         }
