@@ -100,13 +100,11 @@ namespace _3D_Model_Converter_And_Drawer
 
 
 			// 三角形を描画
-			M_Set_Triangle_Shader();
-			uc_dx_11_panel.M_Reset_To_Triangle();
-			uc_dx_11_panel.M_Re_Paint();
+			M_Draw_Triangle();
 
 
-			// プロジェクションを設定
-			CS_Camera_Manager.mp_camera_system.mp_projection.mp_aspect_ratio = (float)uc_dx_11_panel.Width / (float)uc_dx_11_panel.Height;
+            // プロジェクションを設定
+            CS_Camera_Manager.mp_camera_system.mp_projection.mp_aspect_ratio = (float)uc_dx_11_panel.Width / (float)uc_dx_11_panel.Height;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_field_of_view = 60.0f;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_near_distance = 0.1f;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_far_distance = 1000.0f;
@@ -415,8 +413,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Model_And_Animation_Data_Reset()
 		{
 			// 三角形の描画に戻す
-			M_Set_Triangle_Shader();
-			uc_dx_11_panel.M_Reset_To_Triangle();
+			M_Draw_Triangle();
 
 
 			// 静的モデルを削除
@@ -657,6 +654,19 @@ namespace _3D_Model_Converter_And_Drawer
 
 		//-☆- 描画 -☆-//
 
+		// 三角形を描画
+		private void M_Draw_Triangle()
+		{
+            // 三角形用のシェーダーをセット
+            M_Set_Triangle_Shader();
+
+			// 描画を実行
+			uc_dx_11_panel.M_Reset_To_Triangle();
+			uc_dx_11_panel.M_Re_Paint();
+
+			return;
+		}
+
 		// 静的モデルを描画
 		private void M_Draw_Static_Model()
 		{
@@ -727,8 +737,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
+            uc_dx_11_panel.M_Re_Paint();
 
-			return;
+            return;
 		}
 
 
@@ -793,8 +804,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
+			uc_dx_11_panel.M_Re_Paint();
 
-			return;
+            return;
 		}
 
 
@@ -976,7 +988,6 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// 静的モデルを描画
 				M_Draw_Static_Model();
-				uc_dx_11_panel.M_Re_Paint();
 
 				return;
 			}
@@ -993,7 +1004,6 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// アニメーションモデルを描画
 				M_Draw_Animation_Model();
-				uc_dx_11_panel.M_Re_Paint();
 
 				return;
 			}
@@ -1016,5 +1026,15 @@ namespace _3D_Model_Converter_And_Drawer
 
 			return;
 		}
+
+
+		// モデルのリセットボタンが押されたら、三角形を描画し、モデルデータリセット
+        private void B_model_reset_Click(object sender, EventArgs e)
+        {
+			// モデルとアニメーションのデータをリセット
+			M_Model_And_Animation_Data_Reset();
+
+			return;
+        }
     }
 }

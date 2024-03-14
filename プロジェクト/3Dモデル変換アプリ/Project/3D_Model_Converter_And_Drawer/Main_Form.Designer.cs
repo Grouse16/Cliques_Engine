@@ -49,6 +49,7 @@
             this.tb_print_model_converter = new System.Windows.Forms.TextBox();
             this.uc_load_inform_box = new _3D_Model_Converter_And_Drawer.FormTool.UC_Load_Inform_Box();
             this.uc_dx_11_panel = new _3D_Model_Converter_And_Drawer.d3d11.UC_DX_11_Panel();
+            this.B_model_reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -209,7 +210,7 @@
             this.b_model_converter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.b_model_converter.Cursor = System.Windows.Forms.Cursors.No;
             this.b_model_converter.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.b_model_converter.Location = new System.Drawing.Point(900, 310);
+            this.b_model_converter.Location = new System.Drawing.Point(901, 269);
             this.b_model_converter.Name = "b_model_converter";
             this.b_model_converter.Size = new System.Drawing.Size(180, 123);
             this.b_model_converter.TabIndex = 0;
@@ -225,7 +226,7 @@
             this.b_model_importer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.b_model_importer.Cursor = System.Windows.Forms.Cursors.No;
             this.b_model_importer.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.b_model_importer.Location = new System.Drawing.Point(902, 448);
+            this.b_model_importer.Location = new System.Drawing.Point(903, 407);
             this.b_model_importer.Name = "b_model_importer";
             this.b_model_importer.Size = new System.Drawing.Size(178, 123);
             this.b_model_importer.TabIndex = 0;
@@ -237,7 +238,7 @@
             // tb_print_model_importer
             // 
             this.tb_print_model_importer.BackColor = System.Drawing.SystemColors.Menu;
-            this.tb_print_model_importer.Location = new System.Drawing.Point(902, 432);
+            this.tb_print_model_importer.Location = new System.Drawing.Point(903, 391);
             this.tb_print_model_importer.Name = "tb_print_model_importer";
             this.tb_print_model_importer.Size = new System.Drawing.Size(178, 19);
             this.tb_print_model_importer.TabIndex = 1;
@@ -246,7 +247,7 @@
             // tb_print_model_converter
             // 
             this.tb_print_model_converter.BackColor = System.Drawing.SystemColors.Menu;
-            this.tb_print_model_converter.Location = new System.Drawing.Point(900, 294);
+            this.tb_print_model_converter.Location = new System.Drawing.Point(901, 253);
             this.tb_print_model_converter.Name = "tb_print_model_converter";
             this.tb_print_model_converter.Size = new System.Drawing.Size(180, 19);
             this.tb_print_model_converter.TabIndex = 1;
@@ -272,11 +273,23 @@
             this.uc_dx_11_panel.Size = new System.Drawing.Size(524, 392);
             this.uc_dx_11_panel.TabIndex = 13;
             // 
+            // B_model_reset
+            // 
+            this.B_model_reset.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.B_model_reset.Location = new System.Drawing.Point(904, 529);
+            this.B_model_reset.Name = "B_model_reset";
+            this.B_model_reset.Size = new System.Drawing.Size(176, 42);
+            this.B_model_reset.TabIndex = 14;
+            this.B_model_reset.Text = "モデルリセット";
+            this.B_model_reset.UseVisualStyleBackColor = true;
+            this.B_model_reset.Click += new System.EventHandler(this.B_model_reset_Click);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 626);
+            this.Controls.Add(this.B_model_reset);
             this.Controls.Add(this.uc_dx_11_panel);
             this.Controls.Add(this.tb_print_camera_setting);
             this.Controls.Add(this.tb_print_camera_position);
@@ -334,6 +347,7 @@
         private System.Windows.Forms.TextBox tb_print_model_importer;
         private System.Windows.Forms.TextBox tb_print_model_converter;
         private d3d11.UC_DX_11_Panel uc_dx_11_panel;
+        private System.Windows.Forms.Button B_model_reset;
     }
 }
 
