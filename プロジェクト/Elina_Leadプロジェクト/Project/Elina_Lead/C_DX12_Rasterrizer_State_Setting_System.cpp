@@ -146,7 +146,6 @@ void C_DX12_Rasterizer_State_Setting_System::M_Rasterizer_Setting(D3D12_GRAPHICS
     {
         // –³Œø
     case false:
-    default:
         in_pipeline_state_setting_desc.RasterizerState.ConservativeRaster = D3D12_CONSERVATIVE_RASTERIZATION_MODE::D3D12_CONSERVATIVE_RASTERIZATION_MODE_OFF;
         break;
 

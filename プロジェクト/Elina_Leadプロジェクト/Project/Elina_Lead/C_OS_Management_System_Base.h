@@ -17,8 +17,8 @@
 
 #include "E_MOUSE_CLICK_STATE.h"
 #include "S_Window_Size_Data.h"
-#include "S_Mouse_State.h"
 #include "S_Window_Position.h"
+#include "S_Mouse_State.h"
 #include "S_Day_And_Time_Inform.h"
 
 
@@ -99,6 +99,9 @@ namespace OS::BASE
 
 		// 更新を行う
 		virtual void M_Update(void) = 0;
+
+		// 時間を更新する
+		virtual void M_Update_Time(void) = 0;
 
 		// ウィンドウのサイズの更新
 		virtual void M_Window_Size_Update(void) = 0;

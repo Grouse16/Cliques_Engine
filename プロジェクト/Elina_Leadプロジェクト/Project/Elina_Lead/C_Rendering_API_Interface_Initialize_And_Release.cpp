@@ -44,8 +44,6 @@ bool C_Rendering_API_Interface_Initialize_And_Release::M_Initialize_Rendering_AP
 	// インスタンスが生成されていないならエラーを返す
 	if (rendering_api_address == nullptr)
 	{
-		// デバッグ時のみエラーログを出す
-#ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log
 		(
@@ -54,7 +52,6 @@ bool C_Rendering_API_Interface_Initialize_And_Release::M_Initialize_Rendering_AP
 			"レンダリングAPIのインスタンスが生成されていない状態で初期化を実行されました"
 		);
 		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // !_DEBUG
 
 		return false;
 	}

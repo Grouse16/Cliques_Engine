@@ -109,7 +109,7 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 	int then_size_x = mpr_variable.texture_size_x;	// 拡張前のｘでのサイズ
 	int then_size_y = mpr_variable.texture_size_y;	// 拡張前のｙでのサイズ
 
-	int then_map_size = mpr_variable.texture_map.size();	// 拡張前のマップのサイズ
+	int then_map_size = (int)mpr_variable.texture_map.size();	// 拡張前のマップのサイズ
 
 	
 	// 拡張前の情報を復元用に移す

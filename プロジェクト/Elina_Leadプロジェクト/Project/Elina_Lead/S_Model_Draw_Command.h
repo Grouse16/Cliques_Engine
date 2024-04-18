@@ -43,7 +43,7 @@ namespace ASSET::MODEL_SYSTEM
 
 		std::vector<std::string> mesh_name_list;	// このマテリアルで描画するメッシュ名のリスト
 
-		E_MODEL_DRAW_OPTION model_draw_option;	// モデルの描画方法を指定するフラグ
+		E_MODEL_DRAW_OPTION model_draw_option = E_MODEL_DRAW_OPTION::e_NATURAL_DRAW;	// モデルの描画方法を指定するフラグ
 	};
 }
 

@@ -285,14 +285,14 @@ void C_DX12_Blend_State_Setting_System::M_Set_Blend_State_By_Inform(D3D12_GRAPHI
 
 	
 	// ☆ 変数宣言 ☆ //
-	int use_render_target_sum = in_create_inform.blend_setting.size();	// 使用するレンダーターゲット数
+	int use_render_target_sum = (int)in_create_inform.blend_setting.size();	// 使用するレンダーターゲット数
 
 
 	// レンダーターゲットの最大数を超えないようにする
 	use_render_target_sum =
-		use_render_target_sum > con_RENDER_TARGET_SUM * con_RENDER_TARGET_SUM
+		(int)(use_render_target_sum > con_RENDER_TARGET_SUM) * con_RENDER_TARGET_SUM
 		+
-		use_render_target_sum <= con_RENDER_TARGET_SUM * use_render_target_sum;
+		(int)(use_render_target_sum <= con_RENDER_TARGET_SUM) * use_render_target_sum;
 
 
 	// レンダーターゲットが複数あるなら、複数のレンダーターゲットによるブレンドを有効にする

@@ -114,10 +114,10 @@ C_1_Byte_Color C_Color_Converter::M_Convert_Half_Color_To_1_Byte_Color(const C_H
 	C_1_Byte_Color result_convert;	// •ÏŠ·Œ‹‰Ê
 
 
-	result_convert.m_r = DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_r) * 255.0f;
-	result_convert.m_g = DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_g) * 255.0f;
-	result_convert.m_b = DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_b) * 255.0f;
-	result_convert.m_a = DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_a) * 255.0f;
+	result_convert.m_r = (unsigned char)(DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_r) * 255.0f);
+	result_convert.m_g = (unsigned char)(DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_g) * 255.0f);
+	result_convert.m_b = (unsigned char)(DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_b) * 255.0f);
+	result_convert.m_a = (unsigned char)(DirectX::PackedVector::XMConvertHalfToFloat(in_convert_by.m_a) * 255.0f);
 
 	return result_convert;
 }
@@ -134,10 +134,10 @@ C_1_Byte_Color C_Color_Converter::M_Convert_Color_To_1_Byte_Color(const C_Color 
 	C_1_Byte_Color result_convert;	// •ÏŠ·Œ‹‰Ê
 	
 	
-	result_convert.m_r = in_convert_by.m_r * 255.0f;
-	result_convert.m_g = in_convert_by.m_g * 255.0f;
-	result_convert.m_b = in_convert_by.m_b * 255.0f;
-	result_convert.m_a = in_convert_by.m_a * 255.0f;
+	result_convert.m_r = (unsigned char)(in_convert_by.m_r * 255.0f);
+	result_convert.m_g = (unsigned char)(in_convert_by.m_g * 255.0f);
+	result_convert.m_b = (unsigned char)(in_convert_by.m_b * 255.0f);
+	result_convert.m_a = (unsigned char)(in_convert_by.m_a * 255.0f);
 
 	return result_convert;
 }

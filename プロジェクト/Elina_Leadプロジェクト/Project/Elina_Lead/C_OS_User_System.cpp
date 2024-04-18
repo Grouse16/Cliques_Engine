@@ -16,6 +16,21 @@ using namespace OS;
 
 // ☆ クラス ☆ //
 
+//-☆- 更新 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：現在の時間を更新する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_OS_User_System::M_Update_Time(void)
+{
+	OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Update_Time();
+
+	return;
+}
+
+
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//

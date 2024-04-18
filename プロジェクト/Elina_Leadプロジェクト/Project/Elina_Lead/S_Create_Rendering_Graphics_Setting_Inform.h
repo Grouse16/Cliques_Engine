@@ -70,7 +70,7 @@ namespace RENDERING::API::CREATE
 	// 描画パイプライン用情報を生成するための情報の構造体
 	struct S_Create_Rendering_Graphics_Setting_Inform
 	{
-		ASSET::SHADER::C_Shader_Setting * shader_setting;	// シェーダー設定情報
+		ASSET::SHADER::C_Shader_Setting * shader_setting = nullptr;	// シェーダー設定情報
 
 		S_Depth_Stencil_Create_Data depth_stencil_data;	// 深度ステンシルの生成用データ
 

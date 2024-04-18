@@ -126,10 +126,10 @@ void C_Scale_Constant_UI::M_Scale_Update(void)
 
 
 	// âÊñ ÇÃê›íËÇ…çáÇÌÇπÇÈ
-	m_box_pos.left_x = m_box_pos.left_x * 2.0f - 1.0f;
-	m_box_pos.right_x = m_box_pos.right_x * 2.0f - 1.0f;
-	m_box_pos.top_y = m_box_pos.top_y * 2.0f - 1.0f;
-	m_box_pos.bottom_y = m_box_pos.bottom_y * 2.0f - 1.0f;
+	m_box_pos.left_x = m_box_pos.left_x * 2 - 1;
+	m_box_pos.right_x = m_box_pos.right_x * 2 - 1;
+	m_box_pos.top_y = m_box_pos.top_y * 2 - 1;
+	m_box_pos.bottom_y = m_box_pos.bottom_y * 2 - 1;
 
 	return;
 }

@@ -152,6 +152,7 @@ void C_Log_System::M_Print_Log(E_LOG_TAGS in_tag, std::string in_file_name, std:
 
 	
 	// Œ»İ‚ÌŠÔî•ñ‚ğæ“¾
+	OS::C_OS_User_System::M_Update_Time();
 	now_time_and_day = OS::C_OS_User_System::M_Get_Now_Day_And_Time();
 
 

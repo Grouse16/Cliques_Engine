@@ -169,47 +169,6 @@ void C_Windows_OS_Management_System::M_Mouse_Input_Update(void)
 }
 
 
-//-☆- 更新 -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：時間の更新
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_OS_Management_System::M_Time_Update(void)
-{
-	// ☆ 変数宣言 ☆ //
-	time_t get_time = time(nullptr);	// 時間情報
-
-	tm time_data;	// 時間情報を解析したデータ
-
-	S_Day_And_Time_Inform now_time;	// 現在の時間
-
-
-	// 時間情報をデータに変換
-	localtime_s(&time_data, &get_time);
-
-	// 日付を設定
-	now_time.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
-	now_time.month = time_data.tm_mon + 1;		// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
-	now_time.day = time_data.tm_mday;			// 日
-
-	// 時刻を設定
-	now_time.hour = time_data.tm_hour;	// 時
-	now_time.minute = time_data.tm_min;	// 分
-	now_time.second = time_data.tm_sec;	// 秒
-
-	// 現在の日時をセット
-	M_Set_Now_Day_And_Time(now_time);
-
-
-	// 現在の経過時間をセット
-	M_Set_Now_Time_By_Start_In_Milli_Second(GetTickCount64());
-
-	return;
-}
-
-
 //==☆  パブリック  ☆==//
 
 //-☆-  初期化と終了時  -☆-//
@@ -325,6 +284,9 @@ void C_Windows_OS_Management_System::M_Update(void)
 	// マウス座標の更新
 	M_Mouse_Input_Update();
 
+	// 時間の更新
+	M_Update_Time();
+
 	return;
 }
 
@@ -357,6 +319,47 @@ void C_Windows_OS_Management_System::M_Window_Size_Update(void)
 	return;
 }
 
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：時間の更新
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Windows_OS_Management_System::M_Update_Time(void)
+{
+	// ☆ 変数宣言 ☆ //
+	time_t get_time = time(nullptr);	// 時間情報
+
+	tm time_data;	// 時間情報を解析したデータ
+
+	S_Day_And_Time_Inform now_time;	// 現在の時間
+
+
+	// 時間情報をデータに変換
+	localtime_s(&time_data, &get_time);
+
+	// 日付を設定
+	now_time.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
+	now_time.month = time_data.tm_mon + 1;		// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
+	now_time.day = time_data.tm_mday;			// 日
+
+	// 時刻を設定
+	now_time.hour = time_data.tm_hour;	// 時
+	now_time.minute = time_data.tm_min;	// 分
+	now_time.second = time_data.tm_sec;	// 秒
+
+	// 現在の日時をセット
+	M_Set_Now_Day_And_Time(now_time);
+
+
+	// 現在の経過時間をセット
+	M_Set_Now_Time_By_Start_In_Milli_Second(GetTickCount64());
+
+	return;
+}
+
+
+//-☆- セッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ウィンドウの初期コマンド番号をセット

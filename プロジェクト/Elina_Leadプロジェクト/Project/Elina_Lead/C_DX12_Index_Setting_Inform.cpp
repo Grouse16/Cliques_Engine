@@ -78,7 +78,7 @@ void C_DX12_Index_Setting_Inform::M_Set_Index_Setting(const std::vector<unsigned
     // 書き込もうとしているインデックス数がインデックスバッファのサイズを超えていなかったら書き込もうとしているインデックス数分まで書き込む
     else
     {
-		write_index_sum = in_set_index_data.size();
+		write_index_sum = (int)in_set_index_data.size();
 	}
 
     // インデックスバッファにデータを書き込む

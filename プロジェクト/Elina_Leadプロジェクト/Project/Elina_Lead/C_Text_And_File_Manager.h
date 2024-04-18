@@ -348,10 +348,10 @@ namespace SYSTEM::TEXT
 		bool M_Serch_Text_In_Sentence(std::string);
 
 		// 指定された文字が選択中の列内あるかどうかを返す　引数：探索する文字　戻り値：みつかったらtrue
-		bool M_Serch_Text_In_Now_Row(std::string);
+		bool M_Search_Text_In_Now_Row(std::string);
 
 		// 指定された文字が指定された列内あるかどうかを返す　引数：探索する行, 探索する文字　戻り値：みつかったらtrue
-		bool M_Serch_Text_In_Select_Row(int, std::string);
+		bool M_Search_Text_In_Select_Row(int, std::string);
 
 
 		//-☆- 判定 -☆-//
