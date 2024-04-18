@@ -105,6 +105,7 @@
     <Compile Include="3D_Model_Importer\Import_System\CS_Animation_Model_Import_System.cs" />
     <Compile Include="3D_Model_Importer\Import_System\CS_Static_Model_Import_System.cs" />
     <Compile Include="Constant_Data\S_WVP.cs" />
+    <Compile Include="CS_Draw_Log_System.cs" />
     <Compile Include="Support_System\CS_Color.cs" />
     <Compile Include="Support_System\CS_File_Write_Load_System.cs" />
     <Compile Include="d3d11\CS_DX_11_Constant_Buffer.cs" />

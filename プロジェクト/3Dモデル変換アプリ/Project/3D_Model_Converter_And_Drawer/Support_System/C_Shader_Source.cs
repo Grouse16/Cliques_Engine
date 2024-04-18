@@ -19,7 +19,7 @@ namespace _3D_Model_Converter_And_Drawer.Support_System
         // ☆ プロパティ ☆ //
 
         // シェーダーファイルのパス
-        public string mp_shader
+        public string mp_shader_path
         {
             // ゲッタ
             get
@@ -36,7 +36,7 @@ namespace _3D_Model_Converter_And_Drawer.Support_System
                 }
 
                 m_shader_path = value;
-                RaisePropertyChanged(nameof(mp_shader));
+                RaisePropertyChanged(nameof(mp_shader_path));
 
                 return;
             }

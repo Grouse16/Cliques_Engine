@@ -121,7 +121,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Triangle_Shader()
 		{
 			// 三角形のシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader_path;
 
 
 			// 頂点レイアウトを初期化
@@ -152,7 +152,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Static_Model_Shader()
 		{
 			// 静的モデルのシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader_path;
 
 
             // 頂点レイアウトを初期化
@@ -187,7 +187,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Animation_Model_Shader()
 		{
 			// アニメーションモデルのシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader_path;
 
 
             // 頂点レイアウトを初期化
@@ -211,14 +211,14 @@ namespace _3D_Model_Converter_And_Drawer
 				   new InputElement("NORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 36, 0),
 				   new InputElement("TANGENT", 0, SharpDX.DXGI.Format.R32G32B32_Float, 48, 0),
 				   new InputElement("BINORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 60, 0),
-				   new InputElement("WEIGHT", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 72, 0),
-				   new InputElement("INDEX", 0, SharpDX.DXGI.Format.R32G32B32A32_UInt, 88, 0),
-				   new InputElement("WEIGHT", 1, SharpDX.DXGI.Format.R32G32B32A32_Float, 104, 0),
-				   new InputElement("INDEX", 1, SharpDX.DXGI.Format.R32G32B32A32_UInt, 120, 0),
-				   new InputElement("WEIGHT", 2, SharpDX.DXGI.Format.R32G32B32A32_Float, 136, 0),
-				   new InputElement("INDEX", 2, SharpDX.DXGI.Format.R32G32B32A32_UInt, 152, 0),
-				   new InputElement("WEIGHT", 3, SharpDX.DXGI.Format.R32G32B32A32_Float, 168, 0),
-				   new InputElement("INDEX", 3, SharpDX.DXGI.Format.R32G32B32A32_UInt, 184, 0)
+				   new InputElement("WEIGHT", 0, SharpDX.DXGI.Format.R32_Float, 72, 0),
+				   new InputElement("INDEX", 0, SharpDX.DXGI.Format.R32_UInt, 76, 0),
+				   new InputElement("WEIGHT", 1, SharpDX.DXGI.Format.R32_Float, 80, 0),
+				   new InputElement("INDEX", 1, SharpDX.DXGI.Format.R32_UInt, 84, 0),
+				   new InputElement("WEIGHT", 2, SharpDX.DXGI.Format.R32_Float, 88, 0),
+				   new InputElement("INDEX", 2, SharpDX.DXGI.Format.R32_UInt, 92, 0),
+				   new InputElement("WEIGHT", 3, SharpDX.DXGI.Format.R32_Float, 96, 0),
+				   new InputElement("INDEX", 3, SharpDX.DXGI.Format.R32_UInt, 100, 0)
 				}
 			);
 
@@ -268,7 +268,7 @@ namespace _3D_Model_Converter_And_Drawer
 		{
 			out_shader_source = new C_Shader_Source();
 			out_shader_source.PropertyChanged += M_source_PropertyChanged;
-			out_shader_source.mp_shader = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), in_shader_path), Encoding.UTF8);
+			out_shader_source.mp_shader_path = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), in_shader_path), Encoding.UTF8);
 
 			return;
 		}
@@ -669,16 +669,20 @@ namespace _3D_Model_Converter_And_Drawer
 
 		// 静的モデルを描画
 		private void M_Draw_Static_Model()
-		{
-			// 静的モデルがないなら終了
-			if (m_static_model == null)
-			{
-				return;
+        {
+			// デバッグ時は描画開始のログを出力
+			CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルの描画を開始します ☆ ");
+
+            // 静的モデルがないなら終了
+            if (m_static_model == null)
+            {
+                CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルがロードされてないので描画を中止 ☆ ");
+
+                return;
 			}
 
-
-			// 描画用の設定を初期化する
-			m_draw_setting = new CS_DX_11_Draw_Call_System();
+            // 描画用の設定を初期化する
+            m_draw_setting = new CS_DX_11_Draw_Call_System();
 
 
 			// ☆ 変数宣言 ☆ //
@@ -738,6 +742,10 @@ namespace _3D_Model_Converter_And_Drawer
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
             uc_dx_11_panel.M_Re_Paint();
+
+
+			// デバッグ時は描画終了のログを出力
+            CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルの描画を完了 ☆ ");
 
             return;
 		}
