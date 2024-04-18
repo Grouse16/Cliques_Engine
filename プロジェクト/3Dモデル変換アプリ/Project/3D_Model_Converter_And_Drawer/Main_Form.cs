@@ -25,6 +25,7 @@ using _3D_Model_Converter_And_Drawer._3DModel;
 using _3D_Model_Converter_And_Drawer.d3d11.Transform;
 using _3D_Model_Converter_And_Drawer.Rendering_Systems.Camera;
 using _3D_Model_Converter_And_Drawer.d3d11;
+using _3D_Model_Converter_And_Drawer.Support_System;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
 
@@ -99,13 +100,11 @@ namespace _3D_Model_Converter_And_Drawer
 
 
 			// 三角形を描画
-			M_Set_Triangle_Shader();
-			uc_dx_11_panel.M_Reset_To_Triangle();
-			uc_dx_11_panel.M_Re_Paint();
+			M_Draw_Triangle();
 
 
-			// プロジェクションを設定
-			CS_Camera_Manager.mp_camera_system.mp_projection.mp_aspect_ratio = (float)uc_dx_11_panel.Width / (float)uc_dx_11_panel.Height;
+            // プロジェクションを設定
+            CS_Camera_Manager.mp_camera_system.mp_projection.mp_aspect_ratio = (float)uc_dx_11_panel.Width / (float)uc_dx_11_panel.Height;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_field_of_view = 60.0f;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_near_distance = 0.1f;
 			CS_Camera_Manager.mp_camera_system.mp_projection.mp_far_distance = 1000.0f;
@@ -122,11 +121,19 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Triangle_Shader()
 		{
 			// 三角形のシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_triangle_shader.mp_shader_path;
+
+
+			// 頂点レイアウトを初期化
+			if (uc_dx_11_panel.mp_shader.mp_layout != null)
+			{
+                uc_dx_11_panel.mp_shader.mp_layout.Dispose();
+                uc_dx_11_panel.mp_shader.mp_layout = null;
+            }
 
 
 			// 三角形の頂点レイアウトの生成
-			uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
+            uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
 			(
 				uc_dx_11_panel.mp_renderer.mp_device,
 				ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
@@ -136,7 +143,7 @@ namespace _3D_Model_Converter_And_Drawer
 					new InputElement("COLOR", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 16, 0)
 				}
 			);
-
+			
 			return;
 		}
 
@@ -145,11 +152,19 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Static_Model_Shader()
 		{
 			// 静的モデルのシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_static_model_shader.mp_shader_path;
 
 
-			// 静的モデルの頂点レイアウトの生成
-			uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
+            // 頂点レイアウトを初期化
+            if (uc_dx_11_panel.mp_shader.mp_layout != null)
+            {
+                uc_dx_11_panel.mp_shader.mp_layout.Dispose();
+                uc_dx_11_panel.mp_shader.mp_layout = null;
+            }
+
+
+            // 静的モデルの頂点レイアウトの生成
+            uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
 			(
 				uc_dx_11_panel.mp_renderer.mp_device,
 				ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
@@ -172,11 +187,19 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Set_Animation_Model_Shader()
 		{
 			// アニメーションモデルのシェーダーのパスをセット
-			uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader;
+			uc_dx_11_panel.mp_shader.mp_shader_path = m_animation_model_shader.mp_shader_path;
 
 
-			// アニメーションモデルの頂点レイアウトの生成
-			uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
+            // 頂点レイアウトを初期化
+            if (uc_dx_11_panel.mp_shader.mp_layout != null)
+            {
+                uc_dx_11_panel.mp_shader.mp_layout.Dispose();
+                uc_dx_11_panel.mp_shader.mp_layout = null;
+            }
+
+
+            // アニメーションモデルの頂点レイアウトの生成
+            uc_dx_11_panel.mp_shader.mp_layout = new InputLayout
 			(
 				uc_dx_11_panel.mp_renderer.mp_device,
 				ShaderSignature.GetInputSignature(uc_dx_11_panel.mp_shader.mp_compiled_vertex_shader_code),
@@ -188,14 +211,14 @@ namespace _3D_Model_Converter_And_Drawer
 				   new InputElement("NORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 36, 0),
 				   new InputElement("TANGENT", 0, SharpDX.DXGI.Format.R32G32B32_Float, 48, 0),
 				   new InputElement("BINORMAL", 0, SharpDX.DXGI.Format.R32G32B32_Float, 60, 0),
-				   new InputElement("WEIGHT", 0, SharpDX.DXGI.Format.R32G32B32A32_Float, 72, 0),
-				   new InputElement("INDEX", 0, SharpDX.DXGI.Format.R32G32B32A32_UInt, 88, 0),
-				   new InputElement("WEIGHT", 1, SharpDX.DXGI.Format.R32G32B32A32_Float, 104, 0),
-				   new InputElement("INDEX", 1, SharpDX.DXGI.Format.R32G32B32A32_UInt, 120, 0),
-				   new InputElement("WEIGHT", 2, SharpDX.DXGI.Format.R32G32B32A32_Float, 136, 0),
-				   new InputElement("INDEX", 2, SharpDX.DXGI.Format.R32G32B32A32_UInt, 152, 0),
-				   new InputElement("WEIGHT", 3, SharpDX.DXGI.Format.R32G32B32A32_Float, 168, 0),
-				   new InputElement("INDEX", 3, SharpDX.DXGI.Format.R32G32B32A32_UInt, 184, 0)
+				   new InputElement("WEIGHT", 0, SharpDX.DXGI.Format.R32_Float, 72, 0),
+				   new InputElement("INDEX", 0, SharpDX.DXGI.Format.R32_UInt, 76, 0),
+				   new InputElement("WEIGHT", 1, SharpDX.DXGI.Format.R32_Float, 80, 0),
+				   new InputElement("INDEX", 1, SharpDX.DXGI.Format.R32_UInt, 84, 0),
+				   new InputElement("WEIGHT", 2, SharpDX.DXGI.Format.R32_Float, 88, 0),
+				   new InputElement("INDEX", 2, SharpDX.DXGI.Format.R32_UInt, 92, 0),
+				   new InputElement("WEIGHT", 3, SharpDX.DXGI.Format.R32_Float, 96, 0),
+				   new InputElement("INDEX", 3, SharpDX.DXGI.Format.R32_UInt, 100, 0)
 				}
 			);
 
@@ -243,10 +266,9 @@ namespace _3D_Model_Converter_And_Drawer
 		// 指定されたパスのシェーダーをロードしセットする　引数：読み込んだシェーダー設定先のシェーダー設定用システム, シェーダーパス
 		private void M_Load_Shader_By_Path(out C_Shader_Source out_shader_source, string in_shader_path)
 		{
-			// シェーダーロード
 			out_shader_source = new C_Shader_Source();
 			out_shader_source.PropertyChanged += M_source_PropertyChanged;
-			out_shader_source.mp_shader = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), in_shader_path), Encoding.UTF8);
+			out_shader_source.mp_shader_path = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), in_shader_path), Encoding.UTF8);
 
 			return;
 		}
@@ -309,22 +331,22 @@ namespace _3D_Model_Converter_And_Drawer
 			switch (byte_shrink_times)
 			{
 				// バイト表記
-				case 0:
+				case (int)E_BYTE_KIND.e_BYTE:
 					result_string += con_BYTE;
 					break;
 
 				// キロバイト表記
-				case 1:
+				case (int)E_BYTE_KIND.e_KILO_BYTE:
 					result_string += con_KILO_BYTE;
 					break;
 
 				// メガバイト表記
-				case 2:
+				case (int)E_BYTE_KIND.e_MEGA_BYTE:
 					result_string += con_MEGA_BYTE;
 					break;
 
 				// ギガバイト表記
-				case 3:
+				case (int)E_BYTE_KIND.e_GIGA_BYTE:
 					result_string += con_GIGA_BYTE;
 					break;
 			}
@@ -391,8 +413,7 @@ namespace _3D_Model_Converter_And_Drawer
 		private void M_Model_And_Animation_Data_Reset()
 		{
 			// 三角形の描画に戻す
-			M_Set_Triangle_Shader();
-			uc_dx_11_panel.M_Reset_To_Triangle();
+			M_Draw_Triangle();
 
 
 			// 静的モデルを削除
@@ -633,18 +654,35 @@ namespace _3D_Model_Converter_And_Drawer
 
 		//-☆- 描画 -☆-//
 
+		// 三角形を描画
+		private void M_Draw_Triangle()
+		{
+            // 三角形用のシェーダーをセット
+            M_Set_Triangle_Shader();
+
+			// 描画を実行
+			uc_dx_11_panel.M_Reset_To_Triangle();
+			uc_dx_11_panel.M_Re_Paint();
+
+			return;
+		}
+
 		// 静的モデルを描画
 		private void M_Draw_Static_Model()
-		{
-			// 静的モデルがないなら終了
-			if (m_static_model == null)
-			{
-				return;
+        {
+			// デバッグ時は描画開始のログを出力
+			CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルの描画を開始します ☆ ");
+
+            // 静的モデルがないなら終了
+            if (m_static_model == null)
+            {
+                CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルがロードされてないので描画を中止 ☆ ");
+
+                return;
 			}
 
-
-			// 描画用の設定を初期化する
-			m_draw_setting = new CS_DX_11_Draw_Call_System();
+            // 描画用の設定を初期化する
+            m_draw_setting = new CS_DX_11_Draw_Call_System();
 
 
 			// ☆ 変数宣言 ☆ //
@@ -703,8 +741,13 @@ namespace _3D_Model_Converter_And_Drawer
 
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
+            uc_dx_11_panel.M_Re_Paint();
 
-			return;
+
+			// デバッグ時は描画終了のログを出力
+            CS_Draw_Log_System.M_Draw_Log(" ☆ 静的モデルの描画を完了 ☆ ");
+
+            return;
 		}
 
 
@@ -715,15 +758,15 @@ namespace _3D_Model_Converter_And_Drawer
 			if (m_animation_model == null)
 			{
 				return;
-			}
+            }
 
 
-			// 描画用の設定を初期化する
-			m_draw_setting = new CS_DX_11_Draw_Call_System();
+            // ☆ 変数宣言 ☆ //
+            CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data>(); // 頂点バッファ
 
 
-			// ☆ 変数宣言 ☆ //
-			CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data> new_vertex_buffer = new CS_DX_11_Vertex_Buffer<S_Animation_Vertex_Data>(); // 頂点バッファ
+            // 描画用の設定を初期化する
+            m_draw_setting = new CS_DX_11_Draw_Call_System();
 
 
 			// アニメーションモデル用のシェーダーをセット
@@ -769,8 +812,9 @@ namespace _3D_Model_Converter_And_Drawer
 
 			// 描画を実行
 			uc_dx_11_panel.mp_now_draw_setting = m_draw_setting;
+			uc_dx_11_panel.M_Re_Paint();
 
-			return;
+            return;
 		}
 
 
@@ -952,7 +996,6 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// 静的モデルを描画
 				M_Draw_Static_Model();
-				uc_dx_11_panel.M_Re_Paint();
 
 				return;
 			}
@@ -969,7 +1012,6 @@ namespace _3D_Model_Converter_And_Drawer
 
 				// アニメーションモデルを描画
 				M_Draw_Animation_Model();
-				uc_dx_11_panel.M_Re_Paint();
 
 				return;
 			}
@@ -992,86 +1034,15 @@ namespace _3D_Model_Converter_And_Drawer
 
 			return;
 		}
-	}
 
 
-	// シェーダー設定用のクラス
-	class C_Shader_Source : INotifyPropertyChanged
-	{
-		// ☆ 変数宣言 ☆ //
-		string m_shader_path;   // シェーダーファイルのパス
+		// モデルのリセットボタンが押されたら、三角形を描画し、モデルデータリセット
+        private void B_model_reset_Click(object sender, EventArgs e)
+        {
+			// モデルとアニメーションのデータをリセット
+			M_Model_And_Animation_Data_Reset();
 
-
-		// ☆ プロパティ ☆ //
-
-		// シェーダーファイルのパス
-		public string mp_shader
-		{
-			// ゲッタ
-			get
-			{
-				return m_shader_path;
-			}
-
-			// セッタ
-			set
-			{
-				if (m_shader_path == value)
-				{
-					return;
-				}
-
-				m_shader_path = value;
-				RaisePropertyChanged(nameof(mp_shader));
-
-				return;
-			}
-		}
-
-
-		// ☆ イベント ☆ //
-		public event PropertyChangedEventHandler PropertyChanged;   // プロパティ変更時
-
-
-		// プロパティ変更時
-		void RaisePropertyChanged(string prop)
-		{
-			// ☆ 変数宣言 ☆ //
-			var handler = PropertyChanged;  // プロパティ変更イベントのハンドル
-
-
-			// プロパティ変更イベントが取得できたならプロパティ変更イベントを実行
-			if (handler != null)
-			{
-				handler(this, new PropertyChangedEventArgs(prop));
-			}
-		}
-	}
-
-
-	// ロード情報表示用のクラス
-	static class CS_Color_Extensions
-	{
-		// SharpDXのカラーをfloat4のカラーに変換
-		public static System.Drawing.Color M_SharpDX_Color_To_Float4_Color(this Color4 src)
-		{
-			return System.Drawing.Color.FromArgb(
-				(byte)(src.Alpha * 255),
-				(byte)(src.Red * 255),
-				(byte)(src.Green * 255),
-				(byte)(src.Blue * 255)
-				);
-		}
-
-		// float4のカラーをSharpDXのカラーに変換
-		public static Color4 M_Float4_Color_To_SharpDX_Color(this System.Drawing.Color value)
-		{
-			return new Color4(
-				value.R / 255.0f,
-				value.G / 255.0f,
-				value.B / 255.0f,
-				value.A / 255.0f
-				);
-		}
-	}
+			return;
+        }
+    }
 }
