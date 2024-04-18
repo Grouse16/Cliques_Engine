@@ -10,10 +10,7 @@
 #include "C_Rendering_API_Base.h"
 #include "Platform_Detector_Macro.h"
 
-
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // !_DEBUG
 
 
 // ☆ ウィンドウズOSの時のみDirectXを有効化 ☆ //
@@ -80,7 +77,6 @@ void C_Rendering_API_Interface_Initialize_And_Release::M_Create_DX12(void)
 
 #else
 
-#ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Print_Log
 	(
 		DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
@@ -88,7 +84,6 @@ void C_Rendering_API_Interface_Initialize_And_Release::M_Create_DX12(void)
 		"Windows OSを実行できる環境ではないのにDX12の生成が実行されました"
 	);
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // !_DEBUG
 
 #endif // D_OS_IS_WINDOWS
 

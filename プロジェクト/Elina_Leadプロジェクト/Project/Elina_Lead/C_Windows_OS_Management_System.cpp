@@ -16,9 +16,7 @@
 #include "C_Windows_OS_Management_System.h"
 #include "C_Wnd_Proc_Manager.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -217,18 +215,17 @@ void C_Windows_OS_Management_System::M_Time_Update(void)
 //-☆-  初期化と終了時  -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ウィンドウズのシステムを初期化する
+// 詳細   ：ウィンドウズ用のシステムを初期化する
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 {
+	// ウィンドウズ用のシステムを生成
 	m_this_instance.reset(new C_Windows_OS_Management_System());
 
-	// デバッグシステム初期化
-#ifdef _DEBUG
+	// ログシステムを初期化
 	DEBUGGER::LOG::C_Log_System::M_Init_Debug();
-#endif // _DEBUG
 
 	return;
 }
@@ -241,24 +238,20 @@ void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Windows_OS_Management_System::M_Set_Up(void)
 {
-	// ☆ デバッグ時のみセットアップ開始を通知 ☆ //
-#if _DEBUG
+	// ウィンドウズ用アプリケーションのセットアップ開始を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
-#endif // _DEBUG
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズアプリケーションのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
 
 
 	// ウィンドウを生成する
 	M_Create_Window();
 
 
-	// ☆ デバッグ時のみセットアップ完了を通知 ☆ //
-#if _DEBUG
+	// ウィンドウズ用アプリケーションのセットアップ完了を報告
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップに成功、GUIを起動完了-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 	DEBUGGER::LOG::C_Log_System::M_Console_LOG_Flush();
-#endif // _DEBUG
 
 
 	// ウィンドウサイズの更新

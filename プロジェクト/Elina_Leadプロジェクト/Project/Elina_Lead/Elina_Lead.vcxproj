@@ -321,6 +321,7 @@
   <ItemGroup>
     <ClCompile Include="C_Animation_Model_Manager.cpp" />
     <ClCompile Include="C_Animation_Model_System.cpp" />
+    <ClCompile Include="C_Log_System_On_Release_Build.cpp" />
     <ClCompile Include="C_OS_User_System.cpp" />
     <ClCompile Include="C_Rendering_API_Interface_Constant_Resource.cpp" />
     <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp" />
@@ -421,7 +422,7 @@
     <ClCompile Include="C_Game_Time_Manager.cpp" />
     <ClCompile Include="C_Float_4.cpp" />
     <ClCompile Include="C_Font_Draw_System.cpp" />
-    <ClCompile Include="C_Log_System.cpp" />
+    <ClCompile Include="C_Windows_Log_System.cpp" />
     <ClCompile Include="C_Object_Vertex_System.cpp" />
     <ClCompile Include="C_OS_Management_System_Base.cpp" />
     <ClCompile Include="C_Platform_Detection_System.cpp" />

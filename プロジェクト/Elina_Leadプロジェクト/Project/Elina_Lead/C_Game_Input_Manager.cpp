@@ -35,11 +35,8 @@ std::unique_ptr<C_Game_Input_Manager> C_Game_Input_Manager::m_this;
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 C_Game_Input_Manager::C_Game_Input_Manager(void)
 {
-	// デバッグ時は生成したことをログに残す
-#ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ゲーム用入力システムを生成");
-#endif // _DEBUG
 
 	return;
 }

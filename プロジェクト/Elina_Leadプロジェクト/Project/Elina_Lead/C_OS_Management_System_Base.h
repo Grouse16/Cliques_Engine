@@ -46,7 +46,7 @@ namespace OS::BASE
 
 		S_Day_And_Time_Inform m_now_day_and_time;	// 現在の時間
 
-		unsigned __int64 m_now_time_by_start_in_milli_second;	// 実行されてからのミリ秒単位での経過時間
+		unsigned __int64 m_now_time_by_start_in_milli_second = 0;	// 実行されてからのミリ秒単位での経過時間
 
 
 	//==☆ プロテクト ☆==//

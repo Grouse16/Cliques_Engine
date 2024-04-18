@@ -8,10 +8,8 @@
 // ☆ マクロ ☆ //
 
 // デバッグを行うためのログシステムのマクロ
-#if _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ OS検知 ☆ //
@@ -40,38 +38,39 @@ void M_Game_Set_Up(void);
 void M_Game_End(void);
 
 
-//-☆- デバッグ -☆-//
-#if _DEBUG
+//-☆- デバッグログ -☆-//
 
 // 初期化の成功を表示する
 void M_Print_Log_Of_Succeeded_Init(void);
-
-#endif // _DEBUG
 
 
 // ☆ メイン関数 ☆ //
 
 // ウィンドウズ時はWinmain関数を使うがこのマクロの有効範囲外では値を使用しないこと(他プラットフォームのために)	// ウィンドウズのサブシステムを指定すること
 #ifdef D_OS_IS_WINDOWS
+
+// ☆ ファイルひらき ☆ //
 #include "C_Windows_OS_Management_System.h"
+
+// WinMain関数（エントリーポイント）
 int APIENTRY WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE /* もう使用される事はない、常に０ */, _In_ LPSTR, _In_ int in_cmd_show)
 {
-// その他の時 OpenGL系はint main(void)関数から始める
+	// ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
+	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
+
+	// その他の時 OpenGL系はint main(void)関数から始める
 #else
+
+// メイン関数（エントリーポイント）
 int main(void)
 {
+
 #endif
 
-	//===☆ 処理開始 ☆===//
+	// ☆ 初期化 ☆ //
 	
 	// OS用システムの生成
 	M_OS_Create_System();
-
-
-// ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
-#ifdef D_OS_IS_WINDOWS
-	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
-#endif
 
 	// レンダリングAPIの生成
 	M_Rendering_API_Init();
@@ -79,12 +78,9 @@ int main(void)
 	// ゲーム用システムの初期化
 	M_Game_Set_Up();
 
-
-	// デバッグ時なら初期化の成功を表示（失敗時はスルーされる）
-#if _DEBUG
+	// デバッグ中は初期化成功時のみ成功のログを残す
 	M_Print_Log_Of_Succeeded_Init();
-#endif // _DEBUG
-	
+
 
 	// ☆ メインループ ☆ //
 	while (GAME::C_Game_Manager::M_Get_Game_Exist_Flg())
@@ -166,14 +162,11 @@ void M_Game_Set_Up(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void M_Game_End(void)
 {
-	// ☆ デバッグ時なら終了を表示 ☆ //
-#if _DEBUG
+	// 終了が実行されたのでアプリケーションを停止を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SHUT_DOWN, DEBUGGER::LOG::ALL_LOG_NAME::MAIN_SYSTEM::con_END, "-☆-☆-☆-☆-☆-☆-☆-終了が実行されたのでアプリケーションを停止-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 	DEBUGGER::LOG::C_Log_System::M_Console_LOG_Flush();
-#endif // _DEBUG
-
 
 	// ゲームのメモリ解放
 	GAME::C_Game_Manager::M_Release();
@@ -185,8 +178,7 @@ void M_Game_End(void)
 }
 
 
-//-☆- デバッグ -☆-//
-#if _DEBUG
+//-☆- デバッグログ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：初期化の成功を表示する
@@ -201,8 +193,7 @@ void M_Print_Log_Of_Succeeded_Init(void)
 		return;
 	}
 
-	// ☆ デバッグ時なら初期化の成功を表示 ☆ //
-#if _DEBUG
+	// 初期化の成功のログを残す
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::MAIN_SYSTEM::con_ALL_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-初期化終了-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
@@ -211,12 +202,11 @@ void M_Print_Log_Of_Succeeded_Init(void)
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::MAIN_SYSTEM::con_ALL_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-アプリケーション開始-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::MAIN_SYSTEM::con_ALL_SET_UP_SUCCEEDED, "GUIの画面描画を開始します");
-#endif
 
 	return;
 }
 
-#endif // _DEBUG
+
 
 
 //☆======================================================================☆

@@ -1499,7 +1499,7 @@
     <ClCompile Include="Elina_Lead_main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="C_Log_System.cpp">
+    <ClCompile Include="C_Windows_Log_System.cpp">
       <Filter>ソース ファイル\デバッグ\ログ</Filter>
     </ClCompile>
     <ClCompile Include="C_Game_Input_Manager.cpp">
@@ -1813,6 +1813,9 @@
     </ClCompile>
     <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp">
       <Filter>ソース ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Log_System_On_Release_Build.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

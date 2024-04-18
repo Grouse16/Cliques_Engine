@@ -5,10 +5,6 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
-// ☆ デバッグ時のみ有効 ☆ //
-#if _DEBUG
-
-
 // ☆ 多重インクルードガード ☆ //
 #ifndef D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
 #define D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
@@ -174,7 +170,6 @@ namespace DEBUGGER::LOG
 
 
 #endif // !D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
-#endif // _DEBUG
 
 
 //☆======================================================================☆

@@ -13,7 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Actor_Base.h"
 
-#include <vector>[
+#include <vector>
 
 
 // ☆ ネームスペース ☆ //

@@ -12,10 +12,7 @@
 #include "C_Game_State_Manager.h"
 #include "C_Game_Instance_Manager.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
-
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -125,13 +122,11 @@ bool C_Scene_Manager::M_Scene_Load(std::string in_load_scene)
 		return true;
 	}
 
-
-	// デバッグ時はシーンが見つからなかったことを示すログを出し全ての処理を止める
-#ifdef _DEBUG
+	
+	// シーンがないならそのことを返す
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このシーンはありません：" + in_load_scene);
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 	// シーンが見つからなかった
 	return false;

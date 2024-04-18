@@ -81,7 +81,7 @@ namespace RENDERING::API::DX12
 
 				Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> list;	// 描画命令のリスト
 
-				int fence_value[(int)E_DX12_PARAMATOR::e_RENDER_TARGET_BUFFER_SUM];  // フェンスのフレームインクリメントを判定するための値
+				int fence_value[(int)E_DX12_PARAMATOR::e_RENDER_TARGET_BUFFER_SUM] {0, 0};  // フェンスのフレームインクリメントを判定するための値
 
 				int num_front_screen = 0;	// 前側（表示中）の画面の番号
 				int num_back_screen = 0;	// 後側（描画書き込み中）の画面の番号
@@ -100,8 +100,8 @@ namespace RENDERING::API::DX12
 
 				std::unique_ptr<RENDERING::API::DX12::DX12_INSTANCE::C_DX12_Rendering_Screen_System> main_rendering_screen = nullptr;	// レンダリング画面の情報
 
-				RENDERING::API::DX12::DX12_INSTANCE::S_DX12_Render_Target_Buffer * now_screen_address_handle = nullptr;	// 今のスクリーンシステムへのアドレス
-				RENDERING::API::DX12::DX12_INSTANCE::S_DX12_Depth_Stencil_Buffer * now_depth_stencil_address_handle = nullptr;	// 今の深度ステンシルバッファへのアドレス
+				D3D12_CPU_DESCRIPTOR_HANDLE * now_screen_address_handle = nullptr;	// 今のスクリーンシステムへのアドレス
+				D3D12_CPU_DESCRIPTOR_HANDLE * now_depth_stencil_address_handle = nullptr;	// 今の深度ステンシルバッファへのアドレス
 
 				int now_rendering_screen_sum = 1;	// 今のレンダリング画面の総数
 
@@ -259,10 +259,9 @@ namespace RENDERING::API::DX12
 
 
 		//-☆- デバッグ -☆-//
-#if _DEBUG
+		
 		// デバッグ時の更新
 		void M_Debug_Update(void) const;
-#endif // _DEBUG
 
 
 		//==☆  パブリック  ☆==//

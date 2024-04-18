@@ -64,7 +64,6 @@ void C_OS_Management_System_Base::M_Set_Now_Time_By_Start_In_Milli_Second(unsign
 }
 
 
-
 //==☆ パブリック ☆==//
 
 //-☆- 初期化と終了時 -☆-//
