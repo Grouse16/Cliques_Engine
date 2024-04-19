@@ -50,27 +50,35 @@ void M_Print_Log_Of_Succeeded_Init(void);
 #ifdef D_OS_IS_WINDOWS
 
 // ☆ ファイルひらき ☆ //
-#include "C_Windows_OS_Management_System.h"
+#include <Windows.h>
 
 // WinMain関数（エントリーポイント）
 int APIENTRY WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE /* もう使用される事はない、常に０ */, _In_ LPSTR, _In_ int in_cmd_show)
 {
-	// ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
-	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
 
-	// その他の時 OpenGL系はint main(void)関数から始める
+// その他の時 OpenGL系はint main(void)関数から始める
 #else
 
 // メイン関数（エントリーポイント）
 int main(void)
 {
 
-#endif
+#endif // D_OS_IS_WINDOWS
 
 	// ☆ 初期化 ☆ //
 	
 	// OS用システムの生成
 	M_OS_Create_System();
+
+
+// ウィンドウズ時はDX11とDX12のどちらかを使用する時のみコマンド番号をセットする
+#ifdef D_OS_IS_WINDOWS
+
+	// ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
+	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
+
+#endif // D_OS_IS_WINDOWS
+
 
 	// レンダリングAPIの生成
 	M_Rendering_API_Init();

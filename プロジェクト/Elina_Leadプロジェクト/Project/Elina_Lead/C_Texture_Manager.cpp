@@ -123,7 +123,7 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Load_Texture_By
 
 
 	// 新しいテクスチャ設定用のスロットを生成
-	m_this.mpr_variable.texture_list.resize(texture_slot_num + 1);
+	m_this.mpr_variable.texture_list.resize((size_t)texture_slot_num + 1);
 	m_this.mpr_variable.texture_list[texture_slot_num].texture.reset(new RENDERING::CAPSULE::C_Texture_Data_System());
 
 	// テクスチャ情報からテクスチャをロードする、できなければfalseを返す

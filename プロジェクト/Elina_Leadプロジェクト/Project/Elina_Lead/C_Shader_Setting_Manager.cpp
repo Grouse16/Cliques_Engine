@@ -112,7 +112,7 @@ ASSET::SHADER::C_Shader_Setting * C_Shader_Setting_Manager::M_Load_Shader_Settin
 
 
 	// 新しいシェーダー設定用のスロットを生成
-	m_this.mpr_variable.shader_setting_list.resize(shader_setting_slot_num + 1);
+	m_this.mpr_variable.shader_setting_list.resize((size_t)shader_setting_slot_num + 1);
 	m_this.mpr_variable.shader_setting_list[shader_setting_slot_num].shader_setting_data.reset(new ASSET::SHADER::C_Shader_Setting());
 
 	// シェーダー設定名からシェーダー設定をロードする、できなければfalseを返す

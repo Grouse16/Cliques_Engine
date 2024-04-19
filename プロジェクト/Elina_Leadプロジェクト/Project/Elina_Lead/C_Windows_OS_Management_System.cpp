@@ -52,7 +52,7 @@ C_Windows_OS_Management_System::C_Windows_OS_Management_System(void)
 bool C_Windows_OS_Management_System::M_Create_Window(void)
 {
 	// ☆ 変数宣言 ☆ //
-	WNDCLASSEX w_wc;	// WNDCLASSEX構造体の中身の準備
+	WNDCLASSEX w_wc = WNDCLASSEX();	// WNDCLASSEX構造体の中身の準備
 
 	std::wstring device_name = M_Get_Window_Title_Name();	// ワイド文字列でのウィンドウ名
 

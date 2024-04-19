@@ -70,7 +70,7 @@ void C_Post_Effect_Draw_Manager::M_Set_Post_Effect_Before_UI(GAME::INSTANCE::POS
 
 
 	// ポストエフェクトを描画リストに追加
-	m_this.mpr_variable.post_effect_before_ui_list.resize(set_post_effect_slot + 1);
+	m_this.mpr_variable.post_effect_before_ui_list.resize((size_t)set_post_effect_slot + 1);
 	m_this.mpr_variable.post_effect_before_ui_list[set_post_effect_slot] = in_add_post_effect;
 
 	return;
@@ -96,7 +96,7 @@ void C_Post_Effect_Draw_Manager::M_Set_Post_Effect_After_UI(GAME::INSTANCE::POST
 
 
 	// ポストエフェクトを描画リストに追加
-	m_this.mpr_variable.post_effect_after_ui_list.resize(set_post_effect_slot + 1);
+	m_this.mpr_variable.post_effect_after_ui_list.resize((size_t)set_post_effect_slot + 1);
 	m_this.mpr_variable.post_effect_after_ui_list[set_post_effect_slot] = in_add_post_effect;
 
 	return;
