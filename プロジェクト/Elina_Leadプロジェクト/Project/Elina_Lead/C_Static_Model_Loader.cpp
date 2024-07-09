@@ -48,7 +48,7 @@ bool C_Static_Model_Loader::M_Load_Static_Model_File_Data(std::string in_load_fi
 	}
 
 	// ファイルが静的モデルであるかどうかを判定、静的モデルでなければエラーを出して抜ける
-	if (in_file_data_system.M_Check_Text_Is_Eqaul_Now_Position("This-Is-ELSTTMDL") == false)
+	if (in_file_data_system.M_Check_Text_Is_Equal_Now_Position("This-Is-ELSTTMDL") == false)
 	{
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log

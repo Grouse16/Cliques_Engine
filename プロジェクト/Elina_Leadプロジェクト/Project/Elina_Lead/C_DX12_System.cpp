@@ -2026,6 +2026,331 @@ void C_DX12_System::M_Debug_Update(void) const
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：エラーの原因をログに表示する
+// 引数   ：HRESULT エラーコード
+// 戻り値 ：bool エラーではないときのみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
+{
+	// エラーログ内容の参照先　https://learn.microsoft.com/ja-jp/windows/win32/direct3ddxgi/dxgi-error
+
+	// エラーコードによってエラーの原因を表示する
+	switch (in_error_code)
+	{
+		// アクセス権の拒否
+	case DXGI_ERROR_ACCESS_DENIED:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_ACCESS_DENIED：アクセス権を持っていないメモリへの操作が発生し、アクセスが拒否されました"
+		);
+
+		break;
+
+		// アクセス権の喪失
+	case DXGI_ERROR_ACCESS_LOST:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_ACCESS_LOST：アクセス権を取得したが何らかの原因により喪失しているため、アクセスが拒否されました"
+		);
+
+		break;
+
+		// すでに生成済みのシステムや権限を多重で取得しようとした
+	case DXGI_ERROR_ALREADY_EXISTS:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_ALREADY_EXISTS：すでに生成済みのシステムや権限を多重で取得しようとしたため、生成に失敗しました"
+		);
+		
+		break;
+
+		// コンテンツ保護をスワップチェーンに定期王できなかった
+	case DXGI_ERROR_CANNOT_PROTECT_CONTENT:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_CANNOT_PROTECT_CONTENT：スワップチェーンの取得に失敗。グラフィック装置が古いドライバーである、またはコンテンツ保護と互換性のないスワップチェーンを使用しました"
+		);
+		
+		break;
+
+		// デバイスへの操作ミスによりデバイスがリセットされた
+	case DXGI_ERROR_DEVICE_HUNG:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_DEVICE_HUNG：デバイスへの操作ミスによりデバイスがリセットされました"
+		);
+		
+		break;
+
+		// デバイスの喪失
+	case DXGI_ERROR_DEVICE_REMOVED:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_DEVICE_REMOVED：デバイスが消えました"
+		);
+		
+		break;
+
+		// 不適切な形式のコマンドが発行された
+	case DXGI_ERROR_DEVICE_RESET:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_DEVICE_RESET：実行されたコマンドのデータに不適切なものがあります"
+		);
+		
+		break;
+
+		// ドライバーのエラーにより、デバイスがリセットされた
+	case DXGI_ERROR_DRIVER_INTERNAL_ERROR:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_DRIVER_INTERNAL_ERROR：ドライバーのエラーにより、デバイスがリセットされました"
+		);
+
+		break;
+
+		// イベントにより画面の更新が中断された
+	case DXGI_ERROR_FRAME_STATISTICS_DISJOINT:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_FRAME_STATISTICS_DISJOINT：イベントにより画面の更新が中断されました"
+		);
+
+		break;
+
+		// グラフィックカードなど描画スペースへの占有を行おうとしたが、既に占有されているためできなかった
+	case DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE：グラフィックカードなど描画スペースへの占有を行おうとしたが、既に占有されているためできなかった"
+		);
+
+		break;
+
+		// 無効なパラメーターやデータを指定してしまった
+	case DXGI_ERROR_INVALID_CALL:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_INVALID_CALL：無効なパラメーターやデータを指定してしまった。コード内から正常ではない値になるシステムを探し修正する必要がある"
+		);
+
+		break;
+
+		// バッファーのデータが小さいため、データの取得ができなかった
+	case DXGI_ERROR_MORE_DATA:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_MORE_DATA：バッファーのデータが小さいため、データの取得ができませんでした"
+		);
+
+		break;
+
+		// IDXGIResource1::CreateSharedHandleで指定された名前はすでに使用されている
+	case DXGI_ERROR_NAME_ALREADY_EXISTS:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_NAME_ALREADY_EXISTS：IDXGIResource1::CreateSharedHandleで指定された名前はすでに使用されています"
+		);
+
+		break;
+
+		// グローバルカウンターリソース：ドライバー検証ツールがドライバーに対して実行するアクションの一部を監視する統計情報
+		// カウンターリソースを参照・使用することができない状態であった
+	case DXGI_ERROR_NONEXCLUSIVE:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_NONEXCLUSIVE：グローバルカウンターリソースを参照・使用することができませんでした"
+		);
+
+		break;
+
+		// 指定されたリソースまたは要求は現在使用できません
+	case DXGI_ERROR_NOT_CURRENTLY_AVAILABLE:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_NOT_CURRENTLY_AVAILABLE：指定されたリソースまたは要求は現在使用できません"
+		);
+
+		break;
+
+		// IDXGIObject::GetPrivateData を呼び出すとき、渡されたGUIDは許容範囲外です、IDXGIObject::SetPrivateData または IDXGIObject::SetPrivateDataInterface に渡されたものではありません。
+	case DXGI_ERROR_NOT_FOUND:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_NOT_FOUND：指定されたリソースまたは要求が見つかりませんでした"
+		);
+
+		break;
+
+		// リモートデスクトップクライアントの接続が切断された
+	case DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED：リモートデスクトップクライアントの接続が切断されました"
+		);
+
+		break;
+
+		// リモートデスクトップのメモリが不足している、または範囲外への操作
+	case DXGI_ERROR_REMOTE_OUTOFMEMORY:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_REMOTE_OUTOFMEMORY：リモートデスクトップのメモリが不足、または範囲外への操作が行われました"
+		);
+
+		break;
+
+		// スワップチェーンの出力先のモニターが切断・変更された
+	case DXGI_ERROR_RESTRICT_TO_OUTPUT_STALE:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_RESTRICT_TO_OUTPUT_STALE：スワップチェーンの出力先のモニターが切断・変更されました"
+		);
+
+		break;
+
+		// SDKコンポーネントが正確に指定されておらず、一致していない
+	case DXGI_ERROR_SDK_COMPONENT_MISSING:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_SDK_COMPONENT_MISSING：SDKコンポーネントが正確に指定されておらず、一致していません"
+		);
+
+		break;
+
+		// リモートデスクトップのサービスは現在接続されていない
+	case DXGI_ERROR_SESSION_DISCONNECTED:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_SESSION_DISCONNECTED：リモートデスクトップのサービスは現在接続されていません"
+		);
+
+		break;
+
+		// 要求された機能は、デバイスまたはドライバーではサポートされていない
+	case DXGI_ERROR_UNSUPPORTED:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_UNSUPPORTED：要求された機能は、デバイスまたはドライバーではサポートされていません"
+		);
+
+		break;
+
+		// 次の描画フレームが使用可能になるまでのタイムアウト間隔中の操作
+	case DXGI_ERROR_WAS_STILL_DRAWING:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_WAS_STILL_DRAWING：次の描画フレームが使用可能になるまでのタイムアウト間隔中の操作"
+		);
+
+		break;
+
+		// GPUがビジー状態であるため、操作が実行できない
+	case DXGI_ERROR_WAIT_TIMEOUT:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"DXGI_ERROR_WAIT_TIMEOUT：GPUがビジー状態であるため、操作が実行できません"
+		);
+
+		break;
+
+		// エラーはなかった
+	case S_OK:
+		return true;
+
+		break;
+
+		// 未知のエラー
+	default:
+		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		(
+			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			"未知のエラーが発生しました。このエラー情報は登録されていません"
+		);
+
+		break;
+	}
+
+	// エラーなのでfalseを返す
+	return false;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：リソース同期用バリアのセット
 // 引数   ：int 設定先のレンダリング画面の番号, S_DX12_Render_Target_View & レンダーターゲットビュー情報の参照, D3D12_RESOURCE_STATES 設定するリソース使用方法
 // 戻り値 ：void
@@ -2352,6 +2677,8 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 	// ☆ 変数宣言 ☆ //
 	ID3D12CommandList * p_command_list = mpr_variable->s_command.list.Get();   // コマンドリストのアドレスを渡すために変数にする
 
+	HRESULT check_error_result = S_OK;	// エラーチェックの結果
+
 
 	// ☆ 描画命令の記録終了 ☆ //
 
@@ -2382,15 +2709,17 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 	M_Debug_Update();
 
 
-	// ☆ 変数宣言 ☆ //
-	HRESULT bug_result = mpr_variable->s_frame_work.device->GetDeviceRemovedReason();   // 消えた理由を取得（消えてる場合）
+	// デバイスが削除されているかどうかをチェック
+	check_error_result = mpr_variable->s_frame_work.device->GetDeviceRemovedReason();
 
 
 	// デバイス削除バグのチェック、消えていたならレンダリングAPIシステムの終了を示す
-	if (FAILED(bug_result))
+	if (FAILED(check_error_result))
 	{
+		// レンダリングAPIの終了を示す
 		mpr_variable->flg_rendering_api_end = true;
 
+		// デバイスが消えたことを表示
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log
 		(
@@ -2398,6 +2727,11 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_DEVICE_DELETED,
 			"デバイスが消えたためアプリケーションの終了を実行"
 		);
+
+		// エラーの原因を表示
+		M_Display_Error_Message(check_error_result);
+
+		// ログを表示するために一時停止
 		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 	}
 

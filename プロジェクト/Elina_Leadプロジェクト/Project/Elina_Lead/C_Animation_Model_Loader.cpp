@@ -43,7 +43,7 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_File(std::string in_file_p
 	}
 
 	// 認証名を探索する
-	if (in_file_text.M_Check_Text_Is_Eqaul_Now_Position("This-Is-ELANMMDL") == false)
+	if (in_file_text.M_Check_Text_Is_Equal_Now_Position("This-Is-ELANMMDL") == false)
 	{
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmmdl形式ではありません：" + in_file_path);

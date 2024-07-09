@@ -263,6 +263,9 @@ namespace RENDERING::API::DX12
 		// デバッグ時の更新
 		void M_Debug_Update(void) const;
 
+		// エラーの原因をログに表示する　引数：エラーコード　戻り値：エラーではないときのみtrue
+		bool M_Display_Error_Message(HRESULT) const;
+
 
 		//==☆  パブリック  ☆==//
 	public:
