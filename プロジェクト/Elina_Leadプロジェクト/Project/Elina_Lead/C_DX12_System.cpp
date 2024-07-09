@@ -99,8 +99,8 @@ inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_roo
 
 
 	// 配列を必要なだけ増やす
-	in_root_param.resize(set_param_number + 1);
-	in_range.resize(set_range_pos + 1);
+	in_root_param.resize((size_t)(set_param_number + 1));
+	in_range.resize((size_t)(set_range_pos + 1));
 
 	// パラメータの種類
 	in_range[set_range_pos].RangeType = in_set_type;
@@ -148,7 +148,7 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in
 
 
 	// 配列を必要なだけ増やす
-	in_sampler_desc.resize(set_static_number + 1);
+	in_sampler_desc.resize((size_t)(set_static_number + 1));
 
 
 	// フィルタ処理のオプション
@@ -1270,7 +1270,7 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12_INSTANCE::C_DX12_Vertex_Setting_
 	desc_resource.Alignment = 0;
 
 	// リソースのバイト数
-	desc_resource.Width = in_create_inform.size_of_vertex * in_create_inform.vertex_sum;
+	desc_resource.Width = (UINT64)(in_create_inform.size_of_vertex * in_create_inform.vertex_sum);
 
 	// リソースの配列番号
 	desc_resource.Height = 1;
@@ -1500,9 +1500,9 @@ void C_DX12_System::M_Create_Constant_Resource(DX12_INSTANCE::C_DX12_Constant_Se
 	// ☆ 定数バッファデータを生成 ☆ //
 
 		// ☆ 変数宣言 ☆ //
-	D3D12_HEAP_PROPERTIES constant_data_prop;   // 定数データ生成用のプロパティ設定
+	D3D12_HEAP_PROPERTIES constant_data_prop = D3D12_HEAP_PROPERTIES();   // 定数データ生成用のプロパティ設定
 
-	D3D12_RESOURCE_DESC constant_data_desc;     // 定数バッファのデータの設定
+	D3D12_RESOURCE_DESC constant_data_desc = D3D12_RESOURCE_DESC();     // 定数バッファのデータの設定
 
 
 	// ☆ プロパティ設定 ☆ //
@@ -2893,7 +2893,7 @@ void C_DX12_System::M_Set_Rendering_Screen_To_Texture_Slot(int in_rendering_scre
 	mpr_variable->s_command.list->SetDescriptorHeaps(1, &dx12_rendering_screen->m_render_target_view.heap);
 
 	// 指定されたレンダーターゲットビューまで移動
-	descriptor_handle.ptr += byte_of_handle * (UINT)in_rendering_screen_number;
+	descriptor_handle.ptr += (UINT64)(byte_of_handle * (UINT)in_rendering_screen_number);
 
 	// ルートシグネチャに指定されたレンダーターゲットビューを紐付ける
 	mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_texture_slot_number, descriptor_handle);
@@ -2956,7 +2956,7 @@ void C_DX12_System::M_Set_Main_Front_Rendering_Screen_To_Texture_Slot(int in_set
 	mpr_variable->s_command.list->SetDescriptorHeaps(1, &mpr_variable->s_render.main_rendering_screen->m_render_target_view.heap);
 
 	// 指定されたレンダーターゲットビューまで移動
-	descriptor_handle.ptr += byte_of_handle * (UINT)mpr_variable->s_command.num_front_screen;
+	descriptor_handle.ptr += UINT64(byte_of_handle * (UINT)mpr_variable->s_command.num_front_screen);
 
 	// ルートシグネチャに指定されたレンダーターゲットビューを紐付ける
 	mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_set_slot, descriptor_handle);
@@ -2989,7 +2989,7 @@ void C_DX12_System::M_Set_Main_Back_Rendering_Screen_To_Texture_Slot(int in_set_
 	mpr_variable->s_command.list->SetDescriptorHeaps(1, &mpr_variable->s_render.main_rendering_screen->m_render_target_view.heap);
 
 	// 指定されたレンダーターゲットビューまで移動
-	descriptor_handle.ptr += byte_of_handle * (UINT)mpr_variable->s_command.num_back_screen;
+	descriptor_handle.ptr += (UINT64)(byte_of_handle * (UINT)mpr_variable->s_command.num_back_screen);
 
 	// ルートシグネチャに指定されたレンダーターゲットビューを紐付ける
 	mpr_variable->s_command.list->SetGraphicsRootDescriptorTable(in_set_slot, descriptor_handle);
@@ -3899,7 +3899,7 @@ bool C_DX12_System::M_Load_Texture(std::string in_file_path, ASSET::TEXTURE::C_T
 
 
 	// ワイドキャラに変換する
-	w_file_path.resize(file_path_size + 1);
+	w_file_path.resize((size_t)(file_path_size + 1));
 	for (int loop_x = 0; loop_x < file_path_size; loop_x++)
 	{
 		w_file_path[loop_x] = (wchar_t)in_file_path[loop_x];
