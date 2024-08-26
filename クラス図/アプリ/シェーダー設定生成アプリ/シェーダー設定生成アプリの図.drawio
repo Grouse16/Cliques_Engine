@@ -1,454 +1,6 @@
-<mxfile host="Electron" modified="2024-01-25T06:06:06.483Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="Mwyatoj57gjcYGlY3q4L" version="22.1.21" type="device" pages="2">
-  <diagram name="シェーダー設定生成アプリ ver.1.0.0" id="ZOv4qY263bcVziLHjtyt">
-    <mxGraphModel dx="3452" dy="1553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="END74McyOIayrzuz1Cq9-1" value="シェーダー設定生成アプリ ver.1.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="260" y="80" width="390" height="4960" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-2" value="独自形式アセット「.elsst」を生成するためのアプリ" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
-          <mxGeometry x="20" y="40" width="350" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-3" value="頂点レイアウトの設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
-          <mxGeometry x="20" y="610" width="350" height="870" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-83" value="数値を直接入力して頂点インスタンス数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
-          <mxGeometry x="25" y="40" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-86" value="プルダウンの選択でバイト数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
-          <mxGeometry x="25" y="350" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-89" value="プルダウンの選択で型を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
-          <mxGeometry x="25" y="540" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-90" value="プルダウンの選択で要素数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
-          <mxGeometry x="25" y="730" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-106" value="シェーダーリソースの設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
-          <mxGeometry x="20" y="1590" width="350" height="3350" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-109" value="定数リソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="25" y="380" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-113" value="テクスチャリソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="25" y="570" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-115" value="テクスチャリソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="25" y="760" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-122" value="定数リソース" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="20" y="920" width="310" height="850" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-141" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
-          <mxGeometry x="20" y="340" width="270" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-143" value="直接数値を入力して設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
-          <mxGeometry x="20" y="530" width="270" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-146" value="プルダウンで設定して入力&lt;br&gt;（バッファと連携したデータを用意するかどうか）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
-          <mxGeometry x="10" y="735" width="290" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-147" value="テクスチャリソース" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="20" y="1830" width="310" height="740" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-148" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-147" vertex="1">
-          <mxGeometry x="20" y="380" width="270" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-153" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-147" vertex="1">
-          <mxGeometry x="20" y="595" width="270" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-154" value="サンプラー設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="20" y="2590" width="310" height="740" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-157" value="プルダウンで設定して入力&lt;br&gt;（バッファと連携したデータを用意するかどうか）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-154" vertex="1">
-          <mxGeometry x="10" y="540" width="290" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="Pn7xB3dDuonau_cAfhpN-1" value="シェーダー名を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
-          <mxGeometry x="25" y="232.5" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-127" value="プルダウンの選択で編集するシェーダーの種類を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
-          <mxGeometry x="45" y="1510" width="300" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-130" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="END74McyOIayrzuz1Cq9-1" source="END74McyOIayrzuz1Cq9-127" target="END74McyOIayrzuz1Cq9-106" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="240" y="1790" as="sourcePoint" />
-            <mxPoint x="-290" y="1790" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-7" value="シェーダー設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="-760" y="80" width="600" height="4960" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-8" value="内部データの説明" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-7" vertex="1">
-          <mxGeometry x="25" y="40" width="550" height="4890" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-9" value="識別名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
-          <mxGeometry x="30" y="40" width="490" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-10" value="ELSSTファイルであることを証明する文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-9" vertex="1">
-          <mxGeometry x="10" y="40" width="470" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-11" value="This-Is-ELSST" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-9" vertex="1">
-          <mxGeometry x="10" y="100" width="470" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-12" value="頂点レイアウト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
-          <mxGeometry x="30" y="230" width="490" height="1210" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-13" value="頂点レイアウト開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
-          <mxGeometry x="10" y="120" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-14" value="頂点レイアウト情報の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-13" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-15" value="VERTEXLAYOUT:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-13" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-16" value="頂点内のインスタンス数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
-          <mxGeometry x="10" y="320" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-17" value="頂点のデータに変数がいくつあるかの定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-16" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-18" value="(int)インスタンス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-16" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-19" value="インスタンスの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
-          <mxGeometry x="10" y="520" width="470" height="670" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-20" value="変数の型やバイト数の定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-21" value="バイト数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
-          <mxGeometry x="10" y="110" width="450" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-22" value="値一つ分のバイト数&lt;br&gt;１バイト - char　２バイト - short, half　４バイト - float" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-21" vertex="1">
-          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-23" value="(int)１か２か４" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-21" vertex="1">
-          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-24" value="型" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
-          <mxGeometry x="10" y="300" width="450" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-25" value="データの型" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-24" vertex="1">
-          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-26" value="(string)INTかUINTかFLOAT" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-24" vertex="1">
-          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-27" value="要素数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
-          <mxGeometry x="10" y="490" width="450" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-28" value="変数が持つ要素の数&lt;br&gt;float2, float3, float4などのような型の要素(xyzw)の数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-27" vertex="1">
-          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-29" value="(int)１～４の数値" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-27" vertex="1">
-          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-30" value="頂点シェーダーに送る頂点データの定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
-          <mxGeometry x="10" y="50" width="470" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-31" value="シェーダーリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
-          <mxGeometry x="30" y="1470" width="490" height="3400" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-32" value="シェーダーごとの定数バッファやテクスチャリソースの数などの定義&lt;br&gt;シェーダーの種類ごとに書き込まれる&lt;br&gt;以下がシェーダーを示す記号となる&lt;br&gt;AS：全シェーダー共通リソース&lt;br&gt;VS：頂点シェーダー&lt;br&gt;HS：ハルシェーダー&lt;br&gt;DS：ドメインシェーダー&lt;br&gt;GS：ジオメトリシェーダー&lt;br&gt;PS：ピクセルシェーダー&lt;br&gt;複数の種類のシェーダーを示すときは&amp;lt;xx&amp;gt;で表す" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="30" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-33" value="&amp;lt;xx&amp;gt;シェーダの開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="210" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-34" value="各シェーダーごとに情報の開始位置を示す文字がある" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-33" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-35" value="&amp;lt;xx&amp;gt;START:(string)シェーダー名(AS時はシェーダー名なし)" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-33" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-36" value="定数リソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="400" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-37" value="定数リソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-36" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-38" value="(int)定数リソースの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-36" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-39" value="テクスチャリソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="590" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-40" value="テクスチャ用のリソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-39" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-41" value="(int)テクスチャリソースの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-39" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-42" value="サンプラーの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="780" width="470" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-43" value="サンプラーがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-42" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-44" value="(int)サンプラーの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-42" vertex="1">
-          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-45" value="定数リソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="980" width="470" height="890" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-46" value="定数リソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-47" value="定数リソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
-          <mxGeometry x="20" y="300" width="430" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-48" value="定数リソースを識別するための名前" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-47" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-49" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-47" vertex="1">
-          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-50" value="配列数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
-          <mxGeometry x="20" y="490" width="430" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-51" value="定数リソースの配列数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-50" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-52" value="(int)配列数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-50" vertex="1">
-          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-53" value="定数データを生成するかどうかのフラグ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
-          <mxGeometry x="20" y="680" width="430" height="190" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-54" value="定数バッファとデータを同期させることができるインスタンスを&lt;br&gt;生成するかどうかのフラグ&lt;br&gt;TRUEで生成する、FALSEで生成しない" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-53" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-55" value="(string)TRUEかFALSE" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-53" vertex="1">
-          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-56" value="定数リソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
-          <mxGeometry x="20" y="110" width="430" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-57" value="各シェーダーごとの定数リソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-56" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-58" value="&amp;lt;xx&amp;gt;CON:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-56" vertex="1">
-          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-59" value="テクスチャリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="1910" width="470" height="730" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-60" value="テクスチャリソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-61" value="テクスチャリソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
-          <mxGeometry x="20" y="310" width="430" height="180" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-62" value="テクスチャリソースを識別するための名前&lt;br&gt;&lt;br&gt;先頭をRSCにすることでスクリーン画面を画像として使用できる&lt;br&gt;先頭をDSBにすることで深度ステンシルバッファを画像として使用できる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-61" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-63" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-61" vertex="1">
-          <mxGeometry x="10" y="120" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-64" value="初期ロードするテクスチャ名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
-          <mxGeometry x="20" y="520" width="430" height="190" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-65" value="マテリアルがロードされた時点でロードするテクスチャの名前&lt;br&gt;&lt;br&gt;ORIGINALでゲーム内で生成した画像を使用するための設定を自動で行う&lt;br&gt;何も書かない、もしくはNOTSHINGで画像をロードしない" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-64" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-66" value="(string)初期ロードするテクスチャ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-64" vertex="1">
-          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-67" value="テクスチャリソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
-          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-68" value="各シェーダーごとのテクスチャリソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-67" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-69" value="&amp;lt;xx&amp;gt;TEX:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-67" vertex="1">
-          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-70" value="サンプラーの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
-          <mxGeometry x="10" y="2670" width="470" height="710" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-71" value="サンプラーの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
-          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-72" value="サンプリング設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
-          <mxGeometry x="20" y="310" width="430" height="380" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-73" value="サンプリング時のテクスチャのUV座標による、&lt;br&gt;ピクセル値取り出しのオプションを指定する文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-72" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-74" value="(string)サンプリング設定名&lt;br&gt;&lt;br&gt;WARP：UVが０～１を超えるたびにテクスチャをループする&lt;br&gt;&lt;br&gt;MIRROR：UVが０～１を超えるたびにテクスチャをループするが&lt;br&gt;　　　　　超えるたびにミラーリングした画像のピクセル値となる&lt;br&gt;&lt;br&gt;CLAMP：UVが０～１を超えるとUVを０か１として使用する&lt;br&gt;　　　　 （マイナス方向に超えたら０，プラス方向に超えたら１）&lt;br&gt;&lt;br&gt;BORDER：UVが０～１を超えたら黒色をピクセル値として返す&lt;br&gt;&lt;br&gt;MIRROR_ONCE：UVが０～１を超えたら、&lt;br&gt;　　　　　　　　&amp;nbsp; 一度だけ反転したテクスチャを返す" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" parent="END74McyOIayrzuz1Cq9-72" vertex="1">
-          <mxGeometry x="10" y="140" width="410" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-75" value="サンプラーの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
-          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-76" value="各シェーダーごとのサンプラーの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-75" vertex="1">
-          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-77" value="&amp;lt;xx&amp;gt;SAM:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-75" vertex="1">
-          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-81" value="自動で先頭に書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
-          <mxGeometry x="-110" y="520" width="190" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-82" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-81" target="END74McyOIayrzuz1Cq9-13" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-150" y="550" as="sourcePoint" />
-            <mxPoint x="-215" y="560" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-85" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-83" target="END74McyOIayrzuz1Cq9-16" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-60" y="750" as="sourcePoint" />
-            <mxPoint x="-10" y="700" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-87" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-86" target="END74McyOIayrzuz1Cq9-21" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="1010" as="sourcePoint" />
-            <mxPoint x="-225" y="1010" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-88" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-89" target="END74McyOIayrzuz1Cq9-24" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="1210" as="sourcePoint" />
-            <mxPoint x="-130" y="1240" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-91" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-90" target="END74McyOIayrzuz1Cq9-27" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="1370" as="sourcePoint" />
-            <mxPoint x="-235" y="1370" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-111" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-132" target="END74McyOIayrzuz1Cq9-33" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-60" y="1780" as="sourcePoint" />
-            <mxPoint x="-235" y="1820" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-100" y="1780" />
-              <mxPoint x="-100" y="1880" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-112" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-109" target="END74McyOIayrzuz1Cq9-36" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="2000" as="sourcePoint" />
-            <mxPoint x="-225" y="2000" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-114" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-113" target="END74McyOIayrzuz1Cq9-39" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="2220" as="sourcePoint" />
-            <mxPoint x="-225" y="2220" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-116" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-115" target="END74McyOIayrzuz1Cq9-42" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="2350" as="sourcePoint" />
-            <mxPoint x="-180" y="2420" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-129" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-132" target="END74McyOIayrzuz1Cq9-32" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-60" y="1780" as="sourcePoint" />
-            <mxPoint x="-225" y="1670" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-100" y="1780" />
-              <mxPoint x="-100" y="1700" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-132" value="各シェーダーの種類ごとに自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-60" y="1750" width="300" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-134" value="定数リソースの開始位置に各シェーダー設定ごとに&lt;br&gt;自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-110" y="2730" width="330" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-135" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-134" target="END74McyOIayrzuz1Cq9-56" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="2550" as="sourcePoint" />
-            <mxPoint x="-225" y="2550" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-137" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-138" target="END74McyOIayrzuz1Cq9-67" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="3500" as="sourcePoint" />
-            <mxPoint x="-130" y="3650" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-138" value="テクスチャリソースの開始位置に&lt;br&gt;各シェーダー設定ごとに自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-110" y="3670" width="330" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-139" value="サンプラーの開始位置に各シェーダー設定ごとに&lt;br&gt;自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="-110" y="4430" width="330" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-140" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-139" target="END74McyOIayrzuz1Cq9-75" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="4270" as="sourcePoint" />
-            <mxPoint x="-245" y="4470" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-142" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-141" target="END74McyOIayrzuz1Cq9-47" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="2890" as="sourcePoint" />
-            <mxPoint x="-225" y="2960" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-144" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-143" target="END74McyOIayrzuz1Cq9-50" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="3090" as="sourcePoint" />
-            <mxPoint x="-70" y="3090" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-145" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-146" target="END74McyOIayrzuz1Cq9-53" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="305" y="3310" as="sourcePoint" />
-            <mxPoint x="-245" y="3360" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-151" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-148" target="END74McyOIayrzuz1Cq9-61" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="80" y="3910" as="sourcePoint" />
-            <mxPoint x="-55" y="3910" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-152" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-153" target="END74McyOIayrzuz1Cq9-64" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="330" y="4112" as="sourcePoint" />
-            <mxPoint x="-245" y="4080" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="END74McyOIayrzuz1Cq9-158" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-157" target="END74McyOIayrzuz1Cq9-74" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="105" y="4820" as="sourcePoint" />
-            <mxPoint x="-30" y="4820" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-1" target="uLUAAqVQ9VN-4ufJ35Hw-2" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="460" y="5100" as="sourcePoint" />
-            <mxPoint x="750" y="4580" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-2" value="思案中の新しい構想 ver2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="240" y="5400" width="430" height="370" as="geometry" />
-        </mxCell>
-        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-3" value="構想での変更内容：&lt;br&gt;１．ドラッグアンドドロップ操作でデータを読み込んで自動設定する&lt;br&gt;&lt;br&gt;２．各リソースのインデックス番号を記録&lt;br&gt;&lt;br&gt;&lt;br&gt;利点：&lt;br&gt;１．シェーダーのコードを見ながら手動で設定する必要がなくなり、&lt;br&gt;設定時のミスを防ぐことができ、作業時間が短縮できる&lt;br&gt;&lt;br&gt;２．リソースの設定時に使用されていない番号があっても対応できる&lt;br&gt;（定数リソース01と03はあるが02がないなど）&lt;br&gt;&lt;br&gt;&lt;br&gt;欠点：&lt;br&gt;１．シェーダー内部にどれがなにであるかを説明する文面が必要になる&lt;br&gt;例：#define D_SST_VS vs_main&lt;br&gt;（シェーダー設定の頂点シェーダーの関数名はvs_main）&lt;br&gt;&lt;br&gt;２．インデックス番号も設定する必要があるが&lt;br&gt;シェーダーを直接ロードでカバーできる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="uLUAAqVQ9VN-4ufJ35Hw-2" vertex="1">
-          <mxGeometry y="30" width="430" height="340" as="geometry" />
-        </mxCell>
-        <mxCell id="Pn7xB3dDuonau_cAfhpN-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Pn7xB3dDuonau_cAfhpN-1" target="END74McyOIayrzuz1Cq9-35" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="310" y="1990" as="sourcePoint" />
-            <mxPoint x="-220" y="1990" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5" pages="2">
   <diagram id="hhu_pMnJJqmqjzmJBWmp" name="シェーダー設定生成アプリ ver.2.0.0">
-    <mxGraphModel dx="3452" dy="1553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2261" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1156,6 +708,454 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="325" y="5330" as="sourcePoint" />
             <mxPoint x="-245" y="5420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="シェーダー設定生成アプリ ver.1.0.0" id="ZOv4qY263bcVziLHjtyt">
+    <mxGraphModel dx="3452" dy="1553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="END74McyOIayrzuz1Cq9-1" value="シェーダー設定生成アプリ ver.1.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="260" y="80" width="390" height="4960" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-2" value="独自形式アセット「.elsst」を生成するためのアプリ" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
+          <mxGeometry x="20" y="40" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-3" value="頂点レイアウトの設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
+          <mxGeometry x="20" y="610" width="350" height="870" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-83" value="数値を直接入力して頂点インスタンス数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
+          <mxGeometry x="25" y="40" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-86" value="プルダウンの選択でバイト数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
+          <mxGeometry x="25" y="350" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-89" value="プルダウンの選択で型を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
+          <mxGeometry x="25" y="540" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-90" value="プルダウンの選択で要素数を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-3" vertex="1">
+          <mxGeometry x="25" y="730" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-106" value="シェーダーリソースの設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
+          <mxGeometry x="20" y="1590" width="350" height="3350" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-109" value="定数リソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="25" y="380" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-113" value="テクスチャリソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="25" y="570" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-115" value="テクスチャリソース数を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="25" y="760" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-122" value="定数リソース" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="20" y="920" width="310" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-141" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
+          <mxGeometry x="20" y="340" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-143" value="直接数値を入力して設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
+          <mxGeometry x="20" y="530" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-146" value="プルダウンで設定して入力&lt;br&gt;（バッファと連携したデータを用意するかどうか）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-122" vertex="1">
+          <mxGeometry x="10" y="735" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-147" value="テクスチャリソース" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="20" y="1830" width="310" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-148" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-147" vertex="1">
+          <mxGeometry x="20" y="380" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-153" value="直接入力して設定&lt;br&gt;（プルダウンによる補助あり）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-147" vertex="1">
+          <mxGeometry x="20" y="595" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-154" value="サンプラー設定" style="swimlane;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="20" y="2590" width="310" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-157" value="プルダウンで設定して入力&lt;br&gt;（バッファと連携したデータを用意するかどうか）" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-154" vertex="1">
+          <mxGeometry x="10" y="540" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Pn7xB3dDuonau_cAfhpN-1" value="シェーダー名を各シェーダーごとに入力" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-106" vertex="1">
+          <mxGeometry x="25" y="232.5" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-127" value="プルダウンの選択で編集するシェーダーの種類を設定" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-1" vertex="1">
+          <mxGeometry x="45" y="1510" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-130" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="END74McyOIayrzuz1Cq9-1" source="END74McyOIayrzuz1Cq9-127" target="END74McyOIayrzuz1Cq9-106" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="1790" as="sourcePoint" />
+            <mxPoint x="-290" y="1790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-7" value="シェーダー設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-760" y="80" width="600" height="4960" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-8" value="内部データの説明" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-7" vertex="1">
+          <mxGeometry x="25" y="40" width="550" height="4890" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-9" value="識別名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
+          <mxGeometry x="30" y="40" width="490" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-10" value="ELSSTファイルであることを証明する文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-9" vertex="1">
+          <mxGeometry x="10" y="40" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-11" value="This-Is-ELSST" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-9" vertex="1">
+          <mxGeometry x="10" y="100" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-12" value="頂点レイアウト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
+          <mxGeometry x="30" y="230" width="490" height="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-13" value="頂点レイアウト開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
+          <mxGeometry x="10" y="120" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-14" value="頂点レイアウト情報の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-13" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-15" value="VERTEXLAYOUT:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-13" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-16" value="頂点内のインスタンス数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
+          <mxGeometry x="10" y="320" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-17" value="頂点のデータに変数がいくつあるかの定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-16" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-18" value="(int)インスタンス数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-16" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-19" value="インスタンスの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
+          <mxGeometry x="10" y="520" width="470" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-20" value="変数の型やバイト数の定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-21" value="バイト数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
+          <mxGeometry x="10" y="110" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-22" value="値一つ分のバイト数&lt;br&gt;１バイト - char　２バイト - short, half　４バイト - float" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-21" vertex="1">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-23" value="(int)１か２か４" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-21" vertex="1">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-24" value="型" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
+          <mxGeometry x="10" y="300" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-25" value="データの型" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-24" vertex="1">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-26" value="(string)INTかUINTかFLOAT" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-24" vertex="1">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-27" value="要素数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-19" vertex="1">
+          <mxGeometry x="10" y="490" width="450" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-28" value="変数が持つ要素の数&lt;br&gt;float2, float3, float4などのような型の要素(xyzw)の数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-27" vertex="1">
+          <mxGeometry x="10" y="40" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-29" value="(int)１～４の数値" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-27" vertex="1">
+          <mxGeometry x="10" y="100" width="430" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-30" value="頂点シェーダーに送る頂点データの定義" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-12" vertex="1">
+          <mxGeometry x="10" y="50" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-31" value="シェーダーリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-8" vertex="1">
+          <mxGeometry x="30" y="1470" width="490" height="3400" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-32" value="シェーダーごとの定数バッファやテクスチャリソースの数などの定義&lt;br&gt;シェーダーの種類ごとに書き込まれる&lt;br&gt;以下がシェーダーを示す記号となる&lt;br&gt;AS：全シェーダー共通リソース&lt;br&gt;VS：頂点シェーダー&lt;br&gt;HS：ハルシェーダー&lt;br&gt;DS：ドメインシェーダー&lt;br&gt;GS：ジオメトリシェーダー&lt;br&gt;PS：ピクセルシェーダー&lt;br&gt;複数の種類のシェーダーを示すときは&amp;lt;xx&amp;gt;で表す" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="30" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-33" value="&amp;lt;xx&amp;gt;シェーダの開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="210" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-34" value="各シェーダーごとに情報の開始位置を示す文字がある" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-33" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-35" value="&amp;lt;xx&amp;gt;START:(string)シェーダー名(AS時はシェーダー名なし)" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-33" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-36" value="定数リソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="400" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-37" value="定数リソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-36" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-38" value="(int)定数リソースの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-36" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-39" value="テクスチャリソースの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="590" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-40" value="テクスチャ用のリソースがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-39" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-41" value="(int)テクスチャリソースの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-39" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-42" value="サンプラーの数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="780" width="470" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-43" value="サンプラーがそのシェーダーにいくつ割り当てられているかの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-42" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-44" value="(int)サンプラーの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-42" vertex="1">
+          <mxGeometry x="10" y="100" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-45" value="定数リソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="980" width="470" height="890" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-46" value="定数リソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-47" value="定数リソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
+          <mxGeometry x="20" y="300" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-48" value="定数リソースを識別するための名前" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-47" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-49" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-47" vertex="1">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-50" value="配列数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
+          <mxGeometry x="20" y="490" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-51" value="定数リソースの配列数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-50" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-52" value="(int)配列数" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-50" vertex="1">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-53" value="定数データを生成するかどうかのフラグ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
+          <mxGeometry x="20" y="680" width="430" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-54" value="定数バッファとデータを同期させることができるインスタンスを&lt;br&gt;生成するかどうかのフラグ&lt;br&gt;TRUEで生成する、FALSEで生成しない" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-53" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-55" value="(string)TRUEかFALSE" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-53" vertex="1">
+          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-56" value="定数リソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-45" vertex="1">
+          <mxGeometry x="20" y="110" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-57" value="各シェーダーごとの定数リソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-56" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-58" value="&amp;lt;xx&amp;gt;CON:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-56" vertex="1">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-59" value="テクスチャリソースの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="1910" width="470" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-60" value="テクスチャリソースの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-61" value="テクスチャリソース名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
+          <mxGeometry x="20" y="310" width="430" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-62" value="テクスチャリソースを識別するための名前&lt;br&gt;&lt;br&gt;先頭をRSCにすることでスクリーン画面を画像として使用できる&lt;br&gt;先頭をDSBにすることで深度ステンシルバッファを画像として使用できる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-61" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-63" value="(string)リソース名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-61" vertex="1">
+          <mxGeometry x="10" y="120" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-64" value="初期ロードするテクスチャ名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
+          <mxGeometry x="20" y="520" width="430" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-65" value="マテリアルがロードされた時点でロードするテクスチャの名前&lt;br&gt;&lt;br&gt;ORIGINALでゲーム内で生成した画像を使用するための設定を自動で行う&lt;br&gt;何も書かない、もしくはNOTSHINGで画像をロードしない" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-64" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-66" value="(string)初期ロードするテクスチャ名" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-64" vertex="1">
+          <mxGeometry x="10" y="130" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-67" value="テクスチャリソースの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-59" vertex="1">
+          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-68" value="各シェーダーごとのテクスチャリソースの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-67" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-69" value="&amp;lt;xx&amp;gt;TEX:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-67" vertex="1">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-70" value="サンプラーの定義" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-31" vertex="1">
+          <mxGeometry x="10" y="2670" width="470" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-71" value="サンプラーの使い方やデータの定義&lt;br&gt;それぞれの情報を「,」で区切り一行内に書き込まれる" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
+          <mxGeometry x="10" y="40" width="450" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-72" value="サンプリング設定" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
+          <mxGeometry x="20" y="310" width="430" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-73" value="サンプリング時のテクスチャのUV座標による、&lt;br&gt;ピクセル値取り出しのオプションを指定する文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-72" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-74" value="(string)サンプリング設定名&lt;br&gt;&lt;br&gt;WARP：UVが０～１を超えるたびにテクスチャをループする&lt;br&gt;&lt;br&gt;MIRROR：UVが０～１を超えるたびにテクスチャをループするが&lt;br&gt;　　　　　超えるたびにミラーリングした画像のピクセル値となる&lt;br&gt;&lt;br&gt;CLAMP：UVが０～１を超えるとUVを０か１として使用する&lt;br&gt;　　　　 （マイナス方向に超えたら０，プラス方向に超えたら１）&lt;br&gt;&lt;br&gt;BORDER：UVが０～１を超えたら黒色をピクセル値として返す&lt;br&gt;&lt;br&gt;MIRROR_ONCE：UVが０～１を超えたら、&lt;br&gt;　　　　　　　　&amp;nbsp; 一度だけ反転したテクスチャを返す" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" parent="END74McyOIayrzuz1Cq9-72" vertex="1">
+          <mxGeometry x="10" y="140" width="410" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-75" value="サンプラーの情報開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="END74McyOIayrzuz1Cq9-70" vertex="1">
+          <mxGeometry x="20" y="120" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-76" value="各シェーダーごとのサンプラーの記載の開始位置を示す文字列" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-75" vertex="1">
+          <mxGeometry x="10" y="40" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-77" value="&amp;lt;xx&amp;gt;SAM:" style="rounded=0;whiteSpace=wrap;html=1;" parent="END74McyOIayrzuz1Cq9-75" vertex="1">
+          <mxGeometry x="10" y="100" width="410" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-81" value="自動で先頭に書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="-110" y="520" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-82" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-81" target="END74McyOIayrzuz1Cq9-13" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-150" y="550" as="sourcePoint" />
+            <mxPoint x="-215" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-85" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-83" target="END74McyOIayrzuz1Cq9-16" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-60" y="750" as="sourcePoint" />
+            <mxPoint x="-10" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-87" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-86" target="END74McyOIayrzuz1Cq9-21" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="1010" as="sourcePoint" />
+            <mxPoint x="-225" y="1010" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-88" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-89" target="END74McyOIayrzuz1Cq9-24" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="1210" as="sourcePoint" />
+            <mxPoint x="-130" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-91" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-90" target="END74McyOIayrzuz1Cq9-27" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="1370" as="sourcePoint" />
+            <mxPoint x="-235" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-111" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-132" target="END74McyOIayrzuz1Cq9-33" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-60" y="1780" as="sourcePoint" />
+            <mxPoint x="-235" y="1820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-100" y="1780" />
+              <mxPoint x="-100" y="1880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-112" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-109" target="END74McyOIayrzuz1Cq9-36" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="2000" as="sourcePoint" />
+            <mxPoint x="-225" y="2000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-114" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-113" target="END74McyOIayrzuz1Cq9-39" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="2220" as="sourcePoint" />
+            <mxPoint x="-225" y="2220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-116" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-115" target="END74McyOIayrzuz1Cq9-42" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="2350" as="sourcePoint" />
+            <mxPoint x="-180" y="2420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-129" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-132" target="END74McyOIayrzuz1Cq9-32" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-60" y="1780" as="sourcePoint" />
+            <mxPoint x="-225" y="1670" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-100" y="1780" />
+              <mxPoint x="-100" y="1700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-132" value="各シェーダーの種類ごとに自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-60" y="1750" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-134" value="定数リソースの開始位置に各シェーダー設定ごとに&lt;br&gt;自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-110" y="2730" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-135" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-134" target="END74McyOIayrzuz1Cq9-56" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="2550" as="sourcePoint" />
+            <mxPoint x="-225" y="2550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-137" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-138" target="END74McyOIayrzuz1Cq9-67" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="3500" as="sourcePoint" />
+            <mxPoint x="-130" y="3650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-138" value="テクスチャリソースの開始位置に&lt;br&gt;各シェーダー設定ごとに自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-110" y="3670" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-139" value="サンプラーの開始位置に各シェーダー設定ごとに&lt;br&gt;自動で書き込む" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-110" y="4430" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-140" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-139" target="END74McyOIayrzuz1Cq9-75" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="4270" as="sourcePoint" />
+            <mxPoint x="-245" y="4470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-142" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-141" target="END74McyOIayrzuz1Cq9-47" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="2890" as="sourcePoint" />
+            <mxPoint x="-225" y="2960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-144" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-143" target="END74McyOIayrzuz1Cq9-50" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="3090" as="sourcePoint" />
+            <mxPoint x="-70" y="3090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-145" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-146" target="END74McyOIayrzuz1Cq9-53" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="3310" as="sourcePoint" />
+            <mxPoint x="-245" y="3360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-151" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-148" target="END74McyOIayrzuz1Cq9-61" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="3910" as="sourcePoint" />
+            <mxPoint x="-55" y="3910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-152" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-153" target="END74McyOIayrzuz1Cq9-64" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="4112" as="sourcePoint" />
+            <mxPoint x="-245" y="4080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="END74McyOIayrzuz1Cq9-158" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-157" target="END74McyOIayrzuz1Cq9-74" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="105" y="4820" as="sourcePoint" />
+            <mxPoint x="-30" y="4820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="END74McyOIayrzuz1Cq9-1" target="uLUAAqVQ9VN-4ufJ35Hw-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="5100" as="sourcePoint" />
+            <mxPoint x="750" y="4580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-2" value="思案中の新しい構想 ver2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="240" y="5400" width="430" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uLUAAqVQ9VN-4ufJ35Hw-3" value="構想での変更内容：&lt;br&gt;１．ドラッグアンドドロップ操作でデータを読み込んで自動設定する&lt;br&gt;&lt;br&gt;２．各リソースのインデックス番号を記録&lt;br&gt;&lt;br&gt;&lt;br&gt;利点：&lt;br&gt;１．シェーダーのコードを見ながら手動で設定する必要がなくなり、&lt;br&gt;設定時のミスを防ぐことができ、作業時間が短縮できる&lt;br&gt;&lt;br&gt;２．リソースの設定時に使用されていない番号があっても対応できる&lt;br&gt;（定数リソース01と03はあるが02がないなど）&lt;br&gt;&lt;br&gt;&lt;br&gt;欠点：&lt;br&gt;１．シェーダー内部にどれがなにであるかを説明する文面が必要になる&lt;br&gt;例：#define D_SST_VS vs_main&lt;br&gt;（シェーダー設定の頂点シェーダーの関数名はvs_main）&lt;br&gt;&lt;br&gt;２．インデックス番号も設定する必要があるが&lt;br&gt;シェーダーを直接ロードでカバーできる" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="uLUAAqVQ9VN-4ufJ35Hw-2" vertex="1">
+          <mxGeometry y="30" width="430" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="Pn7xB3dDuonau_cAfhpN-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Pn7xB3dDuonau_cAfhpN-1" target="END74McyOIayrzuz1Cq9-35" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="1990" as="sourcePoint" />
+            <mxPoint x="-220" y="1990" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
