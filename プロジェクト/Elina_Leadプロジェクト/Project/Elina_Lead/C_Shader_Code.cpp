@@ -11,12 +11,7 @@
 #include "C_Shader_Code.h"
 #include "C_Platform_Detection_System.h"
 
-// デバッグ時のみ
-#ifdef _DEBUG
-
 #include "C_Log_System.h"
-
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -92,22 +87,17 @@ bool C_Shader_Code::M_Load_Shader_File(std::string in_shader_file_name)
 	// ファイルがなかったらfalseで抜ける
 	if (file_address == nullptr)
 	{
-		// デバッグ時のみエラーを警告
-#ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_SHADER_ERROR, (file_name + "シェーダーの読み取りに失敗しました").c_str());
 		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 		return false;
 	}
 
 
-	// デバッグ時のみ成功を告知
-#ifdef _DEBUG
+	// シェーダーの読み取りの成功を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, (file_name + "シェーダーの読み取りに成功しました").c_str());
-#endif // _DEBUG
 
 
 	// バイトコードのビット数の入手

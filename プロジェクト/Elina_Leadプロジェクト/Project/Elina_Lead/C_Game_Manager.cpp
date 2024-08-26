@@ -18,9 +18,7 @@
 #include "C_Game_Time_Manager.h"
 #include "C_Rendering_API_Interface_User.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -98,7 +96,6 @@ void C_Game_Manager::M_Data_Update(void)
 	{
 		// デバッグ時はないことを示す
 #ifdef _DEBUG
-
 #endif // _DEBUG
 	}
 
@@ -145,11 +142,9 @@ void C_Game_Manager::M_Window_Title_Update(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Game_Manager::M_Init(void)
 {
-	// ☆ デバッグ時なら初期化開始を告知 ☆ //
-#if _DEBUG
+	// ゲームの初期化開始を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化を開始 -☆-☆-☆-☆-☆-☆-☆-");
-#endif
 
 	// ゲームの共通情報をまとめるシステムを生成する
 	GAME::STATE::C_Game_State_Manager::M_Init();
@@ -168,23 +163,17 @@ void C_Game_Manager::M_Init(void)
 	// 初期化に失敗したら失敗を告知する
 	if (M_Get_Game_Exist_Flg() == false)
 	{
-		// ☆ デバッグ時なら初期化の失敗を告知 ☆ //
-#if _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に失敗 -☆-☆-☆-☆-☆-☆-☆-");
 		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 		return;
 	}
 
 
-	// ☆ デバッグ時なら初期化の成功を告知 ☆ //
-#if _DEBUG
 	// 初期化に成功したら成功を告知する
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に成功 -☆-☆-☆-☆-☆-☆-☆-");
-#endif //_DEBUG
 
 
 	// アクティブ状態を指定

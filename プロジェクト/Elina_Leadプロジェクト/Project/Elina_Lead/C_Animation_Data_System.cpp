@@ -9,9 +9,7 @@
 #include "C_Animation_Data_System.h"
 #include "C_Text_And_File_Manager.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -45,8 +43,8 @@ inline void C_Animation_Data_System::M_Blend_Key_Frame(float in_time, float in_b
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMFLOAT3 result_key;	// 結果となるキー値
 	
-	int key_value_sum = in_blend_key.size();	// キー情報の総数
-	int start_key_slot = in_blend_key.size() - 1;	// 始まりのキーのスロット
+	int key_value_sum = (int)in_blend_key.size();	// キー情報の総数
+	int start_key_slot = (int)in_blend_key.size() - 1;	// 始まりのキーのスロット
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
 
@@ -111,7 +109,7 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 	// ☆ 変数宣言 ☆ //
 	DirectX::XMVECTOR result_quaternion;	// 結果となるクォータニオン値
 
-	int key_search_end_slot = in_quaternion_key.size() - 1;	// 探索範囲最後のキーのスロット番号
+	int key_search_end_slot = (int)in_quaternion_key.size() - 1;	// 探索範囲最後のキーのスロット番号
 	int use_key_slot = 0;	// 使用するスロット番号
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
@@ -175,7 +173,7 @@ inline void C_Animation_Data_System::M_Blend_Quaternion_Key_Frame(float in_time,
 inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Key_Frame> & in_set_key, DirectX::XMFLOAT3 & out_set_key) const
 {
 	// ☆ 変数宣言 ☆ //
-	int key_search_end_slot = in_set_key.size() - 1;	// 探索範囲最後のスロットの番号
+	int key_search_end_slot = (int)in_set_key.size() - 1;	// 探索範囲最後のスロットの番号
 	int use_key_slot = 0;	// 使用するキーのスロット番号
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
@@ -234,8 +232,8 @@ inline void C_Animation_Data_System::M_Set_Key_Frame(float in_time, const std::v
 inline void C_Animation_Data_System::M_Set_Quaternion_Key_Frame(float in_time, const std::vector<ASSET::ANIMATION_SYSTEM::S_Quaternion_Key_Frame> & in_quaternion_key, DirectX::XMVECTOR & out_set_quaternion) const
 {
 	// ☆ 変数宣言 ☆ //
-	int key_quaternion_sum = in_quaternion_key.size();	// クォータニオンのキー情報の総数
-	int start_key_slot = in_quaternion_key.size() - 1;	// 始まりのキーのスロット
+	int key_quaternion_sum = (int)in_quaternion_key.size();	// クォータニオンのキー情報の総数
+	int start_key_slot = (int)in_quaternion_key.size() - 1;	// 始まりのキーのスロット
 
 	bool key_is_end = true;	// 使用するキーが配列内最後の場合はtrue、配列の途中であればfalse
 
@@ -381,11 +379,8 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	// ファイルのロード
 	if (file_data.M_Load_Select_File(in_animation_data_path) == false)
 	{
-		// ロードに成功、デバッグ時は成功ログを表示
-#ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このアニメーションデータのファイルはありません：" + in_animation_data_path);
-#endif // _DEBUG
 
 		return false;
 	}
@@ -393,10 +388,8 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	// 認証名を探索する
 	if (file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELANMDT") == false)
 	{
-#ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmdt形式ではありません：" + in_animation_data_path);
-#endif // _DEBUG
 
 		return false;
 	}
@@ -404,18 +397,16 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	// データの開始位置へ移動
 	if (file_data.M_Goto_Right_By_Text_In_Front_Row("ANIMATION:"))
 	{
-#ifdef _DEBUG
 		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "アニメーションのデータが確認できませんでした：" + in_animation_data_path);
 		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 		return false;
 	}
 
 
 	// ☆ 変数宣言 ☆ //
-	int bone_sum_of_base = in_bone_inform_list.size();	// ボーンの総数
+	int bone_sum_of_base = (int)in_bone_inform_list.size();	// ボーンの総数
 	int now_use_offset_bone_number_slot = 0;	// 現在使用するオフセット行列を設定するボーンのスロット番号
 	int before_bone_number = 0;	// 前のボーンの番号
 
@@ -426,7 +417,7 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 
 	// アニメーション時間を取得
 	file_data.M_Goto_Right_By_Text_In_Front_Row("ENDTIME:");
-	mpr_variable.animation_end_time = file_data.M_Get_Float_Double_Number();
+	mpr_variable.animation_end_time = (float)file_data.M_Get_Float_Double_Number();
 
 	// アニメーションするボーン数を取得し、その数分配列を生成
 	file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:");
@@ -487,15 +478,15 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			file_data.M_Move_Next_Raw();
 
 			// このキーのタイミングを時間で取得
-			now_position_key.time_of_frame = file_data.M_Get_Float_Double_Number();
+			now_position_key.time_of_frame = (float)file_data.M_Get_Float_Double_Number();
 
 			// キー情報を取得
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_position_key.key_value.x = file_data.M_Get_Float_Double_Number();
+			now_position_key.key_value.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_position_key.key_value.y = file_data.M_Get_Float_Double_Number();
+			now_position_key.key_value.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_position_key.key_value.z = file_data.M_Get_Float_Double_Number();
+			now_position_key.key_value.z = (float)file_data.M_Get_Float_Double_Number();
 		}
 
 
@@ -514,17 +505,17 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			file_data.M_Move_Next_Raw();
 
 			// このキーのタイミングを時間で取得
-			now_rotation_key.time_of_frame = file_data.M_Get_Float_Double_Number();
+			now_rotation_key.time_of_frame = (float)file_data.M_Get_Float_Double_Number();
 
 			// キー情報を取得
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			set_rotation_value.x = file_data.M_Get_Float_Double_Number();
+			set_rotation_value.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			set_rotation_value.y = file_data.M_Get_Float_Double_Number();
+			set_rotation_value.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			set_rotation_value.z = file_data.M_Get_Float_Double_Number();
+			set_rotation_value.z = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			set_rotation_value.w = file_data.M_Get_Float_Double_Number();
+			set_rotation_value.w = (float)file_data.M_Get_Float_Double_Number();
 
 			// クォータニオンにセット
 			now_rotation_key.quaternion.M_Set_Quaternion(DirectX::XMVectorSet(set_rotation_value.x, set_rotation_value.y, set_rotation_value.z, set_rotation_value.w));
@@ -542,15 +533,15 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 			file_data.M_Move_Next_Raw();
 
 			// このキーのタイミングを時間で取得
-			now_scale_key.time_of_frame = file_data.M_Get_Float_Double_Number();
+			now_scale_key.time_of_frame = (float)file_data.M_Get_Float_Double_Number();
 
 			// キー情報を取得
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_scale_key.key_value.x = file_data.M_Get_Float_Double_Number();
+			now_scale_key.key_value.x = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_scale_key.key_value.y = file_data.M_Get_Float_Double_Number();
+			now_scale_key.key_value.y = (float)file_data.M_Get_Float_Double_Number();
 			file_data.M_Goto_Right_By_Text_In_Front_Row(",");
-			now_scale_key.key_value.z = file_data.M_Get_Float_Double_Number();
+			now_scale_key.key_value.z = (float)file_data.M_Get_Float_Double_Number();
 		}
 
 		// 現在のボーン番号を前回のボーン番号として保存
@@ -566,11 +557,9 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 	}
 
 
-	// ロードに成功、デバッグ時は成功ログを表示
-#ifdef _DEBUG
+	// ロードに成功したことをログに表示
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "アニメーションデータのロードに成功しました：" + in_animation_data_path);
-#endif // _DEBUG
 
 	return true;
 }
@@ -586,7 +575,7 @@ bool C_Animation_Data_System::M_Load_Animation_Data_By_Path(std::string in_anima
 void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend_percent, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_key_list) const
 {
 	// ☆ 変数宣言 ☆ //
-	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+	int animation_bone_sum = (int)mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
 
 
 	// ボーンのデータ分の配列を生成する
@@ -620,7 +609,7 @@ void C_Animation_Data_System::M_Blend_Bone_Key(float in_time, float in_key_blend
 void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & out_set_bone_list) const
 {
 	// ☆ 変数宣言 ☆ //
-	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+	int animation_bone_sum = (int)mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
 
 
 	// ボーンのデータ分の配列を生成する
@@ -654,9 +643,9 @@ void C_Animation_Data_System::M_Set_Bone_Key(float in_time, std::vector<ASSET::A
 void C_Animation_Data_System::M_Create_Bone_Matrix_List(std::vector<DirectX::XMFLOAT4X4> & out_set_matrix_list, const std::vector<ASSET::ANIMATION::BONE::C_Bone_Data> & in_bone_data_list, const std::vector<ASSET::ANIMATION::BONE::S_Bone_Inform> & in_bone_offset_matrix_list) const
 {
 	// ☆ 変数宣言 ☆ //
-	int animation_bone_sum = mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
+	int animation_bone_sum = (int)mpr_variable.bone_key_list.size();	// アニメーションするボーンの総数
 
-	int offset_bone_sum = mpr_variable.use_offset_bone_list.size();	// オフセット行列を使用するボーンの総数
+	int offset_bone_sum = (int)mpr_variable.use_offset_bone_list.size();	// オフセット行列を使用するボーンの総数
 
 
 	// アニメーションの影響を受けるボーンのみマトリクスを生成する
@@ -699,9 +688,9 @@ void C_Animation_Data_System::M_Create_Bone_Matrix_List(std::vector<DirectX::XMF
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：アニメーション開始から終了までの時間
 // 引数   ：void
-// 戻り値 ：int アニメーション開始から終了までの時間
+// 戻り値 ：float アニメーション開始から終了までの時間
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Animation_Data_System::M_Get_Animation_Time(void) const
+float C_Animation_Data_System::M_Get_Animation_Time(void) const
 {
 	return mpr_variable.animation_end_time;
 }

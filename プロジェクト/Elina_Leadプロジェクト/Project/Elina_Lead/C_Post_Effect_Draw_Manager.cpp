@@ -66,11 +66,11 @@ void C_Post_Effect_Draw_Manager::M_Set_Post_Effect_Before_UI(GAME::INSTANCE::POS
 
 
 	// ☆ 変数宣言 ☆ //
-	int set_post_effect_slot = m_this.mpr_variable.post_effect_before_ui_list.size();	// ポストエフェクトの追加先スロット
+	int set_post_effect_slot = (int)m_this.mpr_variable.post_effect_before_ui_list.size();	// ポストエフェクトの追加先スロット
 
 
 	// ポストエフェクトを描画リストに追加
-	m_this.mpr_variable.post_effect_before_ui_list.resize(set_post_effect_slot + 1);
+	m_this.mpr_variable.post_effect_before_ui_list.resize((size_t)set_post_effect_slot + 1);
 	m_this.mpr_variable.post_effect_before_ui_list[set_post_effect_slot] = in_add_post_effect;
 
 	return;
@@ -92,11 +92,11 @@ void C_Post_Effect_Draw_Manager::M_Set_Post_Effect_After_UI(GAME::INSTANCE::POST
 
 
 	// ☆ 変数宣言 ☆ //
-	int set_post_effect_slot = m_this.mpr_variable.post_effect_after_ui_list.size();	// ポストエフェクトの追加先スロット
+	int set_post_effect_slot = (int)m_this.mpr_variable.post_effect_after_ui_list.size();	// ポストエフェクトの追加先スロット
 
 
 	// ポストエフェクトを描画リストに追加
-	m_this.mpr_variable.post_effect_after_ui_list.resize(set_post_effect_slot + 1);
+	m_this.mpr_variable.post_effect_after_ui_list.resize((size_t)set_post_effect_slot + 1);
 	m_this.mpr_variable.post_effect_after_ui_list[set_post_effect_slot] = in_add_post_effect;
 
 	return;

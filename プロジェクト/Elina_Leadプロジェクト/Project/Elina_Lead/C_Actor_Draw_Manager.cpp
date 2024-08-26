@@ -87,7 +87,7 @@ void C_Actor_Draw_Manager::M_Set_Actor_To_Draw_List(GAME::INSTANCE::ACTOR::BASE:
 
 
 	// ☆ 変数宣言 ☆ //
-	int actor_slot = m_this.mpr_variable.draw_actor_list.size();	// アクターの追加先スロット番号
+	int actor_slot = (int)m_this.mpr_variable.draw_actor_list.size();	// アクターの追加先スロット番号
 
 
 	// アクターを描画システム内に追加する
@@ -120,7 +120,7 @@ void C_Actor_Draw_Manager::M_Set_Actor_To_After_Draw_List(GAME::INSTANCE::ACTOR:
 
 
 	// ☆ 変数宣言 ☆ //
-	int actor_slot = m_this.mpr_variable.after_draw_actor_list.size();	// アクターの追加先スロット番号
+	int actor_slot = (int)m_this.mpr_variable.after_draw_actor_list.size();	// アクターの追加先スロット番号
 
 
 	// アクターを描画システム内に追加する

@@ -138,7 +138,7 @@ namespace ASSET::ANIMATION_SYSTEM
 		//-☆- ゲッタ -☆-//
 
 		// アニメーション開始から終了までの時間　戻り値：アニメーション開始から終了までの時間
-		int M_Get_Animation_Time(void) const;
+		float M_Get_Animation_Time(void) const;
 
 		// ボーンオフセット行列を使用するボーンのインデックス番号のリストを返す　戻り値 ：vector<int> & ボーンオフセット行列を使用するボーンのインデックス番号のリストの参照（const）
 		const std::vector<int> & M_Get_Use_Offset_Bone_List(void) const;

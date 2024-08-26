@@ -31,7 +31,7 @@ namespace RENDERING::API::DX12::DX12_INSTANCE
 	public:
 
 		// ☆ 変数宣言 ☆ //
-		D3D12_INDEX_BUFFER_VIEW m_index_buffer_view;	// インデックスバッファビュー
+		D3D12_INDEX_BUFFER_VIEW m_index_buffer_view = D3D12_INDEX_BUFFER_VIEW();	// インデックスバッファビュー
 
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_index_buffer_data;	// インデックスバッファのデータ
 

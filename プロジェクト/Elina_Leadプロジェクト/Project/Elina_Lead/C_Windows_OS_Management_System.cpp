@@ -16,9 +16,7 @@
 #include "C_Windows_OS_Management_System.h"
 #include "C_Wnd_Proc_Manager.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -54,7 +52,7 @@ C_Windows_OS_Management_System::C_Windows_OS_Management_System(void)
 bool C_Windows_OS_Management_System::M_Create_Window(void)
 {
 	// ☆ 変数宣言 ☆ //
-	WNDCLASSEX w_wc;	// WNDCLASSEX構造体の中身の準備
+	WNDCLASSEX w_wc = WNDCLASSEX();	// WNDCLASSEX構造体の中身の準備
 
 	std::wstring device_name = M_Get_Window_Title_Name();	// ワイド文字列でのウィンドウ名
 
@@ -171,64 +169,22 @@ void C_Windows_OS_Management_System::M_Mouse_Input_Update(void)
 }
 
 
-//-☆- 更新 -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：時間の更新
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_OS_Management_System::M_Time_Update(void)
-{
-	// ☆ 変数宣言 ☆ //
-	time_t get_time = time(nullptr);	// 時間情報
-
-	tm time_data;	// 時間情報を解析したデータ
-
-	S_Day_And_Time_Inform now_time;	// 現在の時間
-
-
-	// 時間情報をデータに変換
-	localtime_s(&time_data, &get_time);
-
-	// 日付を設定
-	now_time.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
-	now_time.month = time_data.tm_mon + 1;		// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
-	now_time.day = time_data.tm_mday;			// 日
-
-	// 時刻を設定
-	now_time.hour = time_data.tm_hour;	// 時
-	now_time.minute = time_data.tm_min;	// 分
-	now_time.second = time_data.tm_sec;	// 秒
-
-	// 現在の日時をセット
-	M_Set_Now_Day_And_Time(now_time);
-
-
-	// 現在の経過時間をセット
-	M_Set_Now_Time_By_Start_In_Milli_Second(GetTickCount64());
-
-	return;
-}
-
-
 //==☆  パブリック  ☆==//
 
 //-☆-  初期化と終了時  -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ウィンドウズのシステムを初期化する
+// 詳細   ：ウィンドウズ用のシステムを初期化する
 // 引数   ：void
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 {
+	// ウィンドウズ用のシステムを生成
 	m_this_instance.reset(new C_Windows_OS_Management_System());
 
-	// デバッグシステム初期化
-#ifdef _DEBUG
+	// ログシステムを初期化
 	DEBUGGER::LOG::C_Log_System::M_Init_Debug();
-#endif // _DEBUG
 
 	return;
 }
@@ -241,24 +197,20 @@ void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 bool C_Windows_OS_Management_System::M_Set_Up(void)
 {
-	// ☆ デバッグ時のみセットアップ開始を通知 ☆ //
-#if _DEBUG
+	// ウィンドウズ用アプリケーションのセットアップ開始を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
-#endif // _DEBUG
+	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズアプリケーションのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
 
 
 	// ウィンドウを生成する
 	M_Create_Window();
 
 
-	// ☆ デバッグ時のみセットアップ完了を通知 ☆ //
-#if _DEBUG
+	// ウィンドウズ用アプリケーションのセットアップ完了を報告
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップに成功、GUIを起動完了-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
 	DEBUGGER::LOG::C_Log_System::M_Console_LOG_Flush();
-#endif // _DEBUG
 
 
 	// ウィンドウサイズの更新
@@ -332,6 +284,9 @@ void C_Windows_OS_Management_System::M_Update(void)
 	// マウス座標の更新
 	M_Mouse_Input_Update();
 
+	// 時間の更新
+	M_Update_Time();
+
 	return;
 }
 
@@ -364,6 +319,47 @@ void C_Windows_OS_Management_System::M_Window_Size_Update(void)
 	return;
 }
 
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：時間の更新
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Windows_OS_Management_System::M_Update_Time(void)
+{
+	// ☆ 変数宣言 ☆ //
+	time_t get_time = time(nullptr);	// 時間情報
+
+	tm time_data;	// 時間情報を解析したデータ
+
+	S_Day_And_Time_Inform now_time;	// 現在の時間
+
+
+	// 時間情報をデータに変換
+	localtime_s(&time_data, &get_time);
+
+	// 日付を設定
+	now_time.year = time_data.tm_year + 1900;	// 年、入手した情報は1900年分省略されているため訂正
+	now_time.month = time_data.tm_mon + 1;		// 月、入手した情報が０始まりで月を計算しているので訂正(0～11 + 1 = 1～12)
+	now_time.day = time_data.tm_mday;			// 日
+
+	// 時刻を設定
+	now_time.hour = time_data.tm_hour;	// 時
+	now_time.minute = time_data.tm_min;	// 分
+	now_time.second = time_data.tm_sec;	// 秒
+
+	// 現在の日時をセット
+	M_Set_Now_Day_And_Time(now_time);
+
+
+	// 現在の経過時間をセット
+	M_Set_Now_Time_By_Start_In_Milli_Second(GetTickCount64());
+
+	return;
+}
+
+
+//-☆- セッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ウィンドウの初期コマンド番号をセット

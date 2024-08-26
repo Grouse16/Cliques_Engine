@@ -319,6 +319,9 @@ bool C_Text_And_File_Manager::M_Create_Path_Of_Folder(std::string in_path_string
 				// ☆ 変数宣言 ☆ //
 				wchar_t* p_set_fol_name = new wchar_t[(long long)n_num + 1];	// 生成するフォルダ名
 
+				int create_result = 0;	// 生成結果
+
+
 				// フォルダ名を設定
 				for (int n_len = 0; n_len < n_num; n_len++)
 				{
@@ -328,12 +331,24 @@ bool C_Text_And_File_Manager::M_Create_Path_Of_Folder(std::string in_path_string
 				// 終端文字を追加
 				p_set_fol_name[n_num] = '\0';
 
+				
 				// フォルダを生成する
-				_wmkdir(p_set_fol_name);
+				create_result = _wmkdir(p_set_fol_name);
 
+				
 				// メモリ解放
 				delete[] p_set_fol_name;
 				p_set_fol_name = nullptr;
+
+
+				// 生成に失敗したらエラーを出す
+				if (create_result == -1)
+				{
+					delete[] p_search_folder_name;
+					p_search_folder_name = nullptr;
+
+					return false;
+				}
 			}
 
 			// メモリ解放
@@ -446,7 +461,7 @@ void C_Text_And_File_Manager::M_Set_Edit_Mode(E_EDIT_MODE in_set_mode)
 // 引数   ：void
 // 戻り値 ：const vector<string> & データの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const std::vector<std::string> & C_Text_And_File_Manager::M_Get_File_Data_Refer(void)
+const std::vector<std::string> & C_Text_And_File_Manager::M_Get_File_Data_Refer(void) const
 {
 	return mpr_variable.sentence_data;
 }
@@ -457,7 +472,7 @@ const std::vector<std::string> & C_Text_And_File_Manager::M_Get_File_Data_Refer(
 // 引数   ：void
 // 戻り値 ：string & ファイルパスの参照
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-const std::string & C_Text_And_File_Manager::M_Get_File_Path_Refer(void)
+const std::string & C_Text_And_File_Manager::M_Get_File_Path_Refer(void) const
 {
 	return mpr_variable.file_path;
 }
@@ -468,7 +483,7 @@ const std::string & C_Text_And_File_Manager::M_Get_File_Path_Refer(void)
 // 引数   ：void
 // 戻り値 ：int 現在の行の番号
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Text_And_File_Manager::M_Get_Now_Row(void)
+int C_Text_And_File_Manager::M_Get_Now_Row(void) const
 {
 	return mpr_variable.row_number;
 }
@@ -479,7 +494,7 @@ int C_Text_And_File_Manager::M_Get_Now_Row(void)
 // 引数   ：void
 // 戻り値 ：int 現在の列の番号
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Text_And_File_Manager::M_Get_Now_Column(void)
+int C_Text_And_File_Manager::M_Get_Now_Column(void) const
 {
 	return mpr_variable.column_number;
 }
@@ -490,7 +505,7 @@ int C_Text_And_File_Manager::M_Get_Now_Column(void)
 // 引数   ：void
 // 戻り値 ：int 文章の行数
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-int C_Text_And_File_Manager::M_Get_Text_Row_Sum(void)
+int C_Text_And_File_Manager::M_Get_Text_Row_Sum(void) const
 {
 	return (int)mpr_variable.sentence_data.size();
 }
@@ -1359,13 +1374,13 @@ void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Sentence(int in_d
 		for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[loop_row][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[loop_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったら削除する
 				if (check_x + 1 >= text_size)
 				{
 					// 削除位置より右に文字がないなら削除位置までを格納
-					if (mpr_variable.sentence_data[loop_row].size() <= loop_column + text_size)
+					if (mpr_variable.sentence_data[loop_row].size() <= (size_t)loop_column + (size_t)text_size)
 					{
 						mpr_variable.sentence_data[loop_row] = mpr_variable.sentence_data[loop_row].substr(0, loop_column);
 					}
@@ -1373,7 +1388,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Sentence(int in_d
 					// 削除位置より右に文字があるなら削除位置のみ省く
 					else
 					{
-						mpr_variable.sentence_data[loop_row] = mpr_variable.sentence_data[loop_row].substr(0, loop_column) + mpr_variable.sentence_data[loop_row].substr(loop_column + text_size);
+						mpr_variable.sentence_data[loop_row] = mpr_variable.sentence_data[loop_row].substr(0, loop_column) + mpr_variable.sentence_data[loop_row].substr((size_t)loop_column + text_size);
 					}
 
 
@@ -1392,7 +1407,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Sentence(int in_d
 						// 選択中の場所が今の行内を超えたら上の行に戻る
 						if (mpr_variable.column_number < 0)
 						{
-							mpr_variable.column_number = mpr_variable.sentence_data[mpr_variable.row_number - 1].size();
+							mpr_variable.column_number = (int)mpr_variable.sentence_data[(size_t)mpr_variable.row_number - 1].size();
 						}
 					}
 
@@ -1417,7 +1432,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Sentence(int in_d
 // 引数   ：int 削除回数（０で全て削除）, std::string 削除する文字
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row(int in_delete_num, std::string in_delete_text)
+void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Now_Row(int in_delete_num, std::string in_delete_text)
 {
 	// ☆ 変数宣言 ☆ //
 	int text_size = (int)in_delete_text.size();	// 探索する文字の文字数
@@ -1428,13 +1443,13 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row(int in_de
 	for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったら削除する
 			if (check_x + 1 >= text_size)
 			{
 				// 削除位置より右に文字がないなら削除位置までを格納
-				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= loop_column + text_size)
+				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= (size_t)loop_column + text_size)
 				{
 					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column);
 				}
@@ -1442,7 +1457,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row(int in_de
 				// 削除位置より右に文字があつなら削除位置のみ省く
 				else
 				{
-					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column + text_size);
+					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr((size_t)loop_column + text_size);
 				}
 
 
@@ -1482,7 +1497,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row(int in_de
 // 引数   ：int 削除回数（０で全て削除）, std::string 削除する文字
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Right(int in_delete_num, std::string in_delete_text)
+void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Now_Row_For_Right(int in_delete_num, std::string in_delete_text)
 {
 	// ☆ 変数宣言 ☆ //
 	int text_size = (int)in_delete_text.size();	// 探索する文字の文字数
@@ -1493,13 +1508,13 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Right
 	for (int loop_column = mpr_variable.column_number; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったら削除する
 			if (check_x + 1 >= text_size)
 			{
 				// 削除位置より右に文字がないなら削除位置までを格納
-				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= loop_column + text_size)
+				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= (size_t)loop_column + text_size)
 				{
 					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column);
 				}
@@ -1507,7 +1522,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Right
 				// 削除位置より右に文字があつなら削除位置のみ省く
 				else
 				{
-					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column + text_size);
+					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr((size_t)loop_column + text_size);
 				}
 
 
@@ -1547,7 +1562,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Right
 // 引数   ：int 削除回数（０で全て削除）, std::string 削除する文字
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Left(int in_delete_num, std::string in_delete_text)
+void C_Text_And_File_Manager::M_Delete_Data_Equal_This_Text_In_Now_Row_For_Left(int in_delete_num, std::string in_delete_text)
 {
 	// ☆ 変数宣言 ☆ //
 	int text_size = (int)in_delete_text.size();	// 探索する文字の文字数
@@ -1557,13 +1572,13 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Left(
 	for (int loop_column = mpr_variable.column_number; loop_column > -1; loop_column--)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_delete_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったら削除する
 			if (check_x + 1 >= text_size)
 			{
 				// 削除位置より右に文字がないなら削除位置までを格納
-				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= loop_column + text_size)
+				if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= (size_t)loop_column + text_size)
 				{
 					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column);
 				}
@@ -1571,7 +1586,7 @@ void C_Text_And_File_Manager::M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Left(
 				// 削除位置より右に文字があつなら削除位置のみ省く
 				else
 				{
-					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column + text_size);
+					mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, loop_column) + mpr_variable.sentence_data[mpr_variable.row_number].substr((size_t)loop_column + text_size);
 				}
 
 
@@ -1679,7 +1694,7 @@ void C_Text_And_File_Manager::M_Delete_Column(int in_delete_num)
 	if (in_delete_num > 0)
 	{
 		// ☆ 削除する文字数が行内に収まらないなら行末までを削除 ☆ //
-		if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= mpr_variable.column_number + in_delete_num)
+		if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= (size_t)mpr_variable.column_number + in_delete_num)
 		{
 			mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, mpr_variable.column_number);
 			mpr_variable.sentence_data[mpr_variable.row_number].shrink_to_fit();
@@ -1689,7 +1704,7 @@ void C_Text_And_File_Manager::M_Delete_Column(int in_delete_num)
 
 
 		// 行内に収まるなら行の間だけを削除する
-		mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, mpr_variable.column_number) + mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number + in_delete_num);
+		mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, mpr_variable.column_number) + mpr_variable.sentence_data[mpr_variable.row_number].substr((size_t)mpr_variable.column_number + in_delete_num);
 		mpr_variable.sentence_data[mpr_variable.row_number].shrink_to_fit();
 
 		return;
@@ -1709,7 +1724,7 @@ void C_Text_And_File_Manager::M_Delete_Column(int in_delete_num)
 
 
 	// 行内で収まるなら行の間だけを削除する
-	mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, mpr_variable.column_number - in_delete_num) + mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number + 1);
+	mpr_variable.sentence_data[mpr_variable.row_number] = mpr_variable.sentence_data[mpr_variable.row_number].substr(0, (size_t)mpr_variable.column_number - in_delete_num) + mpr_variable.sentence_data[mpr_variable.row_number].substr((size_t)mpr_variable.column_number + 1);
 	mpr_variable.sentence_data[mpr_variable.row_number].shrink_to_fit();
 
 	return;
@@ -1970,7 +1985,7 @@ long long C_Text_And_File_Manager::M_Get_Number(void)
 			// 一文字目でなければ終了する
 			else
 			{
-				return result_number * (1.0f - flg_minus * 2.0f);
+				return result_number * ((size_t)1 - (size_t)flg_minus * 2);
 			}
 
 			break;
@@ -1981,7 +1996,7 @@ long long C_Text_And_File_Manager::M_Get_Number(void)
 			// 一文字目以降にプラス記号が来たらそこで終了する
 			if (check_x > 0)
 			{
-				return result_number * (1.0f - flg_minus * 2.0f);
+				return result_number * ((size_t)1 - (size_t)flg_minus * 2);
 			}
 
 			break;
@@ -1989,13 +2004,13 @@ long long C_Text_And_File_Manager::M_Get_Number(void)
 			//  数字じゃなかったらここで終わる  //
 		default:
 
-			return result_number * (1.0f - flg_minus * 2.0f);
+			return result_number * ((size_t)1 - (size_t)flg_minus * 2);
 
 			break;
 		}
 	}
 
-	return result_number * (1.0f - flg_minus * 2.0f);
+	return result_number * ((size_t)1 - (size_t)flg_minus * 2);
 }
 
 
@@ -2044,7 +2059,7 @@ double C_Text_And_File_Manager::M_Get_Float_Double_Number(void)
 std::string C_Text_And_File_Manager::M_Get_Data_By_Number(int in_text_num)
 {
 	// ☆ 行を超えるならその行の最後の文字までを返す ☆ //
-	if (mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number).size() <= in_text_num + mpr_variable.column_number)
+	if (mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number).size() <= (size_t)in_text_num + mpr_variable.column_number)
 	{
 		return mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number);
 	}
@@ -2071,12 +2086,12 @@ std::string C_Text_And_File_Manager::M_Get_Data_By_Text(std::string in_search_te
 	for (int loop_column = mpr_variable.column_number + 1; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x]; check_x++)
+		for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x]; check_x++)
 		{
 			// 見つかったらそこまでの文章を返す
 			if (check_x + 1 >= text_size)
 			{
-				return mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number, loop_column - mpr_variable.column_number);
+				return mpr_variable.sentence_data[mpr_variable.row_number].substr(mpr_variable.column_number, (size_t)loop_column - mpr_variable.column_number);
 			}
 		}
 	}
@@ -2219,7 +2234,7 @@ void C_Text_And_File_Manager::M_Goto_Row_By_Set_Number(unsigned int in_set_row)
 	// 行が足りていなければ増やす
 	if (mpr_variable.sentence_data.size() <= mpr_variable.row_number)
 	{
-		mpr_variable.sentence_data.resize(mpr_variable.row_number + 1);
+		mpr_variable.sentence_data.resize((size_t)mpr_variable.row_number + 1);
 	}
 
 	return;
@@ -2240,7 +2255,7 @@ void C_Text_And_File_Manager::M_Goto_Column_By_Set_Number(unsigned int in_set_co
 	// 列が足りていなければ増やす
 	if (mpr_variable.sentence_data[mpr_variable.row_number].size() <= mpr_variable.column_number)
 	{
-		mpr_variable.sentence_data[mpr_variable.row_number].resize(mpr_variable.column_number + 1);
+		mpr_variable.sentence_data[mpr_variable.row_number].resize((size_t)mpr_variable.column_number + 1);
 	}
 
 	return;
@@ -2269,7 +2284,7 @@ void C_Text_And_File_Manager::M_Move_Position_By_Number(int in_move_num)
 		// ☆ 今の場所からの判定 ☆ //
 
 		// 行内で収まるなら列を移動分移動させる
-		if (mpr_variable.column_number + in_move_num <= mpr_variable.sentence_data[mpr_variable.row_number].size())
+		if ((size_t)mpr_variable.column_number + in_move_num <= mpr_variable.sentence_data[mpr_variable.row_number].size())
 		{
 			mpr_variable.column_number += in_move_num;
 
@@ -2368,7 +2383,7 @@ void C_Text_And_File_Manager::M_Move_Raw_By_Number(int in_move_row_num)
 	if (in_move_row_num > 0)
 	{
 		// 上限を超えるなら最後の行を直接指定
-		if (mpr_variable.row_number + (int)in_move_row_num > mpr_variable.sentence_data.size())
+		if ((size_t)mpr_variable.row_number + (int)in_move_row_num > mpr_variable.sentence_data.size())
 		{
 			mpr_variable.row_number = (int)mpr_variable.sentence_data.size();
 
@@ -2429,14 +2444,14 @@ void C_Text_And_File_Manager::M_Move_Next_Raw(void)
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
@@ -2445,7 +2460,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = mpr_variable.row_number;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -2466,7 +2481,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2495,11 +2510,11 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[mpr_variable.row_number + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)mpr_variable.row_number + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -2520,7 +2535,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2538,7 +2553,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 	for (int loop_row = mpr_variable.row_number + 1; loop_row < line_sum; loop_row++)
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
 
 
 		// 同じ行にあるかどうかを判定する
@@ -2547,7 +2562,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[loop_row].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = loop_row;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -2568,7 +2583,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2597,11 +2612,11 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[loop_row].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[loop_row].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[loop_row + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)loop_row + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -2622,7 +2637,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2645,17 +2660,17 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Sentence(std::string
 // 引数   ：std::string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string in_search_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_search_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -2671,7 +2686,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = mpr_variable.row_number;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -2682,7 +2697,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 			for (int check_x = 0; flg_not_this == false; check_x++)
 			{
 				// 改行コードがあるなら次の行を読み込む
-				if (M_Is_CR(in_serch_text[check_x]) == true)
+				if (M_Is_CR(in_search_text[check_x]) == true)
 				{
 					// 次の行があるなら改行
 					if (now_row_number + 1 < line_sum)
@@ -2692,7 +2707,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2704,7 +2719,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 
 
 				// 違うなら探索をやめる
-				if (in_serch_text[check_x] != stack_check_string[check_x])
+				if (in_search_text[check_x] != stack_check_string[check_x])
 				{
 					flg_not_this = true;
 				}
@@ -2721,11 +2736,11 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[mpr_variable.row_number + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)mpr_variable.row_number + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -2746,7 +2761,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2764,7 +2779,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 	for (int loop_row = mpr_variable.row_number - 1; loop_row > -1; loop_row--)
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[loop_row].size();	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[loop_row].size();	// 探索開始位置
 
 
 		// 一文字目が一致するかを繰り返して探索
@@ -2773,7 +2788,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[loop_row].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = loop_row;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -2784,7 +2799,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 			for (int check_x = 0; flg_not_this == false; check_x++)
 			{
 				// 改行コードがあるなら次の行を読み込む
-				if (M_Is_CR(in_serch_text[check_x]) == true)
+				if (M_Is_CR(in_search_text[check_x]) == true)
 				{
 					// 次の行があるなら改行
 					if (now_row_number + 1 < line_sum)
@@ -2794,7 +2809,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2806,7 +2821,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 
 
 				// 違うなら探索をやめる
-				if (in_serch_text[check_x] != stack_check_string[check_x])
+				if (in_search_text[check_x] != stack_check_string[check_x])
 				{
 					flg_not_this = true;
 				}
@@ -2823,11 +2838,11 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[loop_row].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[loop_row].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[loop_row + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)loop_row + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -2848,7 +2863,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -2874,21 +2889,21 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Sentence(std::string 
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Row(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
 		for (int loop_column = mpr_variable.column_number; loop_column <= column_sum; loop_column++)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -2906,14 +2921,14 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Row(std::string in_s
 	for (int loop_row = mpr_variable.row_number + 1; loop_row < line_sum; loop_row++)
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
 		for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -2940,13 +2955,13 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Row(std::string in_s
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Row(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -2960,7 +2975,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Row(std::string in_se
 		for (int loop_column = start_column; loop_column > -1; loop_column--)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -2982,7 +2997,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Row(std::string in_se
 	for (int loop_row = mpr_variable.row_number - 1; loop_row > -1; loop_row--)
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -2996,7 +3011,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Row(std::string in_se
 		for (int loop_column = start_column; loop_column > -1; loop_column--)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -3023,15 +3038,15 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Row(std::string in_se
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Column(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
+	int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
 
 
 	// 一文字目が一致するかを繰り返して探索
 	for (int loop_column = mpr_variable.column_number; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったらそこに移動して終了
 			if (check_x + 1 >= text_size)
@@ -3056,8 +3071,8 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Front_Column(std::string i
 bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Column(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
+	int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
 
 
 	// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -3071,7 +3086,7 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Column(std::string in
 	for (int loop_column = start_column; loop_column > -1; loop_column--)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったらそこに移動して終了
 			if (check_x + 1 >= text_size)
@@ -3100,14 +3115,14 @@ bool C_Text_And_File_Manager::M_Goto_Right_By_Text_In_Back_Column(std::string in
 bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
@@ -3116,7 +3131,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = mpr_variable.row_number;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -3137,7 +3152,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3166,11 +3181,11 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[mpr_variable.row_number + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)mpr_variable.row_number + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -3191,7 +3206,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3209,7 +3224,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 	for (int loop_row = mpr_variable.row_number + 1; loop_row < line_sum; loop_row++)
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
 
 
 		// 同じ行にあるかどうかを判定する
@@ -3218,7 +3233,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[loop_row].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = loop_row;	// 今の行の番号
 			int indented_time = 0;	// 改行した回数
 
@@ -3239,7 +3254,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3268,11 +3283,11 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 					// 改行していたら現在の探索位置を探して移動
 					else
 					{
-						text_size -= mpr_variable.sentence_data[loop_row].substr(loop_column).size();
+						text_size -= (int)mpr_variable.sentence_data[loop_row].substr(loop_column).size();
 
 						for (int indent_cnt = 1; indent_cnt < indented_time; indent_cnt++)
 						{
-							text_size -= mpr_variable.sentence_data[loop_row + indent_cnt].size();
+							text_size -= (int)mpr_variable.sentence_data[(size_t)loop_row + indent_cnt].size();
 						}
 
 						mpr_variable.column_number = text_size;
@@ -3293,7 +3308,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 						now_row_number += 1;
 						indented_time += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3319,14 +3334,14 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Sentence(std::string 
 bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size();	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -3342,7 +3357,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[mpr_variable.row_number].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = mpr_variable.row_number;	// 今の行の番号
 
 			bool flg_not_this = false;	// データが同じでない事を表すフラグ
@@ -3361,7 +3376,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3396,7 +3411,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 					{
 						now_row_number += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3414,7 +3429,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 	for (int loop_row = mpr_variable.row_number - 1; loop_row > -1; loop_row--)
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[loop_row].size();	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[loop_row].size();	// 探索開始位置
 
 
 		// 一文字目が一致するかを繰り返して探索
@@ -3423,7 +3438,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[loop_row].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = loop_row;	// 今の行の番号
 
 			bool flg_not_this = false;	// データが同じでない事を表すフラグ
@@ -3442,7 +3457,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3477,7 +3492,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 					{
 						now_row_number += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3503,21 +3518,21 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Sentence(std::string i
 bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Row(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
 		for (int loop_column = mpr_variable.column_number + 1; loop_column <= column_sum; loop_column++)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -3535,14 +3550,14 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Row(std::string in_se
 	for (int loop_row = mpr_variable.row_number + 1; loop_row < line_sum; loop_row++)
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索可能な最大列数
 
 
 		// 一文字目が一致するかを繰り返して探索
 		for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -3569,13 +3584,13 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Row(std::string in_se
 bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Row(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// ☆ 選択中の行の時の探索 ☆ //
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -3589,7 +3604,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Row(std::string in_ser
 		for (int loop_column = start_column; loop_column > -1; loop_column--)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -3607,7 +3622,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Row(std::string in_ser
 	for (int loop_row = mpr_variable.row_number - 1; loop_row > -1; loop_row--)
 	{
 		// ☆ 変数宣言 ☆ //
-		int start_column = mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索開始位置
+		int start_column = (int)mpr_variable.sentence_data[loop_row].size() - text_size;	// 探索開始位置
 
 
 		// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -3621,7 +3636,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Row(std::string in_ser
 		for (int loop_column = start_column; loop_column > -1; loop_column--)
 		{
 			// 同じ文字があったら探索し続ける
-			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][loop_column + check_x] && check_x < text_size; check_x++)
+			for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[loop_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 			{
 				// 見つかったらそこに移動して終了
 				if (check_x + 1 >= text_size)
@@ -3648,15 +3663,15 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Row(std::string in_ser
 bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Column(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
+	int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索可能な最大列数
 
 
 	// 一文字目が一致するかを繰り返して探索
 	for (int loop_column = mpr_variable.column_number + 1; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったらそこに移動して終了
 			if (check_x + 1 >= text_size)
@@ -3678,11 +3693,11 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Front_Column(std::string in
 // 引数   ：std::string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Column(std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Column(std::string in_search_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int start_column = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
+	int text_size = (int)in_search_text.size();	// 探索する文字の文字数
+	int start_column = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 探索開始位置
 
 
 	// 通常時の探索開始位置より選択位置が左であれば探索開始位置をずらす
@@ -3696,7 +3711,7 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Column(std::string in_
 	for (int loop_column = start_column; loop_column > -1; loop_column--)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったらそこに移動して終了
 			if (check_x + 1 >= text_size)
@@ -3720,18 +3735,18 @@ bool C_Text_And_File_Manager::M_Goto_Left_By_Text_In_Back_Column(std::string in_
 // 引数   ：std::string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Serch_Text_In_Sentence(std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Search_Text_In_Sentence(std::string in_serch_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int line_sum = mpr_variable.sentence_data.size();	// 行数
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int line_sum = (int)mpr_variable.sentence_data.size();	// 行数
+	int text_size = (int)in_serch_text.size();	// 探索する文字の文字数
 
 
 	// 次の行から指定された文字を探索する
 	for (int loop_row = 0; loop_row < line_sum; loop_row++)
 	{
 		// ☆ 変数宣言 ☆ //
-		int column_sum = mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
+		int column_sum = (int)mpr_variable.sentence_data[loop_row].size();	// 探索可能な最大列数
 
 
 		// 同じ行にあるかどうかを判定する
@@ -3740,7 +3755,7 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Sentence(std::string in_serch_text
 			// ☆ 変数宣言 ☆ //
 			std::string stack_check_string = mpr_variable.sentence_data[loop_row].substr(loop_column);	// 探索用文字列スタック
 
-			int stack_size = stack_check_string.size();	// スタックデータのサイズ
+			int stack_size = (int)stack_check_string.size();	// スタックデータのサイズ
 			int now_row_number = loop_row;	// 今の行の番号
 
 			bool flg_not_this = false;	// データが同じでない事を表すフラグ
@@ -3759,7 +3774,7 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Sentence(std::string in_serch_text
 						stack_check_string += '\n';
 						check_x += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3791,7 +3806,7 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Sentence(std::string in_serch_text
 					{
 						now_row_number += 1;
 						stack_check_string += mpr_variable.sentence_data[now_row_number];
-						stack_size = stack_check_string.size();
+						stack_size = (int)stack_check_string.size();
 					}
 
 					// 次の行が必要なのにないならこの文字の判定を最後にする
@@ -3814,18 +3829,18 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Sentence(std::string in_serch_text
 // 引数   ：std::string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Serch_Text_In_Now_Row(std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Search_Text_In_Now_Row(std::string in_search_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int column_sum = mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 列数
+	int text_size = (int)in_search_text.size();	// 探索する文字の文字数
+	int column_sum = (int)mpr_variable.sentence_data[mpr_variable.row_number].size() - text_size;	// 列数
 
 
 	// 同じ行にあるかどうかを判定する
 	for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったのでそのことを示して終了
 			if (check_x + 1 >= text_size)
@@ -3845,11 +3860,11 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Now_Row(std::string in_serch_text)
 // 引数   ：int 探索する行, std::string 探索する文字
 // 戻り値 ：bool みつからなければfalse
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Serch_Text_In_Select_Row(int in_select_row, std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Search_Text_In_Select_Row(int in_select_row, std::string in_search_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
-	int column_sum = mpr_variable.sentence_data[in_select_row].size() - text_size;	// 列数
+	int text_size = (int)in_search_text.size();	// 探索する文字の文字数
+	int column_sum = (int)mpr_variable.sentence_data[in_select_row].size() - text_size;	// 列数
 
 
 	// 行の範囲外を指定されたらエラー
@@ -3863,7 +3878,7 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Select_Row(int in_select_row, std:
 	for (int loop_column = 0; loop_column <= column_sum; loop_column++)
 	{
 		// 同じ文字があったら探索し続ける
-		for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[in_select_row][loop_column + check_x] && check_x < text_size; check_x++)
+		for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[in_select_row][(size_t)loop_column + check_x] && check_x < text_size; check_x++)
 		{
 			// 見つかったのでそのことを示して終了
 			if (check_x + 1 >= text_size)
@@ -3885,10 +3900,10 @@ bool C_Text_And_File_Manager::M_Serch_Text_In_Select_Row(int in_select_row, std:
 // 引数   ：std::string 探索する文字
 // 戻り値 ：bool 一致したときのみtrue
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-bool C_Text_And_File_Manager::M_Check_Text_Is_Eqaul_Now_Position(std::string in_serch_text)
+bool C_Text_And_File_Manager::M_Check_Text_Is_Equal_Now_Position(std::string in_search_text)
 {
 	// ☆ 変数宣言 ☆ //
-	int text_size = in_serch_text.size();	// 探索する文字の文字数
+	int text_size = (int)in_search_text.size();	// 探索する文字の文字数
 
 
 	// 指定された文字の文字数が今から探索する範囲を超えるなら違う文字列なので違うことを示す
@@ -3899,7 +3914,7 @@ bool C_Text_And_File_Manager::M_Check_Text_Is_Eqaul_Now_Position(std::string in_
 
 
 	// 最初の文字から一致し続けるかどうかを検証する
-	for (int check_x = 0; in_serch_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][check_x + mpr_variable.column_number] && check_x < text_size; check_x++)
+	for (int check_x = 0; in_search_text[check_x] == mpr_variable.sentence_data[mpr_variable.row_number][(size_t)check_x + mpr_variable.column_number] && check_x < text_size; check_x++)
 	{
 		// 最後まで一致し続けたら見つかったことを示して抜ける
 		if (check_x + 1 >= text_size)

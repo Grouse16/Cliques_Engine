@@ -108,11 +108,11 @@ ASSET::SHADER::C_Shader_Setting * C_Shader_Setting_Manager::M_Load_Shader_Settin
 	// ☆ 定数 ☆ //
 	std::string shader_setting_inform_path = "project/asset/shader/setting/" + in_shader_setting_name + ".elsst";	// シェーダー設定へのパス
 
-	int shader_setting_slot_num = m_this.mpr_variable.shader_setting_list.size();	// 操作するシェーダー設定の番号
+	int shader_setting_slot_num = (int)m_this.mpr_variable.shader_setting_list.size();	// 操作するシェーダー設定の番号
 
 
 	// 新しいシェーダー設定用のスロットを生成
-	m_this.mpr_variable.shader_setting_list.resize(shader_setting_slot_num + 1);
+	m_this.mpr_variable.shader_setting_list.resize((size_t)shader_setting_slot_num + 1);
 	m_this.mpr_variable.shader_setting_list[shader_setting_slot_num].shader_setting_data.reset(new ASSET::SHADER::C_Shader_Setting());
 
 	// シェーダー設定名からシェーダー設定をロードする、できなければfalseを返す

@@ -9,9 +9,7 @@
 #include "C_Game_Time_Manager.h"
 #include "C_OS_User_System.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ™ ƒl[ƒ€ƒXƒy[ƒX‚ÌÈ—ª ™ //
@@ -35,11 +33,9 @@ std::unique_ptr<C_Game_Time_Manager> C_Game_Time_Manager::m_this;	// ƒCƒ“ƒXƒ^ƒ“ƒ
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Game_Time_Manager::C_Game_Time_Manager(void)
 {
-	// ƒfƒoƒbƒO‚Í¶¬‚µ‚½‚±‚Æ‚ğƒƒO‚Éc‚·
-#ifdef _DEBUG
+	// ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚Ì¶¬‚ğ’m
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğ¶¬");
-#endif // _DEBUG
 
 	// ‰ŠúŠÔ‚ğ‹L˜^
 	mpr_variable.now_timer = OS::C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Application();
@@ -75,11 +71,8 @@ void C_Game_Time_Manager::M_Init(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Game_Time_Manager::~C_Game_Time_Manager(void)
 {
-	// ƒfƒoƒbƒO‚Ííœ‚µ‚½‚±‚Æ‚ğƒƒO‚Éc‚·
-#ifdef _DEBUG
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğíœ");
-#endif // _DEBUG
 
 	M_Release();
 
@@ -373,7 +366,7 @@ void C_Game_Time_Manager::M_Create_New_Time_Line(std::string in_set_time_line_na
 
 
 	// ™ •Ï”éŒ¾ ™ //
-	int new_time_line_number = m_this->mpr_variable.time_line_list.size();	// V‚µ‚¢ƒ^ƒCƒ€ƒ‰ƒCƒ“‚Ì”Ô†
+	int new_time_line_number = (int)m_this->mpr_variable.time_line_list.size();	// V‚µ‚¢ƒ^ƒCƒ€ƒ‰ƒCƒ“‚Ì”Ô†
 
 
 	// V‚µ‚¢ƒ^ƒCƒ€ƒ‰ƒCƒ“‚ğ¶¬‚µA–¼‘O‚ÆƒXƒs[ƒh‚ğİ’è‚µAŒo‰ßŠÔ‚ğ“o˜^‚·‚é
@@ -394,7 +387,7 @@ void C_Game_Time_Manager::M_Create_New_Time_Line(std::string in_set_time_line_na
 void C_Game_Time_Manager::M_Delete_Time_Line_By_Name(std::string in_delete_time_line_name)
 {
 	// ™ •Ï”éŒ¾ ™ //
-	int set_delete_name_slot = m_this->mpr_variable.delete_time_line_list.size();	// İ’èæ‚Ìƒ^ƒCƒ€ƒ‰ƒCƒ“”Ô†
+	int set_delete_name_slot = (int)m_this->mpr_variable.delete_time_line_list.size();	// İ’èæ‚Ìƒ^ƒCƒ€ƒ‰ƒCƒ“”Ô†
 
 
 	m_this->mpr_variable.delete_time_line_list.resize(set_delete_name_slot + 1);

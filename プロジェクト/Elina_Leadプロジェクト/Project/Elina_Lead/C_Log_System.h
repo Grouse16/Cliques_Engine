@@ -5,10 +5,6 @@
 //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
 
 
-// ☆ デバッグ時のみ有効 ☆ //
-#if _DEBUG
-
-
 // ☆ 多重インクルードガード ☆ //
 #ifndef D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
 #define D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
@@ -99,6 +95,8 @@ namespace DEBUGGER::LOG
 			constexpr char con_SET_UP_FAILED[] = "DX12_Set_Up_Failed";		// ウィンドウズのセットアップ失敗時のログタイトル
 
 			constexpr char con_DEVICE_DELETED[] = "DX12_Device_Deleted";	// デバイスが削除された時のログタイトル
+
+			constexpr char con_ERROR_CHECKING[] = "DX12_ERROR_CHECKING";	// エラー検出時のログタイトル
 		};
 	};
 
@@ -174,7 +172,6 @@ namespace DEBUGGER::LOG
 
 
 #endif // !D_INCLUDE_GUARD_C_ERROR_LOG_SYSTEM
-#endif // _DEBUG
 
 
 //☆======================================================================☆

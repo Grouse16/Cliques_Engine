@@ -11,9 +11,7 @@
 #include "C_Main_Camera.h"
 #include "C_Static_Model_Loader.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -104,8 +102,7 @@ bool C_Static_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path
 	}
 
 
-	// ロードに成功、デバッグ時は成功ログを表示
-#ifdef _DEBUG
+	// モデルのロードの成功を告知
 	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 	DEBUGGER::LOG::C_Log_System::M_Print_Log
 	(
@@ -113,7 +110,6 @@ bool C_Static_Model_System::M_Load_3D_Model_By_Path(std::string in_3d_model_path
 		DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT,
 		"モデルのロードに成功しました：" + in_3d_model_path
 	);
-#endif // _DEBUG
 
 	return true;
 }

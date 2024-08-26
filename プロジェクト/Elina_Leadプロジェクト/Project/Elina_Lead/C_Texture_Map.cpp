@@ -58,7 +58,7 @@ void C_Texture_Map::M_Create_Texture_Map(int in_side_pixel, int in_vert_pixel)
 
 
 	// サイズ分のメモリの確保（透明な状態で作成）
-	mpr_variable.texture_map.resize(mpr_variable.texture_size_x * mpr_variable.texture_size_y);
+	mpr_variable.texture_map.resize((size_t)mpr_variable.texture_size_x * (size_t)mpr_variable.texture_size_y);
 	M_Flush_All_Color(flush_color);
 
 	return;
@@ -109,7 +109,7 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 	int then_size_x = mpr_variable.texture_size_x;	// 拡張前のｘでのサイズ
 	int then_size_y = mpr_variable.texture_size_y;	// 拡張前のｙでのサイズ
 
-	int then_map_size = mpr_variable.texture_map.size();	// 拡張前のマップのサイズ
+	int then_map_size = (int)mpr_variable.texture_map.size();	// 拡張前のマップのサイズ
 
 	
 	// 拡張前の情報を復元用に移す
@@ -130,7 +130,7 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 		(mpr_variable.texture_size_y >= in_extend_y_size) * mpr_variable.texture_size_y
 		+
 		(mpr_variable.texture_size_y < in_extend_y_size) * in_extend_y_size;
-	mpr_variable.texture_map.resize(mpr_variable.texture_size_x * mpr_variable.texture_size_y);
+	mpr_variable.texture_map.resize((size_t)mpr_variable.texture_size_x * (size_t)mpr_variable.texture_size_y);
 	
 
 	// 今までの情報を保持したまま新しい部分のみを初期化する
@@ -148,7 +148,7 @@ void C_Texture_Map::M_Map_Variable_Size_Change(int in_extend_x_size, int in_exte
 				// ｘでいままでで保持する情報がある範囲なら、今までの配列から情報を移してくる
 				if (l_pixel_x < then_size_x)
 				{
-					mpr_variable.texture_map[map_write_pos] = then_texture_map[l_pixel_y * then_size_x + l_pixel_x];
+					mpr_variable.texture_map[map_write_pos] = then_texture_map[(size_t)l_pixel_y * (size_t)then_size_x + (size_t)l_pixel_x];
 				}
 
 				// 保持する範囲外なら初期化色を入れる
@@ -200,7 +200,7 @@ void C_Texture_Map::M_Flush_All_Color(DATA::COLOR::C_Color & in_flush_color)
 
 		for (int len_x = 0; len_x < mpr_variable.texture_size_x; len_x++)
 		{
-			mpr_variable.texture_map[row_plus + len_x] = in_flush_color;
+			mpr_variable.texture_map[(size_t)row_plus + (size_t)len_x] = in_flush_color;
 		}
 	}
 
@@ -249,7 +249,7 @@ void C_Texture_Map::M_Set_Color(DATA::COLOR::C_Color & in_set_color, DATA::RECTS
 
 		for (int len_x = y_start; len_x < x_limit; len_x++)
 		{
-			mpr_variable.texture_map[row_plus + len_x] = in_set_color;
+			mpr_variable.texture_map[(size_t)row_plus + (size_t)len_x] = in_set_color;
 		}
 	}
 

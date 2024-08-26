@@ -1,12 +1,16 @@
 //™™™™™™™™™™™™™™™™™™™™™™™//
-// Ú×   FƒƒO‚ğo—Í‚·‚éƒNƒ‰ƒX
-// à–¾   FƒfƒoƒbƒO—p‚ÉƒƒO‚ğ‹L˜^‚·‚é
+// Ú×   FƒEƒBƒ“ƒhƒEƒY—p‚ÌƒƒO‚ğo—Í‚·‚éƒNƒ‰ƒX‚Ì’è‹`
+// à–¾   FƒfƒoƒbƒO—p‚ÉƒƒO‚ğ‹L˜^‚·‚éƒVƒXƒeƒ€‚ğƒEƒBƒ“ƒhƒEƒY—p‚ÉŒ`¬‚·‚é
 // ì¬Ò Fûüâ—´½
 //™™™™™™™™™™™™™™™™™™™™™™™//
 
 
 // ™ ƒfƒoƒbƒO‚Ì‚İ—LŒø ™ //
-#if _DEBUG
+#ifdef _DEBUG
+
+// ™ ƒEƒBƒ“ƒhƒEƒYŠÂ‹«‚Å‚ÌÀs‚Ì‚İ—LŒø ™ //
+#include "Platform_Detector_Macro.h"
+#ifdef D_OS_IS_WINDOWS
 
 
 // ™ ƒtƒ@ƒCƒ‹‚Ğ‚ç‚« ™ //
@@ -14,7 +18,7 @@
 #include <iostream>
 #include <io.h>
 #include <fcntl.h>
-#include <atlstr.h>
+#include <Windows.h>
 
 #include "C_Log_System.h"
 #include "C_Text_And_File_Manager.h"
@@ -35,7 +39,7 @@ C_Log_System::Pr_Variable C_Log_System::mpr_variable;	// ƒvƒ‰ƒCƒx[ƒg•Ï”‚Ö‚ÌƒAƒ
 
 
 // ™ ’è” ™ //
-const char* con_DEBUG_FOLDER_PATH = "DEBUG_DATA/DEBUG_LOG";	// ƒfƒoƒbƒOƒf[ƒ^•Û‘¶æ‚ÌƒpƒX
+const char * con_DEBUG_FOLDER_PATH = "DEBUG_DATA/DEBUG_LOG";	// ƒfƒoƒbƒOƒf[ƒ^•Û‘¶æ‚ÌƒpƒX
 
 
 // ™ ŠÖ” ™ //
@@ -98,7 +102,7 @@ void C_Log_System::M_Init_Debug(void)
 
 
 	// ƒƒO¢Š«‚µ‚½–‚ğƒƒO‚Æ‚µ‚Äc‚·
-	M_Print_Log(E_LOG_TAGS::e_SET_UP, ALL_LOG_NAME::MAIN_SYSTEM::con_CONSOLE_CREATED, "ƒfƒoƒbƒO—pƒRƒ“ƒ\[ƒ‹‹y‚ÑƒVƒXƒeƒ€‚Ì¶¬‚É¬Œ÷(Create C_Log_System & ConsoleFSucceeded)");
+	M_Print_Log(E_LOG_TAGS::e_SET_UP, ALL_LOG_NAME::MAIN_SYSTEM::con_CONSOLE_CREATED, "ƒfƒoƒbƒO—pƒRƒ“ƒ\[ƒ‹‹y‚ÑƒVƒXƒeƒ€‚Ì¶¬‚É¬Œ÷");
 
 	return;
 }
@@ -148,6 +152,7 @@ void C_Log_System::M_Print_Log(E_LOG_TAGS in_tag, std::string in_file_name, std:
 
 	
 	// Œ»İ‚ÌŠÔî•ñ‚ğæ“¾
+	OS::C_OS_User_System::M_Update_Time();
 	now_time_and_day = OS::C_OS_User_System::M_Get_Now_Day_And_Time();
 
 
@@ -367,6 +372,8 @@ void C_Log_System::M_Set_Console_Color_Text_And_Back(E_LOG_COLOR in_txt_color, E
 	return;
 }
 
+
+#endif // D_OS_IS_WINDOWS
 
 #endif // _DEBUG
 

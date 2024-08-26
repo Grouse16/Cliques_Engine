@@ -114,19 +114,19 @@ namespace SYSTEM::TEXT
 		//-☆- ゲッタ -☆-//
 
 		// 現在のデータの参照を渡す　戻り値：ファイルデータの文字列
-		const std::vector<std::string> & M_Get_File_Data_Refer(void);
+		const std::vector<std::string> & M_Get_File_Data_Refer(void) const;
 
 		// 現在編集中のファイルのパスを返す　戻り値：ファイルパスの文字列
-		const std::string & M_Get_File_Path_Refer(void);
+		const std::string & M_Get_File_Path_Refer(void) const;
 
 		// 現在の行の番号を返す　戻り値：現在の行番号
-		int M_Get_Now_Row(void);
+		int M_Get_Now_Row(void) const;
 
 		// 現在の列の番号を返す　戻り値：現在の列番号
-		int M_Get_Now_Column(void);
+		int M_Get_Now_Column(void) const;
 
 		// 文章の行数を返す　戻り値：全体の行数
-		int M_Get_Text_Row_Sum(void);
+		int M_Get_Text_Row_Sum(void) const;
 
 		// 今選択中の行の文字数を返す　戻り値：今の行の文字数
 		int M_Get_Column_Sum_In_Now_Row(void);
@@ -201,13 +201,13 @@ namespace SYSTEM::TEXT
 		void M_Delete_Data_Equal_This_Text_In_Sentence(int, std::string);
 
 		// 指定されたデータを選択中の行内から指定された回数分だけ削除する　引数：削除回数（０で全て削除）, 削除する文字
-		void M_Delete_Data_Eqaul_This_Text_In_Now_Row(int, std::string);
+		void M_Delete_Data_Equal_This_Text_In_Now_Row(int, std::string);
 
 		// 指定されたデータを選択中位置の右側の行内から指定された回数分だけ削除する　引数：削除回数（０で全て削除）, 削除する文字
-		void M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Right(int, std::string);
+		void M_Delete_Data_Equal_This_Text_In_Now_Row_For_Right(int, std::string);
 
 		// 指定されたデータを選択中位置の左側の行内から指定された回数分だけ削除する　引数：削除回数（０で全て削除）, 削除する文字
-		void M_Delete_Data_Eqaul_This_Text_In_Now_Row_For_Left(int, std::string);
+		void M_Delete_Data_Equal_This_Text_In_Now_Row_For_Left(int, std::string);
 
 		// 指定された行を削除する　引数：削除する行
 		void M_Delete_Row(int);
@@ -345,19 +345,19 @@ namespace SYSTEM::TEXT
 		//-☆- 文字探索 -☆-//
 
 		// 指定された文字が文章内にあるかどうかを返す　引数：探索する文字　戻り値：みつかったらtrue
-		bool M_Serch_Text_In_Sentence(std::string);
+		bool M_Search_Text_In_Sentence(std::string);
 
 		// 指定された文字が選択中の列内あるかどうかを返す　引数：探索する文字　戻り値：みつかったらtrue
-		bool M_Serch_Text_In_Now_Row(std::string);
+		bool M_Search_Text_In_Now_Row(std::string);
 
 		// 指定された文字が指定された列内あるかどうかを返す　引数：探索する行, 探索する文字　戻り値：みつかったらtrue
-		bool M_Serch_Text_In_Select_Row(int, std::string);
+		bool M_Search_Text_In_Select_Row(int, std::string);
 
 
 		//-☆- 判定 -☆-//
 
 		// 今選択中の場所から文字が一致しているかを調べる　戻り値：一致したときのみtrue
-		bool M_Check_Text_Is_Eqaul_Now_Position(std::string);
+		bool M_Check_Text_Is_Equal_Now_Position(std::string);
 
 		// ファイルが存在するかどうかを返す　引数：ファイルまでのパス　戻り値：みつかったらtrue
 		bool M_Is_File_Exist(std::string);

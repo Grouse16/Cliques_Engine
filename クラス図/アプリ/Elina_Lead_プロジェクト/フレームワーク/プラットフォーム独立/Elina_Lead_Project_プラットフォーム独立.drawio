@@ -1,4 +1,129 @@
-<mxfile host="Electron" modified="2024-02-06T01:43:26.592Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="KzBOyK2Ph4Xzo0x5v-ic" version="23.0.2" type="device" pages="2">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5" pages="2">
+  <diagram id="oGims7r4UwM5HtOU4kUQ" name="ver.2.0.0">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-11" value="上位層" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="380" y="20" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-12" value="プラットフォーム独立層　ネームスペース＜PLATFORM＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="60" y="350" width="1630" height="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-13" value="プラットフォーム検出部　ネームスペース＜PLATFORM::DETECTION＞　　　　　" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;align=right;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
+          <mxGeometry x="325" y="580" width="1195" height="437.5" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-14" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="KJogN0Vjg7Z09fQVdOCW-13" vertex="1">
+          <mxGeometry x="668" y="200" width="460" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-15" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="KJogN0Vjg7Z09fQVdOCW-14" vertex="1">
+          <mxGeometry x="20" y="30" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-16" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;プラットフォーム検出・判定システム　C_Platform_Detection_System&lt;br&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="KJogN0Vjg7Z09fQVdOCW-13" vertex="1">
+          <mxGeometry x="40" y="75" width="560" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-17" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-16" vertex="1">
+          <mxGeometry x="10" y="30" width="540" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-18" value="ー　シングルトン用の自クラスのインスタンス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
+          <mxGeometry y="25" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-19" value="ー　OSの種類を指定する番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
+          <mxGeometry y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-20" value="ー　レンダリングAPIの種類を指定する番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
+          <mxGeometry y="85" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-21" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-16" vertex="1">
+          <mxGeometry x="10" y="150" width="540" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-22" value="ー　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
+          <mxGeometry y="25" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-23" value="＋　OSの種類を指定する番号のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
+          <mxGeometry y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-24" value="＋　レンダリングAPIの種類を指定する番号のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
+          <mxGeometry y="85" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-25" value="＋　レンダリングAPIの種類を指定する番号のセッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
+          <mxGeometry y="115" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-26" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-13" source="KJogN0Vjg7Z09fQVdOCW-16" target="KJogN0Vjg7Z09fQVdOCW-14" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="2711" y="1695" as="sourcePoint" />
+            <mxPoint x="2811" y="1695" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-27" value="&lt;p style=&quot;line-height: 90%;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;OS制御システムとレンダリングAPI用システムの生成、削除を行うシステム&lt;/font&gt;&lt;span style=&quot;font-size: 11px; background-color: initial;&quot;&gt;C_OS_Manager_And_Rendering_API_Initilize_And_Release_System&lt;/span&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
+          <mxGeometry x="365" y="130" width="560" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-28" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-27" vertex="1">
+          <mxGeometry x="10" y="30" width="540" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-29" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-27" vertex="1">
+          <mxGeometry x="10" y="105" width="540" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-30" value="ー　コンストラクタ、インスタンス化できなくするために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="25" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-1" value="ー　OS制御システムの初期化　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-2" value="ー　レンダリングAPIの初期化　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="85" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4xG1JS9XBARRImk50gQY-1" value="＋　ウィンドウズOS用のコマンド番号をセット　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="115" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-3" value="＋　OS制御システムの生成　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="145" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-43" value="＋　OS制御用システムの初期化とレンダリングAPIの生成　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="175" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-35" value="＋　OS制御用システムとレンダリングAPIの解放　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
+          <mxGeometry y="205" width="540" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-36" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-12" source="KJogN0Vjg7Z09fQVdOCW-27" target="KJogN0Vjg7Z09fQVdOCW-16" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="971" y="609" as="sourcePoint" />
+            <mxPoint x="790" y="360" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-37" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
+          <mxGeometry x="993" y="281.25" width="460" height="67.5" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-38" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="KJogN0Vjg7Z09fQVdOCW-37" vertex="1">
+          <mxGeometry x="20" y="30" width="420" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-39" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-12" source="KJogN0Vjg7Z09fQVdOCW-27" target="KJogN0Vjg7Z09fQVdOCW-37" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="925" y="270" as="sourcePoint" />
+            <mxPoint x="3136" y="1725" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;" parent="1" source="KJogN0Vjg7Z09fQVdOCW-11" target="KJogN0Vjg7Z09fQVdOCW-12" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2115" y="50" as="sourcePoint" />
+            <mxPoint x="1470" y="740" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-41" value="下位層&lt;br&gt;プラットフォーム部&lt;br&gt;レンダリング部" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="380" y="1720" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KJogN0Vjg7Z09fQVdOCW-42" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KJogN0Vjg7Z09fQVdOCW-12" target="KJogN0Vjg7Z09fQVdOCW-41" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="3530" as="sourcePoint" />
+            <mxPoint x="1020" y="1770" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
   <diagram name="ver.1.0.0" id="vMZHCt8mvl8RS5KxGxzD">
     <mxGraphModel dx="1727" dy="1010" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -120,131 +245,6 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="770" y="3530" as="sourcePoint" />
             <mxPoint x="1010" y="1770" as="targetPoint" />
-            <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="oGims7r4UwM5HtOU4kUQ" name="ver.2.0.0">
-    <mxGraphModel dx="6907" dy="4040" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-11" value="上位層" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
-          <mxGeometry x="380" y="20" width="990" height="170" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-12" value="プラットフォーム独立層　ネームスペース＜PLATFORM＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="1" vertex="1">
-          <mxGeometry x="60" y="350" width="1630" height="1100" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-13" value="プラットフォーム検出部　ネームスペース＜PLATFORM::DETECTION＞　　　　　" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;align=right;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
-          <mxGeometry x="325" y="580" width="1195" height="437.5" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-14" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="KJogN0Vjg7Z09fQVdOCW-13" vertex="1">
-          <mxGeometry x="668" y="200" width="460" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-15" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="KJogN0Vjg7Z09fQVdOCW-14" vertex="1">
-          <mxGeometry x="20" y="30" width="420" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-16" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;プラットフォーム検出・判定システム　C_Platform_Detection_System&lt;br&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="KJogN0Vjg7Z09fQVdOCW-13" vertex="1">
-          <mxGeometry x="40" y="75" width="560" height="310" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-17" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-16" vertex="1">
-          <mxGeometry x="10" y="30" width="540" height="115" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-18" value="ー　シングルトン用の自クラスのインスタンス" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
-          <mxGeometry y="25" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-19" value="ー　OSの種類を指定する番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
-          <mxGeometry y="55" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-20" value="ー　レンダリングAPIの種類を指定する番号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-17" vertex="1">
-          <mxGeometry y="85" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-21" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-16" vertex="1">
-          <mxGeometry x="10" y="150" width="540" height="145" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-22" value="ー　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
-          <mxGeometry y="25" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-23" value="＋　OSの種類を指定する番号のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
-          <mxGeometry y="55" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-24" value="＋　レンダリングAPIの種類を指定する番号のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
-          <mxGeometry y="85" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-25" value="＋　レンダリングAPIの種類を指定する番号のセッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-21" vertex="1">
-          <mxGeometry y="115" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-26" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-13" source="KJogN0Vjg7Z09fQVdOCW-16" target="KJogN0Vjg7Z09fQVdOCW-14" edge="1">
-          <mxGeometry width="100" relative="1" as="geometry">
-            <mxPoint x="2711" y="1695" as="sourcePoint" />
-            <mxPoint x="2811" y="1695" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-27" value="&lt;p style=&quot;line-height: 90%;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;OS制御システムとレンダリングAPI用システムの生成、削除を行うシステム&lt;/font&gt;&lt;span style=&quot;font-size: 11px; background-color: initial;&quot;&gt;C_OS_Manager_And_Rendering_API_Initilize_And_Release_System&lt;/span&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
-          <mxGeometry x="365" y="130" width="560" height="370" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-28" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-27" vertex="1">
-          <mxGeometry x="10" y="30" width="540" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-29" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-27" vertex="1">
-          <mxGeometry x="10" y="105" width="540" height="235" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-30" value="ー　コンストラクタ、インスタンス化できなくするために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="25" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-1" value="ー　OS制御システムの初期化　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="55" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-2" value="ー　レンダリングAPIの初期化　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="85" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="4xG1JS9XBARRImk50gQY-1" value="＋　ウィンドウズOS用のコマンド番号をセット　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="115" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="4Ct7BUT_NHDtC3R7Iluo-3" value="＋　OS制御システムの生成　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="145" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-43" value="＋　OS制御用システムの初期化とレンダリングAPIの生成　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="175" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-35" value="＋　OS制御用システムとレンダリングAPIの解放　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KJogN0Vjg7Z09fQVdOCW-29" vertex="1">
-          <mxGeometry y="205" width="540" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-36" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-12" source="KJogN0Vjg7Z09fQVdOCW-27" target="KJogN0Vjg7Z09fQVdOCW-16" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="971" y="609" as="sourcePoint" />
-            <mxPoint x="790" y="360" as="targetPoint" />
-            <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-37" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="KJogN0Vjg7Z09fQVdOCW-12" vertex="1">
-          <mxGeometry x="993" y="281.25" width="460" height="67.5" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-38" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="KJogN0Vjg7Z09fQVdOCW-37" vertex="1">
-          <mxGeometry x="20" y="30" width="420" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-39" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="KJogN0Vjg7Z09fQVdOCW-12" source="KJogN0Vjg7Z09fQVdOCW-27" target="KJogN0Vjg7Z09fQVdOCW-37" edge="1">
-          <mxGeometry width="100" relative="1" as="geometry">
-            <mxPoint x="925" y="270" as="sourcePoint" />
-            <mxPoint x="3136" y="1725" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;" parent="1" source="KJogN0Vjg7Z09fQVdOCW-11" target="KJogN0Vjg7Z09fQVdOCW-12" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="2115" y="50" as="sourcePoint" />
-            <mxPoint x="1470" y="740" as="targetPoint" />
-            <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-41" value="下位層&lt;br&gt;プラットフォーム部&lt;br&gt;レンダリング部" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
-          <mxGeometry x="380" y="1720" width="990" height="170" as="geometry" />
-        </mxCell>
-        <mxCell id="KJogN0Vjg7Z09fQVdOCW-42" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KJogN0Vjg7Z09fQVdOCW-12" target="KJogN0Vjg7Z09fQVdOCW-41" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="780" y="3530" as="sourcePoint" />
-            <mxPoint x="1020" y="1770" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>

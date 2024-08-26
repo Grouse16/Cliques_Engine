@@ -8,9 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Shader_Setting.h"
 
-#ifdef _DEBUG
 #include "C_Log_System.h"
-#endif // _DEBUG
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -118,7 +116,7 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 
 	// 頂点レイアウト数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	vertex_layout_sum = in_shader_data_file.M_Get_Number();
+	vertex_layout_sum = (int)in_shader_data_file.M_Get_Number();
 
 
 	// 頂点レイアウトを設定する
@@ -154,7 +152,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 指定する文字が誤っているならエラー
 		else
 		{
-#ifdef _DEBUG
 			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 			DEBUGGER::LOG::C_Log_System::M_Print_Log
 			(
@@ -163,7 +160,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：バイト数" + get_text
 			);
 			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 			return false;
 		}
@@ -191,7 +187,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 型が正しく指定されていないならエラー
 		else
 		{
-#ifdef _DEBUG
 			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 			DEBUGGER::LOG::C_Log_System::M_Print_Log
 			(
@@ -200,7 +195,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：フォーマット" + get_text
 			);
 			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 			return false;
 		}
@@ -232,7 +226,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 変数の数が無効ならエラー
 		else
 		{
-#ifdef _DEBUG
 			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
 			DEBUGGER::LOG::C_Log_System::M_Print_Log
 			(
@@ -241,7 +234,6 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：変数の数　x,y,z,w" + get_text
 			);
 			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-#endif // _DEBUG
 
 			return false;
 		}
@@ -275,12 +267,12 @@ bool C_Shader_Setting::M_Load_Resource_Signature(E_SHADER_KIND in_shader_kind, S
 
 
 	// ☆ 変数宣言 ☆ //
-	int constant_number = mpr_variable.resource_inform.constant_list.size();	// 現在の定数バッファの番号
-	int sampler_number = mpr_variable.resource_inform.sampler_list.size();		// 現在のサンプラーバッファの番号
+	int constant_number = (int)mpr_variable.resource_inform.constant_list.size();	// 現在の定数バッファの番号
+	int sampler_number = (int)mpr_variable.resource_inform.sampler_list.size();		// 現在のサンプラーバッファの番号
 
-	int texture_number = mpr_variable.resource_inform.texture_list.size();		// 現在のテクスチャバッファの番号
-	int screen_number = mpr_variable.resource_inform.screen_list.size();		// 現在のレンダリング画面の番号
-	int depth_stencil_number = mpr_variable.resource_inform.depth_stencil_list.size();		// 現在の深度ステンシルバッファの番号
+	int texture_number = (int)mpr_variable.resource_inform.texture_list.size();		// 現在のテクスチャバッファの番号
+	int screen_number = (int)mpr_variable.resource_inform.screen_list.size();		// 現在のレンダリング画面の番号
+	int depth_stencil_number = (int)mpr_variable.resource_inform.depth_stencil_list.size();		// 現在の深度ステンシルバッファの番号
 	
 	int texture_kind_number = texture_number + screen_number + depth_stencil_number;		// 現在のテクスチャ系のバッファの番号
 	
@@ -291,15 +283,15 @@ bool C_Shader_Setting::M_Load_Resource_Signature(E_SHADER_KIND in_shader_kind, S
 
 	// 定数バッファ数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	constant_sum += in_shader_data_file.M_Get_Number();
+	constant_sum += (int)in_shader_data_file.M_Get_Number();
 
 	// テキスト数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	texture_sum += in_shader_data_file.M_Get_Number();
+	texture_sum += (int)in_shader_data_file.M_Get_Number();
 
 	// サンプラー数を取得
 	in_shader_data_file.M_Move_Next_Raw();
-	sampler_sum += in_shader_data_file.M_Get_Number();
+	sampler_sum += (int)in_shader_data_file.M_Get_Number();
 
 
 	// 取得した数分リソースの識別を生成
@@ -324,7 +316,7 @@ bool C_Shader_Setting::M_Load_Resource_Signature(E_SHADER_KIND in_shader_kind, S
 
 		// 配列数を取得
 		in_shader_data_file.M_Goto_Right_By_Text_In_Front_Column(",");
-		mpr_variable.resource_inform.constant_list[constant_number].array_sum = in_shader_data_file.M_Get_Number();
+		mpr_variable.resource_inform.constant_list[constant_number].array_sum = (int)in_shader_data_file.M_Get_Number();
 
 		// 配列数が０なら少なくとも一つは確保する
 		mpr_variable.resource_inform.constant_list[constant_number].array_sum =
@@ -544,7 +536,7 @@ bool C_Shader_Setting::M_Load_Shader_And_Setting_Resource_Signature(SYSTEM::TEXT
 
 
 	// ☆ 変数宣言 ☆ //
-	int shader_slot_num = mpr_variable.shader_list.size();	// 操作するシェーダーの配列番号
+	int shader_slot_num = (int)mpr_variable.shader_list.size();	// 操作するシェーダーの配列番号
 
 	
 	// シェーダーを取得する、生成に失敗したらエラーを出して抜ける
@@ -592,7 +584,7 @@ void C_Shader_Setting::M_Slot_Inform_Alignment(void)
 
 
 	// 定数バッファのスロットの総数を取得
-	constant_slot_sum = mpr_variable.resource_inform.constant_list.size();
+	constant_slot_sum = (int)mpr_variable.resource_inform.constant_list.size();
 
 	// シェーダー共通情報の定数バッファを探索し、特殊な名前のスロットの番号を取得する
 	for (int l_now_constant_buffer_num = 0; l_now_constant_buffer_num < constant_slot_sum; l_now_constant_buffer_num++)

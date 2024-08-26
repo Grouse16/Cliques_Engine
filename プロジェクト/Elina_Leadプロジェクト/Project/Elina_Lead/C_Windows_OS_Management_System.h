@@ -72,12 +72,6 @@ namespace OS::WINDOWS
 		void M_Mouse_Input_Update(void);
 
 
-		//-☆- 更新 -☆-//
-
-		// 時間の更新
-		void M_Time_Update(void);
-
-
 		//==☆  パブリック  ☆==//
 	public:
 
@@ -105,6 +99,9 @@ namespace OS::WINDOWS
 
 		// ウィンドウのサイズの更新を行う
 		void M_Window_Size_Update(void) override;
+
+		// 時間を更新する
+		void M_Update_Time(void) override;
 
 
 		//-☆- セッタ -☆-//

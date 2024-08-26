@@ -451,7 +451,7 @@ void C_DX12_Input_Layout_Setting_System::M_Create_Input_Layout_By_Create_Inform(
 
 
 	// レイアウト数分生成する
-	in_input_layout.NumElements = in_input_layout_list.size();
+	in_input_layout.NumElements = (UINT)in_input_layout_list.size();
 	m_element_list.reserve(in_input_layout.NumElements);
 
 

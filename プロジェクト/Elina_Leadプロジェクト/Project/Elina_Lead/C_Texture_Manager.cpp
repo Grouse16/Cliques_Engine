@@ -119,11 +119,11 @@ RENDERING::CAPSULE::C_Texture_Data_System * C_Texture_Manager::M_Load_Texture_By
 	// ☆ 定数 ☆ //
 	std::string texture_inform_path = "project/asset/texture/" + in_texture_name;	// テクスチャ情報へのパス
 
-	int texture_slot_num = m_this.mpr_variable.texture_list.size();	// 操作するテクスチャの番号
+	int texture_slot_num = (int)m_this.mpr_variable.texture_list.size();	// 操作するテクスチャの番号
 
 
 	// 新しいテクスチャ設定用のスロットを生成
-	m_this.mpr_variable.texture_list.resize(texture_slot_num + 1);
+	m_this.mpr_variable.texture_list.resize((size_t)texture_slot_num + 1);
 	m_this.mpr_variable.texture_list[texture_slot_num].texture.reset(new RENDERING::CAPSULE::C_Texture_Data_System());
 
 	// テクスチャ情報からテクスチャをロードする、できなければfalseを返す
