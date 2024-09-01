@@ -114,7 +114,7 @@ namespace DEBUGGER::LOG
 		// プライベート変数をまとめた構造体
 		struct Pr_Variable
 		{
-			FILE* console_file = nullptr;	// コンソールの出力先
+			FILE * console_file = nullptr;	// コンソールの出力先
 
 			int color_text = 0;	// コンソールのテキストの色
 			int color_back = 0;	// コンソールの背景色
@@ -144,13 +144,13 @@ namespace DEBUGGER::LOG
 		// デバッグシステムの初期化
 		static void M_Init_Debug(void);
 
-		// デストラクタ、インスタンス化防止のために隠蔽
+		// デストラクタ
 		~C_Log_System(void);
 
 
 		//-☆- ログ出力 -☆-//
 
-		// 指定された文字列を設定されたファイル名で出力する、引数 E_LOG_TAGS ログの種類, string 記録するファイル名, string 記録内容
+		// 指定された文字列を設定されたファイル名で出力する　引数 E_LOG_TAGS ログの種類, string 記録するファイル名, string 記録内容
 		static void M_Print_Log(E_LOG_TAGS, std::string, std::string);
 
 		// 処理を止めてログを出す
@@ -159,13 +159,13 @@ namespace DEBUGGER::LOG
 		// コンソールのログを初期化する
 		static void M_Console_LOG_Flush(void);
 
-		// コンソールの文字カラーを変更する、引数 E_LOG_COLOR 設定する色番号
+		// コンソールの文字カラーを変更する　引数 E_LOG_COLOR 設定する色番号
 		static void M_Set_Console_Text_Color(E_LOG_COLOR);
 
-		// コンソールの背景カラーを変更する、引数 E_LOG_COLOR 設定する色番号
+		// コンソールの背景カラーを変更する　引数 E_LOG_COLOR 設定する色番号
 		static void M_Set_Console_Back_Ground_Color(E_LOG_COLOR);
 
-		// コンソールの文字と背景カラーを変更する、引数 E_LOG_COLOR 文字の色, 背景の色
+		// コンソールの文字と背景カラーを変更する　引数 E_LOG_COLOR 文字の色, 背景の色
 		static void M_Set_Console_Color_Text_And_Back(E_LOG_COLOR, E_LOG_COLOR);
 	};
 }
