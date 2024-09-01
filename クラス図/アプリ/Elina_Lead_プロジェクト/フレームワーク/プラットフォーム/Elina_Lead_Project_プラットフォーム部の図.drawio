@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5" pages="3">
   <diagram id="XpHKc2eTiilgzOi2euWE" name="ver.2.1.0">
-    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2049" dy="1194" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -307,7 +307,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="_BVpVDuyS6NIprukY8_N-90" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;通常のシステムがOSを使用するときに必要な機能だけをまとめたインターフェース　C_OS_Manager_Interface&lt;br&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_BVpVDuyS6NIprukY8_N-2" vertex="1">
+        <mxCell id="_BVpVDuyS6NIprukY8_N-90" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;通常のシステムがOSを使用するときに必要な機能だけをまとめたインターフェース　C_OS_Manager_Interface&lt;br&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="_BVpVDuyS6NIprukY8_N-2" vertex="1">
           <mxGeometry x="2450" y="140" width="610" height="520" as="geometry" />
         </mxCell>
         <mxCell id="_BVpVDuyS6NIprukY8_N-91" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_BVpVDuyS6NIprukY8_N-90" vertex="1">
@@ -360,7 +360,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="_BVpVDuyS6NIprukY8_N-105" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="_BVpVDuyS6NIprukY8_N-2" vertex="1">
-          <mxGeometry x="3090" y="350" width="460" height="60" as="geometry" />
+          <mxGeometry x="3090" y="370" width="460" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_BVpVDuyS6NIprukY8_N-106" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="_BVpVDuyS6NIprukY8_N-105" vertex="1">
           <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
