@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Animation_Model_Loader.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -35,9 +35,9 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_File(std::string in_file_p
 	// 指定されたファイルをロード　ロードに失敗時はエラーを出して抜ける
 	if (in_file_text.M_Load_Now_File() == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "ファイルの取得に失敗しました：" + in_file_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "ファイルの取得に失敗しました：" + in_file_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -45,9 +45,9 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_File(std::string in_file_p
 	// 認証名を探索する
 	if (in_file_text.M_Check_Text_Is_Equal_Now_Position("This-Is-ELANMMDL") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmmdl形式ではありません：" + in_file_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "このファイルは.elanmmdl形式ではありません：" + in_file_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -71,14 +71,14 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Vertex(SYSTEM::TEXT::C_Tex
 	// 頂点数の位置へ移動、なければエラーを返して終了
 	if (in_model_file_data.M_Goto_Right_By_Text_In_Front_Row("VERTSUM:") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"頂点数を検出できませんでした：" + in_model_file_data.M_Get_File_Path_Refer()
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -171,14 +171,14 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Bone(SYSTEM::TEXT::C_Text_
 	// ボーン数の位置へ移動、なければエラーを返して終了
 	if (in_model_file_data.M_Goto_Right_By_Text_In_Front_Row("BONESUM:") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"ボーン数を検出できませんでした：" + in_model_file_data.M_Get_File_Path_Refer()
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -293,14 +293,14 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_
 	// メッシュ数の位置へ移動、なければエラーを返して終了
 	if (in_model_file_data.M_Goto_Right_By_Text_In_Front_Row("MESHSUM:") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"メッシュ数を検出できませんでした：" + in_model_file_data.M_Get_File_Path_Refer()
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -331,14 +331,14 @@ bool C_Animation_Model_Loader::M_Load_Animation_Model_Mesh(SYSTEM::TEXT::C_Text_
 		in_model_file_data.M_Goto_Column_By_Set_Number(0);
 		if (l_now_mesh.M_Load_Material_By_Name(in_model_file_data.M_Get_Data_Now_Row()) == false)
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 			(
-				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-				DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+				DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 				"マテリアルのロードに失敗しました。アニメーション用モデル：" + in_model_file_data.M_Get_File_Path_Refer() + "　マテリアル：" + in_model_file_data.M_Get_Data_Now_Row()
 			);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}

@@ -17,7 +17,6 @@
 
 // ☆ ファイルひらき ☆ //
 #include <Windows.h>
-#include <memory>
 #include <string>
 
 #include "C_OS_Management_System_Base.h"
@@ -45,8 +44,6 @@ namespace OS::WINDOWS
 			struct S_WND
 			{
 				HWND h_my_wind = nullptr;	// 自ウィンドウのハンドル
-
-				MSG msg_of_wnd = MSG();	// ウィンドウの処理用の変数
 
 			} s_wnd;	// ウィンドウ
 

@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Static_Model_Loader.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -35,14 +35,14 @@ bool C_Static_Model_Loader::M_Load_Static_Model_File_Data(std::string in_load_fi
 	// 指定されたファイルをロード　ロードに失敗時はエラーを出して抜ける
 	if (in_file_data_system.M_Load_Now_File() == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"ファイルの取得に失敗しました：" + in_load_file_name
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -50,14 +50,14 @@ bool C_Static_Model_Loader::M_Load_Static_Model_File_Data(std::string in_load_fi
 	// ファイルが静的モデルであるかどうかを判定、静的モデルでなければエラーを出して抜ける
 	if (in_file_data_system.M_Check_Text_Is_Equal_Now_Position("This-Is-ELSTTMDL") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"このファイルは.elsttmdl形式ではありません：" + in_load_file_name
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -81,14 +81,14 @@ bool C_Static_Model_Loader::M_Load_Static_Model_Vertex(SYSTEM::TEXT::C_Text_And_
 	// 頂点数へ移動、なければエラーを出して抜ける
 	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("VERTSUM:") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"ファイルの取得に失敗しました：" + in_file_data.M_Get_File_Path_Refer()
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -171,14 +171,14 @@ bool C_Static_Model_Loader::M_Load_Static_Model_Mesh(SYSTEM::TEXT::C_Text_And_Fi
 	// メッシュデータ数へ移動、なければエラーを出して抜ける
 	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("MESHSUM:") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_OBJECT,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_OBJECT,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"ファイルの取得に失敗しました：" + in_file_data.M_Get_File_Path_Refer()
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -204,14 +204,14 @@ bool C_Static_Model_Loader::M_Load_Static_Model_Mesh(SYSTEM::TEXT::C_Text_And_Fi
 		in_file_data.M_Goto_Column_By_Set_Number(0);
 		if (now_mesh_inform.M_Load_Material_By_Name(in_file_data.M_Get_Data_Now_Row()) == false)
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 			(
-				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-				DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+				DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 				"マテリアルのロードに失敗しました。モデル：" + in_file_data.M_Get_File_Path_Refer() + "　マテリアル：" + in_file_data.M_Get_Data_Now_Row()
 			);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}

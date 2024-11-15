@@ -10,7 +10,7 @@
 #include "C_Rendering_API_Base.h"
 #include "Platform_Detector_Macro.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ウィンドウズOSの時のみDirectXを有効化 ☆ //
@@ -44,14 +44,14 @@ bool C_Rendering_API_Interface_Initialize_And_Release::M_Initialize_Rendering_AP
 	// インスタンスが生成されていないならエラーを返す
 	if (rendering_api_address == nullptr)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-			DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR,
 			"レンダリングAPIのインスタンスが生成されていない状態で初期化を実行されました"
 		);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -74,13 +74,13 @@ void C_Rendering_API_Interface_Initialize_And_Release::M_Create_DX12(void)
 
 #else
 
-	DEBUGGER::LOG::C_Log_System::M_Print_Log
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 	(
-		DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-		DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED,
+		DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+		DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED,
 		"Windows OSを実行できる環境ではないのにDX12の生成が実行されました"
 	);
-	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 #endif // D_OS_IS_WINDOWS
 

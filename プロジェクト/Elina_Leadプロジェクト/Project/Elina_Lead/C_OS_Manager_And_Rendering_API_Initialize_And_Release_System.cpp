@@ -12,8 +12,6 @@
 #include "C_Platform_Detection_System.h"
 #include "C_Rendering_API_Interface_Initialize_And_Release.h"
 
-#include "C_Log_System.h"
-
 
 // Åô É}ÉNÉç Åô //
 

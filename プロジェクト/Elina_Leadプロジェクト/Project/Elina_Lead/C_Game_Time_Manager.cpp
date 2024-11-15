@@ -9,7 +9,7 @@
 #include "C_Game_Time_Manager.h"
 #include "C_OS_User_System.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ™ ƒl[ƒ€ƒXƒy[ƒX‚ÌÈ—ª ™ //
@@ -34,8 +34,8 @@ std::unique_ptr<C_Game_Time_Manager> C_Game_Time_Manager::m_this;	// ƒCƒ“ƒXƒ^ƒ“ƒ
 C_Game_Time_Manager::C_Game_Time_Manager(void)
 {
 	// ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚Ì¶¬‚ğ’m
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğ¶¬");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğ¶¬");
 
 	// ‰ŠúŠÔ‚ğ‹L˜^
 	mpr_variable.now_timer = OS::C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Application();
@@ -71,8 +71,8 @@ void C_Game_Time_Manager::M_Init(void)
 //™=™=™=™=™=™=™=™=™=™=™=™=™=™=™=™//
 C_Game_Time_Manager::~C_Game_Time_Manager(void)
 {
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğíœ");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "ƒQ[ƒ€—p‚ÌŠÔƒVƒXƒeƒ€‚ğíœ");
 
 	M_Release();
 
