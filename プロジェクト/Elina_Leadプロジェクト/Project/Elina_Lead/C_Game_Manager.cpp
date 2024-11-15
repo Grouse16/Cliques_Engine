@@ -18,7 +18,7 @@
 #include "C_Game_Time_Manager.h"
 #include "C_Rendering_API_Interface_User.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -143,8 +143,8 @@ void C_Game_Manager::M_Window_Title_Update(void)
 void C_Game_Manager::M_Init(void)
 {
 	// ゲームの初期化開始を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化を開始 -☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化を開始 -☆-☆-☆-☆-☆-☆-☆-");
 
 	// ゲームの共通情報をまとめるシステムを生成する
 	GAME::STATE::C_Game_State_Manager::M_Init();
@@ -163,17 +163,17 @@ void C_Game_Manager::M_Init(void)
 	// 初期化に失敗したら失敗を告知する
 	if (M_Get_Game_Exist_Flg() == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に失敗 -☆-☆-☆-☆-☆-☆-☆-");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT_ERROR, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に失敗 -☆-☆-☆-☆-☆-☆-☆-");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return;
 	}
 
 
 	// 初期化に成功したら成功を告知する
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に成功 -☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "-☆-☆-☆-☆-☆-☆-☆- ゲームの初期化に成功 -☆-☆-☆-☆-☆-☆-☆-");
 
 
 	// アクティブ状態を指定

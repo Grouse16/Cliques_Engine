@@ -8,7 +8,7 @@
 // ☆ ファイルひらき ☆ //
 #include "C_Shader_Setting.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -152,14 +152,14 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 指定する文字が誤っているならエラー
 		else
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 			(
-				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：バイト数" + get_text
 			);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}
@@ -187,14 +187,14 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 型が正しく指定されていないならエラー
 		else
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 			(
-				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：フォーマット" + get_text
 			);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}
@@ -226,14 +226,14 @@ bool C_Shader_Setting::M_Load_Vertex_Layout(SYSTEM::TEXT::C_Text_And_File_Manage
 		// 変数の数が無効ならエラー
 		else
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 			(
-				DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-				DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
+				DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+				DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR,
 				"この頂点レイアウトは無効です　" + in_shader_data_file.M_Get_File_Path_Refer() + "：変数の数　x,y,z,w" + get_text
 			);
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}

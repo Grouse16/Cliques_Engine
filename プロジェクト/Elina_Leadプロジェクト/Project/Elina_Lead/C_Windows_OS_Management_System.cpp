@@ -16,7 +16,7 @@
 #include "C_Windows_OS_Management_System.h"
 #include "C_Wnd_Proc_Manager.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -184,7 +184,7 @@ void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 	m_this_instance.reset(new C_Windows_OS_Management_System());
 
 	// ログシステムを初期化
-	DEBUGGER::LOG::C_Log_System::M_Init_Debug();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Create_And_Initialize_Console_Log_System();
 
 	return;
 }
@@ -198,8 +198,8 @@ void C_Windows_OS_Management_System::M_Create_Windows_System(void)
 bool C_Windows_OS_Management_System::M_Set_Up(void)
 {
 	// ウィンドウズ用アプリケーションのセットアップ開始を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズアプリケーションのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズアプリケーションのセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
 
 
 	// ウィンドウを生成する
@@ -207,10 +207,10 @@ bool C_Windows_OS_Management_System::M_Set_Up(void)
 
 
 	// ウィンドウズ用アプリケーションのセットアップ完了を報告
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップに成功、GUIを起動完了-☆-☆-☆-☆-☆-☆-☆-");
-	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-	DEBUGGER::LOG::C_Log_System::M_Console_LOG_Flush();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::WINDOWS::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-ウィンドウズのセットアップに成功、GUIを起動完了-☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Console_LOG_Flush();
 
 
 	// ウィンドウサイズの更新
@@ -243,7 +243,6 @@ void C_Windows_OS_Management_System::M_Release(void)
 {
 	mpr_variable.m_cmd_show = 0;
 	mpr_variable.s_wnd.h_my_wind = NULL;
-	mpr_variable.s_wnd.msg_of_wnd = MSG();
 
 	return;
 }
@@ -258,19 +257,23 @@ void C_Windows_OS_Management_System::M_Release(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_OS_Management_System::M_Update(void)
 {
+	// ☆　変数宣言 ☆ //
+	MSG msg_of_wnd = MSG();	// ウィンドウの処理用の変数
+
+
 	// ☆ ウィンドウの処理 ☆ //
 
 	// ユーザーによる入力の更新
-	while (PeekMessage(&mpr_variable.s_wnd.msg_of_wnd, NULL, 0, 0, PM_REMOVE) > 0)
+	while (PeekMessage(&msg_of_wnd, NULL, 0, 0, PM_REMOVE) > 0)
 	{
 		// 文字メッセージを生成
-		TranslateMessage(&mpr_variable.s_wnd.msg_of_wnd);
+		TranslateMessage(&msg_of_wnd);
 
 		// ウィンドウプロシージャを呼び出してメッセージ更新
-		DispatchMessage(&mpr_variable.s_wnd.msg_of_wnd);
+		DispatchMessage(&msg_of_wnd);
 
 		// ウィンドウが閉じたらフラグを立てそれを通知する
-		if (mpr_variable.s_wnd.msg_of_wnd.message == WM_QUIT)
+		if (msg_of_wnd.message == WM_QUIT)
 		{
 			m_flg_os_active = false;
 

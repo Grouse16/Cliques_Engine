@@ -11,7 +11,7 @@
 #include "C_Main_Camera.h"
 #include "C_Rendering_API_Interface_Depth_Stencil.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ネームスペースの省略 ☆ //
@@ -624,9 +624,9 @@ void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Re
 		{
 			if (l_now_texture_inform.data->M_Load_Texture(initialize_texture_name) == true)
 			{
-				DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-				DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + initialize_texture_name);
-				DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + initialize_texture_name);
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 			}
 		}
 
@@ -800,9 +800,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// 指定されたファイルのロードを行う　エラーで終了する
 	if (material_inform_file_data.M_Load_Select_File(in_material_path) == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません：" + in_material_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -811,9 +811,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// ロードされたファイルがマテリアルの形式であることを確認、違うならエラーで抜ける
 	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELMAT") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "これはマテリアルのファイルではありません：" + in_material_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "これはマテリアルのファイルではありません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -826,9 +826,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// マテリアルに使用するシェーダー設定名をがある位置へ移動　失敗でエラーを出して抜ける
 	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Row("Shader：") == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません：" + in_material_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -837,9 +837,9 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
 	if (mpr_variable.shader_setting_data.M_Load_Shader_Setting(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります：" + in_material_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -852,17 +852,17 @@ bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
 	// レンダリング設定を生成する、失敗でエラーを出して抜ける
 	if (M_Create_Rendering_Setting(material_inform_file_data) == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました：" + in_material_path);
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// マテリアルの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "マテリアルの生成に成功しました：" + in_material_path);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "マテリアルの生成に成功しました：" + in_material_path);
 
 	return true;
 }

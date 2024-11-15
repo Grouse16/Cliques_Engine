@@ -132,10 +132,13 @@
     <ClInclude Include="2D_Position_Data.h" />
     <ClInclude Include="All_Figure_Data.h" />
     <ClInclude Include="Challenge_Mode_Macro.h" />
+    <ClInclude Include="Console_Debug_Log_Names.h" />
     <ClInclude Include="C_Animation_Model_Loader.h" />
     <ClInclude Include="C_Color.h" />
     <ClInclude Include="C_Animation_Model_Manager.h" />
     <ClInclude Include="C_Animation_Model_System.h" />
+    <ClInclude Include="C_Console_Log_Interface.h" />
+    <ClInclude Include="C_Deactivated_Console_Log_System.h" />
     <ClInclude Include="C_OS_User_System.h" />
     <ClInclude Include="C_Rendering_API_Interface_Constant_Resource.h" />
     <ClInclude Include="C_Rendering_API_Interface_Depth_Stencil.h" />
@@ -177,6 +180,9 @@
     <ClInclude Include="C_Static_Model_System.h" />
     <ClInclude Include="C_Static_Model_User.h" />
     <ClInclude Include="C_Vertex_Index_System.h" />
+    <ClInclude Include="C_Windows_Console_Log_System.h" />
+    <ClInclude Include="E_CONSOLE_LOG_COLOR.h" />
+    <ClInclude Include="E_CONSOLE_LOG_TAGS.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
     <ClInclude Include="E_DX12_PARAMATOR.h" />
@@ -185,6 +191,7 @@
     <ClInclude Include="E_RENDERING_API_KIND.h" />
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
+    <ClInclude Include="GCC_Or_MSVC_Macro.h" />
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Index_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Render_Screen_Inform.h" />
@@ -234,7 +241,7 @@
     <ClInclude Include="C_Float_4.h" />
     <ClInclude Include="C_Font_Draw_System.h" />
     <ClInclude Include="C_List_Divided_By_Class_Base.h" />
-    <ClInclude Include="C_Log_System.h" />
+    <ClInclude Include="C_Console_Debug_Log_System_Base.h" />
     <ClInclude Include="C_Object_Vertex_System.h" />
     <ClInclude Include="C_OS_Management_System_Base.h" />
     <ClInclude Include="C_Platform_Detection_System.h" />
@@ -321,7 +328,9 @@
   <ItemGroup>
     <ClCompile Include="C_Animation_Model_Manager.cpp" />
     <ClCompile Include="C_Animation_Model_System.cpp" />
-    <ClCompile Include="C_Log_System_On_Release_Build.cpp" />
+    <ClCompile Include="C_Console_Debug_Log_System_Base.cpp" />
+    <ClCompile Include="C_Console_Log_Interface.cpp" />
+    <ClCompile Include="C_Deactivated_Console_Log_System.cpp" />
     <ClCompile Include="C_OS_User_System.cpp" />
     <ClCompile Include="C_Rendering_API_Interface_Constant_Resource.cpp" />
     <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp" />
@@ -397,6 +406,7 @@
     <ClCompile Include="C_UI_Component_Base.cpp" />
     <ClCompile Include="C_User_Interface_Base.cpp" />
     <ClCompile Include="C_Vertex_Index_System.cpp" />
+    <ClCompile Include="C_Windows_Console_Log_System.cpp" />
     <ClCompile Include="Elina_Lead_main.cpp" />
     <ClCompile Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.cpp" />
     <ClCompile Include="C_APK_Manager.cpp" />
@@ -422,7 +432,6 @@
     <ClCompile Include="C_Game_Time_Manager.cpp" />
     <ClCompile Include="C_Float_4.cpp" />
     <ClCompile Include="C_Font_Draw_System.cpp" />
-    <ClCompile Include="C_Windows_Log_System.cpp" />
     <ClCompile Include="C_Object_Vertex_System.cpp" />
     <ClCompile Include="C_OS_Management_System_Base.cpp" />
     <ClCompile Include="C_Platform_Detection_System.cpp" />

@@ -13,7 +13,13 @@
 #if 0
 
 // テクスチャのロードを自分で行うときのマクロ
-#define TEXTURE_CHALLEGE
+#define D_TEXTURE_CHALLEGE true
+#endif
+
+#if 0
+
+// アセンブラチャレンジをやるときに使うマクロ
+#define D_ASM_CHALLENGE true
 #endif
 
 

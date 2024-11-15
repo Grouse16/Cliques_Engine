@@ -709,9 +709,6 @@
     <Filter Include="ソース ファイル\プラットフォーム\OS\レイヤー">
       <UniqueIdentifier>{db1c61f9-8681-4213-85a3-f0275d948f82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\レイヤー">
-      <UniqueIdentifier>{35d38b71-9b4a-49fc-b2bf-3764d99a516d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\カプセル\定数バッファ">
       <UniqueIdentifier>{290b9e16-8d13-4c5c-8bac-6aaab5d57220}</UniqueIdentifier>
     </Filter>
@@ -859,6 +856,54 @@
     <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル">
       <UniqueIdentifier>{7e830338-e051-4d34-9e01-766017542fdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール">
+      <UniqueIdentifier>{fefe82f4-1969-457a-9459-63f3a0e815c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
+      <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール">
+      <UniqueIdentifier>{0ba1553e-b600-402f-9b20-f296e6d4ea62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\基底クラス">
+      <UniqueIdentifier>{1ffde752-a4f6-4317-82be-8eec84d0adc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\定義">
+      <UniqueIdentifier>{42f4565a-3166-4f69-8e59-1054e0b938a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\コンパイル">
+      <UniqueIdentifier>{3f57634b-fcee-4952-8d04-9505e3949981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群">
+      <UniqueIdentifier>{5470b4ad-9db1-4ad9-a7d7-fe9e8e783864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム">
+      <UniqueIdentifier>{40dfc3c2-64af-4d11-a49a-d093bbd93aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス">
+      <UniqueIdentifier>{279dacc6-07f7-4542-815b-a1acc3375fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\定義\ログ用タグ群">
+      <UniqueIdentifier>{bc5d9f0f-1f57-4102-8192-7d2792809d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\インターフェース">
+      <UniqueIdentifier>{7dd1ac5a-8cf2-4776-90fd-aacc32611cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群">
+      <UniqueIdentifier>{bb9f8862-a2c4-45f6-84b7-b951f3b18745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム">
+      <UniqueIdentifier>{06ee6bf0-c3f8-426d-8d4c-7a823e872d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス">
+      <UniqueIdentifier>{d4e6cdd6-3b24-461d-a4d6-ae508d30d325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\インターフェース">
+      <UniqueIdentifier>{8338c568-bb5c-4a18-a4e5-0accdb5473fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\インターフェース">
+      <UniqueIdentifier>{35d38b71-9b4a-49fc-b2bf-3764d99a516d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -938,9 +983,6 @@
     </ClInclude>
     <ClInclude Include="S_Make_Font_To_Graph_Pakage.h">
       <Filter>ヘッダー ファイル\アセット\フォント</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Log_System.h">
-      <Filter>ヘッダー ファイル\デバッグ\ログ</Filter>
     </ClInclude>
     <ClInclude Include="C_Game_Function_Base.h">
       <Filter>ヘッダー ファイル\システム\動作</Filter>
@@ -1369,7 +1411,7 @@
       <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
     </ClInclude>
     <ClInclude Include="C_OS_User_System.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\レイヤー</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\インターフェース</Filter>
     </ClInclude>
     <ClInclude Include="C_Constant_Data_System.h">
       <Filter>ヘッダー ファイル\レンダリング\カプセル\定数バッファ</Filter>
@@ -1424,6 +1466,30 @@
     </ClInclude>
     <ClInclude Include="C_Rendering_API_Interface_Depth_Stencil.h">
       <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Console_Debug_Log_System_Base.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Deactivated_Console_Log_System.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="E_CONSOLE_LOG_TAGS.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_CONSOLE_LOG_COLOR.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_Debug_Log_Names.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義\ログ用タグ群</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Windows_Console_Log_System.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="GCC_Or_MSVC_Macro.h">
+      <Filter>ヘッダー ファイル\コンパイル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Console_Log_Interface.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1498,9 +1564,6 @@
     </ClCompile>
     <ClCompile Include="Elina_Lead_main.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Windows_Log_System.cpp">
-      <Filter>ソース ファイル\デバッグ\ログ</Filter>
     </ClCompile>
     <ClCompile Include="C_Game_Input_Manager.cpp">
       <Filter>ソース ファイル\システム\入力</Filter>
@@ -1814,8 +1877,17 @@
     <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp">
       <Filter>ソース ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
     </ClCompile>
-    <ClCompile Include="C_Log_System_On_Release_Build.cpp">
-      <Filter>ソース ファイル\デバッグ\ログ</Filter>
+    <ClCompile Include="C_Console_Debug_Log_System_Base.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\基底クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Deactivated_Console_Log_System.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Windows_Console_Log_System.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Console_Log_Interface.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

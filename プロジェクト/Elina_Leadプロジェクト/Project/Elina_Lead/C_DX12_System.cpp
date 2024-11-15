@@ -28,7 +28,7 @@
 #include "E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h"
 #include "C_DX12_Depth_Stencil_Buffer_System.h"
 
-#include "C_Log_System.h"
+#include "C_Console_Log_Interface.h"
 
 
 // ☆ ライブラリひらき ☆ //
@@ -39,7 +39,7 @@
 
 
 // ☆　外部 ☆ //
-#ifndef TEXTURE_CHALLEGE
+#ifndef D_TEXTURE_CHALLEGE
 #include <DirectXTex.h>
 #pragma comment (lib, "DirectXTex.lib")
 #endif
@@ -91,7 +91,7 @@ template <class C_Buffer> inline void M_Buffer_Zero_Clear_System(C_Buffer * in_c
 // 引数   ：vector<D3D12_ROOT_PARAMETER> & 設定先ルートパラメーターの参照, vector<D3D12_DESCRIPTOR_RANGE> & 設定先のレンジの参照, D3D12_DESCRIPTOR_RANGE_TYPE 設定する種類, int レジスタ番号, int シェーダー番号
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, D3D12_DESCRIPTOR_RANGE_TYPE in_set_type, int register_num, int shader_num)
+static inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_root_param, std::vector<D3D12_DESCRIPTOR_RANGE> & in_range, D3D12_DESCRIPTOR_RANGE_TYPE in_set_type, int register_num, int shader_num)
 {
 	// ☆ 変数宣言 ☆ //
 	int set_param_number = (int)in_root_param.size();    // 設定先のパラメータの配列番号
@@ -141,7 +141,7 @@ inline void Inline_Set_Root_Parameter(std::vector<D3D12_ROOT_PARAMETER> & in_roo
 // 引数   ：vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報, int レジスタ番号, int シェーダー番号, D3D12_TEXTURE_ADDRESS_MODE UVの使用方法
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler_desc, int in_register_num, int in_shader_num, D3D12_TEXTURE_ADDRESS_MODE in_address_mode)
+static inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler_desc, int in_register_num, int in_shader_num, D3D12_TEXTURE_ADDRESS_MODE in_address_mode)
 {
 	// ☆ 変数宣言 ☆ //
 	int set_static_number = (int)in_sampler_desc.size();    // 設定先のパラメータの配列番号
@@ -199,7 +199,7 @@ inline void Inline_Set_Sampler_State(std::vector<D3D12_STATIC_SAMPLER_DESC> & in
 // 引数   ：D3D12_ROOT_SIGNATURE_DESC & ルートシグネチャの設定用情報の参照, vector<D3D12_ROOT_PARAMETER> & ディスクリプタ設定用情報の参照, vector<D3D12_STATIC_SAMPLER_DESC> & サンプラー設定用情報の参照
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_ROOT_SIGNATURE_DESC & in_root_signature, std::vector<D3D12_ROOT_PARAMETER> & in_parameter, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
+static inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_ROOT_SIGNATURE_DESC & in_root_signature, std::vector<D3D12_ROOT_PARAMETER> & in_parameter, std::vector<D3D12_STATIC_SAMPLER_DESC> & in_sampler)
 {
 	// ディスクリプタ情報があればディスクリプタスロット数と最初のアドレスをセット
 	if (in_parameter.size() > 0)
@@ -239,7 +239,7 @@ inline void Inline_Set_Parameters_And_Sampler_Desc_To_Root_Signature_Desc(D3D12_
 // 引数   ：D3D12_SHADER_BYTECODE & セット先のバイトコードの参照, const C_Shader_Code * セットするシェーダーコード
 // 戻り値 ：void
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const ASSET::SHADER::C_Shader_Code * in_shader_code)
+static inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const ASSET::SHADER::C_Shader_Code * in_shader_code)
 {
 	// シェーダーのコードがないなら抜ける
 	if (in_shader_code == nullptr)
@@ -262,7 +262,7 @@ inline void Inline_Set_Shader_Data(D3D12_SHADER_BYTECODE & in_set_code, const AS
 // 引数   ：string UVの使用方法の指定用文字列
 // 戻り値 ：D3D12_TEXTURE_ADDRESS_MODE UVの使用方法の列挙
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture_address_mode_text)
+static inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture_address_mode_text)
 {
 	// UVが０～１を超えると繰り返し表示
 	if (in_texture_address_mode_text == "WARP")
@@ -289,10 +289,7 @@ inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture
 	}
 
 	// UVが０～１を超えるとUVを一度反転したテクスチャが出現するがその後は何も表示しない
-	else
-	{
-		return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
-	}
+	return D3D12_TEXTURE_ADDRESS_MODE::D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE;
 }
 
 
@@ -301,7 +298,7 @@ inline D3D12_TEXTURE_ADDRESS_MODE Inline_Get_Texture_Mode(std::string in_texture
 // 引数   ：E_SHADER_KIND シェーダーの種類
 // 戻り値 ：D3D12_SHADER_VISIBILITY DX12のシェーダーの種類
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-inline D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER::E_SHADER_KIND in_shader_kind)
+static inline D3D12_SHADER_VISIBILITY M_Convert_Shader_Kind_To_DX12_Shader_Kind(ASSET::SHADER::E_SHADER_KIND in_shader_kind)
 {
 	switch (in_shader_kind)
 	{
@@ -348,8 +345,8 @@ C_DX12_System::C_DX12_System(void)
 bool C_DX12_System::M_DirectX12_Init(void)
 {
 	// DX12システムのセットアップの開始を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ開始-☆-☆-☆-☆-☆-☆-☆-");
 
 
 	// DX12用変数群の初期化
@@ -496,17 +493,18 @@ bool C_DX12_System::M_Create_Factory(void)
 	// 構成設定用情報の生成
 	if (FAILED(CreateDXGIFactory2(flg_DXGI, IID_PPV_ARGS(mpr_variable->s_frame_work.factory.ReleaseAndGetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ファクトリの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ファクトリの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;   // 失敗したらエラーで抜ける
 	}
 
 	
 	// ファクトリの成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "ファクトリの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "ファクトリの生成に成功");
 
 	return true;
 }
@@ -532,17 +530,17 @@ bool C_DX12_System::M_Create_Device(void)
 	// ☆ アダプターを取得 ☆ //   // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.factory->EnumAdapters(0, adapter.GetAddressOf())))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "アダプターの取得に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "アダプターの取得に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// ☆ デバッグ時なら成功を表示 ☆ //
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "アダプターの取得に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "アダプターの取得に成功");
 
 
 	// ☆ 変数宣言 ☆ //
@@ -572,9 +570,9 @@ bool C_DX12_System::M_Create_Device(void)
 	// どの機能も作れなかったらエラーで抜ける（windows7や8の場合はこの挙動となる可能性が高い）
 	if (FAILED(device_creation_result))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "デバイスの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "デバイスの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -582,11 +580,11 @@ bool C_DX12_System::M_Create_Device(void)
 
 	// 成功をログに表示
 	l_feature_num -= 1;
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 	(
-		DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-		DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED,
+		DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+		DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED,
 		"デバイスの生成に成功ー種別：" + M_Convert_D3D_FEATURE_LEVEL_Enum_To_String(can_attach_device_level_list_in_dx12[l_feature_num]));
 
 	return true;
@@ -605,17 +603,17 @@ bool C_DX12_System::M_Create_Command_Allocator(void)
 	// ☆ コマンドアロケータを生成 ☆ //  // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(mpr_variable->s_command.allocator.GetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドアロケータの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドアロケータの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;   // 失敗したらエラーで抜ける
 	}
 
 
 	// コマンドアロケータの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドアロケータの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドアロケータの生成に成功");
 
 
 	// コマンドアロケータのメモリを初期化
@@ -635,17 +633,17 @@ bool C_DX12_System::M_Create_Command_List(void)
 	// ☆ コマンドリストの生成 ☆ //    // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT, mpr_variable->s_command.allocator.Get(), nullptr, IID_PPV_ARGS(mpr_variable->s_command.list.GetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドリストの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドリストの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;   // 失敗したらエラーで抜ける
 	}
 
 
 	// コマンドリストの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドリストの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドリストの生成に成功");
 
 	// コマンドリストを初期状態にリセット
 	mpr_variable->s_command.list->Close();
@@ -684,17 +682,17 @@ bool C_DX12_System::M_Create_Command_Queue(void)
 	// ☆ コマンドキューを生成 ☆ //         // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.device->CreateCommandQueue(&desc_command_queue, IID_PPV_ARGS(mpr_variable->s_command.queue.GetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドキューの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "コマンドキューの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// コマンドキューの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドキューの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "コマンドキューの生成に成功");
 
 	return true;
 }
@@ -716,17 +714,17 @@ bool C_DX12_System::M_Create_Fence(void)
 	// ☆ フェンスを生成 ☆ //   // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.device->CreateFence(0, D3D12_FENCE_FLAGS::D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(mpr_variable->s_render.queue_fence.GetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "フェンスの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "フェンスの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// フェンスの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "フェンスの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "フェンスの生成に成功");
 
 	return true;
 }
@@ -774,17 +772,17 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
 	// ☆ スワップチェインを生成 ☆ //      // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.factory->CreateSwapChain(mpr_variable->s_command.queue.Get(), &desc_swap_chain, (IDXGISwapChain**)mpr_variable->s_frame_work.swap_chain.GetAddressOf())))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "スワップチェインの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "スワップチェインの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// ☆ デバッグ時なら成功を表示 ☆ //
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "スワップチェインの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "スワップチェインの生成に成功");
 
 	return true;
 }
@@ -861,17 +859,17 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::API::
 	// ☆ レンダーターゲットヒープの生成 ☆ //     // 失敗ならエラー
 	if (FAILED(mpr_variable->s_frame_work.device->CreateDescriptorHeap(&desc_descriptor_heap, IID_PPV_ARGS(in_dx12_screen_system->m_render_target_view.heap.GetAddressOf()))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "レンダーターゲットヒープ生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "レンダーターゲットヒープ生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;   // 失敗したらエラーで抜ける
 	}
 
 
 	// レンダーターゲットヒープの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "レンダーターゲットヒープの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "レンダーターゲットヒープの生成に成功");
 
 
 	// ☆ 変数宣言 ☆ //
@@ -885,17 +883,17 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::API::
 		// 画面のバッファにレンダーターゲットを指定
 		if (FAILED(mpr_variable->s_frame_work.swap_chain->GetBuffer(loop_x, IID_PPV_ARGS(in_dx12_screen_system->m_render_target_view.buffer_list[loop_x].render_buffer.GetAddressOf()))))
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, ((std::string)"Buffer_Count:" + std::to_string(loop_x) + "-" + "レンダーターゲットの取得に失敗").c_str());
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, ((std::string)"Buffer_Count:" + std::to_string(loop_x) + "-" + "レンダーターゲットの取得に失敗").c_str());
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;   // 失敗したらエラーで抜ける
 		}
 
 
 		// レンダーターゲットの取得の成功を告知
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, ((std::string)"レンダーターゲットの取得に成功" + "-buffer_count:" + std::to_string(loop_x)).c_str());
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, ((std::string)"レンダーターゲットの取得に成功" + "-buffer_count:" + std::to_string(loop_x)).c_str());
 
 
 		// ☆ 変数宣言 ☆ //
@@ -928,8 +926,8 @@ bool C_DX12_System::M_Create_Render_Target_View_Descriptor_Heap(RENDERING::API::
 
 
 	// レンダリング画面の生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "レンダリング画面の生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "レンダリング画面の生成に成功");
 
 	// 生成に成功した
 	return true;
@@ -1048,9 +1046,9 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::API::
 		// ☆ 深度ステンシルヒープの生成 ☆ //     // 失敗ならエラー
 		if (FAILED(mpr_variable->s_frame_work.device->CreateDescriptorHeap(&desc_descriptor_heap, IID_PPV_ARGS(in_dx12_depth_stencil_buffer->m_data.heap.GetAddressOf()))))
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルヒープの生成に失敗");
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルヒープの生成に失敗");
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}
@@ -1058,8 +1056,8 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::API::
 
 
 	// 深度ステンシルヒープの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "深度ステンシルヒープの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "深度ステンシルヒープの生成に成功");
 
 
 	// ☆ 深度ステンシルバッファ用ヒープ ☆ //
@@ -1152,9 +1150,9 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::API::
 		// ☆ 深度ステンシルバッファ生成 ☆ //
 		if (FAILED(mpr_variable->s_frame_work.device->CreateCommittedResource(&heap_propertie, D3D12_HEAP_FLAG_NONE, &desc_resource, D3D12_RESOURCE_STATE_DEPTH_WRITE, &clear_setting, IID_PPV_ARGS(&in_dx12_depth_stencil_buffer->m_data.depth_stencil_buffer))))
 		{
-			DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-			DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルバッファの生成に失敗");
-			DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "深度ステンシルバッファの生成に失敗");
+			DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 			return false;
 		}
@@ -1162,8 +1160,8 @@ bool C_DX12_System::M_Create_Depth_Stencil_View_Descriptor_Heap(RENDERING::API::
 
 
 	// 深度ステンシルバッファの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "深度ステンシルバッファの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "深度ステンシルバッファの生成に成功");
 
 
 	// ☆ 深度ステンシルビュー ☆ //
@@ -1765,9 +1763,9 @@ bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROO
 	// ☆ ルートシグネチャ生成用情報をリソースとしてシリアライズする ☆ //		// 失敗でエラーを出す
 	if (FAILED(D3D12SerializeRootSignature(&in_root_signature_desc, D3D_ROOT_SIGNATURE_VERSION::D3D_ROOT_SIGNATURE_VERSION_1, &root_signature_serialized_data, nullptr)))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャのシリアライズ化に失敗しました");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャのシリアライズ化に失敗しました");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -1776,17 +1774,17 @@ bool C_DX12_System::M_Serialize_And_Create_RootSignature_By_Desc(const D3D12_ROO
 	// ☆ ルートシグネチャの生成 ☆ //	// 失敗でエラーを出す
 	if (FAILED(mpr_variable->s_frame_work.device->CreateRootSignature(0, root_signature_serialized_data->GetBufferPointer(), root_signature_serialized_data->GetBufferSize(), IID_PPV_ARGS((ID3D12RootSignature**)&in_root_signature))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャの生成に失敗しました");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "ルートシグネチャの生成に失敗しました");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// ルートシグネチャの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "ルートシグネチャの生成に成功しました");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "ルートシグネチャの生成に成功しました");
 
 	return true;
 }
@@ -1923,17 +1921,17 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12_INSTANCE::C_DX12_Rendering_Grap
 	// ☆ パイプライン生成 ☆ //  // エラーなら抜ける
 	if (FAILED(mpr_variable->s_frame_work.device->CreateGraphicsPipelineState(&desc_pipeline_state, IID_PPV_ARGS(&in_dx12_pipeline_inform->m_pipeline_state_setting))))
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "パイプラインステートの生成に失敗しました");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "パイプラインステートの生成に失敗しました");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
 
 
 	// パイプラインステートの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "パイプラインステートの生成に成功しました");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "パイプラインステートの生成に成功しました");
 
 
 	// 設定用の情報をクローズ
@@ -2039,11 +2037,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 	{
 		// アクセス権の拒否
 	case DXGI_ERROR_ACCESS_DENIED:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_ACCESS_DENIED：アクセス権を持っていないメモリへの操作が発生し、アクセスが拒否されました"
 		);
 
@@ -2051,11 +2049,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// アクセス権の喪失
 	case DXGI_ERROR_ACCESS_LOST:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_ACCESS_LOST：アクセス権を取得したが何らかの原因により喪失しているため、アクセスが拒否されました"
 		);
 
@@ -2063,11 +2061,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// すでに生成済みのシステムや権限を多重で取得しようとした
 	case DXGI_ERROR_ALREADY_EXISTS:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_ALREADY_EXISTS：すでに生成済みのシステムや権限を多重で取得しようとしたため、生成に失敗しました"
 		);
 		
@@ -2075,11 +2073,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// コンテンツ保護をスワップチェーンに定期王できなかった
 	case DXGI_ERROR_CANNOT_PROTECT_CONTENT:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_CANNOT_PROTECT_CONTENT：スワップチェーンの取得に失敗。グラフィック装置が古いドライバーである、またはコンテンツ保護と互換性のないスワップチェーンを使用しました"
 		);
 		
@@ -2087,11 +2085,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// デバイスへの操作ミスによりデバイスがリセットされた
 	case DXGI_ERROR_DEVICE_HUNG:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_DEVICE_HUNG：デバイスへの操作ミスによりデバイスがリセットされました"
 		);
 		
@@ -2099,11 +2097,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// デバイスの喪失
 	case DXGI_ERROR_DEVICE_REMOVED:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_DEVICE_REMOVED：デバイスが消えました"
 		);
 		
@@ -2111,11 +2109,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 不適切な形式のコマンドが発行された
 	case DXGI_ERROR_DEVICE_RESET:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_DEVICE_RESET：実行されたコマンドのデータに不適切なものがあります"
 		);
 		
@@ -2123,11 +2121,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// ドライバーのエラーにより、デバイスがリセットされた
 	case DXGI_ERROR_DRIVER_INTERNAL_ERROR:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_DRIVER_INTERNAL_ERROR：ドライバーのエラーにより、デバイスがリセットされました"
 		);
 
@@ -2135,11 +2133,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// イベントにより画面の更新が中断された
 	case DXGI_ERROR_FRAME_STATISTICS_DISJOINT:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_FRAME_STATISTICS_DISJOINT：イベントにより画面の更新が中断されました"
 		);
 
@@ -2147,11 +2145,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// グラフィックカードなど描画スペースへの占有を行おうとしたが、既に占有されているためできなかった
 	case DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE：グラフィックカードなど描画スペースへの占有を行おうとしたが、既に占有されているためできなかった"
 		);
 
@@ -2159,11 +2157,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 無効なパラメーターやデータを指定してしまった
 	case DXGI_ERROR_INVALID_CALL:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_INVALID_CALL：無効なパラメーターやデータを指定してしまった。コード内から正常ではない値になるシステムを探し修正する必要がある"
 		);
 
@@ -2171,11 +2169,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// バッファーのデータが小さいため、データの取得ができなかった
 	case DXGI_ERROR_MORE_DATA:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_MORE_DATA：バッファーのデータが小さいため、データの取得ができませんでした"
 		);
 
@@ -2183,11 +2181,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// IDXGIResource1::CreateSharedHandleで指定された名前はすでに使用されている
 	case DXGI_ERROR_NAME_ALREADY_EXISTS:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_NAME_ALREADY_EXISTS：IDXGIResource1::CreateSharedHandleで指定された名前はすでに使用されています"
 		);
 
@@ -2196,11 +2194,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 		// グローバルカウンターリソース：ドライバー検証ツールがドライバーに対して実行するアクションの一部を監視する統計情報
 		// カウンターリソースを参照・使用することができない状態であった
 	case DXGI_ERROR_NONEXCLUSIVE:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_NONEXCLUSIVE：グローバルカウンターリソースを参照・使用することができませんでした"
 		);
 
@@ -2208,11 +2206,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 指定されたリソースまたは要求は現在使用できません
 	case DXGI_ERROR_NOT_CURRENTLY_AVAILABLE:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_NOT_CURRENTLY_AVAILABLE：指定されたリソースまたは要求は現在使用できません"
 		);
 
@@ -2220,11 +2218,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// IDXGIObject::GetPrivateData を呼び出すとき、渡されたGUIDは許容範囲外です、IDXGIObject::SetPrivateData または IDXGIObject::SetPrivateDataInterface に渡されたものではありません。
 	case DXGI_ERROR_NOT_FOUND:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_NOT_FOUND：指定されたリソースまたは要求が見つかりませんでした"
 		);
 
@@ -2232,11 +2230,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// リモートデスクトップクライアントの接続が切断された
 	case DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED：リモートデスクトップクライアントの接続が切断されました"
 		);
 
@@ -2244,11 +2242,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// リモートデスクトップのメモリが不足している、または範囲外への操作
 	case DXGI_ERROR_REMOTE_OUTOFMEMORY:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_REMOTE_OUTOFMEMORY：リモートデスクトップのメモリが不足、または範囲外への操作が行われました"
 		);
 
@@ -2256,11 +2254,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// スワップチェーンの出力先のモニターが切断・変更された
 	case DXGI_ERROR_RESTRICT_TO_OUTPUT_STALE:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_RESTRICT_TO_OUTPUT_STALE：スワップチェーンの出力先のモニターが切断・変更されました"
 		);
 
@@ -2268,11 +2266,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// SDKコンポーネントが正確に指定されておらず、一致していない
 	case DXGI_ERROR_SDK_COMPONENT_MISSING:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_SDK_COMPONENT_MISSING：SDKコンポーネントが正確に指定されておらず、一致していません"
 		);
 
@@ -2280,11 +2278,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// リモートデスクトップのサービスは現在接続されていない
 	case DXGI_ERROR_SESSION_DISCONNECTED:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_SESSION_DISCONNECTED：リモートデスクトップのサービスは現在接続されていません"
 		);
 
@@ -2292,11 +2290,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 要求された機能は、デバイスまたはドライバーではサポートされていない
 	case DXGI_ERROR_UNSUPPORTED:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_UNSUPPORTED：要求された機能は、デバイスまたはドライバーではサポートされていません"
 		);
 
@@ -2304,11 +2302,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 次の描画フレームが使用可能になるまでのタイムアウト間隔中の操作
 	case DXGI_ERROR_WAS_STILL_DRAWING:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_WAS_STILL_DRAWING：次の描画フレームが使用可能になるまでのタイムアウト間隔中の操作"
 		);
 
@@ -2316,11 +2314,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// GPUがビジー状態であるため、操作が実行できない
 	case DXGI_ERROR_WAIT_TIMEOUT:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"DXGI_ERROR_WAIT_TIMEOUT：GPUがビジー状態であるため、操作が実行できません"
 		);
 
@@ -2334,11 +2332,11 @@ bool C_DX12_System::M_Display_Error_Message(HRESULT in_error_code) const
 
 		// 未知のエラー
 	default:
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_GAME_RENDERING,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_ERROR_CHECKING,
 			"未知のエラーが発生しました。このエラー情報は登録されていません"
 		);
 
@@ -2571,19 +2569,19 @@ bool C_DX12_System::M_Set_Up(void)
 	// DX12システムの初期化
 	if (M_DirectX12_Init() == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "Error-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ失敗-☆-☆-☆-☆-☆-☆-☆-Error");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_FAILED, "Error-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ失敗-☆-☆-☆-☆-☆-☆-☆-Error");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;	// 失敗ならエラーを返して抜ける
 	}
 
 
 	// DX12システムの初期化成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_BLACK, DEBUGGER::LOG::E_LOG_COLOR::e_GREEN);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ完了-☆-☆-☆-☆-☆-☆-☆-");
-	DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
-	DEBUGGER::LOG::C_Log_System::M_Console_LOG_Flush();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_SET_UP_SUCCEEDED, "-☆-☆-☆-☆-☆-☆-☆-DX12のセットアップ完了-☆-☆-☆-☆-☆-☆-☆-");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Console_LOG_Flush();
 
 	// 成功した
 	return true;
@@ -2720,11 +2718,11 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 		mpr_variable->flg_rendering_api_end = true;
 
 		// デバイスが消えたことを表示
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log
 		(
-			DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP,
-			DEBUGGER::LOG::ALL_LOG_NAME::DX12::con_DEVICE_DELETED,
+			DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP,
+			DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::DX12::con_DEVICE_DELETED,
 			"デバイスが消えたためアプリケーションの終了を実行"
 		);
 
@@ -2732,7 +2730,7 @@ void C_DX12_System::M_Rendering_End_And_Swap_Screen(void)
 		M_Display_Error_Message(check_error_result);
 
 		// ログを表示するために一時停止
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 	}
 
 	return;
@@ -2770,8 +2768,8 @@ bool C_DX12_System::M_Create_Rendering_Graphics_Inform(std::unique_ptr<INSTANCE:
 
 
 	// レンダリング設定の生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "レンダリング設定の生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "レンダリング設定の生成に成功");
 
 	return true;
 }
@@ -3468,9 +3466,9 @@ bool C_DX12_System::M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Renderin
 	// ☆ テクスチャ用データの生成 ☆ //　// 失敗したらエラーで抜ける
 	if (M_Create_Texture_Resource(dx12_texture_inform, in_create_inform) == false)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_RED, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "テクスチャヒープの生成に失敗");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "テクスチャヒープの生成に失敗");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -3485,8 +3483,8 @@ bool C_DX12_System::M_Create_Texture_Inform(std::unique_ptr<INSTANCE::C_Renderin
 
 
 	// テクスチャ用データの生成の成功を告知
-	DEBUGGER::LOG::C_Log_System::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::E_LOG_COLOR::e_GREEN, DEBUGGER::LOG::E_LOG_COLOR::e_BLACK);
-	DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "テクスチャ用データの生成に成功");
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_SYSTEM::con_GAME_INIT, "テクスチャ用データの生成に成功");
 
 	return true;
 }
@@ -3605,9 +3603,9 @@ bool C_DX12_System::M_Create_Font_Data(std::unique_ptr<INSTANCE::C_Rendering_Fon
 	// フォントハンドルの取得に失敗したらエラーを示して抜ける
 	if (handle_font == NULL)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Text_Color(DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, "フォントハンドルの生成に失敗", "DX12_FONT_SYSTEM");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Text_Color(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, "フォントハンドルの生成に失敗", "DX12_FONT_SYSTEM");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
@@ -3659,9 +3657,9 @@ bool C_DX12_System::M_Set_Font_To_Texture_Map(PAKAGE::FONT::S_Make_Font_To_Graph
 	// フォントハンドルの取得に失敗したらエラーを示して抜ける
 	if (handle_font == NULL)
 	{
-		DEBUGGER::LOG::C_Log_System::M_Set_Console_Text_Color(DEBUGGER::LOG::E_LOG_COLOR::e_RED);
-		DEBUGGER::LOG::C_Log_System::M_Print_Log(DEBUGGER::LOG::E_LOG_TAGS::e_SET_UP, "DX12_FONT_SYSTEM", "フォントの生成に失敗、もしくはフォント情報が設定されていないため、このフォント情報を使用する事はできませんでした");
-		DEBUGGER::LOG::C_Log_System::M_Stop_Update_And_Log_Present();
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Text_Color(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SET_UP, "DX12_FONT_SYSTEM", "フォントの生成に失敗、もしくはフォント情報が設定されていないため、このフォント情報を使用する事はできませんでした");
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 
 		return false;
 	}
