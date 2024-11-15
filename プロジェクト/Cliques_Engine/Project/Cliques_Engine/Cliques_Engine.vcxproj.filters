@@ -1904,7 +1904,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Elina_Lead.rc">
+    <ResourceCompile Include="Cliques_Engine.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>
