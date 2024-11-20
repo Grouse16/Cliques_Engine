@@ -147,7 +147,10 @@ void C_Windows_Console_Log_System::M_Init_Debug(void)
 	_wfreopen_s(&mpr_variable.console_file, L"CONOUT$", L"w+", stdout);
 
 	// 出力の文字コード指定、https://learn.microsoft.com/en-us/cpp/c-runtime-library/translation-mode-constants?view=msvc-170
-	{ int stab = _setmode(_fileno(stdout), _O_TEXT); }
+	if (_setmode(_fileno(stdout), _O_TEXT) == -1)
+	{
+		return;
+	}
 
 
 	// なんとなくカッコいい色を設定する
@@ -172,7 +175,7 @@ void C_Windows_Console_Log_System::M_Create_Windows_Console_Debug_Log_System(voi
 
 
 	// デバッグシステムの初期化
-	m_this->M_Init_Debug();
+	new_windows_console_log_system->M_Init_Debug();
 
 	// シングルトンのインスタンスを生成
 	m_this.reset(new_windows_console_log_system);
@@ -323,6 +326,7 @@ void C_Windows_Console_Log_System::M_Stop_Update_And_Log_Present(void)
 	std::wcout << std::flush;
 
 	// enterを待つ
+	std::cout << std::endl;
 	std::cout << "Press Enter to continue...";
 	std::system("pause");
 

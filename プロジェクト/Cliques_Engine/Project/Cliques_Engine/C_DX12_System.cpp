@@ -37,7 +37,7 @@
 #pragma comment (lib, "D3DCompiler.lib")
 
 
-// ☆　外部 ☆ //
+// ☆　外部システム利用の際 ☆ //
 #ifndef D_TEXTURE_CHALLEGE
 #include <DirectXTex.h>
 #pragma comment (lib, "DirectXTex.lib")
@@ -756,8 +756,8 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
 	desc_swap_chain.BufferCount = (int)E_DX12_PARAMATOR::e_RENDER_TARGET_BUFFER_SUM;
 
 	// ウィンドウへのハンドル
-	desc_swap_chain.OutputWindow = FindWindow(NULL, L"Cliques Engine");
-		
+	desc_swap_chain.OutputWindow = reinterpret_cast<HWND>(OS::C_OS_User_System::M_Get_Window_Handle_Or_Identify());
+	
 	// ウィンドウモードであるかどうか
 	desc_swap_chain.Windowed = TRUE;
 

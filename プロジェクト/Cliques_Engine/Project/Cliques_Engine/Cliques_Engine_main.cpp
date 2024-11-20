@@ -11,11 +11,9 @@
 #define _CRTDBG_MAP_ALLOC
 
 
-// ☆ OS検知 ☆ //
-#include "Platform_Detector_Macro.h"
-
-
 // ☆ ファイルひらき ☆ //
+#include <cstdio>
+
 #include "C_Game_Manager.h"
 #include "C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h"
 
@@ -47,39 +45,19 @@ void M_Print_Log_Of_Succeeded_Init(void);
 
 // ☆ メイン関数 ☆ //
 
-// ウィンドウズ時はWinmain関数を使うがこのマクロの有効範囲外では値を使用しないこと(他プラットフォームのために)	// ウィンドウズのサブシステムを指定すること
-#ifdef D_OS_IS_WINDOWS
-
-// ☆ ファイルひらき ☆ //
-#include <Windows.h>
-
-// WinMain関数（エントリーポイント）
-int APIENTRY WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE /* もう使用される事はない、常に０ */, _In_ LPSTR, _In_ int in_cmd_show)
-{
-
-// その他の時 OpenGL系はint main(void)関数から始める
-#else
-
 // メイン関数（エントリーポイント）
 int main(void)
 {
+	// ☆ コンソール画面を消す ☆ //
+	
+	// コンソール画面を削除する
+	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Destruct_Console_Window();
 
-#endif // D_OS_IS_WINDOWS
 
 	// ☆ 初期化 ☆ //
 	
 	// OS用システムの生成
 	M_OS_Create_System();
-
-
-// ウィンドウズ時はDX11とDX12のどちらかを使用する時のみコマンド番号をセットする
-#ifdef D_OS_IS_WINDOWS
-
-	// ウィンドウズ時はコマンド番号をセット（DirectX未使用時はスルーされる）
-	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(in_cmd_show);
-
-#endif // D_OS_IS_WINDOWS
-
 
 	// レンダリングAPIの生成
 	M_Rendering_API_Init();

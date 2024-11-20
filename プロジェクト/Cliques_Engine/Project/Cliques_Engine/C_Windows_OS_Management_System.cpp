@@ -52,49 +52,49 @@ C_Windows_OS_Management_System::C_Windows_OS_Management_System(void)
 bool C_Windows_OS_Management_System::M_Create_Window(void)
 {
 	// ☆ 変数宣言 ☆ //
-	WNDCLASSEX w_wc = WNDCLASSEX();	// WNDCLASSEX構造体の中身の準備
+	WNDCLASSEX windows_class_ex = WNDCLASSEX();	// WNDCLASSEX構造体の中身の準備
 
 	std::wstring device_name = M_Get_Window_Title_Name();	// ワイド文字列でのウィンドウ名
 
 
 	// この構造体のサイズ
-	w_wc.cbSize = sizeof(WNDCLASSEX);
+	windows_class_ex.cbSize = sizeof(WNDCLASSEX);
 
 	// ウィンドウのスタイル
-	w_wc.style = CS_CLASSDC | CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
+	windows_class_ex.style = CS_CLASSDC | CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 
 	// ウィンドウプロシージャのアドレス
-	w_wc.lpfnWndProc = OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Get_Game_APK_Wnd_Proc();
+	windows_class_ex.lpfnWndProc = OS::WINDOWS::PROC::C_Wnd_Proc_Manager::M_Get_Game_APK_Wnd_Proc();
 
 	// 構造体の予備のメモリ
-	w_wc.cbClsExtra = 0;
+	windows_class_ex.cbClsExtra = 0;
 
 	// ウィンドウ側の予備のメモリ
-	w_wc.cbWndExtra = 0;
+	windows_class_ex.cbWndExtra = 0;
 
 	// インスタンスハンドル
-	w_wc.hInstance = GetModuleHandle(0);
+	windows_class_ex.hInstance = GetModuleHandle(NULL);
 
 	// アプリのショートカットのアイコンの見ため
-	w_wc.hIcon = LoadIcon(w_wc.hInstance, D_ICON_ADDRESS);
+	windows_class_ex.hIcon = LoadIcon(windows_class_ex.hInstance, D_ICON_ADDRESS);
 
 	// ウィンドウ上のマウスカーソルの見ため
-	w_wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windows_class_ex.hCursor = LoadCursor(NULL, IDC_ARROW);
 
 	// ウィンドウ内の背景色（クライアント領域の背景色）
-	w_wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	windows_class_ex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
 	// ウィンドウのメニューの名前
-	w_wc.lpszMenuName = NULL;
+	windows_class_ex.lpszMenuName = NULL;
 
 	// ウィンドウのクラスの名前
-	w_wc.lpszClassName = device_name.data();
+	windows_class_ex.lpszClassName = device_name.data();
 
 	// タイトルバーのアイコンの見ため
-	w_wc.hIconSm = LoadIcon(w_wc.hInstance, D_ICON_ADDRESS);
+	windows_class_ex.hIconSm = LoadIcon(windows_class_ex.hInstance, D_ICON_ADDRESS);
 
 	// レジスタにセットしてウィンドウ情報を登録
-	RegisterClassEx(&w_wc);
+	RegisterClassEx(&windows_class_ex);
 
 
 	// ウィンドウの大きさを設定
@@ -108,7 +108,7 @@ bool C_Windows_OS_Management_System::M_Create_Window(void)
 		0,
 
 		// ウィンドウクラスの名前
-		w_wc.lpszClassName,
+		windows_class_ex.lpszClassName,
 
 		// ウィンドウの名前
 		device_name.data(),
@@ -138,7 +138,7 @@ bool C_Windows_OS_Management_System::M_Create_Window(void)
 
 
 	// ウィンドウを表示
-	ShowWindow(mpr_variable.s_wnd.h_my_wind, mpr_variable.m_cmd_show);
+	ShowWindow(mpr_variable.s_wnd.h_my_wind, SW_SHOW);
 
 	// ウィンドウの状態を直ちに反映(ウィンドウのクライアント領域を更新)
 	UpdateWindow(mpr_variable.s_wnd.h_my_wind);
@@ -241,7 +241,6 @@ C_Windows_OS_Management_System::~C_Windows_OS_Management_System()
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_OS_Management_System::M_Release(void)
 {
-	mpr_variable.m_cmd_show = 0;
 	mpr_variable.s_wnd.h_my_wind = NULL;
 
 	return;
@@ -362,35 +361,16 @@ void C_Windows_OS_Management_System::M_Update_Time(void)
 }
 
 
-//-☆- セッタ -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ウィンドウの初期コマンド番号をセット
-// 引数   ：int コマンド番号
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_Windows_OS_Management_System::M_Set_Cmd_Show(int in_command_show)
-{
-	// ☆ 変数宣言 ☆ //
-	C_Windows_OS_Management_System * wind_os_system = static_cast<C_Windows_OS_Management_System*>(m_this_instance.get());	// ウィンドウズOS用のシステム
-
-
-	wind_os_system->mpr_variable.m_cmd_show = in_command_show;
-
-	return;
-}
-
-
 //-☆- ゲッタ -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：自ウィンドウのハンドルを返す
+// 詳細   ：ウィンドウのハンドル番号や、識別番号を返す
 // 引数   ：void
-// 戻り値 ：HWND 自ウィンドウのハンドル
+// 戻り値 ：void * ウィンドウのハンドル番号や、識別番号
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-HWND C_Windows_OS_Management_System::M_Get_Window_Handle(void)
+void * C_Windows_OS_Management_System::M_Get_Window_Handle_Or_Identify(void) const
 {
-	return static_cast<C_Windows_OS_Management_System*>(m_this_instance.get())->mpr_variable.s_wnd.h_my_wind;
+	return reinterpret_cast<void * >(mpr_variable.s_wnd.h_my_wind);
 }
 
 

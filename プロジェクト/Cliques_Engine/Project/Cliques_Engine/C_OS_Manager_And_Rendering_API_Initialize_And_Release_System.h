@@ -51,12 +51,6 @@ namespace PLATFORM
 
 		// ☆ 関数 ☆ //
 
-		//-☆- セッタ -☆-//
-
-		// ウィンドウズOS制御システムのときのみ必要なコマンド番号を指定する、これがないとウィンドウを生成できない　引数：コマンド番号
-		static void M_Set_CMD_Number(int);
-
-
 		//-☆- 生成 -☆-//
 
 		// OS制御システムの生成を行う　引数：使用するAPIの種類への参照　戻り値：bool 成功時のみtrue
@@ -70,6 +64,12 @@ namespace PLATFORM
 
 		// OS制御システムとレンダリングAPIを解放する
 		static void M_Release_OS_Management_System_And_Rendering_API(void);
+
+
+		//-☆- 削除 -☆-//
+
+		// コンソール画面を削除する
+		static void M_Destruct_Console_Window(void);
 	};
 }
 
