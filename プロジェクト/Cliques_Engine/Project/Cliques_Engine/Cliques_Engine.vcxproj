@@ -407,7 +407,7 @@
     <ClCompile Include="C_User_Interface_Base.cpp" />
     <ClCompile Include="C_Vertex_Index_System.cpp" />
     <ClCompile Include="C_Windows_Console_Log_System.cpp" />
-    <ClCompile Include="Elina_Lead_main.cpp" />
+    <ClCompile Include="Cliques_Engine_main.cpp" />
     <ClCompile Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.cpp" />
     <ClCompile Include="C_APK_Manager.cpp" />
     <ClCompile Include="C_DX12_Blend_State_Setting_System.cpp" />
@@ -485,7 +485,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Elina_Lead.rc" />
+    <ResourceCompile Include="Cliques_Engine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

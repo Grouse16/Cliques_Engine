@@ -42,7 +42,7 @@ namespace OS::BASE
 
 		OS::S_Mouse_State m_mouse_state;	// マウス座標
 
-		std::wstring m_title_name = L"Elina Lead";	// ウィンドウタイトル名
+		std::wstring m_title_name = L"Cliques Engine";	// ウィンドウタイトル名
 
 		S_Day_And_Time_Inform m_now_day_and_time;	// 現在の時間
 
