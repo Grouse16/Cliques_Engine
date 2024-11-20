@@ -11,10 +11,9 @@
 
 // ☆ OS検知 ☆ //
 #include "Platform_Detector_Macro.h"
-#ifdef D_OS_IS_WINDOWS
+#ifdef D_OS_IS_WINDOWS	// WindowsOSの時のみ有効
 
-#include "C_Windows_OS_Management_System.h"
-
+#include "C_OS_User_System.h"
 #include "C_DX12_System.h"
 #include "C_DX12_Input_Layout_Setting_System.h"
 #include "C_DX12_Streaming_Output_Buffer_Base.h"
@@ -757,8 +756,8 @@ bool C_DX12_System::M_Create_Swap_Chain(void)
 	desc_swap_chain.BufferCount = (int)E_DX12_PARAMATOR::e_RENDER_TARGET_BUFFER_SUM;
 
 	// ウィンドウへのハンドル
-	desc_swap_chain.OutputWindow = OS::WINDOWS::C_Windows_OS_Management_System::M_Get_Window_Handle();
-
+	desc_swap_chain.OutputWindow = FindWindow(NULL, L"Cliques Engine");
+		
 	// ウィンドウモードであるかどうか
 	desc_swap_chain.Windowed = TRUE;
 
@@ -1263,7 +1262,7 @@ void C_DX12_System::M_Create_Vertex_Buffer(DX12_INSTANCE::C_DX12_Vertex_Setting_
 
 	// 使用されるリソースの種類
 	desc_resource.Dimension = D3D12_RESOURCE_DIMENSION::D3D12_RESOURCE_DIMENSION_BUFFER;
-
+	
 	// 設定するリソース情報の配置番号
 	desc_resource.Alignment = 0;
 
@@ -2437,7 +2436,7 @@ void C_DX12_System::M_Wait_For_Command_Queue(void)
 void C_DX12_System::M_Set_Scissor_And_View_Port(void)
 {
 	// ☆ 変数宣言 ☆ //
-	const OS::S_Window_Size_Data & window_size = OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Get_Window_Size();  // ウィンドウサイズ
+	const OS::S_Window_Size_Data & window_size = OS::C_OS_User_System::M_Get_Window_Size();  // ウィンドウサイズ
 
 
 	// ☆ ビューポート設定 ☆ //

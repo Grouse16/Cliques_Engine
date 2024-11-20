@@ -410,6 +410,7 @@ void C_Windows_OS_Management_System::M_Change_Window_Title(const std::wstring & 
 	return;
 }
 
+
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：メッセージボックスを表示する(ウィンドウハンドルを必要とするため)
 // 引数   ：const wstring & タイトル, const wstring & 表示内容, unsigned int メッセージボックスの種類
