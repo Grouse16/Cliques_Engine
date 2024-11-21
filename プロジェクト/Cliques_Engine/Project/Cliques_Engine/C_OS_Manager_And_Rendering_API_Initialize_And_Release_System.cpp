@@ -109,31 +109,6 @@ bool C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Init_Render
 
 //==☆ パブリック ☆==//
 
-//-☆- セッタ -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：ウィンドウズOS制御システムのときのみ必要なコマンド番号を指定する、これがないとウィンドウを生成できない
-// 引数   ：int コマンド番号
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Set_CMD_Number(int in_set_cmd)
-{
-	// ウィンドウズ時はコマンド番号をセット
-#ifdef D_OS_IS_WINDOWS
-
-	// DirectX使用時のみでよい
-	if (PLATFORM::DETECTION::C_Platform_Detection_System::M_Get_Rendering_API_Number() == PLATFORM::E_RENDERING_API_KIND::e_DX11 ||
-		PLATFORM::DETECTION::C_Platform_Detection_System::M_Get_Rendering_API_Number() == PLATFORM::E_RENDERING_API_KIND::e_DX12)
-	{
-		OS::WINDOWS::C_Windows_OS_Management_System::M_Set_Cmd_Show(in_set_cmd);
-	}
-
-#endif
-
-	return;
-}
-
-
 //-☆- 生成 -☆-//
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
@@ -252,3 +227,4 @@ void C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Release_OS_
 
 	return;
 }
+

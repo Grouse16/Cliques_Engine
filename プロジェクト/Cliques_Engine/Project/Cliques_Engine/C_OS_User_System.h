@@ -63,6 +63,12 @@ namespace OS
 		// 現在の起動時からのミリ秒単位での経過時間を返す　戻り値：経過時間
 		static unsigned __int64 M_Get_Now_Time_Millisecond_By_Start_Application(void);
 
+		// ウィンドウのハンドル番号や、識別番号を返す　戻り値：ウィンドウのハンドル番号や、識別番号
+		static void * M_Get_Window_Handle_Or_Identify(void);
+
+
+		// ☆ 変更 ☆ //
+
 		// ウィンドウタイトルの変更　引数：変更先のウィンドウタイトル
 		static void M_Change_Window_Title(std::wstring);
 

@@ -32,7 +32,7 @@ namespace RENDERING::API::DX12::DX12_TOOL
 		//-☆- 設定 -☆-//
 
 		// キャッシュを受け取らない時の設定を行う　引数：パイプライン設定用情報
-		static void M_Cashe_Nothing(D3D12_GRAPHICS_PIPELINE_STATE_DESC&);
+		static void M_Cache_Nothing(D3D12_GRAPHICS_PIPELINE_STATE_DESC&);
 	};
 }
 

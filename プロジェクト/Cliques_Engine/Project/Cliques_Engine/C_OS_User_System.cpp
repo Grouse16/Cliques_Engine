@@ -111,6 +111,19 @@ unsigned __int64 C_OS_User_System::M_Get_Now_Time_Millisecond_By_Start_Applicati
 
 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ウィンドウのハンドル番号や、識別番号を返す
+// 引数   ：void
+// 戻り値 ：void * ウィンドウのハンドル番号や、識別番号
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void * C_OS_User_System::M_Get_Window_Handle_Or_Identify(void)
+{
+	return OS::BASE::C_OS_Management_System_Base::M_Get_Instance()->M_Get_Window_Handle_Or_Identify();
+}
+
+
+// ☆ 変更 ☆ //
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 // 詳細   ：ウィンドウタイトルの変更
 // 引数   ：wstring 変更先のウィンドウタイトル
 // 戻り値 ：void

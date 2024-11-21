@@ -47,8 +47,6 @@ namespace OS::WINDOWS
 
 			} s_wnd;	// ウィンドウ
 
-			int m_cmd_show = 0;	// 画面にウィンドウを表示するための値
-
 		} mpr_variable;	// このクラスの変数を呼び出すための名前
 
 
@@ -101,16 +99,10 @@ namespace OS::WINDOWS
 		void M_Update_Time(void) override;
 
 
-		//-☆- セッタ -☆-//
-
-		// ウィンドウの初期コマンド番号をセット　引数：コマンド番号
-		static void M_Set_Cmd_Show(int);
-
-
 		//-☆- ゲッタ -☆-//
 
-		// 自ウィンドウのハンドルを返す
-		static HWND M_Get_Window_Handle(void);
+		// ウィンドウのハンドル番号や、識別番号を返す　戻り値：ウィンドウのハンドル番号や、識別番号
+		void * M_Get_Window_Handle_Or_Identify(void) const override;
 
 
 		//-☆- ウィンドウ機能 -☆-//

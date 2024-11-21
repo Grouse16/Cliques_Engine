@@ -157,6 +157,9 @@ namespace OS::BASE
 		// ウィンドウのタイトル名を返す　戻り値：ウィンドウタイトル名
 		std::wstring M_Get_Window_Title_Name(void) const;
 
+		// ウィンドウのハンドル番号や、識別番号を返す　戻り値：ウィンドウのハンドル番号や、識別番号
+		virtual void * M_Get_Window_Handle_Or_Identify(void) const = 0;
+
 
 		//-☆- ウィンドウ機能 -☆-//
 
