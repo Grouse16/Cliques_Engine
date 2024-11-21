@@ -23,11 +23,16 @@
 using namespace OS::WINDOWS;
 
 
-// ☆ マクロ ☆ //
-#define D_ICON_ADDRESS L"data/asset/image/window/star.ico"	// アイコンハンドル
+// ☆ 定数 ☆ //
 
-#define D_WND_WIDTH 1000	// ウィンドウの横のサイズ
-#define D_WND_HEIGHT 500	// ウィンドウの縦のサイズ
+// このファイル用の定数を呼び出すための名前
+namespace WND_OS_SYSTEM_CONSTANT_DATA
+{
+	constexpr wchar_t con_ICON_ADDRESS[] = L"data/asset/image/window/star.ico";	// アイコンハンドル
+
+	constexpr int con_WND_INITIAL_WIDTH = 1000;	// ウィンドウの横のサイズ
+	constexpr int con_WND_INITIAL_HEIGHT = 500;	// ウィンドウの縦のサイズ
+}
 
 
 // ☆ 関数 ☆ //
@@ -76,7 +81,7 @@ bool C_Windows_OS_Management_System::M_Create_Window(void)
 	windows_class_ex.hInstance = GetModuleHandle(NULL);
 
 	// アプリのショートカットのアイコンの見ため
-	windows_class_ex.hIcon = LoadIcon(windows_class_ex.hInstance, D_ICON_ADDRESS);
+	windows_class_ex.hIcon = LoadIcon(windows_class_ex.hInstance, WND_OS_SYSTEM_CONSTANT_DATA::con_ICON_ADDRESS);
 
 	// ウィンドウ上のマウスカーソルの見ため
 	windows_class_ex.hCursor = LoadCursor(NULL, IDC_ARROW);
@@ -91,14 +96,14 @@ bool C_Windows_OS_Management_System::M_Create_Window(void)
 	windows_class_ex.lpszClassName = device_name.data();
 
 	// タイトルバーのアイコンの見ため
-	windows_class_ex.hIconSm = LoadIcon(windows_class_ex.hInstance, D_ICON_ADDRESS);
+	windows_class_ex.hIconSm = LoadIcon(windows_class_ex.hInstance, WND_OS_SYSTEM_CONSTANT_DATA::con_ICON_ADDRESS);
 
 	// レジスタにセットしてウィンドウ情報を登録
 	RegisterClassEx(&windows_class_ex);
 
 
 	// ウィンドウの大きさを設定
-	M_Set_Window_Size_Variable(D_WND_WIDTH, D_WND_HEIGHT);
+	M_Set_Window_Size_Variable(WND_OS_SYSTEM_CONSTANT_DATA::con_WND_INITIAL_WIDTH, WND_OS_SYSTEM_CONSTANT_DATA::con_WND_INITIAL_HEIGHT);
 	
 
 	// ウィンドウの表示設定の初期化
@@ -121,8 +126,8 @@ bool C_Windows_OS_Management_System::M_Create_Window(void)
 		CW_USEDEFAULT,	// 左上Ｙ座標 
 
 		//ウィンドウのサイズ
-		(int)D_WND_WIDTH,	// ウィンドウの幅
-		(int)D_WND_HEIGHT,	// ウィンドウの高さ
+		(int)WND_OS_SYSTEM_CONSTANT_DATA::con_WND_INITIAL_WIDTH,	// ウィンドウの幅
+		(int)WND_OS_SYSTEM_CONSTANT_DATA::con_WND_INITIAL_HEIGHT,	// ウィンドウの高さ
 
 		// 親ウィンドウのハンドル
 		NULL,

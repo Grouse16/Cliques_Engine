@@ -19,6 +19,7 @@
 #include <io.h>
 #include <fcntl.h>
 #include <Windows.h>
+#include <conio.h>
 
 #include "C_Windows_Console_Log_System.h"
 #include "C_Text_And_File_Manager.h"
@@ -322,13 +323,34 @@ void C_Windows_Console_Log_System::M_Print_Log(TAGS::E_CONSOLE_LOG_TAGS in_tag, 
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_Console_Log_System::M_Stop_Update_And_Log_Present(void)
 {
+	// ☆ 定数 ☆ //
+	constexpr int con_ENTER = 13;	// Enterのアスキーコード
+
+
+	// ☆ 変数宣言 ☆ //
+	bool inputted_enter = false;	// Enterが押されたかどうか
+
+
 	// バッファの内容を画面に出力
 	std::wcout << std::flush;
 
-	// enterを待つ
+	// Enterを待つことを表示する
 	std::cout << std::endl;
 	std::cout << "Press Enter to continue...";
-	std::system("pause");
+	
+	// Enterが押されるまで待機する
+	while (inputted_enter == false)
+	{
+		// キーボードの入力をチェック
+		if (_kbhit())
+		{
+			// Enterキーのアスキーコードが入力されたら（Enterの入力があったら）ループを抜ける
+			if (_getch() == con_ENTER)
+			{
+				inputted_enter = true;
+			}
+		}
+	}
 
 	return;
 }
@@ -341,10 +363,19 @@ void C_Windows_Console_Log_System::M_Stop_Update_And_Log_Present(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_Console_Log_System::M_Console_Log_Flush(void)
 {
+	// ☆ 定数 ☆ //
+	constexpr int con_LINE_SUM = 50;	// 画面をクリアするための空行の数
+
+
 	// 色を元に戻す
 	M_Set_Console_Text_Color(COLOR::E_CONSOLE_LOG_COLOR::e_WHITE);
 	M_Set_Console_Back_Ground_Color(COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
-	std::system("cls");
+	
+	// 空行を出力して画面をクリアしたように見せる
+	for (int l_write_line = 0; l_write_line < con_LINE_SUM; ++l_write_line)
+	{
+		std::cout << std::endl;
+	}
 
 	return;
 }

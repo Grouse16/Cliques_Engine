@@ -1914,7 +1914,7 @@ bool C_DX12_System::M_Create_Pipeline_State(DX12_INSTANCE::C_DX12_Rendering_Grap
 
 
 	// ☆ パイプラインステートの取得用の設定 ☆ //
-	RENDERING::API::DX12::DX12_TOOL::C_DX12_Cached_PSO_Base::M_Cashe_Nothing(desc_pipeline_state);
+	RENDERING::API::DX12::DX12_TOOL::C_DX12_Cached_PSO_Base::M_Cache_Nothing(desc_pipeline_state);
 
 
 	// ☆ パイプライン生成 ☆ //  // エラーなら抜ける

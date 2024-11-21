@@ -64,12 +64,6 @@ namespace PLATFORM
 
 		// OS制御システムとレンダリングAPIを解放する
 		static void M_Release_OS_Management_System_And_Rendering_API(void);
-
-
-		//-☆- 削除 -☆-//
-
-		// コンソール画面を削除する
-		static void M_Destruct_Console_Window(void);
 	};
 }
 

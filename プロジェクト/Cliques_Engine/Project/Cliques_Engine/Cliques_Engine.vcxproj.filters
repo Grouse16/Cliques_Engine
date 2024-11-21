@@ -847,9 +847,6 @@
     <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール">
       <UniqueIdentifier>{fefe82f4-1969-457a-9459-63f3a0e815c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
-      <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\デバッグ\ログ\コンソール">
       <UniqueIdentifier>{0ba1553e-b600-402f-9b20-f296e6d4ea62}</UniqueIdentifier>
     </Filter>
@@ -903,6 +900,9 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底\定義">
       <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
+      <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

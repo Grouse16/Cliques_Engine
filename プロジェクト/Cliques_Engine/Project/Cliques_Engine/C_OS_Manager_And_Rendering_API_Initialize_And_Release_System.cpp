@@ -228,22 +228,3 @@ void C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Release_OS_
 	return;
 }
 
-
-//-☆- 削除 -☆-//
-
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-// 詳細   ：コンソール画面を削除する
-// 引数   ：void
-// 戻り値 ：void
-//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-void C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Destruct_Console_Window(void)
-{
-	// WindowsOSの時のみ実行
-#ifdef D_OS_IS_WINDOWS
-	FreeConsole();
-#endif // D_OS_IS_WINDOWS
-
-	// それ以外のOSは何もしない
-
-	return;
-}

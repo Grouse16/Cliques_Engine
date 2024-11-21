@@ -12,8 +12,6 @@
 
 
 // ☆ ファイルひらき ☆ //
-#include <cstdio>
-
 #include "C_Game_Manager.h"
 #include "C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h"
 
@@ -48,12 +46,6 @@ void M_Print_Log_Of_Succeeded_Init(void);
 // メイン関数（エントリーポイント）
 int main(void)
 {
-	// ☆ コンソール画面を消す ☆ //
-	
-	// コンソール画面を削除する
-	PLATFORM::C_OS_Manager_And_Rendering_API_Initialize_And_Release_System::M_Destruct_Console_Window();
-
-
 	// ☆ 初期化 ☆ //
 	
 	// OS用システムの生成
