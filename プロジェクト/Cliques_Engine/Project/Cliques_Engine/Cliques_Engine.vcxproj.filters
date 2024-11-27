@@ -1491,6 +1491,9 @@
     <ClInclude Include="C_Console_Log_Interface.h">
       <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
     </ClInclude>
+    <ClInclude Include="Cliques_Engine_main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_OS_Management_System_Base.cpp">

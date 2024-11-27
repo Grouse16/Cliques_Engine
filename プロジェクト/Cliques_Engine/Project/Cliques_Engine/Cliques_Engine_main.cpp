@@ -12,33 +12,11 @@
 
 
 // ☆ ファイルひらき ☆ //
+#include "Cliques_Engine_main.h"
 #include "C_Game_Manager.h"
 #include "C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h"
 
 #include "C_Console_Log_Interface.h"
-
-
-// ☆ 関数 ☆ //
-
-//-☆- 初期化と終了時 -☆-//
-
-// OSシステムの生成を行う
-void M_OS_Create_System(void);
-
-// レンダリングAPIの初期化を行う
-void M_Rendering_API_Init(void);
-
-// ゲームシステムの初期化を行う
-void M_Game_Set_Up(void);
-
-// ゲームの終了処理
-void M_Game_End(void);
-
-
-//-☆- デバッグログ -☆-//
-
-// 初期化の成功を表示する
-void M_Print_Log_Of_Succeeded_Init(void);
 
 
 // ☆ メイン関数 ☆ //
