@@ -205,15 +205,9 @@ C_Windows_Console_Log_System::~C_Windows_Console_Log_System(void)
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
 void C_Windows_Console_Log_System::M_Delete_Console_Debug_Log_System(void)
 {
-	// コンソール画面を削除する
+	// コンソールを終了する
 	FreeConsole();
-
-
-	// ファイルを閉じる
-	if (mpr_variable.console_file != nullptr)
-	{
-		fclose(mpr_variable.console_file);
-	}
+	mpr_variable.console_file = nullptr;
 
 	return;
 }
@@ -333,6 +327,9 @@ void C_Windows_Console_Log_System::M_Stop_Update_And_Log_Present(void)
 
 	// バッファの内容を画面に出力
 	std::wcout << std::flush;
+
+	// 文字を水色にする
+	M_Set_Console_Color_Text_And_Back(COLOR::E_CONSOLE_LOG_COLOR::e_LIGHT_BLUE, COLOR::E_CONSOLE_LOG_COLOR::e_LIGHT_WHITE);
 
 	// Enterを待つことを表示する
 	std::cout << std::endl;
@@ -480,7 +477,7 @@ void C_Windows_Console_Log_System::M_Set_Console_Text_Color(COLOR::E_CONSOLE_LOG
 
 
 	// 色の更新
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), mpr_variable.text_color | mpr_variable.color_back);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (mpr_variable.color_back << 4) | mpr_variable.text_color);
 
 	return;
 }
@@ -583,7 +580,7 @@ void C_Windows_Console_Log_System::M_Set_Console_Back_Ground_Color(COLOR::E_CONS
 
 
 	// 色の更新
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), mpr_variable.text_color | mpr_variable.color_back);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (mpr_variable.color_back << 4) | mpr_variable.text_color);
 
 	return;
 }
