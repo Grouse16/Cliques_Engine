@@ -904,6 +904,9 @@
     <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
       <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ブレンド">
+      <UniqueIdentifier>{385fffde-b828-4ee6-9c67-4e709759ae50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -1070,9 +1073,6 @@
     </ClInclude>
     <ClInclude Include="C_Texture_Manager.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
-    </ClInclude>
-    <ClInclude Include="Blend_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="Depth_Stencil_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
@@ -1493,6 +1493,21 @@
     </ClInclude>
     <ClInclude Include="Cliques_Engine_main.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Blend_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Option.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Format.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Color.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
