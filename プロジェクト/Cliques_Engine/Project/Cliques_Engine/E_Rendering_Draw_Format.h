@@ -15,6 +15,8 @@
 // ブレンド定義用の情報を呼び出すための名前
 namespace RENDERING::INFORM::BLEND
 {
+	// ☆ 列挙 ☆ //
+
 	// ピクセルシェーダーの出力値のバイト数およびデータ型の定義
 	enum class E_RENDERING_DRAW_FORMAT
 	{

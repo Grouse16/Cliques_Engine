@@ -264,16 +264,16 @@ RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE C_Material::M_Get_Depth_Opt
 // 引数   ：string ステンシルの有効無効を示す文字列
 // 戻り値 ：E_STENCIL_IS ステンシルの有効無効
 //☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
-RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS C_Material::M_Get_Stencil_Is_Active_By_Text(std::string in_stencil_signature)
+RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING C_Material::M_Get_Stencil_Is_Active_By_Text(std::string in_stencil_signature)
 {
 	// ステンシル有効
 	if (in_stencil_signature == "ACTIVE")
 	{
-		return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_ACTIVE;
+		return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_ACTIVE;
 	}
 
 	// ステンシル無効、または情報がないとき
-	return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_NO_ACTIVE;
+	return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_NO_ACTIVE;
 }
 
 

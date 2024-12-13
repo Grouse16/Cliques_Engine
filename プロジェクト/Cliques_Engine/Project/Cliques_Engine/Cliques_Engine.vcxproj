@@ -186,8 +186,10 @@
     <ClInclude Include="E_Blend_Option.h" />
     <ClInclude Include="E_CONSOLE_LOG_COLOR.h" />
     <ClInclude Include="E_CONSOLE_LOG_TAGS.h" />
+    <ClInclude Include="E_Depth_Mode.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
+    <ClInclude Include="E_Depth_Write_Rule.h" />
     <ClInclude Include="E_DX12_PARAMATOR.h" />
     <ClInclude Include="E_MOUSE_CLICK_STATE.h" />
     <ClInclude Include="E_OS_KIND.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="E_Rendering_Draw_Format.h" />
     <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
+    <ClInclude Include="E_Stencil_Activate_Setting.h" />
     <ClInclude Include="GCC_Or_MSVC_Macro.h" />
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Index_Buffer_Inform.h" />

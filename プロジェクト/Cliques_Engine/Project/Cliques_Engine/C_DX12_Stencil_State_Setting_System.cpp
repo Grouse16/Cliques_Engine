@@ -123,13 +123,13 @@ void C_DX12_Stencil_State_Setting_System::M_Depth_Stencil_Setting(D3D12_GRAPHICS
     switch (in_create_inform.depth_stencil_data.stencil_activate)
     {
         // –³Œø
-    case RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_NO_ACTIVE:
+    case RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_NO_ACTIVE:
 
         in_pipeline_state_setting_desc.DepthStencilState.StencilEnable = FALSE;
         break;
 
         // —LŒø
-    case RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_ACTIVE:
+    case RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_ACTIVE:
 
         in_pipeline_state_setting_desc.DepthStencilState.StencilEnable = TRUE;
         break;

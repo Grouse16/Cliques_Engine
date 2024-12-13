@@ -15,6 +15,8 @@
 // ブレンド定義用の情報を呼び出すための名前
 namespace RENDERING::INFORM::BLEND
 {
+	// ☆ 列挙 ☆ //
+
 	// レンダリング画像に書き込む色の種類数の列挙
 	enum class E_RENDERING_DRAW_COLOR
 	{
