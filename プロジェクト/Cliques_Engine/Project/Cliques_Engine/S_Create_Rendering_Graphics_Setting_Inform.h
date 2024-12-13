@@ -19,7 +19,7 @@
 #include "Depth_Stencil_Setting_Inform.h"
 #include "Rasterizer_Setting_Inform.h"
 #include "Depth_Stencil_Setting_Inform.h"
-#include "Rendering_Another_Setting_Inform.h"
+#include "S_Sampling_Setting_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -78,7 +78,7 @@ namespace RENDERING::API::CREATE
 
 		std::vector<S_Blend_Setting_Create_Data> blend_setting;	// ブレンド設定の生成用データ
 
-		RENDERING::INFORM::SETTING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
+		RENDERING::INFORM::SAMPLING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
 	};
 }
 

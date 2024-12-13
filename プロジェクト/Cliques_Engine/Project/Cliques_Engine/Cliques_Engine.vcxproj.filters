@@ -910,6 +910,12 @@
     <Filter Include="ヘッダー ファイル\レンダリング\定義\深度ステンシル">
       <UniqueIdentifier>{193868c4-acfd-477a-a45b-47ca8393b04c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\サンプリング">
+      <UniqueIdentifier>{1ae11532-e073-4d1c-a20d-f71e6cfb61fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ラスタライザ">
+      <UniqueIdentifier>{0c2474a1-ff13-42b7-bcc3-e3656fe68246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -1076,12 +1082,6 @@
     </ClInclude>
     <ClInclude Include="C_Texture_Manager.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
-    </ClInclude>
-    <ClInclude Include="Rasterizer_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering_Another_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Setting.h">
       <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
@@ -1520,6 +1520,12 @@
     </ClInclude>
     <ClInclude Include="E_Stencil_Activate_Setting.h">
       <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Sampling_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\サンプリング</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

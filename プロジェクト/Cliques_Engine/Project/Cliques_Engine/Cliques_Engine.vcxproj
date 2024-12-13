@@ -315,7 +315,7 @@
     <ClInclude Include="Platform_Detector_Macro.h" />
     <ClInclude Include="E_Shader_Kind.h" />
     <ClInclude Include="Rasterizer_Setting_Inform.h" />
-    <ClInclude Include="Rendering_Another_Setting_Inform.h" />
+    <ClInclude Include="S_Sampling_Setting_Inform.h" />
     <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
     <ClInclude Include="S_3D_Model_Vertex.h" />
     <ClInclude Include="S_Animation_Status.h" />
