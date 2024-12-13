@@ -15,6 +15,8 @@
 // ブレンド定義用の情報を呼び出すための名前
 namespace RENDERING::INFORM::BLEND
 {
+	// ☆ 列挙 ☆ //
+	
 	// 画面の書き込み方法を定義するデータ
 	enum class E_BLEND_MODE
 	{

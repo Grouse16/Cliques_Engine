@@ -15,6 +15,8 @@
 // ブレンド定義用の情報を呼び出すための名前
 namespace RENDERING::INFORM::BLEND
 {
+	// ☆ 列挙 ☆ //
+
 	// ピクセルシェーダーとレンダリング画像の色の混ぜ方を指定する列挙
 	enum class E_BLEND_OPTION
 	{
