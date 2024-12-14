@@ -1527,6 +1527,21 @@
     <ClInclude Include="Rasterizer_Setting_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
     </ClInclude>
+    <ClInclude Include="E_Draw_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Culling.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Front.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Antialiasing.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Depth_Setting_Value.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_OS_Management_System_Base.cpp">

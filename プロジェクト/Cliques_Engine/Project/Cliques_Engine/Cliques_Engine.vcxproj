@@ -182,6 +182,7 @@
     <ClInclude Include="C_Static_Model_User.h" />
     <ClInclude Include="C_Vertex_Index_System.h" />
     <ClInclude Include="C_Windows_Console_Log_System.h" />
+    <ClInclude Include="E_Antialiasing.h" />
     <ClInclude Include="E_Blend_Mode.h" />
     <ClInclude Include="E_Blend_Option.h" />
     <ClInclude Include="E_CONSOLE_LOG_COLOR.h" />
@@ -190,7 +191,10 @@
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
     <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
     <ClInclude Include="E_Depth_Write_Rule.h" />
+    <ClInclude Include="E_Draw_Mode.h" />
     <ClInclude Include="E_DX12_PARAMATOR.h" />
+    <ClInclude Include="E_Mesh_Culling.h" />
+    <ClInclude Include="E_Mesh_Front.h" />
     <ClInclude Include="E_MOUSE_CLICK_STATE.h" />
     <ClInclude Include="E_OS_KIND.h" />
     <ClInclude Include="E_RENDERING_API_KIND.h" />
@@ -237,6 +241,7 @@
     <ClInclude Include="C_Mesh_Data.h" />
     <ClInclude Include="C_Rendering_Screen_Data_Base.h" />
     <ClInclude Include="C_Half_Color.h" />
+    <ClInclude Include="S_Depth_Setting_Value.h" />
     <ClInclude Include="S_Model_Draw_Command.h" />
     <ClInclude Include="C_Position.h" />
     <ClInclude Include="C_Post_Effect_Base.h" />
