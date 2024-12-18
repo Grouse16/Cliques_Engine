@@ -19,7 +19,7 @@
 #include "Depth_Stencil_Setting_Inform.h"
 #include "Rasterizer_Setting_Inform.h"
 #include "Depth_Stencil_Setting_Inform.h"
-#include "Rendering_Another_Setting_Inform.h"
+#include "S_Sampling_Setting_Inform.h"
 
 
 // ☆ ネームスペース ☆ //
@@ -48,7 +48,7 @@ namespace RENDERING::API::CREATE
 
 		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE write_rule = RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_ALWAYS;	// 深度値書き込みルール
 
-		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS stencil_activate = RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS::e_NO_ACTIVE;	// ステンシルを有効にするかどうか
+		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING stencil_activate = RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_NO_ACTIVE;	// ステンシルを有効にするかどうか
 	};
 
 	// ラスタライザ設定を生成するためのデータの構造体
@@ -78,7 +78,7 @@ namespace RENDERING::API::CREATE
 
 		std::vector<S_Blend_Setting_Create_Data> blend_setting;	// ブレンド設定の生成用データ
 
-		RENDERING::INFORM::SETTING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
+		RENDERING::INFORM::SAMPLING::S_Sampling_Setting_Inform sampling_setting;	// サンプリングの設定
 	};
 }
 

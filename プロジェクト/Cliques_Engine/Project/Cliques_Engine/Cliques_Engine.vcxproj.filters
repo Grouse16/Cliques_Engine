@@ -904,6 +904,18 @@
     <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
       <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ブレンド">
+      <UniqueIdentifier>{385fffde-b828-4ee6-9c67-4e709759ae50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\深度ステンシル">
+      <UniqueIdentifier>{193868c4-acfd-477a-a45b-47ca8393b04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\サンプリング">
+      <UniqueIdentifier>{1ae11532-e073-4d1c-a20d-f71e6cfb61fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ラスタライザ">
+      <UniqueIdentifier>{0c2474a1-ff13-42b7-bcc3-e3656fe68246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -1070,18 +1082,6 @@
     </ClInclude>
     <ClInclude Include="C_Texture_Manager.h">
       <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
-    </ClInclude>
-    <ClInclude Include="Blend_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="Depth_Stencil_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="Rasterizer_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering_Another_Setting_Inform.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Shader_Setting.h">
       <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
@@ -1296,14 +1296,8 @@
     <ClInclude Include="S_Unique_Buffer_Slot.h">
       <Filter>ヘッダー ファイル\アセット\シェーダー\定義</Filter>
     </ClInclude>
-    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
-    </ClInclude>
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h">
       <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
-    </ClInclude>
-    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h">
-      <Filter>ヘッダー ファイル\レンダリング\定義</Filter>
     </ClInclude>
     <ClInclude Include="C_Animation_Model_Loader.h">
       <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
@@ -1493,6 +1487,60 @@
     </ClInclude>
     <ClInclude Include="Cliques_Engine_main.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Blend_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Option.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Format.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Color.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="Depth_Stencil_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Depth_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Depth_Write_Rule.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Stencil_Activate_Setting.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Sampling_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\サンプリング</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Draw_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Culling.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Front.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Antialiasing.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Depth_Setting_Value.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

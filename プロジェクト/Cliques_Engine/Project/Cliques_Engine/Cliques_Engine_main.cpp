@@ -124,7 +124,7 @@ void M_Game_End(void)
 	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_SHUT_DOWN, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::MAIN_SYSTEM::con_END, "-☆-☆-☆-☆-☆-☆-☆-終了が実行されたのでアプリケーションを停止-☆-☆-☆-☆-☆-☆-☆-");
 	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
 	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Console_LOG_Flush();
-
+	
 	// ゲームのメモリ解放
 	GAME::C_Game_Manager::M_Release();
 

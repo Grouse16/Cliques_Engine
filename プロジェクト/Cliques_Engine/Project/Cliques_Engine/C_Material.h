@@ -136,7 +136,7 @@ namespace ASSET::MATERIAL
 		RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE M_Get_Depth_Option_By_Text(std::string);
 
 		// どのステンシルを有効にするかを指定された文字列から特定して返す　引数：ステンシルの有効無効を示す文字列　戻り値：ステンシルの有効無効
-		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_IS M_Get_Stencil_Is_Active_By_Text(std::string);
+		RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING M_Get_Stencil_Is_Active_By_Text(std::string);
 
 
 		//-☆- ラスタライザ -☆-//
