@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.1 Chrome/128.0.6613.186 Electron/32.2.6 Safari/537.36" version="25.0.1">
   <diagram name="仕様リスト" id="-qLrR7ELoWjXT5G0vG4u">
-    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2868" dy="1672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -111,158 +111,218 @@
         <mxCell id="CH2RhDooVL0Sbm7diKhD-1" value="X - X　ネームスペース＜X::X＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;align=center;" parent="1" vertex="1">
           <mxGeometry x="70" y="1650" width="730" height="540" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-3" value="SOLID原則チェックリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="820" y="1260" width="1160" height="480" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-1" value="SOLID原則チェックリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="840" y="1280" width="1160" height="630" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-4" value="SRP(単一責任の原則)&lt;div&gt;Single Responcibility Principle&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" parent="O61sKZHdbxcT02oiV-6k-3" vertex="1">
-          <mxGeometry x="20" y="30" width="200" height="430" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-2" value="SRP(単一責任の原則)&lt;div&gt;Single Responcibility Principle&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-1">
+          <mxGeometry x="20" y="30" width="200" height="570" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="O61sKZHdbxcT02oiV-6k-4" vertex="1">
-          <mxGeometry y="130" width="200" height="120" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="270" width="200" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-7" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="O61sKZHdbxcT02oiV-6k-4" vertex="1">
-          <mxGeometry x="110" y="151.5" width="80" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-4" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry x="110" y="281.5" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-10" value="" style="group" parent="O61sKZHdbxcT02oiV-6k-4" vertex="1" connectable="0">
-          <mxGeometry x="10" y="150" width="81.5" height="81.5" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-5" value="" style="group" vertex="1" connectable="0" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry x="10" y="280" width="81.5" height="81.5" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-8" value="" style="endArrow=none;html=1;rounded=0;" parent="O61sKZHdbxcT02oiV-6k-10" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-6" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-5">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="81.5" as="sourcePoint" />
             <mxPoint x="81.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-9" value="" style="endArrow=none;html=1;rounded=0;" parent="O61sKZHdbxcT02oiV-6k-10" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-7" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-5">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="81.5" y="81.5" as="sourcePoint" />
             <mxPoint as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UFfbrtiARt5DpPBoSiYu-1" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" parent="O61sKZHdbxcT02oiV-6k-4" vertex="1">
-          <mxGeometry y="230" width="200" height="200" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-8" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="370" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="O61sKZHdbxcT02oiV-6k-11" value="クラスが所有する責任は、&lt;div&gt;一つのみであるべき&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="O61sKZHdbxcT02oiV-6k-4" vertex="1">
-          <mxGeometry y="50" width="200" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-9" value="クラスが所有する責任は、&lt;div&gt;一つのみであるべき&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="70" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-1" value="OC (解放閉鎖の原則)&lt;div&gt;Open Closed Principle&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" parent="O61sKZHdbxcT02oiV-6k-3" vertex="1">
-          <mxGeometry x="250" y="30" width="200" height="430" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-10" value="概要" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="50" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="kTtqc5orLYimejM_40gs-1" vertex="1">
-          <mxGeometry y="110" width="200" height="120" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-11" value="条件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="150" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-3" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="kTtqc5orLYimejM_40gs-1" vertex="1">
-          <mxGeometry x="110" y="141.5" width="80" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-12" value="〇達成 or ✕未達成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="250" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-4" value="" style="group" parent="kTtqc5orLYimejM_40gs-1" vertex="1" connectable="0">
-          <mxGeometry x="10" y="140" width="81.5" height="81.5" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-13" value="各クラスが所有している&lt;span style=&quot;background-color: initial;&quot;&gt;責任が、&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;それぞれ一つのみ。&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-2">
+          <mxGeometry y="170" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-5" value="" style="endArrow=none;html=1;rounded=0;" parent="kTtqc5orLYimejM_40gs-4" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-14" value="OC (解放閉鎖の原則)&lt;div&gt;Open Closed Principle&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-1">
+          <mxGeometry x="250" y="30" width="200" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-15" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="270" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-16" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry x="110" y="281.5" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-17" value="" style="group" vertex="1" connectable="0" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry x="10" y="280" width="81.5" height="81.5" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-18" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-17">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="81.5" as="sourcePoint" />
             <mxPoint x="81.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-6" value="" style="endArrow=none;html=1;rounded=0;" parent="kTtqc5orLYimejM_40gs-4" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-19" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-17">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="81.5" y="81.5" as="sourcePoint" />
             <mxPoint as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-7" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" parent="kTtqc5orLYimejM_40gs-1" vertex="1">
-          <mxGeometry y="230" width="200" height="200" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-20" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="370" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="kTtqc5orLYimejM_40gs-8" value="&lt;span style=&quot;background-color: initial;&quot;&gt;機能の追加／拡張は許容し、&lt;/span&gt;&lt;div&gt;変更は許容しない法則。&lt;/div&gt;&lt;div&gt;（基底クラスの機能を、&lt;/div&gt;&lt;div&gt;派生クラスが変更せずに拡張）&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="kTtqc5orLYimejM_40gs-1" vertex="1">
-          <mxGeometry y="50" width="200" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-21" value="&lt;span style=&quot;background-color: initial;&quot;&gt;機能の追加／拡張は許容し、&lt;/span&gt;&lt;div&gt;変更は許容しない法則。&lt;/div&gt;&lt;div&gt;（基底クラスの機能を、&lt;/div&gt;&lt;div&gt;派生クラスが変更せずに拡張）&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="70" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-1" value="&lt;div&gt;LSP(リスコフの&lt;span style=&quot;background-color: initial;&quot;&gt;置換原則)&lt;/span&gt;&lt;/div&gt;Liskov Substitution Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" parent="O61sKZHdbxcT02oiV-6k-3" vertex="1">
-          <mxGeometry x="480" y="30" width="200" height="430" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-22" value="概要" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="50" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-1" vertex="1">
-          <mxGeometry y="110" width="200" height="120" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-23" value="条件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="150" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-3" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="JxbBbiEOQ_t02XXRcwY0-1" vertex="1">
-          <mxGeometry x="110" y="141.5" width="80" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-24" value="〇達成 or ✕未達成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="250" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-4" value="" style="group" parent="JxbBbiEOQ_t02XXRcwY0-1" vertex="1" connectable="0">
-          <mxGeometry x="10" y="140" width="81.5" height="81.5" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-25" value="派生クラスが基底クラスに、&lt;div&gt;存在する機能に、&lt;div&gt;なんらかの変更を加えていない。&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-14">
+          <mxGeometry y="170" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-5" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-4" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-26" value="&lt;div&gt;LSP(リスコフの&lt;span style=&quot;background-color: initial;&quot;&gt;置換原則)&lt;/span&gt;&lt;/div&gt;Liskov Substitution Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-1">
+          <mxGeometry x="480" y="30" width="200" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-27" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="270" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-28" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry x="110" y="281.5" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-29" value="" style="group" vertex="1" connectable="0" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry x="10" y="280" width="81.5" height="81.5" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-30" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-29">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="81.5" as="sourcePoint" />
             <mxPoint x="81.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-6" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-4" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-31" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-29">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="81.5" y="81.5" as="sourcePoint" />
             <mxPoint as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-7" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-1" vertex="1">
-          <mxGeometry y="230" width="200" height="200" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-32" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="370" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-8" value="基底クラスの使用箇所を、&lt;div&gt;派生クラスに変更しても動作可能。&lt;/div&gt;&lt;div&gt;もしくは派生クラスすべてが、&lt;/div&gt;&lt;div&gt;基底クラスの仕様に正しく従う。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-1" vertex="1">
-          <mxGeometry y="50" width="200" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-33" value="基底クラスの使用箇所を、&lt;div&gt;派生クラスに変更しても動作可能。&lt;/div&gt;&lt;div&gt;もしくは派生クラスすべてが、&lt;/div&gt;&lt;div&gt;基底クラスの仕様に正しく従う。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="70" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-9" value="&lt;div&gt;ISP(インターフェース分離の原則)&lt;/div&gt;Interface Segregation Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" parent="O61sKZHdbxcT02oiV-6k-3" vertex="1">
-          <mxGeometry x="710" y="30" width="200" height="430" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-34" value="〇達成 or ✕未達成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="250" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-10" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-9" vertex="1">
-          <mxGeometry y="110" width="200" height="120" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-35" value="概要" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="50" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-11" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="JxbBbiEOQ_t02XXRcwY0-9" vertex="1">
-          <mxGeometry x="110" y="141.5" width="80" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-36" value="条件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="150" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-12" value="" style="group" parent="JxbBbiEOQ_t02XXRcwY0-9" vertex="1" connectable="0">
-          <mxGeometry x="10" y="140" width="81.5" height="81.5" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-37" value="&lt;div&gt;各派生クラスから、&lt;span style=&quot;background-color: initial;&quot;&gt;基底クラスに&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;ある関数の中に使用されてはいけない機能が含まれていない&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;。&lt;/span&gt;&lt;/div&gt;&lt;div&gt;継承先などで仕様を変更しない。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-26">
+          <mxGeometry y="170" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-13" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-12" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-38" value="&lt;div&gt;ISP(インターフェース分離の原則)&lt;/div&gt;Interface Segregation Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-1">
+          <mxGeometry x="710" y="30" width="200" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-39" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="270" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-40" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry x="110" y="281.5" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-41" value="" style="group" vertex="1" connectable="0" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry x="10" y="280" width="81.5" height="81.5" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-42" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-41">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="81.5" as="sourcePoint" />
             <mxPoint x="81.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-14" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-12" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-43" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-41">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="81.5" y="81.5" as="sourcePoint" />
             <mxPoint as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-15" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-9" vertex="1">
-          <mxGeometry y="230" width="200" height="200" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-44" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="370" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-16" value="インターフェースは必要以上の依存関係を生み出さないために&lt;span style=&quot;background-color: initial;&quot;&gt;、&lt;/span&gt;&lt;div&gt;カテゴライズして分離し、&lt;/div&gt;&lt;div&gt;必要な機能のみを提供する。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-9" vertex="1">
-          <mxGeometry y="50" width="200" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-45" value="インターフェースは必要以上の依存関係を生み出さないために&lt;span style=&quot;background-color: initial;&quot;&gt;、&lt;/span&gt;&lt;div&gt;カテゴライズして分離し、&lt;/div&gt;&lt;div&gt;必要な機能のみを提供する。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="70" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-17" value="&lt;div&gt;DIP(依存性逆転の原則)&lt;/div&gt;Dependency Inversion Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" parent="O61sKZHdbxcT02oiV-6k-3" vertex="1">
-          <mxGeometry x="940" y="30" width="200" height="430" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-46" value="〇達成 or ✕未達成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="250" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-17" vertex="1">
-          <mxGeometry y="110" width="200" height="120" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-47" value="概要" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="50" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-19" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="JxbBbiEOQ_t02XXRcwY0-17" vertex="1">
-          <mxGeometry x="110" y="141.5" width="80" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-48" value="条件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="150" width="200" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-20" value="" style="group" parent="JxbBbiEOQ_t02XXRcwY0-17" vertex="1" connectable="0">
-          <mxGeometry x="10" y="140" width="81.5" height="81.5" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-49" value="特定の言語化可能なカテゴリーごとにインターフェースが分離されている。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-38">
+          <mxGeometry y="170" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-21" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-20" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-50" value="&lt;div&gt;DIP(依存性逆転の原則)&lt;/div&gt;Dependency Inversion Principle" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-1">
+          <mxGeometry x="940" y="30" width="200" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-51" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="270" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-52" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry x="110" y="281.5" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-53" value="" style="group" vertex="1" connectable="0" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry x="10" y="280" width="81.5" height="81.5" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-54" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-53">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint y="81.5" as="sourcePoint" />
             <mxPoint x="81.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-22" value="" style="endArrow=none;html=1;rounded=0;" parent="JxbBbiEOQ_t02XXRcwY0-20" edge="1">
+        <mxCell id="XVMsf1hxSZiNND48eB0R-55" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="XVMsf1hxSZiNND48eB0R-53">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="81.5" y="81.5" as="sourcePoint" />
             <mxPoint as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-23" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-17" vertex="1">
-          <mxGeometry y="230" width="200" height="200" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-56" value="未達成項目リスト" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="370" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="JxbBbiEOQ_t02XXRcwY0-24" value="高水準モジュールは、&lt;div&gt;低水準モジュールに、&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;依存してはならない。&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;抽象に依存するべきである。&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="JxbBbiEOQ_t02XXRcwY0-17" vertex="1">
-          <mxGeometry y="50" width="200" height="80" as="geometry" />
+        <mxCell id="XVMsf1hxSZiNND48eB0R-57" value="高水準モジュールは、&lt;div&gt;低水準モジュールに、&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;依存してはならない。&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;抽象に依存するべきである。&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="70" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-58" value="〇達成 or ✕未達成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="250" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-59" value="概要" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="50" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-60" value="条件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="150" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-61" value="各層、もしくはクラスよりも、&lt;div&gt;高水準のモジュールを参照しない。&lt;/div&gt;&lt;div&gt;高水準モジュールに対する層の抽象化が完了しており、実体に触れずに機能を利用できる状態である。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="XVMsf1hxSZiNND48eB0R-50">
+          <mxGeometry y="170" width="200" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
