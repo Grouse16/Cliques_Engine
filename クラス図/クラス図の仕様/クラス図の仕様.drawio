@@ -1,65 +1,35 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.1 Chrome/128.0.6613.186 Electron/32.2.6 Safari/537.36" version="25.0.1">
   <diagram name="仕様リスト" id="-qLrR7ELoWjXT5G0vG4u">
-    <mxGraphModel dx="1912" dy="1115" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="0ltXDq64eJeHb2nr8vkA-1" value="ーはプライベート&#xa;＝はプロテクト&#xa;＋はパブリック" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="374" y="159" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-2" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Template Of Class Box&lt;br&gt;クラスの箱の定型の形&lt;/font&gt;&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="147.5" y="119" width="210" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-3" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="0ltXDq64eJeHb2nr8vkA-2" vertex="1">
-          <mxGeometry x="10" y="30" width="190" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-4" value="パラメータ１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="0ltXDq64eJeHb2nr8vkA-3" vertex="1">
-          <mxGeometry y="25" width="190" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-5" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="0ltXDq64eJeHb2nr8vkA-2" vertex="1">
-          <mxGeometry x="10" y="100" width="190" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-6" value="メゾッド１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="0ltXDq64eJeHb2nr8vkA-5" vertex="1">
-          <mxGeometry y="25" width="190" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-7" value="全てのクラスに設計評価を付ける&#xa;評価段階は以下&#xa;&#xa;１．正常&#xa;・現状の設計は十分に稼働する&#xa;&#xa;２．修正点あり&#xa;・動作自体に問題はないが、&#xa;バグを生み出しやすい設計であったり&#xa;整合性に問題のある設計であったりと&#xa;ミスリードを作り出しかねない設計&#xa;&#xa;３．問題あり&#xa;・実行時の動作に問題がある&#xa;上位層に依存しているなど&#xa;設計上でバグが存在したり、&#xa;バグの発見が難しい環境である状態&#xa;&#xa;４．上位層へ依存&#xa;・上位の層へ依存しており、&#xa;上位層との循環依存関係&#xa;が生まれてしまっている状態&#xa;&#xa;５．実装予定&#xa;・今後実装をする予定の項目、&#xa;実装後にどういった変数/関数/参照が&#xa;必要になるかの想定がつかない状態&#xa;（実装には情報収集が必要など）" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="40" y="490" width="425" height="730" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-8" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="1" vertex="1">
-          <mxGeometry x="560" y="760" width="460" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-9" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="0ltXDq64eJeHb2nr8vkA-8" vertex="1">
-          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="0ltXDq64eJeHb2nr8vkA-10" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="0ltXDq64eJeHb2nr8vkA-8" edge="1">
-          <mxGeometry width="100" relative="1" as="geometry">
-            <mxPoint x="490" y="790" as="sourcePoint" />
-            <mxPoint x="565" y="820" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="wi7i52ta5wSqyBqeH4NU-1" value="依存元&#xa;上位層" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
-          <mxGeometry x="747" y="159" width="80" height="50" as="geometry" />
+          <mxGeometry x="860" y="159" width="180" height="50" as="geometry" />
         </mxCell>
         <mxCell id="wi7i52ta5wSqyBqeH4NU-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wi7i52ta5wSqyBqeH4NU-1" target="wi7i52ta5wSqyBqeH4NU-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="787" y="269" as="sourcePoint" />
-            <mxPoint x="787" y="309" as="targetPoint" />
+            <mxPoint x="950" y="269" as="sourcePoint" />
+            <mxPoint x="950" y="309" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="wi7i52ta5wSqyBqeH4NU-3" value="依存元&#xa;下位層" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
-          <mxGeometry x="747" y="319" width="80" height="50" as="geometry" />
+          <mxGeometry x="860" y="319" width="180" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="wi7i52ta5wSqyBqeH4NU-4" value="派生先&#xa;上位層" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
-          <mxGeometry x="647" y="159" width="80" height="50" as="geometry" />
+        <mxCell id="wi7i52ta5wSqyBqeH4NU-4" value="派生&#xa;上位層" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="634" y="159" width="166" height="50" as="geometry" />
         </mxCell>
         <mxCell id="wi7i52ta5wSqyBqeH4NU-5" value="基底&#xa;下位層" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="1" vertex="1">
-          <mxGeometry x="647" y="319" width="80" height="50" as="geometry" />
+          <mxGeometry x="634" y="319" width="166" height="50" as="geometry" />
         </mxCell>
         <mxCell id="wi7i52ta5wSqyBqeH4NU-6" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="wi7i52ta5wSqyBqeH4NU-4" target="wi7i52ta5wSqyBqeH4NU-5" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="677" y="459" as="sourcePoint" />
-            <mxPoint x="2365" y="1529" as="targetPoint" />
+            <mxPoint x="707" y="459" as="sourcePoint" />
+            <mxPoint x="2395" y="1529" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
@@ -90,20 +60,428 @@
         <mxCell id="bb5lSr_9JjfSxzTluUoF-10" value="＜純粋仮想関数＞&#xa;関数の宣言のみがされている状態を指す&#xa;派生クラスに定義を必ず作らなくてはならないことを指し、&#xa;この関数があるクラスは生成できない" style="swimlane;startSize=0;swimlaneFillColor=default;verticalAlign=top;align=center;fontSize=16;" parent="bb5lSr_9JjfSxzTluUoF-1" vertex="1">
           <mxGeometry x="20" y="389.5" width="520" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="-UjHsnJ8wEKdRqjG0j_--1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="-UjHsnJ8wEKdRqjG0j_--2" edge="1">
+        <mxCell id="-UjHsnJ8wEKdRqjG0j_--1" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=5;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="_2Wai_T-3tKtkwgZFYbp-46" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="740" y="1407" as="sourcePoint" />
-            <mxPoint x="530" y="1357.5" as="targetPoint" />
+            <mxPoint x="760" y="1440" as="sourcePoint" />
+            <mxPoint x="490" y="1407.5" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="-UjHsnJ8wEKdRqjG0j_--2" value="思案中の新しい構想 ver.x.x.x" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="60" y="1280" width="430" height="255" as="geometry" />
-        </mxCell>
-        <mxCell id="-UjHsnJ8wEKdRqjG0j_--3" value="構想での変更内容：&lt;br&gt;１．&lt;br&gt;&lt;br&gt;&lt;br&gt;メリット：&lt;br&gt;１．&lt;br&gt;&lt;br&gt;&lt;br&gt;デメリット：&lt;br&gt;１．" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;" parent="-UjHsnJ8wEKdRqjG0j_--2" vertex="1">
-          <mxGeometry x="10" y="30" width="410" height="210" as="geometry" />
         </mxCell>
         <mxCell id="CH2RhDooVL0Sbm7diKhD-1" value="X - X　ネームスペース＜X::X＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;align=center;" parent="1" vertex="1">
           <mxGeometry x="70" y="1650" width="730" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="XVMsf1hxSZiNND48eB0R-1" value="SOLID原則チェックリスト" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="870" y="1280" width="1150" height="630" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-146" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;SRP(単一責任の原則)&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;Single Responcibility Principle&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="XVMsf1hxSZiNND48eB0R-1" vertex="1">
+          <mxGeometry x="25" y="30" width="220" height="575" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-147" value="概要" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-146" vertex="1">
+          <mxGeometry y="50" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-148" value="クラスが所有する責任は、&lt;div&gt;一つのみであるべき&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-147" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-149" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-146" vertex="1">
+          <mxGeometry y="150" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-150" value="条件" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-146" vertex="1">
+          <mxGeometry y="165" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-151" value="各クラスが所有している&lt;span style=&quot;background-color: initial;&quot;&gt;責任が、&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;それぞれ一つのみ。&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-150" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-152" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-150" vertex="1">
+          <mxGeometry y="100" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-153" value="〇達成 or ✕未達成" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-150" vertex="1">
+          <mxGeometry y="115" width="220" height="220" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-154" value="〇" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-153" vertex="1">
+          <mxGeometry y="20" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-155" value="✕" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-153" vertex="1">
+          <mxGeometry y="120" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-156" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-150" vertex="1">
+          <mxGeometry y="335" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-157" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;達成 or&amp;nbsp;未達成理由&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-150" vertex="1">
+          <mxGeometry y="350" width="220" height="60" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-158" value="理由１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-157" vertex="1">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-159" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;OC (解放閉鎖の原則)&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;Open Closed Principle&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="XVMsf1hxSZiNND48eB0R-1" vertex="1">
+          <mxGeometry x="245" y="30" width="220" height="575" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-160" value="概要" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-159" vertex="1">
+          <mxGeometry y="50" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-161" value="&lt;span style=&quot;background-color: initial;&quot;&gt;機能の追加／拡張は許容し、&lt;/span&gt;&lt;div&gt;変更は許容しない法則。&lt;/div&gt;&lt;div&gt;（基底クラスの機能を、&lt;/div&gt;&lt;div&gt;派生クラスが変更せずに拡張）&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-160" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-162" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-159" vertex="1">
+          <mxGeometry y="150" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-163" value="条件" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-159" vertex="1">
+          <mxGeometry y="165" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-164" value="派生クラスが基底クラスに、&lt;div&gt;存在する機能に、&lt;div&gt;なんらかの変更を加えていない。&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-163" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-165" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-163" vertex="1">
+          <mxGeometry y="100" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-166" value="〇達成 or ✕未達成" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-163" vertex="1">
+          <mxGeometry y="115" width="220" height="220" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-167" value="〇" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-166" vertex="1">
+          <mxGeometry y="20" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-168" value="✕" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-166" vertex="1">
+          <mxGeometry y="120" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-169" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-163" vertex="1">
+          <mxGeometry y="335" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-170" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;達成 or&amp;nbsp;未達成理由&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-163" vertex="1">
+          <mxGeometry y="350" width="220" height="60" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-171" value="理由１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-170" vertex="1">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-172" value="&lt;div style=&quot;font-weight: 700;&quot;&gt;LSP(リスコフの&lt;span style=&quot;background-color: initial;&quot;&gt;置換原則)&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;Liskov Substitution Principle&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="XVMsf1hxSZiNND48eB0R-1" vertex="1">
+          <mxGeometry x="465" y="30" width="220" height="575" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-173" value="概要" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-172" vertex="1">
+          <mxGeometry y="50" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-174" value="基底クラスの使用箇所を、&lt;div&gt;派生クラスに変更しても動作可能。&lt;/div&gt;&lt;div&gt;もしくは派生クラスすべてが、&lt;/div&gt;&lt;div&gt;基底クラスの仕様に正しく従う。&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-173" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-175" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-172" vertex="1">
+          <mxGeometry y="150" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-176" value="条件" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-172" vertex="1">
+          <mxGeometry y="165" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-177" value="&lt;div&gt;各派生クラスから、&lt;span style=&quot;background-color: initial;&quot;&gt;基底クラスに&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;ある関数の中に使用されてはいけない機能が含まれていない&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;。&lt;/span&gt;&lt;/div&gt;&lt;div&gt;継承先などで仕様を変更しない。&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-176" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-178" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-176" vertex="1">
+          <mxGeometry y="100" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-179" value="〇達成 or ✕未達成" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-176" vertex="1">
+          <mxGeometry y="115" width="220" height="220" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-180" value="〇" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-179" vertex="1">
+          <mxGeometry y="20" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-181" value="✕" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-179" vertex="1">
+          <mxGeometry y="120" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-182" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-176" vertex="1">
+          <mxGeometry y="335" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-183" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;達成 or&amp;nbsp;未達成理由&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-176" vertex="1">
+          <mxGeometry y="350" width="220" height="60" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-184" value="理由１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-183" vertex="1">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-185" value="&lt;div style=&quot;font-weight: 700;&quot;&gt;&lt;div&gt;ISP(インターフェース分離の原則)&lt;/div&gt;Interface Segregation Principle&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="XVMsf1hxSZiNND48eB0R-1" vertex="1">
+          <mxGeometry x="685" y="30" width="220" height="575" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-186" value="概要" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-185" vertex="1">
+          <mxGeometry y="50" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="5Z-j4S6wWDfMiL3kCt1J-1" value="インターフェースは必要以上の依存関係を生み出さないために&lt;span style=&quot;background-color: initial;&quot;&gt;、&lt;/span&gt;&lt;div&gt;カテゴライズして分離し、&lt;/div&gt;&lt;div&gt;必要な機能のみを提供する。&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="_2Wai_T-3tKtkwgZFYbp-186">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-188" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-185" vertex="1">
+          <mxGeometry y="150" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-189" value="条件" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-185" vertex="1">
+          <mxGeometry y="165" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-190" value="特定の言語化可能なカテゴリーごとにインターフェースが分離されている。" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-189" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-191" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-189" vertex="1">
+          <mxGeometry y="100" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-192" value="〇達成 or ✕未達成" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-189" vertex="1">
+          <mxGeometry y="115" width="220" height="220" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-193" value="〇" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-192" vertex="1">
+          <mxGeometry y="20" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-194" value="✕" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-192" vertex="1">
+          <mxGeometry y="120" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-195" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-189" vertex="1">
+          <mxGeometry y="335" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-196" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;達成 or&amp;nbsp;未達成理由&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-189" vertex="1">
+          <mxGeometry y="350" width="220" height="60" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-197" value="理由１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-196" vertex="1">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-198" value="&lt;div style=&quot;font-weight: 700;&quot;&gt;&lt;div&gt;DIP(依存性逆転の原則)&lt;/div&gt;Dependency Inversion Principle&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="XVMsf1hxSZiNND48eB0R-1" vertex="1">
+          <mxGeometry x="905" y="30" width="220" height="575" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-199" value="概要" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-198" vertex="1">
+          <mxGeometry y="50" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-200" value="高水準モジュールは、&lt;div&gt;低水準モジュールに、&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;依存してはならない。&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;抽象に依存するべきである。&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-199" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-201" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-198" vertex="1">
+          <mxGeometry y="150" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-202" value="条件" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-198" vertex="1">
+          <mxGeometry y="165" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-203" value="各層、もしくはクラスよりも、&lt;div&gt;高水準のモジュールを参照しない。&lt;/div&gt;&lt;div&gt;高水準モジュールに対する層の抽象化が完了しており、実体に触れずに機能を利用できる状態である。&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-202" vertex="1">
+          <mxGeometry y="20" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-204" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-202" vertex="1">
+          <mxGeometry y="100" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-205" value="〇達成 or ✕未達成" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-202" vertex="1">
+          <mxGeometry y="115" width="220" height="220" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-206" value="〇" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-205" vertex="1">
+          <mxGeometry y="20" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-207" value="✕" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=50;fontStyle=0" parent="_2Wai_T-3tKtkwgZFYbp-205" vertex="1">
+          <mxGeometry y="120" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-208" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-202" vertex="1">
+          <mxGeometry y="335" width="220" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-209" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;達成 or&amp;nbsp;未達成理由&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-202" vertex="1">
+          <mxGeometry y="350" width="220" height="60" as="geometry">
+            <mxRectangle y="180" width="340" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-210" value="理由１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-209" vertex="1">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-1" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;Template Of Class Box&lt;/span&gt;&lt;br style=&quot;font-weight: 700;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;クラスの箱の定型の形&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="70" y="60" width="260" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-2" value="所有責任" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-1" vertex="1">
+          <mxGeometry y="50" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-5" value="責任１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-2" vertex="1">
+          <mxGeometry y="30" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-20" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-1" vertex="1">
+          <mxGeometry y="110" width="260" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-6" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-1" vertex="1">
+          <mxGeometry y="125" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-7" value="ー　プライベートパラメータ１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-6" vertex="1">
+          <mxGeometry y="30" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-211" value="＝　プロテクトパラメータ１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-6" vertex="1">
+          <mxGeometry y="60" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-212" value="＋　パブリックパラメータ１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-6" vertex="1">
+          <mxGeometry y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-19" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-1" vertex="1">
+          <mxGeometry y="245" width="260" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-10" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-1" vertex="1">
+          <mxGeometry y="280" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-216" value="ー　プライベートメゾッド１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-10" vertex="1">
+          <mxGeometry y="30" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-217" value="＝　プロテクトメゾッド１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-10" vertex="1">
+          <mxGeometry y="60" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-218" value="＋　パブリックメゾッド１" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-10" vertex="1">
+          <mxGeometry y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-46" value="&lt;span style=&quot;font-size: 17px;&quot;&gt;&lt;b&gt;思案中の新しい構想　ver.x.x.x&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="70" y="1320" width="340" height="240" as="geometry">
+            <mxRectangle x="60" y="1320" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-47" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;構想での変更内容&lt;/font&gt;&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-46" vertex="1">
+          <mxGeometry y="30" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-48" value="変更内容１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-47" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-49" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-46" vertex="1">
+          <mxGeometry y="90" width="340" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-50" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;メリット&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-46" vertex="1">
+          <mxGeometry y="105" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-51" value="メリット１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-50" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-52" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-46" vertex="1">
+          <mxGeometry y="165" width="340" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-53" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;デメリット&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-46" vertex="1">
+          <mxGeometry y="180" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-54" value="デメリット１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-53" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-83" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_2Wai_T-3tKtkwgZFYbp-93" target="_2Wai_T-3tKtkwgZFYbp-84" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="950" y="500" as="sourcePoint" />
+            <mxPoint x="569.9999999999998" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-84" value="&lt;span style=&quot;font-size: 17px; font-weight: 700;&quot;&gt;現在の設計評価&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="560" y="727.5" width="340" height="240" as="geometry">
+            <mxRectangle x="590" y="710" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-85" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;評価結果&lt;/font&gt;&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-84" vertex="1">
+          <mxGeometry y="30" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-86" value="正常" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-85" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-87" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-84" vertex="1">
+          <mxGeometry y="90" width="340" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-88" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;問題点&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-84" vertex="1">
+          <mxGeometry y="105" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-89" value="問題点１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-88" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-90" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-84" vertex="1">
+          <mxGeometry y="165" width="340" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-91" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;修正方法&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-84" vertex="1">
+          <mxGeometry y="180" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-92" value="修正方法１" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-91" vertex="1">
+          <mxGeometry y="30" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-93" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;評価段階&lt;/font&gt;&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="70" y="480" width="410" height="735" as="geometry">
+            <mxRectangle x="500" y="420" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-94" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;概要&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="30" width="410" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-95" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;全てのクラスに設計評価を付け、設計的問題が存在するか否かを判断する&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-94" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-96" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="90" width="410" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-97" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;１．正常&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="105" width="410" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-98" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;現状の設計は問題なく稼働する&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-97" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-99" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;設計はクリーンであり問題はない&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-97" vertex="1">
+          <mxGeometry y="60" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-100" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="195" width="410" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-101" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;２．修正点あり&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="210" width="410" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-102" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;動作は問題なし&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-101" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-103" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;バグを生みやすい設計&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-101" vertex="1">
+          <mxGeometry y="60" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-104" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;整合性、合理性がない設計&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-101" vertex="1">
+          <mxGeometry y="90" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-105" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;ミスを誘発する設計&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-101" vertex="1">
+          <mxGeometry y="120" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-106" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;など&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-101" vertex="1">
+          <mxGeometry y="150" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-107" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="390" width="410" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-108" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;３．問題あり&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="405" width="410" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-109" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;動作に問題が発生する設計&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-108" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-110" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;バグの発見や処理のフローの解読を設計で難しくしてしまっている&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-108" vertex="1">
+          <mxGeometry y="60" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-111" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;など&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-108" vertex="1">
+          <mxGeometry y="90" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-112" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="525" width="410" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-113" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;４．上位層への依存&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="540" width="410" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-114" value="&lt;span style=&quot;text-wrap: nowrap;&quot;&gt;上位層（低水準モジュール）への直接的依存&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-113" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-115" value="&lt;span style=&quot;text-wrap: nowrap;&quot;&gt;上位層（低水準モジュール）への間接的依存&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-113" vertex="1">
+          <mxGeometry y="60" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-116" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="630" width="410" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-117" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;５．実装予定&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-93" vertex="1">
+          <mxGeometry y="645" width="410" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-118" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;&lt;font&gt;今後実装が完了するクラス&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-117" vertex="1">
+          <mxGeometry y="30" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2Wai_T-3tKtkwgZFYbp-119" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;必要な機能が想定できない状態&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_2Wai_T-3tKtkwgZFYbp-117" vertex="1">
+          <mxGeometry y="60" width="410" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
