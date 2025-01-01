@@ -5,16 +5,16 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-1" value="上位層&lt;br style=&quot;font-size: 36px;&quot;&gt;レンダリング層やアセット層など" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
-          <mxGeometry x="2429" y="860" width="990" height="170" as="geometry" />
+          <mxGeometry x="1995" y="890" width="990" height="170" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-2" value="プラットフォーム層　ネームスペース＜OS＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="940" y="1310" width="3968" height="5500" as="geometry" />
+          <mxGeometry x="940" y="1310" width="3100" height="5540" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-3" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;OS制御用システムの基底クラス　ネームスペース＜OS::BASE＞&lt;/p&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="EVPDGz2fYUcvtPlbwoWs-2" vertex="1">
-          <mxGeometry x="2400" y="3640" width="1260" height="1850" as="geometry" />
+          <mxGeometry x="1765" y="3640" width="1260" height="1850" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-4" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;OS制御システムの基底クラス&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;C_OS_Management_System_Base&lt;/span&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="EVPDGz2fYUcvtPlbwoWs-3" vertex="1">
-          <mxGeometry x="22" y="60" width="518" height="1745" as="geometry" />
+          <mxGeometry x="371" y="80" width="518" height="1745" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-5" value="所有責任" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-4" vertex="1">
           <mxGeometry y="50" width="518" height="240" as="geometry" />
@@ -190,7 +190,7 @@
           <mxGeometry y="180" width="518" height="60" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-56" value="ウィンドウズOS層　ネームスペース＜OS::WINDOWS＞" style="swimlane;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-2" vertex="1">
-          <mxGeometry x="890" y="1330" width="1480" height="1960" as="geometry" />
+          <mxGeometry x="110" y="1160" width="2180" height="2130" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-57" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="EVPDGz2fYUcvtPlbwoWs-56" source="EVPDGz2fYUcvtPlbwoWs-109" target="EVPDGz2fYUcvtPlbwoWs-91" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -323,12 +323,12 @@
             <mxPoint x="835" y="1240" as="targetPoint" />
             <Array as="points">
               <mxPoint x="483" y="1280" />
-              <mxPoint x="963" y="1280" />
+              <mxPoint x="1743" y="1281" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-91" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;ウィンドウプロシージャ関数引き渡しクラス&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;C_Window_Procedure_Provider&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="EVPDGz2fYUcvtPlbwoWs-56" vertex="1">
-          <mxGeometry x="855" y="1400" width="430" height="545" as="geometry" />
+          <mxGeometry x="1635" y="1400" width="430" height="545" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-92" value="所有責任" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-91" vertex="1">
           <mxGeometry y="50" width="430" height="60" as="geometry" />
@@ -384,7 +384,7 @@
           <mxGeometry y="180" width="430" height="60" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-109" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;ウィンドウプロシージャ管理クラス&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;C_Window_Procedure_Handler&lt;/span&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="EVPDGz2fYUcvtPlbwoWs-56" vertex="1">
-          <mxGeometry x="840" y="50" width="460" height="545" as="geometry">
+          <mxGeometry x="1620" y="50" width="460" height="545" as="geometry">
             <mxRectangle x="1800" y="510" width="280" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -441,18 +441,18 @@
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-126" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;修正方法&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-120" vertex="1">
           <mxGeometry y="180" width="460" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="EVPDGz2fYUcvtPlbwoWs-190" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="EVPDGz2fYUcvtPlbwoWs-2" source="EVPDGz2fYUcvtPlbwoWs-58" target="EVPDGz2fYUcvtPlbwoWs-4" edge="1">
+        <mxCell id="EVPDGz2fYUcvtPlbwoWs-190" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="EVPDGz2fYUcvtPlbwoWs-2" source="EVPDGz2fYUcvtPlbwoWs-58" target="EVPDGz2fYUcvtPlbwoWs-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="424.99999999999955" y="1650" as="sourcePoint" />
-            <mxPoint x="2601" y="3410" as="targetPoint" />
+            <mxPoint x="-355.00000000000045" y="1650" as="sourcePoint" />
+            <mxPoint x="1821" y="3410" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1224" y="3500" />
-              <mxPoint x="2681" y="3500" />
+              <mxPoint x="444" y="3500" />
+              <mxPoint x="2080" y="3501" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-191" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;通常のシステムがOSを使用するときに必要な機能だけをまとめたインターフェース&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;C_OS_Manager_Interface&lt;/span&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="EVPDGz2fYUcvtPlbwoWs-2" vertex="1">
-          <mxGeometry x="2930" y="70" width="490" height="965" as="geometry" />
+          <mxGeometry x="2150" y="70" width="490" height="965" as="geometry" />
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-192" value="所有責任" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-191" vertex="1">
           <mxGeometry y="50" width="490" height="60" as="geometry" />
@@ -549,14 +549,11 @@
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-218" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;修正方法&lt;/b&gt;&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="EVPDGz2fYUcvtPlbwoWs-212" vertex="1">
           <mxGeometry y="180" width="490" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="EVPDGz2fYUcvtPlbwoWs-219" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=8;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="EVPDGz2fYUcvtPlbwoWs-2" source="EVPDGz2fYUcvtPlbwoWs-218" target="EVPDGz2fYUcvtPlbwoWs-4" edge="1">
+        <mxCell id="EVPDGz2fYUcvtPlbwoWs-219" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="EVPDGz2fYUcvtPlbwoWs-2" source="EVPDGz2fYUcvtPlbwoWs-218" target="EVPDGz2fYUcvtPlbwoWs-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="2795" y="690" as="sourcePoint" />
-            <mxPoint x="2741" y="3410" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="3185" y="3290" />
-              <mxPoint x="2802" y="3290" />
-            </Array>
+            <mxPoint x="2015" y="690" as="sourcePoint" />
+            <mxPoint x="1961" y="3410" as="targetPoint" />
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EVPDGz2fYUcvtPlbwoWs-220" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=8;" parent="1" source="EVPDGz2fYUcvtPlbwoWs-1" target="EVPDGz2fYUcvtPlbwoWs-2" edge="1">
