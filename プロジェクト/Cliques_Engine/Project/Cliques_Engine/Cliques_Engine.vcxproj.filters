@@ -898,9 +898,6 @@
     <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底">
       <UniqueIdentifier>{8ce8cf74-2f9a-454c-8ad9-82a6b543c992}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底\定義">
-      <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
       <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
     </Filter>
@@ -915,6 +912,9 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\レンダリング\定義\ラスタライザ">
       <UniqueIdentifier>{0c2474a1-ff13-42b7-bcc3-e3656fe68246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\Windows\定義">
+      <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1375,19 +1375,19 @@
       <Filter>ヘッダー ファイル\プラットフォーム独立部</Filter>
     </ClInclude>
     <ClInclude Include="E_MOUSE_CLICK_STATE.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Window_Size_Data.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Mouse_State.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Window_Position.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Day_And_Time_Inform.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="Undefine_Platform_Detector_Macro.h">
       <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
