@@ -1542,7 +1542,7 @@
     <ClInclude Include="S_Window_Position.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義\ウィンドウ情報</Filter>
     </ClInclude>
-    <ClInclude Include="S_Window_Size_Data.h">
+    <ClInclude Include="S_Window_Size.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義\ウィンドウ情報</Filter>
     </ClInclude>
   </ItemGroup>

@@ -305,7 +305,7 @@
     <ClInclude Include="S_Day_And_Time_Inform.h" />
     <ClInclude Include="S_Unique_Buffer_Slot.h" />
     <ClInclude Include="S_Window_Position.h" />
-    <ClInclude Include="S_Window_Size_Data.h" />
+    <ClInclude Include="S_Window_Size.h" />
     <ClInclude Include="S_World_View_Projection.h" />
     <ClInclude Include="Depth_Stencil_Setting_Inform.h" />
     <ClInclude Include="Game_Function_Include_List.h" />
