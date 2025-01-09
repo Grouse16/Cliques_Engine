@@ -931,9 +931,6 @@
     <Filter Include="ヘッダー ファイル\プラットフォーム\ウィンドウ\管理システム">
       <UniqueIdentifier>{20b6efb0-525b-4033-a3b5-401ef4334749}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\定義">
-      <UniqueIdentifier>{bfc19ab7-d53d-4cba-9758-c42acc38ea0f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\プラットフォーム\ウィンドウ">
       <UniqueIdentifier>{da55d08f-5c19-497d-95a0-4302e0c585ef}</UniqueIdentifier>
     </Filter>
@@ -943,7 +940,10 @@
     <Filter Include="ソース ファイル\プラットフォーム\ウィンドウ\管理システム">
       <UniqueIdentifier>{f7dff979-8b70-482f-b4aa-881fc8226094}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\プラットフォーム\ウィンドウ\システム\定義">
+    <Filter Include="ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\インターフェース">
+      <UniqueIdentifier>{bfc19ab7-d53d-4cba-9758-c42acc38ea0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\ウィンドウ\システム\インターフェース">
       <UniqueIdentifier>{cf01d2ed-acc2-4d20-9b20-af6bb898def7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -1572,6 +1572,9 @@
     <ClInclude Include="S_Mouse_State.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
+    <ClInclude Include="I_Window_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\インターフェース</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_OS_Management_System_Base.cpp">
@@ -1969,6 +1972,9 @@
     </ClCompile>
     <ClCompile Include="C_Console_Log_Interface.cpp">
       <Filter>ソース ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
+    </ClCompile>
+    <ClCompile Include="I_Window_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム\ウィンドウ\システム\インターフェース</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

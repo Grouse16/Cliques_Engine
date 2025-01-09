@@ -204,6 +204,7 @@
     <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
     <ClInclude Include="E_Stencil_Activate_Setting.h" />
     <ClInclude Include="GCC_Or_MSVC_Macro.h" />
+    <ClInclude Include="I_Window_System.h" />
     <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Index_Buffer_Inform.h" />
     <ClInclude Include="S_Create_Render_Screen_Inform.h" />
@@ -471,6 +472,7 @@
     <ClCompile Include="C_Windows_OS_Management_System.cpp" />
     <ClCompile Include="C_Wnd_Proc_For_Game_APK.cpp" />
     <ClCompile Include="C_Wnd_Proc_Manager.cpp" />
+    <ClCompile Include="I_Window_System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PS_UI_DX12.hlsl">
