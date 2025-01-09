@@ -916,6 +916,9 @@
     <Filter Include="ヘッダー ファイル\プラットフォーム\OS\Windows\定義">
       <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\Windows\定義\ウィンドウ情報">
+      <UniqueIdentifier>{6e597806-dcad-4e52-8ff1-4dc23413c18e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -1377,13 +1380,7 @@
     <ClInclude Include="E_MOUSE_CLICK_STATE.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
-    <ClInclude Include="S_Window_Size_Data.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
-    </ClInclude>
     <ClInclude Include="S_Mouse_State.h">
-      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
-    </ClInclude>
-    <ClInclude Include="S_Window_Position.h">
       <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義</Filter>
     </ClInclude>
     <ClInclude Include="S_Day_And_Time_Inform.h">
@@ -1541,6 +1538,12 @@
     </ClInclude>
     <ClInclude Include="S_Depth_Setting_Value.h">
       <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Position.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義\ウィンドウ情報</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Size_Data.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\定義\ウィンドウ情報</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
