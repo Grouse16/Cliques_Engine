@@ -12,18 +12,18 @@
 
 // ☆ ネームスペース ☆ //
 
-// OSの基底クラスを呼び出すための名前
-namespace OS
+// ウィンドウ用のデータを呼び出すための名前
+namespace PLATFORM::WINDOW::DATA
 {
 	// ☆ 構造体 ☆//
 
-	// ウィンドウの座標の構造体
+	// ウィンドウの座標
 	struct S_Window_Position
 	{
-		int position_left_x = 0;	// ウィンドウの左端
-		int position_right_x = 0;	// ウィンドウの右端
-		int position_top_y = 0;		// ウィンドウの上端
-		int position_bottom_y = 0;	// ウィンドウの下橋
+		int left_x = 0;		// ウィンドウの左端
+		int right_x = 0;	// ウィンドウの右端
+		int top_y = 0;		// ウィンドウの上端
+		int bottom_y = 0;	// ウィンドウの下橋
 	};
 }
 

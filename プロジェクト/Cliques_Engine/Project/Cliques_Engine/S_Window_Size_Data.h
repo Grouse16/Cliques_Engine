@@ -12,12 +12,12 @@
 
 // ☆ ネームスペース ☆ //
 
-// OS制御用システムを呼び出すための名前
-namespace OS
+// ウィンドウ用のデータを呼び出すための名前
+namespace PLATFORM::WINDOW::DATA
 {
 	// ☆ 構造体 ☆ //
 
-	// ウィンドウのサイズの構造体
+	// ウィンドウのサイズ
 	struct S_Window_Size_Data
 	{
 		int width = 0;	// 画面横のサイズ
