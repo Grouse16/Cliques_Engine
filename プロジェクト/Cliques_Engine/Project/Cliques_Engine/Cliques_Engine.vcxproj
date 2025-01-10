@@ -242,6 +242,7 @@
     <ClInclude Include="C_Mesh_Data.h" />
     <ClInclude Include="C_Rendering_Screen_Data_Base.h" />
     <ClInclude Include="C_Half_Color.h" />
+    <ClInclude Include="S_Create_Window_Information.h" />
     <ClInclude Include="S_Depth_Setting_Value.h" />
     <ClInclude Include="S_Model_Draw_Command.h" />
     <ClInclude Include="C_Position.h" />

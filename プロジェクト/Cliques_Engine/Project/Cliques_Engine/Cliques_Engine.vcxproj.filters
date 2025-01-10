@@ -946,6 +946,9 @@
     <Filter Include="ソース ファイル\プラットフォーム\ウィンドウ\システム\インターフェース">
       <UniqueIdentifier>{cf01d2ed-acc2-4d20-9b20-af6bb898def7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\生成用情報">
+      <UniqueIdentifier>{6ccd7c4c-55f3-4520-a87d-63639d9c8898}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Windows_OS_Management_System.h">
@@ -1574,6 +1577,9 @@
     </ClInclude>
     <ClInclude Include="I_Window_System.h">
       <Filter>ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Window_Information.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\ウィンドウ\システム\生成用情報</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
