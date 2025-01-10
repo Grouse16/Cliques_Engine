@@ -13,6 +13,7 @@
 // ☆ ファイルひらき ☆ //
 #include <string>
 
+#include "S_Create_Window_Information.h"
 #include "S_Window_Position.h"
 #include "S_Window_Size.h"
 #include "E_OS_KIND.h"
@@ -44,8 +45,8 @@ namespace PLATFORM::WINDOW::INTERFACE
 
 		//-☆- 生成 -☆-//
 
-		// ウィンドウの生成　戻り値：生成に成功したか
-		virtual bool M_Create_Window(void) = 0;
+		// ウィンドウの生成　引数：ウィンドウの生成用の情報　戻り値：生成に成功したか
+		virtual bool M_Create_Window(const PLATFORM::WINDOW::CREATE::S_Create_Window_Information & ) = 0;
 
 		
 		//-☆- 初期化 -☆-//
