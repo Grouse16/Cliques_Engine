@@ -1,0 +1,1445 @@
+//☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
+// 詳細   ：マテリアルのクラス、描画時の描画方法の設定を行う
+// 説明   ：バッファの管理やレンダリング設定の管理を行う
+// 作成者 ：髙坂龍誠
+//☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆//
+
+
+// ☆ ファイルひらき ☆ //
+#include "C_Material.h"
+#include "C_Rendering_API_Base.h"
+#include "C_Main_Camera.h"
+#include "C_Rendering_API_Interface_Depth_Stencil.h"
+
+#include "C_Console_Log_Interface.h"
+
+
+// ☆ ネームスペースの省略 ☆ //
+using namespace ASSET::MATERIAL;
+
+
+// ☆ 定数 ☆ //
+constexpr int con_WVP_NUMBER = 0;	// WVPの番号
+constexpr int con_WVP_WORLD_NUMBER = 0;	// WVPのワールドのマトリクスの番号
+constexpr int con_WVP_VIEW_NUMBER = 1;	// WVPのビューのマトリクスの番号
+constexpr int con_WVP_PROJECTION_NUMBER = 2;	// WVPのプロジェクションのマトリクスの番号
+
+
+// ☆ 関数 ☆ //
+
+//==☆ プライベート ☆==//
+
+//-☆- ブレンド設定 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どのブレンドモードを設定するかを指定された文字列から特定して返す
+// 引数   ：string ブレンドモードを示す文字列
+// 戻り値 ：E_BLEND_MODE 特定したブレンドモード
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::BLEND::E_BLEND_MODE C_Material::M_Get_Blend_Mode_By_Text(std::string in_blend_mode_signature)
+{
+	// 通常時は、色をそのまま使う
+	if (in_blend_mode_signature == "NORMAL")
+	{
+		return RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL;
+	}
+
+	// 通常描画でα値のみ１で固定
+	if (in_blend_mode_signature == "NORMAL_NOT_ALPHA")
+	{
+		return RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL_NOT_ALPHA;
+	}
+
+	// 出力された色を減算方式で使用する
+	if (in_blend_mode_signature == "INVERT")
+	{
+		return RENDERING::INFORM::BLEND::E_BLEND_MODE::e_INVERT;
+	}
+
+	// 出力された色を減算方式で使用するが、α値は１で固定
+	if (in_blend_mode_signature == "INVERT_NOT_ALPHA")
+	{
+		return RENDERING::INFORM::BLEND::E_BLEND_MODE::e_INVERT_NOT_ALPHA;
+	}
+
+	// どれにも当てはまらなかったら初期値を返す
+	return RENDERING::INFORM::BLEND::E_BLEND_MODE::e_NORMAL;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの色の操作を設定するかを指定された文字列から特定して返す
+// 引数   ：string 色の操作を示す文字列
+// 戻り値 ：E_BLEND_OPTION 特定した色の操作
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::BLEND::E_BLEND_OPTION C_Material::M_Get_Blend_Option_By_Text(std::string in_blend_option_signature)
+{
+	// 加算する
+	if (in_blend_option_signature == "ADD")
+	{
+		return RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD;
+	}
+
+	// 減算する
+	if (in_blend_option_signature == "SUB")
+	{
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_SUB;
+	}
+
+	// ピクセルシェーダーの出力色を減算する
+	if (in_blend_option_signature == "SUB_PIX")
+	{
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_SUB_PIX;
+	}
+
+	// ピクセルシェーダーとレンダリング画像を比較し、最大値を出力する
+	if (in_blend_option_signature == "MAX")
+	{
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_MAX;
+	}
+
+	// ピクセルシェーダーとレンダリング画像を比較し、最小値を出力する
+	if (in_blend_option_signature == "MIN")
+	{
+		RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_MIN;
+	}
+
+	// どれにも当てはまらなかったら初期値を返す
+	return RENDERING::INFORM::BLEND::E_BLEND_OPTION::e_ADD;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの書き込む形式を設定するかを指定された文字列から特定して返す
+// 引数   ：string 書き込むデータ形式をを示す文字列
+// 戻り値 ：E_RENDERING_DRAW_FORMAT 書き込むデータの形式
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT C_Material::M_Get_Blend_Write_Format_By_Text(std::string in_format_signature)
+{
+	// ４バイトのFLOAT
+	if (in_format_signature == "BYTE_4_FLOAT")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_4_FLOAT;
+	}
+
+	// 2バイトのFLOAT
+	if (in_format_signature == "BYTE_2_FLOAT")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;
+	}
+
+	// ４バイトのUINT
+	if (in_format_signature == "BYTE_4_UINT")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_4_UINT;
+	}
+
+	// ２バイトのUINT
+	if (in_format_signature == "BYTE_2_UINT")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_UINT;
+	}
+
+	// １バイトのUINT
+	if (in_format_signature == "BYTE_1_UINT")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_1_UINT;
+	}
+
+	return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_FORMAT::e_BYTE_2_FLOAT;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの書き込む色の種類を設定するかを指定された文字列から特定して返す
+// 引数   ：string 書き込む色の種類を示す文字列
+// 戻り値 ：E_RENDERING_DRAW_COLOR 書き込む色の種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR C_Material::M_Get_Blend_Write_Color_By_Text(std::string in_color_signature)
+{
+	// ４色ともある
+	if (in_color_signature == "RGBA")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RGBA;
+	}
+
+	// 赤と緑色分のみ
+	if (in_color_signature == "RG")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RG;
+	}
+
+	// 赤色分のみ
+	if (in_color_signature == "R")
+	{
+		return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_R;
+	}
+
+	return RENDERING::INFORM::BLEND::E_RENDERING_DRAW_COLOR::e_RGBA;
+}
+
+
+//-☆- 深度ステンシル -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの深度モードを設定するかを指定された文字列から特定して返す
+// 引数   ：string 深度モードの種類を示す文字列
+// 戻り値 ：E_DEPTH_MODE 深度モードの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE C_Material::M_Get_Depth_Mode_By_Text(std::string in_depth_mode_signature)
+{
+	// 深度データが０の部分にのみ書き込む
+	if (in_depth_mode_signature == "ZERO")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_ZERO;
+	}
+
+	// 常時深度データを書き込む
+	if (in_depth_mode_signature == "ONE")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_ONE;
+	}
+
+	// 深度なし、または情報がないときは無効
+	return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_MODE::e_NO;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの深度オプションを設定するかを指定された文字列から特定して返す
+// 引数   ：string 深度オプションの種類を示す文字列
+// 戻り値 ：E_DEPTH_WRITE_RULE 深度オプションの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE C_Material::M_Get_Depth_Option_By_Text(std::string in_depth_option_signature)
+{
+	// 常時書き込む
+	if (in_depth_option_signature == "ALWAYS")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_ALWAYS;
+	}
+
+	// 元の値を超える時のみ書き込む
+	if (in_depth_option_signature == "GREATER")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_GREATER;
+	}
+
+	// 元の値未満の時のみ書き込む
+	if (in_depth_option_signature == "LESS")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_LESS;
+	}
+
+	// 元の値以上の時のみ書き込む
+	if (in_depth_option_signature == "GREATER_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_GREATERE_EQUAL;
+	}
+
+	// 元の値以下の時のみ書き込む
+	if (in_depth_option_signature == "LESS_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_LESS_EQUAL;
+	}
+
+	// 同じ値の時のみ書き込む
+	if (in_depth_option_signature == "EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_EQUAL;
+	}
+
+	// 元の値と等しくない時のみ書き込む
+	if (in_depth_option_signature == "NOT_EQUAL")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_NOT_EQUAL;
+	}
+
+	// 情報がないか何もしないとき
+	return RENDERING::INFORM::DEPTH_STENCIL::E_DEPTH_WRITE_RULE::e_DONT;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どのステンシルを有効にするかを指定された文字列から特定して返す
+// 引数   ：string ステンシルの有効無効を示す文字列
+// 戻り値 ：E_STENCIL_IS ステンシルの有効無効
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING C_Material::M_Get_Stencil_Is_Active_By_Text(std::string in_stencil_signature)
+{
+	// ステンシル有効
+	if (in_stencil_signature == "ACTIVE")
+	{
+		return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_ACTIVE;
+	}
+
+	// ステンシル無効、または情報がないとき
+	return RENDERING::INFORM::DEPTH_STENCIL::E_STENCIL_ACTIVATE_SETTING::e_NO_ACTIVE;
+}
+
+
+//-☆- ラスタライザ -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの描画モードを設定するかを指定された文字列から特定して返す
+// 引数   ：string 描画モードの種類を示す文字列
+// 戻り値 ：E_DRAW_MODE 描画モードの種類
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_DRAW_MODE C_Material::M_Get_Draw_Mode_By_Text(std::string in_draw_mode_signature)
+{
+	// ワイヤーフレーム表示
+	if (in_draw_mode_signature == "WIRE_FRAME")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_DRAW_MODE::e_WIRE_FRAME;
+	}
+
+	// 通常表示を行う、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_DRAW_MODE::e_NORMAL;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの面を表示するかを指定された文字列から特定して返す
+// 引数   ：string 面表示の種類を示す文字列
+// 戻り値 ：E_MESH_CULLING 面の表示モードを返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_MESH_CULLING C_Material::M_Get_Mesh_Culling_By_Text(std::string in_culling_signature)
+{
+	// 表面のみ描画
+	if (in_culling_signature == "FRONT")
+	{
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_FRONT;
+	}
+
+	// 裏面のみ描画
+	if (in_culling_signature == "BACK")
+	{
+		RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_BACK;
+	}
+
+	// 特に指定がないなら全ての面を描画
+	return RENDERING::INFORM::RASTERIZER::E_MESH_CULLING::e_ALWAYS;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どの面の表面の設定を使用するかを指定された文字列から特定して返す
+// 引数   ：string 表面設定の種類を示す文字列
+// 戻り値 ：E_MESH_FRONT 表面設定を返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_MESH_FRONT ASSET::MATERIAL::C_Material::M_Get_Mesh_Front_By_Text(std::string in_mesh_front_signature)
+{
+	// 反時計回り
+	if (in_mesh_front_signature == "ANTI_CLOCK_WISE")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_MESH_FRONT::e_ANTI_CLOCK_WISE;
+	}
+
+	// 時計回り、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_MESH_FRONT::e_CLOCK_WISE;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：どのアンチエイリアシングの種類を指定された文字列から特定して返す
+// 引数   ：string アンチエイリアシングの種類を示す文字列
+// 戻り値 ：E_ANTIALIASING アンチエイリアシングの種類を返す
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+RENDERING::INFORM::RASTERIZER::E_ANTIALIASING C_Material::M_Get_Antialiasing_By_Text(std::string in_antialiasing_signature)
+{
+	// α値でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "ALPHA")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_ALPHA;
+	}
+
+	// ピクセル基準でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "PIXEL")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_PIXEL;
+	}
+
+	// 辺の補間でアンチエイリアシングをかける
+	if (in_antialiasing_signature == "LINE")
+	{
+		return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_LINE;
+	}
+
+	// アンチエイリアシングをしない、または情報がないとき
+	return RENDERING::INFORM::RASTERIZER::E_ANTIALIASING::e_DONT;
+}
+
+
+//-☆- ロード -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ブレンドの設定をマテリアル情報からロードする
+// 引数   ：vector<C_Create_Rendering_Graphics_Setting_Inform::S_Blend_Setting_Create_Data> & ブレンドの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Blend_Setting(std::vector<RENDERING::API::CREATE::S_Blend_Setting_Create_Data> & in_blend_setting_list, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// ☆ 定数 ☆ //
+	constexpr int con_BLEND_SETTING_MAX = 8;	// ブレンド設定を生成できる上限値
+
+	int blend_sum = 0;	// ブレンド設定数
+
+
+	// 情報の最初へ移動
+	in_file_data.M_Goto_Sentence_Start();
+
+	// ブレンド設定数を取り出す
+	in_file_data.M_Goto_Right_By_Text_In_Front_Row("BLENDSUM:");
+	blend_sum = (int)in_file_data.M_Get_Number();
+
+	// ブレンド設定の上限値を超えないようにする
+	blend_sum = 
+		(blend_sum > con_BLEND_SETTING_MAX) * con_BLEND_SETTING_MAX
+		+
+		(blend_sum <= con_BLEND_SETTING_MAX) * blend_sum;
+
+
+	// ブレンド設定登録用の配列を拡張
+	in_blend_setting_list.resize(blend_sum);
+
+
+	// ブレンドの情報が残っている間、8つになるまでは設定し続ける
+	for (int l_slot_num = 0; l_slot_num < blend_sum; l_slot_num++)
+	{
+		// ブレンド設定の現在の番号まで移動、なければ終了
+		if (in_file_data.M_Goto_Left_By_Text_In_Front_Row("BLEND" + std::to_string(l_slot_num + 1) + ":") == false)
+		{
+			return;
+		}
+
+		// ブレンドモードを取得
+		in_file_data.M_Move_Next_Raw();
+		in_blend_setting_list[l_slot_num].blend_mode = M_Get_Blend_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+		// ブレンドの操作を取得
+		in_file_data.M_Move_Next_Raw();
+		in_blend_setting_list[l_slot_num].blend_option = M_Get_Blend_Option_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+		// レンダーターゲットへの書き込み形式を取得
+		in_file_data.M_Move_Next_Raw();
+		in_blend_setting_list[l_slot_num].draw_format = M_Get_Blend_Write_Format_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+		// レンダーターゲットへの書き込む色の種類数を取得
+		in_file_data.M_Move_Next_Raw();
+		in_blend_setting_list[l_slot_num].draw_color = M_Get_Blend_Write_Color_By_Text(in_file_data.M_Get_Data_Now_Row());
+	}
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルをマテリアル情報からロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Depth_Stencil_Create_Data & 深度ステンシルの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Depth_Stencil_Setting(RENDERING::API::CREATE::S_Depth_Stencil_Create_Data & in_depth_stencil_inform, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// 深度ステンシルの位置へ移動、なければ初期値のまま
+	in_file_data.M_Goto_Sentence_Start();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("DEPTH") == false)
+	{
+		return;
+	}
+
+
+	// 深度の書き込みモードを設定
+	in_file_data.M_Move_Next_Raw();
+	in_depth_stencil_inform.mode = M_Get_Depth_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 深度オプションを設定
+	in_file_data.M_Move_Next_Raw();
+	in_depth_stencil_inform.write_rule = M_Get_Depth_Option_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// ステンシルの有効無効を設定
+	in_file_data.M_Move_Next_Raw();
+	in_depth_stencil_inform.stencil_activate = M_Get_Stencil_Is_Active_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ラスタライザをマテリアル情報からロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform::S_Rasterizer_Create_Data & ラスタライザの設定先, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Rasterizer_Setting(RENDERING::API::CREATE::S_Rasterizer_Create_Data & in_rasterizer_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// ラスタライザ情報の位置に行く、なければ初期値のまま
+	in_file_data.M_Goto_Start_Row();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("RASTERIZER") == false)
+	{
+		return;
+	}
+
+
+	// 描画モードの設定
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.draw_mode = M_Get_Draw_Mode_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 残すメッシュの向きを決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.mesh_culling = M_Get_Mesh_Culling_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.mesh_front = M_Get_Mesh_Front_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 深度バイアスを決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.depth_value.depth_bias = (int)in_file_data.M_Get_Number();
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.depth_value.depth_max = (float)in_file_data.M_Get_Float_Double_Number();
+
+	// メッシュの表面設定を決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.depth_value.depth_slope = (float)in_file_data.M_Get_Float_Double_Number();
+
+	// アンチエイリアシング設定を決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.antialiasing = M_Get_Antialiasing_By_Text(in_file_data.M_Get_Data_Now_Row());
+
+	// 保守的なラスタライズを決める
+	in_file_data.M_Move_Next_Raw();
+	in_rasterizer_setting.flg_conservative = in_file_data.M_Get_Data_Now_Row() == "true";
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：その他設定をロードする
+// 引数   ：C_Create_Rendering_Graphics_Setting_Inform & 設定先のレンダリング設定生成用情報, C_Text_And_File_Manager & 読み込んだファイルの情報
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Load_Another_Setting(RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform & in_creat_rendering_graphics_setting, SYSTEM::TEXT::C_Text_And_File_Manager & in_file_data)
+{
+	// サンプリング設定まで移動する、なければ初期値のまま
+	in_file_data.M_Goto_Start_Row();
+	if (in_file_data.M_Goto_Right_By_Text_In_Front_Row("SAMPLING") == false)
+	{
+		return;
+	}
+
+
+	// サンプリング回数を取得
+	in_file_data.M_Move_Next_Raw();
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_count = (int)in_file_data.M_Get_Number();
+
+	// サンプリング品質を取得
+	in_file_data.M_Move_Next_Raw();
+	in_creat_rendering_graphics_setting.sampling_setting.sampling_quality = (int)in_file_data.M_Get_Number();
+
+	return;
+}
+
+
+//-☆- 生成 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：スロットの情報をセットする
+// 引数   ：const S_Resource_Inform_List & 設定するスロット識別用の情報
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Create_Resource_By_Signature_Inform(const ASSET::SHADER::S_Resource_Inform_List & in_resource_signature)
+{
+	// ☆ 変数宣言 ☆ //
+	int now_constant_number = 0;		// 現在の定数バッファ番号
+	int now_texture_number = 0;			// 現在のテクスチャ番号
+	int now_screen_number = 0;			// 現在のレンダリング画面番号
+	int now_depth_stencil_number = 0;	// 現在の深度ステンシルバッファ番号
+
+
+	// 定数バッファを生成する
+	mpr_variable.constant_data_list.resize(in_resource_signature.constant_list.size());
+
+	// 定数バッファのリソースを定義する
+	for (ASSET::MATERIAL::S_Constant_Buffer_Data & l_now_constant_inform : mpr_variable.constant_data_list)
+	{
+		// 定数バッファを生成
+		l_now_constant_inform.data.reset(new RENDERING::CAPSULE::C_Constant_Buffer_Data_System());
+
+		// 定数バッファとデータを生成
+		if (in_resource_signature.constant_list[now_constant_number].flg_data_creation)
+		{
+			l_now_constant_inform.data->M_Create_Constant_Buffer_And_Data(in_resource_signature.constant_list[now_constant_number].array_sum);
+		}
+
+		// 定数バッファのみ生成
+		else
+		{
+			l_now_constant_inform.data->M_Create_Only_Constant_Buffer(in_resource_signature.constant_list[now_constant_number].array_sum);
+		}
+
+		// 定数バッファのアタッチ先のシェーダーを設定
+		l_now_constant_inform.data->M_Set_Attach_Shader_Kind(in_resource_signature.constant_list[now_constant_number].shader_kind);
+
+		// 設定先のGPUでの定数バッファスロット番号
+		l_now_constant_inform.slot_index = in_resource_signature.constant_list[now_constant_number].slot_number;
+
+		// 定数バッファ識別名
+		l_now_constant_inform.signature_name = in_resource_signature.constant_list[now_constant_number].resource_name;
+		l_now_constant_inform.data->M_Set_Data_Signature_Name(l_now_constant_inform.signature_name);
+
+		// 次の定数バッファスロットと設定先のスロット番号を設定
+		now_constant_number += 1;
+	}
+
+	
+	// テクスチャ数分のスロットを作る
+	mpr_variable.texture_data_list.resize(in_resource_signature.texture_list.size());
+	
+	// テクスチャのリソースを定義する
+	for (ASSET::MATERIAL::S_Texture_Buffer_Data & l_now_texture_inform : mpr_variable.texture_data_list)
+	{
+		// ☆ 変数宣言 ☆ //
+		std::string initialize_texture_name = in_resource_signature.texture_list[now_texture_number].initialize_texture_name;	// 初期化するテクスチャの名前
+
+
+		// テクスチャのデータを生成する
+		l_now_texture_inform.data.reset(new ASSET::TEXTURE::C_Texture_Data_User());
+
+
+		// 初期からテクスチャないことを示されているなら何もしない
+		if (initialize_texture_name == "NOTHING" || initialize_texture_name == "")
+		{
+
+		}
+
+		// オリジナル指定がされていたらでオリジナルのテクスチャを生成する
+		else if (initialize_texture_name == "ORIGINAL")
+		{
+			l_now_texture_inform.data->M_Create_Original_Texture_Data();
+		}
+
+		// 初期からテクスチャがあるならそれをロードする
+		else
+		{
+			if (l_now_texture_inform.data->M_Load_Texture(initialize_texture_name) == true)
+			{
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "このテクスチャはありません：" + initialize_texture_name);
+				DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+			}
+		}
+
+
+		// テクスチャバッファのアタッチ先のシェーダーを設定
+		l_now_texture_inform.data->M_Set_Texture_Shader_Kind(in_resource_signature.texture_list[now_texture_number].shader_kind);
+
+		// 設定先のGPUでのテクスチャバッファスロット番号
+		l_now_texture_inform.slot_index = in_resource_signature.texture_list[now_texture_number].slot_number;
+
+		// テクスチャバッファ識別名
+		l_now_texture_inform.signature_name = in_resource_signature.texture_list[now_texture_number].resource_name;
+		l_now_texture_inform.data->M_Set_Texture_Signature(l_now_texture_inform.signature_name);
+
+		// 次のテクスチャスロットと設定先のスロット番号を設定
+		now_texture_number += 1;
+	}
+
+
+	// レンダリング画面の数分のスロットを作る
+	mpr_variable.rendering_screen_list.resize(in_resource_signature.screen_list.size());
+
+	// レンダリング画面のリソースを定義する
+	for (ASSET::MATERIAL::S_Rendering_Screen_Data & l_now_screen_inform : mpr_variable.rendering_screen_list)
+	{
+		// 設定先のGPUでのレンダリング画面スロット番号
+		l_now_screen_inform.slot_index = in_resource_signature.screen_list[now_screen_number].slot_number;
+
+		// レンダリング画面識別名
+		l_now_screen_inform.signature_name = in_resource_signature.screen_list[now_screen_number].resource_name;
+		
+		// 次のレンダリング画面スロットと設定先のスロット番号を設定
+		now_screen_number += 1;
+	}
+
+
+	// 深度ステンシルバッファの数分のスロットを作る
+	mpr_variable.depth_stencil_list.resize(in_resource_signature.depth_stencil_list.size());
+
+	// 深度ステンシルバッファのリソースを定義する
+	for (ASSET::MATERIAL::S_Depth_Stencil_Data & l_now_depth_stencil_inform : mpr_variable.depth_stencil_list)
+	{
+		// 設定先のGPUでの深度ステンシルバッファスロット番号
+		l_now_depth_stencil_inform.slot_index = in_resource_signature.depth_stencil_list[now_screen_number].slot_number;
+
+		// 深度ステンシルバッファ識別名
+		l_now_depth_stencil_inform.signature_name = in_resource_signature.depth_stencil_list[now_screen_number].resource_name;
+
+		// 次の深度ステンシルバッファスロットと設定先のスロット番号を設定
+		now_depth_stencil_number += 1;
+	}
+	
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング情報を生成する
+// 引数   ：C_Text_And_File_Manager & 現在のファイル文字列
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Material::M_Create_Rendering_Setting(SYSTEM::TEXT::C_Text_And_File_Manager & in_file_text)
+{
+	// ☆ 変数宣言 ☆ //
+	RENDERING::API::CREATE::S_Create_Rendering_Graphics_Setting_Inform create_rendering_setting_inform;	// レンダリング設定の生成用の情報
+
+
+	// シェーダー設定をセット
+	create_rendering_setting_inform.shader_setting = mpr_variable.shader_setting_data.M_Get_Shader_Setting();
+
+	// ブレンドの設定を読み込む
+	M_Load_Blend_Setting(create_rendering_setting_inform.blend_setting, in_file_text);
+
+	// ステンシルの設定を読み込む
+	M_Load_Depth_Stencil_Setting(create_rendering_setting_inform.depth_stencil_data, in_file_text);
+
+	// ラスタライザの設定を読み込む
+	M_Load_Rasterizer_Setting(create_rendering_setting_inform.rasterizer_data, in_file_text);
+
+	// その他の設定を読み込む
+	M_Load_Another_Setting(create_rendering_setting_inform, in_file_text);
+
+
+	// レンダリング設定を生成する
+	return mpr_variable.rendering_setting.M_Create_Pipeline_Setting(create_rendering_setting_inform);
+}
+
+
+//==☆ パブリック ☆==//
+
+//-☆- 初期化と終了時 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：コンストラクタ
+// 引数   ：void
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Material::C_Material(void)
+{
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：デストラクタ
+// 引数   ：void
+// 戻り値 ：なし
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+C_Material::~C_Material(void)
+{
+	M_Release();
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メモリ解放
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Release(void)
+{
+	// 描画用設定
+	mpr_variable.rendering_setting.M_Delete();
+
+	// 定数バッファ
+	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
+	{
+		if(now_constant_buffer.data)
+		{
+			now_constant_buffer.data->M_Release();
+			now_constant_buffer.data.reset();
+		}
+	}
+	mpr_variable.constant_data_list.clear();
+	mpr_variable.constant_data_list.shrink_to_fit();
+
+	// テクスチャ
+	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
+	{
+		if (now_texture_buffer.data)
+		{
+			now_texture_buffer.data->M_Release();
+			now_texture_buffer.data.reset();
+		}
+	}
+	mpr_variable.texture_data_list.clear();
+	mpr_variable.texture_data_list.shrink_to_fit();
+
+	// シェーダー設定
+	mpr_variable.shader_setting_data.M_Release();
+	
+	return;
+}
+
+
+//-☆- ロード -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルデータへのパスからマテリアル情報をロード
+// 引数   ：string マテリアルデータへのパス
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Material::M_Load_Material_By_Path(std::string in_material_path)
+{
+	// ☆ 変数宣言 ☆ //
+	SYSTEM::TEXT::C_Text_And_File_Manager material_inform_file_data;	// マテリアル情報のファイルのデータ
+
+
+	// 指定されたファイルのロードを行う　エラーで終了する
+	if (material_inform_file_data.M_Load_Select_File(in_material_path) == false)
+	{
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "指定されたマテリアルのファイルはありません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+
+		return false;
+	}
+
+
+	// ロードされたファイルがマテリアルの形式であることを確認、違うならエラーで抜ける
+	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Row("This-Is-ELMAT") == false)
+	{
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "これはマテリアルのファイルではありません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+
+		return false;
+	}
+
+	
+	// 現在のデータを初期化する
+	M_Release();
+
+
+	// マテリアルに使用するシェーダー設定名をがある位置へ移動　失敗でエラーを出して抜ける
+	if (material_inform_file_data.M_Goto_Right_By_Text_In_Front_Row("Shader：") == false)
+	{
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "マテリアルの情報にシェーダーのデータが設定されていません：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+
+		return false;
+	}
+	
+
+	// シェーダー設定名からシェーダーを設定をロードする　失敗でエラーを出して抜ける
+	if (mpr_variable.shader_setting_data.M_Load_Shader_Setting(material_inform_file_data.M_Get_Data_Right_In_Row()) == false)
+	{
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "このシェーダー設定は無効です。存在しないファイルか設定が正しくない可能性があります：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+
+		return false;
+	}
+
+
+	// シェーダー設定のリソースの情報をもとにリソースを生成する
+	M_Create_Resource_By_Signature_Inform(mpr_variable.shader_setting_data.M_Get_Shader_Setting()->M_Get_Resource_Inform());
+
+
+	// レンダリング設定を生成する、失敗でエラーを出して抜ける
+	if (M_Create_Rendering_Setting(material_inform_file_data) == false)
+	{
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_RED, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_ERROR, "レンダリング設定の生成に失敗しました：" + in_material_path);
+		DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Stop_Update_And_Log_Present();
+
+		return false;
+	}
+
+
+	// マテリアルの生成の成功を告知
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Set_Console_Color_Text_And_Back(DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_GREEN, DEBUGGER::LOG::CONSOLE::COLOR::E_CONSOLE_LOG_COLOR::e_BLACK);
+	DEBUGGER::LOG::CONSOLE::C_Console_Log_Interface::M_Print_Log(DEBUGGER::LOG::CONSOLE::TAGS::E_CONSOLE_LOG_TAGS::e_GAME_RENDERING, DEBUGGER::LOG::CONSOLE::ALL_LOG_NAME::GAME_RENDERING::con_INIT, "マテリアルの生成に成功しました：" + in_material_path);
+
+	return true;
+}
+
+
+//-☆- 描画 -☆-//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング用の情報をGPUに設定する
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Attach_To_GPU(void)
+{
+	// レンダリング設定を適用
+	mpr_variable.rendering_setting.M_Set_Rendering_Setting_For_API();
+
+	// 定数バッファを一つづつ適用する
+	for (S_Constant_Buffer_Data & now_constant_buffer : mpr_variable.constant_data_list)
+	{
+		now_constant_buffer.data->M_Set_Constant_Buffer_To_GPU_By_Index(now_constant_buffer.slot_index);
+	}
+
+	// テクスチャバッファを一つづつ適用する
+	for (S_Texture_Buffer_Data & now_texture_buffer : mpr_variable.texture_data_list)
+	{
+		now_texture_buffer.data->M_Texture_Attach_To_Draw_By_Index(now_texture_buffer.slot_index);
+	}
+
+	// レンダリング画面を一つづつ適用する
+	for (S_Rendering_Screen_Data & now_rendering_buffer : mpr_variable.rendering_screen_list)
+	{
+		// データがセットされているならそれをテクスチャとして適用する
+		if (now_rendering_buffer.data)
+		{
+			now_rendering_buffer.data->M_Set_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.use_screen_index, now_rendering_buffer.slot_index);
+		}
+
+		// データがセットされていない場合はメインのレンダリング画面をテクスチャとして適用する
+		else
+		{
+			RENDERING::API::BASE::C_Rendering_API_Base::M_Get_Instance()->M_Set_Main_Back_Rendering_Screen_To_Texture_Slot(now_rendering_buffer.slot_index);
+		}
+	}
+
+	// 深度ステンシルバッファを一つづつ適用する
+	for (S_Depth_Stencil_Data & now_depth_stencil_buffer : mpr_variable.depth_stencil_list)
+	{
+		// データがセットされているならそれをテクスチャとして適用する
+		if (now_depth_stencil_buffer.data)
+		{
+			now_depth_stencil_buffer.data->M_Set_Depth_Stencil_Buffer_To_Texture_Slot(now_depth_stencil_buffer.slot_index);
+		}
+
+		// データがセットされていない場合は深度ステンシルバッファを無効化する
+		else
+		{
+			RENDERING::API::RENDER_INTERFACE::C_Rendering_API_Interface_Depth_Stencil::M_Reset_Draw_Depth_Stencil_Buffer();
+		}
+	}
+
+	return;
+}
+
+
+//-☆- 定数バッファ -☆-//
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された定数バッファ管理用データのアドレスを返す
+// 引数   ：int 取得する定数バッファ管理用データの番号
+// 戻り値 ：S_Constant_Buffer_Data * 指定された定数バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.constant_data_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.constant_data_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の定数バッファ管理用データのアドレスを返す
+// 引数   ：string 取得する定数バッファ管理用データの名前
+// 戻り値 ：S_Constant_Buffer_Data * 指定された定数バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Constant_Buffer_Data * C_Material::M_Get_Constant_Buffer_Data_By_Name(std::string in_constant_buffer_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Constant_Buffer_Data & constant_data_inform : mpr_variable.constant_data_list)
+	{
+		if (constant_data_inform.signature_name == in_constant_buffer_name)
+		{
+			return &constant_data_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の定数管理用データのスロット番号を返す
+// 引数   ：string 取得する定数バッファ管理用データの名前
+// 戻り値 ：int 指定された定数バッファの番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Constant_Buffer_Slot_Number_By_Name(std::string in_constant_buffer_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int constant_sum = (int)mpr_variable.constant_data_list.size();	// 定数バッファ数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_constant_num = 0; l_constant_num < constant_sum; l_constant_num++)
+	{
+		if (mpr_variable.constant_data_list[l_constant_num].signature_name == in_constant_buffer_name)
+		{
+			return l_constant_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+//--☆ WVP ワールド ビュー プロジェクション ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたワールド変換行列（トランスフォーム）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするワールド変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_World_Matrix(const DirectX::XMMATRIX & in_set_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list->wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_WORLD_NUMBER, &in_set_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインカメラのビュー変換行列、プロジェクション変換行列をWVP用の定数バッファにセットする
+// 引数   ：void
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_View_Projection_By_Main_Camera(void)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list->wvp < -1)
+	{
+		return;
+	}
+
+	// ビューマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_View_Matrix());
+
+	// プロジェクションマトリクスをセット
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &GAME::CAMERA::MAIN_CAMERA::C_Main_Camera::M_Get_Projection_Matrix());
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたビュー変換行列（カメラ）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするビュー変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_View_Matrix(const DirectX::XMMATRIX & in_set_view_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list->wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_VIEW_NUMBER, &in_set_view_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたプロジェクション変換行列（描画スクリーン設定）をWVP用の定数バッファにセットする
+// 引数   ：const XMMATRIX & セットするプロジェクション変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Projection_Matrix(const DirectX::XMMATRIX & in_set_projection_matrix)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list->wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<DirectX::XMMATRIX>(1, con_WVP_PROJECTION_NUMBER, &in_set_projection_matrix);
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：渡されたWVP変換行列をWVP用の定数バッファにセットする
+// 引数   ：const S_World_View_Projection_Data & セットするWVP変換行列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_WVP_Matrix(const MATH::WVP::S_World_View_Projection_Data & in_set_wvp)
+{
+	// WVP用のスロットがないときはセットしない
+	if (mpr_variable.unique_slot_list->wvp < -1)
+	{
+		return;
+	}
+
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->wvp].data->M_Set_Constant_Buffer_Data<MATH::WVP::S_World_View_Projection_Data>(1, con_WVP_NUMBER, &in_set_wvp);
+
+	return;
+}
+
+//--☆ ボーン ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：ボーンのマトリクスをマテリアルにセットする
+// 引数   ：const vector<XMFLOAT4X4> & セットするボーンマトリクス配列の参照(const)
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Bone_Matrix(const std::vector<DirectX::XMFLOAT4X4> & in_bone_matrix_list)
+{
+	// ボーンマトリクスのスロットがないならセットしない
+	if (mpr_variable.unique_slot_list->bone < 0)
+	{
+		return;
+	}
+
+
+	// ☆ 変数宣言 ☆ //
+	int bone_sum = (int)in_bone_matrix_list.size();	// ボーン数
+
+
+	// ボーンの情報をセットする
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->bone].data->M_Set_Constant_Buffer_Data<DirectX::XMFLOAT4X4>(bone_sum, 0, &in_bone_matrix_list[0]);
+
+	return;
+}
+
+//--☆ 質感情報 ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：マテリアルの質感情報をセットする
+// 引数   ：const S_Material_Detail & セットするマテリアル質感情報の参照（const）
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Material_Detail(const DATA::MATERIAL_DETAIL::S_Material_Detail & in_set_material_detail)
+{
+	// 質感情報のスロットがないならセットしない
+	if (mpr_variable.unique_slot_list->material < 0)
+	{
+		return;
+	}
+
+	// 質感情報をセットする
+	mpr_variable.constant_data_list[mpr_variable.unique_slot_list->material].data->M_Set_Constant_Buffer_Data<DATA::MATERIAL_DETAIL::S_Material_Detail>(1, 0, &in_set_material_detail);
+
+	return;
+}
+
+
+//-☆- テクスチャ -☆-//
+
+//--☆ ロード ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたスロットにテクスチャをロードする
+// 引数   ：int テクスチャスロット番号, string ロードするテクスチャ名
+// 戻り値 ：bool 成功時のみtrue
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+bool C_Material::M_Load_Texture_To_Slot_By_Index(int in_index, std::string in_load_texture_name)
+{
+	// 配列外を指定されたら抜ける
+	if (in_index < 0 || mpr_variable.texture_data_list.size() <= in_index)
+	{
+		return false;
+	}
+
+	return mpr_variable.texture_data_list[in_index].data->M_Load_Texture(in_load_texture_name);
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたテクスチャ管理用データのアドレスを返す
+// 引数   ：int 取得するテクスチャ管理用データの番号
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.texture_data_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.texture_data_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のテクスチャバッファ管理用データのアドレスを返す
+// 引数   ：string 取得するテクスチャバッファ管理用データの名前
+// 戻り値 ：S_Texture_Buffer_Data * 指定されたテクスチャバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Texture_Buffer_Data * C_Material::M_Get_Texture_Data_By_Name(std::string in_texture_buffer_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Texture_Buffer_Data & texture_data_inform : mpr_variable.texture_data_list)
+	{
+		if (texture_data_inform.signature_name == in_texture_buffer_name)
+		{
+			return &texture_data_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のテクスチャバッファ管理用データのスロット番号を返す
+// 引数   ：string 取得するテクスチャバッファ管理用データの名前
+// 戻り値 ：int 指定されたテクスチャの番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Texture_Slot_Number_By_Name(std::string in_texture_buffer_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int texture_sum = (int)mpr_variable.texture_data_list.size();	// テクスチャ数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_texture_num = 0; l_texture_num < texture_sum; l_texture_num++)
+	{
+		if (mpr_variable.texture_data_list[l_texture_num].signature_name == in_texture_buffer_name)
+		{
+			return l_texture_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+
+//-☆- レンダリング画面 -☆-//
+
+//--☆ セッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：レンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int レンダリング画像の設定先スロット番号, C_Rendering_Screen_System & レンダリング画像の参照
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Rendering_Screen_To_Slot_By_Index(int in_rendering_slot_number, RENDERING::CAPSULE::C_Rendering_Screen_System & in_rendering_screen)
+{
+	// 配列外を指定されたら抜ける
+	if (in_rendering_slot_number < 0 || mpr_variable.rendering_screen_list.size() <= in_rendering_slot_number)
+	{
+		return;
+	}
+
+	// レンダリング画面をセットする
+	mpr_variable.rendering_screen_list[in_rendering_slot_number].data = &in_rendering_screen;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインのレンダリング画面をスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int レンダリング画像の設定先スロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Main_Rendering_Screen_To_Slot_By_Index(int in_rendering_slot_number)
+{
+	// 配列外を指定されたら抜ける
+	if (in_rendering_slot_number < 0 || mpr_variable.rendering_screen_list.size() <= in_rendering_slot_number)
+	{
+		return;
+	}
+
+	// レンダリング画面をセットする（nullptrでメインのレンダリング画面）
+	mpr_variable.rendering_screen_list[in_rendering_slot_number].data = nullptr;
+
+	return;
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定されたレンダリング画面管理用データのアドレスを返す
+// 引数   ：int 取得するレンダリング画面管理用データの番号
+// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.rendering_screen_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.rendering_screen_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のレンダリング画面管理用データのアドレスを返す
+// 引数   ：string 取得するレンダリング画面管理用データの名前
+// 戻り値 ：S_Rendering_Screen_Data * 指定されたレンダリング画面バッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Rendering_Screen_Data * C_Material::M_Get_Rendering_Screen_By_Name(std::string in_rendering_screen_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Rendering_Screen_Data & rendering_screen_inform : mpr_variable.rendering_screen_list)
+	{
+		if (rendering_screen_inform.signature_name == in_rendering_screen_name)
+		{
+			return &rendering_screen_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前のレンダリング画面管理用データのスロット番号を返す
+// 引数   ：string 取得するレンダリング画面管理用データの名前
+// 戻り値 ：int 指定されたレンダリング画面の番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Rendering_Screen_Slot_Number_By_Name(std::string in_rendering_screen_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int rendering_screen_sum = (int)mpr_variable.rendering_screen_list.size();	// レンダリング画面数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_rendering_screen_num = 0; l_rendering_screen_num < rendering_screen_sum; l_rendering_screen_num++)
+	{
+		if (mpr_variable.rendering_screen_list[l_rendering_screen_num].signature_name == in_rendering_screen_name)
+		{
+			return l_rendering_screen_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+
+//-☆- 深度ステンシルバッファ -☆-//
+
+//--☆ セッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int 深度ステンシルバッファの設定先スロット番号, C_Depth_Stencil_Buffer_System & 深度ステンシルバッファの参照
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Depth_Stencil_Buffer_To_Slot_By_Index(int in_depth_stencil_buffer_slot, RENDERING::CAPSULE::C_Depth_Stencil_Buffer_System & in_depth_stencil_buffer)
+{
+	// 配列外を指定されたら抜ける
+	if (in_depth_stencil_buffer_slot < 0 || mpr_variable.depth_stencil_list.size() <= in_depth_stencil_buffer_slot)
+	{
+		return;
+	}
+
+	// 深度ステンシルバッファをセットする
+	mpr_variable.depth_stencil_list[in_depth_stencil_buffer_slot].data = &in_depth_stencil_buffer;
+
+	return;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：メインの深度ステンシルバッファをスロットにセットする＊注意：シェーダーでのスロット番号ではない
+// 引数   ：int 深度ステンシルバッファの設定先スロット番号
+// 戻り値 ：void
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+void C_Material::M_Set_Main_Depth_Stencil_Buffer_To_Slot_To_Index(int in_depth_stencil_buffer_slot)
+{
+	// 配列外を指定されたら抜ける
+	if (in_depth_stencil_buffer_slot < 0 || mpr_variable.depth_stencil_list.size() <= in_depth_stencil_buffer_slot)
+	{
+		return;
+	}
+
+	// 深度ステンシルバッファをセットする（nullptrでメインの深度ステンシルバッファ）
+	mpr_variable.depth_stencil_list[in_depth_stencil_buffer_slot].data = nullptr;
+
+	return;
+}
+
+//--☆ ゲッタ ☆--//
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された深度ステンシルバッファ管理用データのアドレスを返す
+// 引数   ：int 取得する深度ステンシルバッファ管理用データの番号
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Depth_Stencil_Data * C_Material::M_Get_Depth_Stencil_Data_By_Index(int in_index)
+{
+	// 範囲外を指定されたらnullptrで見つからなかったことを示す
+	if (0 <= in_index || in_index < mpr_variable.depth_stencil_list.size())
+	{
+		return nullptr;
+	}
+
+	return &mpr_variable.depth_stencil_list[in_index];
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の深度ステンシルバッファ管理用データのアドレスを返す
+// 引数   ：string 取得する深度ステンシルバッファ管理用データの名前
+// 戻り値 ：S_Depth_Stencil_Data * 指定された深度ステンシルバッファ情報のアドレス、なければnullptr
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+S_Depth_Stencil_Data * C_Material::M_Get_Depth_Stencil_Buffer_By_Name(std::string in_depth_stencil_name)
+{
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (S_Depth_Stencil_Data & depth_stencil_inform : mpr_variable.depth_stencil_list)
+	{
+		if (depth_stencil_inform.signature_name == in_depth_stencil_name)
+		{
+			return &depth_stencil_inform;
+		}
+	}
+
+	// 見つからなかった
+	return nullptr;
+}
+
+
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+// 詳細   ：指定された名前の深度ステンシルバッファ管理用データのスロット番号を返す
+// 引数   ：string 取得する深度ステンシルバッファ管理用データの名前
+// 戻り値 ：int 指定された深度ステンシルバッファの番号、なければ-1
+//☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆=☆//
+int C_Material::M_Get_Depth_Stencil_Buffer_Slot_Number_By_Name(std::string in_depth_stencil_buffer_name)
+{
+	// ☆ 変数宣言 ☆ //
+	int depth_stencil_sum = (int)mpr_variable.depth_stencil_list.size();	// 深度ステンシルバッファ数
+
+
+	// 一致する名前を探索し、あればそのアドレスを返す
+	for (int l_depth_stencil_num = 0; l_depth_stencil_num < depth_stencil_sum; l_depth_stencil_num++)
+	{
+		if (mpr_variable.depth_stencil_list[l_depth_stencil_num].signature_name == in_depth_stencil_buffer_name)
+		{
+			return l_depth_stencil_num;
+		}
+	}
+
+	// 見つからなかった
+	return -1;
+}
+
+

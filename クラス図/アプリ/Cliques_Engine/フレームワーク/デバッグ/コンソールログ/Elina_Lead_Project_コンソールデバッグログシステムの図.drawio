@@ -1,0 +1,741 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17" pages="3">
+  <diagram id="MZepzLfiCYgvr2fPDIN_" name="ver.3.0.0">
+    <mxGraphModel dx="1509" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-1" value="上位層" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="90" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-2" value="OS用のライブラリなど" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="3580" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nN2CaCzzSxwqU-hyyOlr-1" target="nN2CaCzzSxwqU-hyyOlr-89">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="400" as="sourcePoint" />
+            <mxPoint x="775" y="340" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-79" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nN2CaCzzSxwqU-hyyOlr-89" target="nN2CaCzzSxwqU-hyyOlr-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="1890" as="sourcePoint" />
+            <mxPoint x="750" y="2060" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-80" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;startArrow=none;startFill=0;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="nN2CaCzzSxwqU-hyyOlr-61">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="443" y="1880" as="sourcePoint" />
+            <mxPoint x="2500" y="2560" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2020" y="2320" />
+              <mxPoint x="2500" y="2320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-81" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=8;rounded=0;startArrow=none;startFill=0;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="nN2CaCzzSxwqU-hyyOlr-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2030" y="1880" as="sourcePoint" />
+            <mxPoint x="2020" y="2320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="760" y="2310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-89" value="デバッグ層　ネームスペース＜DEBUGGER＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="105" y="350" width="4080" height="3100" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-4" value="コンソールデバッグログ層　ネームスペース＜DEBUGGER::LOG::CONSOLE＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-89">
+          <mxGeometry x="95" y="60" width="3890" height="2930" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-5" value="コンソールでのデバッグログの基底クラス層　ネームスペース＜DEBUGGER::LOG::CONSOLE::BASE＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-4">
+          <mxGeometry x="2170" y="2220" width="1230" height="630" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-6" value="デバッグログ出力用システムの基底クラス　C_Console_Debug_Log_System_Base" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-5">
+          <mxGeometry x="60" y="100" width="630" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-7" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-6">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-8" value="ー　自クラスの参照　＜静的変数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-7">
+          <mxGeometry y="25" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-9" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-6">
+          <mxGeometry x="10" y="110" width="610" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-10" value="＋　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-83" value="＋　デバッグシステムの初期化と生成＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-11" value="＋　デストラクタ　＜仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-12" value="＋　デバッグログシステムを削除する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-13" value="＋　デバッグシステムの参照のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-14" value="＋　指定された文字列を設定されたファイル名で出力する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-15" value="＋　処理を止めてログを出す　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-16" value="＋　コンソールのログを初期化する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-17" value="＋　コンソールの文字カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-18" value="＋　コンソールの背景カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="300" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-19" value="＋　コンソールの文字と背景カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-9">
+          <mxGeometry y="330" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-20" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-5">
+          <mxGeometry x="740" y="310" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-21" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-20">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-22" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-5" source="nN2CaCzzSxwqU-hyyOlr-6" target="nN2CaCzzSxwqU-hyyOlr-20">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-23" value="ウィンドウズ用のコンソールデバッグログ&lt;span style=&quot;background-color: initial;&quot;&gt;層　ネームスペース＜DEBUGGER::LOG::CONSOLE::WINDOWS＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-4">
+          <mxGeometry x="130" y="1030" width="1220" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-24" value="ウィンドウズ用コンソールデバッグログ出力システム　C_Windows_Console_Log_System" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-23">
+          <mxGeometry x="50" y="50" width="630" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-25" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-24">
+          <mxGeometry x="10" y="200" width="610" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-26" value="＋　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-87" value="＋　デバッグシステムの初期化と生成＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-88" value="＋　Windows用のコンソールログシステムを生成する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-27" value="＋　デストラクタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-28" value="＋　デバッグログシステムを削除する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-29" value="＋　指定された文字列を設定されたファイル名で出力する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-30" value="＋　処理を止めてログを出す　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-31" value="＋　コンソールのログを初期化する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-32" value="＋　コンソールの文字カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-33" value="＋　コンソールの背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="300" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-34" value="＋　コンソールの文字と背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-25">
+          <mxGeometry y="330" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-35" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-24">
+          <mxGeometry x="10" y="40" width="610" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-36" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソール画面のデータ&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-35">
+          <mxGeometry y="25" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-37" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソールのテキストの色&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-35">
+          <mxGeometry y="55" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-38" value="ー　コンソールの背景色" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-35">
+          <mxGeometry y="85" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-39" value="ー　初期化されたかどうかのフラグ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-35">
+          <mxGeometry y="115" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-40" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-23">
+          <mxGeometry x="740" y="310" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-41" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-40">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-42" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-23" source="nN2CaCzzSxwqU-hyyOlr-24" target="nN2CaCzzSxwqU-hyyOlr-40">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-43" value="&lt;span style=&quot;background-color: initial;&quot;&gt;コンソールデバッグログのインターフェース層　ネームスペース＜DEBUGGER::LOG::CONSOLE＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-4">
+          <mxGeometry x="1495" y="60" width="1220" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-44" value="コンソールデバッグログのインターフェース　C_Console_Log_Interface" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-43">
+          <mxGeometry x="50" y="50" width="630" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-45" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-44">
+          <mxGeometry x="10" y="120" width="610" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-46" value="ー　コンストラクタ　インスタンス化を防止するために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-47" value="＋　デバッグログクラスを生成する、ＯＳやビルド時の設定で分岐する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-48" value="＋　デバッグログシステムを削除する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-49" value="＋　指定された文字列を設定されたファイル名で出力する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-50" value="＋　処理を止めてログを出す＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-51" value="＋　コンソール画面に出力中のログをフラッシュ（初期化）する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-52" value="＋　コンソールの文字カラーを変更する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-53" value="＋　コンソールの背景カラーを変更する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-54" value="＋　コンソールの文字と背景カラーを変更する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-45">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-55" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-44">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-56" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-43">
+          <mxGeometry x="730" y="240" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-57" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-56">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-58" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-43" source="nN2CaCzzSxwqU-hyyOlr-44" target="nN2CaCzzSxwqU-hyyOlr-56">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-59" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-4" source="nN2CaCzzSxwqU-hyyOlr-43" target="nN2CaCzzSxwqU-hyyOlr-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1590" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2410" y="860" />
+              <mxPoint x="2790" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-60" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-4" source="nN2CaCzzSxwqU-hyyOlr-43" target="nN2CaCzzSxwqU-hyyOlr-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1590" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2105" y="860" />
+              <mxPoint x="740" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-61" value="コンソールデバッグログ無機能化&lt;span style=&quot;background-color: initial;&quot;&gt;層　ネームスペース＜DEBUGGER::LOG::CONSOLE::DEACTIVATED＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-4">
+          <mxGeometry x="1390" y="1030" width="1220" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-62" value="コンソールデバッグログ出力システムを無機能化する派生クラス　C_Deactivated_Console_Log_System" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-61">
+          <mxGeometry x="50" y="50" width="630" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-63" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-62">
+          <mxGeometry x="10" y="110" width="610" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-64" value="＋　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-85" value="＋　デバッグシステムの初期化と生成＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-86" value="＋　デバッグログシステム無機能化用クラスを生成する＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-65" value="＋　デストラクタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-66" value="＋　デバッグログシステムを削除する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-67" value="＋　指定された文字列を設定されたファイル名で出力する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-68" value="＋　処理を止めてログを出す　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-69" value="＋　コンソールのログを初期化する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-70" value="＋　コンソールの文字カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-71" value="＋　コンソールの背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="300" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-72" value="＋　コンソールの文字と背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-63">
+          <mxGeometry y="330" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-73" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-62">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-74" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-61">
+          <mxGeometry x="710" y="265" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-75" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="nN2CaCzzSxwqU-hyyOlr-74">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-76" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-61" source="nN2CaCzzSxwqU-hyyOlr-62" target="nN2CaCzzSxwqU-hyyOlr-74">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-77" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-4" source="nN2CaCzzSxwqU-hyyOlr-43" target="nN2CaCzzSxwqU-hyyOlr-61">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2115" y="620" as="sourcePoint" />
+            <mxPoint x="750" y="1040" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2105" y="860" />
+              <mxPoint x="2000" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN2CaCzzSxwqU-hyyOlr-78" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;dashed=1;dashPattern=8 8;startArrow=none;startFill=0;endSize=6;" edge="1" parent="nN2CaCzzSxwqU-hyyOlr-4" source="nN2CaCzzSxwqU-hyyOlr-61" target="nN2CaCzzSxwqU-hyyOlr-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2000" y="1980" />
+              <mxPoint x="2480" y="1980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="4HSURTz_4xqVUSgnUQa3" name="ver.2.0.0">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-1" value="上位層" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="1470" y="40" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-2" value="OS用のライブラリなど" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="1470" y="3460" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wumoOaDDkUU6VSbBJ6es-1" target="wumoOaDDkUU6VSbBJ6es-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="400" as="sourcePoint" />
+            <mxPoint x="775" y="340" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-4" value="デバッグ層　ネームスペース＜DEBUGGER＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="20" y="340" width="3890" height="2930" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-5" value="コンソールでのデバッグログの基底クラス層　ネームスペース＜DEBUGGER::LOG::CONSOLE::BASE＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="wumoOaDDkUU6VSbBJ6es-4" vertex="1">
+          <mxGeometry x="2170" y="2220" width="1230" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-6" value="デバッグログ出力用システムの基底クラス　C_Console_Debug_Log_System_Base" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="wumoOaDDkUU6VSbBJ6es-5" vertex="1">
+          <mxGeometry x="60" y="100" width="630" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-7" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="wumoOaDDkUU6VSbBJ6es-6" vertex="1">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-21" value="ー　自クラスの参照　＜静的変数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-7" vertex="1">
+          <mxGeometry y="25" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-13" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-6" vertex="1">
+          <mxGeometry x="10" y="110" width="610" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-14" value="＋　コンストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-16" value="＋　デストラクタ　＜仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-22" value="＋　デバッグログシステムを削除する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qZoFHDHM9bOMxEvjwKt-1" value="＋　デバッグシステムの参照のゲッタ　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-17" value="＋　指定された文字列を設定されたファイル名で出力する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-18" value="＋　処理を止めてログを出す　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-19" value="＋　コンソールのログを初期化する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-20" value="＋　コンソールの文字カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-21" value="＋　コンソールの背景カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-22" value="＋　コンソールの文字と背景カラーを変更する　＜純粋仮想関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="wumoOaDDkUU6VSbBJ6es-13" vertex="1">
+          <mxGeometry y="300" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-23" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="wumoOaDDkUU6VSbBJ6es-5" vertex="1">
+          <mxGeometry x="740" y="300" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-24" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="wumoOaDDkUU6VSbBJ6es-23" vertex="1">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-25" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="wumoOaDDkUU6VSbBJ6es-5" source="wumoOaDDkUU6VSbBJ6es-6" target="wumoOaDDkUU6VSbBJ6es-23" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-23" value="ウィンドウズ用のコンソールデバッグログ&lt;span style=&quot;background-color: initial;&quot;&gt;層　ネームスペース＜DEBUGGER::LOG::CONSOLE::WINDOWS＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="wumoOaDDkUU6VSbBJ6es-4" vertex="1">
+          <mxGeometry x="130" y="1030" width="1220" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-24" value="ウィンドウズ用コンソールデバッグログ出力システム　C_Windows_Console_Log_System" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="f1DTNc98anFuVSkahH2g-23" vertex="1">
+          <mxGeometry x="50" y="50" width="630" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-27" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-24" vertex="1">
+          <mxGeometry x="10" y="200" width="610" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-28" value="ー　コンストラクタ　インスタンス化を防止するために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-30" value="＋　デストラクタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-31" value="＋　デバッグログシステムを削除する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-33" value="＋　指定された文字列を設定されたファイル名で出力する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-34" value="＋　処理を止めてログを出す　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-35" value="＋　コンソールのログを初期化する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-36" value="＋　コンソールの文字カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-37" value="＋　コンソールの背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-38" value="＋　コンソールの文字と背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="f1DTNc98anFuVSkahH2g-27" vertex="1">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="W34aLxF1KS_WqzR2YmIc-1" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="f1DTNc98anFuVSkahH2g-24" vertex="1">
+          <mxGeometry x="10" y="40" width="610" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="W34aLxF1KS_WqzR2YmIc-2" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソール画面のデータ&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="W34aLxF1KS_WqzR2YmIc-1" vertex="1">
+          <mxGeometry y="25" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="W34aLxF1KS_WqzR2YmIc-3" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソールのテキストの色&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="W34aLxF1KS_WqzR2YmIc-1" vertex="1">
+          <mxGeometry y="55" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="W34aLxF1KS_WqzR2YmIc-4" value="ー　コンソールの背景色" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="W34aLxF1KS_WqzR2YmIc-1" vertex="1">
+          <mxGeometry y="85" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="W34aLxF1KS_WqzR2YmIc-5" value="ー　初期化されたかどうかのフラグ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="W34aLxF1KS_WqzR2YmIc-1" vertex="1">
+          <mxGeometry y="115" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-39" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="f1DTNc98anFuVSkahH2g-23" vertex="1">
+          <mxGeometry x="730" y="275" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-40" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="f1DTNc98anFuVSkahH2g-39" vertex="1">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1DTNc98anFuVSkahH2g-41" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="f1DTNc98anFuVSkahH2g-23" source="f1DTNc98anFuVSkahH2g-24" target="f1DTNc98anFuVSkahH2g-39" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-2" value="&lt;span style=&quot;background-color: initial;&quot;&gt;コンソールデバッグログのインターフェース層　ネームスペース＜DEBUGGER::LOG::CONSOLE＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="wumoOaDDkUU6VSbBJ6es-4" vertex="1">
+          <mxGeometry x="1495" y="60" width="1220" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-3" value="コンソールデバッグログのインターフェース　C_Console_Log_Interface" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_g0H9b1o5qzqhHkhxWhR-2" vertex="1">
+          <mxGeometry x="50" y="50" width="630" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-4" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-3" vertex="1">
+          <mxGeometry x="10" y="120" width="610" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-5" value="ー　コンストラクタ　インスタンス化を防止するために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-6" value="＋　デバッグログクラスを生成する、ＯＳやビルド時の設定で分岐する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-8" value="＋　デバッグログシステムを削除する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-9" value="＋　指定された文字列を設定されたファイル名で出力する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-10" value="＋　処理を止めてログを出す" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-11" value="＋　コンソール画面に出力中のログをフラッシュ（初期化）する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-12" value="＋　コンソールの文字カラーを変更する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-13" value="＋　コンソールの背景カラーを変更する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-14" value="＋　コンソールの文字と背景カラーを変更する" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="_g0H9b1o5qzqhHkhxWhR-4" vertex="1">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-15" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="_g0H9b1o5qzqhHkhxWhR-3" vertex="1">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-20" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="_g0H9b1o5qzqhHkhxWhR-2" vertex="1">
+          <mxGeometry x="730" y="240" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-21" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="_g0H9b1o5qzqhHkhxWhR-20" vertex="1">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-22" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="_g0H9b1o5qzqhHkhxWhR-2" source="_g0H9b1o5qzqhHkhxWhR-3" target="_g0H9b1o5qzqhHkhxWhR-20" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-23" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" parent="wumoOaDDkUU6VSbBJ6es-4" source="_g0H9b1o5qzqhHkhxWhR-2" target="wumoOaDDkUU6VSbBJ6es-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1590" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2410" y="860" />
+              <mxPoint x="2790" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_g0H9b1o5qzqhHkhxWhR-83" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" parent="wumoOaDDkUU6VSbBJ6es-4" source="_g0H9b1o5qzqhHkhxWhR-2" target="f1DTNc98anFuVSkahH2g-23" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1590" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2105" y="860" />
+              <mxPoint x="740" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-1" value="コンソールデバッグログ無機能化&lt;span style=&quot;background-color: initial;&quot;&gt;層　ネームスペース＜DEBUGGER::LOG::CONSOLE::DEACTIVATED＞&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="wumoOaDDkUU6VSbBJ6es-4" vertex="1">
+          <mxGeometry x="1390" y="1030" width="1220" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-2" value="コンソールデバッグログ出力システムを無機能化する派生クラス　C_Deactivated_Console_Log_System" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="Cd2btQzOpUPScq7t3F3k-1" vertex="1">
+          <mxGeometry x="50" y="50" width="630" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-3" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-2" vertex="1">
+          <mxGeometry x="10" y="110" width="610" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-4" value="ー　コンストラクタ　インスタンス化を防止するために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="30" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-6" value="＋　デストラクタ　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="60" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-7" value="＋　デバッグログシステムを削除する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="90" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-8" value="＋　指定された文字列を設定されたファイル名で出力する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="120" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-9" value="＋　処理を止めてログを出す　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="150" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-10" value="＋　コンソールのログを初期化する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="180" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-11" value="＋　コンソールの文字カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="210" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-12" value="＋　コンソールの背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="240" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-13" value="＋　コンソールの文字と背景カラーを変更する　＜継承関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Cd2btQzOpUPScq7t3F3k-3" vertex="1">
+          <mxGeometry y="270" width="610" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-14" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="Cd2btQzOpUPScq7t3F3k-2" vertex="1">
+          <mxGeometry x="10" y="40" width="610" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-19" value="現在の設計評価　：正常" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="Cd2btQzOpUPScq7t3F3k-1" vertex="1">
+          <mxGeometry x="730" y="230" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-20" value="" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="Cd2btQzOpUPScq7t3F3k-19" vertex="1">
+          <mxGeometry x="10" y="30" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-21" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Cd2btQzOpUPScq7t3F3k-1" source="Cd2btQzOpUPScq7t3F3k-2" target="Cd2btQzOpUPScq7t3F3k-19" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-184" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;" parent="wumoOaDDkUU6VSbBJ6es-4" source="_g0H9b1o5qzqhHkhxWhR-2" target="Cd2btQzOpUPScq7t3F3k-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2115" y="620" as="sourcePoint" />
+            <mxPoint x="750" y="1040" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2105" y="860" />
+              <mxPoint x="2000" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cd2btQzOpUPScq7t3F3k-186" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;dashed=1;dashPattern=8 8;startArrow=none;startFill=0;endSize=6;" parent="wumoOaDDkUU6VSbBJ6es-4" source="Cd2btQzOpUPScq7t3F3k-1" target="wumoOaDDkUU6VSbBJ6es-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="1680" as="sourcePoint" />
+            <mxPoint x="2488" y="2230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2000" y="1980" />
+              <mxPoint x="2480" y="1980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wumoOaDDkUU6VSbBJ6es-26" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wumoOaDDkUU6VSbBJ6es-4" target="wumoOaDDkUU6VSbBJ6es-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="1890" as="sourcePoint" />
+            <mxPoint x="750" y="2060" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ohx4ZGdZKg55onmulrKC-1" value="" style="endArrow=classic;dashed=1;html=1;strokeWidth=8;rounded=0;startArrow=none;startFill=0;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="Cd2btQzOpUPScq7t3F3k-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="443" y="1880" as="sourcePoint" />
+            <mxPoint x="2500" y="2560" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2020" y="2320" />
+              <mxPoint x="2500" y="2320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ohx4ZGdZKg55onmulrKC-2" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=8;rounded=0;startArrow=none;startFill=0;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="f1DTNc98anFuVSkahH2g-23" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2030" y="1880" as="sourcePoint" />
+            <mxPoint x="2020" y="2320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="760" y="2310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="ver.1.0.0" id="PVRPMMHeE0FqWcYlT0MY">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-2" value="上位層" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="330" y="20" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-3" value="OS用のライブラリなど" style="rounded=0;whiteSpace=wrap;html=1;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="330" y="1360" width="990" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="k3mOtdBn1TSyj0tZNNzo-2" target="k3mOtdBn1TSyj0tZNNzo-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="400" as="sourcePoint" />
+            <mxPoint x="775" y="340" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-5" value="デバッグ層　ネームスペース＜DEBUGGER＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="20" y="340" width="1610" height="860" as="geometry" />
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-7" value="デバッグログ層　ネームスペース＜DEBUGGER::LOG＞" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="k3mOtdBn1TSyj0tZNNzo-5" vertex="1">
+          <mxGeometry x="60" y="70" width="1490" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-12" value="デバッグログ出力用システム　C_Log_System" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="k3mOtdBn1TSyj0tZNNzo-7" vertex="1">
+          <mxGeometry x="100" y="90" width="600" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-13" value="パラメータ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=25;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="k3mOtdBn1TSyj0tZNNzo-12" vertex="1">
+          <mxGeometry x="10" y="40" width="580" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-3" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソール画面のデータ&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-13" vertex="1">
+          <mxGeometry y="25" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-6" value="ー　&lt;span style=&quot;background-color: initial;&quot;&gt;コンソールのテキストの色&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-13" vertex="1">
+          <mxGeometry y="55" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-7" value="ー　コンソールの背景色" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-13" vertex="1">
+          <mxGeometry y="85" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-8" value="ー　初期化されたかどうかのフラグ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-13" vertex="1">
+          <mxGeometry y="115" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-9" value="ー　ログシステム用クラスの実体（シングルトン）　＜静的変数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-13" vertex="1">
+          <mxGeometry y="145" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-2" value="メゾッド" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="k3mOtdBn1TSyj0tZNNzo-12" vertex="1">
+          <mxGeometry x="10" y="230" width="580" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-4" value="ー　コンストラクタ、インスタンス化防止のために隠蔽" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="30" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-5" value="＋　デバッグシステムの初期化　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="60" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-10" value="＋　デストラクタ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="90" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-11" value="＋　指定された文字列を設定されたファイル名で出力する　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="120" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-15" value="＋　処理を止めてログを出す　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="150" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-16" value="＋　コンソールのログを初期化する　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="180" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-17" value="＋　コンソールの文字カラーを変更する　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="210" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-18" value="＋　コンソールの背景カラーを変更する　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="240" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-19" value="＋　コンソールの文字と背景カラーを変更する　＜静的関数＞" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="6Y1wMJWvAKlvK6tw0XU2-2" vertex="1">
+          <mxGeometry y="270" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-12" value="現在の設計評価　：問題点あり" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;fontSize=17;" parent="k3mOtdBn1TSyj0tZNNzo-7" vertex="1">
+          <mxGeometry x="747" y="270" width="460" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-13" value="１．純粋仮想化し、デバッグとリリース、及びＯＳごとにクラスを派生させるべきである。状況によっては必要のない変数がロードされてしまう。&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;２．機能が複雑化する可能性があるので、デバッグログを使用するためのレイヤーを用意すべきである&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;３．デバッグログ出力用システムとされているが、出力先がコンソールなので、&lt;/div&gt;&lt;div&gt;コンソールログシステムのような名前にすべきである。&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="6Y1wMJWvAKlvK6tw0XU2-12" vertex="1">
+          <mxGeometry x="10" y="30" width="440" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="6Y1wMJWvAKlvK6tw0XU2-14" value="" style="shape=link;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="k3mOtdBn1TSyj0tZNNzo-7" source="k3mOtdBn1TSyj0tZNNzo-12" target="6Y1wMJWvAKlvK6tw0XU2-12" edge="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="720" y="359.5" as="sourcePoint" />
+            <mxPoint x="855" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k3mOtdBn1TSyj0tZNNzo-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#FFFFFF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="k3mOtdBn1TSyj0tZNNzo-5" target="k3mOtdBn1TSyj0tZNNzo-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="1890" as="sourcePoint" />
+            <mxPoint x="750" y="2060" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

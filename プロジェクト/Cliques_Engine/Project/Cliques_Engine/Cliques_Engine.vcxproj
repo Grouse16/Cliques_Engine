@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{203ce277-0382-4a62-acd1-a8697659e18d}</ProjectGuid>
+    <RootNamespace>RitlineOfTheIronQueen</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="2D_Position_Data.h" />
+    <ClInclude Include="All_Figure_Data.h" />
+    <ClInclude Include="Challenge_Mode_Macro.h" />
+    <ClInclude Include="Cliques_Engine_main.h" />
+    <ClInclude Include="Console_Debug_Log_Names.h" />
+    <ClInclude Include="C_Animation_Model_Loader.h" />
+    <ClInclude Include="C_Color.h" />
+    <ClInclude Include="C_Animation_Model_Manager.h" />
+    <ClInclude Include="C_Animation_Model_System.h" />
+    <ClInclude Include="C_Console_Log_Interface.h" />
+    <ClInclude Include="C_Deactivated_Console_Log_System.h" />
+    <ClInclude Include="C_OS_User_System.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Constant_Resource.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Depth_Stencil.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Font.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Initialize_And_Release.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Screen.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Setting.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Texture_Resource.h" />
+    <ClInclude Include="C_Rendering_API_Interface_User.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Buffer.h" />
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Index_Buffer.h" />
+    <ClInclude Include="C_Static_Model_Manager.h" />
+    <ClInclude Include="C_Actor_Base.h" />
+    <ClInclude Include="C_Actor_Draw_Manager.h" />
+    <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h" />
+    <ClInclude Include="C_Animation_Algorithm_Blend_Play.h" />
+    <ClInclude Include="C_Animation_Algorithm_Loop_Play.h" />
+    <ClInclude Include="C_Animation_Algorithm_No_Animation.h" />
+    <ClInclude Include="C_Animation_Algorithm_Play.h" />
+    <ClInclude Include="C_Animation_Calculation_System.h" />
+    <ClInclude Include="C_Animation_Algorithm_Base.h" />
+    <ClInclude Include="C_Animation_Data_System.h" />
+    <ClInclude Include="C_Animation_Model_Component.h" />
+    <ClInclude Include="C_Animation_Model_User.h" />
+    <ClInclude Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h" />
+    <ClInclude Include="C_APK_Manager.h" />
+    <ClInclude Include="C_Bone_Data.h" />
+    <ClInclude Include="C_Camera_System.h" />
+    <ClInclude Include="C_Color_Converter.h" />
+    <ClInclude Include="C_Component_Base.h" />
+    <ClInclude Include="C_Depth_Stencil_Buffer_System.h" />
+    <ClInclude Include="C_DX12_Depth_Stencil_Buffer_System.h" />
+    <ClInclude Include="C_DX12_Index_Setting_Inform.h" />
+    <ClInclude Include="C_DX12_Rendering_Screen_System.h" />
+    <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h" />
+    <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h" />
+    <ClInclude Include="C_Rendering_Screen_System.h" />
+    <ClInclude Include="C_Static_Model_Loader.h" />
+    <ClInclude Include="C_Static_Model_System.h" />
+    <ClInclude Include="C_Static_Model_User.h" />
+    <ClInclude Include="C_Vertex_Index_System.h" />
+    <ClInclude Include="C_Windows_Console_Log_System.h" />
+    <ClInclude Include="E_Antialiasing.h" />
+    <ClInclude Include="E_Blend_Mode.h" />
+    <ClInclude Include="E_Blend_Option.h" />
+    <ClInclude Include="E_CONSOLE_LOG_COLOR.h" />
+    <ClInclude Include="E_CONSOLE_LOG_TAGS.h" />
+    <ClInclude Include="E_Depth_Mode.h" />
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h" />
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h" />
+    <ClInclude Include="E_Depth_Write_Rule.h" />
+    <ClInclude Include="E_Draw_Mode.h" />
+    <ClInclude Include="E_DX12_PARAMATOR.h" />
+    <ClInclude Include="E_Mesh_Culling.h" />
+    <ClInclude Include="E_Mesh_Front.h" />
+    <ClInclude Include="E_MOUSE_CLICK_STATE.h" />
+    <ClInclude Include="E_OS_KIND.h" />
+    <ClInclude Include="E_RENDERING_API_KIND.h" />
+    <ClInclude Include="E_Rendering_Draw_Color.h" />
+    <ClInclude Include="E_Rendering_Draw_Format.h" />
+    <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h" />
+    <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h" />
+    <ClInclude Include="E_Stencil_Activate_Setting.h" />
+    <ClInclude Include="GCC_Or_MSVC_Macro.h" />
+    <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h" />
+    <ClInclude Include="S_Create_Index_Buffer_Inform.h" />
+    <ClInclude Include="S_Create_Render_Screen_Inform.h" />
+    <ClInclude Include="C_DX12_Blend_State_Setting_System.h" />
+    <ClInclude Include="C_DX12_Cached_PSO_Base.h" />
+    <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h" />
+    <ClInclude Include="C_Constant_Data_System.h" />
+    <ClInclude Include="S_Create_Constant_Buffer_Inform.h" />
+    <ClInclude Include="S_Create_Font_Data_Inform.h" />
+    <ClInclude Include="S_Create_Rendering_Graphics_Setting_Inform.h" />
+    <ClInclude Include="S_Create_Texture_Setting_Inform.h" />
+    <ClInclude Include="S_Create_Vertex_Buffer_Inform.h" />
+    <ClInclude Include="C_DX12_Constant_Setting_Inform.h" />
+    <ClInclude Include="C_DX12_Font_Data_Set.h" />
+    <ClInclude Include="C_DX12_Input_Layout_Setting_System.h" />
+    <ClInclude Include="C_DX12_Rendering_Graphics_Setting_Inform.h" />
+    <ClInclude Include="C_DX12_Rendering_Texture_Setting_Inform.h" />
+    <ClInclude Include="C_DX12_System.h" />
+    <ClInclude Include="C_DX12_Vertex_Setting_Inform.h" />
+    <ClInclude Include="C_Game_Function_Base.h" />
+    <ClInclude Include="C_Game_Function_Manager.h" />
+    <ClInclude Include="C_Game_Input_Collision_Box.h" />
+    <ClInclude Include="C_Game_Input_Collision_Manager.h" />
+    <ClInclude Include="C_Game_Input_Manager.h" />
+    <ClInclude Include="C_Float_2.h" />
+    <ClInclude Include="C_Float_3.h" />
+    <ClInclude Include="C_Game_Instance_Base.h" />
+    <ClInclude Include="C_Game_Instance_Manager.h" />
+    <ClInclude Include="C_Actor_List.h" />
+    <ClInclude Include="C_List_All_Base.h" />
+    <ClInclude Include="C_Main_Camera.h" />
+    <ClInclude Include="C_Material.h" />
+    <ClInclude Include="C_Material_Manager.h" />
+    <ClInclude Include="C_Material_User.h" />
+    <ClInclude Include="C_Mesh_Data.h" />
+    <ClInclude Include="C_Rendering_Screen_Data_Base.h" />
+    <ClInclude Include="C_Half_Color.h" />
+    <ClInclude Include="S_Depth_Setting_Value.h" />
+    <ClInclude Include="S_Model_Draw_Command.h" />
+    <ClInclude Include="C_Position.h" />
+    <ClInclude Include="C_Post_Effect_Base.h" />
+    <ClInclude Include="C_Post_Effect_Draw_Manager.h" />
+    <ClInclude Include="C_Post_Effect_List.h" />
+    <ClInclude Include="C_List_Divided_By_Class_Overall_Base.h" />
+    <ClInclude Include="C_Game_Manager.h" />
+    <ClInclude Include="C_Game_State_Manager.h" />
+    <ClInclude Include="C_Game_Time_Manager.h" />
+    <ClInclude Include="C_Float_4.h" />
+    <ClInclude Include="C_Font_Draw_System.h" />
+    <ClInclude Include="C_List_Divided_By_Class_Base.h" />
+    <ClInclude Include="C_Console_Debug_Log_System_Base.h" />
+    <ClInclude Include="C_Object_Vertex_System.h" />
+    <ClInclude Include="C_OS_Management_System_Base.h" />
+    <ClInclude Include="C_Platform_Detection_System.h" />
+    <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h" />
+    <ClInclude Include="C_Quaternion.h" />
+    <ClInclude Include="C_Scale.h" />
+    <ClInclude Include="C_Static_Model_Component.h" />
+    <ClInclude Include="E_MATRIX_DIRECTION.h" />
+    <ClInclude Include="C_Projection_System.h" />
+    <ClInclude Include="C_Rendering_Font_Inform_Base.h" />
+    <ClInclude Include="C_Rendering_API_Base.h" />
+    <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h" />
+    <ClInclude Include="C_Rendering_Setting_System.h" />
+    <ClInclude Include="C_Scene_Base.h" />
+    <ClInclude Include="C_Scene_Game.h" />
+    <ClInclude Include="C_Scene_Manager.h" />
+    <ClInclude Include="C_Scene_Title.h" />
+    <ClInclude Include="C_Shader_Manager.h" />
+    <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h" />
+    <ClInclude Include="C_DX12_Sampling_Setting_System.h" />
+    <ClInclude Include="C_Shader_Code.h" />
+    <ClInclude Include="C_Shader_Setting.h" />
+    <ClInclude Include="C_DX12_Stencil_State_Setting_System.h" />
+    <ClInclude Include="C_DX12_Streaming_Output_Buffer_Base.h" />
+    <ClInclude Include="C_Shader_Setting_Manager.h" />
+    <ClInclude Include="C_Shader_Setting_User.h" />
+    <ClInclude Include="C_Shader_User.h" />
+    <ClInclude Include="C_Sound_Base.h" />
+    <ClInclude Include="C_Sound_List.h" />
+    <ClInclude Include="C_Game_System_Base.h" />
+    <ClInclude Include="C_Game_System_List.h" />
+    <ClInclude Include="C_Texture_Data_System.h" />
+    <ClInclude Include="C_Texture_Data_User.h" />
+    <ClInclude Include="C_Texture_Manager.h" />
+    <ClInclude Include="C_Texture_Map.h" />
+    <ClInclude Include="C_Text_And_File_Manager.h" />
+    <ClInclude Include="C_UIC_Graph_Box.h" />
+    <ClInclude Include="C_UI_Component_Base.h" />
+    <ClInclude Include="C_User_Interface_Base.h" />
+    <ClInclude Include="C_User_Interface_List.h" />
+    <ClInclude Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.h" />
+    <ClInclude Include="C_Windows_OS_Management_System.h" />
+    <ClInclude Include="C_Wnd_Proc_For_Game_APK.h" />
+    <ClInclude Include="C_Wnd_Proc_Manager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="S_Material_Detail.h" />
+    <ClInclude Include="S_Mouse_State.h" />
+    <ClInclude Include="S_Day_And_Time_Inform.h" />
+    <ClInclude Include="S_Unique_Buffer_Slot.h" />
+    <ClInclude Include="S_Window_Position.h" />
+    <ClInclude Include="S_Window_Size_Data.h" />
+    <ClInclude Include="S_World_View_Projection.h" />
+    <ClInclude Include="Depth_Stencil_Setting_Inform.h" />
+    <ClInclude Include="Game_Function_Include_List.h" />
+    <ClInclude Include="Game_Function_Priority_Setting.h" />
+    <ClInclude Include="Game_Input_Collision_Names.h" />
+    <ClInclude Include="Game_Input_Collision_Priority.h" />
+    <ClInclude Include="Blend_Setting_Inform.h" />
+    <ClInclude Include="E_BOX_VERTEX_SETTING.h" />
+    <ClInclude Include="E_Game_Input_Collision_State.h" />
+    <ClInclude Include="Figure_Base_Data.h" />
+    <ClInclude Include="Input_Layout_Data.h" />
+    <ClInclude Include="Platform_Detector_Macro.h" />
+    <ClInclude Include="E_Shader_Kind.h" />
+    <ClInclude Include="Rasterizer_Setting_Inform.h" />
+    <ClInclude Include="S_Sampling_Setting_Inform.h" />
+    <ClInclude Include="S_3D_Animation_Model_Vertex.h" />
+    <ClInclude Include="S_3D_Model_Vertex.h" />
+    <ClInclude Include="S_Animation_Status.h" />
+    <ClInclude Include="S_Bone_Inform.h" />
+    <ClInclude Include="S_Bone_Key_Frame_List.h" />
+    <ClInclude Include="S_Bone_Weight.h" />
+    <ClInclude Include="S_Key_Frame.h" />
+    <ClInclude Include="S_Make_Font_To_Graph_Pakage.h" />
+    <ClInclude Include="S_Rect.h" />
+    <ClInclude Include="S_Shader_Resource_Signature_Inform.h" />
+    <ClInclude Include="C_1_Byte_Color.h" />
+    <ClInclude Include="S_UI_Vertex.h" />
+    <ClInclude Include="Texture_UV_Data.h" />
+    <ClInclude Include="C_Transform.h" />
+    <ClInclude Include="UI_Figure_Data.h" />
+    <ClInclude Include="Undefine_Platform_Detector_Macro.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C_Animation_Model_Manager.cpp" />
+    <ClCompile Include="C_Animation_Model_System.cpp" />
+    <ClCompile Include="C_Console_Debug_Log_System_Base.cpp" />
+    <ClCompile Include="C_Console_Log_Interface.cpp" />
+    <ClCompile Include="C_Deactivated_Console_Log_System.cpp" />
+    <ClCompile Include="C_OS_User_System.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Constant_Resource.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Font.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Initialize_And_Release.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Screen.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Setting.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Texture_Resource.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_User.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Buffer.cpp" />
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Index_Buffer.cpp" />
+    <ClCompile Include="C_Static_Model_Manager.cpp" />
+    <ClCompile Include="C_Static_Model_System.cpp" />
+    <ClCompile Include="C_Static_Model_User.cpp" />
+    <ClCompile Include="C_Actor_Base.cpp" />
+    <ClCompile Include="C_Actor_Draw_Manager.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Play.cpp" />
+    <ClCompile Include="C_Animation_Calculation_System.cpp" />
+    <ClCompile Include="C_Animation_Algorithm_Base.cpp" />
+    <ClCompile Include="C_Animation_Data_System.cpp" />
+    <ClCompile Include="C_Animation_Model_Component.cpp" />
+    <ClCompile Include="C_Animation_Model_Loader.cpp" />
+    <ClCompile Include="C_Animation_Model_User.cpp" />
+    <ClCompile Include="C_Bone_Data.cpp" />
+    <ClCompile Include="C_Camera_System.cpp" />
+    <ClCompile Include="C_Color.cpp" />
+    <ClCompile Include="C_Color_Converter.cpp" />
+    <ClCompile Include="C_Component_Base.cpp" />
+    <ClCompile Include="C_Depth_Stencil_Buffer_System.cpp" />
+    <ClCompile Include="C_DX12_Depth_Stencil_Buffer_System.cpp" />
+    <ClCompile Include="C_DX12_Index_Setting_Inform.cpp" />
+    <ClCompile Include="C_DX12_Rendering_Screen_System.cpp" />
+    <ClCompile Include="C_Float_2.cpp" />
+    <ClCompile Include="C_Float_3.cpp" />
+    <ClCompile Include="C_Game_Instance_Base.cpp" />
+    <ClCompile Include="C_Game_Instance_Manager.cpp" />
+    <ClCompile Include="C_Half_Color.cpp" />
+    <ClCompile Include="C_List_All_Base.cpp" />
+    <ClCompile Include="C_Main_Camera.cpp" />
+    <ClCompile Include="C_Material.cpp" />
+    <ClCompile Include="C_Material_Manager.cpp" />
+    <ClCompile Include="C_Material_User.cpp" />
+    <ClCompile Include="C_Mesh_Data.cpp" />
+    <ClCompile Include="C_Position.cpp" />
+    <ClCompile Include="C_Post_Effect_Base.cpp" />
+    <ClCompile Include="C_Post_Effect_Draw_Manager.cpp" />
+    <ClCompile Include="C_Projection_System.cpp" />
+    <ClCompile Include="C_Quaternion.cpp" />
+    <ClCompile Include="C_Rendering_Depth_Stencil_Buffer_Base.cpp" />
+    <ClCompile Include="C_Rendering_Index_Buffer_Setting_Inform_Base.cpp" />
+    <ClCompile Include="C_Rendering_Screen_System.cpp" />
+    <ClCompile Include="C_Rendering_Screen_Data_Base.cpp" />
+    <ClCompile Include="C_Scale.cpp" />
+    <ClCompile Include="C_Scene_Base.cpp" />
+    <ClCompile Include="C_Scene_Game.cpp" />
+    <ClCompile Include="C_Scene_Manager.cpp" />
+    <ClCompile Include="C_Scene_Title.cpp" />
+    <ClCompile Include="C_Shader_Setting_Manager.cpp" />
+    <ClCompile Include="C_Shader_Setting_User.cpp" />
+    <ClCompile Include="C_Shader_User.cpp" />
+    <ClCompile Include="C_Sound_Base.cpp" />
+    <ClCompile Include="C_Game_System_Base.cpp" />
+    <ClCompile Include="C_Static_Model_Component.cpp" />
+    <ClCompile Include="C_Static_Model_Loader.cpp" />
+    <ClCompile Include="C_Texture_Data_User.cpp" />
+    <ClCompile Include="C_Texture_Manager.cpp" />
+    <ClCompile Include="C_1_Byte_Color.cpp" />
+    <ClCompile Include="C_UIC_Graph_Box.cpp" />
+    <ClCompile Include="C_UI_Component_Base.cpp" />
+    <ClCompile Include="C_User_Interface_Base.cpp" />
+    <ClCompile Include="C_Vertex_Index_System.cpp" />
+    <ClCompile Include="C_Windows_Console_Log_System.cpp" />
+    <ClCompile Include="Cliques_Engine_main.cpp" />
+    <ClCompile Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.cpp" />
+    <ClCompile Include="C_APK_Manager.cpp" />
+    <ClCompile Include="C_DX12_Blend_State_Setting_System.cpp" />
+    <ClCompile Include="C_DX12_Cached_PSO_Base.cpp" />
+    <ClCompile Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.cpp" />
+    <ClCompile Include="C_Constant_Data_System.cpp" />
+    <ClCompile Include="C_DX12_Constant_Setting_Inform.cpp" />
+    <ClCompile Include="C_DX12_Font_Data_Set.cpp" />
+    <ClCompile Include="C_DX12_Input_Layout_Setting_System.cpp" />
+    <ClCompile Include="C_DX12_Rendering_Graphics_Setting_Inform.cpp" />
+    <ClCompile Include="C_DX12_Rendering_Texture_Setting_Inform.cpp" />
+    <ClCompile Include="C_DX12_System.cpp" />
+    <ClCompile Include="C_DX12_Vertex_Setting_Inform.cpp" />
+    <ClCompile Include="C_Engine_Function_Base.cpp" />
+    <ClCompile Include="C_Engine_Function_Manager.cpp" />
+    <ClCompile Include="C_Game_Input_Collision.cpp" />
+    <ClCompile Include="C_Game_Input_Collision_Box.cpp" />
+    <ClCompile Include="C_Game_Input_Collision_Manager.cpp" />
+    <ClCompile Include="C_Game_Input_Manager.cpp" />
+    <ClCompile Include="C_Game_Manager.cpp" />
+    <ClCompile Include="C_Game_State_Manager.cpp" />
+    <ClCompile Include="C_Game_Time_Manager.cpp" />
+    <ClCompile Include="C_Float_4.cpp" />
+    <ClCompile Include="C_Font_Draw_System.cpp" />
+    <ClCompile Include="C_Object_Vertex_System.cpp" />
+    <ClCompile Include="C_OS_Management_System_Base.cpp" />
+    <ClCompile Include="C_Platform_Detection_System.cpp" />
+    <ClCompile Include="C_DX12_Rasterrizer_State_Setting_System.cpp" />
+    <ClCompile Include="C_Rendering_Font_Inform_Base.cpp" />
+    <ClCompile Include="C_Rendering_API_Base.cpp" />
+    <ClCompile Include="C_Rendering_Graphics_Setting_Inform_Base.cpp" />
+    <ClCompile Include="C_Rendering_Setting_System.cpp" />
+    <ClCompile Include="C_Shader_Manager.cpp" />
+    <ClCompile Include="C_Rendering_Texture_Setting_Inform_Base.cpp" />
+    <ClCompile Include="C_DX12_Sampling_Setting_System.cpp" />
+    <ClCompile Include="C_Scale_Constant_UI.cpp" />
+    <ClCompile Include="C_Shader_Code.cpp" />
+    <ClCompile Include="C_Shader_Setting.cpp" />
+    <ClCompile Include="C_DX12_Stencil_State_Setting_System.cpp" />
+    <ClCompile Include="C_DX12_Streaming_Output_Buffer_Base.cpp" />
+    <ClCompile Include="C_Texture_Data_System.cpp" />
+    <ClCompile Include="C_Texture_Map.cpp" />
+    <ClCompile Include="C_Text_And_File_Manager.cpp" />
+    <ClCompile Include="C_Transform.cpp" />
+    <ClCompile Include="C_UI_Box.cpp" />
+    <ClCompile Include="C_UI_SETTING_DATA.cpp" />
+    <ClCompile Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.cpp" />
+    <ClCompile Include="C_Windows_OS_Management_System.cpp" />
+    <ClCompile Include="C_Wnd_Proc_For_Game_APK.cpp" />
+    <ClCompile Include="C_Wnd_Proc_Manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PS_UI_DX12.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ps_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="VS_UI_DX12.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vs_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/project/asset/shader/compile/hlsl/dx12/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Cliques_Engine.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets')" />
+    <Import Project="..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets" Condition="Exists('..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets')" />
+    <Import Project="..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets" Condition="Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_uwp.2023.9.6.1\build\native\directxtk_uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_uwp.2023.9.6.1\build\native\directxtex_uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxmath.2022.12.12.1\build\native\directxmath.targets'))" />
+  </Target>
+</Project>

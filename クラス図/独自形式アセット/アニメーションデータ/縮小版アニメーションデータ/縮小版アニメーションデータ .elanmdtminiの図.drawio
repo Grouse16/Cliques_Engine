@@ -1,0 +1,261 @@
+<mxfile host="Electron" modified="2024-02-27T02:30:40.254Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="vr6yZ2ag0_ZslrgaB5NB" version="23.1.5" type="device" pages="2">
+  <diagram id="RpcI-Fc32tAG5pqE7Hcq" name="縮小版アニメーションデータ ver.1.0.0">
+    <mxGraphModel dx="700" dy="414" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="58IFB2WP7LMsStTimwMG-1" value="縮小版アニメーションデータ ver.1.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="48" y="40" width="732" height="2380" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-2" value="内部データの解説" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-1" vertex="1">
+          <mxGeometry x="30" y="50" width="671" height="2290" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-3" value="データ認証文字" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="30" y="35" width="610" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-4" value=".elanmdt形式であることを証明する文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-3" vertex="1">
+          <mxGeometry x="20" y="40" width="570" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-5" value="This-Is-ELANMDT" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-3" vertex="1">
+          <mxGeometry x="20" y="100" width="570" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-6" value="アニメーション用の基本情報" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="30" y="215" width="610" height="595" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-7" value="アニメーション用の情報の開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-6" vertex="1">
+          <mxGeometry x="20" y="40" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-8" value="アニメーション用の情報の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-7" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-9" value="ANIMATION:" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-7" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-10" value="フレームレート" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-6" vertex="1">
+          <mxGeometry x="20" y="230" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-11" value="アニメーションのキーが何フレームを元に入力されたか" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-10" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-12" value="FRAMERATE:(int)フレームレート" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-10" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-13" value="アニメーション終了時間" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-6" vertex="1">
+          <mxGeometry x="20" y="410" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-14" value="アニメーションが開始から何秒後に終了するか" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-13" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-15" value="ENDTIME:(float)アニメーション終了時間" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-13" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-26" value="キーフレームのマトリクス情報" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="50" y="1010" width="570" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-27" value="特定のフレーム時点でのマトリクス変換行列と時間を表す、&lt;br&gt;それぞれ改行で区切られる" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-26" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-28" value="変換結果のマトリクスと時間" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-26" vertex="1">
+          <mxGeometry x="18" y="90" width="532" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-29" value="アニメーション時の特定のフレームでのマトリクス変換行列と時間を表す" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-28" vertex="1">
+          <mxGeometry x="16" y="40" width="504" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-30" value="(float4x4)マトリクス変換行列,(float)時間" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-28" vertex="1">
+          <mxGeometry x="16" y="100" width="504" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-23" value="キーフレームのマトリクス情報の総数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="50" y="830" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-24" value="キーフレーム情報をマトリクスに変換したデータの総数" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-23" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-25" value="KEYSUM:(int)キーフレームのマトリクス情報の総数" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-23" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-19" value="ボーンのアニメーションデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="30" y="1490" width="610" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-20" value="ボーン名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-19" vertex="1">
+          <mxGeometry x="20" y="45" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-21" value="ボーンの情報の開始位置を示す文字とアニメーションさせるボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-20" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-22" value="BONE:(string)ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-20" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2RQAqguAtwkUrcWFKZFE-4" value="使用するキーフレーム数と使用する番号の開始番号" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-19" vertex="1">
+          <mxGeometry x="20" y="230" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2RQAqguAtwkUrcWFKZFE-5" value="使用するキーフレームの開始番地と終了番号を持つことで&lt;br&gt;位置座標のキーフレームリスト内のどこからどこまでが使用するデータかを指定できる" style="rounded=0;whiteSpace=wrap;html=1;" parent="2RQAqguAtwkUrcWFKZFE-4" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2RQAqguAtwkUrcWFKZFE-6" value="(int)開始番号,(int)終了番号" style="rounded=0;whiteSpace=wrap;html=1;" parent="2RQAqguAtwkUrcWFKZFE-4" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-16" value="使用するボーン数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="50" y="1300" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-17" value="このアニメーションデータで使用するボーンの数" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-16" vertex="1">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-18" value="BONESUM:(int)使用するボーン数" style="rounded=0;whiteSpace=wrap;html=1;" parent="58IFB2WP7LMsStTimwMG-16" vertex="1">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-47" value="内部データの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" parent="58IFB2WP7LMsStTimwMG-2" vertex="1">
+          <mxGeometry x="22" y="1930" width="628" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="58IFB2WP7LMsStTimwMG-48" value="&lt;div style=&quot;font-size: 18px;&quot;&gt;This-Is-ELANMDTMINI&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;ANIMATION:&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;FRAMERATE:60&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;ENDTIME:117&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;KEYSUM:1&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0&lt;/div&gt;&lt;div&gt;BONESUM:1&lt;/div&gt;&lt;div&gt;BONE:mixamorig:Head&lt;/div&gt;&lt;div&gt;0,0&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fontSize=18;" parent="58IFB2WP7LMsStTimwMG-47" vertex="1">
+          <mxGeometry x="22" y="60" width="580" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="Aj7R915uy4fHXcBOu4-G-2" value="メリットとデメリット" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="108" y="2510" width="612" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="Aj7R915uy4fHXcBOu4-G-5" value="&lt;div style=&quot;&quot;&gt;メリット：&lt;/div&gt;&lt;div style=&quot;&quot;&gt;１．マトリクスに変換する処理を短縮して高速化できる&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;デメリット：&lt;/div&gt;&lt;div style=&quot;&quot;&gt;１．特定の時間での回転情報の補間が変形する&lt;/div&gt;&lt;div style=&quot;&quot;&gt;（本来はクォータニオン単体で円形補間した結果をマトリクスに変換するため）&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;２．キーフレーム数は各情報で一律ではないため、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;特定の情報のみが過多のデータはかえってデータ量が増え、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;ロードの負荷がかかる&lt;/div&gt;&lt;div style=&quot;&quot;&gt;（もし位置座標のキーが１つ、回転情報のキーが１２７つ、拡大縮小のキーが１つであれば、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;元データは1 * 3 + 127 * 4 + 1 * 3 = 514float分の情報となり&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;マトリクス変換後のデータは 127 * 16 = 2032float分の情報となる&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;）&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" parent="Aj7R915uy4fHXcBOu4-G-2" vertex="1">
+          <mxGeometry x="38" y="50" width="532" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="Aj7R915uy4fHXcBOu4-G-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="58IFB2WP7LMsStTimwMG-1" target="Aj7R915uy4fHXcBOu4-G-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="3000" as="sourcePoint" />
+            <mxPoint x="480" y="2950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="G_922d-sodWfwzx1-CtE-1" value="対策" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="26" y="2880" width="776" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="G_922d-sodWfwzx1-CtE-2" value="&lt;div style=&quot;&quot;&gt;対策案１：初期のマトリクスからの変化を相対的に出したデータを書きだす&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;解説：アニメーション開始時点でのオフセットマトリクスを最初に置いておき、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;次になんらかのキーに変化があるなら変化時点での変換後のマトリクスとオフセットマトリクスとの相対的な変化量を書きだす&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;メリット：&lt;/div&gt;&lt;div style=&quot;&quot;&gt;相対的な変化のみで計算することができれば、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;変化によるキーフレーム量は減りデータ量は低下し、&lt;/div&gt;&lt;div style=&quot;&quot;&gt;演算コストも低下する&lt;span style=&quot;background-color: initial;&quot;&gt;。&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;デメリット：&lt;/div&gt;&lt;div style=&quot;&quot;&gt;円形での補間の質が下がる。&lt;/div&gt;&lt;div style=&quot;&quot;&gt;一つのキーの変化によるデータ量の変動が不規則になり、データ量の予測は難しくなる。&lt;/div&gt;&lt;div style=&quot;&quot;&gt;127 * 1~12 + 16 = 約200 ~ 約1600float分の情報となる&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" vertex="1" parent="G_922d-sodWfwzx1-CtE-1">
+          <mxGeometry x="15" y="43" width="746" height="227" as="geometry" />
+        </mxCell>
+        <mxCell id="G_922d-sodWfwzx1-CtE-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Aj7R915uy4fHXcBOu4-G-2" target="G_922d-sodWfwzx1-CtE-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="2840" as="sourcePoint" />
+            <mxPoint x="110" y="2790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="w6xwYc94jbd2kx_mXi5-" name="縮小版アニメーションデータ ver.2.0.0">
+    <mxGraphModel dx="1313" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-1" value="縮小版アニメーションデータ ver.2.0.0" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="48" y="40" width="732" height="2600" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-2" value="内部データの解説" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-1">
+          <mxGeometry x="30" y="50" width="671" height="2530" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-3" value="データ認証文字" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="30" y="35" width="610" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-4" value=".elanmdt形式であることを証明する文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-3">
+          <mxGeometry x="20" y="40" width="570" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-5" value="This-Is-ELANMDT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-3">
+          <mxGeometry x="20" y="100" width="570" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-6" value="アニメーション用の基本情報" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="30" y="215" width="610" height="605" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-7" value="アニメーション用の情報の開始位置" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-6">
+          <mxGeometry x="20" y="40" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-8" value="アニメーション用の情報の開始位置を示す文字" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-7">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-9" value="ANIMATION:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-7">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-10" value="フレームレート" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-6">
+          <mxGeometry x="20" y="230" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-11" value="アニメーションのキーが何フレームを元に入力されたか" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-10">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-12" value="FRAMERATE:(int)フレームレート" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-10">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-13" value="アニメーション終了時間" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-6">
+          <mxGeometry x="20" y="410" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-14" value="アニメーションが開始から何秒後に終了するか" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-13">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-15" value="ENDTIME:(float)アニメーション終了時間" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-13">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-16" value="マトリクスの変化情報" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="50" y="1030" width="570" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-17" value="特定のフレーム時点でのマトリクスの変化情報と時間を表す、&lt;br&gt;それぞれ改行で区切られる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-16">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-18" value="マトリクスの変化情報と時間" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-16">
+          <mxGeometry x="18" y="90" width="532" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-19" value="アニメーション時の特定のフレームでのマトリクス変換行列と時間を表す" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-18">
+          <mxGeometry x="16" y="40" width="504" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-20" value="(float)時間,(変化した数値分ある)｛(float)変化量:(int)x番地-(int)y番地,｝;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-18">
+          <mxGeometry x="16" y="100" width="504" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-21" value="マトリクスの変化情報の総数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="50" y="850" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-22" value="オフセットマトリクスからの変化値の総数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-21">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-23" value="KEYSUM:(int)オフセットマトリクスからの変化値の総数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-21">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-31" value="使用するボーン数" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="51" y="1330" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-32" value="このアニメーションデータで使用するボーンの数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-31">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-33" value="BONESUM:(int)使用するボーン数" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-31">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-34" value="内部データの例" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="22" y="2160" width="628" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="kl-YKxcsnTZbKXFnZ7CW-35" value="&lt;div style=&quot;font-size: 18px;&quot;&gt;This-Is-ELANMDTMINI&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;ANIMATION:&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;FRAMERATE:60&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;ENDTIME:117&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;KEYSUM:2&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;0.06,0.5:0-0,1.5:1-2,0.3:3-3,;&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;0.12,0.25:0-0,1.75:1-2,0:3-3,;&lt;/div&gt;&lt;div&gt;BONESUM:1&lt;/div&gt;&lt;div&gt;BONE:mixamorig:Head&lt;/div&gt;OFFSET:1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,&lt;div&gt;0,1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fontSize=18;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-34">
+          <mxGeometry x="22" y="60" width="580" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-1" value="ボーンのアニメーションデータ" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="kl-YKxcsnTZbKXFnZ7CW-2">
+          <mxGeometry x="31" y="1530" width="610" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-2" value="ボーン名" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-1">
+          <mxGeometry x="20" y="45" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-3" value="ボーンの情報の開始位置を示す文字とアニメーションさせるボーン名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-2">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-4" value="BONE:(string)ボーン名" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-2">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-5" value="使用するキーフレーム数と使用する番号の開始番号" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-1">
+          <mxGeometry x="20" y="420" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-6" value="使用するキーフレームの開始番地と終了番号を持つことで&lt;br&gt;位置座標のキーフレームリスト内のどこからどこまでが使用するデータかを指定できる" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-5">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-7" value="(int)開始番号,(int)終了番号" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-5">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-8" value="アニメーションのオフセットマトリクス" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=23;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-1">
+          <mxGeometry x="20" y="230" width="570" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-9" value="アニメーション開始時のマトリクス変換行列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-8">
+          <mxGeometry x="20" y="40" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rWkp4Oz3ma3u5m1YwecA-10" value="OFFSET:(float4x4)マトリクス変換行列" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="rWkp4Oz3ma3u5m1YwecA-8">
+          <mxGeometry x="20" y="100" width="530" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

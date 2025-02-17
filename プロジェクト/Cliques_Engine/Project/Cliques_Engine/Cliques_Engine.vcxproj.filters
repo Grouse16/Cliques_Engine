@@ -1,0 +1,1962 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル\shader">
+      <UniqueIdentifier>{ad70bc74-2074-49f5-95f5-70e6ecb00002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム">
+      <UniqueIdentifier>{8e932571-39a8-477e-b165-ce258cc69dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS">
+      <UniqueIdentifier>{063382f2-84ae-4a20-a472-8ec0ed45daf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS\基底">
+      <UniqueIdentifier>{2d1dd0fd-67d5-4c37-9fd7-9b435fe330e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS\Windows">
+      <UniqueIdentifier>{0e56287b-0db0-4cde-b245-30bd23c07e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS\Windows\プロシージャ">
+      <UniqueIdentifier>{db3fa293-3a76-4bff-bb2d-60e05e1566e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング">
+      <UniqueIdentifier>{a26a1fe4-48d2-4b1a-ba73-648bf20efe77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\カプセル">
+      <UniqueIdentifier>{80ad9c45-0eb6-4636-9f55-30aa414fb422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API">
+      <UniqueIdentifier>{56ebe685-6810-41f8-bdc0-3c08405bbf69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\基底">
+      <UniqueIdentifier>{bfe8be4d-d1b7-49eb-b107-f51c2ad964a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12">
+      <UniqueIdentifier>{619f03f0-52f5-4b90-97aa-0c217c03b253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス">
+      <UniqueIdentifier>{e74a90be-6b1d-4955-8ad9-7f70b9ab4e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング">
+      <UniqueIdentifier>{2f8dafe4-d8e4-481d-85f1-859b99e41d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API">
+      <UniqueIdentifier>{df1f0b61-5c27-4e58-8f32-486aeac61def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\基底">
+      <UniqueIdentifier>{58e04f7a-ac86-48f1-8c19-8013e06a10f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12">
+      <UniqueIdentifier>{96c80601-abcc-43b7-b0ff-32cb4d4e3986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス">
+      <UniqueIdentifier>{cfb46542-b30f-4190-87b8-4ff9e9bc6bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\ツール">
+      <UniqueIdentifier>{7de2f824-f734-46b2-9a05-9c23111144be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル">
+      <UniqueIdentifier>{2c049d5c-645f-4f3a-975b-9659af4951a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\package">
+      <UniqueIdentifier>{b1674e18-b0a5-44f3-bdd6-576b68cd45f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム">
+      <UniqueIdentifier>{9f0468ad-26bb-47ab-b7a0-d4a0c2a43652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\図形">
+      <UniqueIdentifier>{e45a51eb-14f4-43d5-b4ee-595ab8e39529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム">
+      <UniqueIdentifier>{beed49c1-8faf-496a-b268-e64d1952026a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\図形">
+      <UniqueIdentifier>{0035a2bd-4443-4d54-a9b5-72d15dfe842b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型">
+      <UniqueIdentifier>{f649b444-7a0e-4eb0-83f6-d9a440f94d04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ">
+      <UniqueIdentifier>{31e2388d-e130-441c-81fe-4814d04a6be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ">
+      <UniqueIdentifier>{787dce6b-93da-4752-a083-674da74e578c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム">
+      <UniqueIdentifier>{ccee9e48-d87e-4164-815d-5d0280596645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS">
+      <UniqueIdentifier>{7ae714cd-892b-457e-84b9-d28a31bc1f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\Windows">
+      <UniqueIdentifier>{ac151590-179e-4c74-a35d-2793ac70daed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\Windows\プロシージャ">
+      <UniqueIdentifier>{af8631e4-dd26-497d-9f7b-7d90e59b051c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\shader\dx12">
+      <UniqueIdentifier>{b436fed8-46ad-4f2e-9e33-1c4c23a3c5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\shader\dx12\PS">
+      <UniqueIdentifier>{f77dc974-150c-4743-ba59-6f18a22cdc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\shader\dx12\VS">
+      <UniqueIdentifier>{07631b09-7190-45f5-afac-4a3b5f51a4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム">
+      <UniqueIdentifier>{4a1adfe2-b87d-449a-be6e-b35e34b1b5dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム">
+      <UniqueIdentifier>{f48954a0-8b97-444f-b457-6f0d64475ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス">
+      <UniqueIdentifier>{ffff9c64-94a8-404f-83ca-a77a6efdcd0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス">
+      <UniqueIdentifier>{ab3f19d2-e8ef-4acc-83e0-6d88437a987e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター">
+      <UniqueIdentifier>{3247d713-c107-4866-b71d-ab5c17726b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\基底">
+      <UniqueIdentifier>{494952a8-163c-4424-bba8-0ef427defcdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\インスタンス基底">
+      <UniqueIdentifier>{7592e87f-1b40-4690-abe7-3daa9cac1145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター">
+      <UniqueIdentifier>{31f205a3-7d92-4406-a8dc-c4c6be08b7fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\インスタンス基底">
+      <UniqueIdentifier>{bf16ebda-0355-4b59-a5a2-c48334dd393c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター\基底">
+      <UniqueIdentifier>{1cdf836e-d9ba-42e7-a51d-d954e97c7d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\制御用システム">
+      <UniqueIdentifier>{9a2dbcee-fd9c-4b66-b541-dcd4a24f6bc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\UI">
+      <UniqueIdentifier>{4c08dd76-c9ae-44ed-827d-b8edcf5d0f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\制御用システム">
+      <UniqueIdentifier>{3d09affe-ce71-484f-bbee-10ac4a145b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\派生">
+      <UniqueIdentifier>{79b5b562-0ef8-459c-90b9-0791e8525c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\リストシステム">
+      <UniqueIdentifier>{eb3f582b-bacb-4af3-bf6e-64785b242d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト">
+      <UniqueIdentifier>{8bf625a4-323c-4eb0-98d3-696cdb15acbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\派生">
+      <UniqueIdentifier>{f82b3df5-252d-4f1a-ab40-4a6c55b4bfe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\リストシステム">
+      <UniqueIdentifier>{e3774b2d-79e5-49f9-95fe-d72e6b6793e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\基底">
+      <UniqueIdentifier>{04cab16c-1448-4bf8-b129-3134be407ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\UI\基底">
+      <UniqueIdentifier>{45584fa8-21b2-4e4c-a152-4a00820de2be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\UI\派生">
+      <UniqueIdentifier>{756bed24-5727-46d4-a319-fa6bf3206ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター\派生">
+      <UniqueIdentifier>{d3dc834f-5c08-4d61-ac69-9dadc6a4cc9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト">
+      <UniqueIdentifier>{4f97e81d-2bdf-4981-8107-cf7bdd53769f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\派生">
+      <UniqueIdentifier>{0fb7b803-78de-445c-aa47-737968224cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\基底">
+      <UniqueIdentifier>{69678861-25b3-4112-a688-3bb8bbaf554e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\音">
+      <UniqueIdentifier>{ab9670f3-85ed-4dea-bc80-fe9815e8eb67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\音">
+      <UniqueIdentifier>{b6e263e4-2065-4c89-9841-234e1404a09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\音\基底">
+      <UniqueIdentifier>{eadf9c4b-58d6-478d-8e7f-e87d8143a5ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\音\派生">
+      <UniqueIdentifier>{529431bf-3827-458d-b7ca-0fdb25ec782c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\音\リストシステム">
+      <UniqueIdentifier>{49318409-bde4-4dfc-b630-d2b3bd6a3bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\音\基底">
+      <UniqueIdentifier>{23a9dc17-3524-4079-a603-ac43dce68cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\音\派生">
+      <UniqueIdentifier>{6f1e8cd4-af10-40b1-9fde-f412079c2acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\常時">
+      <UniqueIdentifier>{0cf6cbad-e1b7-4bb1-af3b-b331a7f41455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\常時">
+      <UniqueIdentifier>{bcb9eb0f-88fc-45dc-bae9-732ac7705594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\UI">
+      <UniqueIdentifier>{27a2f005-f407-41ed-9591-137924744757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\UI\基底">
+      <UniqueIdentifier>{6dd42807-2451-4365-b430-444689387c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\UI\リストシステム">
+      <UniqueIdentifier>{75d7c201-121d-471f-a483-de297c3c70c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\UI\派生">
+      <UniqueIdentifier>{add4e500-b97d-4bc0-971c-646857d0329d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\リスト">
+      <UniqueIdentifier>{f89c62e1-8331-4030-a86f-07516db11be5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\時間">
+      <UniqueIdentifier>{56a48908-913d-4a68-9871-479bbf4b8aa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\状態">
+      <UniqueIdentifier>{c99fb657-a472-46de-b8af-679245e3e06e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\動作">
+      <UniqueIdentifier>{9398a0d4-827e-46b1-a5a4-e2b368b14372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\入力">
+      <UniqueIdentifier>{dffd4b59-b467-4035-bbca-198b7f733e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ">
+      <UniqueIdentifier>{a6c9f2fb-9af8-4a81-afee-e0cb116848b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ">
+      <UniqueIdentifier>{b6bdea60-31a9-4ae7-b7ec-3b02b6f7842d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット">
+      <UniqueIdentifier>{27cc20fa-c8cb-4138-9f83-9982d0bd244b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\フォント">
+      <UniqueIdentifier>{381033e9-5c56-41df-a905-48d844e8929a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\ファイル">
+      <UniqueIdentifier>{44ab07ca-b338-4fcd-baf2-442cd5a2b23e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\テクスチャ">
+      <UniqueIdentifier>{fb83ebff-361c-4d51-8d2a-ef378fd7b513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\マテリアル">
+      <UniqueIdentifier>{55b534ac-f0cf-4ffc-a6dd-03d2a431f0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\時間">
+      <UniqueIdentifier>{c0bae4d1-2ad5-4fc9-a978-9456b7395b1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\状態">
+      <UniqueIdentifier>{fd1acffe-87dc-4841-842b-48426af48ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\動作">
+      <UniqueIdentifier>{04a1d3e2-63b1-4bf0-8287-69686b2d1d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\入力">
+      <UniqueIdentifier>{2a1c584f-ced4-4790-a8c6-ab71a00d1812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット">
+      <UniqueIdentifier>{0c3fafcc-84d9-4fe2-8ab0-1552aeaf3401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\ファイル">
+      <UniqueIdentifier>{82b24d47-50c5-4a77-83f8-09a77da191d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\テクスチャ">
+      <UniqueIdentifier>{fcd8e00d-d61c-4918-9410-4d27383b2bec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\マテリアル">
+      <UniqueIdentifier>{64b6cb04-5daf-49db-8ce1-aeb99bdd0c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\サウンド">
+      <UniqueIdentifier>{cad850b1-1b6f-4bc8-9716-764d2c43e3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\サウンド">
+      <UniqueIdentifier>{928cae15-2854-4e1c-b698-4ca7bb128ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\フォント">
+      <UniqueIdentifier>{367e46d7-c7bc-4f59-ac98-8c6f1ba3f086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー">
+      <UniqueIdentifier>{e6671ff8-faf5-463a-af7d-1c08356625aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー">
+      <UniqueIdentifier>{f3f24d63-834a-44fa-a79a-dc4c7e1afa56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\マテリアル\制御">
+      <UniqueIdentifier>{681bfc0b-a4cf-4b4a-b4f5-96fc22088683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\マテリアル\システム">
+      <UniqueIdentifier>{18433fdf-c60e-41d0-b733-3168c2deb63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\マテリアル\制御">
+      <UniqueIdentifier>{73acc37b-15ff-49b5-9eb2-fca88e9e8c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\マテリアル\システム">
+      <UniqueIdentifier>{f87004a2-95cd-422d-9178-5247f58f2df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\フォント\システム">
+      <UniqueIdentifier>{91fa3fb8-fa92-49db-9f36-e41cccfada2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\フォント\制御">
+      <UniqueIdentifier>{bf861af4-7e27-4080-aa41-a3b69bc32954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\サウンド\システム">
+      <UniqueIdentifier>{9e8c343c-6094-41e1-a5de-6eeaf7fdb029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\サウンド\制御">
+      <UniqueIdentifier>{db65fca8-fc94-494d-b7b1-d9d202bd5bf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\サウンド\制御">
+      <UniqueIdentifier>{031cba2b-59f2-4a0b-88ae-03c72a739c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\サウンド\システム">
+      <UniqueIdentifier>{cee08b02-e6c5-4620-8d70-23b89da993fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\テクスチャ\制御">
+      <UniqueIdentifier>{8b85496a-5245-4b94-b5a8-8ab8cd3960b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\テクスチャ\システム">
+      <UniqueIdentifier>{5350429e-659f-4619-9902-d67f83044252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\テクスチャ\システム">
+      <UniqueIdentifier>{30e53c4f-5cf8-4df9-988d-47b1af9b1b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\テクスチャ\制御">
+      <UniqueIdentifier>{8b60e4b5-4b4f-4ba1-9101-54f511e48796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義">
+      <UniqueIdentifier>{b5b09a0b-6373-4c67-a158-8e34f4b185db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ">
+      <UniqueIdentifier>{a704193f-f92c-46bd-99b2-e48f686b9c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ\システム">
+      <UniqueIdentifier>{ff1525c2-8b09-425d-8a00-e7ad23ede1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダーデータ\制御用システム">
+      <UniqueIdentifier>{b427d43b-6cf8-4e2d-b3c8-69b97247989c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定">
+      <UniqueIdentifier>{a895a227-7606-4251-85d9-05c35ff4114f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定\システム">
+      <UniqueIdentifier>{36167022-140f-408d-9d8c-8a141304e90f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\シェーダー\シェーダー設定\制御">
+      <UniqueIdentifier>{c92efc5d-6baa-4b0a-b398-f89ab9ba7d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ">
+      <UniqueIdentifier>{128e83d4-5208-4ac6-abd0-f29100926679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定">
+      <UniqueIdentifier>{41e82ad5-3cf9-47f8-8c5e-94a5088a7608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム">
+      <UniqueIdentifier>{08210d58-2025-4d44-b5f5-4da88f3071d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定">
+      <UniqueIdentifier>{2ebef1a0-8bf4-4d16-8f13-f2352677cf4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム">
+      <UniqueIdentifier>{56045148-ab15-46ad-9518-56678f5209f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダー設定\制御">
+      <UniqueIdentifier>{845562f0-a0ef-4743-b272-20a5519afaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\制御">
+      <UniqueIdentifier>{3c5799ee-728b-4bcc-8574-ef039896dfe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\数式">
+      <UniqueIdentifier>{bf6b3e7f-9343-4f80-a590-7be43df0a689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\数式">
+      <UniqueIdentifier>{fb7be7f6-b9f5-4f9d-8ee3-65b14acf54a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\シーンシステム">
+      <UniqueIdentifier>{c0a168ad-1c9d-4a82-8860-c3668a22e2a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\シーンシステム\基底">
+      <UniqueIdentifier>{6873337b-6374-45fc-806e-081a8ddced89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\シーンシステム\シーン">
+      <UniqueIdentifier>{cb22f23d-54bf-405a-877e-291f25334ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\シーンシステム">
+      <UniqueIdentifier>{03e01c5e-a791-446c-96cd-529e9cbb7c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\シーンシステム\基底">
+      <UniqueIdentifier>{f1af0bfa-b0bf-492a-a1ed-af94ed00a2df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\シーンシステム\シーン">
+      <UniqueIdentifier>{b438d723-ff57-4791-aa5c-dcae51b7161f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\リスト">
+      <UniqueIdentifier>{609c1808-ea94-40ac-a7d7-2f0415d0f4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{8cbda869-f9e0-486d-8636-efcf0df7a7b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\アプリケーション">
+      <UniqueIdentifier>{f568fbeb-047f-4a99-a0cc-f52ffeb5dc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{a49f03f0-df1e-42e0-927d-c34efdf300d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー">
+      <UniqueIdentifier>{9b7ba0e9-c550-433b-83e1-aac0dc5dc5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{70532259-fd45-489f-86d5-e99eea68bbc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー">
+      <UniqueIdentifier>{e876fe89-7ef1-4760-8add-e2df635f3daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{b25335d9-bf76-4106-907a-32d802782980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム">
+      <UniqueIdentifier>{071f2d4c-9f5e-447b-aff7-c9d82bc4efb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム">
+      <UniqueIdentifier>{6ec07a60-e2e4-4e20-bb1d-e98b13ac27dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{6ee5c25d-53f3-47ef-a6c2-ae798db493a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{43c475b2-0c95-4030-8d66-ad3cb0cc1d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\基底">
+      <UniqueIdentifier>{b167962e-39b0-44bd-9631-8892d780d881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\インスタンス\システム\派生">
+      <UniqueIdentifier>{8a16fcf4-fbd5-43ce-842d-2fe994848f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント">
+      <UniqueIdentifier>{dba880d9-a5f4-448e-b0ed-7c775a36513f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント">
+      <UniqueIdentifier>{6c5a9c86-dc2c-4a23-8859-c74707891a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\基底">
+      <UniqueIdentifier>{650dc87b-1a29-402c-bb8a-272acbbd03a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\基底">
+      <UniqueIdentifier>{f5ed09cc-77c4-4923-adc8-852c9f805748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント">
+      <UniqueIdentifier>{378dd47f-8431-462a-83c7-021117d48857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント">
+      <UniqueIdentifier>{4ff1dc4a-8a05-490b-89ed-a789cef3f1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\基底">
+      <UniqueIdentifier>{49e61694-be6a-4395-b71a-81922848485b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\基底">
+      <UniqueIdentifier>{b657540b-f575-4b21-81dd-033ba9b1d0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\UIコンポーネント\派生">
+      <UniqueIdentifier>{0d71ae37-23ee-4da9-aa35-84a7f88e383c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生">
+      <UniqueIdentifier>{7cb1e708-2ef5-44ea-b997-c9ba1ff416ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生">
+      <UniqueIdentifier>{3e5e58d0-d630-49e3-af0e-b08e33ee9dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\UIコンポーネント\派生">
+      <UniqueIdentifier>{ad77a841-9b46-493c-8982-c0ba55602de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ">
+      <UniqueIdentifier>{9149098e-646c-41b1-90c1-a9cca95438fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ">
+      <UniqueIdentifier>{af67b7a8-2a4e-4cd8-b1a2-e552ac57f6dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\メインカメラ">
+      <UniqueIdentifier>{3fd6b7fb-b125-4a85-87bf-e20ade5bc93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\メインカメラ">
+      <UniqueIdentifier>{a4aa0403-eda8-4dde-b3c9-65a6f2660a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\システム">
+      <UniqueIdentifier>{2e98a2b9-6211-4e70-85a1-ff8c56eab270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\システム">
+      <UniqueIdentifier>{7d99ed24-d70f-43b8-bd47-d28126ff20c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\カメラ\プロジェクション">
+      <UniqueIdentifier>{9d34203c-f37f-4d6a-b2d7-3a94473579c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\カメラ\プロジェクション">
+      <UniqueIdentifier>{4c754df2-bbd7-4009-b227-5adc7324bb1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\計算システム">
+      <UniqueIdentifier>{f21a269d-d0d1-46c1-a19d-a062b58f4839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\計算システム">
+      <UniqueIdentifier>{9b1db0f8-a581-470e-8592-8eb147288f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{84008d83-bedc-49e4-bca0-18e4b582ab13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル">
+      <UniqueIdentifier>{63adf544-d1fa-425c-9be6-00ab51b5b828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\カラー">
+      <UniqueIdentifier>{b9c714e9-6385-46fd-9d52-9f4d62052e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\型">
+      <UniqueIdentifier>{8831a35b-d3fc-417b-9eef-881b0aa6777f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム\型\カラー">
+      <UniqueIdentifier>{0ccfc9dd-ddd8-41e4-a23a-249a3e535a1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\モデル＆アニメーション">
+      <UniqueIdentifier>{2278c1b7-e398-414f-975d-5428578380ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム\型\頂点データ">
+      <UniqueIdentifier>{fd573df8-d55f-4f14-a58c-0867c65f7c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\シェーダー\定義">
+      <UniqueIdentifier>{86b02d3f-4153-4b87-8f25-ea77c4163850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス">
+      <UniqueIdentifier>{e24f0c34-a4c7-44df-bc81-4d61ff798f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点データ">
+      <UniqueIdentifier>{358bc881-d26d-43a3-90d0-97de20ed2743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定">
+      <UniqueIdentifier>{a409565f-ea34-4efb-a851-9ce8d390906e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\スクリーン">
+      <UniqueIdentifier>{5db9dd94-ba1d-4863-8e9b-082e41cf432d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\定数バッファ">
+      <UniqueIdentifier>{924328e9-1ddd-4741-abcd-69df9aee9045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\テクスチャ">
+      <UniqueIdentifier>{4d8e4bf1-3944-48ab-8d73-1b070f039283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\インスタンス\テクスチャ\フォント">
+      <UniqueIdentifier>{44fd7bdf-a02f-4d9a-89b6-4c8684dbab4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス">
+      <UniqueIdentifier>{79e8929c-6655-421d-b806-ea7dffabef6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定">
+      <UniqueIdentifier>{b218dfd8-e180-442e-95ef-ec47572274f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\頂点データ">
+      <UniqueIdentifier>{4258affc-9512-4ac6-be0e-75d2bd9c6868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\スクリーン">
+      <UniqueIdentifier>{aa28c339-266f-4e4a-b3d6-2a72fe1a2761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\フォント">
+      <UniqueIdentifier>{828a50fa-1a2b-4d67-a09e-869422a922e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\定数バッファ">
+      <UniqueIdentifier>{f281568c-5495-42b4-b764-44b9acaf8752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\インスタンス\テクスチャ">
+      <UniqueIdentifier>{9857dd9c-23c2-4ee9-92ba-3f74d499fbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム">
+      <UniqueIdentifier>{abde107a-f882-4d09-b716-8dac413ca63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム">
+      <UniqueIdentifier>{949ae479-02cd-4b4c-9000-010aaf15108d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル">
+      <UniqueIdentifier>{c48bc00d-0d1e-4532-805b-4dbf7cddaa3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル">
+      <UniqueIdentifier>{8442029c-143b-40f6-a999-353b6c34e9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\制御">
+      <UniqueIdentifier>{53b61e73-0f3a-4f2f-8e6f-e9f808265374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\システム">
+      <UniqueIdentifier>{088888b0-f7d0-4087-a50a-b07b5750fa6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\静的モデル\ロード">
+      <UniqueIdentifier>{0e4fb182-a9d4-4fda-88db-0c9860db69cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル">
+      <UniqueIdentifier>{12821f39-0014-40c3-998d-e4f66b0ca2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル">
+      <UniqueIdentifier>{181b730f-cc7b-4b68-9811-b0e2484c987a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム">
+      <UniqueIdentifier>{ce707303-d51c-4aae-8516-1578ed733cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御">
+      <UniqueIdentifier>{7ee97cab-8139-460f-9ebc-9894092c2e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム">
+      <UniqueIdentifier>{9d71c7fd-f85d-476d-abf2-643c5309ad29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム">
+      <UniqueIdentifier>{d4724c6c-caac-4f47-89b3-1453ac3f5d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム">
+      <UniqueIdentifier>{7b4e3381-f083-484b-9442-7d34d7761e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム">
+      <UniqueIdentifier>{455381ed-47af-4f93-ad3d-85d31de87dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム">
+      <UniqueIdentifier>{46c4584b-20a5-4b04-97e1-260b258850b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム\基底">
+      <UniqueIdentifier>{ce56824e-c08d-4314-8075-41e22d7d970d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル">
+      <UniqueIdentifier>{1ad600ab-b77a-478e-a37f-46d4353502f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル">
+      <UniqueIdentifier>{4390349d-3e1f-42c8-82c1-8cb7d787d337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\制御">
+      <UniqueIdentifier>{a705cd21-5c1f-4566-8bf4-9fe8334f5fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム">
+      <UniqueIdentifier>{de14c8fa-607b-4960-9a3b-68688a1a5b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\静的モデル\ロード">
+      <UniqueIdentifier>{cebd5433-2e81-4e9a-9059-479ed5067f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル">
+      <UniqueIdentifier>{01f8652d-642b-4ddd-be1e-31b3e9afd7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル">
+      <UniqueIdentifier>{bf08b997-48c7-40ad-8511-758c1ce02465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御">
+      <UniqueIdentifier>{b2450e34-203f-42e9-a91d-7898982b87f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム">
+      <UniqueIdentifier>{23e2ad69-f058-4168-ac9e-5e962c86c75f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム">
+      <UniqueIdentifier>{75edd326-21f3-4fac-a5c0-c323f504b0a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム">
+      <UniqueIdentifier>{3e7f1c47-47b7-4262-8e9f-b1b5a25a501e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム">
+      <UniqueIdentifier>{9cbf043a-156d-42da-adde-86d941e91040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム">
+      <UniqueIdentifier>{a87a2337-746d-4807-a2ab-ba5eea817e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\定義">
+      <UniqueIdentifier>{6ad84226-1d4f-4e04-a637-9b7dd9b8dad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム">
+      <UniqueIdentifier>{be01e5d8-3742-47bf-9afa-5b0096894a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム\基底">
+      <UniqueIdentifier>{9dbbd374-d2e4-4844-96a1-637327ea932a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\アセット\3Dモデル\メッシュ">
+      <UniqueIdentifier>{4f411657-6a3d-460f-9625-fff6450cabfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アセット\3Dモデル\メッシュ">
+      <UniqueIdentifier>{6a57ab82-3c89-452b-8405-47b975919832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム独立部">
+      <UniqueIdentifier>{5b78d4dc-4139-466a-a52d-c7586690da6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\プラットフォーム\OS\レイヤー">
+      <UniqueIdentifier>{db1c61f9-8681-4213-85a3-f0275d948f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\定数バッファ">
+      <UniqueIdentifier>{290b9e16-8d13-4c5c-8bac-6aaab5d57220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\頂点バッファ">
+      <UniqueIdentifier>{89d1c6be-cc42-463d-acc2-5fa5c9672799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\頂点インデックス">
+      <UniqueIdentifier>{0d3079ee-91c4-40d6-a104-6a79398bd54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\テクスチャ">
+      <UniqueIdentifier>{f91f4d22-587d-4399-ac7c-f95569bc4bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\テクスチャ\フォント">
+      <UniqueIdentifier>{61e46a94-bf91-41bf-a9b3-1470f4f047b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\レンダリング設定">
+      <UniqueIdentifier>{b900f050-cade-46be-9ab0-c9737ddc46ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\カプセル\スクリーン">
+      <UniqueIdentifier>{76341862-99b0-4fd3-99eb-a7fd47292cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底">
+      <UniqueIdentifier>{7336edd4-a477-41ed-b662-110216298db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\定数バッファ">
+      <UniqueIdentifier>{62484657-6049-4d9c-83f5-3428968d2ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点データ">
+      <UniqueIdentifier>{81b8201f-f52a-484f-860a-3abc6c514331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン">
+      <UniqueIdentifier>{6722178e-0df8-4198-9ff9-cbe6c5986c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\画像">
+      <UniqueIdentifier>{c20c97a5-c3ce-4f63-9526-c75982b6f92d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\画像\フォント">
+      <UniqueIdentifier>{44b88d02-257a-4498-a2c5-7e789935b534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\レンダリング設定">
+      <UniqueIdentifier>{598a0e6b-9a09-4827-89ac-acba59d4dc1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点インデックス">
+      <UniqueIdentifier>{1512dff7-2a07-4024-9b94-554c01796329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底">
+      <UniqueIdentifier>{6a56f9d0-946f-435c-9199-37409fc3d21d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\スクリーン">
+      <UniqueIdentifier>{3b27e506-c8c2-41b6-ac37-fae69d1514f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\画像">
+      <UniqueIdentifier>{dd51ebbc-5f3e-425c-bd90-d148661272f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\画像\フォント">
+      <UniqueIdentifier>{8425608a-3b2e-4bb7-844f-b25e8e4ca6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\レンダリング設定">
+      <UniqueIdentifier>{40c8f93c-34d6-4a20-b085-674e86e3ad66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\定数バッファ">
+      <UniqueIdentifier>{8e0fb3b8-af8a-48db-87c0-a9aa166dd373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\頂点インデックス">
+      <UniqueIdentifier>{e73d3cc7-6ef9-46ec-8fa4-1b81b2afc02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インスタンス基底\頂点データ">
+      <UniqueIdentifier>{9ddd0032-6969-4b2e-9b58-29a783ea8b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース">
+      <UniqueIdentifier>{40b9a619-f9d4-44f6-9bff-69b711f57cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース">
+      <UniqueIdentifier>{8b29aab2-6d40-4a4a-b34b-b97f6b31f61f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\生成用データ定義">
+      <UniqueIdentifier>{309701ea-ecae-4414-b935-36a1d4d89cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義">
+      <UniqueIdentifier>{3db88dda-ad84-427b-a7f5-368ed8ad0726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\DX12\DX12用定義">
+      <UniqueIdentifier>{7b5bb22f-4de2-4563-a2a9-0003f1de9ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\DX12\Tool">
+      <UniqueIdentifier>{032e20db-caf5-45e7-a538-723d80f08519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\生成と解放">
+      <UniqueIdentifier>{5c3cce64-aae1-4776-9c0a-7162ed1036d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\生成と解放">
+      <UniqueIdentifier>{b1e32a96-6b85-485f-9668-04fb4148a42f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\基本動作">
+      <UniqueIdentifier>{875b28d9-9b49-43b2-bc00-c6c46d39d16c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\基本動作">
+      <UniqueIdentifier>{f9e1006b-dd3b-4a62-88ff-fba4694fba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\レンダリング設定">
+      <UniqueIdentifier>{5e8a6414-8d0b-42df-9a2c-ea33bbe1ff41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング設定">
+      <UniqueIdentifier>{66d54ef0-42da-4a9d-9382-cfb3c1e42173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\頂点データ">
+      <UniqueIdentifier>{793bf6e3-a682-4719-ac6c-1e1968867e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\頂点データ">
+      <UniqueIdentifier>{b2674572-1e6d-442e-a48f-c1f856f292c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\頂点インデックス">
+      <UniqueIdentifier>{d135a3a1-3655-4f64-aa47-2a3c2c71bfec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\頂点インデックス">
+      <UniqueIdentifier>{fafe06ce-6b2c-49c6-9ff7-3101974b4978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\定数バッファ">
+      <UniqueIdentifier>{1b488113-7ef0-4d6c-9ab6-ae83f94574e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\定数バッファ">
+      <UniqueIdentifier>{fb703892-051c-4f46-a68d-420aaf24f596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\テスクチャ">
+      <UniqueIdentifier>{45c3ecf9-b3eb-40a8-8fc1-ee0fefcde3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\テスクチャ">
+      <UniqueIdentifier>{c7d8b632-9f7e-4d07-9c81-4192bd85581c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\フォント">
+      <UniqueIdentifier>{e1e405e3-7882-46b5-b269-4852225db8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\フォント">
+      <UniqueIdentifier>{d9b9cabe-a8d8-435a-a888-c4c3bccea1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\レンダリング画面">
+      <UniqueIdentifier>{579270c2-75bf-406b-8842-5d7e917816f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング画面">
+      <UniqueIdentifier>{9c8d79a3-4254-4a66-b7de-4ec5b2c67db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\レンダリング\API\インターフェース\深度ステンシル">
+      <UniqueIdentifier>{ee17cac4-52d5-4390-a4d4-83d4e8781f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル">
+      <UniqueIdentifier>{7e830338-e051-4d34-9e01-766017542fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール">
+      <UniqueIdentifier>{fefe82f4-1969-457a-9459-63f3a0e815c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール">
+      <UniqueIdentifier>{0ba1553e-b600-402f-9b20-f296e6d4ea62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\基底クラス">
+      <UniqueIdentifier>{1ffde752-a4f6-4317-82be-8eec84d0adc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\定義">
+      <UniqueIdentifier>{42f4565a-3166-4f69-8e59-1054e0b938a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\コンパイル">
+      <UniqueIdentifier>{3f57634b-fcee-4952-8d04-9505e3949981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群">
+      <UniqueIdentifier>{5470b4ad-9db1-4ad9-a7d7-fe9e8e783864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム">
+      <UniqueIdentifier>{40dfc3c2-64af-4d11-a49a-d093bbd93aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス">
+      <UniqueIdentifier>{279dacc6-07f7-4542-815b-a1acc3375fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\定義\ログ用タグ群">
+      <UniqueIdentifier>{bc5d9f0f-1f57-4102-8192-7d2792809d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\インターフェース">
+      <UniqueIdentifier>{7dd1ac5a-8cf2-4776-90fd-aacc32611cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群">
+      <UniqueIdentifier>{bb9f8862-a2c4-45f6-84b7-b951f3b18745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム">
+      <UniqueIdentifier>{06ee6bf0-c3f8-426d-8d4c-7a823e872d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス">
+      <UniqueIdentifier>{d4e6cdd6-3b24-461d-a4d6-ae508d30d325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\デバッグ\ログ\コンソール\インターフェース">
+      <UniqueIdentifier>{8338c568-bb5c-4a18-a4e5-0accdb5473fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\インターフェース">
+      <UniqueIdentifier>{35d38b71-9b4a-49fc-b2bf-3764d99a516d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム独立部">
+      <UniqueIdentifier>{57099042-d3e6-49b3-bd8f-f95c63e52e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム独立部\定義">
+      <UniqueIdentifier>{b4a91e7e-91f4-41c9-9ac8-f50afc3c12b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底">
+      <UniqueIdentifier>{8ce8cf74-2f9a-454c-8ad9-82a6b543c992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\プラットフォーム\OS\基底\定義">
+      <UniqueIdentifier>{a3cd61b7-949f-4a31-9a88-7e5c84733629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス">
+      <UniqueIdentifier>{91a99127-5bef-4f96-b19d-41eca94075e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ブレンド">
+      <UniqueIdentifier>{385fffde-b828-4ee6-9c67-4e709759ae50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\深度ステンシル">
+      <UniqueIdentifier>{193868c4-acfd-477a-a45b-47ca8393b04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\サンプリング">
+      <UniqueIdentifier>{1ae11532-e073-4d1c-a20d-f71e6cfb61fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\レンダリング\定義\ラスタライザ">
+      <UniqueIdentifier>{0c2474a1-ff13-42b7-bcc3-e3656fe68246}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C_Windows_OS_Management_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Wnd_Proc_For_Game_APK.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Wnd_Proc_Manager.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_OS_Management_System_Base.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Vertex_Buffer_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Constant_Buffer_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Font_Data_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Rendering_Graphics_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Texture_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Blend_State_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Cached_PSO_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Rasterizer_State_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Sampling_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Stencil_State_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Streaming_Output_Buffer_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\ツール</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Code.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Shader_Resource_Signature_Inform.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Shader_Kind.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="All_Figure_Data.h">
+      <Filter>ヘッダー ファイル\システム\図形</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Figure_Data.h">
+      <Filter>ヘッダー ファイル\システム\図形</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_Base_Data.h">
+      <Filter>ヘッダー ファイル\システム\図形</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Text_And_File_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Make_Font_To_Graph_Pakage.h">
+      <Filter>ヘッダー ファイル\アセット\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Function_Base.h">
+      <Filter>ヘッダー ファイル\システム\動作</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Function_Manager.h">
+      <Filter>ヘッダー ファイル\システム\動作</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Function_Priority_Setting.h">
+      <Filter>ヘッダー ファイル\システム\動作</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Function_Include_List.h">
+      <Filter>ヘッダー ファイル\システム\動作</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Input_Collision_Box.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Input_Collision_Manager.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Input_Manager.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Input_Collision_Priority.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Game_Input_Collision_State.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Input_Collision_Names.h">
+      <Filter>ヘッダー ファイル\システム\入力</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_State_Manager.h">
+      <Filter>ヘッダー ファイル\システム\状態</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Time_Manager.h">
+      <Filter>ヘッダー ファイル\システム\時間</Filter>
+    </ClInclude>
+    <ClInclude Include="C_List_Divided_By_Class_Overall_Base.h">
+      <Filter>ヘッダー ファイル\システム\リスト</Filter>
+    </ClInclude>
+    <ClInclude Include="C_List_Divided_By_Class_Base.h">
+      <Filter>ヘッダー ファイル\システム\リスト</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Instance_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\制御用システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Instance_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\インスタンス基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Actor_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\アクター\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Actor_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\アクター\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Post_Effect_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Post_Effect_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Sound_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\音\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Sound_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\音\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_User_Interface_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\UI\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_User_Interface_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\UI\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Material.h">
+      <Filter>ヘッダー ファイル\アセット\マテリアル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Material_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\マテリアル\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Material_User.h">
+      <Filter>ヘッダー ファイル\アセット\マテリアル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Map.h">
+      <Filter>ヘッダー ファイル\アセット\テクスチャ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\テクスチャ\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_Setting_User.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Shader_User.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Data_User.h">
+      <Filter>ヘッダー ファイル\アセット\テクスチャ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Float_4.h">
+      <Filter>ヘッダー ファイル\システム\数式</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Float_3.h">
+      <Filter>ヘッダー ファイル\システム\数式</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Float_2.h">
+      <Filter>ヘッダー ファイル\システム\数式</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Key_Frame.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Key_Frame_List.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Inform.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Bone_Weight.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Data_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Bone_Data.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_Manager.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_User.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Calculation_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Animation_Status.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Base.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_No_Animation.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Play.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Loop_Play.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Blend_Play.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Algorithm_Blend_And_Loop.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\アルゴリズム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scene_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\シーンシステム\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scene_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\シーンシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scene_Title.h">
+      <Filter>ヘッダー ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scene_Game.h">
+      <Filter>ヘッダー ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_List_All_Base.h">
+      <Filter>ヘッダー ファイル\システム\リスト</Filter>
+    </ClInclude>
+    <ClInclude Include="C_APK_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\アプリケーション</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Actor_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Post_Effect_Draw_Manager.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_System_List.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\リストシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Game_System_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\インスタンス\システム\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_UI_Component_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Component_Base.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\基底</Filter>
+    </ClInclude>
+    <ClInclude Include="C_UIC_Graph_Box.h">
+      <Filter>ヘッダー ファイル\ゲーム\UIコンポーネント\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Material_Detail.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Main_Camera.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\メインカメラ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Camera_System.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Projection_System.h">
+      <Filter>ヘッダー ファイル\ゲーム\カメラ\プロジェクション</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Quaternion.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Position.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="E_MATRIX_DIRECTION.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Transform.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Scale.h">
+      <Filter>ヘッダー ファイル\システム\計算システム</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Model_Draw_Command.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル\モデル描画用システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_Component.h">
+      <Filter>ヘッダー ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Render_Screen_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DX12_PARAMATOR.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\DX12用定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Half_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_1_Byte_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Color.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Color_Converter.h">
+      <Filter>ヘッダー ファイル\システム\型\カラー</Filter>
+    </ClInclude>
+    <ClInclude Include="S_3D_Animation_Model_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\モデル＆アニメーション</Filter>
+    </ClInclude>
+    <ClInclude Include="S_3D_Model_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\モデル＆アニメーション</Filter>
+    </ClInclude>
+    <ClInclude Include="2D_Position_Data.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_BOX_VERTEX_SETTING.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_UI_Vertex.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Rect.h">
+      <Filter>ヘッダー ファイル\システム\型</Filter>
+    </ClInclude>
+    <ClInclude Include="S_World_View_Projection.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture_UV_Data.h">
+      <Filter>ヘッダー ファイル\システム\型\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Layout_Data.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_RENDERING_SCREEN_FORMAT.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_SCREEN_TEXTURE_SETTING.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義\詳細定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Unique_Buffer_Slot.h">
+      <Filter>ヘッダー ファイル\アセット\シェーダー\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Depth_Stencil_Buffer_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Animation_Model_Loader.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Screen_Data_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Depth_Stencil_Buffer_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Font_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\画像\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Texture_Setting_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\画像</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Graphics_Setting_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Create_Index_Buffer_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\生成用データ定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Index_Buffer_Setting_Inform_Base.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インスタンス基底\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Index_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Vertex_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Rendering_Graphics_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Rendering_Screen_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Depth_Stencil_Buffer_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Constant_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Font_Data_Set.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\テクスチャ\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Input_Layout_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DX12_Rendering_Texture_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\DX12\インスタンス\テクスチャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_Loader.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\ロード</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Mesh_Data.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\メッシュ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_System.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Static_Model_User.h">
+      <Filter>ヘッダー ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Platform_Detection_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部</Filter>
+    </ClInclude>
+    <ClInclude Include="E_MOUSE_CLICK_STATE.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Size_Data.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Mouse_State.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Window_Position.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Day_And_Time_Inform.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\基底\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Undefine_Platform_Detector_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Challenge_Mode_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform_Detector_Macro.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_RENDERING_API_KIND.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_OS_KIND.h">
+      <Filter>ヘッダー ファイル\プラットフォーム独立部\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="C_OS_User_System.h">
+      <Filter>ヘッダー ファイル\プラットフォーム\OS\インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Constant_Data_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Object_Vertex_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\頂点バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Vertex_Index_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Depth_Stencil_Buffer_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Screen_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\スクリーン</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Texture_Data_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\テクスチャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Font_Draw_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\テクスチャ\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_Setting_System.h">
+      <Filter>ヘッダー ファイル\レンダリング\カプセル\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Initialize_And_Release.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\生成と解放</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_User.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\基本動作</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Setting.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング設定</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Buffer.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\頂点データ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Vertex_Index_Buffer.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\頂点インデックス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Constant_Resource.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\定数バッファ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Texture_Resource.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\テスクチャ</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Font.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\フォント</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Rendering_Screen.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\レンダリング画面</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rendering_API_Interface_Depth_Stencil.h">
+      <Filter>ヘッダー ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Console_Debug_Log_System_Base.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\基底クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Deactivated_Console_Log_System.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="E_CONSOLE_LOG_TAGS.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="E_CONSOLE_LOG_COLOR.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_Debug_Log_Names.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\定義\ログ用タグ群</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Windows_Console_Log_System.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム</Filter>
+    </ClInclude>
+    <ClInclude Include="GCC_Or_MSVC_Macro.h">
+      <Filter>ヘッダー ファイル\コンパイル</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Console_Log_Interface.h">
+      <Filter>ヘッダー ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="Cliques_Engine_main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Blend_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Blend_Option.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Format.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Rendering_Draw_Color.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ブレンド</Filter>
+    </ClInclude>
+    <ClInclude Include="Depth_Stencil_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_BYTE_FORMAT.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_DEPTH_STENCIL_BUFFER_PIXEL_SIZE.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Depth_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Depth_Write_Rule.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Stencil_Activate_Setting.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\深度ステンシル</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Sampling_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\サンプリング</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer_Setting_Inform.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Draw_Mode.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Culling.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Mesh_Front.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Antialiasing.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Depth_Setting_Value.h">
+      <Filter>ヘッダー ファイル\レンダリング\定義\ラスタライザ</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C_OS_Management_System_Base.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Windows_OS_Management_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Wnd_Proc_Manager.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Wnd_Proc_For_Game_APK.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\Windows\プロシージャ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture_Data_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Constant_Data_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Object_Vertex_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Font_Draw_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Blend_State_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Cached_PSO_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Streaming_Output_Buffer_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Stencil_State_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Sampling_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Rasterrizer_State_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Code.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scale_Constant_UI.cpp">
+      <Filter>ソース ファイル\システム\図形</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UI_SETTING_DATA.cpp">
+      <Filter>ソース ファイル\システム\図形</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UI_Box.cpp">
+      <Filter>ソース ファイル\システム\図形</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Float_4.cpp">
+      <Filter>ソース ファイル\システム\数式</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Text_And_File_Manager.cpp">
+      <Filter>ソース ファイル\アセット\ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Cliques_Engine_main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Input_Manager.cpp">
+      <Filter>ソース ファイル\システム\入力</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Input_Collision.cpp">
+      <Filter>ソース ファイル\システム\入力</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Input_Collision_Box.cpp">
+      <Filter>ソース ファイル\システム\入力</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Input_Collision_Manager.cpp">
+      <Filter>ソース ファイル\システム\入力</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Engine_Function_Base.cpp">
+      <Filter>ソース ファイル\システム\動作</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Engine_Function_Manager.cpp">
+      <Filter>ソース ファイル\システム\動作</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_State_Manager.cpp">
+      <Filter>ソース ファイル\システム\状態</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Time_Manager.cpp">
+      <Filter>ソース ファイル\システム\時間</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Instance_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\インスタンス基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_Instance_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\制御用システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Actor_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\アクター\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Post_Effect_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\ポストエフェクト\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Sound_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\音\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_User_Interface_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\UI\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Manager.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\制御用システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Material.cpp">
+      <Filter>ソース ファイル\アセット\マテリアル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Material_Manager.cpp">
+      <Filter>ソース ファイル\アセット\マテリアル\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Material_User.cpp">
+      <Filter>ソース ファイル\アセット\マテリアル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture_Map.cpp">
+      <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture_Manager.cpp">
+      <Filter>ソース ファイル\アセット\テクスチャ\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting_Manager.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_User.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダーデータ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Shader_Setting_User.cpp">
+      <Filter>ソース ファイル\アセット\シェーダー\シェーダー設定\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Float_3.cpp">
+      <Filter>ソース ファイル\システム\数式</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Float_2.cpp">
+      <Filter>ソース ファイル\システム\数式</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_Manager.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_User.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Data_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Bone_Data.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\ボーンマトリクスシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_Manager.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\制御</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_User.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\モデル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Calculation_System.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Base.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_No_Animation.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Play.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Loop_Play.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Blend_Play.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Algorithm_Blend_And_Loop.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションシステム\計算システム\計算アルゴリズム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scene_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\シーンシステム\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scene_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\シーンシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scene_Game.cpp">
+      <Filter>ソース ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scene_Title.cpp">
+      <Filter>ソース ファイル\ゲーム\シーンシステム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_List_All_Base.cpp">
+      <Filter>ソース ファイル\システム\リスト</Filter>
+    </ClCompile>
+    <ClCompile Include="C_APK_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\アプリケーション</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Actor_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\アクター\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Post_Effect_Draw_Manager.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\ポストエフェクト\描画マネージャー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Game_System_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\インスタンス\システム\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UI_Component_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\UIコンポーネント\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Component_Base.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\基底</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UIC_Graph_Box.cpp">
+      <Filter>ソース ファイル\ゲーム\UIコンポーネント\派生</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Main_Camera.cpp">
+      <Filter>ソース ファイル\ゲーム\カメラ\メインカメラ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Camera_System.cpp">
+      <Filter>ソース ファイル\ゲーム\カメラ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Quaternion.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Position.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Scale.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Projection_System.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Transform.cpp">
+      <Filter>ソース ファイル\システム\計算システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture_Data_User.cpp">
+      <Filter>ソース ファイル\アセット\テクスチャ\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Half_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_1_Byte_Color.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Color_Converter.cpp">
+      <Filter>ソース ファイル\システム\型\カラー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Screen_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Depth_Stencil_Buffer_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_Loader.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\アニメーションモデル\ロードシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Vertex_Buffer_Setting_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\頂点データ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Screen_Data_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Texture_Setting_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\画像</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Font_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\画像\フォント</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Depth_Stencil_Buffer_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\スクリーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Graphics_Setting_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\レンダリング設定</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Constant_Buffer_Setting_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\定数バッファ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_Index_Buffer_Setting_Inform_Base.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インスタンス基底\頂点インデックス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Index_Setting_Inform.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\頂点インデックス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Rendering_Graphics_Setting_Inform.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Vertex_Setting_Inform.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\頂点データ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Depth_Stencil_Buffer_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\スクリーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Rendering_Screen_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\スクリーン</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Font_Data_Set.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\フォント</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Input_Layout_Setting_System.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\レンダリング設定</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Rendering_Texture_Setting_Inform.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\テクスチャ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DX12_Constant_Setting_Inform.cpp">
+      <Filter>ソース ファイル\レンダリング\API\DX12\インスタンス\定数バッファ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Vertex_Index_System.cpp">
+      <Filter>ソース ファイル\レンダリング\カプセル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Static_Model_Loader.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\静的モデル\ロード</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Animation_Model_Component.cpp">
+      <Filter>ソース ファイル\ゲーム\コンポーネント\派生\モデル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Mesh_Data.cpp">
+      <Filter>ソース ファイル\アセット\3Dモデル\メッシュ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_OS_Manager_And_Rendering_API_Initialize_And_Release_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム独立部</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Platform_Detection_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム独立部</Filter>
+    </ClCompile>
+    <ClCompile Include="C_OS_User_System.cpp">
+      <Filter>ソース ファイル\プラットフォーム\OS\レイヤー</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Initialize_And_Release.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\生成と解放</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_User.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\基本動作</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Setting.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\レンダリング設定</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Buffer.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\頂点データ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Vertex_Index_Buffer.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\頂点インデックス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Constant_Resource.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\定数バッファ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Texture_Resource.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\テスクチャ</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Font.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\フォント</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Rendering_Screen.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\レンダリング画面</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rendering_API_Interface_Depth_Stencil.cpp">
+      <Filter>ソース ファイル\レンダリング\API\インターフェース\深度ステンシル</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Console_Debug_Log_System_Base.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\基底クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Deactivated_Console_Log_System.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\無機能化用クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Windows_Console_Log_System.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\派生クラス群\Windows用コンソールログシステム</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Console_Log_Interface.cpp">
+      <Filter>ソース ファイル\デバッグ\ログ\コンソール\インターフェース</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PS_UI_DX12.hlsl">
+      <Filter>リソース ファイル\shader\dx12\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS_UI_DX12.hlsl">
+      <Filter>リソース ファイル\shader\dx12\VS</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <Filter>リソース ファイル\package</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Cliques_Engine.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
